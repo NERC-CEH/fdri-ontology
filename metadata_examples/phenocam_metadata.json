@@ -37,12 +37,17 @@
 						"sensor_alias": "Camera", # Potentially multiple aliases
 						"related_instrument": [
                                            		"Lens 1", # Allow multiple related instruments
-                                           		"Lens 2" # Link to serial numbers of related instruments where applicable?
+                                           		"Lens 2" # Link to serial numbers of related instruments where applicable? And lens sensory history.
                                         	]
 						"key_words": [
 							"RGB", # Allow multiple variables
 							"Image"
                                         	]
+			    		},
+					"sensor_config": "IP address IP:10.20.196.51", # Changeable, possibly multiple 'configs'. Perhaps needs its own section based on "sensor_config" with "sensor_config_type"...
+					"config_from": "2019-01-01 12:00",
+					"config_to": "2020-02-02 13:00",
+					"config_comment": "Set in the field",
                                     }
                                 }
                             }
