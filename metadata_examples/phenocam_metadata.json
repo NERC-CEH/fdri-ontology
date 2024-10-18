@@ -10,17 +10,17 @@
 	    ],
             "vegetation_history": [ # Consider vegetation type history - if we can retrieve and maintain up-to-date veg data.
 		    {
-			"dominant_species": null, # Perhaps only applicable for non-changing sites.
+			"dominant_species": "Spring barley", # Perhaps only applicable for non-changing sites.
 			"from": "2020-1-1T09:00:00Z",
 			"to": null,
 		    },
 		    {
-			"primary_veg_type": "Barley",
+			"primary_veg_type": "AG", # Standardised vocab
 			"from": "2020-1-1T09:00:00Z",
 			"to": null,
 		    },
 		    {
-			"secondary_veg_type": "Grass",
+			"secondary_veg_type": "GR",
 			"from": "2020-1-1T09:00:00Z",
 			"to": null,
 		    }
