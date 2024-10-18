@@ -1,7 +1,13 @@
 {
     "sites": {
         "BUNNY": {
-            "land_cover": "Agriculture", # Perhaps have land cover history here to help indicate when RGB and an image mask might (need to) change
+            "land_cover_history": [ # Site metadata
+		{
+			"land_cover": "Agriculture", # Land cover history will help indicate when RGB and an image mask might (need to) change
+			"from": "2021-1-1T12:30:00Z",
+			"to": "2022-1-1T13:00:00Z"
+		}    
+	    ],
             "phenocam_images": {
                 "description": "North / south photos taken at Bunny Park...",
                 "time_series": [
@@ -17,13 +23,13 @@
                             "land_activity": [ # Potentially multiple
                                 "Harvest" # Standardised vocab, e.g. crop harvesting, ploughing, mowing, spraying, irrigation, etc.
                             ]
-                            "land_cover_change": "N", # Binary for whether the overall land cover has changed? E.g. from grassland to agriculture.
+                            "land_cover_change": "false", # Binary for whether the overall land cover has changed? E.g. from grassland to agriculture.
                             "comments": [
                                 "Gate open",
                                 "Muck on lense",
                                 "New object" # Standardised vocab for spotting new objects/people/other?
                             ],
-                            "mask_disruption": "Y", # Something binary to indicate the mask needs changing and/or the photo should be skipped for RGB processing?
+                            "mask_disruption": "true", # Something binary to indicate the mask needs changing and/or the photo should be skipped for RGB processing?
                         },
                         "sensor_history":[ # Same format as in other metadata json file
                             {
