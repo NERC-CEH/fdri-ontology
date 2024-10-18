@@ -1,0 +1,66 @@
+{
+    "sites": {
+        "BUNNY": {
+            "phenocam_images": {
+                "description": "North / south photos taken at Bunny Park...",
+                "time_series": [
+                    {
+                        "filename": "BUNNY_20230203_1109_ID20230203111002.jpg",
+                        "datetime": "2023-2-3T11:10:02Z",
+                        "flags": {
+                            "snow": false,
+                            "standling_water": false,
+                            "comments": [
+                                "Gate open",
+                                "Muck on lense"
+                            ]
+                        }
+                    },
+                    {
+                        "filename": "BUNNY_20230203_1209_ID20230203121002.jpg",
+                        "datetime": "2023-2-3T12:10:02Z",
+                        "flags": {
+                            "snow": false,
+                            "standling_water": false,
+                            "comments": [
+                                "Gate open",
+                                "Cow in enclosure",
+                                "Muck on lense"
+                            ]
+                        }
+                    }
+                ],
+                "masks": [
+                    {
+                        "type": "LAND1",
+                        "filename": "BUNNY_LAND1_MASK_2560_2.dat",
+                        "from": "2020-1-1T12:10:00Z",
+                        "to": null,
+                        "associated_with": "RGB_timeseries_data(?)"
+                    },
+                    {
+                        "type": "LAND1",
+                        "filename": "BUNNY_LAND1_MASK_2560_1.dat",
+                        "from": "2019-7-10T15:20:00Z",
+                        "to": "2020-1-1T12:10:00Z",
+                        "associated_with": "RGB_timeseries_data(?)"
+                    },
+                    {
+                        "type": "LAND2",
+                        "filename": "BUNNY_LAND2_MASK_2560_2.dat",
+                        "from": "2020-1-1T12:10:00Z",
+                        "to": null,
+                        "associated_with": "RGB_timeseries_data(?)"
+                    },
+                    {
+                        "type": "LAND2",
+                        "filename": "BUNNY_LAND2_MASK_2560_1.dat",
+                        "from": "2019-7-10T15:20:00Z",
+                        "to": "2020-1-1T12:10:00Z",
+                        "associated_with": "RGB_timeseries_data(?)"
+                    }
+                ]
+            }
+        }
+    }
+}
