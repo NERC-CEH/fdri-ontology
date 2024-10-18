@@ -10,6 +10,11 @@
 	    ],
             "vegetation_history": [ # Consider vegetation type history - if we can retrieve and maintain up-to-date veg data.
 		    {
+			"dominant_species": null, # Perhaps only applicable for non-changing sites.
+			"from": "2020-1-1T09:00:00Z",
+			"to": null,
+		    },
+		    {
 			"primary_veg_type": "Barley",
 			"from": "2020-1-1T09:00:00Z",
 			"to": null,
@@ -30,7 +35,7 @@
                         "image_size": "2 MB" # Help detect corrupt images etc.
                         "flags": {
                             "snow": false,
-                            "snow_depth": "NA", # For noting estimated snow depth where applicable.
+                            "snow_depth": null, # For noting estimated snow depth where applicable.
                             "standling_water": false,
                             "land_activity": [ # Potentially multiple
                                 "Harvest" # Standardised vocab, e.g. crop harvesting, ploughing, mowing, spraying, irrigation, etc.
