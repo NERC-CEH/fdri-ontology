@@ -1,0 +1,395 @@
+{
+  "$id" : "http://fdri.ceh.ac.uk/records/metadata/EnvironmentalMonitoringSite",
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "definitions" : {
+    "_ref" : {
+      "properties" : {
+        "@id" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "@id" ],
+      "additionalProperties" : false,
+      "type" : "object"
+    },
+    "EnvironmentalMonitoringSite" : {
+      "properties" : {
+        "@id" : {
+          "type" : "string"
+        },
+        "@type" : {
+          "enum" : [ "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSite" ],
+          "type" : "string"
+        },
+        "@context" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, {
+            "additionalProperties" : true,
+            "type" : "object"
+          } ]
+        },
+        "$schema" : {
+          "type" : "string"
+        },
+        "altitude" : {
+          "properties" : {
+            "@value" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "enum" : [ "http://www.w3.org/2001/XMLSchema#decimal" ],
+              "type" : "string"
+            }
+          },
+          "required" : [ "@value", "@type" ],
+          "type" : "object"
+        },
+        "ingRegion" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
+          },
+          "type" : "array"
+        },
+        "inCatchment" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
+          },
+          "type" : "array"
+        },
+        "landCover" : {
+          "items" : {
+            "$ref" : "#/definitions/PropertyValueSeries"
+          },
+          "type" : "array"
+        },
+        "siteVariance" : {
+          "items" : {
+            "properties" : {
+              "@value" : {
+                "type" : "string"
+              },
+              "@language" : {
+                "type" : "string"
+              },
+              "@type" : {
+                "enum" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString" ],
+                "type" : "string"
+              }
+            },
+            "required" : [ "@value", "@language" ],
+            "type" : "object"
+          },
+          "type" : "array"
+        },
+        "soilType" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "type" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "hasGeometry" : {
+          "$ref" : "#/definitions/Geometry"
+        },
+        "hasCentroid" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "hasBoundingBox" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "isMobile" : {
+          "type" : "boolean"
+        },
+        "operatingPeriod" : {
+          "$ref" : "#/definitions/PeriodOfTime"
+        },
+        "hasFeatureOfInterest" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "observes" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
+          },
+          "type" : "array"
+        },
+        "environmentalDomain" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
+          },
+          "type" : "array"
+        },
+        "qualifiedAttribution" : {
+          "items" : {
+            "$ref" : "#/definitions/RelatedPartyAttribution"
+          },
+          "type" : "array"
+        },
+        "title" : {
+          "items" : {
+            "properties" : {
+              "@value" : {
+                "type" : "string"
+              },
+              "@language" : {
+                "type" : "string"
+              },
+              "@type" : {
+                "enum" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString" ],
+                "type" : "string"
+              }
+            },
+            "required" : [ "@value", "@language" ],
+            "type" : "object"
+          },
+          "type" : "array"
+        },
+        "description" : {
+          "items" : {
+            "properties" : {
+              "@value" : {
+                "type" : "string"
+              },
+              "@language" : {
+                "type" : "string"
+              },
+              "@type" : {
+                "enum" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString" ],
+                "type" : "string"
+              }
+            },
+            "required" : [ "@value", "@language" ],
+            "type" : "object"
+          },
+          "type" : "array"
+        }
+      },
+      "additionalProperties" : false,
+      "type" : "object"
+    },
+    "PropertyValueSeries" : {
+      "properties" : {
+        "@id" : {
+          "type" : "string"
+        },
+        "@type" : {
+          "enum" : [ "http://fdri.ceh.ac.uk/vocab/metadata/PropertyValueSeries" ],
+          "type" : "string"
+        },
+        "@context" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, {
+            "additionalProperties" : true,
+            "type" : "object"
+          } ]
+        },
+        "$schema" : {
+          "type" : "string"
+        },
+        "hadValue" : {
+          "items" : {
+            "$ref" : "#/definitions/TimeBoundPropertyValue"
+          },
+          "type" : "array"
+        },
+        "hasCurrentValue" : {
+          "$ref" : "#/definitions/TimeBoundPropertyValue"
+        }
+      },
+      "additionalProperties" : false,
+      "type" : "object"
+    },
+    "TimeBoundPropertyValue" : {
+      "properties" : {
+        "@id" : {
+          "type" : "string"
+        },
+        "@type" : {
+          "enum" : [ "http://fdri.ceh.ac.uk/vocab/metadata/TimeBoundPropertyValue" ],
+          "type" : "string"
+        },
+        "@context" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, {
+            "additionalProperties" : true,
+            "type" : "object"
+          } ]
+        },
+        "$schema" : {
+          "type" : "string"
+        },
+        "interval" : {
+          "$ref" : "#/definitions/PeriodOfTime"
+        },
+        "replaces" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "minValue" : {
+          "properties" : {
+            "@value" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "type" : "string"
+            }
+          },
+          "required" : [ "@value", "@type" ],
+          "type" : "object"
+        },
+        "maxValue" : {
+          "properties" : {
+            "@value" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "type" : "string"
+            }
+          },
+          "required" : [ "@value", "@type" ],
+          "type" : "object"
+        },
+        "value" : {
+          "properties" : {
+            "@value" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "type" : "string"
+            }
+          },
+          "required" : [ "@value", "@type" ],
+          "type" : "object"
+        },
+        "valueReference" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "unit" : {
+          "$ref" : "#/definitions/_ref"
+        }
+      },
+      "additionalProperties" : false,
+      "type" : "object"
+    },
+    "PeriodOfTime" : {
+      "properties" : {
+        "@id" : {
+          "type" : "string"
+        },
+        "@type" : {
+          "enum" : [ "http://purl.org/dc/terms/PeriodOfTime" ],
+          "type" : "string"
+        },
+        "@context" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, {
+            "additionalProperties" : true,
+            "type" : "object"
+          } ]
+        },
+        "$schema" : {
+          "type" : "string"
+        },
+        "startDate" : {
+          "properties" : {
+            "@value" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "enum" : [ "http://www.w3.org/2001/XMLSchema#date" ],
+              "type" : "string"
+            }
+          },
+          "required" : [ "@value", "@type" ],
+          "type" : "object"
+        },
+        "endDate" : {
+          "properties" : {
+            "@value" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "enum" : [ "http://www.w3.org/2001/XMLSchema#date" ],
+              "type" : "string"
+            }
+          },
+          "required" : [ "@value", "@type" ],
+          "type" : "object"
+        }
+      },
+      "required" : [ "startDate" ],
+      "additionalProperties" : false,
+      "type" : "object"
+    },
+    "Geometry" : {
+      "properties" : {
+        "@id" : {
+          "type" : "string"
+        },
+        "@type" : {
+          "enum" : [ "http://www.opengis.net/ont/geosparql#Geometry" ],
+          "type" : "string"
+        },
+        "@context" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, {
+            "additionalProperties" : true,
+            "type" : "object"
+          } ]
+        },
+        "$schema" : {
+          "type" : "string"
+        },
+        "asWKT" : {
+          "properties" : {
+            "@value" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "enum" : [ "http://www.opengis.net/ont/geosparql#wktLiteral" ],
+              "type" : "string"
+            }
+          },
+          "required" : [ "@value", "@type" ],
+          "type" : "object"
+        }
+      },
+      "additionalProperties" : false,
+      "type" : "object"
+    },
+    "RelatedPartyAttribution" : {
+      "properties" : {
+        "@id" : {
+          "type" : "string"
+        },
+        "@type" : {
+          "enum" : [ "http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAttribution" ],
+          "type" : "string"
+        },
+        "@context" : {
+          "anyOf" : [ {
+            "type" : "string"
+          }, {
+            "additionalProperties" : true,
+            "type" : "object"
+          } ]
+        },
+        "$schema" : {
+          "type" : "string"
+        },
+        "hasRole" : {
+          "$ref" : "#/definitions/_ref"
+        },
+        "agent" : {
+          "$ref" : "#/definitions/_ref"
+        }
+      },
+      "required" : [ "hasRole", "agent" ],
+      "additionalProperties" : false,
+      "type" : "object"
+    }
+  },
+  "$ref" : "#/definitions/EnvironmentalMonitoringSite"
+}

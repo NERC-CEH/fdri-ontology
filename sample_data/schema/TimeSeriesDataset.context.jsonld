@@ -1,0 +1,173 @@
+{
+  "@version" : 1.1,
+  "http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDataset" : {
+    "@context" : {
+      "accessRights" : {
+        "@id" : "http://purl.org/dc/terms/accessRights",
+        "@container" : "@set"
+      },
+      "accrualPeriodicity" : {
+        "@id" : "http://purl.org/dc/terms/accrualPeriodicity",
+        "@type" : "http://www.w3.org/2001/XMLSchema#duration"
+      },
+      "license" : {
+        "@id" : "http://purl.org/dc/terms/license"
+      },
+      "rights" : {
+        "@id" : "http://purl.org/dc/terms/rights"
+      },
+      "conformsTo" : {
+        "@id" : "http://purl.org/dc/terms/conformsTo",
+        "@container" : "@set"
+      },
+      "issued" : {
+        "@id" : "http://purl.org/dc/terms/issued",
+        "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      },
+      "identifier" : {
+        "@id" : "http://purl.org/dc/terms/identifier",
+        "@type" : "http://www.w3.org/2001/XMLSchema#string",
+        "@container" : "@set"
+      },
+      "type" : {
+        "@id" : "http://purl.org/dc/terms/type",
+        "@container" : "@set"
+      },
+      "theme" : {
+        "@id" : "http://purl.org/dc/terms/theme",
+        "@container" : "@set"
+      },
+      "temporal" : {
+        "@id" : "http://purl.org/dc/terms/temporal",
+        "@type" : "http://purl.org/dc/terms/PeriodOfTime"
+      },
+      "temporalResolution" : {
+        "@id" : "dcat:temporalResolution",
+        "@type" : "http://www.w3.org/2001/XMLSchema#duration"
+      },
+      "spatial" : {
+        "@id" : "http://purl.org/dc/terms/spatial"
+      },
+      "programme" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/programme"
+      },
+      "observedProperty" : {
+        "@id" : "http://www.w3.org/ns/sosa/observedProperty"
+      },
+      "isVersionOf" : {
+        "@id" : "http://purl.org/dc/terms/isVersionOf"
+      },
+      "hasVersion" : {
+        "@id" : "dcat:hasVersion",
+        "@container" : "@set"
+      },
+      "hasCurrentVersion" : {
+        "@id" : "dcat:hasCurrentVersion",
+        "@container" : "@set"
+      },
+      "previousVersion" : {
+        "@id" : "dcat:previousVersion"
+      },
+      "processingLevel" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/processingLevel"
+      },
+      "inSeries" : {
+        "@id" : "dcat:inSeries",
+        "@container" : "@set"
+      },
+      "distribution" : {
+        "@id" : "dcat:distribution",
+        "@type" : "http://fdri.ceh.ac.uk/vocab/metadata/Distribution",
+        "@container" : "@set"
+      },
+      "title" : {
+        "@id" : "http://purl.org/dc/terms/title",
+        "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "@container" : "@set"
+      },
+      "description" : {
+        "@id" : "http://purl.org/dc/terms/description",
+        "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "@container" : "@set"
+      },
+      "wasGeneratedBy" : {
+        "@id" : "prov:wasGeneratedBy"
+      },
+      "wasModifiedBy" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/wasModifiedBy",
+        "@container" : "@set"
+      },
+      "publisher" : {
+        "@id" : "http://purl.org/dc/terms/publisher"
+      },
+      "contributor" : {
+        "@id" : "http://purl.org/dc/terms/contributor",
+        "@container" : "@set"
+      },
+      "created" : {
+        "@id" : "http://purl.org/dc/terms/created",
+        "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      },
+      "modified" : {
+        "@id" : "http://purl.org/dc/terms/modified",
+        "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    }
+  },
+  "http://purl.org/dc/terms/PeriodOfTime" : {
+    "@context" : {
+      "startDate" : {
+        "@id" : "dcat:startDate",
+        "@type" : "http://www.w3.org/2001/XMLSchema#date"
+      },
+      "endDate" : {
+        "@id" : "dcat:endDate",
+        "@type" : "http://www.w3.org/2001/XMLSchema#date"
+      }
+    }
+  },
+  "http://fdri.ceh.ac.uk/vocab/metadata/Distribution" : {
+    "@context" : {
+      "accessUrl" : {
+        "@id" : "http://purl.org/dc/terms/accessURL",
+        "@type" : "http://www.w3.org/2001/XMLSchema#anyURI",
+        "@container" : "@set"
+      },
+      "format" : {
+        "@id" : "http://purl.org/dc/terms/format"
+      },
+      "title" : {
+        "@id" : "http://purl.org/dc/terms/title",
+        "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "@container" : "@set"
+      },
+      "description" : {
+        "@id" : "http://purl.org/dc/terms/description",
+        "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "@container" : "@set"
+      },
+      "wasGeneratedBy" : {
+        "@id" : "prov:wasGeneratedBy"
+      },
+      "wasModifiedBy" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/wasModifiedBy",
+        "@container" : "@set"
+      },
+      "publisher" : {
+        "@id" : "http://purl.org/dc/terms/publisher"
+      },
+      "contributor" : {
+        "@id" : "http://purl.org/dc/terms/contributor",
+        "@container" : "@set"
+      },
+      "created" : {
+        "@id" : "http://purl.org/dc/terms/created",
+        "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      },
+      "modified" : {
+        "@id" : "http://purl.org/dc/terms/modified",
+        "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    }
+  }
+}
