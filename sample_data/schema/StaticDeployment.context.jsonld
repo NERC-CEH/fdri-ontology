@@ -1,0 +1,42 @@
+{
+  "@version" : 1.1,
+  "http://fdri.ceh.ac.uk/vocab/metadata/StaticDeployment" : {
+    "@context" : {
+      "deployedHeight" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/deloyedHeight",
+        "@type" : "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "deployedDepth" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/deployedDepth",
+        "@type" : "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "deploymentPosition" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/deploymentPosition",
+        "@type" : "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "atLocation" : {
+        "@id" : "prov:atLocation"
+      },
+      "startedAtTime" : {
+        "@id" : "prov:startedAtTime",
+        "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      },
+      "endedAtTime" : {
+        "@id" : "prov:endedAtTime",
+        "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      },
+      "deployedOnPlatform" : {
+        "@id" : "http://www.w3.org/ns/ssn/deployedOnPlatform"
+      },
+      "deployedSystem" : {
+        "@id" : "http://www.w3.org/ns/ssn/deployedSystem",
+        "@container" : "@set"
+      },
+      "deploymentVariance" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/deploymentVariance",
+        "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "@container" : "@set"
+      }
+    }
+  }
+}

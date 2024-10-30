@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schema/EnvironmentalFeatureOfInterest.schema.json",
+  "@context": "../../schema/EnvironmentalFeatureOfInterest.context.jsonld",
+  "@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny-air",
+  "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalFeatureOfInterest",
+  "environmentalDomain": {
+    "@id": "http://fdri.ceh.ac.uk/id/environmental-domain/atmosphere"
+  }
+}

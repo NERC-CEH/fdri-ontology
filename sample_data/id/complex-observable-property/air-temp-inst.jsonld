@@ -1,0 +1,14 @@
+{
+    "$schema": "../../schema/ComplexObservableProperty.schema.json",
+    "@context": "../../schema/ComplexObservableProperty.context.jsonld",
+    "prefLabel": [
+        {"@value": "instantaneous air temperature", "@language": "en"}
+    ],
+    "hasProperty": {"@id": "http://qudt.org/vocab/quantitykind/Temperature"},
+    "hasObjectOfInterest": {"@id": "http://fdri.ceh.ac.uk/id/object-of-interest/air"},
+    "environmentalDomain": {"@id": "http://fdri.ceh.ac.uk/id/environmental-domain/atmosphere"},
+    "hasUnit": {"@id": "http://qudt.org/vocab/unit/DEG_C"},
+    "unitName": [
+        {"@value": "degrees Celsius", "@language": "en"}
+    ]
+}
