@@ -1,0 +1,84 @@
+{
+  "@version" : 1.1,
+  "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringPlatform" : {
+    "@context" : {
+      "isPartOf" : {
+        "@id" : "http://purl.org/dc/terms/isPartOf"
+      },
+      "hasGeometry" : {
+        "@id" : "http://www.opengis.net/ont/geosparql#hasGeometry",
+        "@type" : "http://www.opengis.net/ont/geosparql#Geometry"
+      },
+      "hasCentroid" : {
+        "@id" : "http://www.opengis.net/ont/geosparql#hasCentroid"
+      },
+      "hasBoundingBox" : {
+        "@id" : "http://www.opengis.net/ont/geosparql#hasBoundingBox"
+      },
+      "isMobile" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/isMobile",
+        "@type" : "http://www.w3.org/2001/XMLSchema#boolean"
+      },
+      "operatingPeriod" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/operatingPeriod",
+        "@type" : "http://purl.org/dc/terms/PeriodOfTime"
+      },
+      "hasFeatureOfInterest" : {
+        "@id" : "http://www.w3.org/ns/sosa/hasFeatureOfInterest"
+      },
+      "observes" : {
+        "@id" : "http://www.w3.org/ns/sosa/observes",
+        "@container" : "@set"
+      },
+      "environmentalDomain" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/environmentalDomain",
+        "@container" : "@set"
+      },
+      "qualifiedAttribution" : {
+        "@id" : "prov:qualifiedAttribution",
+        "@type" : "http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAttribution",
+        "@container" : "@set"
+      },
+      "title" : {
+        "@id" : "http://purl.org/dc/terms/title",
+        "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "@container" : "@set"
+      },
+      "description" : {
+        "@id" : "http://purl.org/dc/terms/description",
+        "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "@container" : "@set"
+      }
+    }
+  },
+  "http://www.opengis.net/ont/geosparql#Geometry" : {
+    "@context" : {
+      "asWKT" : {
+        "@id" : "http://www.opengis.net/ont/geosparql#asWKT",
+        "@type" : "http://www.opengis.net/ont/geosparql#wktLiteral"
+      }
+    }
+  },
+  "http://purl.org/dc/terms/PeriodOfTime" : {
+    "@context" : {
+      "startDate" : {
+        "@id" : "dcat:startDate",
+        "@type" : "http://www.w3.org/2001/XMLSchema#date"
+      },
+      "endDate" : {
+        "@id" : "dcat:endDate",
+        "@type" : "http://www.w3.org/2001/XMLSchema#date"
+      }
+    }
+  },
+  "http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAttribution" : {
+    "@context" : {
+      "hasRole" : {
+        "@id" : "dcat:hasRole"
+      },
+      "agent" : {
+        "@id" : "prov:Agent"
+      }
+    }
+  }
+}
