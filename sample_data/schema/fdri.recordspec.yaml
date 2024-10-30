@@ -1,0 +1,1006 @@
+base: http://fdri.ceh.ac.uk/records/metadata/
+prefixes:
+  - prefix: dct
+    uri: http://purl.org/dc/terms/
+  - prefix: fdri
+    uri: http://fdri.ceh.ac.uk/vocab/metadata/
+  - prefix: geos
+    uri: http://www.opengis.net/ont/geosparql#
+  - prefix: iop
+    uri: https://w3id.org/iadopt/ont/
+  - prefix: skos
+    uri: http://www.w3.org/2004/02/skos/core#
+  - prefix: sosa
+    uri: http://www.w3.org/ns/sosa/
+  - prefix: ssn
+    uri: http://www.w3.org/ns/ssn/
+  - prefix: rdf
+    uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  - prefix: xsd
+    uri: http://www.w3.org/2001/XMLSchema#
+
+
+mixins:
+  # Mixins represent reusable packages of properties that can be applied to classes.
+  WithTitleAndDescription:
+    label:
+      - value: With Title And Description Mixin
+        language: en
+    description:
+      - value: |
+          Provides the Dublin Core properties for title and description.
+          There are a number of different properties that are commonly used in RDF for capturing the display label
+          and description of an item. Here we prefer the use of `dct:title` over `rdfs:label` and `dct:description` over
+          `rdfs:comment`.
+          This mixin does not apply to classes derived from `Concept` which instead use the properties defined by SKOS
+          (`skos:prefLabel` and `skos:scopeNote`).
+
+    properties:
+      title:
+        propertyUri: dct:title
+        kind: literal
+        repeatable: true
+        constraints:
+          -  datatype: rdf:langString
+      description:
+        propertyUri: dct:description
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+
+  WithDataProcessingProvenance:
+    properties:
+      wasGeneratedBy:
+        propertyUri: prov:wasGeneratedBy
+        kind: object
+        required: true
+        constraints:
+          - record: DataProcessingActivity
+      wasModifiedBy:
+        propertyUri: fdri:wasModifiedBy
+        kind: object
+        repeatable: true
+        constraints:
+          - record: DataProcessingActivity
+  
+  WithPublicationMetadata:
+    properties:
+      publisher:
+        propertyUri: dct:publisher
+        kind: object
+        constraints:
+          - record: Agent
+      contributor:
+        propertyUri: dct:contributor
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Agent
+      created:
+        propertyUri: dct:created
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+      modified:
+        propertyUri: dct:modified
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+
+records:
+
+  Agent:
+    classUri: fdri:Agent
+    shortCode: Agent
+
+  ComplexObservableProperty:
+    extends: Concept
+    classUri: fdri:ComplexObservableProperty
+    shortCode: ComplexObservableProperty
+    properties:
+      hasProperty:
+        propertyUri: "iop:hasProperty"
+        kind: object
+        required: true
+        constraints:
+          - record: QuantityKind
+      hasObjectOfInterest:
+        propertyUri: iop:hasObjectOfInterest
+        kind: object
+        required: true
+        constraints:
+          - record: ObjectOfInterest
+      environmentalDomain:
+        propertyUri: fdri:environmentalDomain
+        kind: object
+        required: true
+        constraints:
+          - record: EnvironmentalDomain
+      hasContextObject:
+        propertyUri: iop:hasContextObject
+        kind: object
+        constraints:
+          - record: ContextObject
+      hasUnit:
+        propertyUri: fdri:hasUnit
+        kind: object
+        constraints:
+          - record: Unit
+      unitName:
+        propertyUri: fdri:unitName
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+
+  Concept:
+    classUri: skos:Concept
+    shortCode: Concept
+    properties:
+      prefLabel:
+        propertyUri: skos:prefLabel
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ConceptScheme
+      broader:
+        propertyUri: skos:broader
+        kind: object
+        constraints:
+          - record: Concept
+
+  ConceptScheme:
+    classUri: skos:ConceptScheme
+    shortCode: ConceptScheme
+
+  ConfigurationValueSeries:
+    classUri: fdri:ConfigurationValueSeries
+    shortCode: ConfigurationValueSeries
+    properties:
+      hadValue:
+        propertyUri: fdri:hadValue
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: TimeBoundPropertyValue
+      hasCurrentValue:
+        propertyUri: fdri:hasCurrentValue
+        kind: object
+        nested: true
+        constraints:
+          - record: TimeBoundPropertyValue
+      type:
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: ConfigurationProperty
+  
+  ConfigurationProperty:
+    extends: Concept
+    classUri: fdri:ConfigurationProperty
+    shortCode: ConfigurationProperty
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ConfigurationPropertyScheme
+  
+  ConfigurationPropertyScheme:
+    extends: ConceptScheme
+    classUri: fdri:ConfigurationPropertyScheme
+    shortCode: ConfigurationPropertyScheme
+
+  ContextObject:
+    extends: Concept
+    classUri: fdri:ContextObject
+    shortCode: ContextObject
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ContextObjectScheme
+  
+  ContextObjectScheme:
+    extends: ConceptScheme
+    classUri: fdri:ContextObjectScheme
+    shortCode: ContextObjectScheme
+
+  DataProcessingActivity:
+    classUri: fdri:DataProcessingActivity
+    shortCode: DataProcessingActivity
+    properties:
+      type:
+        propertyUri: dct:type
+        kind: object
+        required: true
+        constraints:
+          - record: DataProcessingActivityType
+      hadPlan:
+        propertyUri: prov:hadPlan
+        kind: object
+        constraints:
+          - record: DataProcessingConfiguration
+      startedAtTime:
+        propertyUri: prov:startedAtTime
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+      endedAtTime:
+        propertyUri: prov:endedAtTime
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+
+  DataProcessingActivityType:
+    extends: Concept
+    classUri: fdri:DataProcessingActivityType
+    shortCode: DataProcessingActivityType
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: DataProcessingActivityTypeScheme
+
+  DataProcessingActivityTypeScheme:
+    extends: ConceptScheme
+    classUri: fdri:DataProcessingActivityTypeScheme
+    shortCode: DataProcessingActivityTypeScheme
+
+  DataProcessingConfiguration:
+    classUri: fdri:DataProcessingConfiguration
+    shortCode: DataProcessingConfiguration
+
+  Deployment:
+    classUri: fdri:Deployment
+    shortCode: Deployment
+    properties:
+      startedAtTime:
+        propertyUri: prov:startedAtTime
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+      endedAtTime:
+        propertyUri: prov:endedAtTime
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+      deployedOnPlatform:
+        propertyUri: ssn:deployedOnPlatform
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringPlatform
+      deployedSystem:
+        propertyUri: ssn:deployedSystem
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringSystem
+      deploymentVariance:
+        propertyUri: fdri:deploymentVariance
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+
+  Distribution:
+    mixins:
+      - WithTitleAndDescription
+      - WithDataProcessingProvenance
+      - WithPublicationMetadata
+    classUri: fdri:Distribution
+    shortCode: Distribution
+    properties:
+      accessUrl:
+        propertyUri: dct:accessURL
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:anyURI
+      format:
+        propertyUri: dct:format
+        kind: object
+        required: true
+
+  EnvironmentalDomain:
+    extends: Concept
+    classUri: fdri:EnvironmentalDomain
+    shortCode: EnvironmentalDomain
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: EnvironmentalDomainScheme
+  
+  EnvironmentalDomainScheme:
+    extends: ConceptScheme
+    classUri: fdri:EnvironmentalDomainScheme
+    shortCode: EnvironmentalDomainScheme
+
+  EnvironmentalFeatureOfInterest:
+    classUri: fdri:EnvironmentalFeatureOfInterest
+    shortCode: EnvironmentalFeatureOfInterest
+    properties:
+      environmentalDomain:
+        propertyUri: fdri:environmentalDomain
+        kind: object
+        constraints:
+          - record: EnvironmentalDomain
+  
+  EnvironmentalMonitoringFacility:
+    classUri: fdri:EnvironmentalMonitoringFacility
+    shortCode: EnvironmentalMonitoringFacility
+    mixins:
+      - WithTitleAndDescription
+    properties:
+      hasGeometry:
+        propertyUri: geos:hasGeometry
+        kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+      hasCentroid:
+        propertyUri: geos:hasCentroid
+        kind: object
+        constraints:
+          - record: Geometry
+      hasBoundingBox:
+        propertyUri: geos:hasBoundingBox
+        kind: object
+        constraints:
+          - record: Geometry
+      isMobile:
+        propertyUri: fdri:isMobile
+        kind: literal
+        constraints:
+          - datatype: xsd:boolean
+      operatingPeriod:
+        propertyUri: fdri:operatingPeriod
+        kind: object
+        nested: true
+        constraints:
+          - record: PeriodOfTime
+      hasFeatureOfInterest:
+        propertyUri: sosa:hasFeatureOfInterest
+        kind: object
+        constraints:
+          - record: EnvironmentalFeatureOfInterest
+      observes:
+        propertyUri: sosa:observes
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ComplexObservableProperty
+      environmentalDomain:
+        propertyUri: fdri:environmentalDomain
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalDomain
+      qualifiedAttribution:
+        propertyUri: prov:qualifiedAttribution
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: RelatedPartyAttribution
+  
+  EnvironmentalMonitoringPlatform:
+    extends: EnvironmentalMonitoringFacility
+    classUri: fdri:EnvironmentalMonitoringPlatform
+    shortCode: EnvironmentalMonitoringPlatform
+    properties:
+      isPartOf:
+        propertyUri: dct:isPartOf
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringSite
+
+  EnvironmentalMonitoringProgramme:
+    classUri: fdri:EnvironmentalMonitoringProgramme
+    shortCode: EnvironmentalMonitoringProgramme
+          
+  EnvironmentalMonitoringSensor:
+    extends: EnvironmentalMonitoringSystem
+    classUri: fdri:EnvironmentalMonitoringSensor
+    shortCode: EnvironmentalMonitoringSensor
+  
+  EnvironmentalMonitoringSite:
+    extends: EnvironmentalMonitoringFacility
+    classUri: fdri:EnvironmentalMonitoringSite
+    shortCode: EnvironmentalMonitoringSite
+    properties:
+      altitude:
+        propertyUri: fdri:altitude
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      ingRegion:
+        propertyUri: fdri:inRegion
+        kind: object
+        repeatable: true
+        constraints:
+          - record: PropertyValueSeries
+      inCatchment:
+        propertyUri: fdri:inCatchment
+        kind: object
+        repeatable: true
+        constraints:
+          - record: PropertyValueSeries
+      landCover:
+        propertyUri: fdri:landCover
+        kind: object
+        nested: true
+        repeatable: true
+        constraints:
+          - record: PropertyValueSeries
+      siteVariance:
+        propertyUri: fdri:siteVariance
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      soilType:
+        propertyUri: fdri:soilType
+        kind: object
+        constraints:
+          - record: SoilType
+      type:
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringSiteType
+  
+  EnvironmentalMonitoringSiteType:
+    extends: Concept
+    classUri: fdri:EnvironmentalMonitoringSiteType
+    shortCode: EnvironmentalMonitoringSiteType
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringSiteTypeScheme
+  
+  EnvironmentalMonitoringSiteTypeScheme:
+    extends: ConceptScheme
+    classUri: fdri:EnvironmentalMonitoringSiteTypeScheme
+    shortCode: EnvironmentalMonitoringSiteTypeScheme
+
+  EnvironmentalMonitoringSystem:
+    extends: EnvironmentalMonitoringFacility
+    classUri: fdri:EnvironmentalMonitoringSystem
+    shortCode: EnvironmentalMonitoringSystem
+    properties:
+      assetNumber:
+        propertyUri: fdri:assetNumber
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      certification:
+        propertyUri: fdri:certification
+        kind: object
+      configuration:
+        propertyUri: fdri:configuration
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: ConfigurationValueSeries
+      comment:
+        propertyUri: rdfs:comment
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      dateOfPurchase:
+        propertyUri: fdri:dateOfPurchase
+        kind: literal
+        constraints:
+          - datatype: xsd:date
+      dateOfDisposal:
+        propertyUri: fdri:dateOfDisposal
+        kind: literal
+        constraints:
+          - datatype: xsd:date
+      hadFault:
+        propertyUri: fdri:hadFault
+        kind: object
+        constraints:
+          - record: Fault
+      hasSubsystem:
+        propertyUri: ssn:hasSubsystem
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringSystem
+      retirementDate:
+        propertyUri: fdri:retirementDate
+        kind: literal
+        constraints:
+          - datatype: xsd:date
+      serialNumber:
+        propertyUri: fdri:serialNumber
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      status:
+        propertyUri: adms:status
+        kind: object
+        constraints:
+          - record: SystemStatus
+      storageLocation:
+        propertyUri: fdri:storageLocation
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      type:
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringSystemType
+  
+  EnvironmentalMonitoringSystemType:
+    extends: Concept
+    classUri: fdri:EnvironmentalMonitoringSystemType
+    shortCode: EnvironmentalMonitoringSystemType
+    properties:
+      hasProcedure:
+        propertyUri: fdri:hasProcedure
+        kind: object
+        constraints:
+          - record: Procedure
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringSystemTypeScheme
+      observes:
+        propertyUri: sosa:observes
+        kind: object
+        constraints:
+          - record: ComplexObservableProperty
+  
+  EnvironmentalMonitoringSystemTypeScheme:
+    extends: ConceptScheme
+    classUri: fdri:EnvironmentalMonitoringSystemTypeScheme
+    shortCode: EnvironmentalMonitoringSystemTypeScheme
+
+  Fault:
+    classUri: fdri:Fault
+    shortCode: Fault
+    properties:
+      affectedSystem:
+        propertyUri: fdri:affected
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringSystem
+      affectedVariable:
+        propertyUri: fdri:affectedVariable
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ComplexObservableProperty
+      interval:
+        propertyUri: fdri:interval
+        kind: object
+        constraints:
+          - record: PeriodOfTime
+
+  Feature:
+    classUri: geos:Feature
+    shortCode: Feature
+    properties:
+      hasGeometry:
+        propertyUri: geos:hasGeoetry
+        kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+
+  Geometry:
+    classUri: geos:Geometry
+    shortCode: Geometry
+    properties:
+      asWKT:
+        propertyUri: geos:asWKT
+        kind: literal
+        constraints:
+          - datatype: geos:wktLiteral
+  
+  ObjectOfInterest:
+    extends: Concept
+    classUri: fdri:ObjectOfInterest
+    shortCode: ObjectOfInterest
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ObjectOfInterestScheme
+  
+  ObjectOfInterestScheme:
+    extends: ConceptScheme
+    classUri: fdri:ObjectOfInterestScheme
+    shortCode: ObjectOfInterestScheme
+
+  ObservationDataset:
+    classUri: fdri:ObservationDataset
+    shortCode: ObservationDataset
+    mixins:
+      - WithTitleAndDescription
+      - WithDataProcessingProvenance
+      - WithPublicationMetadata
+    properties:
+      accessRights:
+        propertyUri: dct:accessRights
+        kind: object
+        repeatable: true
+      accrualPeriodicity:
+        propertyUri: dct:accrualPeriodicity
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      license:
+        propertyUri: dct:license
+        kind: object
+      rights:
+        propertyUri: dct:rights
+        kind: object
+      conformsTo:
+        propertyUri: dct:conformsTo
+        kind: object
+        repeatable: true
+      issued:
+        propertyUri: dct:issued
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+      identifier:
+        propertyUri: dct:identifier
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
+      type:
+        propertyUri: dct:type
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Concept
+      theme:
+        propertyUri: dct:theme
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Concept
+      temporal:
+        propertyUri: dct:temporal
+        kind: object
+        nested: true
+        constraints:
+          - record: PeriodOfTime
+      temporalResolution:
+        propertyUri: dcat:temporalResolution
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      spatial:
+        propertyUri: dct:spatial
+        kind: object
+        constraints:
+          - record: EnvironmentalFeatureOfInterest
+      programme:
+        propertyUri: fdri:programme
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringProgramme
+      observedProperty:
+        propertyUri: sosa:observedProperty
+        kind: object
+        constraints:
+          - record: ComplexObservableProperty
+      isVersionOf:
+        propertyUri: dct:isVersionOf
+        kind: object
+        constraints:
+          - record: ObservationDataset
+      hasVersion:
+        propertyUri: dcat:hasVersion
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ObservationDataset
+      hasCurrentVersion:
+        propertyUri: dcat:hasCurrentVersion
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ObservationDataset
+      previousVersion:
+        propertyUri: dcat:previousVersion
+        kind: object
+        constraints:
+          - record: ObservationDataset
+      processingLevel:
+        propertyUri: fdri:processingLevel
+        kind: object
+        required: true
+        constraints:
+          - record: ProcessingLevel
+      inSeries:
+        propertyUri: dcat:inSeries
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ObservationDatasetSeries
+      distribution:
+        propertyUri: dcat:distribution
+        kind: object
+        nested: true
+        repeatable: true
+        constraints:
+          - record: Distribution
+
+  ObservationDatasetSeries:
+    extends: ObservationDataset
+    classUri: fdri:ObservationDatasetSeries
+    shortCode: ObservationDatasetSeries
+  
+  PeriodOfTime:
+    classUri: dct:PeriodOfTime
+    shortCode: PeriodOfTime
+    properties:
+      startDate:
+        propertyUri: dcat:startDate
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:date
+      endDate:
+        propertyUri: dcat:endDate
+        kind: literal
+        constraints:
+          - datatype: xsd:date
+
+  Procedure:
+    classUri: fdri:Procedure
+    shortCode: Procedure
+    mixins:
+      - WithTitleAndDescription
+    properties:
+      procedurePeriodicity:
+        propertyUri: fdri:procedurePeriodicity
+        kind: literal
+        constraints:
+          - datatype: xsd:duraction
+      type:
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: ProcedureType
+  
+  ProcedureType:
+    extends: Concept
+    classUri: fdri:ProcedureType
+    shortCode: ProcedureType
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ProcedureTypeScheme
+  
+  ProcedureTypeScheme:
+    extends: ConceptScheme
+    classUri: fdri:ProcedureTypeScheme
+    shortCode: ProcedureTypeScheme
+      
+  ProcessingLevel:
+    extends: Concept
+    classUri: fdri:ProcessingLevel
+    shortCode: ProcessingLevel
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ProcessingLevelScheme
+
+  ProcessingLevelScheme:
+    extends: ConceptScheme
+    classUri: fdri:ProcessingLevelScheme
+    shortCode: ProcessingLevelScheme
+
+  PropertyValue:
+    classUri: schema:PropertyValue
+    shortCode: PropertyValue
+    properties:
+      minValue:
+        propertyUri: schema:minValue
+        kind: literal
+      maxValue:
+        propertyUri: schema:maxValue
+        kind: literal
+      value:
+        propertyUri: schema:value
+        kind: literal
+      valueReference:
+        propertyUri: schema:valueReference
+        kind: object
+      unit:
+        propertyUri: schema:unit
+        kind: object
+        constraints:
+          - record: Unit
+
+  PropertyValueSeries:
+    classUri: fdri:PropertyValueSeries
+    shortCode: PropertyValueSeries
+    properties:
+      hadValue:
+        propertyUri: fdri:hadValue
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: TimeBoundPropertyValue
+      hasCurrentValue:
+        propertyUri: fdri:hasCurrentValue
+        kind: object
+        nested: true
+        constraints:
+          - record: TimeBoundPropertyValue
+
+  QuantityKind:
+    classUri: qudt:QuantityKind
+    shortCode: QuantityKind
+    # TODO: Subset of properties of QuantityKind from QUDT
+
+  RelatedPartyAttribution:
+    classUri: fdri:RelatedPartyAttribution
+    shortCode: RelatedPartyAttribution
+    properties:
+      hasRole:
+        propertyUri: dcat:hasRole
+        kind: object
+        required: true
+        constraints:
+          - record: RelatedPartyRole
+      agent:
+        propertyUri: prov:Agent
+        kind: object
+        required: true
+        constraints:
+          - record: Agent
+
+  RelatedPartyRole:
+    extends: Concept
+    classUri: fdri:RelatedParyRole
+    shortCode: RelatedPartyRole
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: RelatedPartyRoleScheme
+  
+  RelatedPartyRoleScheme:
+    extends: ConceptScheme
+    classUri: fdri:RelatedPartyRoleScheme
+    shortCode: RelatedPartyRoleScheme
+
+  RelativeLocation:
+    classUri: fdri:RelativeLocation
+    shortCode: RelativeLocation
+    properties:
+      offsetNorth:
+        propertyUri: fdri:offsetNorth
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      offsetEast:
+        propertyUri: fdri:offsetEast
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      elevation:
+        propertyUri: fdri:elevation
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+
+  SoilType:
+    extends: Concept
+    classUri: fdri:SoilType
+    shortCode: SoilType
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: SoilTypeScheme
+  
+  SoilTypeScheme:
+    extends: ConceptScheme
+    classUri: fdri:ConceptScheme
+    shortCode: SoilTypeScheme
+
+  StaticDeployment:
+    extends: Deployment
+    classUri: fdri:StaticDeployment
+    shortCode: StaticDeployment
+    properties:
+      deployedHeight:
+        propertyUri: fdri:deloyedHeight
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      deployedDepth:
+        propertyUri: fdri:deployedDepth
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      deploymentPosition:
+        propertyUri: fdri:deploymentPosition
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      atLocation:
+        propertyUri: prov:atLocation
+        kind: object
+        constraints:
+          - record: RelativeLocation
+          - record: Feature
+
+  SystemStatus:
+    extends: Concept
+    classUri: fdri:SystemStatus
+    shortCode: SystemStatus
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: SystemStatusScheme
+  
+  SystemStatusScheme:
+    extends: ConceptScheme
+    classUri: fdri:SystemStatusScheme
+    shortCode: SystemStatusScheme
+
+  TimeBoundPropertyValue:
+    classUri: fdri:TimeBoundPropertyValue
+    extends: PropertyValue
+    shortCode: TimeBoundPropertyValue
+    properties:
+      interval:
+        propertyUri: fdri:interval
+        kind: object
+        nested: true
+        constraints:
+          - record: PeriodOfTime
+      replaces:
+        propertyUri: dct:replaces
+        kind: object
+        constraints:
+          - record: TimeBoundPropertyValue
+    
+  TimeSeriesDataset:
+    extends: ObservationDataset
+    classUri: fdri:TimeSeriesDataset
+    shortCode: TimeSeriesDataset
+  
+  Unit:
+    classUri: qudt:Unit
+    shortCode: Unit
