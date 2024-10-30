@@ -71,6 +71,9 @@
           },
           "type" : "array"
         },
+        "type" : {
+          "$ref" : "#/definitions/_ref"
+        },
         "title" : {
           "items" : {
             "properties" : {
@@ -106,6 +109,12 @@
             },
             "required" : [ "@value", "@language" ],
             "type" : "object"
+          },
+          "type" : "array"
+        },
+        "hasAnnotation" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
           },
           "type" : "array"
         }

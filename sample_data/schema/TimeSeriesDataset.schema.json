@@ -233,6 +233,12 @@
           },
           "required" : [ "@value", "@type" ],
           "type" : "object"
+        },
+        "hasAnnotation" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
+          },
+          "type" : "array"
         }
       },
       "required" : [ "processingLevel", "wasGeneratedBy" ],

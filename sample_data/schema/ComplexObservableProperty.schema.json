@@ -47,6 +47,9 @@
         "hasUnit" : {
           "$ref" : "#/definitions/_ref"
         },
+        "inScheme" : {
+          "$ref" : "#/definitions/_ref"
+        },
         "unitName" : {
           "items" : {
             "properties" : {
@@ -84,9 +87,6 @@
             "type" : "object"
           },
           "type" : "array"
-        },
-        "inScheme" : {
-          "$ref" : "#/definitions/_ref"
         },
         "broader" : {
           "$ref" : "#/definitions/_ref"

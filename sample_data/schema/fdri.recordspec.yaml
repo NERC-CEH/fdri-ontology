@@ -22,6 +22,22 @@ prefixes:
 
 mixins:
   # Mixins represent reusable packages of properties that can be applied to classes.
+
+  WithAnnotations:
+    label:
+      - value: With Annotations
+        language: en
+    description:
+      - value: |
+          Allows metadata annotations to be added to the parent resource.
+    properties:
+      hasAnnotation:
+        propertyUri: fdri:hasAnnotation
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Annotation
+
   WithTitleAndDescription:
     label:
       - value: With Title And Description Mixin
@@ -94,6 +110,48 @@ records:
     classUri: fdri:Agent
     shortCode: Agent
 
+  Annotation:
+    classUri: fdri:Annotation
+    shortCode: Annotation
+    properties:
+      property:
+        propertyUri: fdri:property
+        kind: object
+        constraints:
+          - record: ComplexObservableProperty
+      hasValue:
+        propertyUri: fdri:hasValue
+        kind: object
+        constraints:
+          - record: PropertyValue
+      hasValueSeries:
+        propertyUri: fdri:hasValueSeries
+        kind: object
+        constraints:
+          - record: PropertyValueSeries
+
+  Catchment:
+    extends: Concept
+    classUri: fdri:Catchment
+    shortCode: Catchment
+    properties:
+      hasGeometry:
+        propertyUri: geos:hasGeometry
+        kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: CatchmentScheme
+  
+  CatchmentScheme:
+    extends: ConceptScheme
+    classUri: fdri:CatchmentScheme
+    shortCode: CatchmentScheme
+  
   ComplexObservableProperty:
     extends: Concept
     classUri: fdri:ComplexObservableProperty
@@ -127,12 +185,22 @@ records:
         kind: object
         constraints:
           - record: Unit
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ComplexObservablePropertyScheme
       unitName:
         propertyUri: fdri:unitName
         kind: literal
         repeatable: true
         constraints:
           - datatype: rdf:langString
+
+  ComplexObservablePropertyScheme:
+    extends: ConceptScheme
+    classUri: fdri:ComplexObservablePropertyScheme
+    shortCode: ComplexObservablePropertyScheme
 
   Concept:
     classUri: skos:Concept
@@ -342,6 +410,7 @@ records:
     shortCode: EnvironmentalMonitoringFacility
     mixins:
       - WithTitleAndDescription
+      - WithAnnotations
     properties:
       hasGeometry:
         propertyUri: geos:hasGeometry
@@ -394,7 +463,28 @@ records:
         nested: true
         constraints:
           - record: RelatedPartyAttribution
+      type:
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacilityType
+
+  EnvironmentalMonitoringFacilityType:
+    extends: Concept
+    classUri: fdri:EnvironmentalMonitoringFacilityType
+    shortCode: EnvironmentalMonitoringFacilityType
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacilityTypeScheme
   
+  EnvironmentalMonitoringFacilityTypeScheme:
+    extends: ConceptScheme
+    classUri: fdri:EnvironmentalMonitoringFacilityTypeScheme
+    shortCode: EnvironmentalMonitoringFacilityTypeScheme
+      
   EnvironmentalMonitoringPlatform:
     extends: EnvironmentalMonitoringFacility
     classUri: fdri:EnvironmentalMonitoringPlatform
@@ -409,6 +499,9 @@ records:
   EnvironmentalMonitoringProgramme:
     classUri: fdri:EnvironmentalMonitoringProgramme
     shortCode: EnvironmentalMonitoringProgramme
+    mixins:
+      - WithAnnotations
+      - WithTitleAndDescription
           
   EnvironmentalMonitoringSensor:
     extends: EnvironmentalMonitoringSystem
@@ -425,7 +518,7 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:decimal
-      ingRegion:
+      inRegion:
         propertyUri: fdri:inRegion
         kind: object
         repeatable: true
@@ -455,28 +548,12 @@ records:
         kind: object
         constraints:
           - record: SoilType
-      type:
-        propertyUri: dct:type
-        kind: object
-        constraints:
-          - record: EnvironmentalMonitoringSiteType
   
   EnvironmentalMonitoringSiteType:
-    extends: Concept
+    extends: EnvironmentalMonitoringFacilityType
     classUri: fdri:EnvironmentalMonitoringSiteType
     shortCode: EnvironmentalMonitoringSiteType
-    properties:
-      inScheme:
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: EnvironmentalMonitoringSiteTypeScheme
   
-  EnvironmentalMonitoringSiteTypeScheme:
-    extends: ConceptScheme
-    classUri: fdri:EnvironmentalMonitoringSiteTypeScheme
-    shortCode: EnvironmentalMonitoringSiteTypeScheme
-
   EnvironmentalMonitoringSystem:
     extends: EnvironmentalMonitoringFacility
     classUri: fdri:EnvironmentalMonitoringSystem
@@ -550,7 +627,7 @@ records:
           - record: EnvironmentalMonitoringSystemType
   
   EnvironmentalMonitoringSystemType:
-    extends: Concept
+    extends: EnvironmentalMonitoringFacilityType
     classUri: fdri:EnvironmentalMonitoringSystemType
     shortCode: EnvironmentalMonitoringSystemType
     properties:
@@ -559,22 +636,12 @@ records:
         kind: object
         constraints:
           - record: Procedure
-      inScheme:
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: EnvironmentalMonitoringSystemTypeScheme
       observes:
         propertyUri: sosa:observes
         kind: object
         constraints:
           - record: ComplexObservableProperty
   
-  EnvironmentalMonitoringSystemTypeScheme:
-    extends: ConceptScheme
-    classUri: fdri:EnvironmentalMonitoringSystemTypeScheme
-    shortCode: EnvironmentalMonitoringSystemTypeScheme
-
   Fault:
     classUri: fdri:Fault
     shortCode: Fault
@@ -641,6 +708,7 @@ records:
       - WithTitleAndDescription
       - WithDataProcessingProvenance
       - WithPublicationMetadata
+      - WithAnnotations
     properties:
       accessRights:
         propertyUri: dct:accessRights
@@ -822,6 +890,54 @@ records:
     classUri: fdri:ProcessingLevelScheme
     shortCode: ProcessingLevelScheme
 
+  ProgrammeCatalog:
+    mixins:
+      - WithTitleAndDescription
+      - WithPublicationMetadata
+    classUri: fdri:ProgrammeCatalog
+    shortCode: ProgrammeCatalog
+    properties:
+      programme:
+        propertyUri: fdri:programme
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringProgramme
+      observedPropertyScheme:
+        propertyUri: fdri:observedPropertyScheme
+        kind: object
+        constraints:
+          - record: ComplexObservablePropertyScheme
+      annotationPropertyScheme:
+        propertyUri: fdri:annotationPropertyScheme
+        kind: object
+        constraints:
+          - record: ComplexObservablePropertyScheme
+      regionScheme:
+        propertyUri: fdri:regionScheme
+        kind: object
+        constraints:
+          - record: RegionScheme
+      catchmentScheme:
+        propertyUri: fdri:catchmentScheme
+        kind: object
+        constraints:
+          - record: CatchmentScheme
+      configurationPropertyScheme:
+        propertyUri: fdri:configurationPropertyScheme
+        kind: object
+        constraints:
+          - record: ConfigurationPropertyScheme
+      monitoringFacilityTypeScheme:
+        propertyUri: fdri:monitoringFacilityTypeScheme
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacilityTypeScheme
+      monitoringSystemTypeScheme:
+        propertyUri: fdri:monitoringSystemTypeScheme
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacilityTypeScheme
+
   PropertyValue:
     classUri: schema:PropertyValue
     shortCode: PropertyValue
@@ -866,6 +982,28 @@ records:
     classUri: qudt:QuantityKind
     shortCode: QuantityKind
     # TODO: Subset of properties of QuantityKind from QUDT
+
+  Region:
+    extends: Concept
+    classUri: fdri:Region
+    shortCode: Region
+    properties:
+      hasGeometry:
+        propertyUri: geos:hasGeometry
+        kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: RegionScheme
+
+  RegionScheme:
+    extends: ConceptScheme
+    classUri: fdri:RegionScheme
+    shortCode: RegionScheme
 
   RelatedPartyAttribution:
     classUri: fdri:RelatedPartyAttribution

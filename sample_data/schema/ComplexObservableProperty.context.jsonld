@@ -17,6 +17,9 @@
       "hasUnit" : {
         "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/hasUnit"
       },
+      "inScheme" : {
+        "@id" : "http://www.w3.org/2004/02/skos/core#inScheme"
+      },
       "unitName" : {
         "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/unitName",
         "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
@@ -26,9 +29,6 @@
         "@id" : "http://www.w3.org/2004/02/skos/core#prefLabel",
         "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
         "@container" : "@set"
-      },
-      "inScheme" : {
-        "@id" : "http://www.w3.org/2004/02/skos/core#inScheme"
       },
       "broader" : {
         "@id" : "http://www.w3.org/2004/02/skos/core#broader"

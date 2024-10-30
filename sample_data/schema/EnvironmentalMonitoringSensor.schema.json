@@ -193,6 +193,12 @@
             "type" : "object"
           },
           "type" : "array"
+        },
+        "hasAnnotation" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
+          },
+          "type" : "array"
         }
       },
       "additionalProperties" : false,

@@ -111,6 +111,10 @@
       "modified" : {
         "@id" : "http://purl.org/dc/terms/modified",
         "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+      },
+      "hasAnnotation" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/hasAnnotation",
+        "@container" : "@set"
       }
     }
   },
