@@ -768,11 +768,6 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalFeatureOfInterest
-      programme:
-        propertyUri: fdri:programme
-        kind: object
-        constraints:
-          - record: EnvironmentalMonitoringProgramme
       observedProperty:
         propertyUri: sosa:observedProperty
         kind: object
