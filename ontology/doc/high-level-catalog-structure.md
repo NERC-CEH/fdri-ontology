@@ -153,7 +153,6 @@ Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type 
   DatasetSeries <|-- ObservationDatasetSeries
   ObservationDataset <|-- ObservationDatasetSeries
   CatalogResource --> Concept: dct_theme
-  ObservationDataset --> Program: fdri_programme
   ObservationDataset --> ObservedProperty: sosa_observedProperty
   CatalogResource --> Agent: dct_creator
   CatalogResource --> Agent: dct_publisher
@@ -173,6 +172,3 @@ Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type 
 > **QUESTION**
 
 > Is there value in subclassing `dcat:DatasetSeries`. Do we expect aggregated metadata such as a list of `fdri:programme` and `sosa:observedProperty` from the `fdri:ObservationDataset`s in a series to appear on the parent series? If we do want a subclass is it one for each subclass of `fdri:ObservationDataset` (and any other subclasses of `dcat:Dataset` we may define) or do we just want a single `fdri:DatasetSeries` class which can optionally include all of the properties required to record metadata aggregated from series members?
-
-> **QUESTION**
-> With the introduction of `fdri:programme` as a property on `fdri:ProgrammeCatalog`, can we remove it here as it will be duplicated on the catalog that contains the dataset record.

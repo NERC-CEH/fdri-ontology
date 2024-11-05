@@ -884,10 +884,6 @@
                                       owl:allValuesFrom :ObservationDatasetSeries
                                     ] ,
                                     [ rdf:type owl:Restriction ;
-                                      owl:onProperty :programme ;
-                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
                                       owl:onProperty :wasModifiedBy ;
                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
