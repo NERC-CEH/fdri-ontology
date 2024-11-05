@@ -38,8 +38,8 @@ ProgrammeCatalog --> EnvironmentalMonitoringFacilityTypeScheme: fdri_monitoringS
 > **NOTE**
 > There are no maximum cardinality constraints on these scheme refernce properties, allowing them to be repeated to indicate that values may come from several different concept schemes.
 
-> **QUESTION**
-> Should some/all of these properties be required? In practice most of them will be required for correct functioning of any applications built on this model with only catchment (and mayb region) being optional
+> **NOTE**
+> For this release of the model we have decided that the schema should not mark any of these properties as required. As we establish more concretely how the properties will be used by downstream applications we can tighten constraints and mark some properties as required in future releases.
 
 > **QUESTION**
 > Should we also include some of the indirectly used concept schemes here too? For example to COP will use concepts from an `fdri:ObjectOfInterestScheme` and an `fdri:ContextObjectScheme`. I feel that it might be cleaner to just specify the schemes that define our extension points directly (COP, annotations, regions, catchments and configuration properties) and leave out the indirect ones.
