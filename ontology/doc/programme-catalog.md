@@ -41,8 +41,8 @@ ProgrammeCatalog --> EnvironmentalMonitoringFacilityTypeScheme: fdri_monitoringS
 > **NOTE**
 > For this release of the model we have decided that the schema should not mark any of these properties as required. As we establish more concretely how the properties will be used by downstream applications we can tighten constraints and mark some properties as required in future releases.
 
-> **QUESTION**
-> Should we also include some of the indirectly used concept schemes here too? For example to COP will use concepts from an `fdri:ObjectOfInterestScheme` and an `fdri:ContextObjectScheme`. I feel that it might be cleaner to just specify the schemes that define our extension points directly (COP, annotations, regions, catchments and configuration properties) and leave out the indirect ones.
+> **NOTE**
+> The properties listed above do not include additional concept schemes which are used indirectly, such as the  `fdri:ObjectOfInterestScheme` and  `fdri:ContextObjectScheme` that are used by the Complex Observable Properties defined in the `fdri:ComplexObservablePropertyScheme`.
 
 > **QUESTION**
 > Now that there is a mechanism for annotations do we want to drop the specific catchment and reigon relations in favour of using annotations for those instead? If we do that though, how do we identify those annotation properties that provide geospatial information for resources?
