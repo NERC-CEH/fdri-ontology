@@ -1,5 +1,7 @@
 base: http://fdri.ceh.ac.uk/records/metadata/
 prefixes:
+  - prefix: dcat
+    uri: http://www.w3.org/ns/dcat#
   - prefix: dct
     uri: http://purl.org/dc/terms/
   - prefix: fdri
