@@ -19,7 +19,8 @@ SAMPLES = \
 	build/siteVariance.ttl \
 	build/LAND_COVER_LCM_CLASSES.ttl \
 	build/landCoverObservations.ttl \
-	build/landCoverLcm.ttl
+	build/landCoverLcm.ttl \
+	build/instrumentation_variables.ttl 
 
 SCHEMAS = $(RECORDS:%=$(SCHEMA_BASE)/%.schema.json)
 
