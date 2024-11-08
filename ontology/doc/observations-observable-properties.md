@@ -87,6 +87,7 @@ and a there may be multiple sibling COP with differing units or value statistics
 | `fdri:environmentalDomain?` | The environmental domain of the thing being measured. |
 | `fdri:hasUnit?` | Unit of measure of the result | 	unit:CubicMeterPerSecond | URI for QUDT unit |
 | `fdri:unitName?` | Textual representation of the unit for convenience | m3/s | string |
+| `fdri:hasValueScheme?` | The concept scheme from which values of this property may be drawn. This property should be defined when the value Complex Observable Property is a category or classification. | | URI of the SKOS Concept Scheme
 | `skos:broader?` |
 | `skos:narrower?` |
 | `skos:exactMatch?` | Optional links to equivalent concept in other schemes, other SKOS match types maybe be used if appropriate | | URI |
@@ -104,11 +105,13 @@ classDiagram
   class ContextObject["fdri:ContextObject"]
   class Unit["qudt:Unit"]
   class Concept["skos:Concept"]
+  class ConceptScheme["skos:ConceptScheme"]
   COP --> QuantityKind: iop_hasProperty
   COP --> ObjectOfInterest: iop_hasObjectOfInterest
   COP --> ContextObject: iop_hasContextObject
   COP --> EnvironmentalDomain: fdri_environmentalDomain
   COP --> Unit: fdri_hasUnit
+  COP --> ConceptScheme: fdri_hasValueScheme
   EnvironmentalDomain --|> Concept
   ObjectOfInterest --|> Concept
   ContextObject --|> Concept

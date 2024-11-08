@@ -2,15 +2,17 @@
 
 ## Document Control
 
-**Date:** 2024-10-25
+**Date:** 2024-10-28
 **Author:** Kal Ahmed (kal.ahmed@epimorphics.com)
-**Version:** 0.2
+**Version:** 0.3 (In progress)
 **Status:** DRAFT
 
 ## Table of Contents
 
 * [Introduction](introduction.md)
+* [Programme Catalog](programme-catalog.md)
 * [High-level Catalog Structure](high-level-catalog-structure.md)
+* [Annotations on Catalogued Resources](annotations.md)
 * [Time-Series Dataset Model](time-series-dataset.md)
 * [Provenance and Activity Model](provenance-and-activity.md)
 * [Observations and Observable Properties Model](observations-observable-properties.md)

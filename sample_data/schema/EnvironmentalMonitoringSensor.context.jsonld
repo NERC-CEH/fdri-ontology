@@ -94,6 +94,10 @@
         "@id" : "http://purl.org/dc/terms/description",
         "@type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
         "@container" : "@set"
+      },
+      "hasAnnotation" : {
+        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/hasAnnotation",
+        "@container" : "@set"
       }
     }
   },

@@ -45,7 +45,7 @@
           "required" : [ "@value", "@type" ],
           "type" : "object"
         },
-        "ingRegion" : {
+        "inRegion" : {
           "items" : {
             "$ref" : "#/definitions/_ref"
           },
@@ -85,9 +85,6 @@
         "soilType" : {
           "$ref" : "#/definitions/_ref"
         },
-        "type" : {
-          "$ref" : "#/definitions/_ref"
-        },
         "hasGeometry" : {
           "$ref" : "#/definitions/Geometry"
         },
@@ -124,6 +121,9 @@
           },
           "type" : "array"
         },
+        "type" : {
+          "$ref" : "#/definitions/_ref"
+        },
         "title" : {
           "items" : {
             "properties" : {
@@ -159,6 +159,12 @@
             },
             "required" : [ "@value", "@language" ],
             "type" : "object"
+          },
+          "type" : "array"
+        },
+        "hasAnnotation" : {
+          "items" : {
+            "$ref" : "#/definitions/_ref"
           },
           "type" : "array"
         }

@@ -14,6 +14,7 @@ For example an ingest process that reads a spreadsheet list of sensors would be 
 ```mermaid
 classDiagram
 direction LR
+  class ProgrammeCatalog["fdri:ProgrammeCatalog"]
   class Catalog["dcat:Catalog"]
   class CatalogRecord["dcat:CatalogRecord"]
   class CatalogResource["dcat:CatalogResource"]
@@ -25,6 +26,7 @@ direction LR
   class DataProcessingConfiguration["fdri:DataProcessingConfiguration"]
   class Procedure["fdri:Procedure"]
 
+  ProgrammeCatalog--|> Catalog
   Catalog --|> CatalogResource
   Entity <|-- CatalogRecord
   Entity <|-- CatalogResource
@@ -151,7 +153,6 @@ Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type 
   DatasetSeries <|-- ObservationDatasetSeries
   ObservationDataset <|-- ObservationDatasetSeries
   CatalogResource --> Concept: dct_theme
-  ObservationDataset --> Program: fdri_programme
   ObservationDataset --> ObservedProperty: sosa_observedProperty
   CatalogResource --> Agent: dct_creator
   CatalogResource --> Agent: dct_publisher
