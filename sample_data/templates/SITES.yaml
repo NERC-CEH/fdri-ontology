@@ -17,12 +17,12 @@ resources:
               properties:
                 "@id": "<_>"
                 "@type": "<geos:Geometry>"
-                "<geos:asWKT>": "<http://www.opengis.net/def/crs/EPSG/0/27700> POINT({EASTING}, {NORTHING})"
+                "<geos:asWKT>": "<http://www.opengis.net/def/crs/EPSG/0/27700> POINT({EASTING}, {NORTHING})^^<geos:wktLiteral>"
             - name: LatLongPoint
               properties:
                 "@id": "<_>"
                 "@type": "<geos:Geometry>"
-                "<geos:asWKT>": "POINT({LATITUDE}, {LONGITUDE})"
+                "<geos:asWKT>": "POINT({LONGITUDE}, {LATITUDE})^^<geos:wktLiteral>"
         "<fdri:altitude>": "{ALTITUDE | asDecimal}"
         "<fdri:operatingPeriod>":
           - name: OperatingPeriod
