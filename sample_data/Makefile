@@ -14,14 +14,20 @@ RECORDS = \
 	StaticDeployment \
 	TimeSeriesDataset
 
+SAMPLES = \
+	build/sites.ttl \
+	build/siteVariance.ttl \
+	build/LAND_COVER_LCM_CLASSES.ttl
+
 SCHEMAS = $(RECORDS:%=$(SCHEMA_BASE)/%.schema.json)
 
 CONTEXTS = $(SCHEMAS:.schema.json=.context.jsonld)
 
-all: validate schemas contexts
+all: validate schemas contexts samples
 
 schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)
+samples: $(SAMPLES)
 
 validate: $(SCHEMA_FILE)
 	$(RUN) record-spec-cmd validate $^
@@ -35,13 +41,19 @@ validate: $(SCHEMA_FILE)
 clean:
 	rm -f $(SCHEMA_BASE)/*.schema.json
 	rm -f $(SCHEMA_BASE)/*.context.jsonld
+	rm -f build/*
 
+build:
+	mkdir -p build
 
-build/siteVariance.csv: src/SITES.csv sql/siteLayout.sql
+build/siteVariance.csv: src/SITES.csv sql/siteLayout.sql build
 	$(RUN) /bin/bash -c "duckdb < sql/siteLayout.sql"
 
-build/sites.ttl: src/SITES.csv templates/sites.yaml templates/namespaces.yaml
+build/sites.ttl: src/SITES.csv templates/sites.yaml templates/namespaces.yaml build
 	$(RUN) mapper templates/sites.yaml src/SITES.csv $@
 
-build/siteVariance.ttl: templates/siteVariance.yaml templates/namespaces.yaml build/siteVariance.csv
-	$(RUN) mapper templates/siteVariance.yaml build/siteVariance.csv build/siteVariance.ttl
+build/siteVariance.ttl: templates/siteVariance.yaml templates/namespaces.yaml build/siteVariance.csv build
+	$(RUN) mapper templates/siteVariance.yaml build/siteVariance.csv $@
+
+build/%.ttl: build templates/namespaces.yaml templates/%.yaml src/%.csv
+	$(RUN) mapper templates/$*.yaml src/$*.csv $@
