@@ -15,9 +15,11 @@ RECORDS = \
 	TimeSeriesDataset
 
 SAMPLES = \
-	build/sites.ttl \
+	build/SITES.ttl \
 	build/siteVariance.ttl \
-	build/LAND_COVER_LCM_CLASSES.ttl
+	build/LAND_COVER_LCM_CLASSES.ttl \
+	build/landCoverObservations.ttl \
+	build/landCoverLcm.ttl
 
 SCHEMAS = $(RECORDS:%=$(SCHEMA_BASE)/%.schema.json)
 
@@ -46,14 +48,17 @@ clean:
 build:
 	mkdir -p build
 
-build/siteVariance.csv: src/SITES.csv sql/siteLayout.sql build
+build/landCoverObservations.csv: src/LAND_COVER_OBSERVED.csv sql/landCoverObservations.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/landCoverObservations.sql"
+
+build/siteVariance.csv: src/SITES.csv sql/siteLayout.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/siteLayout.sql"
 
-build/sites.ttl: src/SITES.csv templates/sites.yaml templates/namespaces.yaml build
-	$(RUN) mapper templates/sites.yaml src/SITES.csv $@
+build/landCoverLcm.csv: src/LAND_COVER_LCM.csv sql/landCoverLcm.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/landCoverLcm.sql"
 
-build/siteVariance.ttl: templates/siteVariance.yaml templates/namespaces.yaml build/siteVariance.csv build
-	$(RUN) mapper templates/siteVariance.yaml build/siteVariance.csv $@
-
-build/%.ttl: build templates/namespaces.yaml templates/%.yaml src/%.csv
+build/%.ttl: templates/namespaces.yaml templates/%.yaml src/%.csv | build
 	$(RUN) mapper templates/$*.yaml src/$*.csv $@
+
+build/%.ttl: templates/namespaces.yaml templates/%.yaml build/%.csv | build
+	$(RUN) mapper templates/$*.yaml build/$*.csv $@

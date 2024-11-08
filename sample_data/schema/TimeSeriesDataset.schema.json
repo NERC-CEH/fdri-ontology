@@ -113,9 +113,6 @@
         "spatial" : {
           "$ref" : "#/definitions/_ref"
         },
-        "programme" : {
-          "$ref" : "#/definitions/_ref"
-        },
         "observedProperty" : {
           "$ref" : "#/definitions/_ref"
         },

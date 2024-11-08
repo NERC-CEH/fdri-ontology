@@ -42,14 +42,11 @@
         "@type" : "http://purl.org/dc/terms/PeriodOfTime"
       },
       "temporalResolution" : {
-        "@id" : "dcat:temporalResolution",
+        "@id" : "http://www.w3.org/ns/dcat#temporalResolution",
         "@type" : "http://www.w3.org/2001/XMLSchema#duration"
       },
       "spatial" : {
         "@id" : "http://purl.org/dc/terms/spatial"
-      },
-      "programme" : {
-        "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/programme"
       },
       "observedProperty" : {
         "@id" : "http://www.w3.org/ns/sosa/observedProperty"
@@ -58,25 +55,25 @@
         "@id" : "http://purl.org/dc/terms/isVersionOf"
       },
       "hasVersion" : {
-        "@id" : "dcat:hasVersion",
+        "@id" : "http://www.w3.org/ns/dcat#hasVersion",
         "@container" : "@set"
       },
       "hasCurrentVersion" : {
-        "@id" : "dcat:hasCurrentVersion",
+        "@id" : "http://www.w3.org/ns/dcat#hasCurrentVersion",
         "@container" : "@set"
       },
       "previousVersion" : {
-        "@id" : "dcat:previousVersion"
+        "@id" : "http://www.w3.org/ns/dcat#previousVersion"
       },
       "processingLevel" : {
         "@id" : "http://fdri.ceh.ac.uk/vocab/metadata/processingLevel"
       },
       "inSeries" : {
-        "@id" : "dcat:inSeries",
+        "@id" : "http://www.w3.org/ns/dcat#inSeries",
         "@container" : "@set"
       },
       "distribution" : {
-        "@id" : "dcat:distribution",
+        "@id" : "http://www.w3.org/ns/dcat#distribution",
         "@type" : "http://fdri.ceh.ac.uk/vocab/metadata/Distribution",
         "@container" : "@set"
       },
@@ -121,11 +118,11 @@
   "http://purl.org/dc/terms/PeriodOfTime" : {
     "@context" : {
       "startDate" : {
-        "@id" : "dcat:startDate",
+        "@id" : "http://www.w3.org/ns/dcat#startDate",
         "@type" : "http://www.w3.org/2001/XMLSchema#date"
       },
       "endDate" : {
-        "@id" : "dcat:endDate",
+        "@id" : "http://www.w3.org/ns/dcat#endDate",
         "@type" : "http://www.w3.org/2001/XMLSchema#date"
       }
     }

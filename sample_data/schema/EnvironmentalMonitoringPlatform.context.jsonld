@@ -69,11 +69,11 @@
   "http://purl.org/dc/terms/PeriodOfTime" : {
     "@context" : {
       "startDate" : {
-        "@id" : "dcat:startDate",
+        "@id" : "http://www.w3.org/ns/dcat#startDate",
         "@type" : "http://www.w3.org/2001/XMLSchema#date"
       },
       "endDate" : {
-        "@id" : "dcat:endDate",
+        "@id" : "http://www.w3.org/ns/dcat#endDate",
         "@type" : "http://www.w3.org/2001/XMLSchema#date"
       }
     }
@@ -81,7 +81,7 @@
   "http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAttribution" : {
     "@context" : {
       "hasRole" : {
-        "@id" : "dcat:hasRole"
+        "@id" : "http://www.w3.org/ns/dcat#hasRole"
       },
       "agent" : {
         "@id" : "prov:Agent"

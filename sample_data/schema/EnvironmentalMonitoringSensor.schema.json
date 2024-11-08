@@ -307,6 +307,9 @@
         },
         "unit" : {
           "$ref" : "#/definitions/_ref"
+        },
+        "qualifier" : {
+          "$ref" : "#/definitions/_ref"
         }
       },
       "additionalProperties" : false,
