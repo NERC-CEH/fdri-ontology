@@ -205,6 +205,11 @@
           rdfs:range :ComplexObservableProperty .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/qualifier
+:qualifier rdf:type owl:ObjectProperty ;
+           rdfs:range :Annotation .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/regionScheme
 :regionScheme rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
@@ -522,7 +527,7 @@
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationValue
 :ConfigurationValue rdf:type owl:Class ;
-                    rdfs:subClassOf <http://schema.org/PropertyValue> ,
+                    rdfs:subClassOf :PropertyValue ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :interval ;
                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
@@ -961,6 +966,15 @@
                                   ] .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/PropertyValue
+:PropertyValue rdf:type owl:Class ;
+               rdfs:subClassOf <http://schema.org/PropertyValue> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :qualifier ;
+                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                               ] .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/PropertyValueSeries
 :PropertyValueSeries rdf:type owl:Class ;
                      rdfs:subClassOf [ rdf:type owl:Restriction ;
@@ -1111,7 +1125,7 @@
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/TimeBoundPropertyValue
 :TimeBoundPropertyValue rdf:type owl:Class ;
-                        rdfs:subClassOf <http://schema.org/PropertyValue> ,
+                        rdfs:subClassOf :PropertyValue ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty <http://purl.org/dc/terms/replaces> ;
                                           owl:allValuesFrom :TimeBoundPropertyValue

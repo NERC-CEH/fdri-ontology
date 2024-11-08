@@ -1,0 +1,69 @@
+globals:
+  $baseURI: http://fdri.ceh.ac.uk/
+  $datasetID: cosmos
+
+imports:
+  - namespaces.yaml
+
+resources:
+  - name: LandCoverObservation
+    properties:
+      "@type": "<sosa:Observation>"
+      "@id": "<http://fdri.ceh.ac.uk/id/observation/{SITE_ID}-land-cover-{START_DATE}>"
+      "<sosa:phenomenonTime>":
+        name: LandCoverPeriod
+        properties:
+          "@id": "<_>"
+          "@type": "<time:Interval>"
+          "<time:hasBeginning>":
+            name: LandCoverPeriodStart
+            properties:
+              "@id": "<_>"
+              "@type": "<time:Instant>"
+              "<time:inXSDDateTime>": "{START_DATE|asDateTime}"
+          "<time:hasEnd>":
+            name: LandCoverPeriodEnd
+            requires:
+              END_DATE:
+            properties:
+              "@id": "<_>"
+              "@type": "<time:Instant>"
+              "<time:inXSDDateTime>": "{END_DATE|asDateTime}"
+      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/ref/cosmos/site/{SITE_ID}>"
+      "<sosa:hasSimpleValue>": "{LAND_COVER_OBSERVED}"
+      "<sosa:hasValue>":
+        name: LandCoveClass
+        requires:
+            LCM_CLASS:
+        properties:
+          "@id": "<http://fdri.ceh.ac.uk/def/cosmos/land-cover/{LCM_CLASS|asInt}>"
+          "@type": "<skos:Concept>"
+      "<sosa:observedProperty>": "<http:/fdri.ceg.ac.uk/ref/cosmos/cop/land-cover>"
+      "<sosa:madeBySensor>":
+        - name: MadeBySiteVisit
+          # In the case of a site visit source, we create an anonymous agent representing the person who made the site visit as we have no further information about that individual
+          requires:
+            SOURCE: "Site visit"
+          properties:
+            "@id": "<_>"
+            "@type": "<fdri:Person>"
+            "<rdfs:label>": "{SOURCE}"
+        - name: MadeBySiteHost
+          # In the case of a site host we create a named resource for the host of the site.
+          # As this may be a person or an organisation, we type the resource as the common super-class fdri:Agent
+          requires:
+            SOURCE: "Site host"
+          properties:
+            "@id": "<http://fdri.ceh.ac.uk/id/agent/cosmos-site-host-{SITE_ID}>"
+            "@type": "<fdri:Agent>"
+            "<rdfs:label>": "Site Host at {SITE_ID}"
+        - name: MadeByPheoncam
+          # QUESTION: What can we say is the sensor in this case?
+          # Here I am assuming that there would be a Phenocam monitoring network
+          # but it might be better/more accurate if there was a phenocam sensor related to the site that we could link to.
+          requires:
+            SOURCE: "Phenocam"
+          properties:
+            "@id": "<http://fdri.ceh.ac.uk/id/monitoringNetwork/phenocam>"
+            "@type": "<fdri:MonitoringNetwork>"
+            "<rdfs:label>": "{SOURCE}"

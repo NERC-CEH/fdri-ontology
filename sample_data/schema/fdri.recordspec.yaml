@@ -956,6 +956,11 @@ records:
         kind: object
         constraints:
           - record: Unit
+      qualifier:
+        propertyUri: fdri:qualifier
+        kind: object
+        constraints:
+          - record: Annotation
 
   PropertyValueSeries:
     classUri: fdri:PropertyValueSeries

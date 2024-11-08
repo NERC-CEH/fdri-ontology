@@ -1,0 +1,37 @@
+globals:
+  $baseURI: http://fdri.ceh.ac.uk/
+  $datasetID: cosmos
+
+imports:
+  - namespaces.yaml
+
+resources:
+  - name: LandCoverMeasureSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/site-land-cover/{SITE_ID}>"
+      "@type": "<fdri:PropertyValueSeries>"
+      "^<fdri:landCover>": "<http://fdri.ceh.ac.uk/ref/cosmos/site/{SITE_ID}>"
+      "<fdri:hasCurrentValue>":
+        name: LandCoverCurrentValue
+        properties:
+          "@id": "<_>"
+          "@type": "<fdri:TimeBoundPropertyValue>"
+          "<fdri:interval>":
+            name: LandCoverCurrentValueInterval
+            properties:
+              "@id": "<_>"
+              "@type": "<dct:PeriodOfTime>"
+              "<dcat:startDate>": "{START_DATE | asDate}"
+          "<fdri:valueReference>": "<http://fdri.ceh.ac.uk/def/cosmos/land-cover/{LCM_CLASS|asInt}>"
+          "<fdri:qualifier>":
+            name: LandCoverAreaQualifier
+            properties:
+              "@id": "<_>"
+              "@type": "<fdri:Annotation>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/def/cosmos/cop/land-cover-ratio>"
+              "<fdri:hasValue>":
+                name: LandCoverAreaQualifierValue
+                properties:
+                  "@id": "<_>"
+                  "@type": "<fdri:PropertyValue>"
+                  "<schema:value>": "{AREA_RATIO | asDecimal}"   

@@ -3,3 +3,5 @@ namespaces:
     fdri: http://fdri.ceh.ac.uk/vocab/metadata/
     geos: http://www.opengis.net/ont/geosparql#
     schema: http://schema.org/
+    sosa: http://www.w3.org/ns/sosa/
+    ssn: http://www.w3.org/ns/ssn/
