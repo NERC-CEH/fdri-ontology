@@ -4,6 +4,8 @@ Annotations provide an extension point in the model where different kinds of ann
 
 The annotation property is defined as a complex observable property which allows for the ability to specify units of measurement etc.
 
+An annotation can also be used to qualify a property value. For example when a measurement applies to some percentage of the observed entity, that percentage value can be captured as an annotation of the property value using the `fdri:qualifier` relation.
+
 ### OPTION 1
 
 Annotations have:
@@ -17,7 +19,7 @@ classDiagram
 class Resource["dcat:Resource"]
 class Annotation["fdri:Annotation"]
 class COP["fdri:ComplexObservableProperty"]
-class PropertyValue["schema:PropertyValue"] {
+class PropertyValue["fdri:PropertyValue"] {
     value: rdfs:Literal
     minValue: rdfs:Literal
     maxValue: rdfs:Literal
@@ -35,6 +37,7 @@ PropertyValueSeries --> TBPV: fdri_hasCurrentValue
 PropertyValueSeries --> TBPV: fdri_hadValue
 TBPV --> Period: fdri_interval
 TBPV --|> PropertyValue
+PropertyValue --> Annotation: fdri_qualifier
 ```
 
 ### OPTION 2
@@ -46,7 +49,7 @@ classDiagram
 class Resource["dcat:Resource"]
 class Annotation["fdri:Annotation"]
 class COP["fdri:ComplexObservableProperty"]
-class PropertyValue["schema:PropertyValue"] {
+class PropertyValue["fdri:PropertyValue"] {
     value: rdfs:Literal
     minValue: rdfs:Literal
     maxValue: rdfs:Literal
@@ -63,5 +66,6 @@ PropertyValueSeries --> TBPV: fdri_hasCurrentValue
 PropertyValueSeries --> TBPV: fdri_hadValue
 TBPV --> Period: fdri_interval
 TBPV --|> PropertyValue
+PropertyValue --> Annotation: fdri_qualifier
 ```
 
