@@ -26,11 +26,14 @@ SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
 CONTEXTS = $(RECORDS:%=build/context/%.context.jsonld)
 
-all: validate schemas contexts samples
+REPORTS = $(SAMPLES:build/%.ttl=build/validation/%.ttl)
+
+all: validate schemas contexts reports
 
 schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)
 samples: $(SAMPLES)
+reports: $(REPORTS)
 
 validate: $(SCHEMA_FILE)
 	$(RUN) record-spec-cmd validate $^
@@ -40,6 +43,9 @@ build/schema/%.schema.json: $(SCHEMA_FILE) | build/schema
 
 build/context/%.context.jsonld: $(SCHEMA_FILE) | build/context
 	$(RUN) record-spec-cmd json-ld -r $(*F) -o $@ $^
+
+build/fdri_shacl.ttl: $(SCHEMA_FILE)
+	$(RUN) record-spec-cmd shacl -o $@ $^
 
 clean:
 	rm -f $(SCHEMA_BASE)/*.schema.json
@@ -55,6 +61,9 @@ build/schema:
 build/context:
 	mkdir -p build/context
 
+build/validation:
+	mkdir -p build/validation
+
 build/landCoverObservations.csv: src/LAND_COVER_OBSERVED.csv sql/landCoverObservations.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/landCoverObservations.sql"
 
@@ -69,3 +78,6 @@ build/%.ttl: templates/namespaces.yaml templates/%.yaml src/%.csv | build
 
 build/%.ttl: templates/namespaces.yaml templates/%.yaml build/%.csv | build
 	$(RUN) mapper templates/$*.yaml build/$*.csv $@
+
+build/validation/%.ttl: build/%.ttl build/fdri_shacl.ttl  | build/validation
+	$(RUN) /bin/bash -c "shacl v -d build/$*.ttl -s build/fdri_shacl.ttl > $@"
