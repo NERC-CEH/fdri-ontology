@@ -1,0 +1,5 @@
+namespaces:
+    dcat: http://www.w3.org/ns/dcat#
+    fdri: http://fdri.ceh.ac.uk/vocab/metadata/
+    geos: http://www.opengis.net/ont/geosparql#
+    schema: http://schema.org/
