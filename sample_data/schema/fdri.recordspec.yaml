@@ -832,11 +832,13 @@ records:
         required: true
         constraints:
           - datatype: xsd:date
+          - datatype: xsd:dateTime
       endDate:
         propertyUri: dcat:endDate
         kind: literal
         constraints:
           - datatype: xsd:date
+          - datatype: xsd:dateTime
 
   Procedure:
     classUri: fdri:Procedure
@@ -977,6 +979,7 @@ records:
         propertyUri: fdri:hasCurrentValue
         kind: object
         nested: true
+        repeatable: true
         constraints:
           - record: TimeBoundPropertyValue
 

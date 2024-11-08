@@ -4,6 +4,24 @@ globals:
 
 imports:
     - namespaces.yaml
+    - extensions.py
+
+one_offs:
+  - name: RegionScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/region>"
+      "@type": "<skos:ConceptScheme>"
+      "<dct:title>": "COSMOS Regions@en"
+  - name: SoilTypeScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/soil-type>"
+      "@type": "<skos:ConceptScheme>"
+      "<dct:title>": "COSMOS Soil Type Classification Scheme@en"
+  - name: BedrockClassScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/bedrock-class>"
+      "@type": "<skos:ConceptScheme>"
+      "<dct:title>": "COSMOS Bedrock Classification Scheme@en"
 
 resources:
     - name: MonitoringSite
@@ -33,6 +51,8 @@ resources:
               "<dcat:endDate>": "{DATE_DECOMMISSIONED | asDateOrDatetime}"
         "<fdri:inRegion>":
           - name: InRegionSeries
+            requires:
+              REGION:
             properties:
               "@id": "<_>"
               "@type": "<fdri:PropertyValueSeries>"
@@ -41,7 +61,14 @@ resources:
                 properties:
                   "@id": "<_>"
                   "@type": "<fdri:TimeBoundPropertyValue>"
-                  "<schema:valueReference>": "{REGION | autoCV('region', 'label')}"
+                  "<schema:valueReference>":
+                    name: RegionConcept
+                    properties:
+                      "@id": "<http:fdri.ceh.ac.uk/ref/cosmos/region/{REGION | slug}>"
+                      "@type": "<skos:Concept>"
+                      "<skos:prefLabel>": "{REGION}@en"
+                      "<skos:inScheme>": "<::RegionScheme>"
+                      "^<skos:hasTopConcept>": "<::RegionScheme>"
                   "<fdri:interval>":
                     name: InRegionCurrentValueInterval
                     properties:
@@ -50,16 +77,25 @@ resources:
                       "<dcat:startDate>": "{DATE_INSTALLED | asDateOrDatetime}"
         "<fdri:hasAnnotation>":
           - name: SoilType
+            requires:
+              SOIL_TYPE:
             properties:
               "@id" : "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/soil_type>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/soil-type>"
               "<fdri:hasValue>":
                 name: "SoilTypeValue"
                 properties:
                   "@id": <_>
                   "@type": "<schema:PropertyValue>"
-                  "<schema:valueReference>": "{SOIL_TYPE | autoCV('soil_type', 'label')}"
+                  "<schema:valueReference>":
+                    name: SoilTypeConcept
+                    properties:
+                      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/soil-type/{SOIL_TYPE | slug}>"
+                      "@type": "<skos:Concept>"
+                      "<skos:prefLabel>": "{SOIL_TYPE}@en"
+                      "<skos:inScheme>": <::SoilTypeScheme>
+                      "^<skos:hasTopConcept>": "<::SoilTypeScheme>"
           - name: Calibrated
             properties:
               "@id": "<_>"
@@ -138,6 +174,8 @@ resources:
                   "@type": "<schema:PropertyValue>"
                   "<schema:value>": "{FULL_TDT_ARRAY | asBoolean('y')}"
           - name: BedrockClass
+            requires:
+              BEDROCK_CLASS:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
@@ -147,9 +185,18 @@ resources:
                 properties:
                   "@id": <_>
                   "@type": "<schema:PropertyValue>"
-                  "<schema:valueReference>": "{BEDROCK_CLASS | autoCV('bedrock-class', 'label')}"
+                  "<schema:valueReference>":
+                    name: BedrockClassConcept
+                    properties:
+                      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/bedrock-class/{BEDROCK_CLASS|slug}>"
+                      "@type": "<skos:Concept>"
+                      "<skos:prefLabel>": "{BEDROCK_CLASS}@en"
+                      "<skos:inScheme>": "<::BedrockClassScheme>"
+                      "^<skos:hasTopConcept>": "<::BedrockClassScheme>"
           - name: BedrockSuperclass
             # Should maybe be a broader concept of bedrock class?
+            requires:
+              SUPER_CLASS:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
@@ -159,10 +206,19 @@ resources:
                 properties:
                   "@id": <_>
                   "@type": "<schema:PropertyValue>"
-                  "<schema:valueReference>": "{SUPER_CLASS | autoCV('bedrock-class', 'label')}"
+                  "<schema:valueReference>":
+                    name: BedrockClassConcept
+                    properties:
+                      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/bedrock-class/{SUPER_CLASS|slug}>"
+                      "@type": "<skos:Concept>"
+                      "<skos:prefLabel>": "{SUPER_CLASS}@en"
+                      "<skos:inScheme>": "<::BedrockClassScheme>"
+                      "^<skos:hasTopConcept>": "<::BedrockClassScheme>"
           - name: SuperSeries
             # QUESTION: Is this related to bedrock or soil?
             # If the former, should maybe be a broader concept of bedrock super class?
+            requires:
+              SUPER_SERIES:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
@@ -172,7 +228,14 @@ resources:
                 properties:
                   "@id": "<_>"
                   "@type": "<schema:PropertyValue>"
-                  "<schema:valueReference>": "{SUPER_SERIES | autoCV('bedrock-class')}"
+                  "<schema:valueReference>":
+                    name: BedrockClassConcept
+                    properties:
+                      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/bedrock-class/{SUPER_SERIES|slug}>"
+                      "@type": "<skos:Concept>"
+                      "<skos:prefLabel>": "{SUPER_SERIES}@en"
+                      "<skos:inScheme>": "<::BedrockClassScheme>"
+                      "^<skos:hasTopConcept>": "<::BedrockClassScheme>"
           - name: Saar
             properties:
               "@id": "<_>"

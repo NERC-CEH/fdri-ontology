@@ -1,6 +1,6 @@
 {
-  "$schema": "../../schema/EnvironmentalMonitoringSite.schema.json",
-  "@context": "../../schema/EnvironmentalMonitorigSite.context.jsonld",
+  "$schema": "../../build/schema/EnvironmentalMonitoringSite.schema.json",
+  "@context": "../../build/context/EnvironmentalMonitorigSite.context.jsonld",
   "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-site/bunny",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSite",
   "title": [
