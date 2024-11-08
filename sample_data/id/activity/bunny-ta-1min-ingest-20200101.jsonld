@@ -1,6 +1,6 @@
 {
-  "$schema": "../../schema/DataProcessingActivity.schema.json",
-  "@context":"../../schema/DataProcessingActivity.context.jsonld",
+  "$schema": "../../build/schema/DataProcessingActivity.schema.json",
+  "@context":"../../build/context/DataProcessingActivity.context.jsonld",
   "@id": "http://fdri.ceh.ac.uk/id/activity/bunny-1-ingest-20200101",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingActivity",
   "type": {

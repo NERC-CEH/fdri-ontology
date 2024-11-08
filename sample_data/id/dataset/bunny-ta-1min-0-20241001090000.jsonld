@@ -1,6 +1,6 @@
 {
-  "$schema": "../../schema/TimeSeriesDataset.schema.json",
-  "@context": "../../schema/TimeSeriesDataset.context.jsonld",
+  "$schema": "../../build/schema/TimeSeriesDataset.schema.json",
+  "@context": "../../build/context/TimeSeriesDataset.context.jsonld",
 
   "@id":"http://fdri.ceh.ac.uk/id/dataset/bunny-ta-1min-0",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDataset",

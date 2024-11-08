@@ -22,9 +22,9 @@ SAMPLES = \
 	build/landCoverLcm.ttl \
 	build/instrumentation_variables.ttl 
 
-SCHEMAS = $(RECORDS:%=$(SCHEMA_BASE)/%.schema.json)
+SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
-CONTEXTS = $(SCHEMAS:.schema.json=.context.jsonld)
+CONTEXTS = $(RECORDS:%=build/context/%.context.jsonld)
 
 all: validate schemas contexts samples
 
@@ -35,19 +35,25 @@ samples: $(SAMPLES)
 validate: $(SCHEMA_FILE)
 	$(RUN) record-spec-cmd validate $^
 
-%.schema.json: $(SCHEMA_FILE)
+build/schema/%.schema.json: $(SCHEMA_FILE) | build/schema
 	$(RUN) record-spec-cmd json-schema --allow-jsonld-context --allow-json-schema-ref --with-optional-type --no-additional-properties -r $(*F) -o $@ $^
 
-%.context.jsonld: $(SCHEMA_FILE) 
+build/context/%.context.jsonld: $(SCHEMA_FILE) | build/context
 	$(RUN) record-spec-cmd json-ld -r $(*F) -o $@ $^
 
 clean:
 	rm -f $(SCHEMA_BASE)/*.schema.json
 	rm -f $(SCHEMA_BASE)/*.context.jsonld
-	rm -f build/*
+	rm -rf build
 
 build:
 	mkdir -p build
+
+build/schema:
+	mkdir -p build/schema
+
+build/context:
+	mkdir -p build/context
 
 build/landCoverObservations.csv: src/LAND_COVER_OBSERVED.csv sql/landCoverObservations.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/landCoverObservations.sql"

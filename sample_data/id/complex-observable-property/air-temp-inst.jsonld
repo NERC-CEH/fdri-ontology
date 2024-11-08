@@ -1,6 +1,6 @@
 {
-    "$schema": "../../schema/ComplexObservableProperty.schema.json",
-    "@context": "../../schema/ComplexObservableProperty.context.jsonld",
+    "$schema": "../../build/schema/ComplexObservableProperty.schema.json",
+    "@context": "../../build/context/ComplexObservableProperty.context.jsonld",
     "prefLabel": [
         {"@value": "instantaneous air temperature", "@language": "en"}
     ],
