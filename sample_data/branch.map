@@ -1,2 +1,2 @@
 branch      sqs_queue_name                   s3_destination
-main        ceh-dev-fuseki.fifo              s3://expt-eks-cluster/data/ceh-dev
+main        ceh-dev-fuseki.fifo              s3://expt-eks-cluster/data/ceh/dev
