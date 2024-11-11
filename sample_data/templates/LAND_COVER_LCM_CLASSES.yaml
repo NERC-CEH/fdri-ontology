@@ -8,14 +8,14 @@ imports:
 one_offs:
   - name: LandCoverConceptScheme
     properties:
-        "@id": "<http://fdri.ceh.ac.uk/def/cosmos/land-cover>"
+        "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover>"
         "@type": "<skos:ConceptScheme>"
         "<rdfs:label>": "Land Cover LCM Classes"
 
 resources:
   - name: LandCoverConcept
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/def/cosmos/land-cover/{LCM_CLASS|asInt}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover/{LCM_CLASS|asInt}>"
       "@type": "<skos:Concept>"
       "<skos:prefLabel>": "{DESCRIPTION}@en"
       "<skos:notation>": "{LCM_CLASS}"

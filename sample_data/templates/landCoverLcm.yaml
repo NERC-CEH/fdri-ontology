@@ -22,13 +22,13 @@ resources:
               "@id": "<_>"
               "@type": "<dct:PeriodOfTime>"
               "<dcat:startDate>": "{START_DATE | asDate}"
-          "<fdri:valueReference>": "<http://fdri.ceh.ac.uk/def/cosmos/land-cover/{LCM_CLASS|asInt}>"
+          "<fdri:valueReference>": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover/{LCM_CLASS|asInt}>"
           "<fdri:qualifier>":
             name: LandCoverAreaQualifier
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/def/cosmos/cop/land-cover-ratio>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/land-cover-ratio>"
               "<fdri:hasValue>":
                 name: LandCoverAreaQualifierValue
                 properties:

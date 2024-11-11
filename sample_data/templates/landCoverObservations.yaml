@@ -36,7 +36,7 @@ resources:
         requires:
             LCM_CLASS:
         properties:
-          "@id": "<http://fdri.ceh.ac.uk/def/cosmos/land-cover/{LCM_CLASS|asInt}>"
+          "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover/{LCM_CLASS|asInt}>"
           "@type": "<skos:Concept>"
       "<sosa:observedProperty>": "<http:/fdri.ceg.ac.uk/ref/cosmos/cop/land-cover>"
       "<sosa:madeBySensor>":
