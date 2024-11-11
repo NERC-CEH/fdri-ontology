@@ -241,7 +241,7 @@ resources:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
               "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-saar-1961-1990>"
-              "<fdri;hasValue>":
+              "<fdri:hasValue>":
                 name: SaarValue
                 properties:
                   "@id": "<_>"
@@ -252,7 +252,7 @@ resources:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
               "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-class>"
-              "<fdri;hasValue>":
+              "<fdri:hasValue>":
                 name: SiteClassValue
                 # QUESTION: Is this actually a controlled vocabulary?
                 properties:
@@ -264,7 +264,7 @@ resources:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
               "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-web-images>"
-              "<fdri;hasValue>":
+              "<fdri:hasValue>":
                 name: WebImagesValue
                 properties:
                   "@id": "<_>"
@@ -276,7 +276,7 @@ resources:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
               "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/host-class>"
-              "<fdri;hasValue>":
+              "<fdri:hasValue>":
                 name: HostClassValue
                 # QUESTION: Is this actually a controlled vocabulary?
                 properties:
