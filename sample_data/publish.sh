@@ -30,5 +30,5 @@ do
   # Publish data to sqs queue
   BODY=$(printf '{"payload":"%s","action":"replace-graph","context":"http://fdri.ceh.ac.uk/graph/%s","content-type":"text/turtle"}' $S3_DESTINATION ${file#"build/"})
   echo "Sending $BODY to $QUEUE_URL"
-  aws sqs send-message --queue-url=$QUEUE_URL --message-body="$BODY"
+  aws sqs send-message --message-group-id=data --queue-url=$QUEUE_URL --message-body="$BODY"
 done
