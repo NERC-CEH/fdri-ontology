@@ -23,4 +23,4 @@ jobs:
       - name: Build sample data
         run: cd sample_data/ && make samples
       - name: Publish sample data
-        run: bash publish.sh
+        run: cd sample_data/ && bash publish.sh
