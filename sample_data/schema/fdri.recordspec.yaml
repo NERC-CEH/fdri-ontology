@@ -10,14 +10,18 @@ prefixes:
     uri: http://www.opengis.net/ont/geosparql#
   - prefix: iop
     uri: https://w3id.org/iadopt/ont/
+  - prefix: qudt
+    uri: "http://qudt.org/schema/qudt/"
+  - prefix: rdf
+    uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  - prefix: schema
+    uri: http://schema.org/
   - prefix: skos
     uri: http://www.w3.org/2004/02/skos/core#
   - prefix: sosa
     uri: http://www.w3.org/ns/sosa/
   - prefix: ssn
     uri: http://www.w3.org/ns/ssn/
-  - prefix: rdf
-    uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   - prefix: xsd
     uri: http://www.w3.org/2001/XMLSchema#
 
