@@ -2,7 +2,7 @@
 
 ## Document Control
 
-**Date:** 2024-10-28
+**Date:** 2024-11-11
 **Author:** Kal Ahmed (kal.ahmed@epimorphics.com)
 **Version:** 0.3 (In progress)
 **Status:** DRAFT
@@ -20,3 +20,4 @@
 * [Deployment Model](deployments.md)
 * [Sensor/System Model](sensor-system.md)
 * [Data-processing Configuration Model](data-processing-configurations.md)
+* [OGC Connected Systems Spec Mapping](ogc-connected-systems.md)
