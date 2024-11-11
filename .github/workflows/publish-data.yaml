@@ -1,0 +1,26 @@
+name: publish sample data
+on:
+  push:
+    branches: [ main ]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo 
+        uses: actions/checkout@v4
+      - name: Git fetch
+        run: |
+          git fetch --prune --unshallow --tags
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.BUILD_CEH_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.BUILD_CEH_AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build sample data
+        run: cd sample_data/ && make samples
+      - name: Publish sample data
+        run: cd sample_data/ && bash publish.sh
