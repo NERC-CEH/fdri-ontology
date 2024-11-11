@@ -25,7 +25,7 @@ do
   # Upload data to s3
   S3_DESTINATION=$S3_DESTINATION_PREFIX/${file#"build/"}
   echo Uploading $file to $S3_DESTINATION
-  aws cp $file $S3_DESTINATION
+  aws s3 cp $file $S3_DESTINATION
 
   # Publish data to sqs queue
   BODY=$(printf '{"payload":"%s","action":"replace-graph","context":"http://fdri.ceh.ac.uk/graph/%s","content-type":"text/turtle"}' $S3_DESTINATION ${file#"build/"})
