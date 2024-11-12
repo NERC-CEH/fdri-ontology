@@ -9,8 +9,5 @@
   "hadPlan": {
     "@id": "http://fdri.ceh.ac.uk/id/data-processing-configuration/fdri-ingest-raw-20200101"
   },
-  "startedAtTime": {
-    "@value": "2020-01-01T08:50:03.000Z",
-    "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-  }
+  "startedAtTime": "2020-01-01T08:50:03.000Z"
 }
