@@ -150,10 +150,6 @@ PropertyValue --> Unit: schema_unit
 ```
 
 > **QUESTION**
-> Should we encode the property type as part of `fdri:PropertyValueSeries` rather than using direct properties of `fdri:EnvironmentalMonitoringSite` ? This would make this structure line up better with the configuration structures used for `fdri:EnvironmentalMonitoringSystem`
-
-
-> **QUESTION**
 > Is site variance information available in a more structured form that makes it possible to relate the information to the sensor deployment?
 > Does site variance information change over time? 
 > If site variance information is captured as text, should this really be a language tagged string rather than a simple string ?
