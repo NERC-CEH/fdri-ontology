@@ -64,7 +64,7 @@ resources:
                   "<schema:valueReference>":
                     name: RegionConcept
                     properties:
-                      "@id": "<http:fdri.ceh.ac.uk/ref/cosmos/region/{REGION | slug}>"
+                      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/region/{REGION | slug}>"
                       "@type": "<skos:Concept>"
                       "<skos:prefLabel>": "{REGION}@en"
                       "<skos:inScheme>": "<::RegionScheme>"
