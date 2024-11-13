@@ -53,6 +53,12 @@
                    rdfs:range :ComplexObservableProperty .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/argument
+:argument rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:range :ConfigurationArgument .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/catchmentScheme
 :catchmentScheme rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
@@ -178,6 +184,12 @@
                             rdfs:range :EnvironmentalMonitoringFacilityTypeScheme .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/observationInterval
+:observationInterval rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/observedPropertyScheme
 :observedPropertyScheme rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
@@ -189,10 +201,10 @@
                  rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/phenomenonInterval
-:phenomenonInterval rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf owl:topObjectProperty ;
-                    rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
+###  http://fdri.ceh.ac.uk/vocab/metadata/parameter
+:parameter rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:range :ConfigurationParameter .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/programme
@@ -494,21 +506,45 @@
                                  rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgument
+:ConfigurationArgument rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasValue ;
+                                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :parameter ;
+                                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                                       ] .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationItem
 :ConfigurationItem rdf:type owl:Class ;
-                   rdfs:subClassOf :ConfigurationValue ,
-                                   [ rdf:type owl:Restriction ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                      owl:onProperty <http://purl.org/dc/terms/replaces> ;
                                      owl:allValuesFrom :ConfigurationItem
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :argument ;
+                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :method ;
                                      owl:minCardinality "1"^^xsd:nonNegativeInteger
                                    ] ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :phenomenonInterval ;
+                                     owl:onProperty :observationInterval ;
                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :interval ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
                                    ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationParameter
+:ConfigurationParameter rdf:type owl:Class ;
+                        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationProperty
@@ -562,31 +598,34 @@
                      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingActivity
+:DataProcessingActivity rdf:type owl:Class ;
+                        rdfs:subClassOf <http://www.w3.org/ns/prov#Activity> .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfiguration
 :DataProcessingConfiguration rdf:type owl:Class ;
-                             rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ,
-                                             <http://www.w3.org/ns/prov#Plan> ,
+                             rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty :appliesToSystem ;
-                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                               owl:onClass [ rdf:type owl:Class ;
-                                                             owl:unionOf ( :EnvironmentalMonitoringSystem
-                                                                           :EnvironmentalMonitoringSystemType
-                                                                         )
-                                                           ]
-                                             ] ,
-                                             [ rdf:type owl:Restriction ;
-                                               owl:onProperty :appliesToVariable ;
-                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                             ] ,
-                                             [ rdf:type owl:Restriction ;
-                                               owl:onProperty :hadConfigurationItem ;
-                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                             ] ,
-                                             [ rdf:type owl:Restriction ;
-                                               owl:onProperty :hasCurrentConfigurationItem ;
-                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                               owl:onProperty <http://purl.org/dc/terms/type> ;
+                                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                               owl:onClass :DataProcessingConfigurationType
                                              ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfigurationType
+:DataProcessingConfigurationType rdf:type owl:Class ;
+                                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingMethod
+:DataProcessingMethod rdf:type owl:Class ;
+                      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :parameter ;
+                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :ConfigurationParameter
+                                      ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Deployment
@@ -802,6 +841,24 @@
                                                    ] .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/ExternalDataProcessingConfiguration
+:ExternalDataProcessingConfiguration rdf:type owl:Class ;
+                                     rdfs:subClassOf :DataProcessingConfiguration ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :repository ;
+                                                       owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :repositoryPath ;
+                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <http://www.w3.org/ns/dcat#version> ;
+                                                       owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                       owl:onDataRange xsd:string
+                                                     ] .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Fault
 :Fault rdf:type owl:Class ;
        rdfs:subClassOf [ rdf:type owl:Restriction ;
@@ -837,6 +894,33 @@
                                              ] ;
                              rdfs:comment "A Feature of Interest with a geospatial location."@en ;
                              rdfs:label "Geo-spatial Feature Of Interest"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration
+:InternalDataProcessingConfiguration rdf:type owl:Class ;
+                                     rdfs:subClassOf :DataProcessingConfiguration ,
+                                                     <http://www.w3.org/ns/dcat#Resource> ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :appliesToSystem ;
+                                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                       owl:onClass [ rdf:type owl:Class ;
+                                                                     owl:unionOf ( :EnvironmentalMonitoringSystem
+                                                                                   :EnvironmentalMonitoringSystemType
+                                                                                 )
+                                                                   ]
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :appliesToVariable ;
+                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :hadConfigurationItem ;
+                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :hasCurrentConfigurationItem ;
+                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                     ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/LandCoverType
