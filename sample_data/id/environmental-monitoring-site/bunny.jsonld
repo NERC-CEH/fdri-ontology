@@ -12,14 +12,11 @@
   "type": {
     "@id": "http://fdri.ceh.ac.uk/id/site-type/recharge"
   },
-  "within": {
+  "inRegion": [{
     "@id": "http://fdri.ceh.ac.uk/id/region/south-east"
-  },
+  }],
   "hasGeometry": {
-    "asWKT": {
-      "@value": "<http://www.opengis.net/def/crs/EPSG/0/27700> POINT(123, 456)",
-      "@type": "http://www.opengis.net/ont/geosparql#wktLiteral"
-    }
+    "asWKT": "<http://www.opengis.net/def/crs/EPSG/0/27700> POINT(123, 456)"
   },
   "operatingPeriod": {
     "startDate": {
@@ -36,8 +33,5 @@
   "soilType": {
     "@id": "http://fdri.ceh.ac.uk/id/soil-type/mineral-soil"
   },
-  "altitude": {
-    "@value": "1.0",
-    "@type": "http://www.w3.org/2001/XMLSchema#decimal"
-  }
+  "altitude": "1.0"
 }

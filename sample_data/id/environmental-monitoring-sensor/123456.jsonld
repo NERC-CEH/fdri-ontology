@@ -12,10 +12,7 @@
     }
   ],
   "serialNumber": "123456",
-  "retirementDate": {
-    "@value": "2040-12-12",
-    "@type": "http://www.w3.org/2001/XMLSchema#date"
-  },
+  "retirementDate": "2040-12-12",
   "configuration": [
     {
       "type": {
