@@ -2,6 +2,7 @@ namespaces:
     dcat: http://www.w3.org/ns/dcat#
     fdri: http://fdri.ceh.ac.uk/vocab/metadata/
     geos: http://www.opengis.net/ont/geosparql#
+    iop: https://w3id.org/iadopt/ont/
     schema: http://schema.org/
     sosa: http://www.w3.org/ns/sosa/
     ssn: http://www.w3.org/ns/ssn/

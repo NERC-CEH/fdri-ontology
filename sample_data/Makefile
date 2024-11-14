@@ -23,7 +23,8 @@ SAMPLES = \
 	build/landCoverObservations.ttl \
 	build/landCoverLcm.ttl \
 	build/instrumentation_variables.ttl \
-	build/STATISTICS.ttl
+	build/STATISTICS.ttl \
+	build/TIMESERIES.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
@@ -78,6 +79,9 @@ build/siteVariance.csv: src/SITES.csv sql/siteLayout.sql | build
 
 build/landCoverLcm.csv: src/LAND_COVER_LCM.csv sql/landCoverLcm.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/landCoverLcm.sql"
+
+build/timeSeriesExt.csv: src/TIMESERIES.csv src/intervalDuration.csv sql/timeSeriesExt.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/timeSeriesExt.sql"
 
 build/%.ttl: templates/namespaces.yaml templates/%.yaml src/%.csv | build
 	$(RUN) mapper templates/$*.yaml src/$*.csv $@

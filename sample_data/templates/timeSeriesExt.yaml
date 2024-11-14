@@ -1,0 +1,28 @@
+globals:
+    $baseURI: http://fdri.ceh.ac.uk/
+    $datasetID: cosmos
+
+imports:
+    - namespaces.yaml
+
+one_offs:
+  - name: COPScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
+      "@type": "<fdri:ComplexObservablePropertyScheme>"
+      "<rdfs:label>": "COSMOS Observed Properties"
+
+resources:
+  - name: COP
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{TIMESERIES_ID}>"
+      "@type": "<fdri:ComplexObservableProperty>"
+      "<skos:prefLabel>": "{TIMESERIES_NAME}@en"
+      "<skos:inScheme>": "<::COPScheme>"
+      "^<skos:hasTopConcept>": "<::COPScheme>"
+      "<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PARAMETER_ID}>"
+      # TODO: Object of interest. May need a separate mapping table
+      # TODO: Environmental domain. Will need a separate mapping table
+      "<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT_ID}>"
+      "<fdri:valueStatistic>": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID}>"
+      "<fdri:aggregationPeriod>": "{DURATION}^^<xsd:duration>"
