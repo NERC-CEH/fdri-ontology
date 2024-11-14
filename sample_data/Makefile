@@ -22,7 +22,8 @@ SAMPLES = \
 	build/LAND_COVER_LCM_CLASSES.ttl \
 	build/landCoverObservations.ttl \
 	build/landCoverLcm.ttl \
-	build/instrumentation_variables.ttl 
+	build/instrumentation_variables.ttl \
+	build/STATISTICS.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
