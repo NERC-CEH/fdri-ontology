@@ -1,7 +1,7 @@
 SITE_ID,LAND_COVER_OBSERVED,START_DATE,SOURCE,COMMENTS
 ALIC1,Broadleaf woodland,2015-03-06,Site visit,Deciduous
 BALRD,Arable and horticulture,2014-05-15,Site visit,
-BICKL,Grassland,2015-01-28,Site visit,
+BICKL,Improved grassland,2015-01-28,Site visit,
 BUNNY,Arable and horticulture,2015-01-27,Site visit,
 CARDT,Improved grassland,2015-06-24,Site visit,Maintained
 CGARW,Improved grassland,2014-12-02,Site visit,Grazed
@@ -21,13 +21,13 @@ GLENS,Heather,2014-05-14,Site visit,
 GLENW,Improved grassland,2016-06-15,Site visit,Grazed
 HADLW,Improved grassland,2016-10-27,Site visit,Grazed
 HARTW,Improved grassland,2014-05-20,Site visit,Grazed
-HARWD,Coniferous forest,2015-05-22,Site visit,
+HARWD,Coniferous woodland,2015-05-22,Site visit,
 HENFS,Acid grassland,2015-12-17,Site visit,Grazed
 HILLB,Improved grassland,2018-04-11,Site visit,Grazed
 HLACY,Arable and horticulture,2017-08-16,Site visit,
 HOLLN,Improved grassland,2014-03-25,Site visit,Grazed
 HYBRY,Calcareous grassland,2016-06-14,Site visit,Grazed
-LIZRD,Grassland,2014-10-17,Site visit,
+LIZRD,Heather grassland,2014-10-17,Site visit,
 LODTN,Arable and horticulture,2016-04-26,Site visit,
 LULLN,Calcareous grassland,2014-12-16,Site visit,Grazed
 MOORH,Acid grassland,2014-12-04,Site visit,Grazed
@@ -38,7 +38,7 @@ NWYKE,Arable and horticulture,2019-09-09,Site host,
 PLYNL,Acid grassland,2014-11-05,Site visit,Grazed
 PORTN,Improved grassland,2014-12-18,Site visit,
 RDMER,Arable and horticulture,2016-02-18,Site visit,
-REDHL,Orchard,2015-02-10,Site visit,Vineyard
+REDHL,Arable and horticulture,2015-02-10,Site visit,Vineyard
 RISEH,Improved grassland,2016-05-04,Site visit,Grazed
 ROTHD,Arable and horticulture,2014-07-25,Site visit,
 SHEEP,Improved grassland,2013-10-24,Site visit,Grazed
