@@ -1383,7 +1383,34 @@ records:
     extends: ObservationDataset
     classUri: fdri:TimeSeriesDataset
     shortCode: TimeSeriesDataset
-  
+    properties:
+      aggregationPeriod:
+        propertyUri: fdri:aggregationPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      valueStatistic:
+        propertyUri: fdri:valueStatistic
+        kind: object
+        constraints:
+          - record: ValueStatistic
+
   Unit:
     classUri: qudt:Unit
     shortCode: Unit
+  
+  ValueStatistic:
+    extends: Concept
+    classUri: fdri:ValueStatistic
+    shortCode: ValueStatistic
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ValueStatisticScheme
+
+  ValueStatisticScheme:
+    extends: ConceptScheme
+    classUri: fdri:ValueStatisticScheme
+    shortCode: ValueStatisticScheme
