@@ -202,6 +202,16 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+      aggregationPeriod:
+        propertyUri: fdri:aggregationPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      valueStatistic:
+        propertyUri: fdri:valueStatistic
+        kind: object
+        constraints:
+          - record: ValueStatistic
 
   ComplexObservablePropertyScheme:
     extends: ConceptScheme
@@ -1076,7 +1086,7 @@ records:
         propertyUri: fdri:procedurePeriodicity
         kind: literal
         constraints:
-          - datatype: xsd:duraction
+          - datatype: xsd:duration
       type:
         propertyUri: dct:type
         kind: object
