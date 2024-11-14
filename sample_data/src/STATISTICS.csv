@@ -1,0 +1,6 @@
+STATISTIC_ID,STATISTIC_NAME,DESCRIPTION
+INST,Instantaneous,
+MEAN_PREC,Mean over preceding period,
+STDDEV_PREC,Standard deviation over preceding period,
+TOTAL_PREC,Total over preceding period,
+MEAN_MID_24HOUR,Mean over surrounding 24 hours,The data timestamp is the midpoint of a meaned 24 hour window
