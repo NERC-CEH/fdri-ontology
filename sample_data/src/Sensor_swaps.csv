@@ -1,0 +1,459 @@
+Location Name,PlacingStartDate,PlacingEndDate,Manufacturer,Model,Version,SerialNumber,Comment,PPM
+Cockle Park,22-Jan-24,,OTT,Pluvio2,L,PL2L-453322,Site visit,FALSE
+Wallingford,22-Jan-24,06-Jun-24,OTT,Pluvio2,,342194,Site visit,FALSE
+Wallingford,25-Jan-24,,Gill,Windmaster,3D Sonic Anemometer,140321,,FALSE
+Cwm Garw,25-Jan-24,,Gill,Windmaster,3D Sonic Anemometer,160912,,FALSE
+Cardington,06-Feb-24,18-Jul-24,Campbell Scientific Ltd,NL115,,13473,Site visit,FALSE
+Wallingford,06-Feb-24,06-Feb-24,Campbell Scientific Ltd,NL115,,12099,Site visit,FALSE
+Cardington,06-Feb-24,,Sierra Wireless,Airlink LX60,None,WP90140052021003,Site visit,FALSE
+Wallingford,06-Feb-24,,Campbell Scientific Ltd,NL115,,12099,,FALSE
+Wallingford,06-Feb-24,,Sierra Wireless,Airlink LX60,None,WP90140158011003,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727098,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727099,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727100,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727101,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727102,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727103,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727104,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727105,,FALSE
+Wallingford,13-Feb-24,,Vaisala,PTB110,,W0727106,,FALSE
+Wallingford,28-Feb-24,12-Mar-24,OTT,Pluvio2,L,PL2L-455561,,FALSE
+Alice Holt,06-Mar-24,25-Sep-24,Rotronic,Hygroclip2,HC2A-S3-Standard Meteo Probe,20135119,Reactive maintenance,FALSE
+Wallingford,06-Mar-24,,Rotronic,Hygroclip2,HC2A-S3-Standard Meteo Probe,20269320,Reactive maintenance,FALSE
+Alice Holt,06-Mar-24,,Gill,Metpack Basestation,Windsonic,16030014,,FALSE
+Wallingford,06-Mar-24,,Gill,Metpack Basestation,Windsonic,19060030,,FALSE
+Wallingford,07-Mar-24,13-May-24,Mobotix,S16D,,10.29.116.135,,FALSE
+Wallingford,07-Mar-24,13-May-24,Mobotix,Lens,,6462892,,FALSE
+Wallingford,07-Mar-24,13-May-24,Mobotix,Lens,,6461792,,FALSE
+Plynlimon,12-Mar-24,,OTT,Pluvio2,L,PL2L-455561,,TRUE
+Wallingford,12-Mar-24,07-Jun-24,OTT,Pluvio2,,342254,,TRUE
+Edinburgh,28-Mar-24,28-Mar-24,OTT,Pluvio2,L,432786,,FALSE
+Edinburgh,28-Mar-24,23-Apr-24,OTT,Pluvio2,L,432786,,FALSE
+Wallingford,01-Apr-24,,Sierra Wireless,Airlink LX60,None,C02303201501B101,,FALSE
+Campbell Sci Ltd,09-Apr-24,10-Jul-24,Lambrecht,rainE,,881821.0001,,FALSE
+Bunny Park,16-Apr-24,,Lambrecht,rainE,,881821.0002,PPM,TRUE
+Campbell Sci Ltd,16-Apr-24,,Lambrecht,rainE,,881821.0006,PPM,TRUE
+Bunny Park,16-Apr-24,,Vaisala,PTB110,,T4650712,PPM,TRUE
+Campbell Sci Ltd,16-Apr-24,13-Aug-24,Vaisala,PTB110,,T4740217,PPM,TRUE
+Bunny Park,16-Apr-24,,Vaisala,HMP155,E,T4750900,PPM,TRUE
+Campbell Sci Ltd,16-Apr-24,14-May-24,Vaisala,HMP155,A,L1320542 ,PPM,TRUE
+Stoughton,17-Apr-24,,Hukseflux,NR01,,2145,PPM,TRUE
+Campbell Sci Ltd,17-Apr-24,,Hukseflux,NR01,,2304,PPM,TRUE
+Stoughton,17-Apr-24,,Vaisala,HMP155,E,T4741138,PPM,TRUE
+Campbell Sci Ltd,17-Apr-24,31-Jul-24,Vaisala,HMP155,A,R1030191,PPM,TRUE
+Stoughton,17-Apr-24,04-Sep-24,Lambrecht,rainE,,881821.0059,PPM,TRUE
+Campbell Sci Ltd,17-Apr-24,,Lambrecht,rainE,,881821.0023,PPM,TRUE
+Stoughton,17-Apr-24,,Vaisala,PTB110,,T4650761,PPM,TRUE
+Campbell Sci Ltd,17-Apr-24,20-Aug-24,Vaisala,PTB110,,T4740220,PPM,TRUE
+Loddington,18-Apr-24,,Vaisala,HMP155,A,L1320544,PPM,TRUE
+Campbell Sci Ltd,18-Apr-24,15-May-24,Vaisala,HMP155,A,M2920118,PPM,TRUE
+Loddington,18-Apr-24,,Campbell Scientific Ltd,CR3000,,12804,PPM,TRUE
+Campbell Sci Ltd,18-Apr-24,28-May-24,Campbell Scientific Ltd,CR3000,,10258,PPM,TRUE
+Loddington,18-Apr-24,,Campbell Scientific Ltd,NL116,,4725,PPM,TRUE
+Campbell Sci Ltd,18-Apr-24,,Campbell Scientific Ltd,NL116,,6352,PPM,TRUE
+Loddington,18-Apr-24,,Lambrecht,rainE,,881821.0043,PPM,TRUE
+Campbell Sci Ltd,18-Apr-24,31-Jul-24,Lambrecht,rainE,,881821.0047,PPM,TRUE
+Wallingford,23-Apr-24,16-May-24,OTT,Pluvio2,,340991,,FALSE
+Gisburn Forest,23-Apr-24,,Campbell Scientific Ltd,CR3000,,11012,PPM,TRUE
+Campbell Sci Ltd,23-Apr-24,,Campbell Scientific Ltd,CR3000,,9766,PPM,TRUE
+Gisburn Forest,23-Apr-24,,Gill,Windmaster,3D Sonic Anemometer,160905,PPM,TRUE
+Campbell Sci Ltd,23-Apr-24,,Gill,Windmaster,3D Sonic Anemometer,140402,PPM,TRUE
+Gisburn Forest,23-Apr-24,,Campbell Scientific Ltd,SR50A,,7220,PPM,TRUE
+Campbell Sci Ltd,23-Apr-24,,Campbell Scientific Ltd,SR50A,,5689,PPM,TRUE
+Gisburn Forest,23-Apr-24,,Vaisala,HMP155,A,M2920117,PPM,TRUE
+Campbell Sci Ltd,23-Apr-24,28-May-24,Vaisala,HMP155,A,T2650700,PPM,TRUE
+Gisburn Forest,23-Apr-24,,Vaisala,PTB110,,T4650720,PPM,TRUE
+Campbell Sci Ltd,23-Apr-24,03-Sep-24,Vaisala,PTB110,,T4650760,PPM,TRUE
+Hartwood Home,23-Apr-24,,OTT,Pluvio2,L,432786,,FALSE
+Moreton Morrell,24-Apr-24,,Lambrecht,rainE,,881821.0021,,FALSE
+Wallingford,24-Apr-24,,Lambrecht,rainE,,881821.0025,,FALSE
+Campbell Sci Ltd,24-Apr-24,11-Jul-24,Vaisala,HMP155,A,M2920120,,TRUE
+Spen Farm,24-Apr-24,,Campbell Scientific Ltd,CR3000,,9027,,TRUE
+Campbell Sci Ltd,24-Apr-24,,Campbell Scientific Ltd,CR3000,,12803,,TRUE
+Spen Farm,24-Apr-24,,Vaisala,PTB110,,R3510587,,TRUE
+Campbell Sci Ltd,24-Apr-24,06-Aug-24,Vaisala,PTB110,,T4740221,,TRUE
+Spen Farm,24-Apr-24,,Mobotix,Lens Cover,,SPENFN240424,,TRUE
+Campbell Sci Ltd,24-Apr-24,,Mobotix,Lens Cover,,SPENFN251220,,TRUE
+Spen Farm,24-Apr-24,,Mobotix,Lens Cover,,SPENFS240424,,TRUE
+Campbell Sci Ltd,24-Apr-24,,Mobotix,Lens Cover,,SPENFS251220,,TRUE
+Spen Farm,24-Apr-24,,Vaisala,HMP155,E,T4731075,,TRUE
+Hollin Hill,25-Apr-24,,Hukseflux,NR01,,1937,PPM,TRUE
+Campbell Sci Ltd,25-Apr-24,,Hukseflux,NR01,,2457,PPM,TRUE
+Hollin Hill,25-Apr-24,,Vaisala,HMP155,E,T4741136,PPM,TRUE
+Campbell Sci Ltd,25-Apr-24,,Vaisala,HMP155,A,P4020597,PPM,TRUE
+Hollin Hill,25-Apr-24,,Lambrecht,rainE,,881821.0028,PPM,TRUE
+Campbell Sci Ltd,25-Apr-24,,Lambrecht,rainE,,881821.0032,PPM,TRUE
+Hollin Hill,25-Apr-24,,Vaisala,PTB110,,M1120820,PPM,TRUE
+Campbell Sci Ltd,25-Apr-24,14-Aug-24,Vaisala,PTB110,,T4650757,PPM,TRUE
+Tadham Moor,30-Apr-24,06-Jun-24,OTT,Pluvio2,,341001,,TRUE
+Tadham Moor,30-Apr-24,30-May-24,Vaisala,HMP155,A,V1051034,PPM,TRUE
+Tadham Moor,30-Apr-24,,Campbell Scientific Ltd,CR3000,,10262,PPM,TRUE
+Wallingford,30-Apr-24,08-Aug-24,Campbell Scientific Ltd,CR3000,,12799,PPM,TRUE
+Tadham Moor,30-Apr-24,,Vaisala,HMP155,E,T4741142,PPM,TRUE
+Campbell Sci Ltd,30-Apr-24,,OTT,Pluvio2,,342246,,FALSE
+Campbell Sci Ltd,30-Apr-24,,Hukseflux,NR01,,4413,,FALSE
+North Wyke,01-May-24,,Campbell Scientific Ltd,CR3000,,9893,PPM,TRUE
+Wallingford,01-May-24,07-Aug-24,Campbell Scientific Ltd,CR3000,,11256,PPM,TRUE
+North Wyke,01-May-24,,Vaisala,HMP155,E,T4741137,PPM,TRUE
+Wallingford,01-May-24,21-May-24,Vaisala,HMP155,E,V1051033,PPM,TRUE
+The Lizard,02-May-24,,Gill,Windmaster,3D Sonic Anemometer,160817,PPM,TRUE
+Campbell Sci Ltd,02-May-24,,Gill,Windmaster,3D Sonic Anemometer,191205,PPM,TRUE
+The Lizard,02-May-24,,Vaisala,HMP155,A,N5050074,PPM,TRUE
+Euston Estate,08-May-24,,Vaisala,PTB110,,T4650714,,TRUE
+Euston Estate,08-May-24,,Hukseflux,NR01,,2153,PPM,TRUE
+Campbell Sci Ltd,08-May-24,,Hukseflux,NR01,,2945,PPM,TRUE
+Campbell Sci Ltd,09-May-24,22-May-24,Mobotix,S14D,,10.12.108.168,,TRUE
+Campbell Sci Ltd,09-May-24,,Mobotix,Lens,,5922409,,TRUE
+Campbell Sci Ltd,09-May-24,,Mobotix,Lens,,5901058,,TRUE
+Campbell Sci Ltd,09-May-24,31-Jul-24,Lambrecht,rainE,,881821.0012,,TRUE
+Campbell Sci Ltd,09-May-24,01-Aug-24,Lambrecht,rainE,,881821.0035,,TRUE
+Morley,09-May-24,29-Aug-24,Gill,Windmaster,3D Sonic Anemometer,140304,PPM,TRUE
+Campbell Sci Ltd,09-May-24,21-May-24,Gill,Windmaster,3D Sonic Anemometer,140403,PPM,TRUE
+Morley,09-May-24,,Sierra Wireless,Airlink LX60,None,WP90140038011003,PPM,TRUE
+Campbell Sci Ltd,09-May-24,,Sierra Wireless,Airlink LX60,None,WP90140076011003,PPM,TRUE
+Morley,09-May-24,,Vaisala,HMP155,A,L1320545,PPM,TRUE
+Campbell Sci Ltd,09-May-24,,Vaisala,HMP155,A,M2920116,PPM,TRUE
+Morley,09-May-24,,Vaisala,PTB110,,T4740219,PPM,TRUE
+Campbell Sci Ltd,09-May-24,05-Sep-24,Vaisala,PTB110,,T4740223,PPM,TRUE
+Campbell Sci Ltd,09-May-24,,Campbell Scientific Ltd,SDM-SI01,A,E3789,,TRUE
+Wallingford,13-May-24,,Hukseflux,NR01,,2754,,FALSE
+Wallingford,13-May-24,,Mobotix,Lens,,6461792,,FALSE
+Wallingford,13-May-24,,Mobotix,Lens,,6462892,,FALSE
+Wallingford,13-May-24,27-Sep-24,Mobotix,S16D,,10.29.116.135,,FALSE
+Holme Lacy,14-May-24,,Vaisala,HMP155,A,L1320542 ,PPM,TRUE
+Wallingford,14-May-24,17-Jul-24,Vaisala,HMP155,A,V1051041,PPM,TRUE
+Holme Lacy,14-May-24,,Hukseflux,NR01,,2458,PPM,TRUE
+Holme Lacy,14-May-24,,Gill,Windmaster,3D Sonic Anemometer,160908,PPM,TRUE
+Holme Lacy,14-May-24,,Vaisala,PTB110,,T4710743,PPM,TRUE
+Wallingford,14-May-24,08-Aug-24,Vaisala,PTB110,,T4710742,PPM,TRUE
+Holme Lacy,14-May-24,,Lambrecht,rainE,,881821.0016,PPM,TRUE
+Wallingford,14-May-24,01-Sep-24,Lambrecht,rainE,,881821.0049,PPM,TRUE
+Campbell Sci Ltd,14-May-24,27-Aug-24,Gill,Windmaster,3D Sonic Anemometer,140313,,FALSE
+Campbell Sci Ltd,14-May-24,,Hukseflux,NR01,,2459,,TRUE
+Stiperstones,15-May-24,,Campbell Scientific Ltd,CR3000,,9087,PPM,TRUE
+Stiperstones,15-May-24,22-Aug-24,Gill,Windmaster,3D Sonic Anemometer,140401,PPM,TRUE
+Wallingford,15-May-24,30-May-24,Gill,Windmaster,3D Sonic Anemometer,140316,PPM,TRUE
+Stiperstones,15-May-24,,Mobotix,S14D,,10.12.150.105,PPM,TRUE
+Wallingford,15-May-24,01-Sep-24,Mobotix,S14D,,10.12.77.172,PPM,TRUE
+Stiperstones,15-May-24,,Vaisala,HMP155,A,M2920118,PPM,TRUE
+Wallingford,15-May-24,02-Aug-23,Vaisala,HMP155,E,T4731074,PPM,TRUE
+Wallingford,16-May-24,,OTT,Pluvio2,,340991,,FALSE
+Bickley Hall,16-May-24,09-Sep-09,Campbell Scientific Ltd,CR3000,,9896,PPM,TRUE
+Wallingford,16-May-24,18-Jul-24,Campbell Scientific Ltd,CR3000,,9024,PPM,TRUE
+Bickley Hall,16-May-24,,Gill,Windmaster,3D Sonic Anemometer,144207,PPM,TRUE
+Wallingford,16-May-24,03-Sep-24,Gill,Windmaster,3D Sonic Anemometer,140322,PPM,TRUE
+Bickley Hall,16-May-24,,Vaisala,HMP155,E,T4741133,PPM,TRUE
+Wallingford,16-May-24,16-Jul-24,Vaisala,HMP155,E,V1051035,PPM,TRUE
+Bickley Hall,16-May-24,,Lambrecht,rainE,,881821.0045,PPM,TRUE
+Wallingford,16-May-24,01-Sep-24,Lambrecht,rainE,,881821.0038,PPM,TRUE
+Sydling,21-May-24,,Vaisala,HMP155,E,V1051033,,TRUE
+Campbell Sci Ltd,21-May-24,28-Aug-24,Vaisala,HMP155,E,T4721224,,TRUE
+Sydling,21-May-24,,Campbell Scientific Ltd,CR3000,,9866,,TRUE
+Campbell Sci Ltd,21-May-24,13-Aug-24,Campbell Scientific Ltd,CR3000,,9764,,TRUE
+Sydling,21-May-24,,Hukseflux,NR01,,2154,,TRUE
+Campbell Sci Ltd,21-May-24,,Hukseflux,NR01,,2125,,TRUE
+Sydling,21-May-24,,Gill,Windmaster,3D Sonic Anemometer,140403,,TRUE
+Campbell Sci Ltd,21-May-24,,Gill,Windmaster,3D Sonic Anemometer,180903,,TRUE
+Sydling,21-May-24,,Vaisala,PTB110,,R1030765,,TRUE
+Campbell Sci Ltd,21-May-24,,Vaisala,PTB110,,T4650719,,TRUE
+Sydling,21-May-24,,Lambrecht,rainE,,881821.0024,,TRUE
+Campbell Sci Ltd,21-May-24,,Lambrecht,rainE,,881821.0011,,TRUE
+Campbell Sci Ltd,21-May-24,,Campbell Scientific Ltd,NL115,,14166,,TRUE
+Campbell Sci Ltd,22-May-24,27-May-24,Vaisala,HMP155,E,T4750898,,TRUE
+Heytesbury,22-May-24,,Vaisala,HMP155,A,P4020596,,TRUE
+Moor House,28-May-24,,Campbell Scientific Ltd,CR3000,,10258,PPM,TRUE
+Campbell Sci Ltd,28-May-24,29-Aug-24,Campbell Scientific Ltd,CR3000,,12798,PPM,TRUE
+Moor House,28-May-24,,Campbell Scientific Ltd,SR50A,,7222,PPM,TRUE
+Campbell Sci Ltd,28-May-24,08-Aug-24,Campbell Scientific Ltd,SR50A,,14986,PPM,TRUE
+Moor House,28-May-24,,Vaisala,HMP155,A,T2650700,PPM,TRUE
+Campbell Sci Ltd,28-May-24,18-Jul-24,Vaisala,HMP155,E,T4721225,PPM,TRUE
+Moor House,28-May-24,,Vaisala,PTB110,,K5050002,PPM,TRUE
+Campbell Sci Ltd,28-May-24,,Vaisala,PTB110,,T4650718,PPM,TRUE
+Riseholme,29-May-24,,Campbell Scientific Ltd,NL115,,5299,,TRUE
+Crichton,30-May-24,,Campbell Scientific Ltd,CR3000,,9505,PPM,TRUE
+Campbell Sci Ltd,30-May-24,06-Aug-24,Campbell Scientific Ltd,CR3000,,9898,PPM,TRUE
+Crichton,30-May-24,,Gill,Windmaster,3D Sonic Anemometer,140316,PPM,TRUE
+Campbell Sci Ltd,30-May-24,,Gill,Windmaster,3D Sonic Anemometer,144206,PPM,TRUE
+Crichton,30-May-24,,Vaisala,HMP155,A,V1051034,PPM,TRUE
+Campbell Sci Ltd,30-May-24,09-Jul-24,Vaisala,HMP155,E,T4721228,PPM,TRUE
+Wallingford,06-Jun-24,,OTT,Pluvio2,,341001,,FALSE
+Tadham Moor,06-Jun-24,,OTT,Pluvio2,,342194,,FALSE
+North Wyke,07-Jun-24,,OTT,Pluvio2,,342254,,FALSE
+Wallingford,07-Jun-24,01-Nov-24,OTT,Pluvio2,L,451585,,FALSE
+Waddesdon,19-Jun-24,01-Aug-24,Hydroinnova,CRS-2000/B,,HI-TC02-2023,,FALSE
+Wallingford,19-Jun-24,,Campbell Scientific Ltd,NL115,,13623,,FALSE
+Heytesbury,19-Jun-24,,Campbell Scientific Ltd,NL115,,14165,,FALSE
+Wallingford,20-Jun-24,,Vaisala,PTB110,,M1050346,,FALSE
+Redhill,20-Jun-24,14-Aug-24,Vaisala,PTB110,,W0727097,,FALSE
+Hadlow,09-Jul-24,,Vaisala,HMP155,E,T4721228,PPM,TRUE
+Campbell Sci Ltd,09-Jul-24,14-Aug-24,Vaisala,HMP155,A,L1320543 ,PPM,TRUE
+Writtle,10-Jul-24,,Vaisala,HMP155,E,T4741134,,TRUE
+Writtle,10-Jul-24,,Lambrecht,rainE,,881821.0001,PPM,TRUE
+Campbell Sci Ltd,10-Jul-24,,Lambrecht,rainE,,881821.0018,PPM,TRUE
+Elmsett,11-Jul-24,,Vaisala,HMP155,A,M2920120,,TRUE
+Campbell Sci Ltd,11-Jul-24,,Vaisala,HMP155,A,P4010607,,TRUE
+Elmsett,11-Jul-24,,Campbell Scientific Ltd,NL116,,4726,,TRUE
+Campbell Sci Ltd,11-Jul-24,,Campbell Scientific Ltd,NL115,,13467,,TRUE
+Fincham,11-Jul-24,,Vaisala,HMP155,A,V1051036,,TRUE
+Campbell Sci Ltd,11-Jul-24,24-Sep-24,Vaisala,HMP155,A,N5050078,,TRUE
+Fincham,11-Jul-24,,Hukseflux,NR01,,3687,,TRUE
+Campbell Sci Ltd,11-Jul-24,,Hukseflux,NR01,,2755,,TRUE
+Fincham,11-Jul-24,,Vaisala,PTB110,,T4650756,,TRUE
+Campbell Sci Ltd,11-Jul-24,,Vaisala,PTB110,,T4650713,,TRUE
+Fincham,11-Jul-24,,Lambrecht,rainE,,881821.0046,,TRUE
+Campbell Sci Ltd,11-Jul-24,,Lambrecht,rainE,,881821.0013,,TRUE
+Riseholme,16-Jul-24,,Campbell Scientific Ltd,CR3000,,9891,,TRUE
+Campbell Sci Ltd,16-Jul-24,06-Aug-24,Vaisala,HMP155,E,T2650702,,TRUE
+Riseholme,16-Jul-24,,Vaisala,HMP155,E,V1051035,,TRUE
+Wimpole,17-Jul-24,,Vaisala,HMP155,A,V1051041,PPM,TRUE
+Campbell Sci Ltd,17-Jul-24,08-Aug-24,Vaisala,HMP155,A,V1051040,PPM,TRUE
+Wimpole,17-Jul-24,,Hukseflux,NR01,,2859,PPM,TRUE
+Campbell Sci Ltd,17-Jul-24,,Hukseflux,NR01,,2150,PPM,TRUE
+Cardington,18-Jul-24,,Vaisala,HMP155,E,T4721225,PPM,TRUE
+Campbell Sci Ltd,18-Jul-24,01-Aug-24,Vaisala,HMP155,A,P4010599,PPM,TRUE
+Cardington,18-Jul-24,,Campbell Scientific Ltd,CR3000,,9024,PPM,TRUE
+Campbell Sci Ltd,18-Jul-24,,Campbell Scientific Ltd,CR3000,,12865,PPM,TRUE
+Cardington,18-Jul-24,,Campbell Scientific Ltd,NL115,,13628,PPM,TRUE
+Campbell Sci Ltd,18-Jul-24,,Campbell Scientific Ltd,NL115,,13473,PPM,TRUE
+Cardington,18-Jul-24,,Vaisala,PTB110,,T4740215,PPM,TRUE
+Cwm Garw,23-Jul-24,,Vaisala,HMP155,E,V1051037,,TRUE
+Cwm Garw,23-Jul-24,,Vaisala,PTB110,,K4840003,PPM,TRUE
+Campbell Sci Ltd,23-Jul-24,,Vaisala,PTB110,,P0710626,PPM,TRUE
+Cwm Garw,23-Jul-24,,Acclima,TDT,SDI-12,6503225,PPM,TRUE
+Campbell Sci Ltd,23-Jul-24,,Acclima,TDT,SDI-12,6501257,PPM,TRUE
+Cwm Garw,23-Jul-24,,Acclima,TDT,SDI-12,6501247,PPM,TRUE
+Campbell Sci Ltd,23-Jul-24,,Acclima,TDT,SDI-12,6501282,PPM,TRUE
+Henfaes Farm,25-Jul-24,,Campbell Scientific Ltd,CR3000,,9889,,TRUE
+Campbell Sci Ltd,25-Jul-24,,Campbell Scientific Ltd,CR3000,,13071,,TRUE
+Henfaes Farm,25-Jul-24,,Vaisala,PTB110,,R3510589,,TRUE
+Campbell Sci Ltd,25-Jul-24,,Vaisala,PTB110,,T4650763,,TRUE
+Henfaes Farm,25-Jul-24,,Vaisala,HMP155,E,T4750898,,TRUE
+Wallingford,31-Jul-24,,Lambrecht,rainE,,88181.0037,,FALSE
+Lullington Heath,31-Jul-24,,Lambrecht,rainE,,881821.0047,,FALSE
+Rothamsted,31-Jul-24,,Vaisala,HMP155,A,R1030191,,TRUE
+Campbell Sci Ltd,31-Jul-24,29-Aug-24,Vaisala,HMP155,A,L1320538,,TRUE
+Rothamsted,31-Jul-24,,Lambrecht,rainE,,881821.0012,,TRUE
+Campbell Sci Ltd,31-Jul-24,,Lambrecht,rainE,,881821.0027,,TRUE
+Rothamsted,31-Jul-24,,Vaisala,PTB110,,T4710741,,TRUE
+Campbell Sci Ltd,31-Jul-24,,Vaisala,PTB110,,T4650762,,TRUE
+Lullington Heath,01-Aug-24,,Acclima,TDT,SDI-12,6503331,RM,FALSE
+Wallingford,01-Aug-24,,Acclima,TDT,SDI-12,6013223,RM,FALSE
+Campbell Sci Ltd,01-Aug-24,20-Aug-24,Vaisala,HMP155,A,S5130137,,TRUE
+Waddesdon,01-Aug-24,,Vaisala,HMP155,A,P4010599,,TRUE
+Campbell Sci Ltd,01-Aug-24,,Hydroinnova,CRS-2000/B,,HI-TC02-2023,,TRUE
+Waddesdon,01-Aug-24,,Lambrecht,rainE,,881821.0035,,TRUE
+Campbell Sci Ltd,01-Aug-24,,Lambrecht,rainE,,881821.0030,,TRUE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-1,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-2,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-3,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-4,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-5,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-6,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-7,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Misc,Antenna,White - high gain,06082024-8,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-1,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-2,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-3,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-4,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-5,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-6,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-7,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-8,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-9,,FALSE
+Campbell Sci Ltd,06-Aug-24,,Mobotix,Lens Cover,,06082024-DOME-10,,FALSE
+Hartwood Home,06-Aug-24,,Campbell Scientific Ltd,CR3000,,9898,PPM,TRUE
+Campbell Sci Ltd,06-Aug-24,24-Sep-24,Campbell Scientific Ltd,CR3000,,9969,PPM,TRUE
+Campbell Sci Ltd,06-Aug-24,,Vaisala,HMP155,E,T4721227,PPM,TRUE
+Hartwood Home,06-Aug-24,,Vaisala,PTB110,,T4740221,PPM,TRUE
+Campbell Sci Ltd,06-Aug-24,,Vaisala,PTB110,,T4650715,PPM,TRUE
+Hartwood Home,06-Aug-24,,Vaisala,HMP155,E,T2650702,,TRUE
+Easter Bush,07-Aug-24,,Campbell Scientific Ltd,CR3000,,11256,,TRUE
+Campbell Sci Ltd,07-Aug-24,,Campbell Scientific Ltd,CR3000,,11249,,TRUE
+Easter Bush,07-Aug-24,,Hukseflux,NR01,,2546,,TRUE
+Campbell Sci Ltd,07-Aug-24,,Hukseflux,NR01,,2317,,TRUE
+Easter Bush,07-Aug-24,,Campbell Scientific Ltd,SR50A,,5694,,TRUE
+Campbell Sci Ltd,07-Aug-24,,Campbell Scientific Ltd,SR50A,,11155,,TRUE
+Easter Bush,07-Aug-24,,Vaisala,HMP155,A,N5050079,,TRUE
+Easter Bush,07-Aug-24,,Vaisala,PTB110,,T4650765,,TRUE
+Campbell Sci Ltd,07-Aug-24,,Vaisala,PTB110,,R3510588,,TRUE
+Wallingford,08-Aug-24,04-Sep-24,Hydroinnova,CRS-2000/B,,HI-TC02-2026,,TRUE
+Sourhope,08-Aug-24,,Campbell Scientific Ltd,CR3000,,12799,PPM,TRUE
+Campbell Sci Ltd,08-Aug-24,,Campbell Scientific Ltd,CR3000,,12797,PPM,TRUE
+Sourhope,08-Aug-24,,Hukseflux,NR01,,2151,PPM,TRUE
+Campbell Sci Ltd,08-Aug-24,,Hukseflux,NR01,,2453,PPM,TRUE
+Sourhope,08-Aug-24,,Campbell Scientific Ltd,SR50A,,14986,PPM,TRUE
+Campbell Sci Ltd,08-Aug-24,,Campbell Scientific Ltd,SR50A,,6077,PPM,TRUE
+Sourhope,08-Aug-24,,Vaisala,PTB110,,T4710742,PPM,TRUE
+Campbell Sci Ltd,08-Aug-24,,Vaisala,PTB110,,T4710740,PPM,TRUE
+Sourhope,08-Aug-24,,Vaisala,HMP155,A,V1051040,,TRUE
+Stoughton,08-Aug-24,,Hydroinnova,CRS-2000/B,,HI-TC02-1303,,FALSE
+Lullington Heath,13-Aug-24,,Campbell Scientific Ltd,CR3000,,9764,PPM,TRUE
+Campbell Sci Ltd,13-Aug-24,,Campbell Scientific Ltd,CR3000,,9470,PPM,TRUE
+Lullington Heath,13-Aug-24,,Vaisala,PTB110,,T4740217,PPM,TRUE
+Campbell Sci Ltd,13-Aug-24,,Vaisala,PTB110,,R1030766,PPM,TRUE
+Lullington Heath,13-Aug-24,,Vaisala,HMP155,A,T47310074,PPM,TRUE
+Campbell Sci Ltd,13-Aug-24,,Vaisala,HMP155,A,S5130134,PPM,TRUE
+Redhill,14-Aug-24,,Vaisala,HMP155,A,L1320543 ,PPM,TRUE
+Redhill,14-Aug-24,14-Aug-24,Vaisala,HMP155,E,T4721222,PPM,TRUE
+Redhill,14-Aug-24,,Vaisala,PTB110,,T4650757,PPM,TRUE
+Redhill,14-Aug-24,,Vaisala,PTB110,,W0727097,PPM,TRUE
+Campbell Sci Ltd,14-Aug-24,,Vaisala,HMP155,E,T4721222,,TRUE
+Glensaugh,20-Aug-24,,Campbell Scientific Ltd,CR3000,,8943,,TRUE
+Campbell Sci Ltd,20-Aug-24,,Campbell Scientific Ltd,CR3000,,8969,,TRUE
+Glensaugh,20-Aug-24,,Campbell Scientific Ltd,SR50A,,7221,,TRUE
+Campbell Sci Ltd,20-Aug-24,,Campbell Scientific Ltd,SR50A,,11154,,TRUE
+Campbell Sci Ltd,20-Aug-24,,Vaisala,HMP155,E,T4731071,,TRUE
+Glensaugh,20-Aug-24,,Vaisala,PTB110,,T4740220,,TRUE
+Campbell Sci Ltd,20-Aug-24,,Vaisala,PTB110,,T4650764,,TRUE
+Glensaugh,20-Aug-24,,Vaisala,HMP155,A,S5130137,,TRUE
+Bickley Hall,21-Aug-24,11-Sep-24,OTT,Pluvio2,,340989,,FALSE
+Balruddery,21-Aug-24,,Campbell Scientific Ltd,CR3000,,10065,,TRUE
+Campbell Sci Ltd,21-Aug-24,,Campbell Scientific Ltd,CR3000,,10261,,TRUE
+Balruddery,21-Aug-24,,Vaisala,HMP155,E,T4740216,,TRUE
+Campbell Sci Ltd,21-Aug-24,,Vaisala,HMP155,E,T2650701,,TRUE
+Balruddery,21-Aug-24,,Vaisala,PTB110,,T4741135,PPM,TRUE
+Campbell Sci Ltd,21-Aug-24,,Vaisala,PTB110,,T4740224,PPM,TRUE
+Balruddery,21-Aug-24,,Campbell Scientific Ltd,NL115,,13332,,TRUE
+Balruddery,21-Aug-24,,Acclima,TDT,SDI-12,6503253,,TRUE
+Campbell Sci Ltd,21-Aug-24,,Acclima,TDT,SDI-12,6501130,,TRUE
+Wallingford,22-Aug-24,03-Oct-24,Gill,Windmaster,3D Sonic Anemometer,140401,,FALSE
+Stiperstones,22-Aug-24,,Gill,Windmaster,3D Sonic Anemometer,191201,,FALSE
+Moreton Morrell,27-Aug-24,,Vaisala,HMP155,A,P4020592,,TRUE
+Moreton Morrell,27-Aug-24,,Gill,Windmaster,3D Sonic Anemometer,140313,,TRUE
+Campbell Sci Ltd,27-Aug-24,,Gill,Windmaster,3D Sonic Anemometer,180904,,TRUE
+Chimney Meadows,28-Aug-24,,Vaisala,HMP155,E,T4721224,,TRUE
+Campbell Sci Ltd,28-Aug-24,,Vaisala,HMP155,E,T4721223,,TRUE
+Chimney Meadows,28-Aug-24,,Lambrecht,rainE,,881821.0033,,TRUE
+Campbell Sci Ltd,28-Aug-24,,Lambrecht,rainE,,881821.0053,,TRUE
+Morley,29-Aug-24,,Gill,Windmaster,3D Sonic Anemometer,140303,Reactive mainteance,FALSE
+Wallingford,29-Aug-24,03-Oct-24,Gill,Windmaster,3D Sonic Anemometer,140304,Reactive mainteance,FALSE
+Sheepdrove,29-Aug-24,,Vaisala,HMP155,A,L1320538,PPM,TRUE
+Campbell Sci Ltd,29-Aug-24,,Vaisala,HMP155,E,T4721219,PPM,TRUE
+Sheepdrove,29-Aug-24,31-Oct-24,Campbell Scientific Ltd,CR3000,,12798,PPM,TRUE
+Campbell Sci Ltd,29-Aug-24,,Campbell Scientific Ltd,CR3000,,12862,PPM,TRUE
+Sheepdrove,29-Aug-24,,Vaisala,PTB110,,P0710627,PPM,TRUE
+Campbell Sci Ltd,29-Aug-24,,Vaisala,PTB110,,K442011,PPM,TRUE
+Sheepdrove,29-Aug-24,,Lambrecht,rainE,,881821.0052,PPM,TRUE
+Campbell Sci Ltd,29-Aug-24,,Lambrecht,rainE,,881821.0015,PPM,TRUE
+Wallingford,01-Sep-24,,Lambrecht,rainE,,881821.0031,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501133,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501139,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501193,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501240,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501250,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501275,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501094,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501136,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501166,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501188,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Acclima,TDT,SDI-12,6501254,,FALSE
+Wallingford,01-Sep-24,,Acclima,TDT,SDI-12,6013230,,FALSE
+Wallingford,01-Sep-24,,Acclima,TDT,SDI-12,6503302,,FALSE
+Wallingford,01-Sep-24,,Acclima,TDT,SDI-12,6501048,,FALSE
+Wallingford,01-Sep-24,,Acclima,TDT,SDI-12,6501187,,FALSE
+Wallingford,01-Sep-24,,Acclima,TDT,SDI-12,6501174,,FALSE
+Wallingford,01-Sep-24,,Acclima,TDT,SDI-12,6501213,,FALSE
+Wallingford,01-Sep-24,,Vaisala,HMP155,A,L1336309,,FALSE
+Wallingford,01-Sep-24,,Vaisala,HMP155,E,V1051039,,FALSE
+Wallingford,01-Sep-24,,Vaisala,HMP155,E,V1051038,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Lambrecht,rainE,,881821.0038,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Lambrecht,rainE,,881821.0042,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Lambrecht,rainE,,881821.0049,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Mobotix,S14D,,10.12.77.172,,FALSE
+Campbell Sci Ltd,01-Sep-24,,Campbell Scientific Ltd,SR50A,,6391,,FALSE
+Campbell Sci Ltd,03-Sep-24,03-Sep-24,Hukseflux,HFP01,SC,5453,,FALSE
+Campbell Sci Ltd,03-Sep-24,,Hukseflux,HFP01,SC,5451,,FALSE
+Campbell Sci Ltd,03-Sep-24,,Hukseflux,HFP01,SC,5453,,FALSE
+Fivemiletown,03-Sep-24,,Vaisala,HMP155,A,P4020595 ,PPM,TRUE
+Campbell Sci Ltd,03-Sep-24,,Vaisala,HMP155,E,T4731067,PPM,TRUE
+Fivemiletown,03-Sep-24,,Gill,Windmaster,3D Sonic Anemometer,140322,PPM,TRUE
+Campbell Sci Ltd,03-Sep-24,,Gill,Windmaster,3D Sonic Anemometer,144202,PPM,TRUE
+Fivemiletown,03-Sep-24,,Vaisala,PTB110,,T4650760,PPM,TRUE
+Campbell Sci Ltd,03-Sep-24,,Vaisala,PTB110,,P0710624,PPM,TRUE
+Wallingford,04-Sep-24,,Lambrecht,rainE,,881821.0059,,FALSE
+Stoughton,04-Sep-24,,Lambrecht,rainE,,881821.0026,,FALSE
+Stoughton,04-Sep-24,,Hydroinnova,CRS-2000/B,,HI-TC02-2026,,FALSE
+Hillsborough,04-Sep-24,,Vaisala,HMP155,A,M2920126,,TRUE
+Campbell Sci Ltd,04-Sep-24,,Vaisala,HMP155,E,T4741141,,TRUE
+Hillsborough,04-Sep-24,,Hukseflux,NR01,,2128,,TRUE
+Campbell Sci Ltd,04-Sep-24,,Hukseflux,NR01,,2147,,TRUE
+Hillsborough,04-Sep-24,,Vaisala,PTB110,,T4650759,,TRUE
+Campbell Sci Ltd,04-Sep-24,,Vaisala,PTB110,,L1710069,,TRUE
+Hillsborough,04-Sep-24,27-Sep-24,Mobotix,S14D,,10.12.108.168,,TRUE
+Campbell Sci Ltd,04-Sep-24,,Mobotix,S14D,,10.12.108.153,,TRUE
+Glenwherry,05-Sep-24,,Vaisala,HMP155,E,T4731072,PPM,TRUE
+Campbell Sci Ltd,05-Sep-24,,Vaisala,HMP155,E,T4741139,PPM,TRUE
+Glenwherry,05-Sep-24,,Vaisala,PTB110,,T4740223,PPM,TRUE
+Campbell Sci Ltd,05-Sep-24,,Vaisala,PTB110,,K4840002,PPM,TRUE
+Glenwherry,05-Sep-24,,Hukseflux,HFP01,SC,5452,PPM,TRUE
+Campbell Sci Ltd,05-Sep-24,,Hukseflux,HFP01,SC,4381,PPM,TRUE
+Glenwherry,05-Sep-24,,Hukseflux,HFP01,SC,4670,PPM,TRUE
+Campbell Sci Ltd,05-Sep-24,,Hukseflux,HFP01,SC,4386,PPM,TRUE
+Wallingford,11-Sep-24,01-Nov-24,OTT,Pluvio2,,340989,,FALSE
+Bickley Hall,11-Sep-24,,OTT,Pluvio2,,451532,,FALSE
+Bickley Hall,11-Sep-24,,Campbell Scientific Ltd,NL115,,13627,,FALSE
+Wallingford,11-Sep-24,02-Oct-24,OTT,Pluvio2,,PL2L-432784,,FALSE
+Wallingford,18-Sep-24,,Acclima,TDT,SDI-12,6501289,,FALSE
+Henfaes Farm,18-Sep-24,,Acclima,TDT,SDI-12,6501142,,FALSE
+Chobham Common,24-Sep-24,,Campbell Scientific Ltd,CR3000,,9969,PPM,TRUE
+Campbell Sci Ltd,24-Sep-24,,Campbell Scientific Ltd,CR3000,,10973,PPM,TRUE
+Chobham Common,24-Sep-24,,Acclima,TDT,SDI-12,6501216,PPM,TRUE
+Campbell Sci Ltd,24-Sep-24,,Acclima,TDT,SDI-12,6501050,PPM,TRUE
+Chobham Common,24-Sep-24,,Vaisala,HMP155,A,N5050078,PPM,TRUE
+Campbell Sci Ltd,24-Sep-24,,Vaisala,HMP155,E,T4741140,PPM,TRUE
+Chobham Common,24-Sep-24,,Lambrecht,rainE,,881821.0041,PPM,TRUE
+Campbell Sci Ltd,24-Sep-24,,Lambrecht,rainE,,881821.0036,PPM,TRUE
+Chobham Common,24-Sep-24,,Vaisala,PTB110,,T4710744,PPM,TRUE
+Campbell Sci Ltd,24-Sep-24,,Vaisala,PTB110,,T4710745,PPM,TRUE
+Alice Holt,25-Sep-24,,Rotronic,Hygroclip2,HC2A-S3-Standard Meteo Probe,20134980,PPM,TRUE
+Campbell Sci Ltd,25-Sep-24,,Rotronic,Hygroclip2,HC2A-S3-Standard Meteo Probe,20135119,PPM,TRUE
+Alice Holt,25-Sep-24,,Campbell Scientific Ltd,CR3000,,2164,PPM,TRUE
+Campbell Sci Ltd,25-Sep-24,,Campbell Scientific Ltd,CR3000,,8892,PPM,TRUE
+Alice Holt,25-Sep-24,,Hukseflux,NR01,,2319,PPM,TRUE
+Campbell Sci Ltd,25-Sep-24,,Hukseflux,NR01,,2127,PPM,TRUE
+Hillsborough,27-Sep-24,,Mobotix,S16D,,10.29.116.135,COSMOS7 conf,FALSE
+Wallingford,27-Sep-24,,Mobotix,S14D,,10.12.108.168,COSMOS7 conf,FALSE
+Wallingford,01-Oct-24,,Campbell Scientific Ltd,NL115,,13330,,FALSE
+Wallingford,02-Oct-24,,OTT,Pluvio2,,411347,,FALSE
+Bunny Park,02-Oct-24,,OTT,Pluvio2,,PL2L-432784,,FALSE
+Gill,03-Oct-24,,Gill,Windmaster,3D Sonic Anemometer,140304,,FALSE
+Gill,03-Oct-24,,Gill,Windmaster,3D Sonic Anemometer,140319,,FALSE
+Gill,03-Oct-24,,Gill,Windmaster,3D Sonic Anemometer,140401,,FALSE
+Sheepdrove,07-Oct-24,,Hydroinnova,CRS-2000/B,,HI-TC02-2055,,FALSE
+Wallingford,07-Oct-24,,Hydroinnova,CRS-2000/B,,HI-TC02-2049,,FALSE
+Sheepdrove,07-Oct-24,,Gill,Windmaster,3D Sonic Anemometer,215101,RM,FALSE
+Wallingford,07-Oct-24,,Gill,Windmaster,3D Sonic Anemometer,140810,RM,FALSE
+Wallingford,11-Oct-24,,Sierra Wireless,Airlink LX60,None,C02303202502B101,,FALSE
+Sheepdrove,31-Oct-24,,Campbell Scientific Ltd,CR3000,,13595,RM,FALSE
+Wallingford,31-Oct-24,,Campbell Scientific Ltd,CR3000,,12798,RM,FALSE
+Sheepdrove,31-Oct-24,,Campbell Scientific Ltd,NL116,,2743,RM,FALSE
+Wallingford,31-Oct-24,31-Oct-24,Campbell Scientific Ltd,NL116,,2740,RM,FALSE
+Wallingford,31-Oct-24,,Campbell Scientific Ltd,NL115,,13760,,FALSE
+Wallingford,31-Oct-24,,Campbell Scientific Ltd,NL116,,2740,,FALSE
+Wallingford,31-Oct-24,,Campbell Scientific Ltd,NL116,,4724,,FALSE
+Wallingford,31-Oct-24,,Hukseflux,NR01,,1464,,FALSE
+Wallingford,31-Oct-24,,Hukseflux,NR01,,2152,,FALSE
+Wallingford,31-Oct-24,,Hukseflux,NR01,,2454,,FALSE
+OTT,01-Nov-24,,OTT,Pluvio2,,358377,,FALSE
+OTT,01-Nov-24,,OTT,Pluvio2,L,451585,,FALSE
+OTT,01-Nov-24,,OTT,Pluvio2,,340989,,FALSE
+Wallingford,01-Nov-24,,Mobotix,S15D,,10.18.153.182,,FALSE
+Wallingford,01-Nov-24,,Mobotix,S14D,,10.12.179.143,,FALSE
+Wallingford,01-Nov-24,,Mobotix,S14D,,10.12.91.68,,FALSE
+Wallingford,01-Nov-24,,Mobotix,S15D,,10.16.146.236,,FALSE
+Wallingford,01-Nov-24,,Mobotix,S14D,,10.12.106.168,,FALSE
+Wallingford,01-Nov-24,,Mobotix,S14D,,10.12.91.71,,FALSE
+Wallingford,01-Nov-24,,Hydroinnova,CRS-1000/B,,HI-TC01-1004,,FALSE
+Wallingford,01-Nov-24,,Hydroinnova,CRS-1000/B,,HI-TC01-1127,,FALSE
+Wallingford,01-Nov-24,,Hydroinnova,CRS-1000/B,,HI-TC01-1191,,FALSE
+Wallingford,01-Nov-24,,Hydroinnova,CRS-1000/B,Bare,HI-TC01-1005,,FALSE
+Wallingford,11-Nov-24,,Sierra Wireless,Airlink LX60,None,7H3514500901B101,,FALSE
+Wallingford,11-Nov-24,,Sierra Wireless,Airlink LX60,None,7H3514507102B101,,FALSE
+Wallingford,11-Nov-24,,Sierra Wireless,Airlink LX60,None,7H3514500602B101,,FALSE
+Wallingford,11-Nov-24,,Sierra Wireless,Airlink LX60,None,7H3514504001B101,,FALSE
+Wallingford,11-Nov-24,,Sierra Wireless,Airlink LX60,None,7H3514505602B101,,FALSE
+Wallingford,11-Nov-24,,Campbell Scientific Ltd,CR1000Xe,,70123,,FALSE
+Wallingford,11-Nov-24,,Campbell Scientific Ltd,CR1000Xe,,70124,,FALSE
+Wallingford,11-Nov-24,,Campbell Scientific Ltd,CR1000Xe,,70125,,FALSE
+Wallingford,11-Nov-24,,Campbell Scientific Ltd,CR3000,,13593,,FALSE
+Wallingford,11-Nov-24,,Campbell Scientific Ltd,CR3000,,9575,,FALSE
