@@ -218,6 +218,12 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+      scopeNote:
+        propertyUri: skos:scopeNote
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
       inScheme:
         propertyUri: skos:inScheme
         kind: object
