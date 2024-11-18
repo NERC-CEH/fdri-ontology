@@ -117,8 +117,5 @@ classDiagram
   ContextObject --|> Concept
 ```
 
-> ***QUESTION**
-> Is the environmental domain actually just a SKOS concept in the same hierarchy as the object of interest. i.e. every object of interest is a descendant of one envronmental domain?
-
 > **NOTE**
 > [#35](https://github.com/NERC-CEH/fdri-discovery/issues/35) resolved that the facet for EnvironmentalDomain should be on `ComplexObservableProperty` rather than on the `EnvironmentalFeatureOfInterest`.
