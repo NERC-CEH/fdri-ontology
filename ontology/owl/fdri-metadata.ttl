@@ -116,6 +116,11 @@
               rdfs:range :Procedure .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/hasRepresentativePoint
+:hasRepresentativePoint rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasGeometry> .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasUnit
 :hasUnit rdf:type owl:ObjectProperty ;
          rdfs:domain :ComplexObservableProperty ;
@@ -834,6 +839,10 @@
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty <http://www.opengis.net/ont/geosparql#hasGeometry> ;
                                                owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :hasRepresentativePoint ;
+                                               owl:cardinality "1"^^xsd:nonNegativeInteger
                                              ] ;
                              rdfs:comment "A Feature of Interest with a geospatial location."@en ;
                              rdfs:label "Geo-spatial Feature Of Interest"@en .

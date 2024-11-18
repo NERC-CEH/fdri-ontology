@@ -118,4 +118,4 @@ classDiagram
 ```
 
 > **NOTE**
-> [#35](https://github.com/NERC-CEH/fdri-discovery/issues/35) resolved that the facet for EnvironmentalDomain should be on `ComplexObservableProperty` rather than on the `EnvironmentalFeatureOfInterest`.
+> [#35](https://github.com/NERC-CEH/fdri-discovery/issues/35) resolved that the facet for EnvironmentalDomain should be on `ComplexObservableProperty` rather than on the `GeospatialFeatureOfInterest`.
