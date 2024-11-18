@@ -95,7 +95,7 @@ The following table lists the subclasses of `skos:Concept` which are defined in 
 > **NOTE**
 > There are still a number of classes where instances are used as reference data that are currently neither a `dcat:Resource` nor a `skos:Concept`. Do we need to partition these remaining classes along these lines?
 > * fdri:EnvironmentalMonitoringProgramme
-> * fdri:EnvironmentalFeatureOfInterest
+> * fdri:GeospatialFeatureOfInterest
 
 ### Basic Dataset Metadata
 
@@ -116,7 +116,7 @@ Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type 
   class ObservedProperty["fdri:ComplexObservableProperty"]
   class Program["fdri:EnvironmentalMonitoringProgramme"]
   class Agent["fdri:Agent"]
-  class EnvironmentalFeatureOfInterest["frdi:EnvironmentalFeatureOfInterest"]
+  class GeospatialFeatureOfInterest["frdi:GeospatialFeatureOfInterest"]
   class QualityObservation["fdri:QualityObservation"]
   class Dataset["dcat:Dataset"]
   class ObservationDataset["fdri:ObservationDataset"]
@@ -148,7 +148,7 @@ Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type 
 
   CatalogResource <|-- Dataset
   Concept --> ConceptScheme: skos_inScheme
-  ObservationDataset --> EnvironmentalFeatureOfInterest : dct_spatial
+  ObservationDataset --> GeospatialFeatureOfInterest : dct_spatial
   Dataset <|-- ObservationDataset
   DatasetSeries <|-- ObservationDatasetSeries
   ObservationDataset <|-- ObservationDatasetSeries

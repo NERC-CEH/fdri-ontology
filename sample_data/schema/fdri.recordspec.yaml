@@ -566,14 +566,9 @@ records:
     shortCode: EnvironmentalDomainScheme
 
   EnvironmentalFeatureOfInterest:
+    extends: FeatureOfInterest
     classUri: fdri:EnvironmentalFeatureOfInterest
     shortCode: EnvironmentalFeatureOfInterest
-    properties:
-      environmentalDomain:
-        propertyUri: fdri:environmentalDomain
-        kind: object
-        constraints:
-          - record: EnvironmentalDomain
   
   EnvironmentalMonitoringFacility:
     classUri: fdri:EnvironmentalMonitoringFacility
@@ -586,16 +581,25 @@ records:
         propertyUri: geos:hasGeometry
         kind: object
         nested: true
+        required: true
         constraints:
           - record: Geometry
       hasCentroid:
         propertyUri: geos:hasCentroid
         kind: object
+        nested: true
         constraints:
           - record: Geometry
       hasBoundingBox:
         propertyUri: geos:hasBoundingBox
         kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+      hasRepresentativePoint:
+        propertyUri: fdri:hasRepresentativePoint
+        kind: object
+        nested: true
         constraints:
           - record: Geometry
       isMobile:
@@ -871,7 +875,7 @@ records:
     shortCode: Feature
     properties:
       hasGeometry:
-        propertyUri: geos:hasGeoetry
+        propertyUri: geos:hasGeometry
         kind: object
         nested: true
         constraints:

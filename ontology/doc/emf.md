@@ -9,16 +9,14 @@ As in SOSA/SSN an `EnvironmentalMonitoringSystem` is an abstraction that represe
 
 The SOSA/SSN class of `Deployment` represents the time-bound deployment of some `System`s.
 
-`EnvironmentalFeatureOfInterest` represents a geo-spatially located feature of which is in the context of one or more `EnvirionmentalDomain`s. It has properties `geos:hasGeometry`, `geos:hasCentroid` and `geos:hasBoundingBox` to represent its spatial bounds/centre and the property `fdri:environmentalDomain` to reference the environmental domains of covered by the feature. Instances of `EnvironmentalFeatureOfInterest` may be referenced by an `EnvironmentalMonitoringFacility` (this should be used only for a statically deployed `EnvironmentalMonitoringSite` or static `EnvironmentalMonitoringPlatform`). An `EnvironmentalFeatureOfInterest` may also be referenced from a `Dataset` using the `dct:spatial` property to indicate that the dataset contains one or more observations of the feature of interest.
+`GeospatialFeatureOfInterest` represents a geo-spatially located feature of which is in the context of one or more `EnvirionmentalDomain`s. It has properties `geos:hasGeometry`, `geos:hasCentroid`, `geos:hasBoundingBox`, and `fdri:hasRepresentativePoint` to represent its spatial bounds/location.
 
-As already shown, the `EnvironmentalFeatureOfInterest` may also be referenced from the `Dataset` which contains observations of that feature.
+> [!NOTE]
+> The property `geos:hasGeometry` shall be made mandatory in the schema for this ontology, and the system shall generate a value for `fdri:hasRepresentativePoint` if one is not provided. These two properties will be the ones used for spatial indexing and query purposes.
 
-> QUESTION
-> Do we want the additional `hasCentroid`, `hasBoundingBox` relations or just use `hasGeometry
+ Instances of `GeospatialFeatureOfInterest` may be referenced by an `EnvironmentalMonitoringFacility` (this should be used only for a statically deployed `EnvironmentalMonitoringSite` or static `EnvironmentalMonitoringPlatform`). A `GeospatialFeatureOfInterest` may also be referenced from a `Dataset` using the `dct:spatial` property to indicate that the dataset contains one or more observations of the feature of interest.
 
-> QUESTION
-> Should an `EnvironmentalFeatureOfInterest` be related to `max 1 EnvironmentalDomain`. i.e. should we treat co-located features with different environmental domains as separate features of interest?
-
+As already shown, the `GeospatialFeatureOfInterest` may also be referenced from the `Dataset` which contains observations of that feature.
 
 ```mermaid
 classDiagram
@@ -38,6 +36,7 @@ classDiagram
   class Platform["sosa:Platform"]
   class EMFacility["fdri:EnvironmentalMonitoringFacility"] {
     geos:hasGeometry: geos:Geometry
+    geos:hasRepresentativePoint: geos:Geometry
     geos:hasCentroid: geos:Geometry?
     geos:hasBoundingBox: geos:Geometry?
     fdri:isMobile: xsd:boolean
@@ -58,7 +57,6 @@ classDiagram
   }
   class FOI["sosa:FeatureOfInterest"]
   FOI <|-- GeospatialFOI
-  GeospatialFOI --> "0..*" EnvironmentalDomain: fdri_environmentalDomain
 
   Resource <|-- EMFacility
   EMFacility --> RelatedParty: prov_qualifiedAttribution
