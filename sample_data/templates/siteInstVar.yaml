@@ -1,0 +1,83 @@
+globals:
+    $baseURI: http://fdri.ceh.ac.uk/
+    $datasetID: cosmos
+
+imports:
+    - namespaces.yaml
+    - extensions.py
+
+one_offs:
+
+resources:
+  - name: SiteTimeSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "@type": <fdri:ObservationDatasetSeries>
+      "<dct:title>": "All Time Series for {VARIABLE_NAME} from site {SITE_ID}@en"
+      # "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
+      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+
+  - name: Feature
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "@type": <fdri:GeospatialFeatureOfInterest>
+
+  - name: RawSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
+      "@type": <fdri:TimeSeriesDataset>
+      "<dct:title>": "Raw Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
+      # "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
+      "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+
+  - name: InfillSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"
+      "@type": <fdri:TimeSeriesDataset>
+      "<dct:title>": "In-filled Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
+      # "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
+      "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+
+  - name: Sensor
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:EnvironmentalMonitoringSensor>"
+      "<dct:title>": "{INSTRUMENT_ID} #{INSTANCE|asInt} at {SITE_ID}@en"
+      "<dct:type>": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
+      "<fdri:serialNumber>": "{SERIAL_NUMBER}"
+  - name: SensorComments
+    requires:
+      COMMENTS:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:EnvironmentalMonitoringSensor>"
+      "<dct:description>": "{COMMENTS}@en"
+
+  - name: SensorDeployment
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:Deployment>"
+      "<ssn:deployedSystem>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "<ssn:deployedOnPlatform>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
+      "<prov:startedAtTime>": "{START_DATETIME|asDateTime}"
+  - name: SensorDeploymentEnd
+    requires:
+      END_DATETIME:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:Deployment>"
+      "<prov:endedAtTime>": "{END_DATETIME|asDateTime}"
+  
+  - name: ObservedProperty
+    requires:
+      PROPERTY:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
+      "@type": "<fdri:ComplexObservedProperty>"
+      "^<sosa:observedProperty>":
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"

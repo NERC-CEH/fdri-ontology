@@ -10,6 +10,8 @@ prefixes:
     uri: http://www.opengis.net/ont/geosparql#
   - prefix: iop
     uri: https://w3id.org/iadopt/ont/
+  - prefix: prov
+    uri: http://www.w3.org/ns/prov#
   - prefix: qudt
     uri: "http://qudt.org/schema/qudt/"
   - prefix: rdf
@@ -109,6 +111,35 @@ mixins:
         kind: literal
         constraints:
           - datatype: xsd:dateTime
+  
+  WithIndexedGeometry:
+    properties:
+      hasGeometry:
+        propertyUri: geos:hasGeometry
+        kind: object
+        nested: true
+        repeatable: true
+        constraints:
+          - record: Geometry
+      hasCentroid:
+        propertyUri: geos:hasCentroid
+        kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+      hasBoundingBox:
+        propertyUri: geos:hasBoundingBox
+        kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+      hasRepresentativePoint:
+        propertyUri: fdri:hasRepresentativePoint
+        kind: object
+        nested: true
+        constraints:
+          - record: Geometry
+
 
 records:
 
@@ -248,6 +279,9 @@ records:
   ConceptScheme:
     classUri: skos:ConceptScheme
     shortCode: ConceptScheme
+    mixins:
+      - WithTitleAndDescription
+      - WithPublicationMetadata
 
   ConfigurationArgument:
     classUri: fdri:ConfigurationArgument
@@ -530,6 +564,13 @@ records:
         constraints:
           - datatype: rdf:langString
 
+  Dataset:
+    classUri: dcat:Dataset
+    shortCode: Dataset
+    mixins:
+      - WithTitleAndDescription
+      - WithPublicationMetadata
+
   Distribution:
     mixins:
       - WithTitleAndDescription
@@ -565,43 +606,20 @@ records:
     classUri: fdri:EnvironmentalDomainScheme
     shortCode: EnvironmentalDomainScheme
 
-  EnvironmentalFeatureOfInterest:
-    extends: FeatureOfInterest
-    classUri: fdri:EnvironmentalFeatureOfInterest
-    shortCode: EnvironmentalFeatureOfInterest
-  
   EnvironmentalMonitoringFacility:
     classUri: fdri:EnvironmentalMonitoringFacility
     shortCode: EnvironmentalMonitoringFacility
     mixins:
       - WithTitleAndDescription
       - WithAnnotations
+      - WithIndexedGeometry
     properties:
-      hasGeometry:
-        propertyUri: geos:hasGeometry
+      hasPart:
+        propertyUri: dct:hasPart
         kind: object
-        nested: true
-        required: true
+        repeatable: true
         constraints:
-          - record: Geometry
-      hasCentroid:
-        propertyUri: geos:hasCentroid
-        kind: object
-        nested: true
-        constraints:
-          - record: Geometry
-      hasBoundingBox:
-        propertyUri: geos:hasBoundingBox
-        kind: object
-        nested: true
-        constraints:
-          - record: Geometry
-      hasRepresentativePoint:
-        propertyUri: fdri:hasRepresentativePoint
-        kind: object
-        nested: true
-        constraints:
-          - record: Geometry
+          - record: EnvironmentalMonitoringFacility
       isMobile:
         propertyUri: fdri:isMobile
         kind: literal
@@ -617,7 +635,7 @@ records:
         propertyUri: sosa:hasFeatureOfInterest
         kind: object
         constraints:
-          - record: EnvironmentalFeatureOfInterest
+          - record: GeospatialFeatureOfInterest
       observes:
         propertyUri: sosa:observes
         kind: object
@@ -659,6 +677,19 @@ records:
     classUri: fdri:EnvironmentalMonitoringFacilityTypeScheme
     shortCode: EnvironmentalMonitoringFacilityTypeScheme
       
+  EnvironmentalMonitoringNetwork:
+    classUri: fdri:EnvironmentalMonitoringNetwork
+    shortCode: EnvironmentalMonitoringNetwork
+    mixins:
+      - WithAnnotations
+      - WithTitleAndDescription
+    properties:
+      contains:
+        propertyUri: fdri:contains
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacility
+
   EnvironmentalMonitoringPlatform:
     extends: EnvironmentalMonitoringFacility
     classUri: fdri:EnvironmentalMonitoringPlatform
@@ -676,7 +707,7 @@ records:
     mixins:
       - WithAnnotations
       - WithTitleAndDescription
-          
+      
   EnvironmentalMonitoringSensor:
     extends: EnvironmentalMonitoringSystem
     classUri: fdri:EnvironmentalMonitoringSensor
@@ -891,6 +922,13 @@ records:
         constraints:
           - datatype: geos:wktLiteral
   
+  GeospatialFeatureOfInterest:
+    extends: Feature
+    classUri: fdri:GeospatialFeatureOfInterest
+    shortCode: GeospatialFeatureOfInterest
+    mixins:
+      - WithIndexedGeometry
+  
   InternalDataProcessingConfiguration:
     classUri: fdri:InternalDataProcessingConfiguration
     shortCode: InternalDataProcessingConfiguration
@@ -940,10 +978,9 @@ records:
   ObservationDataset:
     classUri: fdri:ObservationDataset
     shortCode: ObservationDataset
+    extends: Dataset
     mixins:
-      - WithTitleAndDescription
       - WithDataProcessingProvenance
-      - WithPublicationMetadata
       - WithAnnotations
     properties:
       accessRights:
@@ -1003,7 +1040,7 @@ records:
         propertyUri: dct:spatial
         kind: object
         constraints:
-          - record: EnvironmentalFeatureOfInterest
+          - record: GeospatialFeatureOfInterest
       observedProperty:
         propertyUri: sosa:observedProperty
         kind: object

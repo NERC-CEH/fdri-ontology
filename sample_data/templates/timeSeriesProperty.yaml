@@ -1,0 +1,20 @@
+globals:
+    $baseURI: http://fdri.ceh.ac.uk/
+    $datasetID: cosmos
+
+imports:
+    - namespaces.yaml
+    - extensions.py
+
+one_offs:
+  - name: COPScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
+      "@type": "<fdri:ComplexObservablePropertyScheme>"
+
+resources:
+  - name: TimeSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{TIMESERIES_ID|slug}>"
+      "@type": "<fdri:TimeSeriesDatasetSeries>"
+      "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY_ID|slug}>"

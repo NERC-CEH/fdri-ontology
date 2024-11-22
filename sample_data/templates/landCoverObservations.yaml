@@ -4,6 +4,7 @@ globals:
 
 imports:
   - namespaces.yaml
+  - extensions.py
 
 resources:
   - name: LandCoverObservation
@@ -29,7 +30,7 @@ resources:
               "@id": "<_>"
               "@type": "<time:Instant>"
               "<time:inXSDDateTime>": "{END_DATE|asDateTime}"
-      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/ref/cosmos/site/{SITE_ID}>"
+      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<sosa:hasSimpleValue>": "{LAND_COVER_OBSERVED}"
       "<sosa:hasValue>":
         name: LandCoveClass

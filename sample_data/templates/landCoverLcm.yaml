@@ -4,13 +4,14 @@ globals:
 
 imports:
   - namespaces.yaml
+  - extensions.py
 
 resources:
   - name: LandCoverMeasureSeries
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/site-land-cover/{SITE_ID}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/site-land-cover/{SITE_ID|slug}>"
       "@type": "<fdri:PropertyValueSeries>"
-      "^<fdri:landCover>": "<http://fdri.ceh.ac.uk/ref/cosmos/site/{SITE_ID}>"
+      "^<fdri:landCover>": "<http://fdri.ceh.ac.uk/id/site/{SITE_ID|slug}>"
       "<fdri:hasCurrentValue>":
         name: LandCoverCurrentValue
         properties:
