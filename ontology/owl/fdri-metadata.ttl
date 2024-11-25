@@ -80,6 +80,10 @@
                              rdfs:range :ConfigurationPropertyScheme .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/contains
+:contains rdf:type owl:ObjectProperty .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/environmentalDomain
 :environmentalDomain rdf:type owl:ObjectProperty ;
                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
@@ -734,6 +738,14 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacilityTypeScheme
 :EnvironmentalMonitoringFacilityTypeScheme rdf:type owl:Class ;
                                            rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringNetwork
+:EnvironmentalMonitoringNetwork rdf:type owl:Class ;
+                                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                  owl:onProperty :contains ;
+                                                  owl:allValuesFrom :EnvironmentalMonitoringFacility
+                                                ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringPlatform
