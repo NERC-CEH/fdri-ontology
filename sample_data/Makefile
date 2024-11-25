@@ -32,7 +32,8 @@ SAMPLES = \
 	build/variableProperties.ttl \
 	build/CORRECTION_FACTORS.ttl \
 	build/PARAMETER_RANGES_QC.ttl \
-	build/Firmware_history.ttl
+	build/Firmware_history.ttl \
+	build/sensorFaultsSplit.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
@@ -103,6 +104,9 @@ build/timeSeriesProperty.csv: src/TIMESERIES.csv sql/timeSeriesProperty.sql | bu
 
 build/variableInstrumentationProperty.csv: src/VARIABLE_INSTRUMENTATION.csv src/variableProperties.csv sql/variableInstrumentationProperty.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/variableInstrumentationProperty.sql"
+
+build/sensorFaultsSplit.csv: src/SENSOR_FAULTS.csv build/siteInstVar.csv sql/sensorFaultsSplit.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/sensorFaultsSplit.sql"
 
 build/%.ttl: templates/namespaces.yaml templates/%.yaml src/%.csv | build
 	$(RUN) mapper templates/$*.yaml src/$*.csv $@
