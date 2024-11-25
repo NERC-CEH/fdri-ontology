@@ -1,0 +1,53 @@
+globals:
+  $baseURI: http://fdri.ceh.ac.uk/
+  $datasetID: cosmos
+
+imports:
+  - namespaces.yaml
+  - extensions.py
+
+resources:
+  - name: Sensor
+    requires:
+      INSTRUMENT_ID:
+      SERIAL_NUMBER:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
+      "@type": "<fdri:EnvironmentalMonitoringSensor>"
+  - name: SensorFirmwareConfigurationSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-value-series/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-firmware>"
+      "@type": "<fdri:ConfigurationValueSeries>"
+      "^<fdri:configuration>": <::Sensor>
+  - name: HistoricalValue
+    requires:
+      FIRMWARE:
+      END_DATETIME:
+    properties:
+      "@id": "<_>"
+      "@type": "<fdri:TimeBoundPropertyValue>"
+      "<fdri:interval>":
+        name: HistoricalValueInterval
+        properties:
+          "@id": "<_>"
+          "@type": "<dct:PeriodOfTime>"
+          "<dcat:startDate>": "{START_DATETIME | asDateTime}"
+          "<dcat:endDate>": "{END_DATETIME | asDateTime}"
+      "<schema:value>": "{FIRMWARE}"
+      "^<fdri:hadValue>": <::SensorFirmwareConfigurationSeries>
+  - name: CurrentValue
+    requires:
+      FIRMWARE:
+      END_DATETIME: ''
+    properties:
+      "@id": "<_>"
+      "@type": "<fdri:TimeBoundPropertyValue>"
+      "<fdri:interval>":
+        name: HistoricalValueInterval
+        properties:
+          "@id": "<_>"
+          "@type": "<dct:PeriodOfTime>"
+          "<dcat:startDate>": "{START_DATETIME | asDateTime}"
+      "<schema:value>": "{FIRMWARE}"
+      "^<fdri:hasCurrentValue>": <::SensorFirmwareConfigurationSeries>
+    

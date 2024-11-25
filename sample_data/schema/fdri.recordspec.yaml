@@ -535,6 +535,8 @@ records:
   Deployment:
     classUri: fdri:Deployment
     shortCode: Deployment
+    mixins:
+      - WithTitleAndDescription
     properties:
       startedAtTime:
         propertyUri: prov:startedAtTime

@@ -42,35 +42,42 @@ resources:
       "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
 
   - name: Sensor
+    requires:
+      SERIAL_NUMBER:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
       "@type": "<fdri:EnvironmentalMonitoringSensor>"
-      "<dct:title>": "{INSTRUMENT_ID} #{INSTANCE|asInt} at {SITE_ID}@en"
+      "<dct:title>": "{INSTRUMENT_ID} {SERIAL_NUMBER}@en"
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
       "<fdri:serialNumber>": "{SERIAL_NUMBER}"
-  - name: SensorComments
-    requires:
-      COMMENTS:
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
-      "@type": "<fdri:EnvironmentalMonitoringSensor>"
-      "<dct:description>": "{COMMENTS}@en"
 
   - name: SensorDeployment
+    requires:
+      SERIAL_NUMBER:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
       "@type": "<fdri:Deployment>"
-      "<ssn:deployedSystem>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "<dct:title>": "Deployment of {INSTRUMENT_ID} {SERIAL_NUMBER} at {SITE_ID}@en"
+      "<ssn:deployedSystem>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
       "<ssn:deployedOnPlatform>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
       "<prov:startedAtTime>": "{START_DATETIME|asDateTime}"
   - name: SensorDeploymentEnd
     requires:
+      SERIAL_NUMBER:
       END_DATETIME:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
       "@type": "<fdri:Deployment>"
       "<prov:endedAtTime>": "{END_DATETIME|asDateTime}"
-  
+  - name: SensorDeploymentComments
+    requires:
+      SERIAL_NUMBER:
+      COMMENTS:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:Deployment>"
+      "<dct:description>": "{COMMENTS}@en"
+
   - name: ObservedProperty
     requires:
       PROPERTY:

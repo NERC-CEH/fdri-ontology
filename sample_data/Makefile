@@ -31,7 +31,8 @@ SAMPLES = \
 	build/timeSeriesProperty.ttl \
 	build/variableProperties.ttl \
 	build/CORRECTION_FACTORS.ttl \
-	build/PARAMETER_RANGES_QC.ttl
+	build/PARAMETER_RANGES_QC.ttl \
+	build/Firmware_history.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
