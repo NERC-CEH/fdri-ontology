@@ -1,0 +1,42 @@
+globals:
+  $baseURI: http://fdri.ceh.ac.uk/
+  $datasetID: cosmos
+
+imports:
+  - namespaces.yaml
+  - extensions.py
+
+resources:
+  - name: Configuration
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-qc-range-{SITE_ID|slug}-{PARAMETER_ID|slug}>"
+      "@type": "<fdri:InternalDataProcessingConfiguration>"
+      "<fdri:appliesToFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
+      "<fdri:appliesToVariable>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>
+      "<dct:type>": <http://fdri.ceh.ac.uk/ref/common/configuration-type/qc-range>
+
+  - name: ConfigurationItem
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-qc-range-{SITE_ID|slug}-{PARAMETER_ID|slug}>"
+      "@type": <fdri:ConfigurationItem>
+      "<fdri:method>": "<http://fdri.ceh.ac.uk/ref/common/method/min-max-range>"
+      "<fdri:argument>":
+        name: ConfigurationArg
+        properties:
+          "@id": "<_>"
+          "@type": "<fdri:ConfigurationArgument>"
+          "<fdri:ConfigurationParameter>": "<http://fdri.ceh.ac.uk/ref/common/configuration-parameter/range>"
+          "<fdri:hasValue>":
+            name: ConfigurationValue
+            properties:
+              "@id": "<_>"
+              "@type": "<schema:PropertyValue>"
+              "<schema:minValue>": "{MINVAL|asDecimal}"
+              "<schema:maxValue>": "{MAXVAL|asDecimal}"
+      "<fdri:interval>":
+        name: Interval
+        properties:
+          "@id": "<_>"
+          "@type": <dct:PeriodOfTime>
+          "<dcat:startDate>": "{| now}"
+      "^<fdri:hasCurrentConfiguration>": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-qc-range-{SITE_ID|slug}-{PARAMETER_ID|slug}>"

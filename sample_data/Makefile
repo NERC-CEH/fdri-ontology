@@ -29,7 +29,9 @@ SAMPLES = \
 	build/variableInstrumentationProperty.ttl \
 	build/timeSeriesExt.ttl \
 	build/timeSeriesProperty.ttl \
-	build/variableProperties.ttl
+	build/variableProperties.ttl \
+	build/CORRECTION_FACTORS.ttl \
+	build/PARAMETER_RANGES_QC.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
