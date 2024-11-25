@@ -83,7 +83,7 @@ resources:
       PROPERTY:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
-      "@type": "<fdri:ComplexObservedProperty>"
+      "@type": "<fdri:ComplexObservableProperty>"
       "^<sosa:observedProperty>":
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
