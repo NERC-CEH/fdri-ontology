@@ -884,13 +884,15 @@ records:
   Fault:
     classUri: fdri:Fault
     shortCode: Fault
+    mixins:
+      - WithTitleAndDescription
     properties:
-      affectedSystem:
-        propertyUri: fdri:affected
+      affectedFacility:
+        propertyUri: fdri:affectedFacility
         kind: object
         repeatable: true
         constraints:
-          - record: EnvironmentalMonitoringSystem
+          - record: EnvironmentalMonitoringFacility
       affectedVariable:
         propertyUri: fdri:affectedVariable
         kind: object
@@ -936,12 +938,12 @@ records:
     shortCode: InternalDataProcessingConfiguration
     extends: DataProcessingConfiguration
     properties:
-      appliesToSystem:
-        propertyUri: fdri:appliesToSystem
+      appliesToFacility:
+        propertyUri: fdri:appliesToFacility
         kind: object
         constraints:
-          - record: EnvironmentalMonitoringSystemType
-          - record: EnvironmentalMonitoringSystem
+          - record: EnvironmentalMonitoringFacilityType
+          - record: EnvironmentalMonitoringFacility
       appliesToVariable:
         propertyUri: fdri:appliesToVariable
         kind: object

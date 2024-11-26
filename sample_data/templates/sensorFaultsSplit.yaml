@@ -14,26 +14,7 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/fault/cosmos-{$row}>"
       "@type": "<fdri:Fault>"
-      "<rdfs:comment>": "{DESCRIPTION_OF_ISSUE}@en"
-      "<fdri:removeData>": "{REMOVE_DATA|asBoolean('y')}"
-      "<fdri:affectedVariable>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE}>"
-      "<fdri:interval>":
-        name: Interval
-        properties:
-          "@id": "<_>"
-          "@type": "<dct:PeriodOfTime>"
-          "<dcat:startDate>": "{START_DATETIME|asDateTime}"
-          "<dcat:endDate>": "{END_DATETIME|asDateTime}"
-      "<fdri:affected>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
-      "^<fdri:hadFault>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
-  - name: StationFault
-    requires:
-      VARIABLE:
-      SERIAL_NUMBER: ''
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/fault/cosmos-{$row}>"
-      "@type": "<fdri:Fault>"
-      "<rdfs:comment>": "{DESCRIPTION_OF_ISSUE}@en"
+      "<dct:description>": "{DESCRIPTION_OF_ISSUE}@en"
       "<fdri:removeData>": "{REMOVE_DATA|asBoolean('y')}"
       "<fdri:affectedVariable>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE|slug}>"
       "<fdri:interval>":
@@ -43,6 +24,25 @@ resources:
           "@type": "<dct:PeriodOfTime>"
           "<dcat:startDate>": "{START_DATETIME|asDateTime}"
           "<dcat:endDate>": "{END_DATETIME|asDateTime}"
-      "<fdri:affected>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
+      "<fdri:affectedFacility>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
+      "^<fdri:hadFault>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
+  - name: StationFault
+    requires:
+      VARIABLE:
+      SERIAL_NUMBER: ''
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/fault/cosmos-{$row}>"
+      "@type": "<fdri:Fault>"
+      "<dct:description>": "{DESCRIPTION_OF_ISSUE}@en"
+      "<fdri:removeData>": "{REMOVE_DATA|asBoolean('y')}"
+      "<fdri:affectedVariable>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE|slug}>"
+      "<fdri:interval>":
+        name: Interval
+        properties:
+          "@id": "<_>"
+          "@type": "<dct:PeriodOfTime>"
+          "<dcat:startDate>": "{START_DATETIME|asDateTime}"
+          "<dcat:endDate>": "{END_DATETIME|asDateTime}"
+      "<fdri:affectedFacility>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
       "^<fdri:hadFault>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
     

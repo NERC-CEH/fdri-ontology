@@ -20,12 +20,12 @@
 #    Object Properties
 #################################################################
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/affectedSystem
-:affectedSystem rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
-                owl:inverseOf :hadFault ;
-                rdfs:domain :Fault ;
-                rdfs:range :EnvironmentalMonitoringSystem .
+###  http://fdri.ceh.ac.uk/vocab/metadata/affectedFacility
+:affectedFacility rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  owl:inverseOf :hadFault ;
+                  rdfs:domain :Fault ;
+                  rdfs:range :EnvironmentalMonitoringFacility .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/affectedVariable
@@ -41,10 +41,10 @@
                           rdfs:range :ComplexObservablePropertyScheme .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToSystem
-:appliesToSystem rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdfs:range :EnvironmentalMonitoringSystem .
+###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToFacility
+:appliesToFacility rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:range :EnvironmentalMonitoringFacility .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToVariable
@@ -879,7 +879,7 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Fault
 :Fault rdf:type owl:Class ;
        rdfs:subClassOf [ rdf:type owl:Restriction ;
-                         owl:onProperty :affectedSystem ;
+                         owl:onProperty :affectedFacility ;
                          owl:someValuesFrom owl:Thing
                        ] ,
                        [ rdf:type owl:Restriction ;
@@ -922,13 +922,8 @@
                                      rdfs:subClassOf :DataProcessingConfiguration ,
                                                      <http://www.w3.org/ns/dcat#Resource> ,
                                                      [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :appliesToSystem ;
-                                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                       owl:onClass [ rdf:type owl:Class ;
-                                                                     owl:unionOf ( :EnvironmentalMonitoringSystem
-                                                                                   :EnvironmentalMonitoringSystemType
-                                                                                 )
-                                                                   ]
+                                                       owl:onProperty :appliesToFacility ;
+                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
                                                      ] ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :appliesToVariable ;
