@@ -7,6 +7,26 @@ imports:
     - extensions.py
 
 one_offs:
+  - name: IngestAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-ingest-service@1234>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI Ingest Service"
+  - name: PreprocessingAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-preprocessing-service@2345>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI Pre-processing Service"
+  - name: QCAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-qc-service@3456>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI QC Service"
+  - name: InfillAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-infill-service@4567>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI Infill Service"
 
 resources:
   - name: SiteTimeSeries
@@ -14,7 +34,6 @@ resources:
       "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
       "@type": <fdri:ObservationDatasetSeries>
       "<dct:title>": "All Time Series for {VARIABLE_NAME} from site {SITE_ID}@en"
-      # "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
 
@@ -28,18 +47,45 @@ resources:
       "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
       "@type": <fdri:TimeSeriesDataset>
       "<dct:title>": "Raw Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
-      # "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "<prov:wasGeneratedBy>":
+        name: IngestActivity
+        properties:
+          "@id": "<http://fdri.ceh.ac.uk/id/activity/ingest-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+          "@type": "<fdri:DataProcessingActivity>"
+          "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-activity-type/ingest>"
 
-  - name: InfillSeries
+  - name: ProcessedSeries
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"
       "@type": <fdri:TimeSeriesDataset>
       "<dct:title>": "In-filled Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
-      # "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "<prov:wasGeneratedBy>":
+        name: QCInfillActivity
+        properties:
+          "@id": "<http://fdri.ceh.ac.uk/id/activity/qc-infill-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+          "@type": "<fdri:DataProcessingActivity>"
+          "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-activity-type/qc-infill>"
+          "<prov:used>": <::RawSeries>
+          "<prov:qualifiedAssociation>":
+            - name: PreprocessingStep
+              properties:
+                "@id": "<http://fdri.ceh.ac.uk/id/activity/preprocess-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+                "@type": "<prov:Association>"
+                "<prov:agent>": <::PreprocessingAgent>
+            - name: QCStep
+              properties:
+                "@id": "<http://fdri.ceh.ac.uk/id/activity/qc-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+                "@type": "<prov:Association>"
+                "<prov:agent>": <::QCAgent>
+            - name: InfillStep
+              properties:
+                "@id": "<http://fdri..ceh.ac.uk/id/activity/infill-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+                "@type": "<prov:Association>"
+                "<prov:agent>": <::InfillAgent>
 
   - name: Sensor
     requires:

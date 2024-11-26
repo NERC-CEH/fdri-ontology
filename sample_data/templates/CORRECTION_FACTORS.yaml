@@ -46,3 +46,4 @@ resources:
           "<dcat:startDate>": "{START_DATETIME | asDateTime}"
           "<dcat:endDate>": "{END_DATETIME | asDateTime}"
       "^<fdri:hasCurrentConfiguration>": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-correction-{SITE_ID|slug}-{VARIABLE|slug}>"
+      "^<prov:hadPlan>": "<http://fdri.ceh.ac.uk/id/activity/preprocess-cosmos-{SITE_ID|slug}-{VARIABLE|slug}-1234>"

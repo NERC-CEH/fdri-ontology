@@ -40,3 +40,4 @@ resources:
           "@type": <dct:PeriodOfTime>
           "<dcat:startDate>": "{| now}"
       "^<fdri:hasCurrentConfiguration>": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-qc-range-{SITE_ID|slug}-{PARAMETER_ID|slug}>"
+      "^<prov:hadPlan>": "<http://fdri.ceh.ac.uk/id/activity/qc-cosmos-{SITE_ID|slug}-{PARAMETER_ID|slug}-1234>"
