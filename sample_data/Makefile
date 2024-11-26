@@ -11,6 +11,8 @@ RECORDS = \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
 	EnvironmentalMonitoringSite \
+	ExternalDataProcessingConfiguration \
+	InternalDataProcessingConfiguration \
 	StaticDeployment \
 	TimeSeriesDataset
 
@@ -29,6 +31,9 @@ CONTEXTS = $(RECORDS:%=build/context/%.context.jsonld)
 REPORTS = $(SAMPLES:build/%.ttl=build/validation/%.ttl)
 
 all: validate schemas contexts reports
+
+pull:
+	docker pull $(IMAGE)
 
 schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)

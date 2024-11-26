@@ -233,6 +233,127 @@ records:
     classUri: skos:ConceptScheme
     shortCode: ConceptScheme
 
+  ConfigurationArgument:
+    classUri: fdri:ConfigurationArgument
+    shortCode: ConfigurationArgument
+    label:
+      - value: Data Processing Configuration Argument
+        language: en
+    description:
+      - value: Represents a single argument passed to a configuration method as part of a data processing configuration item.
+        language: en
+    properties:
+      parameter:
+        description:
+          - value: A reference to the method parameter that this argument provides a value for.
+            language: en
+        propertyUri: fdri:parameter
+        kind: object
+        constraints:
+          - record: ConfigurationParameter
+      hasValue:
+        description:
+          - value: The value of the configuration argument.
+            language: en
+        propertyUri: fdri:hasValue
+        kind: object
+        nested: true
+        constraints:
+          - record: PropertyValue
+
+  ConfigurationItem:
+    classUri: fdri:ConfigurationItem
+    shortCode: ConfigurationItem
+    label:
+      - value: Data Processing Configuration Item
+        language: en
+    description:
+      - value: Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run.
+        language: en
+    properties:
+      method:
+        description:
+          - value: A reference to the concept that defines the data processing method applied.
+            language: en
+        propertyUri: fdri:method
+        kind: object
+        constraints:
+          - record: DataProcessingMethod
+      interval:
+        description:
+          - value: The time period during which this configuration applies.
+            language: en
+        propertyUri: fdri:interval
+        kind: object
+        nested: true
+        constraints:
+          - record: PeriodOfTime
+      observationInterval:
+        description:
+          - value: The period of observational data that this configuration applies to.
+            language: en
+        propertyUri: fdri:observationInterval
+        kind: object
+        nested: true
+        constraints:
+          - record: PeriodOfTime
+      argument:
+        description:
+          - value: An argument passed to the data processing method for this configuration.
+            language: en
+        propertyUri: fdri:argument
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: ConfigurationArgument
+      replaces:
+        description:
+          - value: A reference to the configuration item that this item replaces.
+            language: en
+        propertyUri: dct:replaces
+        kind: object
+        constraints:
+          - record: ConfigurationItem
+
+  ConfigurationParameter:
+    label:
+      - value: Data Processing Method Parameter
+        language: en
+    description:
+      - value: Represents a single parameter that may be passed to a `DataProcessingMethod` by a `ConfigurationItem` as part of a data processing pipeline.
+        language: en
+    extends: Concept
+    classUri: fdri:ConfigurationParameter
+    shortCode: ConfigurationParameter
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ConfigurationParameterScheme
+  
+  ConfigurationParameterScheme:
+    extends: ConceptScheme
+    classUri: fdri:ConfigurationParameterScheme
+    shortCode: ConfigurationParameterScheme        
+    
+  ConfigurationProperty:
+    extends: Concept
+    classUri: fdri:ConfigurationProperty
+    shortCode: ConfigurationProperty
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ConfigurationPropertyScheme
+  
+  ConfigurationPropertyScheme:
+    extends: ConceptScheme
+    classUri: fdri:ConfigurationPropertyScheme
+    shortCode: ConfigurationPropertyScheme
+
   ConfigurationValueSeries:
     classUri: fdri:ConfigurationValueSeries
     shortCode: ConfigurationValueSeries
@@ -256,22 +377,6 @@ records:
         constraints:
           - record: ConfigurationProperty
   
-  ConfigurationProperty:
-    extends: Concept
-    classUri: fdri:ConfigurationProperty
-    shortCode: ConfigurationProperty
-    properties:
-      inScheme:
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: ConfigurationPropertyScheme
-  
-  ConfigurationPropertyScheme:
-    extends: ConceptScheme
-    classUri: fdri:ConfigurationPropertyScheme
-    shortCode: ConfigurationPropertyScheme
-
   ContextObject:
     extends: Concept
     classUri: fdri:ContextObject
@@ -298,11 +403,12 @@ records:
         required: true
         constraints:
           - record: DataProcessingActivityType
-      hadPlan:
-        propertyUri: prov:hadPlan
+      qualifiedAssociation:
+        propertyUri: prov:qualifiedAssociation
         kind: object
+        nested: true
         constraints:
-          - record: DataProcessingConfiguration
+          - record: QualifiedAssociation
       startedAtTime:
         propertyUri: prov:startedAtTime
         kind: literal
@@ -333,6 +439,48 @@ records:
   DataProcessingConfiguration:
     classUri: fdri:DataProcessingConfiguration
     shortCode: DataProcessingConfiguration
+    extends: Plan
+    mixins:
+      - WithPublicationMetadata
+    properties:
+      type:
+        propertyUri: dct:type
+        kind: object
+        required: true
+        constraints:
+          - record: DataProcessingConfigurationType
+
+  DataProcessingConfigurationType:
+    extends: Concept
+    classUri: fdri:DataProcessingConfigurationType
+    shortCode: DataProcessingConfigurationType
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: DataProcessingConfigurationTypeScheme
+  
+  DataProcessingConfigurationTypeScheme:
+    extends: ConceptScheme
+    classUri: fdri:DataProcessingConfigurationTypeScheme
+    shortCode: DataProcessingConfigurationTypeScheme
+      
+  DataProcessingMethod:
+    extends: Concept
+    classUri: fdri:DataProcessingMethod
+    shortCode: DataProcessingMethod
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: DataProcessingMethodScheme
+  
+  DataProcessingMethodScheme:
+    extends: ConceptScheme
+    classUri: fdri:DataProcessingMethodScheme
+    shortCode: DataProcessingMethodScheme
 
   Deployment:
     classUri: fdri:Deployment
@@ -652,6 +800,38 @@ records:
         constraints:
           - record: ComplexObservableProperty
   
+  ExternalDataProcessingConfiguration:
+    extends: Plan
+    classUri: fdri:ExternalDataProcessingConfiguration
+    shortCode: ExternalDataProcessingConfiguration
+    properties:
+      repository:
+        propertyUri: fdri:repository
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:anyURI
+      repositoryPath:
+        propertyUri: fdri:repositoryPath
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      version:
+        propertyUri: dct:version
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      type:
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: DataProcessingConfigurationType
+      replaces:
+        propertyUri: dct:replaces
+        kind: object
+        constraints:
+          - record: ExternalDataProcessingConfiguration
+
   Fault:
     classUri: fdri:Fault
     shortCode: Fault
@@ -694,6 +874,36 @@ records:
         kind: literal
         constraints:
           - datatype: geos:wktLiteral
+  
+  InternalDataProcessingConfiguration:
+    classUri: fdri:InternalDataProcessingConfiguration
+    shortCode: InternalDataProcessingConfiguration
+    extends: DataProcessingConfiguration
+    properties:
+      appliesToSystem:
+        propertyUri: fdri:appliesToSystem
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringSystemType
+          - record: EnvironmentalMonitoringSystem
+      appliesToVariable:
+        propertyUri: fdri:appliesToVariable
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ComplexObservableProperty
+      hadConfiguration:
+        propertyUri: fdri:hadConfiguration
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ConfigurationItem
+      hasCurrentConfiguration:
+        propertyUri: fdri:hasCurrentConfiguration
+        kind: object
+        required: true
+        constraints:
+          - record: ConfigurationItem
   
   ObjectOfInterest:
     extends: Concept
@@ -847,6 +1057,12 @@ records:
         constraints:
           - datatype: xsd:date
           - datatype: xsd:dateTime
+  
+  Plan:
+    classUri: prov:Plan
+    shortCode: Plan
+    mixins:
+      - WithTitleAndDescription
 
   Procedure:
     classUri: fdri:Procedure
@@ -990,6 +1206,26 @@ records:
         repeatable: true
         constraints:
           - record: TimeBoundPropertyValue
+
+  QualifiedAssociation:
+    classUri: prov:QualifiedAssociation
+    shortCode: QualifiedAssociation
+    properties:
+      agent:
+        propertyUri: prov:agent
+        kind: object
+        constraints:
+          - record: Agent
+      hadPlan:
+        propertyUri: prov:hadPlan
+        kind: object
+        constraints:
+          - record: Plan
+      hadRole:
+        propertyUri: prov:hadRole
+        kind: object
+        constraints:
+          - record: Concept
 
   QuantityKind:
     classUri: qudt:QuantityKind
