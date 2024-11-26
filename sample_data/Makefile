@@ -22,7 +22,18 @@ SAMPLES = \
 	build/LAND_COVER_LCM_CLASSES.ttl \
 	build/landCoverObservations.ttl \
 	build/landCoverLcm.ttl \
-	build/instrumentation_variables.ttl 
+	build/instrumentationVariablesProperties.ttl \
+	build/STATISTICS.ttl \
+	build/siteInstVar.ttl \
+	build/INSTRUMENTATION.ttl \
+	build/variableInstrumentationProperty.ttl \
+	build/timeSeriesExt.ttl \
+	build/timeSeriesProperty.ttl \
+	build/variableProperties.ttl \
+	build/CORRECTION_FACTORS.ttl \
+	build/PARAMETER_RANGES_QC.ttl \
+	build/Firmware_history.ttl \
+	build/sensorFaultsSplit.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
@@ -69,6 +80,10 @@ build/context:
 build/validation:
 	mkdir -p build/validation
 
+build/instrumentationVariablesProperties.csv: src/instrumentation_variables.csv src/variableProperties.csv sql/instrumentationVariablesProperties.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/instrumentationVariablesProperties.sql"
+
+
 build/landCoverObservations.csv: src/LAND_COVER_OBSERVED.csv sql/landCoverObservations.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/landCoverObservations.sql"
 
@@ -77,6 +92,21 @@ build/siteVariance.csv: src/SITES.csv sql/siteLayout.sql | build
 
 build/landCoverLcm.csv: src/LAND_COVER_LCM.csv sql/landCoverLcm.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/landCoverLcm.sql"
+
+build/timeSeriesExt.csv: src/TIMESERIES.csv src/intervalDuration.csv sql/timeSeriesExt.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/timeSeriesExt.sql"
+
+build/siteInstVar.csv: src/SITE_INSTRUMENTATION.csv src/VARIABLE_INSTRUMENTATION.csv sql/siteInstVar.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/siteInstVar.sql"
+
+build/timeSeriesProperty.csv: src/TIMESERIES.csv sql/timeSeriesProperty.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/timeSeriesProperty.sql"
+
+build/variableInstrumentationProperty.csv: src/VARIABLE_INSTRUMENTATION.csv src/variableProperties.csv sql/variableInstrumentationProperty.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/variableInstrumentationProperty.sql"
+
+build/sensorFaultsSplit.csv: src/SENSOR_FAULTS.csv build/siteInstVar.csv sql/sensorFaultsSplit.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/sensorFaultsSplit.sql"
 
 build/%.ttl: templates/namespaces.yaml templates/%.yaml src/%.csv | build
 	$(RUN) mapper templates/$*.yaml src/$*.csv $@

@@ -1,0 +1,140 @@
+globals:
+    $baseURI: http://fdri.ceh.ac.uk/
+    $datasetID: cosmos
+
+imports:
+    - namespaces.yaml
+    - extensions.py
+
+one_offs:
+  - name: IngestAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-ingest-service@1234>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI Ingest Service"
+  - name: PreprocessingAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-preprocessing-service@2345>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI Pre-processing Service"
+  - name: QCAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-qc-service@3456>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI QC Service"
+  - name: InfillAgent
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-infill-service@4567>"
+      "@type": "<fdri:SoftwareAgent>"
+      "<dct:title>": "FDRI Infill Service"
+
+resources:
+  - name: SiteTimeSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "@type": <fdri:ObservationDatasetSeries>
+      "<dct:title>": "All Time Series for {VARIABLE_NAME} from site {SITE_ID}@en"
+      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+
+  - name: Feature
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "@type": <fdri:GeospatialFeatureOfInterest>
+
+  - name: RawSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
+      "@type": <fdri:TimeSeriesDataset>
+      "<dct:title>": "Raw Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
+      "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "<prov:wasGeneratedBy>":
+        name: IngestActivity
+        properties:
+          "@id": "<http://fdri.ceh.ac.uk/id/activity/ingest-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+          "@type": "<fdri:DataProcessingActivity>"
+          "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-activity-type/ingest>"
+          "<prov:startedAt>": "2024-11-26T09:30:00Z^^<xsd:dateTime>"
+          "<prov:endedAt>": "2024-11-26T09:33:33Z^^<xsd:dateTime>"
+
+  - name: ProcessedSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"
+      "@type": <fdri:TimeSeriesDataset>
+      "<dct:title>": "In-filled Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
+      "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "<prov:wasGeneratedBy>":
+        name: QCInfillActivity
+        properties:
+          "@id": "<http://fdri.ceh.ac.uk/id/activity/qc-infill-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+          "@type": "<fdri:DataProcessingActivity>"
+          "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-activity-type/qc-infill>"
+          "<prov:used>": <::RawSeries>
+          "<prov:startedAt>": "2024-11-26T10:00:00Z^^<xsd:dateTime>"
+          "<prov:endedAt>": "2024-11-26T10:03:33Z^^<xsd:dateTime>"
+          "<prov:qualifiedAssociation>":
+            - name: PreprocessingStep
+              properties:
+                "@id": "<http://fdri.ceh.ac.uk/id/activity/preprocess-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+                "@type": "<prov:Association>"
+                "<prov:agent>": <::PreprocessingAgent>
+            - name: QCStep
+              properties:
+                "@id": "<http://fdri.ceh.ac.uk/id/activity/qc-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+                "@type": "<prov:Association>"
+                "<prov:agent>": <::QCAgent>
+            - name: InfillStep
+              properties:
+                "@id": "<http://fdri..ceh.ac.uk/id/activity/infill-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+                "@type": "<prov:Association>"
+                "<prov:agent>": <::InfillAgent>
+
+  - name: Sensor
+    requires:
+      SERIAL_NUMBER:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
+      "@type": "<fdri:EnvironmentalMonitoringSensor>"
+      "<dct:title>": "{INSTRUMENT_ID} {SERIAL_NUMBER}@en"
+      "<dct:type>": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
+      "<fdri:serialNumber>": "{SERIAL_NUMBER}"
+
+  - name: SensorDeployment
+    requires:
+      SERIAL_NUMBER:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:Deployment>"
+      "<dct:title>": "Deployment of {INSTRUMENT_ID} {SERIAL_NUMBER} at {SITE_ID}@en"
+      "<ssn:deployedSystem>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
+      "<ssn:deployedOnPlatform>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
+      "<prov:startedAtTime>": "{START_DATETIME|asDateTime}"
+  - name: SensorDeploymentEnd
+    requires:
+      SERIAL_NUMBER:
+      END_DATETIME:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:Deployment>"
+      "<prov:endedAtTime>": "{END_DATETIME|asDateTime}"
+  - name: SensorDeploymentComments
+    requires:
+      SERIAL_NUMBER:
+      COMMENTS:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
+      "@type": "<fdri:Deployment>"
+      "<dct:description>": "{COMMENTS}@en"
+
+  - name: ObservedProperty
+    requires:
+      PROPERTY:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
+      "@type": "<fdri:ComplexObservableProperty>"
+      "^<sosa:observedProperty>":
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"

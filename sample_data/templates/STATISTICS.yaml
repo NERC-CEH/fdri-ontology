@@ -1,0 +1,31 @@
+globals:
+    $baseURI: http://fdri.ceh.ac.uk/
+    $datasetID: cosmos
+
+imports:
+    - namespaces.yaml
+
+one_offs:
+  - name: StatisticsConceptScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics>"
+      "@type": "<fdri:ValueStatisticScheme>"
+      "<rdfs:label>": "Value Statistics"
+
+resources:
+  - name: StatisticsConcept
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID}>"
+      "@type": "<fdri:ValueStatistic>"
+      "<skos:inScheme>": "<::StatisticsConceptScheme>"
+      "^<skos:hasTopConcept>": "<::StatisticsConceptScheme>"
+      "<skos:prefLabel>": "{STATISTIC_NAME}@en"
+
+  - name: StatisticsDescription
+    # Add DESCRIPTION as a skos:scopeNote if there is one.
+    requires:
+      DESCRIPTION:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID}>"
+      "<skos:scopeNote>": "{DESCRIPTION}@en"
+

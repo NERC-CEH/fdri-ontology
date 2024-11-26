@@ -22,14 +22,43 @@ one_offs:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/bedrock-class>"
       "@type": "<skos:ConceptScheme>"
       "<dct:title>": "COSMOS Bedrock Classification Scheme@en"
+  - name: Cosmos
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/network/cosmos>"
+      "@type": "<fdri:EnvironmentalMonitoringNetwork>"
+      "<dct:title>": "COSMOS@en"
 
 resources:
+    - name: MonitoredFeature
+      properties:
+        "@id": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+        "@type": "<fdri:GeospatialFeatureOfInterest>"
+        "<dct:title>": "Environment at {SITE_NAME}@en"
+        "<geos:hasGeometry>": 
+            - name: EastingsNorthingsPoint
+              properties:
+                "@id": "<_>"
+                "@type": "<geos:Geometry>"
+                "<geos:asWKT>": "<http://www.opengis.net/def/crs/EPSG/0/27700> POINT({EASTING}, {NORTHING})^^<geos:wktLiteral>"
+            - name: LatLongPoint
+              properties:
+                "@id": "<_>"
+                "@type": "<geos:Geometry>"
+                "<geos:asWKT>": "POINT({LONGITUDE}, {LATITUDE})^^<geos:wktLiteral>"
+        "<fdri:hasRepresentativePoint>": 
+            - name: LatLongRepPoint
+              properties:
+                "@id": "<_>"
+                "@type": "<geos:Geometry>"
+                "<geos:asWKT>": "POINT({LONGITUDE}, {LATITUDE})^^<geos:wktLiteral>"
+
     - name: MonitoringSite
       properties:
-        "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/site/{SITE_ID}>"
+        "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
         "@type": <fdri:EnvironmentalMonitoringSite>
         "<dct:title>": "{SITE_NAME}@en"
         "<dct:description>": "{SITE_DESC}@en"
+        "^<fdri:contains>": <::Cosmos>
         "<geos:hasGeometry>": 
             - name: EastingsNorthingsPoint
               properties:
@@ -284,4 +313,63 @@ resources:
                   "@type": "<schema:PropertyValue>"
                   "schema:value>": "{HOST_CLASS | asDecimal}"
 
+
+    - name: MonitoringPlatform
+      properties:
+        "@id": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
+        "@type": <fdri:EnvironmentalMonitoringPlatform>
+        "<dct:title>": "COSMOS monitoring station at {SITE_NAME}@en"
+        "<dct:isPartOf>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
+        "^<dct:hasPart>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
+        "<geos:hasGeometry>":
+            - name: LatLongPoint
+              properties:
+                "@id": "<_>"
+                "@type": "<geos:Geometry>"
+                "<geos:asWKT>": "POINT({LONGITUDE}, {LATITUDE})^^<geos:wktLiteral>"
+        "<fdri:hasAnnotation>":
+          - name: Calibrated
+            properties:
+              "@id": "<_>"
+              "@type": "<fdri:Annotation>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-calibrated>"
+              "<fdri:hasValue>":
+                name: "CalibratedValue"
+                properties:
+                  "@id": <_>
+                  "@type": "<schema:PropertyValue>"
+                  "<schema:value>": "{CALIBRATED | asBoolean('y')}"
+          - name: Flux
+            properties:
+              "@id": "<_>"
+              "@type": "<fdri:Annotation>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-flux>"
+              "<fdri:hasValue>":
+                name: "FluxValue"
+                properties:
+                  "@id": <_>
+                  "@type": "<schema:PropertyValue>"
+                  "<schema:value>": "{FLUX | asBoolean('y')}"
+          - name: Crs2IsMod
+            properties:
+              "@id": "<_>"
+              "@type": "<fdri:Annotation>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-csr2-mod>"
+              "<fdri:hasValue>":
+                name: "Crs2IsModValue"
+                properties:
+                  "@id": <_>
+                  "@type": "<schema:PropertyValue>"
+                  "<schema:value>": "{CRS2_IS_MOD | asBoolean('y')}"
+          - name: FullTdtArray
+            properties:
+              "@id": "<_>"
+              "@type": "<fdri:Annotation>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-full-tdt-array>"
+              "<fdri:hasValue>":
+                name: "FullTdtArrayValue"
+                properties:
+                  "@id": <_>
+                  "@type": "<schema:PropertyValue>"
+                  "<schema:value>": "{FULL_TDT_ARRAY | asBoolean('y')}"
 

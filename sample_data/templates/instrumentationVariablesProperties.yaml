@@ -11,12 +11,7 @@ one_offs:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type>"
       "@type": "<fdri:EnvironmentalMonitoringSystemTypeScheme>"
-      "rdfs:label": "COSMOS Monitoring System Types"
-  - name: COPScheme
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
-      "@type": "<fdri:ComplexObservablePropertyScheme>"
-      "rdfs:label": "COSMOS Observable Properties"
+      "dct:title": "COSMOS Monitoring System Types@en"
 
 resources:
 
@@ -35,11 +30,13 @@ resources:
       "<skos:prefLabel>": "{SENSOR_MAKE} {SENSOR_MODEL}@en"
       "<skos:inScheme>": "<::SystemTypeScheme>"
       "<skos:broader>": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
-      "<fdri:observes>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
 
   - name: COP
+    requires:
+      PROPERTY:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
       "@type": "<fdri:ComplexObservableProperty>"
       "<skos:inScheme>": "<::COPScheme>"
       "^<skos:hasTopConcept>": "<::COPScheme>"
+      "^<fdri:observes>": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}-{SENSOR_MAKE|slug}-{SENSOR_MODEL|slug}>"

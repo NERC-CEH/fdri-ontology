@@ -56,7 +56,7 @@ classDiagram
 
 ### Sensor / System Faults
 
-A record of a system fault relates the affected `EnvironmentalMonitoringSystem` to one or more parameters which are affected by the fault. 
+A record of a system fault relates the affected `EnvironmentalMonitoringFacility` to one or more parameters which are affected by the fault. 
 
 A fault is a time-bounded event and so has a related interval with start and end date/date-times. The range of `dcat:startDate` and `dcat:endDate` is specified in DCAT as one of the following XSD datatypes `xsd:gYear`, `xsd:gYearMonth`, `xsd:date`, or `xsd:dateTime` .
 
@@ -66,7 +66,7 @@ The `removeData` flag is set to true to indicate that affected observations shou
 
 ```mermaid
 classDiagram
-  class EMSystem["fdri:EnvironmentalMonitoringSystem"]
+  class EMF["fdri:EnvironmentalMonitoringFacility"]
   class COP["fdri:ComplexObservableProperty"]
   class Fault["fdri:Fault"]
   class Fault {
@@ -79,7 +79,7 @@ classDiagram
     dcat:endDate: rdfs:Literal
   }
   EMSystem --> Fault: fdri_hadFault
-  Fault --> EMSystem: fdri_affected
+  Fault --> EMF: fdri_affected
   Fault --> COP: fdri_affectedVariable
   Fault --> Period: fdri_interval
 ```

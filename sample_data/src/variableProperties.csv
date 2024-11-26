@@ -1,0 +1,128 @@
+VARIABLE_NAME,DESCRIPTION,PROPERTY,QUDT_QUANTITY_KIND,PROPERTY_NAME,OBJECT,CONTEXT,DOMAIN,UNIT,QUDT_UNIT,UNIT_NAME
+BATTV,Datalogger Battery Voltage,voltage,Voltage,Voltage,datalogger battery,,,V,V,volt
+COV_TS_UX,Covariance between sonic temperature and UX wind speed component,,,,windspeed,,atmosphere,MS-1,M-PER-SEC,metre per second
+COV_TS_UY,Covariance between sonic temperature and UY wind speed component,,,,windspeed,,atmosphere,MS-1,M-PER-SEC,metre per second
+COV_TS_UZ,Covariance between sonic temperature and UZ wind speed component,,,,windspeed,,atmosphere,MS-1,M-PER-SEC,metre per second
+COV_UX_UY,Covariance of wind speed components UX and UY,,,,windspeed,,atmosphere,MS-1,M-PER-SEC,metre per second
+COV_UX_UZ,Covariance of wind speed components UX and UZ,,,,windspeed,,atmosphere,MS-1,M-PER-SEC,metre per second
+COV_UY_UZ,Covariance of wind speed components UY and UZ,,,,windspeed,,atmosphere,MS-1,M-PER-SEC,metre per second
+CTS_BARE,Bare counts,count,Count,Count,fast neutrron,,,CTS,UNITLESS,
+CTS_MOD,Moderated counts,count,Count,Count,fast neutrron,,,CTS,UNITLESS,
+CTS_MOD2,Moderated counts 2,count,Count,Count,fast neutrron,,,CTS,UNITLESS,
+CTS_MOD_DIAG_1,COSMOS moderated probe diagnostic 1,diagnostic,,Diagnostic,cosmos moderated probe,,,UNITLESS,UNITLESS,
+CTS_MOD_DIAG_2,COSMOS moderated probe diagnostic 2,diagnostic,,Diagnostic,cosmos moderated probe,,,UNITLESS,UNITLESS,
+CTS_MOD_DIAG_3,COSMOS moderated probe diagnostic 3,diagnostic,,Diagnostic,cosmos moderated probe,,,UNITLESS,UNITLESS,
+CTS_MOD_DIAG_4,COSMOS moderated probe diagnostic 4,diagnostic,,Diagnostic,cosmos moderated probe,,,UNITLESS,UNITLESS,
+CTS_MOD_DIAG_5,COSMOS moderated probe diagnostic 5,diagnostic,,Diagnostic,cosmos moderated probe,,,UNITLESS,UNITLESS,
+CTS_MOD_RH,Relative humidity in COSMOS moderated tube,RH,RelativeHumidity,Relative Humidity,cosmos moderated tube,,,PERCENT,PERCENT_RH,percent
+CTS_MOD_TEMP,Temperature in COSMOS moderated tube,TEMP,Temperature,Temperature,cosmos moderated tube,,,DEGC,DEG_C,degree celsius
+CTS_SNOW,Below ground counts,count,Count,Count,fast neutrron,below ground,,CTS,UNITLESS,
+CTS_SNOW_DIAG_1,COSMOS snow probe diagnostic 1,diagnostic,,Diagnostic,cosmos snow probe,,,UNITLESS,UNITLESS,
+CTS_SNOW_DIAG_2,COSMOS snow probe diagnostic 2,diagnostic,,Diagnostic,cosmos snow probe,,,UNITLESS,UNITLESS,
+CTS_SNOW_DIAG_3,COSMOS snow probe diagnostic 3,diagnostic,,Diagnostic,cosmos snow probe,,,UNITLESS,UNITLESS,
+CTS_SNOW_DIAG_4,COSMOS snow probe diagnostic 4,diagnostic,,Diagnostic,cosmos snow probe,,,UNITLESS,UNITLESS,
+CTS_SNOW_DIAG_5,COSMOS snow probe diagnostic 5,diagnostic,,Diagnostic,cosmos snow probe,,,UNITLESS,UNITLESS,
+CTS_SNOW_RH,Relative humidity in COSMOS snow tube,RH,RelativeHumidity,Relative Humidity,cosmos snow tube,,,PERCENT,PERCENT_RH,percent
+CTS_SNOW_TEMP,Temperature in COSMOS snow tube,TEMP,Temperature,Temperature,cosmos snow tube,,,DEGC,DEG_C,degree celsius
+E_SAT_MEAN,Saturated water vapour pressure,VAPOUR_P,Pressure,Pressure,water vapour,saturated,atmosphere,KPA,KiloPA,kPa
+G1,Soil heat flux 1,HEATFLUX,HeatFluxDensity,Heat Flux Density,soil,,lithosphere,WM-2,W-PER-M2,Wm-2
+G1_CAL,Calibration (multiplier) for soil heat flux plate 1,HEATFLUX,HeatFluxDensity,Heat Flux Density,,,,UNITLESS,UNITLESS,
+G1_MV,Uncalibrated soil heat flux 1,HEATFLUX,HeatFluxDensity,Heat Flux Density,soil,,lithosphere,WM-2,W-PER-M2,Wm-2
+G2,Soil heat flux 2,HEATFLUX,HeatFluxDensity,Heat Flux Density,soil,,lithosphere,WM-2,W-PER-M2,Wm-2
+G2_CAL,Calibration (multiplier) for soil heat flux plate 2,HEATFLUX,HeatFluxDensity,Heat Flux Density,,,,UNITLESS,UNITLESS,
+G2_MV,Uncalibrated soil heat flux 2,HEATFLUX,HeatFluxDensity,Heat Flux Density,soil,,lithosphere,WM-2,W-PER-M2,Wm-2
+HS,Sensible heat flux,HEATFLUX,HeatFluxDensity,Heat Flux Density,air,,atmosphere,WM-2,W-PER-M2,Wm-2
+LWIN,Incoming longwave radiation (corrected),LWIN,EnergyPerArea,Radiation energy density,incoming longwave radiation,corrected,atmosphere,WM-2,W-PER-M2,Wm-2
+LWIN_UNC,Incoming longwave radiation (uncorrected),LWIN,EnergyPerArea,Radiation energy density,incoming longwave radiation,uncorrected,atmosphere,WM-2,W-PER-M2,Wm-2
+LWOUT,Outgoing longwave radiation (corrected),LWOUT,EnergyPerArea,Radiation energy density,outgoing longwave radiation,corrected,atmosphere,WM-2,W-PER-M2,Wm-2
+LWOUT_UNC,Outgoing longwave radiation (uncorrected),LWOUT,EnergyPerArea,Radiation energy density,outgoing longwave radiation,uncorrected,atmosphere,WM-2,W-PER-M2,Wm-2
+METPAK_SAMPLES,Number of half hourly samples taken,SAMPLES,,Samples taken,,,,SAMPLES,,
+PA,Atmospheric pressure,PA,AtmosphericPressure,Atmospheric pressure,,,atmosphere,HPA,HectoPA,hPa
+PRECIP,Precipitation total 30m,PRECIP,,Precipitation,precipitation,30 minute total,,MM,MilliM,mm
+PRECIP_DIAG,Precipitation diagnostic flag,PRECIP_DIAG,,Precipitation diagnostic,,,,UNITLESS,UNITLESS,
+PRECIP_TIPPING,Precipitation tipping bucket raingauge 1,PRECIPITATION_TIPPING,,Precipitation (tipping bucket),,30 minute total,,MM,MilliM,mm
+PRECIP_TIPPING2,Precipitation tipping bucket raingauge 2,PRECIPITATION_TIPPING,,Precipitation (tipping bucket),,30 minute total,,MM,MilliM,mm
+PROFILE_SOILEC15,Soil electrical conductivity (nominal depth 15 cm),COND,Conductivity,Electrical conductivity,soil,15 cm depth,lithosphere,PCT,,
+PROFILE_SOILEC40,Soil electrical conductivity (nominal depth 40 cm),COND,Conductivity,Electrical conductivity,soil,40 cm depth,lithosphere,PCT,,
+PROFILE_SOILEC65,Soil electrical conductivity (nominal depth 65 cm),COND,Conductivity,Electrical conductivity,soil,65 cm depth,lithosphere,PCT,,
+PROFILE_VWC15,Soil moisture content (nominal depth 15 cm),VWC,,Moisture content,soil,15 cm depth,lithosphere,PCT,,
+PROFILE_VWC40,Soil moisture content (nominal depth 40 cm),VWC,,Moisture content,soil,40 cm depth,lithosphere,PCT,,
+PROFILE_VWC65,Soil moisture content (nominal depth 65 cm),VWC,,Moisture content,soil,65 cm depth,lithosphere,PCT,,
+P_ACCUMULATEDAL_NRT,Sum of precipitation since the last device start,PRECIP,,Precipitation,precipitation,since last restart,,MM,MilliM,mm
+P_ACCUMULATED_NRT,Sum of precipitation over the last sample interval,PRECIP,,Precipitation,precipitation,in last period,,MM,MilliM,mm
+P_ACCUMULATED_RT_NRT,1 minute precipitation data,PRECIP,,Precipitation,precipitation,1 minute total,,MM,MilliM,mm
+P_BUCKET_NRT,Filtered bucket content,PRECIP,,Precipitation,precipitation,filtered bucket content,,MM,MilliM,mm
+P_BUCKET_RT,Level of rain gauge bucket,BUCKET_LEVEL,,Bucket level,precipitation,,,MM,MilliM,mm
+P_HEATING_STATUS,Status of orifice rim heating element,,,,,,,UNITLESS,UNITLESS,
+P_INTENSITY_RT,Rainfall intensity (Real-time),PRECIPITATION,,Precipitation (tipping bucket),precipitation,,,MM,MilliM,mm
+P_LOADCELL_TEMP,Internal temperature of load cell,,,,,,,,,
+P_STATUS,Status of raingauge,,,,,,,,,
+Q,Absolute humidity,Q,AbsoluteHumidity,Absolute humidity,air,,atmosphere,GM-3,GM-PER-M3,gm-3
+RH,Relative humidity,RH,RelativeHumidity,Relative Humidity,air,,atmosphere,PCT,PERCENT_RH,
+RHO_A_MEAN,Air density,AIR_DENSITY,Density,Air Density,air,,atmosphere,KGM-3,KiloGM-PER-M3,Kgm-3
+SNOWD,Snow Distance ,SNOWD,Distance,Snow depth,snow,,,M,M,m
+SNOWD_DISTANCE_COR,Snow distance corrected,SNOWD_DISTANCE_COR,Distance,,,corrected,,M,M,m
+SNOWD_DISTANCE_UNC,Snow distance uncorrected,SNOWD_DISTANCE_UNC,Distance,,,uncorrected,,M,M,m
+SNOWD_SIGNALQUALITY,Snow distance quality number,,,,,,,UNITLESS,UNITLESS,
+STDEV_TS,Standard deviation of Sonic temperature,TEMP,Temperature,Temperature,air,,atmosphere,DEGC,DEG_C,degree celsius
+STDEV_UX,Standard deviation of UX wind speed component,WS,Speed,Windspeed,windspeed,"ux, standard dev",atmosphere,MS-1,M-PER-SEC,ms-1
+STDEV_UY,Standard deviation of UX wind speed component,WS,Speed,Windspeed,windspeed,"uy,standard dev",atmosphere,MS-1,M-PER-SEC,ms-1
+STDEV_UZ,Standard deviation of UX wind speed component,WS,Speed,Windspeed,windspeed,"uz, standard dev",atmosphere,MS-1,M-PER-SEC,ms-1
+STP_TSOIL10,Soil temperature profile (10 cm depth),TSOIL,Temperature,Soil Temperature,soil,10 cm depth,lithosphere,DEGC,DEG_C,degree celsius
+STP_TSOIL2,Soil temperature profile (2 cm depth),TSOIL,Temperature,Soil Temperature,soil,2 cm depth,lithosphere,DEGC,DEG_C,degree celsius
+STP_TSOIL20,Soil temperature profile (20 cm depth),TSOIL,Temperature,Soil Temperature,soil,20 cm depth,lithosphere,DEGC,DEG_C,degree celsius
+STP_TSOIL5,Soil temperature profile (5 cm depth),TSOIL,Temperature,Soil Temperature,soil,5 cm depth,lithosphere,DEGC,DEG_C,degree celsius
+STP_TSOIL50,Soil temperature profile (50 cm depth),TSOIL,Temperature,Soil Temperature,soil,50 cm depth,lithosphere,DEGC,DEG_C,degree celsius
+SWIN,Incoming shortwave radiation,SWIN,EnergyPerArea,Radiation energy density,incoming shortwave radiation,,atmosphere,WM-2,W-PER-M2,Wm-2
+SWOUT,Outgoing shortwave radiation,SWOUT,EnergyPerArea,Radiation energy density,outgoing shortwave radiation,,atmosphere,WM-2,W-PER-M2,Wm-2
+TA,Air temperature,TA,Temperature,Air Temperature,air,,atmosphere,DEGC,DEG_C,degree celsius
+TAU,Momentum flux,TAU,,,,,atmosphere,KGM-1S-2,KiloGM-PER-M-SEC2,kgm-1s-2
+TDT10_SOILEC,Soil Electrical conductivity 10,COND,Conductivity,Electrical conductivity,soil,TDT 10,lithosphere,PCT,PERCENT,percent
+TDT10_SOILPERM,Soil bulk relative permittivity 10,PERM,PermittivityRatio,Relative permittivity,soil,TDT 10,lithosphere,UNITLESS,UNITLESS,
+TDT10_TSOIL,Soil temperature 10,TSOIL,Temperature,Soil Temperature,soil,TDT 10,lithosphere,DEGC,DEG_C,degree celsius
+TDT10_VWC,Soil moisture content 10,VWC,,Moisture content,soil,TDT 10,lithosphere,PCT,PERCENT,percent
+TDT1_SOILEC,Soil Electrical conductivity 1,COND,Conductivity,Electrical conductivity,soil,TDT 1,lithosphere,PCT,PERCENT,percent
+TDT1_SOILPERM,Soil bulk relative permittivity 1,PERM,PermittivityRatio,Relative permittivity,soil,TDT 1,lithosphere,UNITLESS,UNITLESS,
+TDT1_TSOIL,Soil temperature 1,TSOIL,Temperature,Soil Temperature,soil,TDT 1,lithosphere,DEGC,DEG_C,degree celsius
+TDT1_VWC,Soil moisture content 1,VWC,,Moisture content,soil,TDT 1,lithosphere,PCT,PERCENT,percent
+TDT2_SOILEC,Soil Electrical conductivity 2,COND,Conductivity,Electrical conductivity,soil,TDT 2,lithosphere,PCT,PERCENT,percent
+TDT2_SOILPERM,Soil bulk relative permittivity 2,PERM,PermittivityRatio,Relative permittivity,soil,TDT 2,lithosphere,UNITLESS,UNITLESS,
+TDT2_TSOIL,Soil temperature 2,TSOIL,Temperature,Soil Temperature,soil,TDT 2,lithosphere,DEGC,DEG_C,degree celsius
+TDT2_VWC,Soil moisture content 2,VWC,,Moisture content,soil,TDT 2,lithosphere,PCT,PERCENT,percent
+TDT3_SOILEC,Soil Electrical conductivity 3,COND,Conductivity,Electrical conductivity,soil,TDT 3,lithosphere,PCT,PERCENT,percent
+TDT3_SOILPERM,Soil bulk relative permittivity 3,PERM,PermittivityRatio,Relative permittivity,soil,TDT 3,lithosphere,UNITLESS,UNITLESS,
+TDT3_TSOIL,Soil temperature 3,TSOIL,Temperature,Soil Temperature,soil,TDT 3,lithosphere,DEGC,DEG_C,degree celsius
+TDT3_VWC,Soil moisture content 3,VWC,,Moisture content,soil,TDT 3,lithosphere,PCT,PERCENT,percent
+TDT4_SOILEC,Soil Electrical conductivity 4,COND,Conductivity,Electrical conductivity,soil,TDT 4,lithosphere,PCT,PERCENT,percent
+TDT4_SOILPERM,Soil bulk relative permittivity 4,PERM,PermittivityRatio,Relative permittivity,soil,TDT 4,lithosphere,UNITLESS,UNITLESS,
+TDT4_TSOIL,Soil temperature 4,TSOIL,Temperature,Soil Temperature,soil,TDT 4,lithosphere,DEGC,DEG_C,degree celsius
+TDT4_VWC,Soil moisture content 4,VWC,,Moisture content,soil,TDT 4,lithosphere,PCT,PERCENT,percent
+TDT5_SOILEC,Soil Electrical conductivity 5,COND,Conductivity,Electrical conductivity,soil,TDT 5,lithosphere,PCT,PERCENT,percent
+TDT5_SOILPERM,Soil bulk relative permittivity 5,PERM,PermittivityRatio,Relative permittivity,soil,TDT 5,lithosphere,UNITLESS,UNITLESS,
+TDT5_TSOIL,Soil temperature 5,TSOIL,Temperature,Soil Temperature,soil,TDT 5,lithosphere,DEGC,DEG_C,degree celsius
+TDT5_VWC,Soil moisture content 5,VWC,,Moisture content,soil,TDT 5,lithosphere,PCT,PERCENT,percent
+TDT6_SOILEC,Soil Electrical conductivity 6,COND,Conductivity,Electrical conductivity,soil,TDT 6,lithosphere,PCT,PERCENT,percent
+TDT6_SOILPERM,Soil bulk relative permittivity 6,PERM,PermittivityRatio,Relative permittivity,soil,TDT 6,lithosphere,UNITLESS,UNITLESS,
+TDT6_TSOIL,Soil temperature 6,TSOIL,Temperature,Soil Temperature,soil,TDT 6,lithosphere,DEGC,DEG_C,degree celsius
+TDT6_VWC,Soil moisture content 6,VWC,,Moisture content,soil,TDT 6,lithosphere,PCT,PERCENT,percent
+TDT7_SOILEC,Soil Electrical conductivity 7,COND,Conductivity,Electrical conductivity,soil,TDT 7,lithosphere,PCT,PERCENT,percent
+TDT7_SOILPERM,Soil bulk relative permittivity 7,PERM,PermittivityRatio,Relative permittivity,soil,TDT 7,lithosphere,UNITLESS,UNITLESS,
+TDT7_TSOIL,Soil temperature 7,TSOIL,Temperature,Soil Temperature,soil,TDT 7,lithosphere,DEGC,DEG_C,degree celsius
+TDT7_VWC,Soil moisture content 7,VWC,,Moisture content,soil,TDT 7,lithosphere,PCT,PERCENT,percent
+TDT8_SOILEC,Soil Electrical conductivity 8,COND,Conductivity,Electrical conductivity,soil,TDT 8,lithosphere,PCT,PERCENT,percent
+TDT8_SOILPERM,Soil bulk relative permittivity 8,PERM,PermittivityRatio,Relative permittivity,soil,TDT 8,lithosphere,UNITLESS,UNITLESS,
+TDT8_TSOIL,Soil temperature 8,TSOIL,Temperature,Soil Temperature,soil,TDT 8,lithosphere,DEGC,DEG_C,degree celsius
+TDT8_VWC,Soil moisture content 8,VWC,,Moisture content,soil,TDT 8,lithosphere,PCT,PERCENT,percent
+TDT9_SOILEC,Soil Electrical conductivity 9,COND,Conductivity,Electrical conductivity,soil,TDT 9,lithosphere,PCT,PERCENT,percent
+TDT9_SOILPERM,Soil bulk relative permittivity 9,PERM,PermittivityRatio,Relative permittivity,soil,TDT 9,lithosphere,UNITLESS,UNITLESS,
+TDT9_TSOIL,Soil temperature 9,TSOIL,Temperature,Soil Temperature,soil,TDT 9,lithosphere,DEGC,DEG_C,degree celsius
+TDT9_VWC,Soil moisture content 9,VWC,,Moisture content,soil,TDT 9,lithosphere,PCT,PERCENT,percent
+TNR01C,Radiometer body temperature,TNR01C,Temperature,Radiometer body temperature,radiometer,,,DEGC,DEG_C,degree celsius
+TS,Sonic temperature,TEMP,Temperature,Sonic temperature,air,,atmosphere,DEGC,DEG_C,degree celsius
+UX,X component of windspeed,WS,Speed,Windspeed,air,ux,atmosphere,MS-1,M-PER-SEC,ms-1
+UY,Y component of windspeed,WS,Speed,Windspeed,air,uy,atmosphere,MS-1,M-PER-SEC,ms-1
+UZ,Z component of windspeed,WS,Speed,Windspeed,air,uz,atmosphere,MS-1,M-PER-SEC,ms-1
+U_STAR,Friction velocity,FRICTIONV,Velocity,Friction velocity,air,,atmosphere,MS-1,M-PER-SEC,ms-1
+WD,Wind direction,WD,,Wind direction,air,,atmosphere,DEG,,degrees
+WS,Wind speed,WS,Velocity,Wind speed,windspeed,,atmosphere,MS-1,M-PER-SEC,ms-1
+WS_RES,Resultant wind speed,WS,Velocity,Wind speed,windspeed,,atmosphere,MS-1,M-PER-SEC,ms-1

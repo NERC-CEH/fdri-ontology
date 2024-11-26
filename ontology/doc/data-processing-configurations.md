@@ -33,15 +33,15 @@ classDiagram
   class Plan["fdri:DataProcessingConfiguration"]
   class DPConfig["fdri:InternalDataProcessingConfiguration"]
   class COP["fdri:ComplexObservableProperty"]
-  class EnvironmentalMonitoringSystemType["fdri:EnvironmentalMonitoringSystemType"]
-  class EnvironmentalMonitoringSystem["fdri:EnvironmentalMonitoringSystem"]
+  class EMFType["fdri:EnvironmentalMonitoringFacilityType"]
+  class EMF["fdri:EnvironmentalMonitoringFacility"]
   class ConfigurationItem["fdri:ConfigurationItem"]
   class DataProcessingConfigurationType["fdri:DataProcessingConfigurationType"]
 
   Plan <|-- DPConfig
   
-  DPConfig --> EnvironmentalMonitoringSystem: fdri_appliesToSystem
-  DPConfig --> EnvironmentalMonitoringSystemType: fdri_appliesToSystem
+  DPConfig --> EMF: fdri_appliesToFacility
+  DPConfig --> EMFType: fdri_appliesToSystem
   DPConfig --> COP: fdri_appliesToVariable
   DPConfig --> ConfigurationItem: fdri_hadConfigurationItem
   DPConfig --> ConfigurationItem: fdri_hasCurrentConfigurationItem
@@ -50,7 +50,7 @@ classDiagram
 
 An `fdri:InternalDataProcessingConfiguration` is used to capture a collection of configuration items that apply to part of the data processing pipeline.
 
-The relation `fdri:appliesToSystem` relates a `fdri:DataProcessingConfiguration` to the `fdri:EnvironmentalMonitoringSystem` or `fdri:EnvironmentalMonitoringSystemType` whose measurements are affected by the configuration. The relation `fdri:appliesToVariable` relates an `fdri:DataProcessingConfiguration` to the variable affected by the configuration.
+The relation `fdri:appliesToFacility` relates a `fdri:DataProcessingConfiguration` to the `fdri:EnvironmentalMonitoringFacility` or `fdri:EnvironmentalMonitoringFacilityType` whose measurements are affected by the configuration. The relation `fdri:appliesToVariable` relates an `fdri:DataProcessingConfiguration` to the variable affected by the configuration.
 
 The relation `fdri:hasCurrentConfigurationItem` relates an `fdri:DataProcessingConfiguration` to one or more `fdri:ConfigurationItem`s, which provide the current set of configuration values for the processing. Each `fdri:ConfigurationItem` specifies a method (e.g. multiply, spike etc.); a property value (which may be a specific value or a min/max range); a `fdri:phenomenonInterval` which indicates the date range of the observations to be affected by the configuration item; and an `fdri:interval` which specifies the interval during which the configuration item applies. If `fdri:phenomenonInterval` is omitted, the configuration would be treated as applying to all observations processed during the `fdri:interval`
 
@@ -99,10 +99,6 @@ Both `fdri:DataProcessingMethod` and `fdri:ConfigurationParameter` are subclasse
 
 `fdri:DataProcessingMethod` also has:
 * an optional, repeatable property `fdri:hasParameter` which relates the method to the parameters that may be passed to the method.
-
-
-> **QUESTION**
-> Is phenomenonInterval required? The intuition is that there might be different infill methods applied for different sensor fault situations and so it might be useful to be able to limit certain configurations to only a given range of observations, but if that is not useful then we can just have a single `fdri:interval` property which indicates the time span when the configuration applies (and applies to all observations processed during that time span).
 
 > **QUESTION**
 > Is configuration history managed at the individual configuration property level or at the whole configuration level?
