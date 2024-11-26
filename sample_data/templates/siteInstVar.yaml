@@ -87,7 +87,7 @@ resources:
                 "<prov:agent>": <::QCAgent>
             - name: InfillStep
               properties:
-                "@id": "<http://fdri..ceh.ac.uk/id/activity/infill-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
+                "@id": "<http://fdri.ceh.ac.uk/id/activity/infill-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
                 "@type": "<prov:Association>"
                 "<prov:agent>": <::InfillAgent>
 
