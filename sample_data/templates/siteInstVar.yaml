@@ -55,6 +55,8 @@ resources:
           "@id": "<http://fdri.ceh.ac.uk/id/activity/ingest-cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-1234>"
           "@type": "<fdri:DataProcessingActivity>"
           "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-activity-type/ingest>"
+          "<prov:startedAt>": "2024-11-26T09:30:00Z^^<xsd:dateTime>"
+          "<prov:endedAt>": "2024-11-26T09:33:33Z^^<xsd:dateTime>"
 
   - name: ProcessedSeries
     properties:
@@ -70,6 +72,8 @@ resources:
           "@type": "<fdri:DataProcessingActivity>"
           "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-activity-type/qc-infill>"
           "<prov:used>": <::RawSeries>
+          "<prov:startedAt>": "2024-11-26T10:00:00Z^^<xsd:dateTime>"
+          "<prov:endedAt>": "2024-11-26T10:03:33Z^^<xsd:dateTime>"
           "<prov:qualifiedAssociation>":
             - name: PreprocessingStep
               properties:
