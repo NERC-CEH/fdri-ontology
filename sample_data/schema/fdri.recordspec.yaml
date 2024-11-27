@@ -209,7 +209,6 @@ records:
       environmentalDomain:
         propertyUri: fdri:environmentalDomain
         kind: object
-        required: true
         constraints:
           - record: EnvironmentalDomain
       hasContextObject:
