@@ -4,6 +4,7 @@ globals:
 
 imports:
     - namespaces.yaml
+    - extensions.py
 
 one_offs:
   - name: StatisticsConceptScheme
@@ -15,7 +16,7 @@ one_offs:
 resources:
   - name: StatisticsConcept
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID|slug}>"
       "@type": "<fdri:ValueStatistic>"
       "<skos:inScheme>": "<::StatisticsConceptScheme>"
       "^<skos:hasTopConcept>": "<::StatisticsConceptScheme>"
@@ -26,6 +27,7 @@ resources:
     requires:
       DESCRIPTION:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID|slug}>"
+      "@type": "<fdri:ValueStatistic>"
       "<skos:scopeNote>": "{DESCRIPTION}@en"
 

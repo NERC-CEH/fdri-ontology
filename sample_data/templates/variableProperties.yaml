@@ -29,9 +29,9 @@ resources:
       "@type": "<fdri:ComplexObservableProperty>"
       "<skos:inScheme>": "<::COPScheme>"
       "^<skos:hasTopConcept>": "<::COPScheme>"
-      # TODO: Object of interest. May need a separate mapping table
-      # TODO: Environmental domain. Will need a separate mapping table
       "<fdri:unitName>": "{UNIT_NAME}@en"
+      "<fdri:aggregationPeriod>": "{INTERVAL}^^<xsd:duration>"
+      "<fdri:valueStatistic>": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC|slug}>"
   - name: Parameter
     requires:
       PROPERTY:
