@@ -48,7 +48,9 @@ resources:
       "@type": <fdri:TimeSeriesDataset>
       "<dct:title>": "Raw Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
-      "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "<dcat:inSeries>": 
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{VARIABLE_NAME|slug}-raw>"
       "<prov:wasGeneratedBy>":
         name: IngestActivity
         properties:
@@ -64,7 +66,9 @@ resources:
       "@type": <fdri:TimeSeriesDataset>
       "<dct:title>": "In-filled Time Series for {VARIABLE_NAME} at site {SITE_ID}@en"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
-      "<dcat:inSeries>": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+      "<dcat:inSeries>":
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{VARIABLE_NAME|slug}-infill>"
       "<prov:wasGeneratedBy>":
         name: QCInfillActivity
         properties:
@@ -130,9 +134,10 @@ resources:
 
   - name: ObservedProperty
     requires:
+      VARIABLE_NAME:
       PROPERTY:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
       "@type": "<fdri:ComplexObservableProperty>"
       "^<sosa:observedProperty>":
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
