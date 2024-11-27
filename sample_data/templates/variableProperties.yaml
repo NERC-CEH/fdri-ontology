@@ -29,9 +29,16 @@ resources:
       "@type": "<fdri:ComplexObservableProperty>"
       "<skos:inScheme>": "<::COPScheme>"
       "^<skos:hasTopConcept>": "<::COPScheme>"
-      "<fdri:unitName>": "{UNIT_NAME}@en"
+      "<skos:prefLabel>": "{DESCRIPTION}@en"
       "<fdri:aggregationPeriod>": "{INTERVAL}^^<xsd:duration>"
       "<fdri:valueStatistic>": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC|slug}>"
+  - name: COPUnitName
+    requires:
+      UNIT_NAME:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "@type": "<fdri:ComplexObservableProperty>"
+      "<fdri:unitName>": "{UNIT_NAME}@en"
   - name: Parameter
     requires:
       PROPERTY:
@@ -75,8 +82,14 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
       "@type": "<skos:Concept>"
-      "<skos:prefLabel>": "{UNIT_NAME}@en"
       "^<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+  - name: UnitLabel
+    requires:
+      UNIT_NAME:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
+      "@type": "<skos:Concept>"
+      "<skos:prefLabel>": "{UNIT_NAME}@en" 
   - name: UnitMatch
     requires:
       UNIT:
