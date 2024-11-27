@@ -22,7 +22,7 @@ resources:
     requires:
       PROPERTY:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PROPERTY|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
       "@type": "<fdri:ComplexObservableProperty>"
       "<skos:inScheme>": <::COPScheme>
       "^<skos:hasTopConcept>": <::COPScheme>
