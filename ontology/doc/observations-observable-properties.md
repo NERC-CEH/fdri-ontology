@@ -88,6 +88,8 @@ and a there may be multiple sibling COP with differing units or value statistics
 | `fdri:hasUnit?` | Unit of measure of the result | 	unit:CubicMeterPerSecond | URI for QUDT unit |
 | `fdri:unitName?` | Textual representation of the unit for convenience | m3/s | string |
 | `fdri:hasValueScheme?` | The concept scheme from which values of this property may be drawn. This property should be defined when the value Complex Observable Property is a category or classification. | | URI of the SKOS Concept Scheme
+| `fdri:aggregationPeriod` | The interval over which the property is observed to derive a value.
+| `fdri:valueStatistic | The method by which the observed value is derived over the aggregation period.
 | `skos:broader?` |
 | `skos:narrower?` |
 | `skos:exactMatch?` | Optional links to equivalent concept in other schemes, other SKOS match types maybe be used if appropriate | | URI |
@@ -98,6 +100,7 @@ classDiagram
     skos:prefLabel: rdf:langString
     skos:note: rdf:langString
     fdri:unitName: rdf:langString
+    fdri:aggregationPeriod: xsd:duration
   }
   class QuantityKind["qudt:QuantityKind"]
   class EnvironmentalDomain["fdri:EnvironmentalDomain"]
@@ -106,16 +109,29 @@ classDiagram
   class Unit["qudt:Unit"]
   class Concept["skos:Concept"]
   class ConceptScheme["skos:ConceptScheme"]
+  class ValueStatistic["fdri:ValueStatistic"]
   COP --> QuantityKind: iop_hasProperty
   COP --> ObjectOfInterest: iop_hasObjectOfInterest
   COP --> ContextObject: iop_hasContextObject
   COP --> EnvironmentalDomain: fdri_environmentalDomain
   COP --> Unit: fdri_hasUnit
   COP --> ConceptScheme: fdri_hasValueScheme
+  COP --> ValueStatistic: fdri_valueStatistic
   EnvironmentalDomain --|> Concept
   ObjectOfInterest --|> Concept
   ContextObject --|> Concept
+  ValueStatistic --|> Concept
 ```
 
 > **NOTE**
 > [#35](https://github.com/NERC-CEH/fdri-discovery/issues/35) resolved that the facet for EnvironmentalDomain should be on `ComplexObservableProperty` rather than on the `GeospatialFeatureOfInterest`.
+
+### Note on Aggregation Period and Value Statistic
+
+The properties `fdri:aggregationPeriod` and `fdri:valueStatistic` are used both on `fdri:ComplexObservableProperty` and on `fdri:TimeSeriesDataset`. 
+
+On the `fdri:ComplexObservableProperty` these properties relate to how the raw observations reported by sensors are derived - the `fdri:aggregationPeriod` provides the interval between reported measures and the `fdri:valueStatistic` specifies how the observed value is derived over that period.
+
+On the `fdri:TimeSeriesDataset` these properties specify how the raw observations have been aggregated during data processing. The `fdri:aggregationPeriod` specifies the temporal resolution of the aggregated values and `fdri:valueStatistic` specifies the method by which the raw values were aggregated.
+
+For example a dataset with `fdri:aggregationPeriod` of `P1D` and `fdri:valueStatistic` of `MEAN_PREC` which has an observed property with `fdri:aggregationPeriod` of `PT30M` and `fdri:valueStatistic` of `INST` is a dataset which contains the aggregated daily mean value of a property which is observed every 30 minutes and reported as an instantaneous value.
