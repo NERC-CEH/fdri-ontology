@@ -503,8 +503,16 @@
                                              owl:cardinality "1"^^xsd:nonNegativeInteger
                                            ] ,
                                            [ rdf:type owl:Restriction ;
+                                             owl:onProperty :valueStatistic ;
+                                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
                                              owl:onProperty :unitName ;
                                              owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :aggregationPeriod ;
+                                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                            ] ;
                            rdfs:comment "An Observable Property whose definition also captures additional information about the context, units, period and statistical aggregation of each measurement of the property."@en ;
                            rdfs:label "Complex Observable Property"@en .
