@@ -27,6 +27,115 @@ one_offs:
       "@id": "<http://fdri.ceh.ac.uk/id/network/cosmos>"
       "@type": "<fdri:EnvironmentalMonitoringNetwork>"
       "<dct:title>": "COSMOS@en"
+  - name: SoilType
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-soil-type>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site Soil Type"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/soil>
+      "<fdri:valueScheme>": <::SoilTypeScheme>
+  - name: Public
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-public>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site Is Public"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/public-access>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-site>
+  - name: Snow
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-snow>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site Monitors Snow"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/monitors-snow>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-site>
+  - name: LocationSource
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-location-source>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site location source"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/location-source>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-site>
+  - name: BedrockClass
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-bedrock-class>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site bedrock classification"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/bedrock>
+      "<fdri:valueScheme>": <::BedrockClassScheme>
+  - name: BedrockSuperClass
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-bedrock-superclass>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site bedrock classification (superclass)"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/bedrock>
+      "<fdri:valueScheme>": <::BedrockClassScheme>
+  - name: BedrockSuperSeries
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-bedrock-superseries>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site bedrock classification (superseries)"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/bedrock>
+      "<fdri:valueScheme>": <::BedrockClassScheme>
+  - name: SaarValue
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-saar-1961-1990>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "SAAR 1961-1990"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/saar>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-site>
+  - name: SiteClass
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-class>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site classification"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-site>
+  - name: WebImages
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-web-images>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site web image count"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/count>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-site-images>
+  - name: SiteClass
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/host-class>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Site host classification"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-site-host>
+  - name: StationCalibrated
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-calibrated>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Station calibrated"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/calibrated>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-station>
+  - name: StationFlux
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-flux>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Station flux"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/flux>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-station>
+  - name: StationCrs2Mod
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-crs2-mod>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Station CRS2 is MOD"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/crs2-mod>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-station>
+  - name: StationFullTdtArray
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-full-tdt-array>"
+      "@type": <fdri:ComplexObservableProperty>
+      "<skos:prefLabel>": "Station has full TDT array"
+      "<iop:hasProperty>": <http://fdri.ceh.ac.uk/ref/common/parameter/full-tdt-array>
+      "<iop:hasObjectOfInterest>": <http://fdri.ceh.ac.uk/ref/common/object-of-interest/cosmos-station>
 
 resources:
     - name: MonitoredFeature
@@ -111,7 +220,7 @@ resources:
             properties:
               "@id" : "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/soil-type>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-soil-type>"
               "<fdri:hasValue>":
                 name: "SoilTypeValue"
                 properties:
@@ -125,17 +234,6 @@ resources:
                       "<skos:prefLabel>": "{SOIL_TYPE}@en"
                       "<skos:inScheme>": <::SoilTypeScheme>
                       "^<skos:hasTopConcept>": "<::SoilTypeScheme>"
-          - name: Calibrated
-            properties:
-              "@id": "<_>"
-              "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-calibrated>"
-              "<fdri:hasValue>":
-                name: "CalibratedValue"
-                properties:
-                  "@id": <_>
-                  "@type": "<schema:PropertyValue>"
-                  "<schema:value>": "{CALIBRATED | asBoolean('y')}"
           - name: Public
             properties:
               "@id": "<_>"
@@ -169,39 +267,6 @@ resources:
                   "@id": <_>
                   "@type": "<schema:PropertyValue>"
                   "<schema:value>": "{LOCATION_SOURCE}"
-          - name: Flux
-            properties:
-              "@id": "<_>"
-              "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-flux>"
-              "<fdri:hasValue>":
-                name: "FluxValue"
-                properties:
-                  "@id": <_>
-                  "@type": "<schema:PropertyValue>"
-                  "<schema:value>": "{FLUX | asBoolean('y')}"
-          - name: Crs2IsMod
-            properties:
-              "@id": "<_>"
-              "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-csr2-mod>"
-              "<fdri:hasValue>":
-                name: "Crs2IsModValue"
-                properties:
-                  "@id": <_>
-                  "@type": "<schema:PropertyValue>"
-                  "<schema:value>": "{CRS2_IS_MOD | asBoolean('y')}"
-          - name: FullTdtArray
-            properties:
-              "@id": "<_>"
-              "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-full-tdt-array>"
-              "<fdri:hasValue>":
-                name: "FullTdtArrayValue"
-                properties:
-                  "@id": <_>
-                  "@type": "<schema:PropertyValue>"
-                  "<schema:value>": "{FULL_TDT_ARRAY | asBoolean('y')}"
           - name: BedrockClass
             requires:
               BEDROCK_CLASS:
@@ -287,7 +352,7 @@ resources:
                 properties:
                   "@id": "<_>"
                   "@type": "<schema:PropertyValue>"
-                  "schema:value>": "{SITE_CLASS | asDecimal}"
+                  "<schema:value>": "{SITE_CLASS | asDecimal}"
           - name: WebImages
             properties:
               "@id": "<_>"
@@ -299,7 +364,7 @@ resources:
                   "@id": "<_>"
                   "@type": "<schema:PropertyValue>"
                   # NOTE: Should be converted to integer. Not sure why it is a decimal in the CSV
-                  "schema:value>": "{WEB_IMAGES | asInt}"
+                  "<schema:value>": "{WEB_IMAGES | asInt}"
           - name: HostClass
             properties:
               "@id": "<_>"
@@ -311,7 +376,7 @@ resources:
                 properties:
                   "@id": "<_>"
                   "@type": "<schema:PropertyValue>"
-                  "schema:value>": "{HOST_CLASS | asDecimal}"
+                  "<schema:value>": "{HOST_CLASS | asDecimal}"
 
 
     - name: MonitoringPlatform
@@ -332,7 +397,7 @@ resources:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-calibrated>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-calibrated>"
               "<fdri:hasValue>":
                 name: "CalibratedValue"
                 properties:
@@ -343,7 +408,7 @@ resources:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-flux>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-flux>"
               "<fdri:hasValue>":
                 name: "FluxValue"
                 properties:
@@ -354,7 +419,7 @@ resources:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-csr2-mod>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-crs2-mod>"
               "<fdri:hasValue>":
                 name: "Crs2IsModValue"
                 properties:
@@ -365,7 +430,7 @@ resources:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-full-tdt-array>"
+              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/station-full-tdt-array>"
               "<fdri:hasValue>":
                 name: "FullTdtArrayValue"
                 properties:
