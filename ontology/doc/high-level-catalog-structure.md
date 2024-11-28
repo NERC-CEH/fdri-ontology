@@ -103,7 +103,9 @@ Core dataset metadata is modelled using concepts from DCAT with some extensions 
 
 Quality metrics over datasets are modelled as `sosa:Observation` instances with a `sosa:hasFeatureOfInterest` of the `dcat:Dataset`. This means that quality metric definitions can be managed as a subset of the observed properties for FDRI. Metrics that cover a time slice of the dataset (e.g. daily data availabilty metrics) can be modelled as `sosa:Observation` with a `sosa:phenomenonTime` specifed as a `time:Interval` which defines the bounds of the slice.
 
-Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type to represent the group of datasets and the `dcat:inSeries` relation to relate a dataset to the series that it is a part of. A dataset may be in multiple series - e.g. a time-series of air temperature measurements from an FDRI weather station may be a member of a series of all measurements from that station (which may in turn be a member of a series of all measurements from the site), and may also be a member of a series of all air temperature time series from all stations in the FDRI network. Dataset series should be soft-typed with `dct:type` using a taxonomy of series types to be defined by the project to make it easy to distinguish between different types of dataset series (e.g. StationDatasetSeries, SiteDatasetSeries, NetworkDatasetSeries, NetworkVariableDatasetSeries).
+Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type to represent the group of datasets and the `dcat:inSeries` relation to relate a dataset to the series that it is a part of. A dataset may be in multiple series - e.g. a time-series of air temperature measurements from an FDRI weather station may be a member of a series of all measurements from that station (which may in turn be a member of a series of all measurements from the site), and may also be a member of a series of all air temperature time series from all stations in the FDRI network. Dataset series should be soft-typed with `dct:type` using a taxonomy of series types to be defined by the project to make it easy to distinguish between different types of dataset series (e.g. StationDatasetSeries, SiteDatasetSeries, NetworkDatasetSeries, NetworkVariableDatasetSeries). 
+
+The property `fdri:originatingFacility` can be used to reference the `EnvironmentalMonitoringFacility` from which observations contained in the dataset have come. The choice of facility should be a facility  permanently associated with the observations in the dataset, so prefer the site at which the sensor equipment is located over sensors or packages which may be replaced without starting a new dataset. This property may also be used with `fdri:ObservationDatasetSeries` in which case the referenced facility should be the `EnvironmentalMonitoringSite` for a series soft-typed as `SiteDatasetSeries`, or the `EnvironmentalMonitoringStation` for series soft-typed as `StationDatasetSeries`.
 
 > **NOTE**
 > The use of dataset-level quality metric observations can be reserved for aggregate metrics such as data availability metrics. Row-level metrics could (and arguably should) be managed in the underlying data store.
@@ -154,6 +156,7 @@ Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type 
   ObservationDataset <|-- ObservationDatasetSeries
   CatalogResource --> Concept: dct_theme
   ObservationDataset --> ObservedProperty: sosa_observedProperty
+  ObservationDataset --> EnvironmentalMonitoringFacility: fdri_originatingFacility
   CatalogResource --> Agent: dct_creator
   CatalogResource --> Agent: dct_publisher
   DatasetSeries --|> Dataset
