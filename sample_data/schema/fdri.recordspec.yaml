@@ -959,6 +959,7 @@ records:
         propertyUri: fdri:hasCurrentConfiguration
         kind: object
         required: true
+        repeatable: true
         constraints:
           - record: ConfigurationItem
   
