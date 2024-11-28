@@ -209,7 +209,6 @@ records:
       environmentalDomain:
         propertyUri: fdri:environmentalDomain
         kind: object
-        required: true
         constraints:
           - record: EnvironmentalDomain
       hasContextObject:
@@ -960,6 +959,7 @@ records:
         propertyUri: fdri:hasCurrentConfiguration
         kind: object
         required: true
+        repeatable: true
         constraints:
           - record: ConfigurationItem
   

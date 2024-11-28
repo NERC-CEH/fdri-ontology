@@ -96,7 +96,7 @@ build/landCoverLcm.csv: src/LAND_COVER_LCM.csv sql/landCoverLcm.sql | build
 build/timeSeriesExt.csv: src/TIMESERIES.csv src/intervalDuration.csv sql/timeSeriesExt.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/timeSeriesExt.sql"
 
-build/siteInstVar.csv: src/SITE_INSTRUMENTATION.csv src/VARIABLE_INSTRUMENTATION.csv sql/siteInstVar.sql | build
+build/siteInstVar.csv: src/SITE_INSTRUMENTATION.csv src/VARIABLE_INSTRUMENTATION.csv src/variableProperties.csv sql/siteInstVar.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/siteInstVar.sql"
 
 build/timeSeriesProperty.csv: src/TIMESERIES.csv sql/timeSeriesProperty.sql | build

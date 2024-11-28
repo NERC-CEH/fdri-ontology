@@ -29,8 +29,15 @@ resources:
       "@type": "<fdri:ComplexObservableProperty>"
       "<skos:inScheme>": "<::COPScheme>"
       "^<skos:hasTopConcept>": "<::COPScheme>"
-      # TODO: Object of interest. May need a separate mapping table
-      # TODO: Environmental domain. Will need a separate mapping table
+      "<skos:prefLabel>": "{DESCRIPTION}@en"
+      "<fdri:aggregationPeriod>": "{INTERVAL}^^<xsd:duration>"
+      "<fdri:valueStatistic>": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC|slug}>"
+  - name: COPUnitName
+    requires:
+      UNIT_NAME:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "@type": "<fdri:ComplexObservableProperty>"
       "<fdri:unitName>": "{UNIT_NAME}@en"
   - name: Parameter
     requires:
@@ -75,8 +82,14 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
       "@type": "<skos:Concept>"
-      "<skos:prefLabel>": "{UNIT_NAME}@en"
       "^<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+  - name: UnitLabel
+    requires:
+      UNIT_NAME:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
+      "@type": "<skos:Concept>"
+      "<skos:prefLabel>": "{UNIT_NAME}@en" 
   - name: UnitMatch
     requires:
       UNIT:
