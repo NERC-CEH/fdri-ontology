@@ -1,11 +1,11 @@
 # Worked Example
 
 ## High-Level Outline
-
 ```mermaid
 flowchart TB
 NETWORK --contains----> SITE
 SITE --hasPart----> PLATFORM
+PLATFORM --hosts--> PLATFORM
 PLATFORM --isSampleOf--> FEATURE
 SENSOR_DEPLOYMENT --deployedOnPlatform--> PLATFORM
 SENSOR_DEPLOYMENT --deployedSystem--> SENSOR
@@ -20,6 +20,94 @@ LEVEL2_TIME_SERIES --wasModifiedBy--> LEVEL2_ACTIVITY
 LEVEL2_ACTIVITY --used--> RAW_TIME_SERIES
 LEVEL3_TIME_SERIES --wasModifiedBy--> AGGREGATION_ACTIVITY
 AGGREGATION_ACTIVITY --used--> LEVEL2_TIME_SERIES
+```
+`NETWORK` - an `EnvironmentalMonitoringNetwork` such as COSMOS.
+`SITE` - a single location which hosts one or more pieces of infrastructure to which sensors may be attached
+`PLATFORM` - a single piece of physical infrastructure to which one or more sensors, and/or one or more other pieces of infrastructure may be attached. 
+`FEATURE` - the environmental feature which is monitored by sensors on a platform.
+
+**QUESTION**: Should the feature be attached to the `SITE` rather than the `PLATFORM`. The implication of doing that would be that we would say that the air temperature sensor on the weather post at a site and the soil temperature sensor in the ground at the same site are monitoring the same abstract notion of the "environment at the site", rather than monitoring different "environment of the weather post" and "environment of the soil monitoring station", which I think may be a level of detail too fine-grained to be useful?
+
+## Deployments of sensors and sensor packages
+
+### "Simple" deployment of a single sensor to a post at a site
+
+A single sensor is affixed to a post installed at a site.
+The SENSOR_DEPLOYMENT carries metadata specifying the date range of the deployment.
+
+The `hosts` relationship is an additional, optional relationship we might include in the metadata to make discovery of all sensors which are currently deployed to the platform easier to discover.
+
+```mermaid
+flowchart
+SITE["`SITE
+≪EnvironmentalMonitoringSite≫`"] --hasPart--> POST["`POST
+≪EnvironmentalMonitoringPlatform≫`"]
+DEPLOYMENT["`SENSOR_DEPLOYMENT
+≪Deployment≫`"] --deployedSystem--> SENSOR["`SENSOR
+≪EnvironmentalMonitoringSensor`"]
+DEPLOYMENT --deployedOnPlatform--> POST
+POST -.hosts.-> SENSOR
+```
+
+NOTE: To accomodate projects where they may not have as much available detail about structures at a site, we could also defined `EnvironmentalMonitoringSite` to be a SOSA/SSN `Platform` which would allow it to directly host sensors and sensor packages with no intervening `EnvironmentalMonitoringPlatform`. This would also allow us to use the SOSA/SSN `hosts` relationship to relate `SITE` to `POST`, rather than `hasPart` which might make for more consistent navigation?
+
+### "Complex" deployment of a package of sensors to a site
+
+A package consisting of two sensors is affixed to a post installed at a site.
+
+The POST `hosts` the PACKAGE, which in turn `hosts` the two sensors. There is a deployment record for the package of sensors, as well as separate deployment records for the sensor contained in the package.
+
+```mermaid
+flowchart
+SITE["`SITE
+≪EnvironmentalMonitoringPlatform≫`"] --hasPart--> POST["`POST
+≪EnvironmentalMonitoringPlatform≫`"]
+PACKAGE["`PACKAGE
+≪EnvironmentalMonitoringPlatform≫
+≪EnvironmentalMonitoringSystem≫`"] --hasSubsystem--> SENSOR_1 & SENSOR_2
+PACKAGE_DEPLOYMENT["`PACKAGE_DEPLOYMENT
+≪Deployment≫`"] --deployedSystem--> PACKAGE
+PACKAGE_DEPLOYMENT --deployedOnPlatform--> POST
+SENSOR_1_DEPLOYMENT["`SENSOR_1_DEPLOYMENT
+≪Deployment≫`"] -- deployedSystem--> SENSOR_1
+SENSOR_1_DEPLOYMENT --deployedOnPlatform --> PACKAGE
+SENSOR_2_DEPLOYMENT["`SENSOR_2_DEPLOYMENT
+≪Deployment≫`"] -- deployedSystem--> SENSOR_2
+SENSOR_2_DEPLOYMENT --deployedOnPlatform --> PACKAGE
+PACKAGE -.hosts.-> SENSOR_1 & SENSOR_2
+POST -.hosts.-> PACKAGE
+```
+
+When SENSOR_1  in PACKAGE is replaced by SENSOR_3, the deployment of SENSOR_1 ends, and the deployment of SENSOR_3 starts. The `hosts`, and `hasSubsystem` relationships between the PACKAGE and SENSOR_1 would have to be removed as it is no longer a current part of the PACKAGE, but the historic record of the use of SENSOR_1 by PACKAGE is still recorded in the SENSOR_1_DEPLOYMENT.
+
+```mermaid
+flowchart
+SITE["`SITE
+≪EnvironmentalMonitoringSite≫`"] --hasPart--> POST["`POST
+≪EnvironmentalMonitoringPlatform≫`"]
+PACKAGE["`PACKAGE
+≪EnvironmentalMonitoringPlatform≫
+≪EnvironmentalMonitoringSystem≫`"] --hasSubsystem--> SENSOR_2 & SENSOR_3
+PACKAGE_DEPLOYMENT["`PACKAGE_DEPLOYMENT
+≪Deployment≫`"] --deployedSystem--> PACKAGE
+PACKAGE_DEPLOYMENT --deployedOnPlatform--> POST
+SENSOR_1_DEPLOYMENT["`SENSOR_1_DEPLOYMENT
+≪Deployment≫
+startedAt: 2020-01-01
+endedAt: 2024-11-28`"] -- deployedSystem--> SENSOR_1
+SENSOR_1_DEPLOYMENT --deployedOnPlatform --> PACKAGE
+SENSOR_2_DEPLOYMENT["`SENSOR_2_DEPLOYMENT
+≪Deployment≫
+startedAt: 2020-01-01
+`"] -- deployedSystem--> SENSOR_2
+SENSOR_2_DEPLOYMENT --deployedOnPlatform --> PACKAGE
+SENSOR_3_DEPLOYMENT["`SENSOR_3_DEPLOYMENT
+≪Deployment≫
+startedAt: 2024-11-28
+`"] -- deployedSystem--> SENSOR_3
+SENSOR_3_DEPLOYMENT --deployedOnPlatform --> PACKAGE
+PACKAGE -.hosts.-> SENSOR_2 & SENSOR_3
+POST -.hosts.-> PACKAGE
 ```
 
 ## COSMOS station at Alice Holt
