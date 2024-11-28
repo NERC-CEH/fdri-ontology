@@ -107,6 +107,8 @@ Related datasets are gathered together using the DCAT `dcat:DatasetSeries` type 
 
 The property `fdri:originatingFacility` can be used to reference the `EnvironmentalMonitoringFacility` from which observations contained in the dataset have come. The choice of facility should be a facility  permanently associated with the observations in the dataset, so prefer the site at which the sensor equipment is located over sensors or packages which may be replaced without starting a new dataset. This property may also be used with `fdri:ObservationDatasetSeries` in which case the referenced facility should be the `EnvironmentalMonitoringSite` for a series soft-typed as `SiteDatasetSeries`, or the `EnvironmentalMonitoringStation` for series soft-typed as `StationDatasetSeries`.
 
+The property `fdri:originatingProgramme` can be used to reference the `EnvironmentalMonitoringProgramme` from which observations contained in the dataset have come. This provides a more direct way to group datasets from the same programme than going via the `fdri:ProgrammeCatalog`
+
 > **NOTE**
 > The use of dataset-level quality metric observations can be reserved for aggregate metrics such as data availability metrics. Row-level metrics could (and arguably should) be managed in the underlying data store.
 
@@ -117,6 +119,7 @@ The property `fdri:originatingFacility` can be used to reference the `Environmen
   class ConceptScheme["skos:ConceptScheme"]
   class ObservedProperty["fdri:ComplexObservableProperty"]
   class Program["fdri:EnvironmentalMonitoringProgramme"]
+  class Facility["fdri:EnvironmentalMonitoringFacility"]
   class Agent["fdri:Agent"]
   class GeospatialFeatureOfInterest["frdi:GeospatialFeatureOfInterest"]
   class QualityObservation["fdri:QualityObservation"]
@@ -156,7 +159,8 @@ The property `fdri:originatingFacility` can be used to reference the `Environmen
   ObservationDataset <|-- ObservationDatasetSeries
   CatalogResource --> Concept: dct_theme
   ObservationDataset --> ObservedProperty: sosa_observedProperty
-  ObservationDataset --> EnvironmentalMonitoringFacility: fdri_originatingFacility
+  ObservationDataset --> Facility: fdri_originatingFacility
+  ObservationDataset --> Program: fdri_originatingProgramme
   CatalogResource --> Agent: dct_creator
   CatalogResource --> Agent: dct_publisher
   DatasetSeries --|> Dataset

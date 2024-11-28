@@ -218,6 +218,12 @@
                      rdfs:comment "Relates a dataset of observations to the Environmental Monitoring Facility from which the observations originated. The choice of facilit(ies) to use as the value of this property should be restricted to those which apply to all observations in the temporal range of the dataset (such as a site or a platform), and not to facilities which might be replaced over the time span of the dataset (such as a replacable sensor or sensor package)."@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/originatingProgramme
+:originatingProgramme rdf:type owl:ObjectProperty ;
+                      rdfs:domain :ObservationDataset ;
+                      rdfs:range :EnvironmentalMonitoringProgramme .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/parameter
 :parameter rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
@@ -1006,6 +1012,10 @@
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :originatingFacility ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :originatingProgramme ;
                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;

@@ -1056,6 +1056,12 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
+      originatingProgramme:
+        propertyUri: fdri:originatingProgramme
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringProgramme
       isVersionOf:
         propertyUri: dct:isVersionOf
         kind: object
