@@ -13,21 +13,10 @@ one_offs:
       "@type": "<fdri:ComplexObservablePropertyScheme>"
 
 resources:
-  # - name: COP
-  #   properties:
-  #     "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{COLUMN_NAME|slug}>"
-  #     "@type": "<fdri:ComplexObservableProperty>"
-  #     "<skos:inScheme>": "<::COPScheme>"
-  #     "^<skos:hasTopConcept>": "<::COPScheme>"
-  #     "<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PARAMETER_ID}>"
-  #     # TODO: Object of interest. May need a separate mapping table
-  #     # TODO: Environmental domain. Will need a separate mapping table
-  #     "<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT_ID}>"
   - name: TimeSeries
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:TimeSeriesDatasetSeries>"
       "<dct:title>": "{TIMESERIES_NAME}@en"
-      # "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{COLUMN_NAME|slug}>"
       "<fdri:valueStatistic>": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID}>"
       "<fdri:aggregationPeriod>": "{DURATION}^^<xsd:duration>"
