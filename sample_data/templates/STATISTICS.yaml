@@ -11,7 +11,8 @@ one_offs:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics>"
       "@type": "<fdri:ValueStatisticScheme>"
-      "<rdfs:label>": "Value Statistics"
+      "<rdfs:label>": "Value Statistics@en"
+      "<dct:title>": "Value Statistics@en"
 
 resources:
   - name: StatisticsConcept

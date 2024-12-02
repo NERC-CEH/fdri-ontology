@@ -7,7 +7,7 @@ SCHEMA_FILE = $(SCHEMA_BASE)/fdri.recordspec.yaml
 RECORDS = \
 	ComplexObservableProperty \
 	DataProcessingActivity \
-	EnvironmentalFeatureOfInterest \
+	GeospatialFeatureOfInterest \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
 	EnvironmentalMonitoringSite \
@@ -33,7 +33,8 @@ SAMPLES = \
 	build/CORRECTION_FACTORS.ttl \
 	build/PARAMETER_RANGES_QC.ttl \
 	build/Firmware_history.ttl \
-	build/sensorFaultsSplit.ttl
+	build/sensorFaultsSplit.ttl \
+	build/processingLevels.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
