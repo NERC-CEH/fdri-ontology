@@ -3,7 +3,7 @@
   "@context": "../../build/context/EnvironmentalMonitoringPlaform.context.jsonld",
   "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-platform/bunny-1",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringPlatform",
-  "title": [
+  "label": [
     {
       "@value": "Bunny Park 1",
       "@language": "en"
@@ -12,9 +12,9 @@
   "isPartOf": {
     "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-site/bunny"
   },
-  "hasGeometry": {
+  "hasGeometry": [{
     "asWKT": "<http://www.opengis.net/def/crs/EPSG/0/27700> POINT(123, 456)"
-  },
+  }],
   "operatingPeriod": {
     "startDate": {
       "@value": "2015-01-27",

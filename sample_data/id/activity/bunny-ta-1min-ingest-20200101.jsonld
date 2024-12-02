@@ -6,10 +6,10 @@
   "type": {
     "@id": "http://fdri.ceh.ac.uk/id/data-processing-activity-type/ingest-raw"
   },
-  "qualifiedAssociation": {
+  "qualifiedAssociation": [{
     "agent": {
       "@id": "http://fdri.ceh.ac.uk/id/agent/ingester@123abcde"
     }
-  },
+  }],
   "startedAtTime": "2020-01-01T08:50:03.000Z"
 }
