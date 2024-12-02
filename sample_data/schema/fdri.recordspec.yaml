@@ -46,6 +46,28 @@ mixins:
         constraints:
           - record: Annotation
 
+  WithLabelAndComment:
+    label:
+      - value: With Label And Comment
+        language: en
+    description:
+      - value: |
+          Provides the RDF Schema properties for label and comment.
+          Primarily used for the labelling and description of non-document things other than SKOS concepts.
+    properties:
+      label:
+        propertyUri: rdfs:label
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      comment:
+        propertyUri: rdfs:comment
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+
   WithTitleAndDescription:
     label:
       - value: With Title And Description Mixin
@@ -53,9 +75,7 @@ mixins:
     description:
       - value: |
           Provides the Dublin Core properties for title and description.
-          There are a number of different properties that are commonly used in RDF for capturing the display label
-          and description of an item. Here we prefer the use of `dct:title` over `rdfs:label` and `dct:description` over
-          `rdfs:comment`.
+          Primarily used for the labelling and descrtipion of document-like things such as datasets, web pages and documents.
           This mixin does not apply to classes derived from `Concept` which instead use the properties defined by SKOS
           (`skos:prefLabel` and `skos:scopeNote`).
 
@@ -146,10 +166,14 @@ records:
   Agent:
     classUri: fdri:Agent
     shortCode: Agent
+    mixins:
+      - WithLabelAndComment
 
   Annotation:
     classUri: fdri:Annotation
     shortCode: Annotation
+    mixins:
+      - WithLabelAndComment
     properties:
       property:
         propertyUri: fdri:property
@@ -445,6 +469,8 @@ records:
   DataProcessingActivity:
     classUri: fdri:DataProcessingActivity
     shortCode: DataProcessingActivity
+    mixins:
+      - WithLabelAndComment
     properties:
       type:
         propertyUri: dct:type
@@ -490,6 +516,7 @@ records:
     shortCode: DataProcessingConfiguration
     extends: Plan
     mixins:
+      - WithTitleAndDescription
       - WithPublicationMetadata
     properties:
       type:
@@ -535,7 +562,7 @@ records:
     classUri: fdri:Deployment
     shortCode: Deployment
     mixins:
-      - WithTitleAndDescription
+      - WithLabelAndComment
     properties:
       startedAtTime:
         propertyUri: prov:startedAtTime
@@ -611,7 +638,7 @@ records:
     classUri: fdri:EnvironmentalMonitoringFacility
     shortCode: EnvironmentalMonitoringFacility
     mixins:
-      - WithTitleAndDescription
+      - WithLabelAndComment
       - WithAnnotations
       - WithIndexedGeometry
     properties:
@@ -683,7 +710,7 @@ records:
     shortCode: EnvironmentalMonitoringNetwork
     mixins:
       - WithAnnotations
-      - WithTitleAndDescription
+      - WithLabelAndComment
     properties:
       contains:
         propertyUri: fdri:contains
@@ -707,7 +734,7 @@ records:
     shortCode: EnvironmentalMonitoringProgramme
     mixins:
       - WithAnnotations
-      - WithTitleAndDescription
+      - WithLabelAndComment
       
   EnvironmentalMonitoringSensor:
     extends: EnvironmentalMonitoringSystem
@@ -780,12 +807,6 @@ records:
         nested: true
         constraints:
           - record: ConfigurationValueSeries
-      comment:
-        propertyUri: rdfs:comment
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: rdf:langString
       dateOfPurchase:
         propertyUri: fdri:dateOfPurchase
         kind: literal
@@ -852,6 +873,8 @@ records:
     extends: Plan
     classUri: fdri:ExternalDataProcessingConfiguration
     shortCode: ExternalDataProcessingConfiguration
+    mixins:
+      - WithTitleAndDescription
     properties:
       repository:
         propertyUri: fdri:repository
@@ -884,7 +907,7 @@ records:
     classUri: fdri:Fault
     shortCode: Fault
     mixins:
-      - WithTitleAndDescription
+      - WithLabelAndComment
     properties:
       affectedFacility:
         propertyUri: fdri:affectedFacility
@@ -907,6 +930,8 @@ records:
   Feature:
     classUri: geos:Feature
     shortCode: Feature
+    mixins:
+      - WithLabelAndComment
     properties:
       hasGeometry:
         propertyUri: geos:hasGeometry
@@ -1137,7 +1162,7 @@ records:
     classUri: fdri:Procedure
     shortCode: Procedure
     mixins:
-      - WithTitleAndDescription
+      - WithLabelAndComment
     properties:
       procedurePeriodicity:
         propertyUri: fdri:procedurePeriodicity
@@ -1471,7 +1496,24 @@ records:
   Unit:
     classUri: qudt:Unit
     shortCode: Unit
+    extends: Concept
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: UnitScheme
   
+  UnitScheme:
+    classUri: fdri:UnitScheme
+    shortCode: UnitScheme
+    properties:
+      hasTopConcept:
+        propertyUri: skos:hasTopConcept
+        kind: object
+        constraints:
+          - record: Unit
+
   ValueStatistic:
     extends: Concept
     classUri: fdri:ValueStatistic
