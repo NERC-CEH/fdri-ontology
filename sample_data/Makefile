@@ -33,7 +33,8 @@ SAMPLES = \
 	build/CORRECTION_FACTORS.ttl \
 	build/PARAMETER_RANGES_QC.ttl \
 	build/Firmware_history.ttl \
-	build/sensorFaultsSplit.ttl
+	build/sensorFaultsSplit.ttl \
+	build/processingLevels.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 

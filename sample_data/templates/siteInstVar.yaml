@@ -36,6 +36,8 @@ resources:
       "<dct:title>": "All Time Series for {VARIABLE_NAME} from site {SITE_ID}@en"
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
+      "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/mixed>
+      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
 
   - name: Feature
     properties:
@@ -51,6 +53,8 @@ resources:
       "<dcat:inSeries>": 
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{VARIABLE_NAME|slug}-raw>"
+      "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/raw>
+      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
       "<prov:wasGeneratedBy>":
         name: IngestActivity
         properties:
@@ -69,6 +73,8 @@ resources:
       "<dcat:inSeries>":
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{VARIABLE_NAME|slug}-infill>"
+      "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/2>
+      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
       "<prov:wasGeneratedBy>":
         name: QCInfillActivity
         properties:
@@ -78,6 +84,7 @@ resources:
           "<prov:used>": <::RawSeries>
           "<prov:startedAt>": "2024-11-26T10:00:00Z^^<xsd:dateTime>"
           "<prov:endedAt>": "2024-11-26T10:03:33Z^^<xsd:dateTime>"
+          "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/2>
           "<prov:qualifiedAssociation>":
             - name: PreprocessingStep
               properties:
@@ -132,14 +139,14 @@ resources:
       "@type": "<fdri:Deployment>"
       "<dct:description>": "{COMMENTS}@en"
 
-  - name: ObservedProperty
-    requires:
-      VARIABLE_NAME:
-      PROPERTY:
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
-      "@type": "<fdri:ComplexObservableProperty>"
-      "^<sosa:observedProperty>":
-        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
-        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
-        - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"
+  # - name: ObservedProperty
+  #   requires:
+  #     VARIABLE_NAME:
+  #     PROPERTY:
+  #   properties:
+  #     "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+  #     "@type": "<fdri:ComplexObservableProperty>"
+  #     "^<sosa:observedProperty>":
+  #       - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
+  #       - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
+  #       - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"
