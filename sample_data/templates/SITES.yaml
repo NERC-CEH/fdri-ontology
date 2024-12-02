@@ -26,7 +26,7 @@ one_offs:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/network/cosmos>"
       "@type": "<fdri:EnvironmentalMonitoringNetwork>"
-      "<dct:title>": "COSMOS@en"
+      "<rdfs:label>": "COSMOS@en"
   - name: SoilType
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/site-soil-type>"
@@ -142,7 +142,7 @@ resources:
       properties:
         "@id": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
         "@type": "<fdri:GeospatialFeatureOfInterest>"
-        "<dct:title>": "Environment at {SITE_NAME}@en"
+        "<rdfs:label>": "Environment at {SITE_NAME}@en"
         "<geos:hasGeometry>": 
             - name: EastingsNorthingsPoint
               properties:
@@ -165,8 +165,8 @@ resources:
       properties:
         "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
         "@type": <fdri:EnvironmentalMonitoringSite>
-        "<dct:title>": "{SITE_NAME}@en"
-        "<dct:description>": "{SITE_DESC}@en"
+        "<rdfs:label>": "{SITE_NAME}@en"
+        "<rdfs:comment>": "{SITE_DESC}@en"
         "^<fdri:contains>": <::Cosmos>
         "<geos:hasGeometry>": 
             - name: EastingsNorthingsPoint
@@ -383,7 +383,7 @@ resources:
       properties:
         "@id": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
         "@type": <fdri:EnvironmentalMonitoringPlatform>
-        "<dct:title>": "COSMOS monitoring station at {SITE_NAME}@en"
+        "<rdfs:label>": "COSMOS monitoring station at {SITE_NAME}@en"
         "<dct:isPartOf>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
         "^<dct:hasPart>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
         "<geos:hasGeometry>":

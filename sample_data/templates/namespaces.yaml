@@ -7,3 +7,4 @@ namespaces:
     schema: http://schema.org/
     sosa: http://www.w3.org/ns/sosa/
     ssn: http://www.w3.org/ns/ssn/
+    rdfs: http://www.w3.org/2000/01/rdf-schema#
