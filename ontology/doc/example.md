@@ -22,11 +22,11 @@ LEVEL3_TIME_SERIES --wasModifiedBy--> AGGREGATION_ACTIVITY
 AGGREGATION_ACTIVITY --used--> LEVEL2_TIME_SERIES
 ```
 `NETWORK` - an `EnvironmentalMonitoringNetwork` such as COSMOS.
-`SITE` - a single location which hosts one or more pieces of infrastructure to which sensors may be attached
+`SITE` - a single location which hosts one or more pieces of infrastructure to which sensors may be attached, or within which sensors may be placed.
 `PLATFORM` - a single piece of physical infrastructure to which one or more sensors, and/or one or more other pieces of infrastructure may be attached. 
 `FEATURE` - the environmental feature which is monitored by sensors on a platform.
 
-**QUESTION**: Should the feature be attached to the `SITE` rather than the `PLATFORM`. The implication of doing that would be that we would say that the air temperature sensor on the weather post at a site and the soil temperature sensor in the ground at the same site are monitoring the same abstract notion of the "environment at the site", rather than monitoring different "environment of the weather post" and "environment of the soil monitoring station", which I think may be a level of detail too fine-grained to be useful?
+> **QUESTION**: Should the feature be attached to the `SITE` rather than the `PLATFORM`. The implication of doing that would be that we would say that the air temperature sensor on the weather post at a site and the soil temperature sensor in the ground at the same site are monitoring the same abstract notion of the "environment at the site", rather than monitoring different "environment of the weather post" and "environment of the soil monitoring station", which I think may be a level of detail too fine-grained to be useful?
 
 ## Deployments of sensors and sensor packages
 
@@ -49,7 +49,7 @@ DEPLOYMENT --deployedOnPlatform--> POST
 POST -.hosts.-> SENSOR
 ```
 
-NOTE: To accomodate projects where they may not have as much available detail about structures at a site, we could also defined `EnvironmentalMonitoringSite` to be a SOSA/SSN `Platform` which would allow it to directly host sensors and sensor packages with no intervening `EnvironmentalMonitoringPlatform`. This would also allow us to use the SOSA/SSN `hosts` relationship to relate `SITE` to `POST`, rather than `hasPart` which might make for more consistent navigation?
+> **QUESTION**: To accomodate projects where they may not have as much available detail about structures at a site, we could also defined `EnvironmentalMonitoringSite` to be a SOSA/SSN `Platform` which would allow it to directly host sensors and sensor packages with no intervening `EnvironmentalMonitoringPlatform`. This would also allow us to use the SOSA/SSN `hosts` relationship to relate `SITE` to `POST`, rather than `hasPart` which might make for more consistent navigation?
 
 ### "Complex" deployment of a package of sensors to a site
 
