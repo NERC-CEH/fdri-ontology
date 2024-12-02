@@ -27,6 +27,12 @@ one_offs:
       "@id": "<http://fdri.ceh.ac.uk/id/agent/fdri-infill-service@4567>"
       "@type": "<fdri:SoftwareAgent>"
       "<dct:title>": "FDRI Infill Service"
+  - name: CosmosProgramme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/programme/cosmos>"
+      "@type": "<fdri:EnvironmentalMonitoringProgramme>"
+      "<rdfs:label>": "COSMOS Programme@en"
+      "<fdri:utilises>": "<http://fdri.ceh.ac.uk/id/network/cosmos>"
 
 resources:
   - name: SiteTimeSeries
@@ -38,6 +44,8 @@ resources:
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/mixed>
       "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
+      "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
+      "<fdri:originatingProgramme>": <::CosmosProgramme>
 
   - name: Feature
     properties:
@@ -54,6 +62,8 @@ resources:
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{VARIABLE_NAME|slug}-raw>"
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/raw>
+      "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
+      "<fdri:originatingProgramme>": <::CosmosProgramme>
       "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
       "<prov:wasGeneratedBy>":
         name: IngestActivity
@@ -74,6 +84,8 @@ resources:
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
         - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{VARIABLE_NAME|slug}-infill>"
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/2>
+      "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
+      "<fdri:originatingProgramme>": <::CosmosProgramme>
       "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
       "<prov:wasGeneratedBy>":
         name: QCInfillActivity
@@ -138,15 +150,3 @@ resources:
       "@id": "<http://fdri.ceh.ac.uk/id/activity/cosmos-deployment-{SITE_ID|slug}-{INSTRUMENT_ID|slug}-{INSTANCE|asInt}>"
       "@type": "<fdri:Deployment>"
       "<dct:description>": "{COMMENTS}@en"
-
-  # - name: ObservedProperty
-  #   requires:
-  #     VARIABLE_NAME:
-  #     PROPERTY:
-  #   properties:
-  #     "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
-  #     "@type": "<fdri:ComplexObservableProperty>"
-  #     "^<sosa:observedProperty>":
-  #       - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}>"
-  #       - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-raw>"
-  #       - "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-infill>"

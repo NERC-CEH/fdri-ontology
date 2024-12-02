@@ -737,6 +737,14 @@ records:
     mixins:
       - WithAnnotations
       - WithLabelAndComment
+    properties:
+      utilises:
+        propertyUri: fdri:utilises
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringNetwork
+          - record: EnvironmentalMonitoringFacility
       
   EnvironmentalMonitoringSensor:
     extends: EnvironmentalMonitoringSystem
