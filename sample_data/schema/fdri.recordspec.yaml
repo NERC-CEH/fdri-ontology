@@ -16,6 +16,8 @@ prefixes:
     uri: "http://qudt.org/schema/qudt/"
   - prefix: rdf
     uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  - prefix: rdfs
+    uri: http://www.w3.org/2000/01/rdf-schema#
   - prefix: schema
     uri: http://schema.org/
   - prefix: skos
@@ -98,7 +100,6 @@ mixins:
       wasGeneratedBy:
         propertyUri: prov:wasGeneratedBy
         kind: object
-        required: true
         constraints:
           - record: DataProcessingActivity
       wasModifiedBy:
@@ -482,6 +483,7 @@ records:
         propertyUri: prov:qualifiedAssociation
         kind: object
         nested: true
+        repeatable: true
         constraints:
           - record: QualifiedAssociation
       startedAtTime:
@@ -1313,6 +1315,7 @@ records:
       hadPlan:
         propertyUri: prov:hadPlan
         kind: object
+        repeatable: true
         constraints:
           - record: Plan
       hadRole:
