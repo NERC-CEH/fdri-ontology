@@ -25,7 +25,7 @@ resources:
         properties:
           "@id": "<_>"
           "@type": "<fdri:ConfigurationArgument>"
-          "<fdri:configurationParameter>": "<http://fdri.ceh.ac.uk/ref/common/configuration-parameter/correction-factor>"
+          "<fdri:parameter>": "<http://fdri.ceh.ac.uk/ref/common/configuration-parameter/correction-factor>"
           "<fdri:hasValue>":
             name: ConfigurationValue
             properties:

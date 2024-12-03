@@ -31,6 +31,7 @@ SAMPLES = \
 	build/timeSeriesProperty.ttl \
 	build/variableProperties.ttl \
 	build/CORRECTION_FACTORS.ttl \
+	build/CORRECTION_METHODS.ttl \
 	build/PARAMETER_RANGES_QC.ttl \
 	build/Firmware_history.ttl \
 	build/sensorFaultsSplit.ttl \
