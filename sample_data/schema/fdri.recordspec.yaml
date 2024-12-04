@@ -42,6 +42,12 @@ mixins:
           Allows metadata annotations to be added to the parent resource.
     properties:
       hasAnnotation:
+        label:
+          - value: annotation
+            lang: en
+        description:
+          - value: An annotation providing a property/value pair that applies to this resource.
+            lang: en
         propertyUri: fdri:hasAnnotation
         kind: object
         repeatable: true
@@ -58,12 +64,24 @@ mixins:
           Primarily used for the labelling and description of non-document things other than SKOS concepts.
     properties:
       label:
+        label:
+          - value: label
+            lang: en
+        description:
+          - value: A human-readable label for this resource.
+            lang: en
         propertyUri: rdfs:label
         kind: literal
         repeatable: true
         constraints:
           - datatype: rdf:langString
       comment:
+        label:
+          - value: comment
+            lang: en
+        description:
+          - value: A text comment providing a description of or additional information about this resource.
+            lang: en
         propertyUri: rdfs:comment
         kind: literal
         repeatable: true
@@ -82,12 +100,24 @@ mixins:
           (`skos:prefLabel` and `skos:scopeNote`).
     properties:
       title:
+        label:
+          - value: title
+            lang: en
+        description:
+          - value: The title by which this resource is known.
+            lang: en
         propertyUri: dct:title
         kind: literal
         repeatable: true
         constraints:
           -  datatype: rdf:langString
       description:
+        label:
+          - value: description
+            lang: en
+        description:
+          - value: A description of this resource and/or its content.
+            lang: en
         propertyUri: dct:description
         kind: literal
         repeatable: true
