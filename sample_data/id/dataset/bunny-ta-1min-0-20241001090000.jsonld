@@ -8,7 +8,9 @@
     { "@value": "1 minute air temperature for Bunny Park (Pre-processed)", "@language": "en"}
   ],
   "identifier": ["doi://...."],
-  "publisher": {"@id": "http://fdri.ceh.ac.uk/id/agent/ceh" },
+  "publisher": [
+    {"@id": "http://fdri.ceh.ac.uk/id/agent/ceh" }
+  ],
   "contributor": [
     {"@id": "https://catalogue.ceh.ac.uk/id/..."}
   ],
