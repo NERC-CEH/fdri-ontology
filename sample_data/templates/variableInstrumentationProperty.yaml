@@ -18,12 +18,10 @@ resources:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
       "@type": "<fdri:EnvironmentalMonitoringSystemType>"
 
-  - name: COP
+  - name: InstrumentProperty
     requires:
       PROPERTY:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
-      "@type": "<fdri:ComplexObservableProperty>"
-      "<skos:inScheme>": <::COPScheme>
-      "^<skos:hasTopConcept>": <::COPScheme>
-      "^<sosa:observes>": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
+      "@type": "<fdri:EnvironmentalMonitoringSystemType>"
+      "<sosa:observes>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"

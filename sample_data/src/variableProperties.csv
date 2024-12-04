@@ -69,7 +69,7 @@ Q_STD,Absolute humidity (std dev),Q,AbsoluteHumidity,Absolute humidity,air,,atmo
 RH,Relative humidity,RH,RelativeHumidity,Relative Humidity,air,,atmosphere,PCT,PERCENT_RH,percent,PT30M,MEAN_PREC
 RH_STD,Relative humidity (std dev),RH,RelativeHumidity,Relative Humidity,air,,atmosphere,PCT,PERCENT_RH,percent,PT30M,STDDEV_PREC
 RHO_A_MEAN,Air density,AIR_DENSITY,Density,Air Density,air,,atmosphere,KGM-3,KiloGM-PER-M3,Kgm-3,PT30M,INST
-SNOWD,Snow Distance ,SNOWD,Distance,Snow depth,snow,,,M,M,m,PT1D,MEAN_PREC
+SNOWD,Snow Distance ,SNOWD,Distance,Snow depth,snow,,,M,M,m,P1D,MEAN_PREC
 SNOWD_DISTANCE_COR,Snow distance corrected,SNOWD_DISTANCE,Distance,,,corrected,,M,M,m,PT30M,INST
 SNOWD_DISTANCE_UNC,Snow distance uncorrected,SNOWD_DISTANCE,Distance,,,uncorrected,,M,M,m,PT30M,INST
 SNOWD_SIGNALQUALITY,Snow distance quality number,diagnostic,,Diagnostic,,,,UNITLESS,UNITLESS,,PT30M,STDDEV_PREC
