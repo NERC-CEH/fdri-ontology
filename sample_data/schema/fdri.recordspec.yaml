@@ -709,6 +709,7 @@ records:
             lang: en
         propertyUri: skos:hasTopConcept
         kind: object
+        repeatable: true
         constraints:
           - record: Concept
 
@@ -1628,6 +1629,7 @@ records:
             lang: en
         propertyUri: fdri:contains
         kind: object
+        repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
 
@@ -3167,8 +3169,15 @@ records:
     shortCode: UnitScheme
     properties:
       hasTopConcept:
+        label:
+          - value: has top concept
+            lang: en
+        description:
+          - value: Relates a concept scheme to the concept(s) which appear at the top level of the concept scheme hierarchy.
+            lang: en
         propertyUri: skos:hasTopConcept
         kind: object
+        repeatable: true
         constraints:
           - record: Unit
 
