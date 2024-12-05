@@ -1037,6 +1037,10 @@
                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
                                       owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                       owl:onClass :ComplexObservableProperty
