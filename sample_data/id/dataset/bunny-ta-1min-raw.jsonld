@@ -11,6 +11,9 @@
   ],
   "identifier": ["doi:...."],
   "spatial": {"@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny-air" },
+  "hasFeatureOfInterest": [
+    {"@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny-air" }
+  ],
   "temporal": {
     "startDate": {"@value": "2017-01-01", "@type": "http://www.w3.org/2001/XMLSchema#date"},
     "endDate": {"@value": "2024-10-15", "@type": "http://www.w3.org/2001/XMLSchema#date"}
