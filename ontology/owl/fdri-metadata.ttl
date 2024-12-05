@@ -648,6 +648,14 @@
 :DataProcessingConfiguration rdf:type owl:Class ;
                              rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
                                              [ rdf:type owl:Restriction ;
+                                               owl:onProperty :appliesToFacility ;
+                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :appliesToVariable ;
+                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
                                                owl:onProperty <http://purl.org/dc/terms/type> ;
                                                owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                                owl:onClass :DataProcessingConfigurationType
@@ -957,14 +965,6 @@
 :InternalDataProcessingConfiguration rdf:type owl:Class ;
                                      rdfs:subClassOf :DataProcessingConfiguration ,
                                                      <http://www.w3.org/ns/dcat#Resource> ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :appliesToFacility ;
-                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                                     ] ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :appliesToVariable ;
-                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                                     ] ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hadConfigurationItem ;
                                                        owl:minCardinality "0"^^xsd:nonNegativeInteger
