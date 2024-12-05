@@ -1780,19 +1780,6 @@ records:
         constraints:
           - record: SoilType
   
-  EnvironmentalMonitoringSiteType:
-    label:
-      - value: Environmental Monitoring Site Type
-        lang: en
-    description:
-      - value: |
-          A concept which defines a type of environmental monitoring site. 
-          The site type may be associated with standard deployment and maintenance procedures.
-    extends: EnvironmentalMonitoringFacilityType
-    classUri: fdri:EnvironmentalMonitoringSiteType
-    shortCode: EnvironmentalMonitoringSiteType
-    # TODO: Capture references to (documentation for) layout and procedures
-  
   EnvironmentalMonitoringSystem:
     label:
       - value: Environmental Monitoring System
