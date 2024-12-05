@@ -64,6 +64,7 @@ resources:
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/raw>
       "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:originatingProgramme>": <::CosmosProgramme>
+      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
       "<prov:wasGeneratedBy>":
         name: IngestActivity
@@ -87,6 +88,7 @@ resources:
       "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:originatingProgramme>": <::CosmosProgramme>
       "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
+      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<prov:wasGeneratedBy>":
         name: QCInfillActivity
         properties:
