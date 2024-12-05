@@ -1021,6 +1021,37 @@ records:
       - WithTitleAndDescription
       - WithPublicationMetadata
     properties:
+      appliesToFacility:
+        label:
+          - value: applies to facility
+            lang: en
+        description:
+          - value: |
+             References the facility or facilities that this configuration applies to.
+
+             This property may also reference an EnvironmentalMonitoringFacilityType, in which case the configuration
+             applies to all faciltiies of that type.
+        propertyUri: fdri:appliesToFacility
+        kind: object
+        required: true
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringFacilityType
+          - record: EnvironmentalMonitoringFacility
+      appliesToVariable:
+        label:
+          - value: applies to variable
+            lang: en
+        description:
+          - value: |
+              References the complex observable properties that define the variables that are affected by this configuration.
+            lang: en
+        propertyUri: fdri:appliesToVariable
+        kind: object
+        required: true
+        repeatable: true
+        constraints:
+          - record: ComplexObservableProperty
       type:
         label:
           - value: configuration type
@@ -2142,35 +2173,6 @@ records:
     shortCode: InternalDataProcessingConfiguration
     extends: DataProcessingConfiguration
     properties:
-      appliesToFacility:
-        label:
-          - value: applies to facility
-            lang: en
-        description:
-          - value: |
-             References the facility or facilities that this configuration applies to.
-
-             This property may also reference an EnvironmentalMonitoringFacilityType, in which case the configuration
-             applies to all faciltiies of that type. 
-        propertyUri: fdri:appliesToFacility
-        kind: object
-        repeatable: true
-        constraints:
-          - record: EnvironmentalMonitoringFacilityType
-          - record: EnvironmentalMonitoringFacility
-      appliesToVariable:
-        label:
-          - value: applies to variable
-            lang: en
-        description:
-          - value: |
-              References the complex observable properties that define the variables that are affected by this configuration.
-            lang: en
-        propertyUri: fdri:appliesToVariable
-        kind: object
-        repeatable: true
-        constraints:
-          - record: ComplexObservableProperty
       hadConfiguration:
         label:
           - value: had configuration
