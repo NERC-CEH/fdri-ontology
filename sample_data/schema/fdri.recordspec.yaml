@@ -2250,15 +2250,16 @@ records:
       - WithProvenance
       - WithAnnotations
     properties:
-      spatial:
+      hasFeatureOfInterest:
         label:
-          - value: spatial coverage
+          - value: has feature of interest
             lang: en
         description:
-          - value: The geographical area covered by the dataset.
+          - value: The dataset contains observations of the specified geo-spatial feature(s).
             lang: en
-        propertyUri: dct:spatial
+        propertyUri: sosa:hasFeatureOfInterest
         kind: object
+        repeatable: true
         constraints:
           - record: GeospatialFeatureOfInterest
       observedProperty:
@@ -2308,6 +2309,17 @@ records:
         required: true
         constraints:
           - record: ProcessingLevel
+      spatial:
+        label:
+          - value: spatial coverage
+            lang: en
+        description:
+          - value: The geographical area covered by the dataset.
+            lang: en
+        propertyUri: dct:spatial
+        kind: object
+        constraints:
+          - record: GeospatialFeatureOfInterest
 
   ObservationDatasetSeries:
     label:
