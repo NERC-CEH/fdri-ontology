@@ -136,7 +136,7 @@ resources:
       "@type": "<fdri:Deployment>"
       "<dct:title>": "Deployment of {INSTRUMENT_ID} {SERIAL_NUMBER} at {SITE_ID}@en"
       "<ssn:deployedSystem>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
-      "<ssn:deployedOnPlatform>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
+      "<ssn:deployedOnPlatform>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
       "<prov:startedAtTime>": "{START_DATETIME|asDateTime}"
   - name: SensorDeploymentEnd
     requires:

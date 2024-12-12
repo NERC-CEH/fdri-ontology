@@ -377,22 +377,6 @@ resources:
                   "@id": "<_>"
                   "@type": "<schema:PropertyValue>"
                   "<schema:value>": "{HOST_CLASS | asDecimal}"
-
-
-    - name: MonitoringPlatform
-      properties:
-        "@id": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
-        "@type": <fdri:EnvironmentalMonitoringPlatform>
-        "<rdfs:label>": "COSMOS monitoring station at {SITE_NAME}@en"
-        "<dct:isPartOf>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
-        "^<dct:hasPart>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
-        "<geos:hasGeometry>":
-            - name: LatLongPoint
-              properties:
-                "@id": "<_>"
-                "@type": "<geos:Geometry>"
-                "<geos:asWKT>": "POINT({LONGITUDE}, {LATITUDE})^^<geos:wktLiteral>"
-        "<fdri:hasAnnotation>":
           - name: Calibrated
             properties:
               "@id": "<_>"
