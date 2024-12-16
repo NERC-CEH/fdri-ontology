@@ -1,0 +1,11 @@
+{
+    "$schema": "../../build/schema/TimeSeriesDefinition.schema.json",
+    "@context": "../../build/context/TimeSeriesDefinition.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/time-series/ta-raw",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDefinition",
+    "observedProperty": {"@id":"http://fdri.ceh.ac.uk/id/complex-observable-property/ta"},
+    "resolution": "PT1M",
+    "periodicity": "PT1M",
+    "valueStatistic": {"@id": "http://fdri.ceh.ac.uk/ref/common/valueStatistic/instantaneous"},
+    "processingLevel": {"@id": "http://fdri.ceh.ac.uk/ref/common/processingLevel/0"}
+}

@@ -1,8 +1,9 @@
 {
     "$schema": "../../build/schema/ComplexObservableProperty.schema.json",
     "@context": "../../build/context/ComplexObservableProperty.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/complex-observable-property/ta",
     "prefLabel": [
-        {"@value": "instantaneous air temperature", "@language": "en"}
+        {"@value": "air temperature", "@language": "en"}
     ],
     "hasProperty": {"@id": "http://qudt.org/vocab/quantitykind/Temperature"},
     "hasObjectOfInterest": {"@id": "http://fdri.ceh.ac.uk/id/object-of-interest/air"},
