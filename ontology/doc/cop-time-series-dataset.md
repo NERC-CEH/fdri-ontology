@@ -53,6 +53,9 @@ TimeSeriesDataset --> EMSite: originatingFacility
 TimeSeriesDataset --> TimeSeriesDefinition: type
 TimeSeriesDefinition --> Variable: observedProperty
 TimeSeriesDefinition --> Plan: methodology
+TimeSeriesDefinition --> ValueStatistic: valueStatistic
+TimeSeriesDefinition --> ProcessingLevel: processingLevel
+
 Plan --> TimeSeriesDefinition: uses
 Variable --> Concept: property
 Variable --> Concept: objectOfInterest
@@ -67,3 +70,4 @@ Variable --> Concept: constraint
 The `type` relation between `TimeSeriesDataset` and `TimeSeriesDefinition` could be a more specific `hasDefinition` relationship if preferred.
 
 The relationship between a derived time series definition and the input time series definitions could be a more direct property rather than going via a `Plan` if preferred. This would then maybe require any description or documentation of the methodology to also migrate from `Plan` to `TimeSeriesDefinition`.
+
