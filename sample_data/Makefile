@@ -14,7 +14,8 @@ RECORDS = \
 	ExternalDataProcessingConfiguration \
 	InternalDataProcessingConfiguration \
 	StaticDeployment \
-	TimeSeriesDataset
+	TimeSeriesDataset \
+	TimeSeriesDefinition
 
 SAMPLES = \
 	build/SITES.ttl \
