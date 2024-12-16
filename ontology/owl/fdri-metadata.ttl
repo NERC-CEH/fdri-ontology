@@ -181,6 +181,11 @@
         rdfs:domain <http://www.w3.org/2004/02/skos/core#Concept> .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/methodology
+:methodology rdf:type owl:ObjectProperty ;
+             rdfs:range <http://www.w3.org/ns/prov#Plan> .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/monitoringFacilityTypeScheme
 :monitoringFacilityTypeScheme rdf:type owl:ObjectProperty ;
                               rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
@@ -278,6 +283,11 @@
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/trackLog
 :trackLog rdf:type owl:ObjectProperty .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/uses
+:uses rdf:type owl:ObjectProperty ;
+      rdfs:range :TimeSeriesDefinition .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/utilises
@@ -410,6 +420,12 @@
              rdfs:comment "The northerly offset of a relative location from its origin measured in metres."@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/periodicity
+:periodicity rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:range xsd:duration .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/procedurePeriodicity
 :procedurePeriodicity rdf:type owl:DatatypeProperty ;
                       rdfs:range xsd:duration ;
@@ -432,6 +448,12 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/repositoryPath
 :repositoryPath rdf:type owl:DatatypeProperty ;
                 rdfs:label "source control repository path"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/resolution
+:resolution rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:range xsd:duration .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/serialNumber
@@ -1289,6 +1311,10 @@
 :TimeSeriesDataset rdf:type owl:Class ;
                    rdfs:subClassOf :ObservationDataset ,
                                    [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://purl.org/dc/terms/type> ;
+                                     owl:allValuesFrom :TimeSeriesDefinition
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
                                      owl:onProperty :valueStatistic ;
                                      owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ,
@@ -1298,6 +1324,41 @@
                                    ] ;
                    rdfs:comment "A Dataset consisting of a collection of measurements of one or more Observable Properties of some Feature of Interest at regular intervals over a period of time."@en ;
                    rdfs:label "Time-Series Dataset"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDefinition
+:TimeSeriesDefinition rdf:type owl:Class ;
+                      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                        owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :methodology ;
+                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :TimeSeriesPlan
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :valueStatistic ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :periodicity ;
+                                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :resolution ;
+                                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                                      ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesPlan
+:TimeSeriesPlan rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :uses ;
+                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic
