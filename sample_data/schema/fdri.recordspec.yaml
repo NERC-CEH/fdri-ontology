@@ -3091,17 +3091,12 @@ records:
     classUri: fdri:TimeSeriesDataset
     shortCode: TimeSeriesDataset
     properties:
-      observedProperty:
-        label:
-          - value: observed property
-            lang: en
-        description:
-          - value: The property whose values are included in the dataset content.
-        propertyUri: sosa:observedProperty
+      type:
+        propertyUri: dct:type
         kind: object
-        repeatable: false
+        required: true
         constraints:
-          - record: ComplexObservableProperty
+          - record: TimeSeriesDefinition
       originatingFacility:
         label:
           - value: originating facility
@@ -3114,29 +3109,72 @@ records:
         repeatable: false
         constraints:
           - record: EnvironmentalMonitoringFacility
-      aggregationPeriod:
-        label:
-          - value: aggregation period
-            lang: en
-        description:
-          - value: The resolution of the aggregated values contained in this dataset.
-            lang: en
-        propertyUri: fdri:aggregationPeriod
+
+
+  TimeSeriesDefinition:
+    label:
+      - value: Time Series Definition
+        lang: en
+    description:
+      - value: A representation of a time series of some observed or derived measurement of a variable.
+        lang: en
+    classUri: fdri:TimeSeriesDefinition
+    extends: Concept
+    shortCode: TimeSeriesDefinition
+    properties:
+      periodicity:
+        propertyUri: fdri:periodicity
         kind: literal
         constraints:
           - datatype: xsd:duration
+      resolution:
+        propertyUri: fdri:resolution
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      observedProperty:
+        propertyUri: sosa:observedProperty
+        kind: object
+        constraints:
+          - record: ComplexObservableProperty
       valueStatistic:
-        label:
-          - value: value statistic
-            lang: en
-        description:
-          - value: The aggregation method used to derive the aggregated values contained in this dataset from the original temporal resolution of observations.
-            lang: en
         propertyUri: fdri:valueStatistic
         kind: object
         constraints:
           - record: ValueStatistic
-
+      processingLevel:
+        propertyUri: fdri:processingLevel
+        kind: object
+        constraints:
+          - record: ProcessingLevel
+      methodology:
+        propertyUri: fdri:methodology
+        kind: object
+        constraints:
+          - record: TimeSeriesPlan
+      derivedFrom:
+        label:
+          - value: derived from
+            lang: en
+        description:
+          - value: Relates a derived `TimeSeriesDefinition` to the `TimeSeriesDefinition`(s) that are required by the processing used to derive it.
+        propertyUri: fdri:derivedFrom
+        kind: object
+        repeatable: true
+        constraints:
+          - record: TimeSeriesDefinition
+  
+  TimeSeriesPlan:
+    classUri: fdri:TimeSeriesPlan
+    extends: Plan
+    shortCode: TimeSeriesPlan
+    properties:
+      uses:
+        propertyUri: fdri:uses
+        kind: object
+        repeatable: true
+        constraints:
+          - record: TimeSeriesDefinition
   Unit:
     label:
       - value: Unit Of Measure

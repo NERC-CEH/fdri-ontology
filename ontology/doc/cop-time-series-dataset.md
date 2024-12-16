@@ -58,6 +58,7 @@ TimeSeriesDefinition --> ValueStatistic: valueStatistic
 TimeSeriesDefinition --> ProcessingLevel: processingLevel
 
 Plan --> TimeSeriesDefinition: uses
+TimeSeriesDefinition --> TimeSeriesDefinition: derivedFrom
 Variable --> Concept: property
 Variable --> Concept: objectOfInterest
 Variable --> Concept: context
@@ -66,7 +67,7 @@ Variable --> Concept: constraint
 
 **NOTES**:
 
-`Plan` is a relatively generic type from the W3C Provenance ontology, and there may need to be a specific `TimeSeriesDerivationProcedure` type
+The `uses` relationship could be specified indirectly via a `TimeSeriesPlan` but this requires a separate `TimeSeriesPlan` for each derived or aggregated time series. An alternative would be to say that the `derivedFrom` relationship relates a `TimeSeriesDefinition` to the `TimeSeriesDefinition`s that are used as input into deriving it and that the `methodology` relation relates a `TimeSeriesDefinition` to a `Plan` that describes how the derivation is performed without specifying which specific time series are used as inputs, allowing all time series that share the same derivation methodology to refer to the same `Plan`.
 
 The `type` relation between `TimeSeriesDataset` and `TimeSeriesDefinition` could be a more specific `hasDefinition` relationship if preferred.
 
