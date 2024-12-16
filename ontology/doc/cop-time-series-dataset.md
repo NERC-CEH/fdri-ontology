@@ -48,6 +48,7 @@ class TimeSeriesDefinition {
 }
 class TimeSeriesDataset
 class EMSite["EnvironmentalMonitoringSite"]
+class Plan["TimeSeriesPlan"]
 
 TimeSeriesDataset --> EMSite: originatingFacility
 TimeSeriesDataset --> TimeSeriesDefinition: type
