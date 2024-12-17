@@ -5,7 +5,7 @@ SCHEMA_BASE = schema
 SCHEMA_FILE = $(SCHEMA_BASE)/fdri.recordspec.yaml
 
 RECORDS = \
-	ComplexObservableProperty \
+	Variable \
 	DataProcessingActivity \
 	GeospatialFeatureOfInterest \
 	EnvironmentalMonitoringPlatform \
