@@ -1,34 +1,68 @@
+## Observation Dataset Model
+
+`fdri:ObservationDataset` is defined as a subclass of `dcat:Dataset` and is intended to represent the class of datasets providing environmental observations.
+
+```mermaid
+classDiagram
+class ObservationDataset["fdri:ObservationDataset"]
+class FoI["fdri:GeospatialFeatureOfInterest"]
+class EMF["fdri:EnvironmentalMonitoringFacility"]
+class EMP["fdri:EnvironmentalMonitoringProgramme"]
+class Variable["fdri:Variable"]
+class ProcessingLevel["fdri:ProcessingLevel"]
+ObservationDataset --> FoI: sosa_hasFeatureOfInterest
+ObservationDataset --> Variable: sosa_observedProperty
+ObservationDataset --> EMF: fdri_originatingFacility
+ObservationDataset --> EMP: fdri_originatingProgramme
+ObservationDataset --> ProcessingLevel: fdri_processingLevel
+```
+
+`fdri:ObservationDataset` has the following properties:
+
+* `sosa:hasFeatureOfInterest` relates the dataset to the feature(s) in the environment that the dataset provides observations on.
+* `sosa:observedProperty` relates the dataset to the variable(s) that the dataset provides values for.
+* `fdri:originatingFacility` relates the dataset to the facility or facilities that contribute some or all of the measurements recorded in the dataset.
+* `fdri:originatingProgramme` relates the dataset to the monitoring programme or programmes that contribute some or all of the measurements recorded in the dataset (this may be indirectly, via some facility which is part of the programme).
+* `fdri:processingLevel` specifies the level of data processing that has been carried out on the data in the dataset.
+
 ## Time-Series Dataset Model
 
 An `fdri:TimeSeriesDataset` is defined as a subclass of `fdri:ObservationDataset` with some additional properties to convey any statistical aggregation applied to the observations in the dataset.
 
 ```mermaid
 classDiagram
-class TimeSeriesDataset["fdri:TimeSeriesDataset"] {
-  fdri:aggregationPeriod: xsd:duration
-}
-class ObservationDataset["fdri:ObservationDataset"] 
+class TimeSeriesDataset["fdri:TimeSeriesDataset"]
 class ValueStatistic["fdri:ValueStatistic"]
+class TimeSeriesDefinition["fdri:TimeSeriesDefinition"] {
+  fdri:periodicity: xsd:duration
+  fdri:resolution: xsd:duration
+}
+class Plan["fdri:TimeSeriesPlan"]
 class ProcessingLevel["fdri:ProcessingLevel"]
-class Concept["skos:Concept"]
-ProcessingLevel --|> Concept
-Concept <|-- ValueStatistic
-ObservationDataset <|-- TimeSeriesDataset
-TimeSeriesDataset --> ValueStatistic: fdri_valueStatistic
-ProcessingLevel <-- ObservationDataset: fdri_processingLevel
+class Variable["fdri:Variable"]
+
+TimeSeriesDefinition --> ValueStatistic: fdri_valueStatistic
+TimeSeriesDefinition --> ProcessingLevel: fdri_processingLevel
+TimeSeriesDataset --> TimeSeriesDefinition: dct_type
+TimeSeriesDefinition --> Variable: sosa_observedProperty
+TimeSeriesDefinition --> Plan: fdri_methodology
+Plan --> TimeSeriesDefinition: fdri_uses
+TimeSeriesDataset --> ProcessingLevel: fdri_processingLevel
+TimeSeriesDataset --> Variable: sosa_observedProperty
 ```
 
-`fdri:ObservationDataset` is the base class for representing datasets of environmental observations. The property `fdri:processingLevel` relates the dataset to a concept which describes the level of quality processing that has been applied to the data in the set. These levels are described as SKOS concepts in a simple concept scheme.
+An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series of observations of a single variable by some `fdri:EnvironmentalMonitoringFacility`, the time series itself is soft-typed (using `dct:type`) by an `fdri:TimeSeriesDefinition`, which in turn has the following properties:
 
-An `fdri:TimeSeriesDataset` which represents a series of aggregated measurements will use the `fdri:aggregationPeriod` and `fdir:valueStatistic` properties to specify the aggregation applied to the source data.
+* `fdri:processingLevel` a reference to the concept that defines the level of data processing applied to the time series. This property is repeated on `fdri:TimeSeriesDataset` to ensure consistency with the `fdri:ObservationDataset` base class.
+* `sosa:observedProperty` a reference to the `fdri:Variable` that defines the measurement being captured by the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consitency with the `fdri:ObservationDataset` base class.
+* `fdri:valueStatistic` a reference to the concept that defines the type of statistical processing applied to produce the values contained in the dataset.
+* `fdri:methodoly` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series.
+* `fdri:periodicity` specifies the maximum period between recorded observations in the time series
+* `fdri:resolution` specifies the temporal resolution of the monitoring of the environmental feature that was used to derive the aggregated values contaied in the time series dataset. 
 
-The `fdri:valueStatistic` property relates a the dataset to a concept which describes an aggregation method (e.g. min, max, mean etc.). The `fdri:aggregationPeriod` property specifies the period over which the aggregation method applies for each observation in the `fdri:TimeSeriesDataset`.
 
 > **NOTE**
-> The properties `fdri:valueStatistic` and `fdri:aggregationPeriod` are also provided on an `fdri:Variable` where they relate to the way in which raw values are reported. For more information please refer to [Observations and Observable Properties Model](observations-observable-properties.md)
-
-> **QUESTION**
-> Should we instead use the existing DCAT property `dcat:temporalResolution` to specify the aggregation period?
+> The existing DCAT property `dcat:temporalResolution` is not used as it is defined as a minimum spacing between observations, whereas in FDRI the `fdri:periodicity` is the *maximum* spacing between observations.
 
 
 ### Time-Series Dataset Versioning
