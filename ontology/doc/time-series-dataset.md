@@ -25,7 +25,7 @@ An `fdri:TimeSeriesDataset` which represents a series of aggregated measurements
 The `fdri:valueStatistic` property relates a the dataset to a concept which describes an aggregation method (e.g. min, max, mean etc.). The `fdri:aggregationPeriod` property specifies the period over which the aggregation method applies for each observation in the `fdri:TimeSeriesDataset`.
 
 > **NOTE**
-> The properties `fdri:valueStatistic` and `fdri:aggregationPeriod` are also provided on an `fdri:ComplexObservableProperty` where they relate to the way in which raw values are reported. For more information please refer to [Observations and Observable Properties Model](observations-observable-properties.md)
+> The properties `fdri:valueStatistic` and `fdri:aggregationPeriod` are also provided on an `fdri:Variable` where they relate to the way in which raw values are reported. For more information please refer to [Observations and Observable Properties Model](observations-observable-properties.md)
 
 > **QUESTION**
 > Should we instead use the existing DCAT property `dcat:temporalResolution` to specify the aggregation period?

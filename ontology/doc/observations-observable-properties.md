@@ -96,7 +96,7 @@ and a there may be multiple sibling COP with differing units or value statistics
 
 ```mermaid
 classDiagram
-  class COP["fdri:ComplexObservableProperty"] {
+  class COP["fdri:Variable"] {
     skos:prefLabel: rdf:langString
     skos:note: rdf:langString
     fdri:unitName: rdf:langString
@@ -124,13 +124,13 @@ classDiagram
 ```
 
 > **NOTE**
-> [#35](https://github.com/NERC-CEH/fdri-discovery/issues/35) resolved that the facet for EnvironmentalDomain should be on `ComplexObservableProperty` rather than on the `GeospatialFeatureOfInterest`.
+> [#35](https://github.com/NERC-CEH/fdri-discovery/issues/35) resolved that the facet for EnvironmentalDomain should be on `Variable` rather than on the `GeospatialFeatureOfInterest`.
 
 ### Note on Aggregation Period and Value Statistic
 
-The properties `fdri:aggregationPeriod` and `fdri:valueStatistic` are used both on `fdri:ComplexObservableProperty` and on `fdri:TimeSeriesDataset`. 
+The properties `fdri:aggregationPeriod` and `fdri:valueStatistic` are used both on `fdri:Variable` and on `fdri:TimeSeriesDataset`. 
 
-On the `fdri:ComplexObservableProperty` these properties relate to how the raw observations reported by sensors are derived - the `fdri:aggregationPeriod` provides the interval between reported measures and the `fdri:valueStatistic` specifies how the observed value is derived over that period.
+On the `fdri:Variable` these properties relate to how the raw observations reported by sensors are derived - the `fdri:aggregationPeriod` provides the interval between reported measures and the `fdri:valueStatistic` specifies how the observed value is derived over that period.
 
 On the `fdri:TimeSeriesDataset` these properties specify how the raw observations have been aggregated during data processing. The `fdri:aggregationPeriod` specifies the temporal resolution of the aggregated values and `fdri:valueStatistic` specifies the method by which the raw values were aggregated.
 

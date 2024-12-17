@@ -76,14 +76,14 @@ The following table lists the subclasses of `skos:Concept` which are defined in 
 | Concept Type | Concept Usage |
 |--------------|---------------|
 | `fdri:Catchment` | A catchment area under observation by some `EnvironmentalMonitoringFacility`.
-| `fdri:ComplexObservableProperty` | A complex faceted type describing the properties of some `EnvironmentalDomain` which can be observed by an `EnvironmentalMonitoringSystem`. |
+| `fdri:Variable` | A faceted type describing the properties of some `EnvironmentalDomain` which can be observed by an `EnvironmentalMonitoringSystem`. |
 | `fdri:ConfigurationProperty` | A property of an environmental monitoring system which can be configured with different values (e.g. installed firmware version) |
-| `fdri:ContextObject` | The context within which a `ComplexObservableProperty` is measured. |
+| `fdri:ContextObject` | The context within which a `Variable` is measured. |
 | `fdri:EnvironmentalDomain` | The domain of the environment that an `EnvironmentalMonitoringFacility` monitors. |
 | `fdri:EnvironmentalMonitoringFacilityType` | The class of an `EnvironmentalMonitoringFacility`. Direct instances of this class are intended to apply to `EnvironmentalMonitoringSite` and `EnvironmentalMonitoringPlatform`. |
 | `fdri:EnvironmentalMonitoringSystemType` | The class of an `EnvironmentalMonitoringSystem`. This is defined as a subclass of `EnvironmentalMonitoringFacilityType` but is intended to capture sensor package types, broad categories of sensor and individual sensor models. |
 | `fdri:LandCoverType` | The category of land cover that apply at an `EnvironmentalMonitoringSite` |
-| `fdri:ObjectOfInterest` | The kind of entity measured by a `ComplexObservableProperty` |
+| `fdri:ObjectOfInterest` | The kind of entity measured by a `Variable` |
 | `fdri:ProcedureType` | The category of process that is applied to or carried out on an `EnvironmentalMonitoringSystem` (e.g. installation, calibration) |
 | `fdri:ProcessingLevel` | The level of processing applied to the measurements in an `ObservationDataset`
 | `fdri:Region` | The geospatial region under observation by some `EnvironmentalMonitoringFacility` |
@@ -117,7 +117,7 @@ The property `fdri:originatingProgramme` can be used to reference the `Environme
   class CatalogResource["dcat:CatalogResource"]
   class Concept["skos:Concept"]
   class ConceptScheme["skos:ConceptScheme"]
-  class ObservedProperty["fdri:ComplexObservableProperty"]
+  class ObservedProperty["fdri:Variable"]
   class Program["fdri:EnvironmentalMonitoringProgramme"]
   class Facility["fdri:EnvironmentalMonitoringFacility"]
   class Agent["fdri:Agent"]
