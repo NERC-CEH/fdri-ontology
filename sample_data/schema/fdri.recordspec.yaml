@@ -3016,18 +3016,7 @@ records:
         kind: object
         constraints:
           - record: TimeSeriesPlan
-      derivedFrom:
-        label:
-          - value: derived from
-            lang: en
-        description:
-          - value: Relates a derived `TimeSeriesDefinition` to the `TimeSeriesDefinition`(s) that are required by the processing used to derive it.
-        propertyUri: fdri:derivedFrom
-        kind: object
-        repeatable: true
-        constraints:
-          - record: TimeSeriesDefinition
-  
+
   TimeSeriesPlan:
     classUri: fdri:TimeSeriesPlan
     extends: Plan
