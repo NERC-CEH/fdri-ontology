@@ -3,10 +3,10 @@
     "@context": "../../build/context/TimeSeriesDefinition.context.jsonld",
     "@id": "http://fdri.ceh.ac.uk/id/time-series/ta-level2-min",
     "@type": "http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDefinition",
-    "observedProperty": {"@id":"http://fdri.ceh.ac.uk/id/complex-observable-property/ta"},
+    "observedProperty": {"@id":"http://fdri.ceh.ac.uk/id/variable/ta"},
     "resolution": "PT30M",
     "periodicity": "P1D",
     "valueStatistic": {"@id": "http://fdri.ceh.ac.uk/ref/common/valueStatistic/min"},
     "processingLevel": {"@id": "http://fdri.ceh.ac.uk/ref/common/processingLevel/2"},
-    "derivedFrom": [{"@id": "http://fdri.ceh.ac.uk/id/time-series/ta-level2"}]
+    "methodology": {"@id": "http://fdri.ceh.ac.uk/ref/cosmos/method-ta-min"}
 }
