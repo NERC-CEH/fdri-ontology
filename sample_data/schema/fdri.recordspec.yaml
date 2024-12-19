@@ -1191,6 +1191,7 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringPlatform
+          - record: EnvironmentalMonitoringSite
       deployedSystem:
         label:
           - value: deployed system
