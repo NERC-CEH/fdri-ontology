@@ -340,7 +340,6 @@ records:
             lang: en
         propertyUri: dct:type
         kind: object
-        required: true
         constraints:
           - record: Concept
       qualifiedAssociation:

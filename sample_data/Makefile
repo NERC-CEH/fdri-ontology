@@ -36,7 +36,8 @@ SAMPLES = \
 	build/PARAMETER_RANGES_QC.ttl \
 	build/Firmware_history.ttl \
 	build/sensorFaultsSplit.ttl \
-	build/processingLevels.ttl
+	build/processingLevels.ttl \
+	build/siteTimeSeries.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
@@ -99,8 +100,11 @@ build/landCoverLcm.csv: src/LAND_COVER_LCM.csv sql/landCoverLcm.sql | build
 build/timeSeriesExt.csv: src/TIMESERIES.csv src/intervalDuration.csv sql/timeSeriesExt.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/timeSeriesExt.sql"
 
-build/siteInstVar.csv: src/SITE_INSTRUMENTATION.csv src/VARIABLE_INSTRUMENTATION.csv src/variableProperties.csv sql/siteInstVar.sql | build
+build/siteInstVar.csv: src/SITE_INSTRUMENTATION.csv src/VARIABLE_INSTRUMENTATION.csv src/variableProperties.csv build/timeSeriesProperty.csv sql/siteInstVar.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/siteInstVar.sql"
+
+build/siteTimeSeries.csv: src/SITE_INSTRUMENTATION.csv src/VARIABLE_INSTRUMENTATION.csv build/timeSeriesProperty.csv sql/siteTimeSeries.sql | build
+	$(RUN) /bin/bash -c "duckdb < sql/siteTimeSeries.sql"
 
 build/timeSeriesProperty.csv: src/TIMESERIES.csv sql/timeSeriesProperty.sql | build
 	$(RUN) /bin/bash -c "duckdb < sql/timeSeriesProperty.sql"
