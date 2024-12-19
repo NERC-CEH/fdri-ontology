@@ -49,7 +49,7 @@ classDiagram
   class Attribution["prov:Attribution"]
   class Agent["prov:Agent"]
   class AgentRole["fdri:RelatedPartyRole"]
-  class COP["fdri:ComplexObservableProperty"]
+  class COP["fdri:Variable"]
   class Concept["skos:Concept"]
   class EnvironmentalDomain["fdri:EnvironmentalDomain"]
   class GeospatialFOI["fdri:GeospatialFeatureOfInterest"] {

@@ -14,7 +14,7 @@ Annotations have:
 classDiagram
 class Resource["dcat:Resource"]
 class Annotation["fdri:Annotation"]
-class COP["fdri:ComplexObservableProperty"]
+class COP["fdri:Variable"]
 class PropertyValue["fdri:PropertyValue"] {
     value: rdfs:Literal
     minValue: rdfs:Literal

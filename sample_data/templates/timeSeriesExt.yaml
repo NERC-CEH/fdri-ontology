@@ -7,16 +7,20 @@ imports:
     - extensions.py
 
 one_offs:
-  - name: COPScheme
+  - name: TimeSeriesScheme
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series>"
       "@type": "<fdri:ComplexObservablePropertyScheme>"
 
 resources:
-  - name: TimeSeries
+  - name: TimeSeriesDefinition
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{TIMESERIES_ID|slug}>"
-      "@type": "<fdri:TimeSeriesDatasetSeries>"
-      "<dct:title>": "{TIMESERIES_NAME}@en"
-      "<fdri:valueStatistic>": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC_ID}>"
-      "<fdri:aggregationPeriod>": "{DURATION}^^<xsd:duration>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>"
+      "@type": "<fdri:TimeSeriesDefinition>"
+      "<fdri:resolution>": "{DURATION}^^<xsd:duration>"
+      "<fdri:periodicity>": "{DURATION}^^<xsd:duration>"
+      "<fdri:processingLevel>": "<http://fdri.ceh.ac.uk/ref/common/processing-level/{PROCESSING_LEVEL}>"
+      "<skos:inScheme>": "<::TimeSeriesScheme>"
+      "^<skos:hasTopConcept>": "<::TimeSeriesScheme>"
+      "<skos:prefLabel>": "{TIMESERIES_NAME}@en"
+      "<rfds:label>": "{TIMESERIES_NAME}@en"

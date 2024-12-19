@@ -13,8 +13,8 @@ class ProgrammeCatalog["fdri:ProgrammeCatalog"]
 class Programme["ef:MonitoringProgramme"]
 Catalog <|-- ProgrammeCatalog
 ProgrammeCatalog --> Programme: fdri_programme
-ProgrammeCatalog --> ComplexObservablePropertyScheme: fdri_observedPropertyScheme
-ProgrammeCatalog --> ComplexObservablePropertyScheme: fdri_annotationPropertyScheme
+ProgrammeCatalog --> VariableScheme: fdri_observedPropertyScheme
+ProgrammeCatalog --> VariableScheme: fdri_annotationPropertyScheme
 ProgrammeCatalog --> RegionScheme: fdri_regionScheme
 ProgrammeCatalog --> CatchmentScheme: fdri_catchmentScheme
 ProgrammeCatalog --> ConfigurationPropertyScheme: fdri_configurationPropertyScheme
@@ -42,7 +42,7 @@ ProgrammeCatalog --> EnvironmentalMonitoringFacilityTypeScheme: fdri_monitoringS
 > For this release of the model we have decided that the schema should not mark any of these properties as required. As we establish more concretely how the properties will be used by downstream applications we can tighten constraints and mark some properties as required in future releases.
 
 > **NOTE**
-> The properties listed above do not include additional concept schemes which are used indirectly, such as the  `fdri:ObjectOfInterestScheme` and  `fdri:ContextObjectScheme` that are used by the Complex Observable Properties defined in the `fdri:ComplexObservablePropertyScheme`.
+> The properties listed above do not include additional concept schemes which are used indirectly, such as the  `fdri:ObjectOfInterestScheme` and  `fdri:ContextObjectScheme` that are used by the Complex Observable Properties defined in the `fdri:VariableScheme`.
 
 > **QUESTION**
 > Now that there is a mechanism for annotations do we want to drop the specific catchment and reigon relations in favour of using annotations for those instead? If we do that though, how do we identify those annotation properties that provide geospatial information for resources?

@@ -340,7 +340,6 @@ records:
             lang: en
         propertyUri: dct:type
         kind: object
-        required: true
         constraints:
           - record: Concept
       qualifiedAssociation:
@@ -424,7 +423,7 @@ records:
         propertyUri: fdri:property
         kind: object
         constraints:
-          - record: ComplexObservableProperty
+          - record: Variable
       hasValue:
         label:
           - value: has value
@@ -491,142 +490,6 @@ records:
     classUri: fdri:CatchmentScheme
     shortCode: CatchmentScheme
   
-  ComplexObservableProperty:
-    label:
-      - value: Complex Observable Property
-        lang: en
-    description:
-      - value: |
-          A description of something that is observed or described.
-          A Complex Observable Property consists minimally of a Property (the characteristic observed) and an Object of Interest (the class of entity that has the observed characteristic).
-          Additional properties serve to describe the context of the observation of the characteristic and the way in which the observed value is recorded.
-        lang: en
-    extends: Concept
-    classUri: fdri:ComplexObservableProperty
-    shortCode: ComplexObservableProperty
-    properties:
-      hasProperty:
-        label:
-          - value: has property
-            lang: en
-        description:
-          - value: The characteristic of the object of interest that is described or observed by this Complex Observable Property.
-            lang: en
-        propertyUri: "iop:hasProperty"
-        kind: object
-        required: true
-        constraints:
-          - record: QuantityKind
-      hasObjectOfInterest:
-        label:
-          - value: has object of interest
-            lang: en
-        description:
-          - value: The kind of entity whose characteristic is observed by this Complex Observable Property.
-            lang: en
-        propertyUri: iop:hasObjectOfInterest
-        kind: object
-        required: true
-        constraints:
-          - record: ObjectOfInterest
-      environmentalDomain:
-        label:
-          - value: environmental domain
-            lang: en
-        description:
-          - value: The broad environmental area of concern that this Complex Observable Property relates to.
-            lang: en
-        propertyUri: fdri:environmentalDomain
-        kind: object
-        constraints:
-          - record: EnvironmentalDomain
-      hasContextObject:
-        label:
-          - value: has context
-            lang: en
-        description:
-          - value: | 
-              A resource which provides additional background information regarding the Object of Interest or the
-              measurement of the Complex Observable Property.
-            lang: en
-        propertyUri: iop:hasContextObject
-        kind: object
-        constraints:
-          - record: ContextObject
-      hasUnit:
-        label:
-          - value: has unit
-            lang: en
-        description:
-          - value: |
-              The unit of measure used when recording values for this Complex Observable Property.
-            lang: en 
-        propertyUri: fdri:hasUnit
-        kind: object
-        constraints:
-          - record: Unit
-      inScheme:
-        label:
-          - value: is in scheme
-            lang: en
-        description:
-          - value: |
-              Complex Observable Properties are managed in a concept scheme structure. This property
-              relates the Complex Observable Property to the concept scheme that it is a part of.
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: ComplexObservablePropertyScheme
-      unitName:
-        label:
-          - value: unit name
-            lang: en
-        description:
-          - value: |
-              Provides a user-friendly label for the unit of measure used when recording values of this 
-              Complex Observable Property.
-            lang: en
-        propertyUri: fdri:unitName
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: rdf:langString
-      aggregationPeriod:
-        label:
-          - value: periodicity
-            lang: en
-        description:
-          - value: The period between recorded observations of the Complex Observable Property.
-            lang: en
-        propertyUri: fdri:aggregationPeriod
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
-      valueStatistic:
-        label:
-          - value: value statistic
-            lang: en
-        description:
-          - value: |
-              The way in which any values gathered in a single observation period (as defined by the
-              `fdri:aggregationPeriod` property) are processed to derive the reported value of the property for the 
-              period. Examples include mean value over period, total value over period or a single instantaneous value.
-        propertyUri: fdri:valueStatistic
-        kind: object
-        constraints:
-          - record: ValueStatistic
-
-  ComplexObservablePropertyScheme:
-    label:
-      - value: Complex Observable Property Concept Scheme
-        lang: en
-    description:
-      - value: A concept scheme which manages a controlled set of Complex Observable Property definitions.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:ComplexObservablePropertyScheme
-    shortCode: ComplexObservablePropertyScheme
-
   Concept:
     label:
       - value: Concept
@@ -1051,7 +914,7 @@ records:
         required: true
         repeatable: true
         constraints:
-          - record: ComplexObservableProperty
+          - record: Variable
       type:
         label:
           - value: configuration type
@@ -1565,7 +1428,7 @@ records:
         kind: object
         repeatable: true
         constraints:
-          - record: ComplexObservableProperty
+          - record: Variable
       environmentalDomain:
         label:
           - value: environmental domain
@@ -1995,7 +1858,7 @@ records:
         kind: object
         repeatable: true
         constraints:
-          - record: ComplexObservableProperty
+          - record: Variable
   
   ExternalDataProcessingConfiguration:
     label:
@@ -2103,7 +1966,7 @@ records:
         kind: object
         repeatable: true
         constraints:
-          - record: ComplexObservableProperty
+          - record: Variable
       interval:
         label:
           - value: interval
@@ -2273,7 +2136,7 @@ records:
         kind: object
         repeatable: true
         constraints:
-          - record: ComplexObservableProperty
+          - record: Variable
       originatingFacility:
         label:
           - value: originating facility
@@ -2397,6 +2260,7 @@ records:
     shortCode: Plan
     mixins:
       - WithTitleAndDescription
+      - WithAnnotations
 
   Procedure:
     label:
@@ -2541,7 +2405,7 @@ records:
         propertyUri: fdri:observedPropertyScheme
         kind: object
         constraints:
-          - record: ComplexObservablePropertyScheme
+          - record: VariableScheme
       annotationPropertyScheme:
         label:
           - value: annotation property scheme
@@ -2552,7 +2416,7 @@ records:
         propertyUri: fdri:annotationPropertyScheme
         kind: object
         constraints:
-          - record: ComplexObservablePropertyScheme
+          - record: VariableScheme
       regionScheme:
         label:
           - value: region scheme
@@ -3091,17 +2955,12 @@ records:
     classUri: fdri:TimeSeriesDataset
     shortCode: TimeSeriesDataset
     properties:
-      observedProperty:
-        label:
-          - value: observed property
-            lang: en
-        description:
-          - value: The property whose values are included in the dataset content.
-        propertyUri: sosa:observedProperty
+      type:
+        propertyUri: dct:type
         kind: object
-        repeatable: false
+        required: true
         constraints:
-          - record: ComplexObservableProperty
+          - record: TimeSeriesDefinition
       originatingFacility:
         label:
           - value: originating facility
@@ -3114,29 +2973,61 @@ records:
         repeatable: false
         constraints:
           - record: EnvironmentalMonitoringFacility
-      aggregationPeriod:
-        label:
-          - value: aggregation period
-            lang: en
-        description:
-          - value: The resolution of the aggregated values contained in this dataset.
-            lang: en
-        propertyUri: fdri:aggregationPeriod
+
+
+  TimeSeriesDefinition:
+    label:
+      - value: Time Series Definition
+        lang: en
+    description:
+      - value: A representation of a time series of some observed or derived measurement of a variable.
+        lang: en
+    classUri: fdri:TimeSeriesDefinition
+    extends: Concept
+    shortCode: TimeSeriesDefinition
+    properties:
+      periodicity:
+        propertyUri: fdri:periodicity
         kind: literal
         constraints:
           - datatype: xsd:duration
+      resolution:
+        propertyUri: fdri:resolution
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      observedProperty:
+        propertyUri: sosa:observedProperty
+        kind: object
+        constraints:
+          - record: Variable
       valueStatistic:
-        label:
-          - value: value statistic
-            lang: en
-        description:
-          - value: The aggregation method used to derive the aggregated values contained in this dataset from the original temporal resolution of observations.
-            lang: en
         propertyUri: fdri:valueStatistic
         kind: object
         constraints:
           - record: ValueStatistic
+      processingLevel:
+        propertyUri: fdri:processingLevel
+        kind: object
+        constraints:
+          - record: ProcessingLevel
+      methodology:
+        propertyUri: fdri:methodology
+        kind: object
+        constraints:
+          - record: TimeSeriesPlan
 
+  TimeSeriesPlan:
+    classUri: fdri:TimeSeriesPlan
+    extends: Plan
+    shortCode: TimeSeriesPlan
+    properties:
+      uses:
+        propertyUri: fdri:uses
+        kind: object
+        repeatable: true
+        constraints:
+          - record: TimeSeriesDefinition
   Unit:
     label:
       - value: Unit Of Measure
@@ -3216,3 +3107,139 @@ records:
     extends: ConceptScheme
     classUri: fdri:ValueStatisticScheme
     shortCode: ValueStatisticScheme
+
+  Variable:
+    label:
+      - value: Variable
+        lang: en
+    description:
+      - value: |
+          A description of something that is observed or described.
+          A Variable consists minimally of a Property (the characteristic observed) and an Object of Interest (the class of entity that has the observed characteristic).
+          Additional properties serve to describe the context of the observation of the characteristic and the way in which the observed value is recorded.
+        lang: en
+    extends: Concept
+    classUri: fdri:Variable
+    shortCode: Variable
+    properties:
+      hasProperty:
+        label:
+          - value: has property
+            lang: en
+        description:
+          - value: The characteristic of the object of interest that is described or observed by this Complex Observable Property.
+            lang: en
+        propertyUri: "iop:hasProperty"
+        kind: object
+        required: true
+        constraints:
+          - record: QuantityKind
+      hasObjectOfInterest:
+        label:
+          - value: has object of interest
+            lang: en
+        description:
+          - value: The kind of entity whose characteristic is observed by this Complex Observable Property.
+            lang: en
+        propertyUri: iop:hasObjectOfInterest
+        kind: object
+        required: true
+        constraints:
+          - record: ObjectOfInterest
+      environmentalDomain:
+        label:
+          - value: environmental domain
+            lang: en
+        description:
+          - value: The broad environmental area of concern that this Complex Observable Property relates to.
+            lang: en
+        propertyUri: fdri:environmentalDomain
+        kind: object
+        constraints:
+          - record: EnvironmentalDomain
+      hasContextObject:
+        label:
+          - value: has context
+            lang: en
+        description:
+          - value: | 
+              A resource which provides additional background information regarding the Object of Interest or the
+              measurement of the Complex Observable Property.
+            lang: en
+        propertyUri: iop:hasContextObject
+        kind: object
+        constraints:
+          - record: ContextObject
+      hasUnit:
+        label:
+          - value: has unit
+            lang: en
+        description:
+          - value: |
+              The unit of measure used when recording values for this Complex Observable Property.
+            lang: en 
+        propertyUri: fdri:hasUnit
+        kind: object
+        constraints:
+          - record: Unit
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: |
+              Complex Observable Properties are managed in a concept scheme structure. This property
+              relates the Complex Observable Property to the concept scheme that it is a part of.
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: VariableScheme
+      unitName:
+        label:
+          - value: unit name
+            lang: en
+        description:
+          - value: |
+              Provides a user-friendly label for the unit of measure used when recording values of this 
+              Complex Observable Property.
+            lang: en
+        propertyUri: fdri:unitName
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      aggregationPeriod:
+        label:
+          - value: periodicity
+            lang: en
+        description:
+          - value: The period between recorded observations of the Complex Observable Property.
+            lang: en
+        propertyUri: fdri:aggregationPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      valueStatistic:
+        label:
+          - value: value statistic
+            lang: en
+        description:
+          - value: |
+              The way in which any values gathered in a single observation period (as defined by the
+              `fdri:aggregationPeriod` property) are processed to derive the reported value of the property for the 
+              period. Examples include mean value over period, total value over period or a single instantaneous value.
+        propertyUri: fdri:valueStatistic
+        kind: object
+        constraints:
+          - record: ValueStatistic
+
+  VariableScheme:
+    label:
+      - value: Variable Concept Scheme
+        lang: en
+    description:
+      - value: A concept scheme which manages a controlled set of Complex Observable Property definitions.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:VariableScheme
+    shortCode: VariableScheme

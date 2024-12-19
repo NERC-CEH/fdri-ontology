@@ -29,7 +29,7 @@ The diagram below, taken from the OGC spec, shows the relevant types. Types defi
 | Procedure (SystemKind) | EnvironmentalMonitoringSystemType | SystemKind
 |                   | EnvironmentalMonitoringFacilityType | Possibly not all values are mappable to Procedure
 | Procedure         | Procedure |
-| Property          | ComplexObservableProperty |
+| Property          | Variable |
 | Sampling Feature  | GeospatialFeatureOfInterest |
 
 ## Part 2 Type Mappings
