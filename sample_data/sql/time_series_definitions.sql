@@ -9,4 +9,4 @@ COPY (
     END as PROCESSING_LEVEL,
     FROM TS
     JOIN ID on TS.INTERVAL_ID=ID.INTERVAL_ID
-) TO './build/timeSeriesExt.csv'
+) TO './build/time_series_definitions.csv'
