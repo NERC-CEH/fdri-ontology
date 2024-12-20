@@ -1,6 +1,6 @@
 create table if not exists TIMESERIESDEF as from read_csv('./build/time_series_definitions.csv', AUTO_DETECT=true) ;
-create table if not exists SITE_INSTRUMENTATION as from read_csv('./src/SITE_INSTRUMENTATION.csv', AUTO_DETECT=true) ;
-create table if not exists VARIABLE_INSTRUMENTATION as from read_csv('./src/VARIABLE_INSTRUMENTATION.csv', AUTO_DETECT=true) ;
+create table if not exists SITE_INSTRUMENTATION as from read_csv('./sample_data/src/SITE_INSTRUMENTATION.csv', AUTO_DETECT=true) ;
+create table if not exists VARIABLE_INSTRUMENTATION as from read_csv('./sample_data/src/VARIABLE_INSTRUMENTATION.csv', AUTO_DETECT=true) ;
 
 COPY(
 SELECT SITE_INSTRUMENTATION.SITE_ID,VARIABLE_INSTRUMENTATION.VARIABLE_NAME,TIMESERIESDEF.TIMESERIES_ID,MIN(START_DATETIME) as START_DATE,MAX(TIMESERIESDEF.PROCESSING_LEVEL) as PROCESSING_LEVEL,MAX(TIMESERIESDEF.DURATION) AS PERIOD

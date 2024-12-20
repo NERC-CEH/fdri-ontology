@@ -6,6 +6,27 @@ imports:
   - namespaces.yaml
   - extensions.py
 
+one_offs:
+  - name: Ratio
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/ratio>"
+      "@type": <qudt:QuantityKind>
+      "<skos:prefLabel>": "Ratio@en"
+
+  - name: LandCover
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest/land_cover>"
+      "@type": <fdri:ObjectOfInterest>
+      "<skos:prefLabel>": "Land cover@en"
+
+  - name: LandCoverRatio
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/land-cover-ratio>"
+      "@type": "<fdri:Variable>"
+      "<skos:prefLabel>": "Land cover ratio@en"
+      "<rdfs:label>": "Land cover ratio@en"
+      "<iop:hasProperty>": "<::Ratio>"
+      "<iop:hasObjectOfInterest>": <::LandCover>
 resources:
   - name: LandCoverMeasureSeries
     properties:
@@ -29,10 +50,10 @@ resources:
             properties:
               "@id": "<_>"
               "@type": "<fdri:Annotation>"
-              "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/land-cover-ratio>"
+              "<fdri:property>": "<::LandCoverRatio>"
               "<fdri:hasValue>":
                 name: LandCoverAreaQualifierValue
                 properties:
                   "@id": "<_>"
-                  "@type": "<fdri:PropertyValue>"
+                  "@type": "<schema:PropertyValue>"
                   "<schema:value>": "{AREA_RATIO | asDecimal}"   

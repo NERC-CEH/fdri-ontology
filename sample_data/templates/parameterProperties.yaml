@@ -47,7 +47,7 @@ resources:
       PROPERTY_ID:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PROPERTY_ID|slug}>"
-      "@type": <skos:Concept>
+      "@type": <qudt:QuantityKind>
       "<skos:prefLabel>": "{PROPERTY_NAME}@en"
       "^<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
   - name: ParameterBroader
@@ -95,14 +95,14 @@ resources:
       UNIT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<skos:Concept>"
+      "@type": "<qudt:Unit>"
       "^<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
   - name: UnitLabel
     requires:
       UNIT_NAME:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<skos:Concept>"
+      "@type": "<qudt:Unit>"
       "<skos:prefLabel>": "{UNIT_NAME}@en" 
   - name: UnitMatch
     requires:
@@ -110,6 +110,6 @@ resources:
       QUDT_UNIT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<skos:Concept>"
+      "@type": "<qudt:Unit>"
       "<skos:exactMatch>": <http://qudt.org/vocab/unit/{QUDT_UNIT}>
   

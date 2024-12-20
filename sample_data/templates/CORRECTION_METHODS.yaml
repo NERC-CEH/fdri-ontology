@@ -10,7 +10,7 @@ one_offs:
   - name: Methods
     properties:
       "@id": <http://fdri.ceh.ac.uk/ref/common/method>
-      "@type": <fdri:DataProcessingMethodScheme>
+      "@type": <skos:ConceptScheme>
       "<dct:title>": "Data Processing Methods@en"
       "<rdfs:label>": "Data Processing Methods@en"
 

@@ -21,6 +21,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
       - name: Build sample data
-        run: cd sample_data/ && make samples
+        run: make samples
       - name: Publish sample data
-        run: cd sample_data/ && bash publish.sh
+        run: bash publish.sh

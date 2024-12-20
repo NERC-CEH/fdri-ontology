@@ -1,4 +1,4 @@
-create table IF NOT EXISTS faults as from read_csv('./src/SENSOR_FAULTS.csv', AUTO_DETECT=true) ;
+create table IF NOT EXISTS faults as from read_csv('./sample_data/src/SENSOR_FAULTS.csv', AUTO_DETECT=true) ;
 create table IF NOT EXISTS siteInstVar as from read_csv('./build/siteInstVar.csv', AUTO_DETECT=true) ;
 
 CREATE TEMP TABLE faultsSplit AS

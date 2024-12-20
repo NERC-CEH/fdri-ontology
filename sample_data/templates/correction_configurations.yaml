@@ -6,6 +6,21 @@ imports:
   - namespaces.yaml
   - extensions.py
 
+one_offs:
+  - name: Correction
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/configuration-type/correction>"
+      "@type": <fdri:DataProcessingConfigurationType>
+      "<skos:prefLabel>": "Correction configuration@en"
+      "<rdfs:label>": "Correction configuration@en"
+
+  - name: CorrectionFactor
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/configuration-parameter/correction-factor>"
+      "@type": <fdri:ConfigurationParameter>
+      "<skos:prefLabel>": "Correction factor@en"
+      "<rdfs:label>": "Correction factor@en"
+
 resources:
   - name: Configuration
     properties:
@@ -13,7 +28,7 @@ resources:
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<fdri:appliesToFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:appliesToVariable>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE|slug}>
-      "<dct:type>": <http://fdri.ceh.ac.uk/ref/common/configuration-type/correction>
+      "<dct:type>": <::Correction>
 
   - name: ConfigurationItem
     properties:
@@ -25,7 +40,7 @@ resources:
         properties:
           "@id": "<_>"
           "@type": "<fdri:ConfigurationArgument>"
-          "<fdri:parameter>": "<http://fdri.ceh.ac.uk/ref/common/configuration-parameter/correction-factor>"
+          "<fdri:parameter>": "<::CorrectionFactor>"
           "<fdri:hasValue>":
             name: ConfigurationValue
             properties:

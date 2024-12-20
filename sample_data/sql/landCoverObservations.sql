@@ -1,5 +1,5 @@
-CREATE TABLE LCO AS FROM read_csv('./src/LAND_COVER_OBSERVED.csv', AUTO_DETECT=true) ;
-CREATE TABLE LCC AS FROM read_csv('./src/LAND_COVER_LCM_CLASSES.csv', AUTO_DETECT=true) ;
+CREATE TABLE LCO AS FROM read_csv('./sample_data/src/LAND_COVER_OBSERVED.csv', AUTO_DETECT=true) ;
+CREATE TABLE LCC AS FROM read_csv('./sample_data/src/LAND_COVER_LCM_CLASSES.csv', AUTO_DETECT=true) ;
 
 COPY (
     SELECT *, 

@@ -2,11 +2,11 @@ PARAMETER_ID,PARAMETER_NAME,PROPERTY_ID,PROPERTY_NAME,QUDT_EQUIV,OBJECT,CONTEXT,
 AIR_DENSITY,Air density,density,Density,Density,air,,atmosphere,KGM-3,KiloGM-PER-M3,kgm-3
 ALBEDO,Albedo,reflectance,Reflectance,Reflectance,ground,,lithosphere,PCT,PERCENT,%
 BUCKET_LEVEL,Level of rain gauge bucket,depth,Depth,Depth,water,rain gauge bucjet,atmosphere,MM,MilliM,mm
-COND,Electrical conductivity,conductivity,Conductivity,Conductivity,,,,PCT,PERCENT,%
+COND,Soil conductivity,conductivity,Conductivity,Conductivity,soil,,lithosphere,PCT,PERCENT,%
 CTS,Neutron counts,count,Count,Count,neutron,,,CTS,UNITLESS,
 DIAG_CRNS,Diagnostic flag for CRNS tube,diagnostic,Diagnostic,,sensor,,,UNITLESS,UNITLESS,
 DIAG_PRECIP,Diagnostic flag for precipitation gauge,diagnostic,Diagnostic,,sensor,,,UNITLESS,UNITLESS,
-EFF_DEPTH,Effective Depth,effective depth,Effective Depth,,,,,MM,MilliM,mm
+EFF_DEPTH,Effective Depth,effective depth,Effective Depth,,soil,,lithosphere,MM,MilliM,mm
 FACTOR_INTEN,COSMOS intensity factor,intensity factor,Intensity Factor,,neutron,cosmos,atmosphere,UNITLESS,UNITLESS,
 FACTOR_PA,COSMOS pressure factor,pressure factor,Pressure Factor,,air,cosmos,atmosphere,UNITLESS,UNITLESS,
 FACTOR_Q,COSMOS water vapour factor,water vapour factor,Water Vapour Factor,,air,cosmos,atmosphere,UNITLESS,UNITLESS,
@@ -25,7 +25,7 @@ LWIN_UNC,Incoming longwave radiation (uncorrected),energy density,Energy Density
 LWOUT,Outgoing longwave radiation (corrected),energy density,Energy Density,EnergyDensity,outgoing longwave radiation,corrected,atmosphere,WM-2,W-PER-M2,Wm-2
 LWOUT_UNC,Outgoing longwave radiation (uncorrected),energy density,Energy Density,EnergyDensity,outgoing longwave radiation,uncorrected,atmosphere,WM-2,W-PER-M2,Wm-2
 PA,Atmospheric pressure,atmospheric pressure,Atmospheric Pressure,AtmosphericPressure,air,,atmosphere,HPA,HectoPA,hPa
-PE,Potential Evaporation,potential evaporation,Potential Evaporation,,,,,,,
+PE,Potential Evaporation,potential evaporation,Potential Evaporation,,soil,,lithosphere,,,
 PERM,Electrical permittivity,electrical permittivity,Electrical Permittivity,Permittivity,soil,,lithosphere,UNITLESS,UNITLESS,
 PRECIPITATION,Precipitation,precipitation,Precipitation,,air,,atmosphere,MM,MilliM,mm
 PRECIPITATION_INTEN,Precipitation intensity,precipitation intensity,Precipitation Intensity,,air,,atmosphere,,,

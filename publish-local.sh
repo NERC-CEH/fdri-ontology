@@ -4,7 +4,7 @@ curl -X POST "http://localhost:3030/ds/update" \
     --data "DROP ALL" \
     --header "Content-Type: application/sparql-update"
 
-for file in build/*.ttl
+for file in build/data/*.ttl
 do
     curl -X PUT "http://localhost:3030/ds/data" \
     --data-binary @$file \
@@ -13,6 +13,6 @@ do
 done
 
 curl -X PUT "http://localhost:3030/ds/data" \
-    --data-binary @../ontology/owl/fdri-metadata.ttl \
+    --data-binary @ontology/owl/fdri-metadata.ttl \
     --header "Content-Type: application/turtle" \
     --url-query "graph=http://fdri.ceh.ac.uk/graph/ontology"
