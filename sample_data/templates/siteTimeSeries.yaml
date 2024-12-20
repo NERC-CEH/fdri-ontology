@@ -18,7 +18,7 @@ resources:
   - name: SiteVarSeries
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-series>"
-      "@type": "fdri:ObservationDatasetSeries"
+      "@type": "<fdri:ObservationDatasetSeries>"
       "<rdfs:label>": "All time-series for {VARIABLE_NAME} at {SITE_ID}@en"
       "<dct:title>": "All time-series for {VARIABLE_NAME} at {SITE_ID}@en"
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"

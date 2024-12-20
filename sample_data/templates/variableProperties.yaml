@@ -10,7 +10,7 @@ one_offs:
   - name: COPScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
-      "@type": "<fdri:ComplexObservablePropertyScheme>"
+      "@type": "<fdri:VariableScheme>"
   - name: ParameterScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter>"
@@ -26,7 +26,7 @@ resources:
   - name: COP
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
-      "@type": "<fdri:ComplexObservableProperty>"
+      "@type": "<fdri:Variable>"
       "<skos:inScheme>": "<::COPScheme>"
       "^<skos:hasTopConcept>": "<::COPScheme>"
       "<skos:prefLabel>": "{DESCRIPTION}@en"
@@ -37,7 +37,7 @@ resources:
       UNIT_NAME:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
-      "@type": "<fdri:ComplexObservableProperty>"
+      "@type": "<fdri:Variable>"
       "<fdri:unitName>": "{UNIT_NAME}@en"
   - name: Parameter
     requires:

@@ -45,7 +45,7 @@ CONTEXTS = $(RECORDS:%=build/context/%.context.jsonld)
 
 REPORTS = $(SAMPLES:build/%.ttl=build/validation/%.ttl)
 
-all: validate schemas contexts reports
+all: validate schemas contexts reports full_validation
 
 pull:
 	docker pull $(IMAGE)
@@ -54,6 +54,7 @@ schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)
 samples: $(SAMPLES)
 reports: $(REPORTS)
+full_validation: build/fdri_shacl_with_refs.ttl
 
 validate: $(SCHEMA_FILE)
 	$(RUN) record-spec-cmd validate $^
@@ -66,6 +67,9 @@ build/context/%.context.jsonld: $(SCHEMA_FILE) | build/context
 
 build/fdri_shacl.ttl: $(SCHEMA_FILE)
 	$(RUN) record-spec-cmd shacl -o $@ $^
+
+build/fdri_shacl_with_refs.ttl: $(SCHEMA_FILE)
+	$(RUN) record-spec-cmd shacl --with-reference-type-validation -o $@ $^
 
 clean:
 	rm -f $(SCHEMA_BASE)/*.schema.json

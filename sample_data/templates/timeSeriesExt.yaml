@@ -10,7 +10,7 @@ one_offs:
   - name: TimeSeriesScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series>"
-      "@type": "<fdri:ComplexObservablePropertyScheme>"
+      "@type": "<fdri:VariableScheme>"
 
 resources:
   - name: TimeSeriesDefinition
