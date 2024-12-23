@@ -20,7 +20,7 @@ then
   exit 1
 fi
 
-for file in build/*.ttl
+for file in build/data/*.ttl
 do 
   # Upload data to s3
   S3_DESTINATION=$S3_DESTINATION_PREFIX/${file#"build/"}
