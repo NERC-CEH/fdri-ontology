@@ -26,7 +26,12 @@ one_offs:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/network/cosmos>"
       "@type": "<fdri:EnvironmentalMonitoringNetwork>"
-      "<rdfs:label>": "COSMOS@en"
+      "<rdfs:label>": "COSMOS Network@en"
+  - name: CosmosProgramme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/programme/cosmos>"
+      "@type": "<fdri:EnvironmentalMonitoringProgramme>"
+      "<rdfs:label>": "COSMOS Programme@en"
   - name: Classification
     properties:
       "@id": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
@@ -222,6 +227,7 @@ resources:
         "<rdfs:label>": "{SITE_NAME}@en"
         "<rdfs:comment>": "{SITE_DESC}@en"
         "^<fdri:contains>": <::Cosmos>
+        "^<fdri:utilises>": <::CosmosProgramme>
         "<geos:hasGeometry>": 
             - name: EastingsNorthingsPoint
               properties:
