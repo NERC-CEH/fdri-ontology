@@ -10,7 +10,7 @@ one_offs:
   - name: TimeSeriesScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series>"
-      "@type": "<fdri:ComplexObservablePropertyScheme>"
+      "@type": "<skos:ConceptScheme>"
 
 resources:
   - name: TimeSeriesDefinition
@@ -23,4 +23,4 @@ resources:
       "<skos:inScheme>": "<::TimeSeriesScheme>"
       "^<skos:hasTopConcept>": "<::TimeSeriesScheme>"
       "<skos:prefLabel>": "{TIMESERIES_NAME}@en"
-      "<rfds:label>": "{TIMESERIES_NAME}@en"
+      "<rdfs:label>": "{TIMESERIES_NAME}@en"

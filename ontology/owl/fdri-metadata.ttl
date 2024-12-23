@@ -38,7 +38,7 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/annotationPropertyScheme
 :annotationPropertyScheme rdf:type owl:ObjectProperty ;
                           rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
-                          rdfs:range :ComplexObservablePropertyScheme .
+                          rdfs:range :VariableScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToFacility
@@ -207,7 +207,7 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/observedPropertyScheme
 :observedPropertyScheme rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
-                        rdfs:range :ComplexObservablePropertyScheme .
+                        rdfs:range :VariableScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/operatingPeriod
@@ -517,11 +517,6 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
 :CatchmentScheme rdf:type owl:Class ;
                  rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/ComplexObservablePropertyScheme
-:ComplexObservablePropertyScheme rdf:type owl:Class ;
-                                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgument
@@ -1328,7 +1323,7 @@
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
-                            owl:allValuesFrom :ComplexObservablePropertyScheme
+                            owl:allValuesFrom :VariableScheme
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty <https://w3id.org/iadopt/ont/hasContextObject> ;
@@ -1360,6 +1355,11 @@
                           ] ;
           rdfs:comment "A variable whose definition also captures additional information about the context, units, period and statistical aggregation of each measurement of the property."@en ;
           rdfs:label "Variable"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/VariableScheme
+:VariableScheme rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://qudt.org/schema/qudt/Unit

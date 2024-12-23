@@ -21,39 +21,42 @@ one_offs:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/context>"
       "@type": "<fdri:ContextObjectScheme>"
       "<dct:title>": "Common context objects@en"
+  - name: EnvironmentalDomainScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/domain>"
+      "@type": "<fdri:EnvironmentalDomainScheme>"
+      "<dct:title>": "Common environmental domains@en"
 
 resources:
   - name: COP
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
       "@type": "<fdri:Variable>"
       "<skos:inScheme>": "<::COPScheme>"
       "^<skos:hasTopConcept>": "<::COPScheme>"
-      "<skos:prefLabel>": "{DESCRIPTION}@en"
-      "<fdri:aggregationPeriod>": "{INTERVAL}^^<xsd:duration>"
-      "<fdri:valueStatistic>": "<http://fdri.ceh.ac.uk/ref/common/statistics/{STATISTIC|slug}>"
+      "<skos:prefLabel>": "{PARAMETER_NAME}@en"
   - name: COPUnitName
     requires:
       UNIT_NAME:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
       "@type": "<fdri:Variable>"
       "<fdri:unitName>": "{UNIT_NAME}@en"
   - name: Parameter
     requires:
-      PROPERTY:
+      PROPERTY_ID:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PROPERTY|slug}>"
-      "@type": <skos:Concept>
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PROPERTY_ID|slug}>"
+      "@type": <qudt:QuantityKind>
       "<skos:prefLabel>": "{PROPERTY_NAME}@en"
-      "^<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "^<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
   - name: ParameterBroader
     requires:
-      QUDT_QUANTITY_KIND:
+      QUDT_EQUIV:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PROPERTY|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PROPERTY_ID|slug}>"
       "@type": <qudt:QuantityKind>
-      "<skos:broaderMatch>": <http://qudt.org/vocab/quantitykind/{QUDT_QUANTITY_KIND}>
+      "<skos:exactMatch>": <http://qudt.org/vocab/quantitykind/{QUDT_EQUIV}>
   - name: ObjectOfInterest
     requires:
       OBJECT:
@@ -63,7 +66,7 @@ resources:
       "<skos:inScheme>": <::ObjectOfInterestScheme>
       "^<skos:hasTopConcept>": "<::ObjectOfInterestScheme>"
       "<skos:prefLabel>": "{OBJECT}@en"
-      "^<iop:hasObjectOfInterest>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "^<iop:hasObjectOfInterest>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
 
   - name: Context
     requires:
@@ -74,21 +77,32 @@ resources:
       "<skos:inScheme>": <::ContextScheme>
       "^<skos:hasTopConcept>": <::ContextScheme>
       "<skos:prefLabel>": "{CONTEXT}@en"
-      "^<iop:hasContextObject>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "^<iop:hasContextObject>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+
+  - name: Domain
+    requires:
+      DOMAIN:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/domain/{DOMAIN|slug}>"
+      "@type": "<fdri:EnvironmentalDomain>"
+      "<skos:inScheme>": <::EnvironmentalDomainScheme>
+      "^<skos:hasTopConcept>": <::EnvironmentalDomainScheme>
+      "<skos:prefLabel>": "{DOMAIN}@en"
+      "^<fdri:environmentalDomain>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
 
   - name: Unit
     requires:
       UNIT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<skos:Concept>"
-      "^<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "@type": "<qudt:Unit>"
+      "^<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
   - name: UnitLabel
     requires:
       UNIT_NAME:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<skos:Concept>"
+      "@type": "<qudt:Unit>"
       "<skos:prefLabel>": "{UNIT_NAME}@en" 
   - name: UnitMatch
     requires:
@@ -96,6 +110,6 @@ resources:
       QUDT_UNIT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<skos:Concept>"
-      "<skos:broaderMatch>": <http://qudt.org/vocab/unit/{QUDT_UNIT}>
+      "@type": "<qudt:Unit>"
+      "<skos:exactMatch>": <http://qudt.org/vocab/unit/{QUDT_UNIT}>
   

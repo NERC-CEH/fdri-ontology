@@ -43,6 +43,6 @@ resources:
           "@type": "<dct:PeriodOfTime>"
           "<dcat:startDate>": "{START_DATETIME|asDateTime}"
           "<dcat:endDate>": "{END_DATETIME|asDateTime}"
-      "<fdri:affectedFacility>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
-      "^<fdri:hadFault>": "<http://fdri.ceh.ac.uk/id/platform/cosmos-{SITE_ID|slug}>"
+      "<fdri:affectedFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
+      "^<fdri:hadFault>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
     

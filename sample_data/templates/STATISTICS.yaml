@@ -10,7 +10,7 @@ one_offs:
   - name: StatisticsConceptScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics>"
-      "@type": "<fdri:ValueStatisticScheme>"
+      "@type": "<skos:ConceptScheme>"
       "<rdfs:label>": "Value Statistics@en"
       "<dct:title>": "Value Statistics@en"
 

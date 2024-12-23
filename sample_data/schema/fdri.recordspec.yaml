@@ -983,7 +983,7 @@ records:
         propertyUri: skos:inScheme
         kind: object
         constraints:
-          - record: DataProcessingMethodScheme
+          - record: ConceptScheme
       parameter:
         label:
           - value: has parameter
@@ -997,17 +997,6 @@ records:
         constraints:
           - record: ConfigurationParameter
   
-  DataProcessingMethodScheme:
-    label:
-      - value: Data Processing Method Concept Scheme
-        lang: en
-    description:
-      - value: A Concept Scheme that manages a controlled vocabulary of Data Processing Method concepts.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:DataProcessingMethodScheme
-    shortCode: DataProcessingMethodScheme
-
   Deployment:
     label:
       - value: Deployment
@@ -3095,18 +3084,7 @@ records:
         propertyUri: skos:inScheme
         kind: object
         constraints:
-          - record: ValueStatisticScheme
-
-  ValueStatisticScheme:
-    label:
-      - value: Value Statistic Concept Scheme
-        lang: en
-    description:
-      - value: A concept scheme providing a controlled vocabulary of the staticsal methods for aggregating multiple values into a single value.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:ValueStatisticScheme
-    shortCode: ValueStatisticScheme
+          - record: ConceptScheme
 
   Variable:
     label:
