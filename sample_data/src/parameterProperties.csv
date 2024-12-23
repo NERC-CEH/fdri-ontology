@@ -14,12 +14,12 @@ FLUX_MOM,Momentum flux,momentum flux,Momentum Flux,,air,,atmosphere,KGM-1S-2,Kil
 FRICTIONV,Friction velocity,friction velocity,Friction Velocity,,air,,atmosphere,MS-1,M-PER-S,ms-1
 HEATFLUX_SENSIBLE,Sensible heat flux,heat flux density,Heat Flux Density,,air,,atmosphere,WM-2,W-PER-M2,Wm-2
 HEATFLUX_SOIL,Soil heat flux,heat flux density,Heat Flux Density,,soil,,lithosphere,WM-2,W-PER-M2,Wm-2
-IMAGE_RED_AMOUNT,Amount of red in an image,image colour amount,Image Colour Amount,,red,,,UNITLESS,UNITLESS,
-IMAGE_RED_PROPORTION,Proportion of red in an image,image colour proportion,Image Colour Proportion,,red,,,PCT,PERCENT,%
-IMAGE_GREEN_AMOUNT,Amount of green in an image,image colour amount,Image Colour Amount,,green,,,UNITLESS,UNITLESS,
-IMAGE_GREEN_PROPORTION,Proportion of green in an image,image colour proportion,Image Colour Proportion,,green,,,PCT,PERCENT,%
-IMAGE_BLUE_AMOUNT,Amount of blue in an image,image colour amount,Image Colour Amount,,blue,,,UNITLESS,UNITLESS,
-IMAGE_BLUE_PROPORTION,Proportion of blue in an image,image colour proportion,Image Colour Proportion,,blue,,,PCT,PERCENT,%
+IMAGE_COLOUR_AMOUNT_R,Amount of red in an image,image colour amount,Image Colour Amount,,red,,,UNITLESS,UNITLESS,
+IMAGE_COLOUR_PROPORTION_R,Proportion of red in an image,image colour proportion,Image Colour Proportion,,red,,,PCT,PERCENT,%
+IMAGE_COLOUR_AMOUNT_G,Amount of green in an image,image colour amount,Image Colour Amount,,green,,,UNITLESS,UNITLESS,
+IMAGE_COLOUR_PROPORTION_G,Proportion of green in an image,image colour proportion,Image Colour Proportion,,green,,,PCT,PERCENT,%
+IMAGE_COLOUR_AMOUNT_B,Amount of blue in an image,image colour amount,Image Colour Amount,,blue,,,UNITLESS,UNITLESS,
+IMAGE_COLOUR_PROPORTION_B,Proportion of blue in an image,image colour proportion,Image Colour Proportion,,blue,,,PCT,PERCENT,%
 LWIN,Incoming longwave radiation (corrected),energy density,Energy Density,EnergyDensity,incoming longwave radiation,corrected,atmosphere,WM-2,W-PER-M2,Wm-2
 LWIN_UNC,Incoming longwave radiation (uncorrected),energy density,Energy Density,EnergyDensity,incoming longwave radiation,uncorrected,atmosphere,WM-2,W-PER-M2,Wm-2
 LWOUT,Outgoing longwave radiation (corrected),energy density,Energy Density,EnergyDensity,outgoing longwave radiation,corrected,atmosphere,WM-2,W-PER-M2,Wm-2
@@ -48,24 +48,12 @@ TEMP_AIR,Air temperature,temperature,Temperature,Temperature,air,,atmosphere,DEG
 TEMP_CRNS,Temperature in CRNS tube,temperature,Temperature,Temperature,air,crns tube,diagnostic,DEGC,DEG_C,degrees celsius
 TEMP_LOADCELL,Temperature of Pluvio load cell,temperature,Temperature,Temperature,load cell,sensor,diagnostic,DEGC,DEG_C,degrees celsius
 TEMP_RADIOMETER,Radiometer body temperature,temperature,Temperature,Temperature,sensor,,diagnostic,DEGC,DEG_C,degrees celsius
-TEMP_SOIL_10,Soil temperature at 10cm depth,temperature,Temperature,Temperature,soil,10cm depth,lithosphere,DEGC,DEG_C,degrees celsius
-TEMP_SOIL_15,Soil temperature at 15cm depth,temperature,Temperature,Temperature,soil,15cm depth,lithosphere,DEGC,DEG_C,degrees celsius
-TEMP_SOIL_2,Soil temperature at 2cm depth,temperature,Temperature,Temperature,soil,2cm depth,lithosphere,DEGC,DEG_C,degrees celsius
-TEMP_SOIL_20,Soil temperature at 20cm depth,temperature,Temperature,Temperature,soil,20cm depth,lithosphere,DEGC,DEG_C,degrees celsius
-TEMP_SOIL_25,Soil temperature at 25cm depth,temperature,Temperature,Temperature,soil,25cm depth,lithosphere,DEGC,DEG_C,degrees celsius
-TEMP_SOIL_5,Soil temperature at 5cm depth,temperature,Temperature,Temperature,soil,5cm depth,lithosphere,DEGC,DEG_C,degrees celsius
-TEMP_SOIL_50,Soil temperature at 50cm depth,temperature,Temperature,Temperature,soil,50cm depth,lithosphere,DEGC,DEG_C,degrees celsius
+TEMP_SOIL,Soil temperature,temperature,Temperature,Temperature,soil,,lithosphere,DEGC,DEG_C,degrees celsius
 TEMP_SONIC,Sonic temperature,temperature,Temperature,Temperature,air,sonic temperature,atmosphere,DEGC,DEG_C,degrees celsius
 VAPOUR_P,Vapour pressure,vapour pressure,Vapour Pressure,VaporPressure,air,,atmosphere,HPA,HectoPA,hPa
 VOLTAGE,Battery voltage,voltage,Voltage,Voltage,battery,sensor,diagnostic,V,V,volt
 VWC_CNRS,Volumetric water content from CRNS tube,vwc,Volumetric Water Content,,air,crns tube,diagnostic,PCT,PERCENT,%
-VWC_SOIL_10,Soil volumetric water content at 10cm depth,vwc,Volumetric Water Content,,soil,10cm depth,lithosphere,PCT,PERCENT,%
-VWC_SOIL_15,Soil volumetric water content at 15cm depth,vwc,Volumetric Water Content,,soil,15cm depth,lithosphere,PCT,PERCENT,%
-VWC_SOIL_25,Soil volumetric water content at 25cm depth,vwc,Volumetric Water Content,,soil,25cm depth,lithosphere,PCT,PERCENT,%
-VWC_SOIL_40,Soil volumetric water content at 40cm depth,vwc,Volumetric Water Content,,soil,40cm depth,lithosphere,PCT,PERCENT,%
-VWC_SOIL_5,Soil volumetric water content at 5cm depth,vwc,Volumetric Water Content,,soil,5cm depth,lithosphere,PCT,PERCENT,%
-VWC_SOIL_50,Soil volumetric water content at 50cm depth,vwc,Volumetric Water Content,,soil,50cm depth,lithosphere,PCT,PERCENT,%
-VWC_SOIL_65,Soil volumetric water content at 65cm depth,vwc,Volumetric Water Content,,soil,65cm depth,lithosphere,PCT,PERCENT,%
+VWC_SOIL,Soil volumetric water content,vwc,Volumetric Water Content,,soil,,lithosphere,PCT,PERCENT,%
 WD,Wind direction,wd,Wind Direction,,air,,atmosphere,DEG,,degrees
 WETNESS_INDEX,Wetness index,wi,Wetness Index,,soil,,lithosphere,UNITLESS,UNITLESS,
 WS,Wind speed,ws,Wind Speed,,air,,atmosphere,MS-1,M-PER-S,ms-1

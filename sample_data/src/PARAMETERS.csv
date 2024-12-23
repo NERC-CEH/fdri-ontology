@@ -1,67 +1,59 @@
 PARAMETER_ID,PARAMETER_NAME
-STATUS_P_HEATING,Status of Pluvio orifice rim heating element
-Q,Absolute humidity
-PA,Atmospheric pressure
-VOLTAGE,Battery voltage
-TEMP_LOADCELL,Temperature of Pluvio load cell
-SNOWD_DISTANCE_UNC,Distance between sensor and snow surface (uncorrected)
-EFF_DEPTH,Effective Depth
+AIR_DENSITY,Air density
+ALBEDO,Albedo
+BUCKET_LEVEL,Level of rain gauge bucket
 COND,Electrical conductivity
-PERM,Electrical permittivity
-HEATFLUX_SENSIBLE,Sensible heat flux
+CTS,Neutron counts
+DIAG_CRNS,Diagnostic flag for CRNS tube
 DIAG_PRECIP,Diagnostic flag for precipitation gauge
+EFF_DEPTH,Effective Depth
+FACTOR_INTEN,COSMOS intensity factor
+FACTOR_PA,COSMOS pressure factor
+FACTOR_Q,COSMOS water vapour factor
+FLUX_MOM,Momentum flux
+FRICTIONV,Friction velocity
+HEATFLUX_SENSIBLE,Sensible heat flux
+HEATFLUX_SOIL,Soil heat flux
+IMAGE_COLOUR_AMOUNT_B,Amount of blue in an image
+IMAGE_COLOUR_PROPORTION_B,Proportion of blue in an image
+IMAGE_COLOUR_AMOUNT_G,Amount of green in an image
+IMAGE_COLOUR_PROPORTION_G,Proportion of green in an image
+IMAGE_COLOUR_AMOUNT_R,Amount of red in an image
+IMAGE_COLOUR_PROPORTION_R,Proportion of red in an image
 LWIN,Incoming longwave radiation (corrected)
 LWIN_UNC,Incoming longwave radiation (uncorrected)
-SWIN,Incoming shortwave radiation
-BUCKET_LEVEL,Level of rain gauge bucket
-RN,Net radiation
-CTS,Neutron counts
 LWOUT,Outgoing longwave radiation (corrected)
 LWOUT_UNC,Outgoing longwave radiation (uncorrected)
-SWOUT,Outgoing shortwave radiation
+PA,Atmospheric pressure
 PE,Potential Evaporation
+PERM,Electrical permittivity
 PRECIPITATION,Precipitation
-STATUS_PLUVIO,Status of Pluvio rain gauge
-SNOWD_SIGNALQUALITY,Quality number
-SCANS_LOGGER,Number of samples within interval
-RH,Relative humidity
-TEMP_SOIL_5,Soil temperature at 5cm depth
-TEMP_SOIL_20,Soil temperature at 20cm depth
-TEMP_SOIL_10,Soil temperature at 10cm depth
-FACTOR_INTEN,COSMOS intensity factor
-WETNESS_INDEX,Wetness index
-WD,Wind direction
-WS,Wind speed
-FACTOR_Q,COSMOS water vapour factor
-SNOWD_DISTANCE_COR,Distance between sensor and snow surface (corrected)
-AIR_DENSITY,Air density
-FRICTIONV,Friction velocity
 PRECIPITATION_INTEN,Precipitation intensity
+Q,Absolute humidity
+RH,Relative humidity
+RN,Net radiation
+SCANS_LOGGER,Number of samples within interval
 SCANS_METPAK,Number of MetPak samples within interval
-VAPOUR_P,Vapour pressure
-ALBEDO,Albedo
-TEMP_AIR,Air temperature
-IMAGE_COLOUR_AMOUNT,Amount of particular colour in an image
-TEMP_RADIOMETER,Radiometer body temperature
-DIAG_CRNS,Diagnostic flag for CRNS tube
-FACTOR_PA,COSMOS pressure factor
-HEATFLUX_SOIL,Soil heat flux
-FLUX_MOM,Momentum flux
-TEMP_SONIC,Sonic temperature
-TEMP_CRNS,Temperature in CRNS tube
-TEMP_SOIL_2,Soil temperature at 2cm depth
-TEMP_SOIL_50,Soil temperature at 50cm depth
-TEMP_SOIL_15,Soil temperature at 15cm depth
-TEMP_SOIL_25,Soil temperature at 25cm depth
-VWC_CNRS,Volumetric water content from CRNS tube
-VWC_SOIL_10,Soil volumetric water content at 10cm depth
-VWC_SOIL_5,Soil volumetric water content at 5cm depth
-VWC_SOIL_15,Soil volumetric water content at 15cm depth
-VWC_SOIL_25,Soil volumetric water content at 25cm depth
-VWC_SOIL_50,Soil volumetric water content at 50cm depth
-VWC_SOIL_40,Soil volumetric water content at 40cm depth
-VWC_SOIL_65,Soil volumetric water content at 65cm depth
-SNOW_DAY,Snow day
-SWE,Snow water equivalent
-IMAGE_COLOUR_PROPORTION,Proportion of particular colour in an image
 SMI,Soil moisture index
+SNOW_DAY,Snow day
+SNOWD_DISTANCE_COR,Distance between sensor and snow surface (corrected)
+SNOWD_DISTANCE_UNC,Distance between sensor and snow surface (uncorrected)
+SNOWD_SIGNALQUALITY,Quality number
+STATUS_P_HEATING,Status of Pluvio orifice rim heating element
+STATUS_PLUVIO,Status of Pluvio rain gauge
+SWE,Snow water equivalent
+SWIN,Incoming shortwave radiation
+SWOUT,Outgoing shortwave radiation
+TEMP_AIR,Air temperature
+TEMP_CRNS,Temperature in CRNS tube
+TEMP_LOADCELL,Temperature of Pluvio load cell
+TEMP_RADIOMETER,Radiometer body temperature
+TEMP_SOIL,Soil temperature
+TEMP_SONIC,Sonic temperature
+VAPOUR_P,Vapour pressure
+VOLTAGE,Battery voltage
+VWC_CNRS,Volumetric water content from CRNS tube
+VWC_SOIL,Soil volumetric water content
+WD,Wind direction
+WETNESS_INDEX,Wetness index
+WS,Wind speed

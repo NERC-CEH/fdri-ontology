@@ -17,14 +17,14 @@ one_offs:
 resources:
   - name: SiteVarSeries
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{VARIABLE_NAME|slug}-series>"
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{PARAMETER_ID|slug}-series>"
       "@type": "<fdri:ObservationDatasetSeries>"
-      "<rdfs:label>": "All time-series for {VARIABLE_NAME} at {SITE_ID}@en"
-      "<dct:title>": "All time-series for {VARIABLE_NAME} at {SITE_ID}@en"
+      "<rdfs:label>": "All time-series for {PARAMETER_NAME} at {SITE_ID}@en"
+      "<dct:title>": "All time-series for {PARAMETER_NAME} at {SITE_ID}@en"
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/mixed>
-      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
+      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>
       "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:originatingProgramme>": <::CosmosProgramme>
 
@@ -37,7 +37,7 @@ resources:
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/mixed>
-      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>
+      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>
       "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:originatingProgramme>": <::CosmosProgramme>
 
@@ -48,7 +48,7 @@ resources:
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>"
       "<dct:title>": "{TIMESERIES_NAME} at {SITE_ID}@en"
       "<rdfs:label>": "{TIMESERIES_NAME} at {SITE_ID}@en"
-      "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_NAME|slug}>"
+      "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dcat:temporalResolution>": "{PERIOD}^^<xsd:duration>"

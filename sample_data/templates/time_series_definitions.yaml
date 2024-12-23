@@ -23,4 +23,4 @@ resources:
       "<skos:inScheme>": "<::TimeSeriesScheme>"
       "^<skos:hasTopConcept>": "<::TimeSeriesScheme>"
       "<skos:prefLabel>": "{TIMESERIES_NAME}@en"
-      "<rfds:label>": "{TIMESERIES_NAME}@en"
+      "<rdfs:label>": "{TIMESERIES_NAME}@en"
