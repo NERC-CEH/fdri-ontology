@@ -32,13 +32,13 @@
 :affectedVariable rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   rdfs:domain :Fault ;
-                  rdfs:range :ComplexObservableProperty .
+                  rdfs:range :Variable .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/annotationPropertyScheme
 :annotationPropertyScheme rdf:type owl:ObjectProperty ;
                           rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
-                          rdfs:range :ComplexObservablePropertyScheme .
+                          rdfs:range :VariableScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToFacility
@@ -50,7 +50,7 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToVariable
 :appliesToVariable rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
-                   rdfs:range :ComplexObservableProperty .
+                   rdfs:range :Variable .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/argument
@@ -133,7 +133,7 @@
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasUnit
 :hasUnit rdf:type owl:ObjectProperty ;
-         rdfs:domain :ComplexObservableProperty ;
+         rdfs:domain :Variable ;
          rdfs:range <http://qudt.org/schema/qudt/Unit> ;
          rdfs:comment "Relates a Complex Observable Property to the unit of measurement used by observations of the property."@en .
 
@@ -181,6 +181,11 @@
         rdfs:domain <http://www.w3.org/2004/02/skos/core#Concept> .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/methodology
+:methodology rdf:type owl:ObjectProperty ;
+             rdfs:range <http://www.w3.org/ns/prov#Plan> .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/monitoringFacilityTypeScheme
 :monitoringFacilityTypeScheme rdf:type owl:ObjectProperty ;
                               rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
@@ -202,7 +207,7 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/observedPropertyScheme
 :observedPropertyScheme rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
-                        rdfs:range :ComplexObservablePropertyScheme .
+                        rdfs:range :VariableScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/operatingPeriod
@@ -237,7 +242,7 @@
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/property
 :property rdf:type owl:ObjectProperty ;
-          rdfs:range :ComplexObservableProperty .
+          rdfs:range :Variable .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/qualifier
@@ -278,6 +283,11 @@
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/trackLog
 :trackLog rdf:type owl:ObjectProperty .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/uses
+:uses rdf:type owl:ObjectProperty ;
+      rdfs:range :TimeSeriesDefinition .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/utilises
@@ -410,6 +420,12 @@
              rdfs:comment "The northerly offset of a relative location from its origin measured in metres."@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/periodicity
+:periodicity rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:range xsd:duration .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/procedurePeriodicity
 :procedurePeriodicity rdf:type owl:DatatypeProperty ;
                       rdfs:range xsd:duration ;
@@ -434,6 +450,12 @@
                 rdfs:label "source control repository path"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/resolution
+:resolution rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:range xsd:duration .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/serialNumber
 :serialNumber rdf:type owl:DatatypeProperty ;
               rdfs:range xsd:string .
@@ -452,7 +474,7 @@
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/unitName
 :unitName rdf:type owl:DatatypeProperty ;
-          rdfs:domain :ComplexObservableProperty ;
+          rdfs:domain :Variable ;
           rdfs:range rdf:langString ;
           rdfs:comment "Provides the display label to use for the unit of measurement of a Complex Observable Property."@en .
 
@@ -495,56 +517,6 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
 :CatchmentScheme rdf:type owl:Class ;
                  rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/ComplexObservableProperty
-:ComplexObservableProperty rdf:type owl:Class ;
-                           rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
-                                           <http://www.w3.org/ns/sosa/ObservableProperty> ,
-                                           <https://w3id.org/iadopt/ont/Variable> ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :environmentalDomain ;
-                                             owl:allValuesFrom :EnvironmentalDomain
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
-                                             owl:allValuesFrom :ComplexObservablePropertyScheme
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty <https://w3id.org/iadopt/ont/hasContextObject> ;
-                                             owl:allValuesFrom :ContextObject
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty <https://w3id.org/iadopt/ont/hasObjectOfInterest> ;
-                                             owl:allValuesFrom :ObjectOfInterest
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :hasValueScheme ;
-                                             owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :hasUnit ;
-                                             owl:cardinality "1"^^xsd:nonNegativeInteger
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :valueStatistic ;
-                                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :unitName ;
-                                             owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                           ] ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :aggregationPeriod ;
-                                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                           ] ;
-                           rdfs:comment "An Observable Property whose definition also captures additional information about the context, units, period and statistical aggregation of each measurement of the property."@en ;
-                           rdfs:label "Complex Observable Property"@en .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/ComplexObservablePropertyScheme
-:ComplexObservablePropertyScheme rdf:type owl:Class ;
-                                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgument
@@ -647,6 +619,14 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfiguration
 :DataProcessingConfiguration rdf:type owl:Class ;
                              rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :appliesToFacility ;
+                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :appliesToVariable ;
+                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                             ] ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty <http://purl.org/dc/terms/type> ;
                                                owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
@@ -834,6 +814,7 @@
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSite
 :EnvironmentalMonitoringSite rdf:type owl:Class ;
                              rdfs:subClassOf :EnvironmentalMonitoringFacility ,
+                                             <http://www.w3.org/ns/sosa/Platform> ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
                                                owl:allValuesFrom <http://www.w3.org/ns/sosa/Platform>
@@ -920,7 +901,7 @@
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :affectedVariable ;
-                         owl:someValuesFrom :ComplexObservableProperty
+                         owl:someValuesFrom :Variable
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :interval ;
@@ -957,14 +938,6 @@
 :InternalDataProcessingConfiguration rdf:type owl:Class ;
                                      rdfs:subClassOf :DataProcessingConfiguration ,
                                                      <http://www.w3.org/ns/dcat#Resource> ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :appliesToFacility ;
-                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                                     ] ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :appliesToVariable ;
-                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                                     ] ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hadConfigurationItem ;
                                                        owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -1037,9 +1010,13 @@
                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
                                       owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :ComplexObservableProperty
+                                      owl:onClass :Variable
                                     ] .
 
 
@@ -1284,20 +1261,105 @@
 :TimeSeriesDataset rdf:type owl:Class ;
                    rdfs:subClassOf :ObservationDataset ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :valueStatistic ;
-                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :aggregationPeriod ;
-                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                     owl:onProperty <http://purl.org/dc/terms/type> ;
+                                     owl:allValuesFrom :TimeSeriesDefinition
                                    ] ;
                    rdfs:comment "A Dataset consisting of a collection of measurements of one or more Observable Properties of some Feature of Interest at regular intervals over a period of time."@en ;
                    rdfs:label "Time-Series Dataset"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDefinition
+:TimeSeriesDefinition rdf:type owl:Class ;
+                      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                        owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :methodology ;
+                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :TimeSeriesPlan
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :valueStatistic ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :periodicity ;
+                                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :resolution ;
+                                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                                      ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesPlan
+:TimeSeriesPlan rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasAnnotation ;
+                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :uses ;
+                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                ] .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic
 :ValueStatistic rdf:type owl:Class ;
                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/Variable
+:Variable rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                          <http://www.w3.org/ns/sosa/ObservableProperty> ,
+                          <https://w3id.org/iadopt/ont/Variable> ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :environmentalDomain ;
+                            owl:allValuesFrom :EnvironmentalDomain
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                            owl:allValuesFrom :VariableScheme
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://w3id.org/iadopt/ont/hasContextObject> ;
+                            owl:allValuesFrom :ContextObject
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://w3id.org/iadopt/ont/hasObjectOfInterest> ;
+                            owl:allValuesFrom :ObjectOfInterest
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasValueScheme ;
+                            owl:minCardinality "0"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasUnit ;
+                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :valueStatistic ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :unitName ;
+                            owl:minCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :aggregationPeriod ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ;
+          rdfs:comment "A variable whose definition also captures additional information about the context, units, period and statistical aggregation of each measurement of the property."@en ;
+          rdfs:label "Variable"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/VariableScheme
+:VariableScheme rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://qudt.org/schema/qudt/Unit

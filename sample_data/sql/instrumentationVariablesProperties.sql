@@ -1,5 +1,5 @@
-create table IF NOT EXISTS inst_var as from read_csv('./src/instrumentation_variables.csv', AUTO_DETECT=true) ;
-create table if not EXISTS var_prop as from read_csv('./src/variableProperties.csv', AUTO_DETECT=true) ;
+create table IF NOT EXISTS inst_var as from read_csv('./sample_data/src/instrumentation_variables.csv', AUTO_DETECT=true) ;
+create table if not EXISTS var_prop as from read_csv('./sample_data/src/variableProperties.csv', AUTO_DETECT=true) ;
 COPY(
     SELECT inst_var.*, var_prop.PROPERTY
     FROM inst_var

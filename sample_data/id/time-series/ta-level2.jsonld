@@ -1,0 +1,12 @@
+{
+    "$schema": "../../build/schema/TimeSeriesDefinition.schema.json",
+    "@context": "../../build/context/TimeSeriesDefinition.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/time-series/ta-level2",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDefinition",
+    "observedProperty": {"@id":"http://fdri.ceh.ac.uk/id/variable/ta"},
+    "resolution": "PT30M",
+    "periodicity": "PT30M",
+    "valueStatistic": {"@id": "http://fdri.ceh.ac.uk/ref/common/valueStatistic/mean-prec"},
+    "processingLevel": {"@id": "http://fdri.ceh.ac.uk/ref/common/processingLevel/2"},
+    "methodology": {"@id": "http://fdri.ceh.ac.uk/ref/cosmos/method/ta-qc-infill"}
+}

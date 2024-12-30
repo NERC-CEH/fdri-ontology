@@ -22,6 +22,7 @@ resources:
   - name: HistoricalValue
     requires:
       FIRMWARE:
+      START_DATETIME:
       END_DATETIME:
     properties:
       "@id": "<_>"
@@ -38,6 +39,7 @@ resources:
   - name: CurrentValue
     requires:
       FIRMWARE:
+      START_DATETIME:
       END_DATETIME: ''
     properties:
       "@id": "<_>"

@@ -11,7 +11,7 @@ one_offs:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type>"
       "@type": "<fdri:EnvironmentalMonitoringSystemTypeScheme>"
-      "dct:title": "COSMOS Monitoring System Types@en"
+      "<dct:title>": "COSMOS Monitoring System Types@en"
 
 resources:
 

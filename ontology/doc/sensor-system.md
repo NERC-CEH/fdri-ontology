@@ -60,14 +60,14 @@ A record of a system fault relates the affected `EnvironmentalMonitoringFacility
 
 A fault is a time-bounded event and so has a related interval with start and end date/date-times. The range of `dcat:startDate` and `dcat:endDate` is specified in DCAT as one of the following XSD datatypes `xsd:gYear`, `xsd:gYearMonth`, `xsd:date`, or `xsd:dateTime` .
 
-The fault is understood as affecting all observations of the specified `ComplexObservableProperty` made by the system during the specified interval. Multiple `ComplexObservableProperty` instances may be specified on a single fault.
+The fault is understood as affecting all observations of the specified `Variable` made by the system during the specified interval. Multiple `Variable` instances may be specified on a single fault.
 
 The `removeData` flag is set to true to indicate that affected observations should be removed from the data.
 
 ```mermaid
 classDiagram
   class EMF["fdri:EnvironmentalMonitoringFacility"]
-  class COP["fdri:ComplexObservableProperty"]
+  class COP["fdri:Variable"]
   class Fault["fdri:Fault"]
   class Fault {
     fdri:removeData: xsd:boolean

@@ -48,7 +48,7 @@ resources:
           properties:
             "@id": "<_>"
             "@type": "<fdri:Person>"
-            "<rdfs:label>": "{SOURCE}"
+            "<rdfs:label>": "{SOURCE}@en"
         - name: MadeBySiteHost
           # In the case of a site host we create a named resource for the host of the site.
           # As this may be a person or an organisation, we type the resource as the common super-class fdri:Agent
@@ -57,7 +57,7 @@ resources:
           properties:
             "@id": "<http://fdri.ceh.ac.uk/id/agent/cosmos-site-host-{SITE_ID}>"
             "@type": "<fdri:Agent>"
-            "<rdfs:label>": "Site Host at {SITE_ID}"
+            "<rdfs:label>": "Site Host at {SITE_ID}@en"
         - name: MadeByPheoncam
           # QUESTION: What can we say is the sensor in this case?
           # Here I am assuming that there would be a Phenocam monitoring network
@@ -67,4 +67,4 @@ resources:
           properties:
             "@id": "<http://fdri.ceh.ac.uk/id/monitoringNetwork/phenocam>"
             "@type": "<fdri:MonitoringNetwork>"
-            "<rdfs:label>": "{SOURCE}"
+            "<rdfs:label>": "{SOURCE}@en"
