@@ -1,5 +1,5 @@
 IMAGE=293385631482.dkr.ecr.eu-west-1.amazonaws.com/epimorphics/record-spec-tools/unstable:1.0-SNAPSHOT
-RUN=docker run -v .:/data ${IMAGE}
+RUN=docker run --rm -v .:/data ${IMAGE}
 
 SCHEMA_BASE = sample_data/build/schema
 SRC = sample_data/src
