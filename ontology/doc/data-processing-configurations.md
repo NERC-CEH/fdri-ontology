@@ -37,12 +37,14 @@ classDiagram
   class EMF["fdri:EnvironmentalMonitoringFacility"]
   class ConfigurationItem["fdri:ConfigurationItem"]
   class DataProcessingConfigurationType["fdri:DataProcessingConfigurationType"]
+  class TimeSeriesDefinition["fdri:TimeSeriesDefinition"]
 
   Plan <|-- DPConfig
   
   DPConfig --> EMF: fdri_appliesToFacility
   DPConfig --> EMFType: fdri_appliesToSystem
   DPConfig --> COP: fdri_appliesToVariable
+  DPConfig --> TimeSeriesDefinition: fdri_appliesToTimeSeries
   DPConfig --> ConfigurationItem: fdri_hadConfigurationItem
   DPConfig --> ConfigurationItem: fdri_hasCurrentConfigurationItem
   DPConfig --> DataProcessingConfigurationType: dct_type
@@ -50,7 +52,10 @@ classDiagram
 
 An `fdri:InternalDataProcessingConfiguration` is used to capture a collection of configuration items that apply to part of the data processing pipeline.
 
-The relation `fdri:appliesToFacility` relates a `fdri:DataProcessingConfiguration` to the `fdri:EnvironmentalMonitoringFacility` or `fdri:EnvironmentalMonitoringFacilityType` whose measurements are affected by the configuration. The relation `fdri:appliesToVariable` relates an `fdri:DataProcessingConfiguration` to the variable affected by the configuration.
+The relation `fdri:appliesToFacility` relates a `fdri:DataProcessingConfiguration` to the `fdri:EnvironmentalMonitoringFacility` or `fdri:EnvironmentalMonitoringFacilityType` whose measurements are affected by the configuration.  The relation `fdri:appliesToTimeSeries` relates an `fdri:DataProcessingConfiguration` to the time series affected by the configuration.
+
+> **NOTE**
+> The use of `fdri:appliesToVariable` to relate an `fdri:DataProcessingConfiguration` to the variable affected by the configuration is deprecated in favour of using `fdri:appliesToTimeSeries` and may be removed from the model.
 
 The relation `fdri:hasCurrentConfigurationItem` relates an `fdri:DataProcessingConfiguration` to one or more `fdri:ConfigurationItem`s, which provide the current set of configuration values for the processing. Each `fdri:ConfigurationItem` specifies a method (e.g. multiply, spike etc.); a property value (which may be a specific value or a min/max range); a `fdri:phenomenonInterval` which indicates the date range of the observations to be affected by the configuration item; and an `fdri:interval` which specifies the interval during which the configuration item applies. If `fdri:phenomenonInterval` is omitted, the configuration would be treated as applying to all observations processed during the `fdri:interval`
 

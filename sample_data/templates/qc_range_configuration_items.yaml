@@ -26,15 +26,15 @@ one_offs:
 resources:
   - name: Configuration
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-qc-range-{SITE_ID|slug}-{PARAMETER_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-qc-range-{SITE_ID|slug}-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<fdri:appliesToFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
-      "<fdri:appliesToVariable>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>
+      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>
       "<dct:type>": <::RangeCheck>
 
   - name: ConfigurationItem
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-qc-range-{SITE_ID|slug}-{PARAMETER_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-qc-range-{SITE_ID|slug}-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:ConfigurationItem>"
       "<fdri:method>": "<::MinMaxRange>"
       "<fdri:argument>":
@@ -56,5 +56,5 @@ resources:
           "@id": "<_>"
           "@type": "<dct:PeriodOfTime>"
           "<dcat:startDate>": "{| now}"
-      "^<fdri:hasCurrentConfiguration>": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-qc-range-{SITE_ID|slug}-{PARAMETER_ID|slug}>"
-      "^<prov:hadPlan>": "<http://fdri.ceh.ac.uk/id/activity/qc-cosmos-{SITE_ID|slug}-{PARAMETER_ID|slug}-1234>"
+      "^<fdri:hasCurrentConfiguration>": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-qc-range-{SITE_ID|slug}-{TIMESERIES_ID|slug}>"
+      "^<prov:hadPlan>": "<http://fdri.ceh.ac.uk/id/activity/qc-cosmos-{SITE_ID|slug}-{TIMESERIES_ID|slug}-1234>"

@@ -99,7 +99,7 @@ build/shacl:
 build/data:
 	mkdir -p build/data
 
-build/correction_configurations.csv: $(SRC)/PARAMETERS.csv $(SRC)/CORRECTION_FACTORS.csv $(SQL)/correction_configurations.sql | build
+build/correction_configurations.csv: build/time_series_datasets.csv $(SRC)/CORRECTION_FACTORS.csv $(SQL)/correction_configurations.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/correction_configurations.sql"
 
 build/instrumentationVariablesProperties.csv: $(SRC)/instrumentation_variables.csv $(SRC)/variableProperties.csv $(SQL)/instrumentationVariablesProperties.sql | build
@@ -114,7 +114,7 @@ build/landCoverObservations.csv: $(SRC)/LAND_COVER_OBSERVED.csv $(SQL)/landCover
 build/monitoring_system_variables.csv: $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/TIMESERIES.csv $(SQL)/monitoring_system_variables.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/monitoring_system_variables.sql"
 
-build/qc_range_configuration_items.csv: $(SRC)/PARAMETER_RANGES_QC.csv $(SRC)/PARAMETERS.csv $(SQL)/qc_range_configuration_items.sql | build
+build/qc_range_configuration_items.csv: $(SRC)/PARAMETER_RANGES_QC.csv build/time_series_datasets.csv $(SQL)/qc_range_configuration_items.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/qc_range_configuration_items.sql"
 
 build/sensor_deployments.csv: $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/variableProperties.csv $(SQL)/sensor_deployments.sql | build
