@@ -1,7 +1,7 @@
 PARAMETER_ID,PARAMETER_NAME,PROPERTY_ID,PROPERTY_NAME,QUDT_EQUIV,OBJECT,CONTEXT,DOMAIN,UNIT,QUDT_UNIT,UNIT_NAME
 AIR_DENSITY,Air density,density,Density,Density,air,,atmosphere,KGM-3,KiloGM-PER-M3,kgm-3
 ALBEDO,Albedo,reflectance,Reflectance,Reflectance,ground,,lithosphere,PCT,PERCENT,%
-BUCKET_LEVEL,Level of rain gauge bucket,depth,Depth,Depth,water,rain gauge bucjet,atmosphere,MM,MilliM,mm
+BUCKET_LEVEL,Level of rain gauge bucket,depth,Depth,Depth,water,rain gauge bucket,atmosphere,MM,MilliM,mm
 COND,Soil conductivity,conductivity,Conductivity,Conductivity,soil,,lithosphere,PCT,PERCENT,%
 CTS,Neutron counts,count,Count,Count,neutron,,,CTS,UNITLESS,
 DIAG_CRNS,Diagnostic flag for CRNS tube,diagnostic,Diagnostic,,sensor,,,UNITLESS,UNITLESS,
