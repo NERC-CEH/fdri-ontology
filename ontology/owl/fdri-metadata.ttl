@@ -47,6 +47,11 @@
                    rdfs:range :EnvironmentalMonitoringFacility .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToTimeSeries
+:appliesToTimeSeries rdf:type owl:ObjectProperty ;
+                     rdfs:range :TimeSeriesDefinition .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToVariable
 :appliesToVariable rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
@@ -621,11 +626,15 @@
                              rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty :appliesToFacility ;
-                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :appliesToTimeSeries ;
+                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty :appliesToVariable ;
-                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty <http://purl.org/dc/terms/type> ;

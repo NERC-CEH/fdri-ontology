@@ -903,20 +903,20 @@ records:
         constraints:
           - record: EnvironmentalMonitoringFacilityType
           - record: EnvironmentalMonitoringFacility
-      appliesToVariable:
+      appliesToTimeSeries:
         label:
-          - value: applies to variable
+          - value: applies to time-series
             lang: en
         description:
           - value: |
-              References the complex observable properties that define the variables that are affected by this configuration.
+              References the time series that are affected by this configuration.
             lang: en
-        propertyUri: fdri:appliesToVariable
+        propertyUri: fdri:appliesToTimeSeries
         kind: object
         required: true
         repeatable: true
         constraints:
-          - record: Variable
+          - record: TimeSeriesDefinition
       type:
         label:
           - value: configuration type
