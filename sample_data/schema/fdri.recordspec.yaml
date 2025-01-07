@@ -397,6 +397,7 @@ records:
     shortCode: Agent
     mixins:
       - WithLabelAndComment
+      - WithAnnotations
 
   Annotation:
     label:
@@ -883,6 +884,7 @@ records:
     mixins:
       - WithTitleAndDescription
       - WithPublicationMetadata
+      - WithAnnotations
     properties:
       appliesToFacility:
         label:
@@ -1083,6 +1085,7 @@ records:
     mixins:
       - WithTitleAndDescription
       - WithPublicationMetadata
+      - WithAnnotations
     properties:
       accessRights:
         label:
@@ -2263,6 +2266,7 @@ records:
     extends: Plan
     mixins:
       - WithLabelAndComment
+      - WithAnnotations
     properties:
       procedurePeriodicity:
         label:
