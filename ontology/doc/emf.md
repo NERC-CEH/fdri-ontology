@@ -1,13 +1,133 @@
-## Environmental Monitoring Facility Model
+# Environmental Monitoring Facility Model
 
-Based on the INSPIRE framework, the external data catalog proposes to maintain reference information about sites and stations in the FDRI network using the `EnvironmentalMonitoringFacility` class defined by INSPIRE. This class includes soft-typing to distinguish between site, platform and sensor. Some of these soft types (platform, sensor) have direct equivalents in SOSA/SSN, and to map these classes, we define concrete subclasses `EnvironmentalMonitoringSite`, `EnvironmentalMonitorigSystem`, `EnvironmentalMonitoringPlatform` and `EnvironmentalMonitoringSensor`.
+## Programme, Network and Facility
 
-`EnvironmentalMonitoringSystem` is also a subclass of `sosa:System`;`EnvinronmentalMonitoringSensor` is also a subclass of both `sosa:Sensor` and `EnvironmentalMonitoringSystem`;
- and `EnvironmentalMonitoringPlatform` is a subclass of `sosa:Platform`.
+Based on the [INSPIRE Environmental Monitoring Facility Technical Guidelines framework](https://inspire-mif.github.io/technical-guidelines/data/ef/dataspecification_ef.pdf), the catalog models  reference information about infrastructure such as sites, stations, and drones using the `fdri:EnvironmentalMonitoringFacility` class.
 
-As in SOSA/SSN an `EnvironmentalMonitoringSystem` is an abstraction that represents both packages of sensors as well as individual sensors (via the `EnvironmentalMonitoringSensor` sublcass). Such packages may include a standard "Weather Station" sensor package, for example.
+An `fdri:EnvironmentalMonitoringFacility` may have:
 
-The SOSA/SSN class of `Deployment` represents the time-bound deployment of some `System`s.
+* Any number of parts, each of which is another `fdri:EnvironmentalMonitoringFacility`, enabling the construction of a part-whole hierarchy (e.g. a site hosts one or more stations, and each station has one or more platforms on which sensors may be deployed).
+* A flag that indicates that the facility is a mobile platform.
+* A range of geo-spatial properties for specifying the location, boundary or bounding box of a static facility.
+ * A specified period of operation
+ * Any nubmer of related parties. Each related party is a person or organsiation with some form of responsibility for the facility. The nature of that responsibility is conveyed by the `fdri:RelatedPartyRole`
+* A type indicating the class of facilities that the instance belongs to. This can be used on subclasses to distinguish between different kinds of platform, or to indicate the class of device that a sensor belongs to.
+* Any number of related `fdri:EnvironmentalDomain` concepts listing the domains of the environment monitored by the facility.
+* Any number of related `fdri:Variable`s listing the specific variables observed by the facility.
+* Any number of related `sosa:Feature`s listing the environmental features monitored by the facility.
+
+An `fdri:EnvironmentalMonitoringNetwork` is a collection of `fdri:EnvironmentalMonitoringFacility` instances which are used for some common monitoring purpose.
+
+An `fdri:EnvironmentalMonitoringProgramme` is a programme of work which makes use of one or more `fdri:EnvironmentalMonitoringNetwork` and/or `fdri:EnvironmentalMonitoringFacility` instances to deliver its outcomes.
+
+Typically a dataset will be related to the `fdri:EnvironmentalMonitoringProgramme` under which the dataset was created as well as one or more `fdri:EnvironmentalMonitoringFacility` from which the data was sourced.
+
+```mermaid
+classDiagram
+class Programme["fdri:EnvironmentalMonitoringProgramme"]
+class Network["fdri:EnvironmentalMonitoringNetwork"]
+class Facility["fdri:EnvironmentalMonitoringFacility"]{
+    geos:hasGeometry: geos:Geometry
+    geos:hasRepresentativePoint: geos:Geometry
+    geos:hasCentroid: geos:Geometry?
+    geos:hasBoundingBox: geos:Geometry?
+    fdri:isMobile: xsd:boolean?
+    sosa:hasFeatureOfInterest: sosa:Feature*
+    fdri:environmentalDomain: fdri:EnvironmentalDomain*
+  }
+class RelatedParty["fdri:RelatedPartyAttribution"]
+class Agent["prov:Agent"]
+class AgentRole["fdri:RelatedPartyRole"]
+  class PeriodOfTime["dct:PeriodOfTime"] {
+    dcat:startDate xsd:date/xsd:dateTime
+    dcat:endDate xsd:date/xsd:dateTime
+  }
+class Concept["skos:Concept"]
+class Variable["fdri:Variable"]
+
+Programme --> Network: fdri_utilises
+Programme --> Facility: fdri_utilises
+Network --> Facility: fdri_contains
+Facility --> Facility: dct_hasPart
+Facility --> RelatedParty: prov_qualifiedAttribution
+RelatedParty --> AgentRole: dcat_hadRole
+RelatedParty --> Agent: prov_Agent
+Facility --> PeriodOfTime: fdri_operatingPeriod
+Facility --> Concept: dct_type
+Facility --> Variable: sosa_observes
+```
+
+## Site, Platform, System and Sensor
+
+The `fdri:EnvironmentalMonitoringFacility` class has several subclasses defined to aid in mapping to the SOSA/SSN concepts of Platform, System and Sensor. The diagram below shows the relationship between the FDRI types and the mapping (via subclass relationships) to the SOSA/SSN types.
+
+```mermaid
+classDiagram
+class Facility["fdri:EnvrionmentalMonitoringFacility"]
+class Site["fdri:EnvironmentalMonitoringSite"]
+class Platform["fdri:EnvironmentalMonitoringPlatform"]
+class System["fdri:EnvironmentalMonitoringSystem"]
+class Sensor["fdri:EnvironmentalMonitoringSensor"]
+
+class SosaPlatform["sosa:Platform"]
+class SosaSystem["sosa:System"]
+class SosaSensor["sosa:Sensor"]
+
+Facility <|-- Site
+Facility <|-- Platform
+Facility <|-- System
+System <|-- Sensor
+SosaSystem <|-- System
+SosaSensor <|-- Sensor
+SosaSystem <|-- SosaSensor
+Site --|> SosaPlatform
+Platform --|> SosaPlatform
+```
+
+### EnvironmentalMonitoringSite
+
+`fdri:EnvironmentalMonitoringSite` is used to represent a static geospatial location at which one or more pieces of monitoring infrastructure may be deployed. It is subclassed from `fdri:EnvironmentalMonitoringFacility` and so has all the same core metadata that is provided by that class, but it is also mapped through a subclass relationship to the `sosa:Platform` type from the SOSA/SSN vocabulary which means that it can be the host of a deployment of a sensor or system of sensors. 
+
+
+### EnvironmentalMonitoringPlatform
+
+`fdri:EnvironmentalMonitoringPlatform` is used to represent either static or mobile infrastructure on which sensors or systems of sensors may be deployed. Examples include a post in the ground at a site, or a UAV or drone. It is subclassed from `fdri:EnvironmentalMonitoringFacility` to inherit the core facility metadata, and mapped to `sosa:Platform` to allow it to be the host of deployments of sensors.
+
+> [!NOTE]
+> By mapping both `fdri:EnvironmentalMonitoringSite` and `fdri:EnvironmentalMonitoringPlatform` to `sosa:Platform`, a deployment of a sensor can be registered at the site level without having to model the detail of the physical infrastructure at the site, but that the model still has the flexibility to represent more detailed information if it is available and if deemed desireable to do so.
+
+
+### EnvironmentalMonitoringSystem
+
+An `fdri:EnvironmentalMonitoringSystem` is a device which measures properties in the environment. As already noted, an `fdri:EnvironmentalMonitoringSystem` may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
+
+An `fdri:EnvironmentalMonitoringSystem` carries several other metadata properties as shown in the diagram below. Faults can also be recorded at this level in the model (such a fault would be presumed to potentially affect all subsystems of the affected system).
+
+
+```mermaid
+classDiagram
+class System["fdri:EnvironmentalMonitoringSystem"] {
+  assetNumber: string
+  certification: Document
+  configuration: ConfigurationValueSeries
+  dateOfPurchase: date
+  dateOfDisposal: date
+  retirementDate: date
+  serialNumber: string
+  status: Status
+
+  }
+System --> System: sosa_hasSubsystem
+System --> Fault: fdri_hadFault
+```
+
+### EnvironmentalMonitoringSensor
+
+An `fdri:EnvironmentalMonitoringSensor` is intended to represent an individual sensor and is subclassed from `sosa:Sensor` and may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
+
+As `fdri:EnvironmentalMonitoringSensor` is subclassed from `fdri:EnvironmentalMonitoringSystem` it also inherits the additional metadata shown for that class and faults can be recorded against individual sensors.
+
+---
 
 `GeospatialFeatureOfInterest` represents a geo-spatially located feature of which is in the context of one or more `EnvirionmentalDomain`s. It has properties `geos:hasGeometry`, `geos:hasCentroid`, `geos:hasBoundingBox`, and `fdri:hasRepresentativePoint` to represent its spatial bounds/location.
 

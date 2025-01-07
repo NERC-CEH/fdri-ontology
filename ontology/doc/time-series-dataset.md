@@ -56,7 +56,7 @@ An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series 
 * `fdri:processingLevel` a reference to the concept that defines the level of data processing applied to the time series. This property is repeated on `fdri:TimeSeriesDataset` to ensure consistency with the `fdri:ObservationDataset` base class.
 * `sosa:observedProperty` a reference to the `fdri:Variable` that defines the measurement being captured by the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consitency with the `fdri:ObservationDataset` base class.
 * `fdri:valueStatistic` a reference to the concept that defines the type of statistical processing applied to produce the values contained in the dataset.
-* `fdri:methodoly` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series.
+* `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series.
 * `fdri:periodicity` specifies the maximum period between recorded observations in the time series
 * `fdri:resolution` specifies the temporal resolution of the monitoring of the environmental feature that was used to derive the aggregated values contaied in the time series dataset. 
 

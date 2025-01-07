@@ -8,8 +8,12 @@ An annotation can also be used to qualify a property value. For example when a m
 
 Annotations have:
 * an annotation property (`fdri:property`) which is a [complex observable property](observations-observable-properties.md) drawn from a controlled list defined by the parent catalog of the annotated resource
-* an annotation value which may be either a `schema:PropertyValue` (`fdri:hasValue`), or an `fdri:PropertyValueSeries` (`fdri:hasValueSeries`). The latter should be used when the value of an annotation may change over time. 
+* either
+  * an `fdri:hasValue` property whose value is a single `fdri:PropertyValue` providing the static value of the annotation or
+  * an `fdri:hasValueSeries` property whose value is an `fdri:PropertyValueSeries` providing a series of values for the annotation that changes over time. 
 
+An `fdri:Annotation` can also be used as the value of an `fdri:qualifier` property on a `fdri:PropertyValue` or `fdri:TimeBoundPropertyValue`, to provide additional contextual qualification to a property value.
+ 
 ```mermaid
 classDiagram
 class Resource["dcat:Resource"]

@@ -2,9 +2,9 @@
 
 ## Document Control
 
-**Date:** 2024-11-11
+**Date:** 2024-12-31
 **Author:** Kal Ahmed (kal.ahmed@epimorphics.com)
-**Version:** 0.3 (In progress)
+**Version:** 0.4 (In progress)
 **Status:** DRAFT
 
 ## Table of Contents
@@ -15,7 +15,7 @@
 * [Annotations on Catalogued Resources](annotations.md)
 * [Time-Series Dataset Model](time-series-dataset.md)
 * [Provenance and Activity Model](provenance-and-activity.md)
-* [Observations and Observable Properties Model](observations-observable-properties.md)
+* [Variables](variables.md)
 * [Environmental Monitoring Facility Model](emf.md)
 * [Deployment Model](deployments.md)
 * [Sensor/System Model](sensor-system.md)
