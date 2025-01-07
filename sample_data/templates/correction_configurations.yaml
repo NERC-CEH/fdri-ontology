@@ -24,15 +24,15 @@ one_offs:
 resources:
   - name: Configuration
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-correction-{SITE_ID|slug}-{VARIABLE|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-correction-{SITE_ID|slug}-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<fdri:appliesToFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
-      "<fdri:appliesToVariable>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE|slug}>
+      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>
       "<dct:type>": <::Correction>
 
   - name: ConfigurationItem
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-{SITE_ID|slug}-{VARIABLE|slug}-{START_DATETIME|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-{SITE_ID|slug}-{TIMESERIES_ID|slug}-{START_DATETIME|slug}>"
       "@type": <fdri:ConfigurationItem>
       "<fdri:method>": "<http://fdri.ceh.ac.uk/ref/common/method/correction-{CORRECTION_ID|slug}>"
       "<fdri:argument>":
@@ -60,5 +60,5 @@ resources:
           "@type": <dct:PeriodOfTime>
           "<dcat:startDate>": "{START_DATETIME | asDateTime}"
           "<dcat:endDate>": "{END_DATETIME | asDateTime}"
-      "^<fdri:hasCurrentConfiguration>": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-correction-{SITE_ID|slug}-{VARIABLE|slug}>"
-      "^<prov:hadPlan>": "<http://fdri.ceh.ac.uk/id/activity/preprocess-cosmos-{SITE_ID|slug}-{VARIABLE|slug}-1234>"
+      "^<fdri:hasCurrentConfiguration>": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-correction-{SITE_ID|slug}-{TIMESERIES_ID|slug}>"
+      "^<prov:hadPlan>": "<http://fdri.ceh.ac.uk/id/activity/preprocess-cosmos-{SITE_ID|slug}-{TIMESERIES_ID|slug}-1234>"
