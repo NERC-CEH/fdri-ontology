@@ -7,11 +7,13 @@
 @base <http://fdri.ceh.ac.uk/vocab/metadata/> .
 
 <http://fdri.ceh.ac.uk/vocab/metadata> rdf:type owl:Ontology ;
-                                        owl:imports <http://www.opengis.net/ont/geosparql/1.1> ,
+                                        owl:imports <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/> ,
+                                                    <http://www.opengis.net/ont/geosparql/1.1> ,
                                                     <http://www.w3.org/2006/time#2016> ,
                                                     <http://www.w3.org/ns/dcat3> ,
                                                     <http://www.w3.org/ns/ssn/ext> ,
-                                                    <https://w3id.org/iadopt/ont/1.0.3> ;
+                                                    <https://w3id.org/iadopt/ont/1.0.3> ,
+                                                    <https://www.w3.org/2003/01/geo/wgs84_pos#> ;
                                         rdfs:comment "An onotology for the recording of dataset metadata, provenance information and related reference data for use in the fine-grained metadata store element of the FDRI project."@en ;
                                         rdfs:label "FDRI Fine-grained Metadata Store Ontology"@en ;
                                         owl:versionInfo "0.3 DRAFT (In Progress)" .
@@ -484,6 +486,14 @@
           rdfs:comment "Provides the display label to use for the unit of measurement of a Complex Observable Property."@en .
 
 
+###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
+<http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#long
+<http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:DatatypeProperty .
+
+
 #################################################################
 #    Classes
 #################################################################
@@ -741,8 +751,28 @@
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                   owl:onDataRange xsd:string
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                   owl:onDataRange xsd:string
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
                                                    owl:onProperty :isMobile ;
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                   owl:onDataRange xsd:string
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                   owl:onDataRange xsd:string
                                                  ] ;
                                  rdfs:label "Environmental Monitoring Facility"@en .
 
@@ -938,6 +968,26 @@
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty :hasRepresentativePoint ;
                                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                               owl:onDataRange xsd:string
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                               owl:onDataRange xsd:string
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                               owl:onDataRange xsd:string
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                               owl:onDataRange xsd:string
                                              ] ;
                              rdfs:comment "A Feature of Interest with a geospatial location."@en ;
                              rdfs:label "Geo-spatial Feature Of Interest"@en .
@@ -981,6 +1031,26 @@
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :trackLog ;
                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
                                   ] .
 
 

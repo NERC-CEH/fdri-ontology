@@ -6,6 +6,8 @@ prefixes:
     uri: http://purl.org/dc/terms/
   - prefix: fdri
     uri: http://fdri.ceh.ac.uk/vocab/metadata/
+  - prefix: geo
+    uri: http://www.w3.org/2003/01/geo/wgs84_pos#
   - prefix: geos
     uri: http://www.opengis.net/ont/geosparql#
   - prefix: iop
@@ -24,6 +26,8 @@ prefixes:
     uri: http://www.w3.org/2004/02/skos/core#
   - prefix: sosa
     uri: http://www.w3.org/ns/sosa/
+  - prefix: spatialrelations
+    uri: http://data.ordnancesurvey.co.uk/ontology/spatialrelations/
   - prefix: ssn
     uri: http://www.w3.org/ns/ssn/
   - prefix: xsd
@@ -314,6 +318,54 @@ mixins:
         nested: true
         constraints:
           - record: Geometry
+      lat:
+        label:
+          - value: latitude of representative point
+            lang: en
+        description:
+          - value: |
+              The latitude, expressed using the WGS 84 coordinate system, of a representative point for the location of the resource.
+            lang: en
+        propertyUri: geo:lat
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      long:
+        label:
+          - value: longitude of representative point
+            lang: en
+        description:
+          - value: |
+              The longitude, expressed using the WGS 84 coordinate system, of a representative point for the location of the resource.
+            lang: en
+        propertyUri: geo:long
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      easting:
+        label:
+          - value: easting of representative point
+            lang: en
+        description:
+          - value: |
+              Distance in metres east of GB National Grid origin of a representative point for the location of the resource.
+            lang: en
+        propertyUri: spatialrelations:easting
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      northing:
+        label:
+          - value: northing of representative point
+            lang: en
+        description:
+          - value: |
+              Distance in metres north of GB National Grid origin of a representative point for the location of the resource.
+            lang: en
+        propertyUri: spatialrelations:northing
+        kind: literal
+        constraints:
+          - datatype: xsd:string
 
 
 records:

@@ -219,6 +219,10 @@ resources:
                 "@id": "<_>"
                 "@type": "<geos:Geometry>"
                 "<geos:asWKT>": "POINT({LONGITUDE}, {LATITUDE})^^<geos:wktLiteral>"
+        "<geo:lat>": "{LATITUDE}"
+        "<geo:long>": "{LONGITUDE}"
+        "<spatialrelations:easting>": "{EASTING}"
+        "<spatialrelations:northing>": "{NORTHING}"
 
     - name: MonitoringSite
       properties:
@@ -239,6 +243,10 @@ resources:
                 "@id": "<_>"
                 "@type": "<geos:Geometry>"
                 "<geos:asWKT>": "POINT({LONGITUDE}, {LATITUDE})^^<geos:wktLiteral>"
+        "<geo:lat>": "{LATITUDE}"
+        "<geo:long>": "{LONGITUDE}"
+        "<spatialrelations:easting>": "{EASTING}"
+        "<spatialrelations:northing>": "{NORTHING}"
         "<fdri:altitude>": "{ALTITUDE | asDecimal}"
         "<fdri:operatingPeriod>":
           - name: OperatingPeriod
