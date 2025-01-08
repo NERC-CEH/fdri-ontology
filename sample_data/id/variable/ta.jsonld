@@ -1,6 +1,6 @@
 {
-    "$schema": "../../build/schema/Variable.schema.json",
-    "@context": "../../build/context/Variable.context.jsonld",
+    "$schema": "../../../build/schema/Variable.schema.json",
+    "@context": "../../../build/context/Variable.context.jsonld",
     "@id": "http://fdri.ceh.ac.uk/id/variable/ta",
     "prefLabel": [
         {"@value": "air temperature", "@language": "en"}

@@ -1,6 +1,6 @@
 {
-  "$schema": "../../build/schema/StaticDeployment.schema.json",
-  "@context":"../../build/context/StaticDeployment.context.jsonld",
+  "$schema": "../../../build/schema/StaticDeployment.schema.json",
+  "@context":"../../../build/context/StaticDeployment.context.jsonld",
   "@id": "http://fdri.ceh.ac.uk/id/deployment/bunny-1-20150127001",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/StaticDeployment",
   "deployedOnPlatform": { "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-platform/bunny-1"},

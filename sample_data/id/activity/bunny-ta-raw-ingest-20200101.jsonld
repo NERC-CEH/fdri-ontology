@@ -1,10 +1,10 @@
 {
-  "$schema": "../../build/schema/DataProcessingActivity.schema.json",
-  "@context":"../../build/context/DataProcessingActivity.context.jsonld",
+  "$schema": "../../../build/schema/Activity.schema.json",
+  "@context":"../../../build/context/Activity.context.jsonld",
   "@id": "http://fdri.ceh.ac.uk/id/activity/bunny-ta-raw-ingest-20200101",
-  "@type": "http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingActivity",
+  "@type": "http://www.w3.org/ns/prov#Activity",
   "type": {
-    "@id": "http://fdri.ceh.ac.uk/id/data-processing-activity-type/ingest-raw"
+    "@id": "http://fdri.ceh.ac.uk/id/activity-type/ingest-raw"
   },
   "qualifiedAssociation": [{
     "agent": {

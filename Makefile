@@ -12,7 +12,7 @@ SCHEMA_FILE = sample_data/schema/fdri.recordspec.yaml
 
 RECORDS = \
 	Variable \
-	DataProcessingActivity \
+	Activity \
 	GeospatialFeatureOfInterest \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \

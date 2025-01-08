@@ -1,6 +1,6 @@
 {
-    "$schema": "../../build/schema/TimeSeriesDefinition.schema.json",
-    "@context": "../../build/context/TimeSeriesDefinition.context.jsonld",
+    "$schema": "../../../build/schema/TimeSeriesDefinition.schema.json",
+    "@context": "../../../build/context/TimeSeriesDefinition.context.jsonld",
     "@id": "http://fdri.ceh.ac.uk/id/time-series/ta-level2-min",
     "@type": "http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDefinition",
     "observedProperty": {"@id":"http://fdri.ceh.ac.uk/id/variable/ta"},
