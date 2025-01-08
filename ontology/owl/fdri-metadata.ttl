@@ -763,7 +763,19 @@ above the local reference ellipsoid).""" ;
                                                    owl:allValuesFrom <http://www.w3.org/ns/sosa/ObservableProperty>
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :wasModifiedBy ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
                                                    owl:onProperty <http://www.w3.org/ns/prov#qualifiedAttribution> ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/ns/prov#wasGeneratedBy> ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/ns/prov#wasInvalidatedBy> ;
                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;

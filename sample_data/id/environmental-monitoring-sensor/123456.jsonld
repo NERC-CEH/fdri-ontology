@@ -119,5 +119,10 @@
         }
       }
     }
+  ],
+  "wasModifiedBy": [
+    {
+      "@id": "http://fdri.ceh.ac.uk/id/activity/sensor-12345-calibration-01"
+    }
   ]
 }

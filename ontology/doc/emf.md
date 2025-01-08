@@ -16,6 +16,8 @@ An `fdri:EnvironmentalMonitoringFacility` may have:
 * Any number of related `fdri:Variable`s listing the specific variables observed by the facility.
 * Any number of related `sosa:Feature`s listing the environmental features monitored by the facility.
 
+Activities which affect the facility
+
 An `fdri:EnvironmentalMonitoringNetwork` is a collection of `fdri:EnvironmentalMonitoringFacility` instances which are used for some common monitoring purpose.
 
 An `fdri:EnvironmentalMonitoringProgramme` is a programme of work which makes use of one or more `fdri:EnvironmentalMonitoringNetwork` and/or `fdri:EnvironmentalMonitoringFacility` instances to deliver its outcomes.
@@ -26,6 +28,7 @@ Typically a dataset will be related to the `fdri:EnvironmentalMonitoringProgramm
 
 We use the `sosa:observes` property to record a relationship between an `fdri:EnvironmentalMonitoringFacility` and the `fdri:Variable`(s) it observes. This would most likely only be defined at the level of `fdri:EnvironmentalMonitoringSensor` resources, and then aggregated through query to parent facilities to avoid the need to keep multiple resources in sync as new sensors are deployed or existing sensors removed from a site. 
 
+Activities which affect a facility can be related to the `fdri:EnvironmentalMonitoringFacility` by using properties `prov:wasGeneratedBy`, `prov:wasInvalidatedBy`, and `fdri:wasModifiedBy`. `prov:wasGeneratedBy` should be reserved for commissioning / manufacturing activities. `prov:wasInvalidatedBy` should be reserved for decomissioning activities. `fdri:wasModifiedBy` should be used for all other activities which affect the facility (e.g. maintenance activities).
 
 ```mermaid
 classDiagram
@@ -54,18 +57,22 @@ class AgentRole["fdri:RelatedPartyRole"]
   }
 class Concept["skos:Concept"]
 class Variable["fdri:Variable"]
+class Activity["prov:Activity"]
 
 Resource <|-- Facility
 Programme --> Network: fdri_utilises
 Programme --> Facility: fdri_utilises
 Network --> Facility: fdri_contains
-Facility --> Facility: dct_hasPart
 Facility --> RelatedParty: prov_qualifiedAttribution
 RelatedParty --> AgentRole: dcat_hadRole
 RelatedParty --> Agent: prov_Agent
 Facility --> PeriodOfTime: fdri_operatingPeriod
 Facility --> Concept: dct_type
 Facility --> Variable: sosa_observes
+Facility --> Activity: fdri_wasModifiedBy
+Facility --> Activity: prov_wasGeneratedBy
+Facility --> Activity: prov_wasInvalidatedBy
+Facility --> Facility: dct_hasPart
 ```
 
 ## Site, Platform, System and Sensor
