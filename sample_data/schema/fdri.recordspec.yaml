@@ -1384,6 +1384,7 @@ records:
       - WithLabelAndComment
       - WithAnnotations
       - WithIndexedGeometry
+      - WithProvenance
     properties:
       hasPart:
         label:
