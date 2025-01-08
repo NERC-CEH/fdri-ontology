@@ -393,7 +393,7 @@ records:
         propertyUri: dct:type
         kind: object
         constraints:
-          - record: Concept
+          - record: ActivityType
       qualifiedAssociation:
         label:
           - value: qualified association
@@ -435,6 +435,40 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:dateTime
+
+  ActivityType:
+    label:
+      - value: Activity Type
+        lang: en
+    description:
+      - value: A Concept which defines a category of activity.
+        lang: en
+    extends: Concept
+    classUri: fdri:ActivityType
+    shortCode: ActivityType
+    properties:
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: A reference to the concept scheme under which this activity type definition is managed.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ActivityTypeScheme
+
+  ActivityTypeScheme:
+    label:
+      - value: Activity Type Concept Scheme
+        lang: en
+    description:
+      - value: A concept scheme that manages a controlled list of activity types.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:ActivityTypeScheme
+    shortCode: ActivityTypeScheme
 
   Agent:
     label:
@@ -860,64 +894,6 @@ records:
     extends: ConceptScheme
     classUri: fdri:ContextObjectScheme
     shortCode: ContextObjectScheme
-
-  DataProcessingActivity:
-    label:
-      - value: Data Processing Activity
-        lang: en
-    description:
-       - value: A type of Activity which is responsible for processing the content of a dataset.
-         lang: en
-    classUri: fdri:DataProcessingActivity
-    shortCode: DataProcessingActivity
-    extends: Activity
-    properties:
-      type:
-        label:
-          - value: activity type
-            lang: en
-        description:
-          - value: The kind of data processing carried out by this activity.
-            lang: en
-        propertyUri: dct:type
-        kind: object
-        required: true
-        constraints:
-          - record: DataProcessingActivityType
-
-  DataProcessingActivityType:
-    label:
-      - value: Data Processing Activity Type
-        lang: en
-    description:
-      - value: A Concept which defines a category of data processing activity.
-        lang: en
-    extends: Concept
-    classUri: fdri:DataProcessingActivityType
-    shortCode: DataProcessingActivityType
-    properties:
-      inScheme:
-        label:
-          - value: is in scheme
-            lang: en
-        description:
-          - value: A reference to the concept scheme under which this activity type definition is managed.
-            lang: en
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: DataProcessingActivityTypeScheme
-
-  DataProcessingActivityTypeScheme:
-    label:
-      - value: Data Processing Activity Type Concept Scheme
-        lang: en
-    description:
-      - value: A concept scheme that manages a controlled list of data processing activity types.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:DataProcessingActivityTypeScheme
-    shortCode: DataProcessingActivityTypeScheme
 
   DataProcessingConfiguration:
     label:
