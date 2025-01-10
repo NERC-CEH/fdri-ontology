@@ -6,65 +6,141 @@ imports:
   - namespaces.yaml
   - extensions.py
 
-resources:
-  - name: LandCoverObservation
+one_offs:
+  - name: Classification
     properties:
-      "@type": "<sosa:Observation>"
-      "@id": "<http://fdri.ceh.ac.uk/id/observation/{SITE_ID}-land-cover-{START_DATE}>"
-      "<sosa:phenomenonTime>":
-        name: LandCoverPeriod
+      "@id": <http://fdri.ceh.ac.uk/ref/common/parameter/classification>
+      "@type": <qudt:QuantityKind>
+  - name: LandCover
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest/land_cover>"
+      "@type": <fdri:ObjectOfInterest>
+      "<skos:prefLabel>": "Land cover@en"
+  - name: LCMScheme
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/cosmos/lcm-2015>
+      "@type": <skos:ConceptScheme>
+      "<dct:title>": "LCM 2015 Classes@en"
+
+  - name: ObservedLandCover
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/observed-land-cover>"
+      "@type": <fdri:Variable>
+      "<skos:prefLabel>": "Observed Land Cover@en"
+      "<iop:hasProperty>": <::Classification>
+      "<iop:hasObjectOfInterest>": <::LandCover>
+      "<fdri:valueScheme>": <::LCMScheme>
+  
+  - name: Source
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/source>"
+      "@type": <qudt:QuantityKind>
+      "<skos:prefLabel>": "Source@en"
+
+  - name: Comment
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/comment>"
+      "@type": <qudt:QuantityKind>
+      "<skos:prefLabel>": "Commentary@en"
+
+  - name: Observation
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest/observation>"
+      "@type": <fdri:ObjectOfInterest>
+      "<skos:prefLabel>": "Observation@en"
+
+  - name: ObservationSource
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/observation-source>"
+      "@type": <fdri:Variable>
+      "<skos:prefLabel>": "Observation Source@en"
+      "<iop:hasProperty>": <::Source>
+      "<iop:hasObjectOfInterest>": <::Observation>
+
+  - name: ObservationComment
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/observation-comment>"
+      "@type": <fdri:Variable>
+      "<skos:prefLabel>": "Observation Comment@en"
+      "<iop:hasProperty>": <::Comment>
+      "<iop:hasObjectOfInterest>": <::Observation>
+
+resources:
+  - name: Annotation
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover>"
+      "@type": <fdri:Annotation>
+      "^<fdri:hasAnnotation>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
+      "<fdri:property>": <::ObservedLandCover>
+  - name: ValueSeries
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-series>
+      "@type": <fdri:PropertyValueSeries>
+      "^<fdri:hasValueSeries>": <::Annotation>
+  - name: LandCoverClass
+    requires:
+      LCM_CLASS:
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/cosmos/lcm-2015/{LCM_CLASS|asInt}>
+      "@type": <skos:Concept>
+      "<skos:prefLabel>": "{DESCRIPTION}@en"
+      "<rdfs:label>": "{DESCRIPTION}@en"
+      "<skos:inScheme>": <::LCMScheme>
+      "^<skos:hasTopConcept>": <::LCMScheme>
+  - name: CurrentValue
+    requires:
+      END_DATE: ""
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}>"
+      "@type": <fdri:TimeBoundPropertyValue>
+      "^<fdri:hasCurrentValue>": <::ValueSeries>
+      "<fdri:interval>":
+        name: CurrentValuePeriod
         properties:
           "@id": "<_>"
-          "@type": "<time:Interval>"
-          "<time:hasBeginning>":
-            name: LandCoverPeriodStart
-            properties:
-              "@id": "<_>"
-              "@type": "<time:Instant>"
-              "<time:inXSDDateTime>": "{START_DATE|asDateTime}"
-          "<time:hasEnd>":
-            name: LandCoverPeriodEnd
-            requires:
-              END_DATE:
-            properties:
-              "@id": "<_>"
-              "@type": "<time:Instant>"
-              "<time:inXSDDateTime>": "{END_DATE|asDateTime}"
-      "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
-      "<sosa:hasSimpleValue>": "{LAND_COVER_OBSERVED}"
-      "<sosa:hasValue>":
-        name: LandCoveClass
-        requires:
-            LCM_CLASS:
+          "@type": <dct:PeriodOfTime>
+          "<dcat:startDate>": "{START_DATE}^^<xsd:date>"
+      "<schema:valueReference>": <::LandCoverClass>
+  - name: PreviousValue
+    requires:
+      END_DATE:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}>"
+      "@type": <fdri:TimeBoundPropertyValue>
+      "^<fdri:hadValue>": <::ValueSeries>
+      "<fdri:interval>":
+        name: PreviousValuePeriod
         properties:
-          "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover/{LCM_CLASS|asInt}>"
-          "@type": "<skos:Concept>"
-      "<sosa:observedProperty>": "<http:/fdri.ceg.ac.uk/ref/cosmos/cop/land-cover>"
-      "<sosa:madeBySensor>":
-        - name: MadeBySiteVisit
-          # In the case of a site visit source, we create an anonymous agent representing the person who made the site visit as we have no further information about that individual
-          requires:
-            SOURCE: "Site visit"
-          properties:
-            "@id": "<_>"
-            "@type": "<fdri:Person>"
-            "<rdfs:label>": "{SOURCE}@en"
-        - name: MadeBySiteHost
-          # In the case of a site host we create a named resource for the host of the site.
-          # As this may be a person or an organisation, we type the resource as the common super-class fdri:Agent
-          requires:
-            SOURCE: "Site host"
-          properties:
-            "@id": "<http://fdri.ceh.ac.uk/id/agent/cosmos-site-host-{SITE_ID}>"
-            "@type": "<fdri:Agent>"
-            "<rdfs:label>": "Site Host at {SITE_ID}@en"
-        - name: MadeByPheoncam
-          # QUESTION: What can we say is the sensor in this case?
-          # Here I am assuming that there would be a Phenocam monitoring network
-          # but it might be better/more accurate if there was a phenocam sensor related to the site that we could link to.
-          requires:
-            SOURCE: "Phenocam"
-          properties:
-            "@id": "<http://fdri.ceh.ac.uk/id/monitoringNetwork/phenocam>"
-            "@type": "<fdri:MonitoringNetwork>"
-            "<rdfs:label>": "{SOURCE}@en"
+          "@id": "<_>"
+          "@type": <dct:PeriodOfTime>
+          "<dcat:startDate>": "{START_DATE}^^<xsd:date>"
+          "<dcat:endDate>": "{END_DATE}^^<xsd:date>"
+      "<schema:valueReference>": <::LandCoverClass>
+  - name: SourceAnnotation
+    requires:
+      SOURCE:
+    properties:
+      "@id": "<_>"
+      "@type": <fdri:Annotation>
+      "^<fdri:qualifier>": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}>"
+      "<fdri:property>": <::ObservationSource>
+      "<fdri:hasValue>":
+        name: SourceAnnotationValue
+        properties:
+          "@id": "<_>"
+          "@type": <schema:PropertyValue>
+          "<schema:value>": "{SOURCE}"
+  - name: CommentAnnotation
+    requires:
+      COMMENTS:
+    properties:
+      "@id": "<_>"
+      "@type": <fdri:Annotation>
+      "^<fdri:qualifier>": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}>"
+      "<fdri:property>": <::ObservationComment>
+      "<fdri:hasValue>":
+        name: CommentAnnotationValue
+        properties:
+          "@id": "<_>"
+          "@type": <schema:PropertyValue>
+          "<schema:value>": "{COMMENTS}"
