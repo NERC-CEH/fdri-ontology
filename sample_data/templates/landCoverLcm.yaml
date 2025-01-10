@@ -30,9 +30,9 @@ one_offs:
 resources:
   - name: LandCoverMeasureSeries
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/site-land-cover/{SITE_ID|slug}>"
+      "@id": "<_>"
       "@type": "<fdri:PropertyValueSeries>"
-      "^<fdri:landCover>": "<http://fdri.ceh.ac.uk/id/site/{SITE_ID|slug}>"
+      "^<fdri:landCover>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
       "<fdri:hasCurrentValue>":
         name: LandCoverCurrentValue
         properties:
@@ -44,7 +44,7 @@ resources:
               "@id": "<_>"
               "@type": "<dct:PeriodOfTime>"
               "<dcat:startDate>": "{START_DATE | asDate}"
-          "<fdri:valueReference>": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover/{LCM_CLASS|asInt}>"
+          "<schema:valueReference>": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover/{LCM_CLASS|asInt}>"
           "<fdri:qualifier>":
             name: LandCoverAreaQualifier
             properties:
