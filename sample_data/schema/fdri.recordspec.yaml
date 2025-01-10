@@ -3179,6 +3179,18 @@ records:
             lang: en
         propertyUri: iop:hasContextObject
         kind: object
+        repeatable: true
+        constraints:
+          - record: ContextObject
+      hasMatrix:
+        label:
+          - value: has matrix
+            lang: en
+        description:
+          - value: The entity within which the object of interest is contained.
+            lang: en
+        propertyUri: iop:hasMatrix
+        kind: object
         constraints:
           - record: ContextObject
       hasUnit:
