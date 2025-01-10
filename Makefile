@@ -24,7 +24,7 @@ RECORDS = \
 	TimeSeriesDefinition
 
 SAMPLES = \
-	$(TTL_BASE)/correction_configurations.ttl \
+	$(TTL_BASE)/CORRECTION_FACTORS.ttl \
 	$(TTL_BASE)/CORRECTION_METHODS.ttl \
 	$(TTL_BASE)/INSTRUMENTATION.ttl \
 	$(TTL_BASE)/instrumentationVariablesProperties.ttl \
@@ -33,8 +33,8 @@ SAMPLES = \
 	$(TTL_BASE)/landCoverObservations.ttl \
 	$(TTL_BASE)/monitoring_system_variables.ttl \
 	$(TTL_BASE)/parameterProperties.ttl \
+	$(TTL_BASE)/PARAMETER_RANGES_QC.ttl \
 	$(TTL_BASE)/processingLevels.ttl \
-	$(TTL_BASE)/qc_range_configuration_items.ttl \
 	$(TTL_BASE)/sensor_deployments.ttl \
 	$(TTL_BASE)/sensor_faults.ttl \
 	$(TTL_BASE)/sensor_firmware_configurations.ttl \
@@ -99,8 +99,8 @@ build/shacl:
 build/data:
 	mkdir -p build/data
 
-build/correction_configurations.csv: build/time_series_datasets.csv $(SRC)/CORRECTION_FACTORS.csv $(SQL)/correction_configurations.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/correction_configurations.sql"
+# build/correction_configurations.csv: build/time_series_datasets.csv $(SRC)/CORRECTION_FACTORS.csv $(SQL)/correction_configurations.sql | build
+# 	$(RUN) /bin/bash -c "duckdb < $(SQL)/correction_configurations.sql"
 
 build/instrumentationVariablesProperties.csv: $(SRC)/instrumentation_variables.csv $(SRC)/variableProperties.csv $(SQL)/instrumentationVariablesProperties.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/instrumentationVariablesProperties.sql"
@@ -114,8 +114,8 @@ build/landCoverObservations.csv: $(SRC)/LAND_COVER_OBSERVED.csv $(SQL)/landCover
 build/monitoring_system_variables.csv: $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/TIMESERIES.csv $(SQL)/monitoring_system_variables.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/monitoring_system_variables.sql"
 
-build/qc_range_configuration_items.csv: $(SRC)/PARAMETER_RANGES_QC.csv build/time_series_datasets.csv $(SQL)/qc_range_configuration_items.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/qc_range_configuration_items.sql"
+# build/qc_range_configuration_items.csv: $(SRC)/PARAMETER_RANGES_QC.csv build/time_series_datasets.csv $(SQL)/qc_range_configuration_items.sql | build
+# 	$(RUN) /bin/bash -c "duckdb < $(SQL)/qc_range_configuration_items.sql"
 
 build/sensor_deployments.csv: $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/variableProperties.csv $(SQL)/sensor_deployments.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/sensor_deployments.sql"
