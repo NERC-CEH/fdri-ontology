@@ -1,156 +1,156 @@
-SITE_ID,VARIABLE,START_DATETIME,END_DATETIME,CORRECTION_FACTOR,DESCRIPTION,CORRECTION_ID
-ALIC1,SWOUT,2016-07-28 15:00:00,2018-12-20 12:30:00,1.00644,Short wave radiation correction,SCALAR
-ALIC1,LWIN,2016-07-28 15:00:00,2018-12-20 12:30:00,0.02559,Long wave radiation correction,LW_CORR
-ALIC1,LWOUT,2016-07-28 15:00:00,2018-12-20 12:30:00,1.0337,Long wave radiation correction,LW_CORR
-ALIC1,G1,2016-07-28 14:00:00,2016-07-29 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-08-01 10:30:00,2016-08-02 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-08-02 10:00:00,2016-08-03 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-08-17 00:30:00,2016-08-18 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-08-20 06:30:00,2016-08-21 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-08-21 01:30:00,2016-08-22 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-08-22 10:30:00,2016-08-23 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-10-03 10:30:00,2016-10-04 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-10-05 10:00:00,2016-10-06 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-11-02 00:00:00,2016-11-03 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2016-11-19 17:00:00,2016-11-20 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2017-01-26 13:30:00,2017-01-27 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2017-05-16 07:30:00,2017-05-17 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2017-08-25 09:00:00,2017-08-26 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2017-11-10 11:30:00,2017-11-11 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2018-03-12 12:00:00,2018-03-13 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2018-06-01 09:30:00,2018-06-02 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2018-09-14 14:30:00,2018-09-15 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2018-10-29 11:30:00,2018-10-30 00:00:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G1,2018-12-20 10:00:00,2018-12-20 11:30:00,0.1986,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-07-28 14:00:00,2016-07-29 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-08-01 10:30:00,2016-08-02 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-08-02 10:00:00,2016-08-03 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-08-17 00:30:00,2016-08-18 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-08-20 06:30:00,2016-08-21 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-08-21 01:30:00,2016-08-22 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-08-22 10:30:00,2016-08-23 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-10-03 10:30:00,2016-10-04 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-10-05 10:00:00,2016-10-06 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-11-02 00:00:00,2016-11-03 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2016-11-19 17:00:00,2016-11-20 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2017-01-26 13:30:00,2017-01-27 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2017-05-16 07:30:00,2017-05-17 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2017-08-25 09:00:00,2017-08-26 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2017-11-10 11:30:00,2017-11-11 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2018-03-12 12:00:00,2018-03-13 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2018-06-01 09:30:00,2018-06-02 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2018-09-14 14:30:00,2018-09-15 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2018-10-29 11:30:00,2018-10-30 00:00:00,1.00359,Heat flux plate correction,SCALAR
-ALIC1,G2,2018-12-20 10:00:00,2018-12-20 11:30:00,1.00359,Heat flux plate correction,SCALAR
-CHIMN,CTS_MOD,2021-09-07 09:00:00,,0.61759,CRS2000 set to be primary CRS. Permantent correction requires to match previous CRS1000,SCALAR
-SHEEP,SWIN,2018-12-03 12:30:00,2019-06-24 13:30:00,0.90559,Short wave radiation correction,SCALAR
-SHEEP,SWOUT,2018-12-03 12:30:00,2019-06-24 13:30:00,1.16402,Short wave radiation correction,SCALAR
-SHEEP,LWIN,2018-12-03 12:30:00,2019-06-24 13:30:00,1.03363,Long wave radiation correction,LW_CORR
-SHEEP,LWOUT,2018-12-03 12:30:00,2019-06-24 13:30:00,1.13031,Long wave radiation correction,LW_CORR
-HOLLN,SWOUT,2019-12-03 15:30:00,2020-01-24 11:30:00,0.58583,Short wave radiation correction,SCALAR
-BUNNY,SWIN,2020-08-10 09:30:00,2020-08-17 15:00:00,0.98787,Short wave radiation correction,SCALAR
-BUNNY,SWOUT,2020-08-10 09:30:00,2020-08-17 15:00:00,0.99217,Short wave radiation correction,SCALAR
-BUNNY,LWIN,2020-08-10 09:30:00,2020-08-17 15:00:00,1.00924,Long wave radiation correction,LW_CORR
-BUNNY,LWOUT,2020-08-10 09:30:00,2020-08-17 15:00:00,1.01746,Long wave radiation correction,LW_CORR
-CHIMN,SWIN,2020-08-18 12:00:00,2020-09-15 08:00:00,0.95997,Short wave radiation correction,SCALAR
-PLYNL,G1,2019-11-15 09:00:00,2019-11-16 00:00:00,1.3024,Heat flux plate calibration correction,SCALAR
-PLYNL,G2,2019-11-15 09:00:00,2019-11-16 00:00:00,1.1784,Heat flux plate calibration correction,SCALAR
-PLYNL,G1,2020-10-22 11:30:00,2020-10-23 00:00:00,1.3356,Heat flux plate calibration correction,SCALAR
-PLYNL,G2,2020-10-22 11:30:00,2020-10-23 00:00:00,1.1788,Heat flux plate calibration correction,SCALAR
-PLYNL,G1,2020-10-30 14:30:00,2020-10-31 00:00:00,1.3119,Heat flux plate calibration correction,SCALAR
-PLYNL,G2,2020-10-30 14:30:00,2020-10-31 00:00:00,1.2179,Heat flux plate calibration correction,SCALAR
-SHEEP,CTS_MOD,2021-07-07 13:00:00,,0.59151,CRS2000 set to be primary CRS. Permantent correction requires to match previous CRS1000,SCALAR
-BALRD,PRECIP,2014-05-16 00:30:00,2014-07-29 14:30:00,0.005,Precipitation values are x200,SCALAR
-HARTW,PRECIP,2014-05-20 00:30:00,2014-07-30 10:30:00,0.005,Precipitation values are x200,SCALAR
-HOLLN,PRECIP,2014-03-25 00:30:00,2014-07-17 05:00:00,0.005,Precipitation values are x200,SCALAR
-ROTHD,PRECIP,2014-08-02 14:30:00,2014-08-06 08:30:00,0.005,Precipitation values are x200,SCALAR
-WADDN,PRECIP,2014-10-04 03:30:00,2014-10-16 15:00:00,0.005,Precipitation values are x200,SCALAR
-BALRD,WD,2014-05-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-BICKL,WD,2015-01-28 17:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-BUNNY,WD,2015-01-27 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-CARDT,WD,2015-06-24 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-CGARW,WD,2016-06-29 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-CHOBH,WD,2015-02-24 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-COCLP,WD,2014-11-21 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-CRICH,WD,2014-12-02 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-EASTB,WD,2014-08-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-ELMST,WD,2016-08-11 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-EUSTN,WD,2016-03-31 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-GISBN,WD,2014-08-15 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-GLENS,WD,2014-05-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-GLENW,WD,2016-06-15 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-HADLW,WD,2016-10-27 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-HARTW,WD,2014-05-20 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-HENFS,WD,2015-12-17 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-HILLB,WD,2016-06-14 18:30:00,,,Wind direction orientation calculated incorrectly in program,WD
-HOLLN,WD,2014-03-25 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-LIZRD,WD,2014-10-17 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-LODTN,WD,2016-04-26 23:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-LULLN,WD,2014-12-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-MOORH,WD,2014-12-04 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-MORLY,WD,2014-05-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-NWYKE,WD,2014-10-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-PLYNL,WD,2014-11-05 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-PORTN,WD,2014-12-18 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-RDMER,WD,2015-02-11 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-REDHL,WD,2016-02-18 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-RISEH,WD,2016-05-04 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-ROTHD,WD,2014-07-25 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-SOURH,WD,2014-11-19 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-SPENF,WD,2016-11-23 10:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-STGHT,WD,2015-08-18 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-STIPS,WD,2014-11-06 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-TADHM,WD,2014-10-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-LULLN,PRECIP,2016-05-10 10:30:00,2016-05-11 12:30:00,0.16667,Error in logger programme. Precipitation x6.,SCALAR
-WRTTL,WD,2017-06-04 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-GLENW,G1,2016-06-15 15:00:00,2016-06-16 00:00:00,0.24614,Heat flux plate correction,SCALAR
-GLENW,G1,2016-06-20 15:30:00,2016-06-21 00:00:00,0.24614,Heat flux plate correction,SCALAR
-GLENW,G1,2018-06-28 09:30:00,2018-06-29 00:00:00,0.24614,Heat flux plate correction,SCALAR
-GLENW,G1,2018-11-14 11:30:00,2018-11-14 12:00:00,0.24614,Heat flux plate correction,SCALAR
-GLENW,G1,2018-11-14 13:30:00,2018-11-15 00:00:00,0.26804,Heat flux plate correction,SCALAR
-GLENW,G1,2019-08-22 11:30:00,2019-08-23 00:00:00,0.26804,Heat flux plate correction,SCALAR
-GLENW,G2,2016-06-15 15:00:00,2016-06-16 00:00:00,0.26073,Heat flux plate correction,SCALAR
-GLENW,G2,2016-06-20 15:30:00,2016-06-21 00:00:00,0.26073,Heat flux plate correction,SCALAR
-GLENW,G2,2018-06-28 09:30:00,2018-06-29 00:00:00,0.26073,Heat flux plate correction,SCALAR
-GLENW,G2,2018-11-14 11:30:00,2018-11-14 12:00:00,0.26073,Heat flux plate correction,SCALAR
-GLENW,G2,2018-11-14 13:30:00,2018-11-15 00:00:00,0.26073,Heat flux plate correction,SCALAR
-GLENW,G2,2019-08-22 11:30:00,2019-08-23 00:00:00,0.26073,Heat flux plate correction,SCALAR
-CHIMN,WD,2020-02-12 14:30:00,,,Wind direction orientation calculated incorrectly in program since upgrade,WD
-COCHN,WD,2017-08-23 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-FIVET,WD,2018-06-26 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-HLACY,WD,2018-04-11 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-HYBRY,WD,2017-08-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-MOREM,WD,2018-11-15 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-SHEEP,WD,2020-02-11 15:30:00,,,Wind direction orientation calculated incorrectly in program since upgrade,WD
-SYDLG,WD,2018-11-27 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-WADDN,WD,2020-02-13 15:30:00,,,Wind direction orientation calculated incorrectly in program since upgrade,WD
-WIMPL,WD,2019-09-10 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
-PLYNL,SWIN,2019-11-15 09:00:00,2020-10-29 17:30:00,0.9541,Short wave radiation correction,SCALAR
-PLYNL,SWOUT,2019-11-15 09:00:00,2020-10-29 17:30:00,0.8934,Short wave radiation correction,SCALAR
-PLYNL,LWIN,2019-11-15 09:00:00,2020-10-29 17:30:00,1.0954,Long wave radiation correction,LW_CORR
-PLYNL,LWOUT,2019-11-15 09:00:00,2020-10-29 17:30:00,0.9863,Long wave radiation correction,LW_CORR
-WADDN,CTS_MOD,2021-06-03 10:00:00,,0.58555,CRS2000 set to be primary CRS. Permantent correction requires to match previous CRS1000,SCALAR
-HOLLN,PA,2021-05-20 10:30:00,2021-09-01 00:00:00,-0.6,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2021-09-01 00:30:00,2021-10-01 00:00:00,-1.3,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2021-10-01 00:30:00,2021-11-01 00:00:00,-2.5,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2021-11-01 00:30:00,2021-12-01 00:00:00,-3.2,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2021-12-01 00:30:00,2022-01-01 00:00:00,-4.7,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2022-01-01 00:30:00,2022-02-01 00:00:00,-5.1,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2022-02-01 00:30:00,2022-03-01 00:00:00,-4.4,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2022-03-01 00:30:00,2022-04-01 00:00:00,-3.7,Pressure correction from MSLP bias,PA_CORR
-HOLLN,PA,2022-04-01 00:30:00,2022-05-03 14:00:00,-2.8,Pressure correction from MSLP bias,PA_CORR
-FINCH,WD,2017-06-07 11:30:00,,,Wind direction orientation calculated incorrectly in program,WD
-CHOBH,PRECIP,2016-05-10 13:30:00,2016-05-11 12:30:00,0.16667,Precip x6 too large,SCALAR
-CHIMN,CTS_MOD,2019-12-17 12:00:00,2020-01-22 13:00:00,1.00776,Counts from replacement CRS. correction factor from cross calibration,SCALAR
-COCLP,CTS_MOD,2017-11-16 13:00:00,2018-01-31 10:00:00,0.99404,Counts from replacement CRS. correction factor from cross calibration,SCALAR
-HENFS,CTS_MOD,2017-12-19 11:00:00,2018-06-28 13:00:00,1.03104,Counts from replacement CRS. correction factor from cross calibration,SCALAR
-SHEEP,CTS_MOD,2016-04-04 15:00:00,2016-08-24 08:30:00,1.02015,Counts from replacement CRS. correction factor from cross calibration,SCALAR
-ELMST,LWIN,2021-07-14 13:00:00,2021-07-21 07:00:00,1.00146,Long wave radiation correction,LW_CORR
-ALIC1,PRECIP,2015-03-06 00:00:00,,0.616,Correction for funnel size,SCALAR
-GISBN,SWIN,2016-10-06 12:00:00,2016-11-18 13:00:00,1.11895,Correction for incorrect calibration file loaded by CSL on PPM,SCALAR
-PORTN,SWIN,2020-01-28 11:30:00,2020-03-04 11:30:00,0.96768,Short wave radiation correction,SCALAR
-HARWD,PRECIP,2015-05-22 12:00:00,,0.616,Correction for funnel size,SCALAR
-WYTH1,PRECIP,2013-11-26 00:30:00,2016-10-01 00:00:00,0.616,Correction for funnel size,SCALAR
-SPENF,SWIN,2020-07-15 14:00:00,2020-07-17 12:00:00,0.99245,Short wave radiation correction,SCALAR
-SPENF,SWOUT,2020-07-15 14:00:00,2020-07-17 12:00:00,1.03832,Short wave radiation correction,SCALAR
-SPENF,LWOUT,2020-07-15 14:00:00,2020-07-17 12:00:00,0.84191,Long wave radiation correction,LW_CORR
+SITE_ID,TIMESERIES_ID,START_DATETIME,END_DATETIME,CORRECTION_FACTOR,DESCRIPTION,CORRECTION_ID
+ALIC1,SWOUT_RAW,2016-07-28 15:00:00,2018-12-20 12:30:00,1.00644,Short wave radiation correction,SCALAR
+ALIC1,LWIN_RAW,2016-07-28 15:00:00,2018-12-20 12:30:00,0.02559,Long wave radiation correction,LW_CORR
+ALIC1,LWOUT_RAW,2016-07-28 15:00:00,2018-12-20 12:30:00,1.0337,Long wave radiation correction,LW_CORR
+ALIC1,G1_RAW,2016-07-28 14:00:00,2016-07-29 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-08-01 10:30:00,2016-08-02 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-08-02 10:00:00,2016-08-03 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-08-17 00:30:00,2016-08-18 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-08-20 06:30:00,2016-08-21 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-08-21 01:30:00,2016-08-22 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-08-22 10:30:00,2016-08-23 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-10-03 10:30:00,2016-10-04 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-10-05 10:00:00,2016-10-06 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-11-02 00:00:00,2016-11-03 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2016-11-19 17:00:00,2016-11-20 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2017-01-26 13:30:00,2017-01-27 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2017-05-16 07:30:00,2017-05-17 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2017-08-25 09:00:00,2017-08-26 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2017-11-10 11:30:00,2017-11-11 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2018-03-12 12:00:00,2018-03-13 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2018-06-01 09:30:00,2018-06-02 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2018-09-14 14:30:00,2018-09-15 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2018-10-29 11:30:00,2018-10-30 00:00:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G1_RAW,2018-12-20 10:00:00,2018-12-20 11:30:00,0.1986,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-07-28 14:00:00,2016-07-29 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-08-01 10:30:00,2016-08-02 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-08-02 10:00:00,2016-08-03 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-08-17 00:30:00,2016-08-18 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-08-20 06:30:00,2016-08-21 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-08-21 01:30:00,2016-08-22 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-08-22 10:30:00,2016-08-23 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-10-03 10:30:00,2016-10-04 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-10-05 10:00:00,2016-10-06 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-11-02 00:00:00,2016-11-03 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2016-11-19 17:00:00,2016-11-20 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2017-01-26 13:30:00,2017-01-27 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2017-05-16 07:30:00,2017-05-17 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2017-08-25 09:00:00,2017-08-26 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2017-11-10 11:30:00,2017-11-11 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2018-03-12 12:00:00,2018-03-13 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2018-06-01 09:30:00,2018-06-02 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2018-09-14 14:30:00,2018-09-15 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2018-10-29 11:30:00,2018-10-30 00:00:00,1.00359,Heat flux plate correction,SCALAR
+ALIC1,G2_RAW,2018-12-20 10:00:00,2018-12-20 11:30:00,1.00359,Heat flux plate correction,SCALAR
+CHIMN,CTS_MOD_RAW,2021-09-07 09:00:00,,0.61759,CRS2000 set to be primary CRS. Permantent correction requires to match previous CRS1000,SCALAR
+SHEEP,SWIN_RAW,2018-12-03 12:30:00,2019-06-24 13:30:00,0.90559,Short wave radiation correction,SCALAR
+SHEEP,SWOUT_RAW,2018-12-03 12:30:00,2019-06-24 13:30:00,1.16402,Short wave radiation correction,SCALAR
+SHEEP,LWIN_RAW,2018-12-03 12:30:00,2019-06-24 13:30:00,1.03363,Long wave radiation correction,LW_CORR
+SHEEP,LWOUT_RAW,2018-12-03 12:30:00,2019-06-24 13:30:00,1.13031,Long wave radiation correction,LW_CORR
+HOLLN,SWOUT_RAW,2019-12-03 15:30:00,2020-01-24 11:30:00,0.58583,Short wave radiation correction,SCALAR
+BUNNY,SWIN_RAW,2020-08-10 09:30:00,2020-08-17 15:00:00,0.98787,Short wave radiation correction,SCALAR
+BUNNY,SWOUT_RAW,2020-08-10 09:30:00,2020-08-17 15:00:00,0.99217,Short wave radiation correction,SCALAR
+BUNNY,LWIN_RAW,2020-08-10 09:30:00,2020-08-17 15:00:00,1.00924,Long wave radiation correction,LW_CORR
+BUNNY,LWOUT_RAW,2020-08-10 09:30:00,2020-08-17 15:00:00,1.01746,Long wave radiation correction,LW_CORR
+CHIMN,SWIN_RAW,2020-08-18 12:00:00,2020-09-15 08:00:00,0.95997,Short wave radiation correction,SCALAR
+PLYNL,G1_RAW,2019-11-15 09:00:00,2019-11-16 00:00:00,1.3024,Heat flux plate calibration correction,SCALAR
+PLYNL,G2_RAW,2019-11-15 09:00:00,2019-11-16 00:00:00,1.1784,Heat flux plate calibration correction,SCALAR
+PLYNL,G1_RAW,2020-10-22 11:30:00,2020-10-23 00:00:00,1.3356,Heat flux plate calibration correction,SCALAR
+PLYNL,G2_RAW,2020-10-22 11:30:00,2020-10-23 00:00:00,1.1788,Heat flux plate calibration correction,SCALAR
+PLYNL,G1_RAW,2020-10-30 14:30:00,2020-10-31 00:00:00,1.3119,Heat flux plate calibration correction,SCALAR
+PLYNL,G2_RAW,2020-10-30 14:30:00,2020-10-31 00:00:00,1.2179,Heat flux plate calibration correction,SCALAR
+SHEEP,CTS_MOD_RAW,2021-07-07 13:00:00,,0.59151,CRS2000 set to be primary CRS. Permantent correction requires to match previous CRS1000,SCALAR
+BALRD,PRECIPITATION_RAW,2014-05-16 00:30:00,2014-07-29 14:30:00,0.005,Precipitation values are x200,SCALAR
+HARTW,PRECIPITATION_RAW,2014-05-20 00:30:00,2014-07-30 10:30:00,0.005,Precipitation values are x200,SCALAR
+HOLLN,PRECIPITATION_RAW,2014-03-25 00:30:00,2014-07-17 05:00:00,0.005,Precipitation values are x200,SCALAR
+ROTHD,PRECIPITATION_RAW,2014-08-02 14:30:00,2014-08-06 08:30:00,0.005,Precipitation values are x200,SCALAR
+WADDN,PRECIPITATION_RAW,2014-10-04 03:30:00,2014-10-16 15:00:00,0.005,Precipitation values are x200,SCALAR
+BALRD,WD_RAW,2014-05-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+BICKL,WD_RAW,2015-01-28 17:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+BUNNY,WD_RAW,2015-01-27 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+CARDT,WD_RAW,2015-06-24 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+CGARW,WD_RAW,2016-06-29 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+CHOBH,WD_RAW,2015-02-24 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+COCLP,WD_RAW,2014-11-21 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+CRICH,WD_RAW,2014-12-02 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+EASTB,WD_RAW,2014-08-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+ELMST,WD_RAW,2016-08-11 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+EUSTN,WD_RAW,2016-03-31 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+GISBN,WD_RAW,2014-08-15 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+GLENS,WD_RAW,2014-05-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+GLENW,WD_RAW,2016-06-15 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+HADLW,WD_RAW,2016-10-27 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+HARTW,WD_RAW,2014-05-20 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+HENFS,WD_RAW,2015-12-17 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+HILLB,WD_RAW,2016-06-14 18:30:00,,,Wind direction orientation calculated incorrectly in program,WD
+HOLLN,WD_RAW,2014-03-25 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+LIZRD,WD_RAW,2014-10-17 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+LODTN,WD_RAW,2016-04-26 23:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+LULLN,WD_RAW,2014-12-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+MOORH,WD_RAW,2014-12-04 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+MORLY,WD_RAW,2014-05-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+NWYKE,WD_RAW,2014-10-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+PLYNL,WD_RAW,2014-11-05 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+PORTN,WD_RAW,2014-12-18 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+RDMER,WD_RAW,2015-02-11 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+REDHL,WD_RAW,2016-02-18 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+RISEH,WD_RAW,2016-05-04 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+ROTHD,WD_RAW,2014-07-25 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+SOURH,WD_RAW,2014-11-19 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+SPENF,WD_RAW,2016-11-23 10:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+STGHT,WD_RAW,2015-08-18 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+STIPS,WD_RAW,2014-11-06 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+TADHM,WD_RAW,2014-10-14 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+LULLN,PRECIPITATION_RAW,2016-05-10 10:30:00,2016-05-11 12:30:00,0.16667,Error in logger programme. Precipitation x6.,SCALAR
+WRTTL,WD_RAW,2017-06-04 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+GLENW,G1_RAW,2016-06-15 15:00:00,2016-06-16 00:00:00,0.24614,Heat flux plate correction,SCALAR
+GLENW,G1_RAW,2016-06-20 15:30:00,2016-06-21 00:00:00,0.24614,Heat flux plate correction,SCALAR
+GLENW,G1_RAW,2018-06-28 09:30:00,2018-06-29 00:00:00,0.24614,Heat flux plate correction,SCALAR
+GLENW,G1_RAW,2018-11-14 11:30:00,2018-11-14 12:00:00,0.24614,Heat flux plate correction,SCALAR
+GLENW,G1_RAW,2018-11-14 13:30:00,2018-11-15 00:00:00,0.26804,Heat flux plate correction,SCALAR
+GLENW,G1_RAW,2019-08-22 11:30:00,2019-08-23 00:00:00,0.26804,Heat flux plate correction,SCALAR
+GLENW,G2_RAW,2016-06-15 15:00:00,2016-06-16 00:00:00,0.26073,Heat flux plate correction,SCALAR
+GLENW,G2_RAW,2016-06-20 15:30:00,2016-06-21 00:00:00,0.26073,Heat flux plate correction,SCALAR
+GLENW,G2_RAW,2018-06-28 09:30:00,2018-06-29 00:00:00,0.26073,Heat flux plate correction,SCALAR
+GLENW,G2_RAW,2018-11-14 11:30:00,2018-11-14 12:00:00,0.26073,Heat flux plate correction,SCALAR
+GLENW,G2_RAW,2018-11-14 13:30:00,2018-11-15 00:00:00,0.26073,Heat flux plate correction,SCALAR
+GLENW,G2_RAW,2019-08-22 11:30:00,2019-08-23 00:00:00,0.26073,Heat flux plate correction,SCALAR
+CHIMN,WD_RAW,2020-02-12 14:30:00,,,Wind direction orientation calculated incorrectly in program since upgrade,WD
+COCHN,WD_RAW,2017-08-23 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+FIVET,WD_RAW,2018-06-26 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+HLACY,WD_RAW,2018-04-11 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+HYBRY,WD_RAW,2017-08-16 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+MOREM,WD_RAW,2018-11-15 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+SHEEP,WD_RAW,2020-02-11 15:30:00,,,Wind direction orientation calculated incorrectly in program since upgrade,WD
+SYDLG,WD_RAW,2018-11-27 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+WADDN,WD_RAW,2020-02-13 15:30:00,,,Wind direction orientation calculated incorrectly in program since upgrade,WD
+WIMPL,WD_RAW,2019-09-10 00:00:00,,,Wind direction orientation calculated incorrectly in program,WD
+PLYNL,SWIN_RAW,2019-11-15 09:00:00,2020-10-29 17:30:00,0.9541,Short wave radiation correction,SCALAR
+PLYNL,SWOUT_RAW,2019-11-15 09:00:00,2020-10-29 17:30:00,0.8934,Short wave radiation correction,SCALAR
+PLYNL,LWIN_RAW,2019-11-15 09:00:00,2020-10-29 17:30:00,1.0954,Long wave radiation correction,LW_CORR
+PLYNL,LWOUT_RAW,2019-11-15 09:00:00,2020-10-29 17:30:00,0.9863,Long wave radiation correction,LW_CORR
+WADDN,CTS_MOD_RAW,2021-06-03 10:00:00,,0.58555,CRS2000 set to be primary CRS. Permantent correction requires to match previous CRS1000,SCALAR
+HOLLN,PA_RAW,2021-05-20 10:30:00,2021-09-01 00:00:00,-0.6,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2021-09-01 00:30:00,2021-10-01 00:00:00,-1.3,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2021-10-01 00:30:00,2021-11-01 00:00:00,-2.5,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2021-11-01 00:30:00,2021-12-01 00:00:00,-3.2,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2021-12-01 00:30:00,2022-01-01 00:00:00,-4.7,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2022-01-01 00:30:00,2022-02-01 00:00:00,-5.1,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2022-02-01 00:30:00,2022-03-01 00:00:00,-4.4,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2022-03-01 00:30:00,2022-04-01 00:00:00,-3.7,Pressure correction from MSLP bias,PA_CORR
+HOLLN,PA_RAW,2022-04-01 00:30:00,2022-05-03 14:00:00,-2.8,Pressure correction from MSLP bias,PA_CORR
+FINCH,WD_RAW,2017-06-07 11:30:00,,,Wind direction orientation calculated incorrectly in program,WD
+CHOBH,PRECIPITATION_RAW,2016-05-10 13:30:00,2016-05-11 12:30:00,0.16667,Precip x6 too large,SCALAR
+CHIMN,CTS_MOD_RAW,2019-12-17 12:00:00,2020-01-22 13:00:00,1.00776,Counts from replacement CRS. correction factor from cross calibration,SCALAR
+COCLP,CTS_MOD_RAW,2017-11-16 13:00:00,2018-01-31 10:00:00,0.99404,Counts from replacement CRS. correction factor from cross calibration,SCALAR
+HENFS,CTS_MOD_RAW,2017-12-19 11:00:00,2018-06-28 13:00:00,1.03104,Counts from replacement CRS. correction factor from cross calibration,SCALAR
+SHEEP,CTS_MOD_RAW,2016-04-04 15:00:00,2016-08-24 08:30:00,1.02015,Counts from replacement CRS. correction factor from cross calibration,SCALAR
+ELMST,LWIN_RAW,2021-07-14 13:00:00,2021-07-21 07:00:00,1.00146,Long wave radiation correction,LW_CORR
+ALIC1,PRECIPITATION_RAW,2015-03-06 00:00:00,,0.616,Correction for funnel size,SCALAR
+GISBN,SWIN_RAW,2016-10-06 12:00:00,2016-11-18 13:00:00,1.11895,Correction for incorrect calibration file loaded by CSL on PPM,SCALAR
+PORTN,SWIN_RAW,2020-01-28 11:30:00,2020-03-04 11:30:00,0.96768,Short wave radiation correction,SCALAR
+HARWD,PRECIPITATION_RAW,2015-05-22 12:00:00,,0.616,Correction for funnel size,SCALAR
+WYTH1,PRECIPITATION_RAW,2013-11-26 00:30:00,2016-10-01 00:00:00,0.616,Correction for funnel size,SCALAR
+SPENF,SWIN_RAW,2020-07-15 14:00:00,2020-07-17 12:00:00,0.99245,Short wave radiation correction,SCALAR
+SPENF,SWOUT_RAW,2020-07-15 14:00:00,2020-07-17 12:00:00,1.03832,Short wave radiation correction,SCALAR
+SPENF,LWOUT_RAW,2020-07-15 14:00:00,2020-07-17 12:00:00,0.84191,Long wave radiation correction,LW_CORR
