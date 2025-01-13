@@ -32,3 +32,10 @@ do
   echo "Sending $BODY to $QUEUE_URL"
   aws sqs send-message --message-group-id=data --queue-url=$QUEUE_URL --message-body="$BODY"
 done
+
+$S3_DESTINATION=$S3_DESTINATION_PREFIX/fdri-metadata.ttl
+echo Uploading ontology/owl/fdri-metadata.ttl to $S3_DESTINATION
+aws s3 cp ontology/owl/fdri-metadata.ttl $S3_DESTINATION
+BODY=$(printf '{"payload":"%s","action":"replace-graph","context":"http://fdri.ceh.ac.uk/graph/%s","content-type":"text/turtle"}' $S3_DESTINATION fdri-metadata.ttl)
+echo "Sending $BODY to $QUEUE_URL"
+aws sqs send-message --message-group-id=data --queue-url=$QUEUE_URL --message-body="$BODY"
