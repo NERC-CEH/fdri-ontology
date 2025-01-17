@@ -180,7 +180,7 @@ All of the entity types defined in SensorThings have a property named `propertie
 
 ### Introduce resource identifiers
 
-In the SensorThings API, each resource requires an ID property which is used to retrieve the resource from the collection that it is in. This ID property could simply tbe the IRI of the mapped resource but this would require escaping when used in the URIs of the SensorThings API and would ake for longer, potentially less readable SensorThings API paths.
+In the SensorThings API, each resource requires an ID property which is used to retrieve the resource from the collection that it is in. This ID property could simply be the IRI of the mapped resource but this would require escaping when used in the URIs of the SensorThings API and would make for longer, potentially less readable SensorThings API paths.
 
 To address this issue, the FDRI data model could be extended to allow a property such as the Dublin Core `dct:identifier` or the SKOS `skos:notation` property to provide a unique identifier string for each resource which could either be derived from the IRI identifier (e.g. by slicing off the common leading part of the IRI identifier, or by hashing the IRI identifier) or could be separately derived or generated (e.g. as UUIDs).
 
