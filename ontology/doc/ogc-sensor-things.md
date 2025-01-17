@@ -64,7 +64,7 @@ observedProperty
 : This relation maps to the `sosa:observedProperty` property of the FDRI TimeSeriesDataset
 
 observations
-: This relationship has no mapping as FDRI does not manage observation data or row-level metadata on observations.
+: This relationship has no mapping as the FDRI metadata service does not manage observation data or row-level metadata on observations.
 
 thing
 : In the SensorThings API this relation is to a Thing in an IOT network. In the FDRI model this could be considered to be the EnvironmentalMonitoringFacility from which the TimeSeriesDataset originates. If this interpretation holds, then this relationship maps to the property `fdri:originatingFacility` on the FDRI TimeSeriesDataset.
