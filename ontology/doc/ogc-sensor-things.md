@@ -106,9 +106,7 @@ encodingType
 : to align with SensorThings, this should map to GeoJSON (application/geo+json)
 
 location
-: maps to the geos:hasGeometry/geos:asWKT property converted to a GeoJSON object.
-
-**NOTE** As an alternative to mapping WKT strings to GeoJSON, the API mapping could depart from the OGC specification and use WKT as the encoding type.
+: maps to the geos:hasGeometry/geos:asWKT property converted to a GeoJSON object. The FDRI data model provides a number of seperate propertes for encoding a geometry, representative point, bounding box etc. An implementation of the SensorThings API should define a consistent preference order for the use of these properties.
 
 **Relationship Mappings**
 things
@@ -124,10 +122,13 @@ Sensor maps to the FDRI EnvironmentalMonitoringSystem type (and its sub-class En
 
 name
 : maps to the rdfs:label of the EnvironmentalMonitoringSystem
+
 description
 : maps to the rdf:comment of the EnvironmentalMonitoringSystem
+
 encodingType
 : FDRI
+
 metadata
 : The IRI of the EnvironmentalMonnitoringSystem resource
 
@@ -162,11 +163,34 @@ This entity is not mapped to any FDRI class and is unused under the FDRI to Sens
 
 ### Observation
 
-This entity is not mapped to any FDRI class as the FDRI data model does not cover row-level observation metadata.
+This entity is not mapped to any FDRI class as the FDRI metadata store does not cover row-level observation metadata.
+The mapping to Observation will need to be addressed in the workstream focussed on delivering metadata+data via an API. 
+
 
 ### FeatureOfInterest
 
-This entity is not mapped to any FDRI class as it is only used in relation to the unmapped Observation class.
+This entity is only used in relation to the unmapped Observation class, however it is likely that in an implementation
+that includes Observation entities, the FeatureOfInterest entities will be derived from the reference data in the FDRI metadata store.
+
+FeatureOfInterest maps to the FDRI GeospatialFeatureOfInterest class.
+
+**Property mapping**
+name
+: maps to the rdfs:label of the GeospatialFeatureOfInterest. The SensorThings API allows only a single string, so if multiple labels are present on the GeospatialFeatureOfInterest resource, one must be chosen.
+
+description
+: maps to the rdf:comment of the GeospatialFeatureOfInterest if present, otherwise the rdfs:label. Only a single string is allowed so if multiple values are present on the GeospatialFeatureOfInterest resource, one must be chosen.
+
+encodingType
+: Must map to GeoJSON
+
+feature
+: The geospatial boundary or representative point of the GeospatialFeatureOfInterest converted to GeoJSON. Several properties are provided in the FDRI data model each of which could be converted to a GeoJSON structure. An implementation should defined a consistent approach to the preference order in which those properties are used (which should be consistent with the approach used for mapping the Location entity)
+
+**Relationship mapping**
+
+Observations
+: The observations for a feature of interest can be found be querying for all TimeSeriesDatasets that have the mapped GeospatialFeatureOfInterest as their feature of interest and providing access to the observations from those datasets.
 
 ### ValueCode
 
@@ -184,9 +208,16 @@ In the SensorThings API, each resource requires an ID property which is used to 
 
 To address this issue, the FDRI data model could be extended to allow a property such as the Dublin Core `dct:identifier` or the SKOS `skos:notation` property to provide a unique identifier string for each resource which could either be derived from the IRI identifier (e.g. by slicing off the common leading part of the IRI identifier, or by hashing the IRI identifier) or could be separately derived or generated (e.g. as UUIDs).
 
+Alternatively if there are consistent templates for resource identifiers it may be possible to map FDRI resource IRIs into stub identifiers in a consistent manner that does not require any additiona property to store them.
+
 ### Consider adding a Location resource type
 
 Consider making a resource type equivalent to the SensorThings Location entity type. This would involve moving the properties `hasGeometry`, `hasBoundingBox` etc. which are currently defined on classes such as `EnvironmentalMonitoringFacility` and `GeospatialFeatureOfInterest` into a separate class (possibly using the GeoSPARQL `geos:Feature` class), and then having a specific relation such as `fdri:hasLocation` to relate the facility or feature of interest to its location. 
 
 **NOTE** The use of the `geo:Feature` class may be inappropriate for this purpose as its definition overlaps more strongly with the FDRI `GeospatialFeatureOfInterest` than it does with the SensorThings notion of `Location`.
 
+### Consider how to ensure a name and descrption for all entities
+
+In the current FDRI data model, a label is not mandatory, but in the SensorThings API the name property is mandatory for all entities. This issue may be addressed either by making an rfds:label, skos:prefLabel and/or dct:title mandatory on the relevant FDRI resource types or by defining an approach to generating labels for resources that do not have any of these properties.
+
+The issue is the same for the description property in the SensorThings API, although if there is an approach to ensuring that a label is present for all SensorThings entities, the description property could simply repeat this for any entity that does not have an explicit description.
