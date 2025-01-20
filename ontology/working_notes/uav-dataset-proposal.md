@@ -50,23 +50,23 @@ Dataset["UAV Sensor Dataset
 Variable["NOx Concentration
 &lt;&lt;Variable>>"]
 UAV["UAV #123
-&lt;&lt;EnvironmentalMonitoringFacility>>"]
+&lt;&lt;EMFacility>>"]
 UAVModel["Some Make/Model"]
 Quadcopter["Quadcopter"]
 Flight1["Flight #1
-&lt;&lt;EnvironmentalMonitoringActivity>>"]
+&lt;&lt;EMActivity>>"]
 Flight2["Flight #2
-&lt;&lt;EnvironmentalMonitoringActivity>>"]
+&lt;&lt;EMActivity>>"]
 Survey["Survey
-&lt;&lt;EnvironmentalMonitoringActivity>>"]
+&lt;&lt;EMActivity>>"]
 Usage1["Flight 1 use of UAV #123
-&lt;&lt;prov:Usage>>"]
+&lt;&lt;Usage>>"]
 Deployment["NOx Sensor Deployment
 &lt;&lt;Deployment>>"]
 Usage2["Flight 2 use of UAV #123
-&lt;&lt;prov:Usage>>"]
+&lt;&lt;Usage>>"]
 Sensor["NOx Sensor #345
-&lt;&lt;EnvironmentalMonitoringSensor>>"]
+&lt;&lt;EMSensor>>"]
 SensorModel["Some Make / Model"]
 SensorType["NOx Detector"]
 
@@ -96,7 +96,7 @@ FlightLog2 -- prov:wasGeneratedBy --> Flight2
 WeatherReport["Survey Weather Report
 &lt;&lt;Document>>"]
 WeatherReportConcept["Weather Report
-&lt;&lt:Concept>>"]
+&lt;&lt;Concept>>"]
 SurveyUsage["Survey use of Weather Report
 &lt;&lt;Usage>>"]
 Survey -- prov:qualifiedUsage --> SurveyUsage
