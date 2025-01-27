@@ -58,3 +58,37 @@ resources:
       "<fdri:processingLevel>": "<http://fdri.ceh.ac.uk/ref/common/processing-level/{PROCESSING_LEVEL|slug}>"
       "<fdri:originatingFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
       "<fdri:originatingProgramme>": <::CosmosProgramme>
+      "<fdri:hasAnnotation>":
+        - name: S3BucketAnnotation
+          properties:
+            "@id": "<_>"
+            "@type": "<fdri:Annotation>"
+            "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/source_bucket>"
+            "<fdri:hasValue>":
+              name: S3BucketAnnotationValue
+              properties:
+                "@id": "<_>"
+                "@type": <schema:PropertyValue>
+                "<schema:value>": "{S3_BUCKET}"
+        - name: S3DatasetAnnotation
+          properties:
+            "@id": "<_>"
+            "@type": "<fdri:Annotation>"
+            "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/source_dataset>"
+            "<fdri:hasValue>":
+              name: S3DatasetAnnotationValue
+              properties:
+                "@id": "<_>"
+                "@type": <schema:PropertyValue>
+                "<schema:value>": "{S3_DATASET}"
+        - name: S3ColumnNameAnnotation
+          properties:
+            "@id": "<_>"
+            "@type": "<fdri:Annotation>"
+            "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/source_column_name>"
+            "<fdri:hasValue>":
+              name: S3ColumnNameAnnotation
+              properties:
+                "@id": "<_>"
+                "@type": <schema:PropertyValue>
+                "<schema:value>": "{COLUMN_NAME}"
