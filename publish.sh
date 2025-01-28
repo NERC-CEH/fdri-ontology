@@ -3,7 +3,7 @@
 set -e
 
 QUEUE_URL=$(awk '$1==ENVIRON["GITHUB_REF_NAME"] {print $2}' branch.map)
-if [ -z "$QUEUE" ]
+if [ -z "$QUEUE_URL" ]
 then
   echo "SQS not found for $GITHUB_REF_NAME"
   exit 1
