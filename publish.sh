@@ -2,18 +2,14 @@
 
 set -e
 
-QUEUE=$(awk '$1==ENVIRON["GITHUB_REF_NAME"] {print $2}' branch.map)
-
+QUEUE_URL=$(awk '$1==ENVIRON["GITHUB_REF_NAME"] {print $2}' branch.map)
 if [ -z "$QUEUE" ]
 then
   echo "SQS not found for $GITHUB_REF_NAME"
   exit 1
 fi
 
-QUEUE_URL=https://sqs.eu-west-1.amazonaws.com/293385631482/$QUEUE
-
 S3_DESTINATION_PREFIX=$(awk '$1==ENVIRON["GITHUB_REF_NAME"] {print $3}' branch.map)
-
 if [ -z "$S3_DESTINATION_PREFIX" ]
 then
   echo "S3 Destination not found for $GITHUB_REF_NAME"
