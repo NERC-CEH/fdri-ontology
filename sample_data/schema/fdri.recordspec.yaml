@@ -3039,16 +3039,39 @@ records:
         constraints:
           - record: TimeSeriesPlan
       sourceBucket:
+        label:
+          - value: source bucket
+            language: en
+        description:
+          - value: |
+              Provides the identifier of the S3 bucket which contains the source data processed to create or update
+              time series datasets using this definition.
+            language: en
         propertyUri: fdri:sourceBucket
         kind: literal
         constraints:
           - datatype: xsd:string
       sourceDataset:
+        label:
+          - value: source dataset
+            language: en
+        description:
+          - value: |
+              Provides the identifier of the partition within the source bucket which contains the source data to be
+              processed to create or update time series datasets using this definition.
         propertyUri: fdri:sourceDataset
         kind: literal
         constraints:
           - datatype: xsd:string
       sourceColumnName:
+        label:
+          - value: source column name
+            language: en
+        description:
+          - value: |
+              Provides the name of the column within the source dataset which provides the values to be processed to 
+              create or update time series datasets using this definition.
+            language: en
         propertyUri: fdri:sourceColumnName
         kind: literal
         constraints:
