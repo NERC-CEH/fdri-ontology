@@ -499,6 +499,21 @@ above the local reference ellipsoid).""" ;
               rdfs:comment "Descriptive information about the way in which the layout of an Environmental Monitoring Facility differs from the standard layout for a facility of its type."@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/sourceBucket
+:sourceBucket rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/sourceColumnName
+:sourceColumnName rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:string .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/sourceDataset
+:sourceDataset rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:string .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/storageLocation
 :storageLocation rdf:type owl:DatatypeProperty ;
                  rdfs:range xsd:string .
@@ -1422,6 +1437,18 @@ above the local reference ellipsoid).""" ;
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :resolution ;
                                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :sourceBucket ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :sourceColumnName ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :sourceDataset ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                       ] .
 
 

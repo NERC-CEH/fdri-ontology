@@ -3038,6 +3038,21 @@ records:
         kind: object
         constraints:
           - record: TimeSeriesPlan
+      sourceBucket:
+        propertyUri: fdri:sourceBucket
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      sourceDataset:
+        propertyUri: fdri:sourceDataset
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      sourceColumnName:
+        propertyUri: fdri:sourceColumnName
+        kind: literal
+        constraints:
+          - datatype: xsd:string
 
   TimeSeriesPlan:
     classUri: fdri:TimeSeriesPlan

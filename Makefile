@@ -132,7 +132,7 @@ build/siteVariance.csv: $(SRC)/SITES.csv $(SQL)/siteLayout.sql | build
 build/time_series_datasets.csv: build/time_series_definitions.csv $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/TIMESERIES_S3_MAP_REFINED.csv $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SQL)/time_series_datasets.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_datasets.sql"
 
-build/time_series_definitions.csv: $(SRC)/TIMESERIES.csv $(SRC)/intervalDuration.csv $(SQL)/time_series_definitions.sql | build
+build/time_series_definitions.csv: $(SRC)/TIMESERIES.csv $(SRC)/TIMESERIES_S3_MAP_REFINED.csv $(SRC)/intervalDuration.csv $(SQL)/time_series_definitions.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_definitions.sql"
 
 $(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml $(SRC)/%.csv | build/data

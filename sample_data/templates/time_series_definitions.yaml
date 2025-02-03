@@ -24,3 +24,6 @@ resources:
       "^<skos:hasTopConcept>": "<::TimeSeriesScheme>"
       "<skos:prefLabel>": "{TIMESERIES_NAME}@en"
       "<rdfs:label>": "{TIMESERIES_NAME}@en"
+      "<fdri:sourceBucket>": "{S3_BUCKET}"
+      "<fdri:sourceDataset>": "{S3_DATASET}"
+      "<fdri:sourceColumnName>": "{S3_COLUMN_NAME}"
