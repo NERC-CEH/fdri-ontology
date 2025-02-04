@@ -3,6 +3,13 @@ on:
   workflow_dispatch: {}
   push:
     branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: read
+    
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -12,16 +19,20 @@ jobs:
       - name: Git fetch
         run: |
           git fetch --prune --unshallow --tags
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+
       - name: Build sample data
         run: make samples
+
       - name: Publish sample data
         run: bash publish.sh
