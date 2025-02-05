@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTSTS AS FROM read_csv('./sample_data/src/TIMESERIES.csv', AUTO_DETECT=true) ;
+CREATE TABLE IF NOT EXISTS TS AS FROM read_csv('./sample_data/src/TIMESERIES.csv', AUTO_DETECT=true) ;
 CREATE TABLE IF NOT EXISTS ID AS FROM read_csv('./sample_data/src/intervalDuration.csv', AUTO_DETECT=true) ;
 CREATE TABLE IF NOT EXISTS TIMESERIES_S3 AS FROM read_csv('./sample_data/src/TIMESERIES_S3_MAP_REFINED.csv', AUTO_DETECT=true) ;
 
