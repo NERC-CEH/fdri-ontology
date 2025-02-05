@@ -36,6 +36,9 @@ class ValueStatistic["fdri:ValueStatistic"]
 class TimeSeriesDefinition["fdri:TimeSeriesDefinition"] {
   fdri:periodicity: xsd:duration
   fdri:resolution: xsd:duration
+  fdri:sourceBucket: xsd:string
+  fdri:sourceDataset: xsd:string
+  fdri:sourceColumnName: xsd:string
 }
 class Plan["fdri:TimeSeriesPlan"]
 class ProcessingLevel["fdri:ProcessingLevel"]
@@ -59,11 +62,16 @@ An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series 
 * `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series.
 * `fdri:periodicity` specifies the maximum period between recorded observations in the time series
 * `fdri:resolution` specifies the temporal resolution of the monitoring of the environmental feature that was used to derive the aggregated values contaied in the time series dataset. 
+* `fdri:sourceBucket` specifies the top level container (an S3 bucket) in which the data that is processed to produce time series datasets is stored.
+* `fdri:dataset` specifies the specific partition of the top level container in which the data is stored.
+* `fdri:columName` specifies the column within the partition where the values that produce the time series dataset(s) is stored.
 
 
 > **NOTE**
 > The existing DCAT property `dcat:temporalResolution` is not used as it is defined as a minimum spacing between observations, whereas in FDRI the `fdri:periodicity` is the *maximum* spacing between observations.
 
+> **NOTE**
+> The datasets for different sites are saved in separate folders within the same path structure within the bucket. This is expected to be the case for other projects processed through the DRI pipeline, and so site specific paths are not currently specified in the time series definition metadata.
 
 ### Time-Series Dataset Versioning
 
