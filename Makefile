@@ -35,6 +35,7 @@ SAMPLES = \
 	$(TTL_BASE)/parameterProperties.ttl \
 	$(TTL_BASE)/PARAMETER_RANGES_QC.ttl \
 	$(TTL_BASE)/processingLevels.ttl \
+	$(TTL_BASE)/sensor_calibrations.ttl \
 	$(TTL_BASE)/sensor_deployments.ttl \
 	$(TTL_BASE)/sensor_faults.ttl \
 	$(TTL_BASE)/sensor_firmware_configurations.ttl \
@@ -116,6 +117,9 @@ build/monitoring_system_variables.csv: $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC
 
 # build/qc_range_configuration_items.csv: $(SRC)/PARAMETER_RANGES_QC.csv build/time_series_datasets.csv $(SQL)/qc_range_configuration_items.sql | build
 # 	$(RUN) /bin/bash -c "duckdb < $(SQL)/qc_range_configuration_items.sql"
+
+build/sensor_calibrations.csv: $(SRC)/calib_factors_nr01_anem.csv $(SRC)/PARAMETERS_INSTRUMENTS.csv $(SRC)/SITE_INSTRUMENTATION.csv $(SQL)/sensor_calibrations.sql | build
+	$(RUN) /bin/bash -c "duckdb < $(SQL)/sensor_calibrations.sql"
 
 build/sensor_deployments.csv: $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/variableProperties.csv $(SQL)/sensor_deployments.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/sensor_deployments.sql"
