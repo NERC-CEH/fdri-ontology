@@ -176,7 +176,7 @@ PropertyValue --> Unit: schema_unit
 
 An `fdri:EnvironmentalMonitoringSystem` is a device which measures properties in the environment. As already noted, an `fdri:EnvironmentalMonitoringSystem` may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
 
-An `fdri:EnvironmentalMonitoringSystem` carries several other metadata properties as shown in the diagram below. Faults can also be recorded at this level in the model (such a fault would be presumed to potentially affect all subsystems of the affected system).
+An `fdri:EnvironmentalMonitoringSystem` carries several other metadata properties as shown in the diagram below.
 
 
 ```mermaid
@@ -193,7 +193,6 @@ class System["fdri:EnvironmentalMonitoringSystem"] {
 
   }
 System --> System: sosa_hasSubsystem
-System --> Fault: fdri_hadFault
 ```
 
 ### EnvironmentalMonitoringSensor

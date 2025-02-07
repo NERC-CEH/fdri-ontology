@@ -25,7 +25,6 @@ resources:
           "<dcat:startDate>": "{START_DATETIME|asDateTime}"
           "<dcat:endDate>": "{END_DATETIME|asDateTime}"
       "<fdri:affectedFacility>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
-      "^<fdri:hadFault>": "<http://fdri.ceh.ac.uk/id/sensor/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}>"
   - name: StationFault
     requires:
       VARIABLE:
@@ -44,5 +43,4 @@ resources:
           "<dcat:startDate>": "{START_DATETIME|asDateTime}"
           "<dcat:endDate>": "{END_DATETIME|asDateTime}"
       "<fdri:affectedFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
-      "^<fdri:hadFault>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
     

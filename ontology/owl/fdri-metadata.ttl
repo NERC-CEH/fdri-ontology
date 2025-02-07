@@ -46,7 +46,6 @@ above the local reference ellipsoid).""" ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/affectedFacility
 :affectedFacility rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
-                  owl:inverseOf :hadFault ;
                   rdfs:domain :Fault ;
                   rdfs:range :EnvironmentalMonitoringFacility .
 
@@ -121,11 +120,6 @@ above the local reference ellipsoid).""" ;
 :hadConfigurationItem rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
                       rdfs:range :ConfigurationItem .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/hadFault
-:hadFault rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf owl:topObjectProperty .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hadValue

@@ -78,8 +78,7 @@ classDiagram
     dcat:startDate: rdfs:Literal
     dcat:endDate: rdfs:Literal
   }
-  EMSystem --> Fault: fdri_hadFault
-  Fault --> EMF: fdri_affected
+  Fault --> EMF: fdri_affectedFacility
   Fault --> COP: fdri_affectedVariable
   Fault --> Period: fdri_interval
 ```
