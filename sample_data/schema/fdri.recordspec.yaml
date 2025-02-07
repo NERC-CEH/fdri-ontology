@@ -1764,18 +1764,6 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:date
-      hadFault:
-        label:
-          - value: had fault
-            lang: en
-        description:
-          - value: The fault(s) that have affected this system over time.
-            lang: en
-        propertyUri: fdri:hadFault
-        repeatable: true
-        kind: object
-        constraints:
-          - record: Fault
       hasSubsystem:
         label:
           - value: has subsystem
