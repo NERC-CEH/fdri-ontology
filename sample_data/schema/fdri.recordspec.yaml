@@ -1946,6 +1946,11 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringFacility
+      type:
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: FacilityGroupType
 
   FacilityGroupMembership:
     label:
