@@ -225,3 +225,47 @@ Feature <|-- GeoFeature
 The properties of `fdri:GeospatialFeatureOfInterest` provide ways of describing the geo-spatial extent of the feature which are described in more detail in [Notes on Geo-spatial Resources](geospatial.md)
 
 As already shown, the `GeospatialFeatureOfInterest` may also be referenced from the `Dataset` which contains observations of that feature.
+
+## FacilityGroup
+
+A `FacilityGroup` is an unordered collection of `EnvironmentalMonitoringFacility` instances that share some common feature. A `FacilityGroup` is treated as a `Resource` in the metadata catalog and so may have a title, provenance and publication information and so on.
+
+For simple groupings where there is no need to record historical membership or to provide a date range for a membership,
+the `fdri:hasMember` property can be used. For cases where membership of a group may change over time, the class `fdri:FacilityGroupMembership`
+can be used.
+
+The `dct:type` property can be used to specify the nature of the grouping.
+
+Where facility groupings are used to represent geospatial areas, there are optional properties to capture the geopatial extent of the grouping (e.g. the boundary of the region or catchment area that the group represents).
+
+
+```mermaid
+classDiagram
+class EMF["fdri:EMFacility"]
+class Resource["dcat:Resource"] {
+  dct:title?
+  dct:description?
+}
+class FacilityGroup["fdri:FacilityGroup"] {
+    geos:hasGeometry: geos:Geometry?
+    geos:hasRepresentativePoint: geos:Geometry?
+    geos:hasCentroid: geos:Geometry?
+    geos:hasBoundingBox: geos:Geometry?
+    geo:lat: string?
+    geo:long: string?
+    spatialrelations:easting?
+    spatialrelations:northing?
+}
+class FacilityGroupMembership["fdri:FacilityGroupMembership"]
+class PeriodOfTime["dct:PeriodOfTime"]
+class Concept["skos:Concept"]
+class FacilityGroupType["fdri:FacilityGroupType"]
+
+Concept <|-- FacilityGroupType
+Resource <|-- FacilityGroup
+FacilityGroup --> EMF: fdri_hasMember
+FacilityGroupType <-- FacilityGroup: dct_type
+FacilityGroup <-- FacilityGroupMembership: fdri_group
+FacilityGroupMembership --> EMF: fdri_member
+FacilityGroupMembership --> PeriodOfTime: fdri_interval
+```

@@ -116,6 +116,11 @@ above the local reference ellipsoid).""" ;
                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/group
+:group rdf:type owl:ObjectProperty ;
+       rdfs:range :FacilityGroup .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hadConfigurationItem
 :hadConfigurationItem rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
@@ -141,6 +146,11 @@ above the local reference ellipsoid).""" ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasCurrentValue
 :hasCurrentValue rdf:type owl:ObjectProperty ;
                  rdfs:range :TimeBoundPropertyValue .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/hasMember
+:hasMember rdf:type owl:ObjectProperty ;
+           rdfs:range :EnvironmentalMonitoringFacility .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasProcedure
@@ -177,16 +187,6 @@ above the local reference ellipsoid).""" ;
                 rdfs:range :PropertyValueSeries .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/inCatchment
-:inCatchment rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :temporallyValidProperty .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/inRegion
-:inRegion rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf :temporallyValidProperty .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/interval
 :interval rdf:type owl:ObjectProperty ;
           rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
@@ -195,6 +195,11 @@ above the local reference ellipsoid).""" ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/landCover
 :landCover rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :temporallyValidProperty .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/member
+:member rdf:type owl:ObjectProperty ;
+        rdfs:range :EnvironmentalMonitoringFacility .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/method
@@ -991,6 +996,89 @@ above the local reference ellipsoid).""" ;
                                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                        owl:onDataRange xsd:string
                                                      ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroup
+:FacilityGroup rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/type> ;
+                                 owl:allValuesFrom :FacilityGroupType
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasMember ;
+                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasRepresentativePoint ;
+                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.opengis.net/ont/geosparql#hasBoundingBox> ;
+                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.opengis.net/ont/geosparql#hasCentroid> ;
+                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/type> ;
+                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupMembership
+:FacilityGroupMembership rdf:type owl:Class ;
+                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                           owl:onProperty :group ;
+                                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :interval ;
+                                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :member ;
+                                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                                         ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupType
+:FacilityGroupType rdf:type owl:Class ;
+                   rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                     owl:allValuesFrom :FacilityGroupTypeScheme
+                                   ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupTypeScheme
+:FacilityGroupTypeScheme rdf:type owl:Class ;
+                         rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Fault
