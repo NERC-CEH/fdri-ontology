@@ -1633,30 +1633,6 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:decimal
-      inRegion:
-        label:
-          - value: in region
-            lang: en
-        description:
-          - value: The geographic region within which the site is/was located.
-            lang: en
-        propertyUri: fdri:inRegion
-        kind: object
-        repeatable: true
-        constraints:
-          - record: PropertyValueSeries
-      inCatchment:
-        label:
-          - value: in catchment
-            lang: en
-        description:
-          - value: The catchment area within which the site is/was located.
-            lang: en
-        propertyUri: fdri:inCatchment
-        kind: object
-        repeatable: true
-        constraints:
-          - record: PropertyValueSeries
       landCover:
         label:
           - value: land cover
@@ -1939,6 +1915,118 @@ records:
         kind: object
         constraints:
           - record: DataProcessingConfiguration
+
+  FacilityGroup:
+    label:
+      - value: Environmental Monitoring Facility Group
+        lang: en
+    description:
+      - value: |
+          Represents a collection of related Environmental Monitoring Facilities.
+
+          Membership may be expressed directly using the `fdri:hasMember` property,
+          or indirectly (with an optional temporal constraint) by creating `fdri:FacilityGroupMembership` instances.
+        lang: en
+    classUri: fdri:FacilityGroup
+    shortCode: FacilityGroup
+    mixins:
+      - WithLabelAndComment
+      - WithAnnotations
+      - WithIndexedGeometry
+      - WithProvenance
+    properties:
+      hasMember:
+        label:
+          - value: has member
+            lang: en
+        description:
+          - value: Relates the containing `FacilityGroup` to an `EnvironmenalMonitoringFacility` that is part of the group.
+            lang: en
+        propertyUri: fdri:hasMember
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacility
+
+  FacilityGroupMembership:
+    label:
+      - value: Facility Group Membership
+        lang: en
+    description:
+      - value: Represents an optionally time-bounded membership of a `FacilityGroup` by some `EnvironmenalMonitoringFacility`.
+        lang: en
+    classUri: fdri:FacilityGroupMembership
+    shortCode: FacilityGroupMembership
+    properties:
+      group:
+        label:
+          - value: facility group
+            lang: en
+        description:
+          - value: The `FacilityGroup` involved in the membership relationship.
+            lang: en
+        propertyUri: fdri:group
+        required: true
+        kind: object
+        constraints:
+          - record: FacilityGroup
+      member:
+        label:
+          - value: member
+            lang: en
+        description:
+          - value: The `EnvironmenalMonitoringFacility` involved in the membership relationship.
+            lang: en
+        propertyUri: fdri:member
+        required: true
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacility
+      interval:
+        label:
+          - value: interval
+            lang: en
+        description:
+          - value: The period of time during which the containing relationship is/was valid.
+            lang: en
+        propertyUri: fdri:interval
+        required: false
+        kind: object
+        constraints:
+          - record: PeriodOfTime
+
+  FacilityGroupType:
+    label:
+        - value: Environmental Monitoring Facility Group Type
+          lang: en
+    description:
+      - value: A concept representing the nature of a facility group. e.g. catchment, region, project
+        lang: en
+        extends: Concept
+    classUri: fdri:FacilityGroupType
+    shortCode: FacilityGroupType
+    properties:
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: A reference to the concept scheme under which this concept is managed.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: FacilityGroupTypeScheme
+
+  FacilityGroupTypeScheme:
+    label:
+      - value: Environmental Monitoring Facility Group Type Concept Scheme
+        lang: en
+    description:
+      - value: A controlled vocabulary of monitoring facility group types.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:FacilityGroupTypeScheme
+    shortCode: FacilityGroupTypeScheme
 
   Fault:
     label:

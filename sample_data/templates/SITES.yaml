@@ -7,11 +7,18 @@ imports:
     - extensions.py
 
 one_offs:
-  - name: RegionScheme
+  - name: CosmosFacilityGroupTypeScheme
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/region>"
-      "@type": "<skos:ConceptScheme>"
-      "<dct:title>": "COSMOS Regions@en"
+      "@id": <http://fdri.ceh.ac.uk/ref/cosmos/group-type>
+      "@type": "<fdri:FacilityGroupTypeScheme>"
+      "<dct:title>": "COSMOS Monitoring Facility Group Types@en"
+  - name: RegionGroupType
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/group-type/region>"
+      "@type": "<fdri:FacilityGroupType>"
+      "<dct:title>": "COSMOS Region Group@en"
+      "<skos:inScheme>": <::CosmosFacilityGroupTypeScheme>
+      "^<skos:hasTopConcept>": <::CosmosFacilityGroupTypeScheme>
   - name: SoilTypeScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/soil-type>"
@@ -224,6 +231,15 @@ resources:
         "<spatialrelations:easting>": "{EASTING}"
         "<spatialrelations:northing>": "{NORTHING}"
 
+    - name: RegionGroup
+      requires:
+        REGION:
+      properties:
+        "@id": "<http://fdri.ceh.ac.uk/id/facility-group/cosmos-region-{REGION|slug}>"
+        "@type": <fdri:FacilityGroup>
+        "<dct:title>": "{REGION} Region Group"
+        "<dct:type>": <::RegionGroupType>
+    
     - name: MonitoringSite
       properties:
         "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
@@ -255,32 +271,6 @@ resources:
               "@type": "<dct:PeriodOfTime>"
               "<dcat:startDate>": "{DATE_INSTALLED | asDateOrDatetime}"
               "<dcat:endDate>": "{DATE_DECOMMISSIONED | asDateOrDatetime}"
-        "<fdri:inRegion>":
-          - name: InRegionSeries
-            requires:
-              REGION:
-            properties:
-              "@id": "<_>"
-              "@type": "<fdri:PropertyValueSeries>"
-              "<fdri:hasCurrentValue>":
-                name: InRegionCurrentValue
-                properties:
-                  "@id": "<_>"
-                  "@type": "<fdri:TimeBoundPropertyValue>"
-                  "<schema:valueReference>":
-                    name: RegionConcept
-                    properties:
-                      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/region/{REGION | slug}>"
-                      "@type": "<skos:Concept>"
-                      "<skos:prefLabel>": "{REGION}@en"
-                      "<skos:inScheme>": "<::RegionScheme>"
-                      "^<skos:hasTopConcept>": "<::RegionScheme>"
-                  "<fdri:interval>":
-                    name: InRegionCurrentValueInterval
-                    properties:
-                      "@id": "<_>"
-                      "@type": "<dct:PeriodOfTime>"
-                      "<dcat:startDate>": "{DATE_INSTALLED | asDateOrDatetime}"
         "<fdri:hasAnnotation>":
           - name: SoilType
             requires:
@@ -490,3 +480,17 @@ resources:
                   "@type": "<schema:PropertyValue>"
                   "<schema:value>": "{FULL_TDT_ARRAY | asBoolean('y')}"
 
+    - name: RegionMembership
+      requires:
+        REGION:
+      properties:
+        "@id": "<http://fdri.ceh.ac.uk/id/facility-group-membership/cosmos-region-{SITE_ID|slug}-{REGION|slug}>"
+        "@type": "<fdri:FacilityGroupMembership>"
+        "<fdri:group>": <::RegionGroup>
+        "<fdri:member>": <::MonitoringSite>
+        "<fdri:interval>":
+          name: InRegionCurrentValueInterval
+          properties:
+            "@id": "<_>"
+            "@type": "<dct:PeriodOfTime>"
+            "<dcat:startDate>": "{DATE_INSTALLED | asDateOrDatetime}"
