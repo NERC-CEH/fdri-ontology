@@ -43,8 +43,7 @@ Fails 3. Conforms to generic standards such as OpenAPIv3 but doesn't comply with
 
 #### Implementation options
 
-1. Metadata API extension. The sapi-nt framework already supports streaming delivery of data from alternative backends including Postgres and Apache Cassandra. A backend could be added to either directly query the Parquet files in S3 or broker data requests to the current data API, or some extension of it. To meet (2) the data format would need to be extended to include the relevant dataset URIs but that could be done either in the data API (if brokering) or as a streaming transformation in the sapi-nt implementation. 
-<br />
+1. Metadata API extension. The sapi-nt framework already supports streaming delivery of data from alternative backends including Postgres and Apache Cassandra. A backend could be added to either directly query the Parquet files in S3 or broker data requests to the current data API, or some extension of it. To meet (2) the data format would need to be extended to include the relevant dataset URIs but that could be done either in the data API (if brokering) or as a streaming transformation in the sapi-nt implementation.<br /><br />
 2. Data API extension. Conversely the implementation approach used in the existing API, which already brokers requests to the metdata API, could be extended to provide a more complete mirror of the metadata API and to include the link URIs in the returned payload.
 
 ### 2. Integrated data and metadata in download packages
@@ -98,11 +97,9 @@ An alternative to a query broker would be to export the entire metadata store, p
 
 ## Conclusions
 
-1. Before making any real decisions the goals need clarifying. There is a tradeoff between support for/encouraging access to the fine grain metadata and compliance with SensorThings. It would help greatly to have some specific use cases from which we could infer the specific query patterns to support, especially if we want to profile SensorThings. Knowing about any delivery time constraints would also help to guide the choices.
-<br />
-2. The quickest route to getting a SensorThings compliant API would be to develop an export mechanism to mirror all the data and metadata to a postgresql+postgis store in a format compatible with FROST and use the FROST server. However, this feels like the wrong solution long term.
-<br />
-1. The best approach would seem to be a broker API implementing a profile of SensorThings (guided by the target use cases) and with an extension to the ST datamodel to allow query into the key provenance metadata classes. If Epimorphics were to implement this alone we would use kotlin and expect to build upon either Olingo or FROST-Core (though these options would need evaluation first). For a joint Epimorphics/UKCEH build we would expect python to be the preferred implementation language in which case we would build on FastAPI and start from scratch on the OData machinery. Depending on the use cases, and thus API profile, the query parsing may be generateable from a tailored version of the OData ABNF grammar or might be hand crafted.
+1. Before making any real decisions the goals need clarifying. There is a tradeoff between support for/encouraging access to the fine grain metadata and compliance with SensorThings. It would help greatly to have some specific use cases from which we could infer the specific query patterns to support, especially if we want to profile SensorThings. Knowing about any delivery time constraints would also help to guide the choices.<br /><br />
+2. The quickest route to getting a SensorThings compliant API would be to develop an export mechanism to mirror all the data and metadata to a postgresql+postgis store in a format compatible with FROST and use the FROST server. However, this feels like the wrong solution long term.<br /><br />
+3. The best approach would seem to be a broker API implementing a profile of SensorThings (guided by the target use cases) and with an extension to the ST datamodel to allow query into the key provenance metadata classes. If Epimorphics were to implement this alone we would use kotlin and expect to build upon either Olingo or FROST-Core (though these options would need evaluation first). For a joint Epimorphics/UKCEH build we would expect python to be the preferred implementation language in which case we would build on FastAPI and start from scratch on the OData machinery. Depending on the use cases, and thus API profile, the query parsing may be generateable from a tailored version of the OData ABNF grammar or might be hand crafted.
 
 ## Appendix: Working Notes on SensorThings
 
