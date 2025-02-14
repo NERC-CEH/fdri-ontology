@@ -192,11 +192,6 @@ above the local reference ellipsoid).""" ;
           rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/landCover
-:landCover rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :temporallyValidProperty .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/member
 :member rdf:type owl:ObjectProperty ;
         rdfs:range :EnvironmentalMonitoringFacility .
@@ -293,19 +288,8 @@ above the local reference ellipsoid).""" ;
                        rdfs:range <http://www.w3.org/2006/vcard/ns#Kind> .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/soilType
-:soilType rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf owl:topObjectProperty ;
-          rdfs:range :SoilType .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/status
 :status rdf:type owl:ObjectProperty .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/temporallyValidProperty
-:temporallyValidProperty rdf:type owl:ObjectProperty ;
-                         rdfs:range :PropertyValueSeries .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/trackLog
@@ -923,14 +907,6 @@ above the local reference ellipsoid).""" ;
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
                                                owl:allValuesFrom <http://www.w3.org/ns/sosa/Platform>
-                                             ] ,
-                                             [ rdf:type owl:Restriction ;
-                                               owl:onProperty :landCover ;
-                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                             ] ,
-                                             [ rdf:type owl:Restriction ;
-                                               owl:onProperty :soilType ;
-                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty :siteVariance ;
