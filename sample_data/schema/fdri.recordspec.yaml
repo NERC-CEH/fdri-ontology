@@ -1633,19 +1633,6 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:decimal
-      landCover:
-        label:
-          - value: land cover
-            lang: en
-        description:
-          - value: A record of the land cover/land usage at the site over time.
-            lang: en
-        propertyUri: fdri:landCover
-        kind: object
-        nested: true
-        repeatable: true
-        constraints:
-          - record: PropertyValueSeries
       siteVariance:
         label:
           - value: site variance
@@ -1659,18 +1646,6 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
-      soilType:
-        label:
-          - value: soil type
-            lang: en
-        description:
-          - value: |
-              The clasification of the type of soil found at this site.
-            lang: en
-        propertyUri: fdri:soilType
-        kind: object
-        constraints:
-          - record: SoilType
   
   EnvironmentalMonitoringSystem:
     label:
