@@ -12,7 +12,59 @@ one_offs:
       "@id": "<http://fdri.ceh.ac.uk/id/programme/cosmos>"
       "@type": "<fdri:EnvironmentalMonitoringProgramme>"
       "<rdfs:label>": "COSMOS Programme@en"
-      "<fdri:utilises>": "<http://fdri.ceh.ac.uk/id/network/cosmos>"
+      "<fdri:utilises>": "<http://fdri.ceh.ac.uk/id/network/cosmos>"  
+
+  - name: COPScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop>"
+      "@type": "<fdri:VariableScheme>"
+
+  - name: TimeSeriesCompleteness
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/timeseries-completeness-percent>"
+      "@type": "<fdri:Variable>"
+      "<rdfs:label>": "Time-series Observation Completeness@en"
+      "<skos:prefLabel>": "Time-series Observation Completeness@en"
+      "<iop:hasObjectOfInterest>": "<fdri:TimeSeriesDataset>"
+      "<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/common/property/observation-completness>"
+      "<skos:inScheme>": <::COPScheme>
+      "^<skos:hasTopConcept>": <::COPScheme>
+
+  - name: SuspectObservations
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/timseries-flagged-suspect-percent>"
+      "@type": "<fdri:Variable>"
+      "<rdfs:label>": "Time-series Suspect Observations (Percent)@en"
+      "<skos:prefLabel>": "Time-series Suspect Observations (Percent)@en"
+      "<iop:hasObjectOfInterest>": "<fdri:TimeSeriesDataset>"
+      "<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/common/property/observation-completness>"
+      "<skos:inScheme>": <::COPScheme>
+      "^<skos:hasTopConcept>": <::COPScheme>
+
+  - name: CurrentYearQualifier
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/observation-period-2025>"
+      "@type": "<fdri:Annotation>"
+      "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/common/cop/observation-period>"
+      "<fdri:hasValue>":
+        name: CurrentYearQualifierValue
+        properties:
+          "@id": "<http://fdri.ceh.ac.uk/id/annotation/observation-period-2025#value>"
+          "<schema:minValue>": "2025-01-01T00:00:00Z^^<xsd:dateTime>"
+          "<schema:maxValue>": "2025-12-31T23:59:59Z^^<xsd:dateTime>"
+
+  - name: CurrentMonthQualifier
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/observation-period-2025-01>"
+      "@type": "<fdri:Annotation>"
+      "<fdri:property>": "<http://fdri.ceh.ac.uk/ref/common/cop/observation-period>"
+      "<fdri:hasValue>":
+        name: CurrentMonthQualifierValue
+        properties:
+          "@id": "<http://fdri.ceh.ac.uk/id/annotation/observation-period-2025-01#value>"
+          "<schema:minValue>": "2025-01-01T00:00:00Z^^<xsd:dateTime>"
+          "<schema:maxValue>": "2025-01-31T23:59:59Z^^<xsd:dateTime>"
+
 
 resources:
   - name: SiteVarSeries
@@ -58,3 +110,51 @@ resources:
       "<fdri:processingLevel>": "<http://fdri.ceh.ac.uk/ref/common/processing-level/{PROCESSING_LEVEL|slug}>"
       "<fdri:originatingFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
       "<fdri:originatingProgramme>": <::CosmosProgramme>
+      "<fdri:hasAnnotation>":
+        - name: CompletenessWholePeriod
+          properties:
+            "@id" : "<_>"
+            "@type": "<fdri:Annotation>"
+            "<fdri:property>": "<::TimeSeriesCompleteness>"
+            "<fdri:hasValue>":
+              name: "CompletenessWholePeriodValue"
+              properties:
+                "@id": <_>
+                "@type": "<schema:PropertyValue>"
+                "<schema:value>": "99.7^^<xsd:decimal>"
+        - name: CompletenessCurrentYear
+          properties:
+            "@id" : "<_>"
+            "@type": "<fdri:Annotation>"
+            "<fdri:property>": "<::TimeSeriesCompleteness>"
+            "<fdri:hasValue>":
+              name: "CompletenessCurrentYearValue"
+              properties:
+                "@id": <_>
+                "@type": "<schema:PropertyValue>"
+                "<schema:value>": "99.8^^<xsd:decimal>"
+                "<fdri:qualifier>": <::CurrentYearQualifier>
+        - name: CompletenessCurrentMonth
+          properties:
+            "@id" : "<_>"
+            "@type": "<fdri:Annotation>"
+            "<fdri:property>": "<::TimeSeriesCompleteness>"
+            "<fdri:hasValue>":
+              name: "CompletenessCurrentMonthPeriodValue"
+              properties:
+                "@id": <_>
+                "@type": "<schema:PropertyValue>"
+                "<schema:value>": "99.8^^<xsd:decimal>"
+                "<fdri:qualifier>": <::CurrentMonthQualifier>
+        - name: FlaggedSuspectPercentCurrentYear
+          properties:
+            "@id" : "<_>"
+            "@type": "<fdri:Annotation>"
+            "<fdri:property>": <::SuspectObservations>
+            "<fdri:hasValue>":
+              name: "FlaggedSuspectPercentCurrentYearValue"
+              properties:
+                "@id": <_>
+                "@type": "<schema:PropertyValue>"
+                "<schema:value>": "0.2^^<xsd:decimal>"
+                "<fdri:qualifier>": <::CurrentYearQualifier>
