@@ -51,7 +51,7 @@ Fails 3. Conforms to generic standards such as OpenAPIv3 but doesn't comply with
 
 Another way to meet requirement (2) is to deliver API results as a package of metadata files and data files - thus ensuring that the full relevant metadata is always included in the download. Various standardized approaches for this have been proposed, including "Frictionless Data" now [Data Packages](https://datapackage.org/) as used by _Our World in Data_. This is supported by tools in data science-friendly languages such as R and python.
 
-A similar community standard is [RO-CRATE](https://www.researchobject.org/ro-crate/) which uses json-ld for the metadata file with a standardised vocabulary, partly drawn from scheme.org. UKCEH have already launched support for this early this year and it would be easy to extend this to at least pre-prepared FDRI data packages. 
+A similar community standard is [RO-CRATE](https://www.researchobject.org/ro-crate/) which uses json-ld for the metadata file with a standardised vocabulary, partly drawn from schema.org. UKCEH have already launched support for this early this year and it would be easy to extend this to at least pre-prepared FDRI data packages. 
 
 In principle approach (1) could be extended so that a data query could optionally return a zipped file stream combining the requested data segments and a standardized capture of all the relevant metadata with a Data Package or RO-CRATE type wrapper.
 
