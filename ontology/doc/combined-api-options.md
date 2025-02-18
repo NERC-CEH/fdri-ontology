@@ -3,8 +3,8 @@
 ## Goals
 
 * Single service able to return both data and metadata
-* Primary audience is downstream data users client access
-* Support for visualization tooling, FDRI and others
+* Primary audience is downstream data users
+* Support for visualization tooling and general client data access
 * Support discovery of datasets via the metadata
 * Encourage data users to download associated provenance metadata
 * Facilitate data exchange with other relevant institutions including federated access, ideally via shared API standards
