@@ -1,6 +1,6 @@
 # Notes on sample data processing
 
-Currently, data loading for the metadata service is implemented a GH action (in this repo) transforming checked in CSV files to graph updates.
+Currently, data loading for the metadata service is implemented a GH action (in this repo) transforming checked-in CSV files to graph updates.
 
 We plan to move to a state where updates can be applied incrementally from different source data services. 
 
@@ -10,11 +10,35 @@ Note: In the current processing The overall pattern is that each processed sourc
 
 Note: In many cases preprocessing is performed by a SQL processing step (duckdb). These can normalise values, simplify the transformation step or perform joins. 
  
-Note: using CV as abbreviation for Controlled Vocabulary, represented as a SKOS ConceptScheme. Many of these are generated here from the source data but expected to eventually come from a vocabulary server.
+Note: we use "CV" as  an abbreviation for Controlled Vocabulary, represented as a SKOS ConceptScheme. Many of these are generated here from the source data but expected to eventually come from a vocabulary server.
 
 ## Summary table
 
-TBD
+| Data | Source | Update type | Notes and processing issues |
+|---|---|---|---|
+| Site reference | EIDC catalogue? | Bulk replace (by network?) | Are the full annotations included? |
+| Site reference CVs | Vocab server? | Bulk replace (by CV) | Soil type, Bedrock type, Public |
+| Land Cover base % | EIDC/separate reference data | Bulk replace | |
+| Land Cover observations | Field reporting - asset management? | Incremental addition (2) | Non-monotonic update (1) |
+| Land Cover classes | Vocab server | Bulk replace (by CV) | |
+| Sensor types | Asset management? Static reference data? | Bulk replace | Either include variable mapping or have separate mapping file (3) |
+| Sensor deployments | Asset management | Incremental addition (2) | Non-monotonic update (1) |
+| Sensor faults | Asset management | Incremental addition | Include sensor ID so can link directly. Assume all data is relevant and not filter to deployed sensors? |
+| Sensor config changes (firmware) | Asset management | Incremental additions.  (2) | Do cleansing/validation separately? |
+| Processing levels CV | Vocab server | Bulk replace (by CV) | Assuming continue to track processing levels |
+| Correction methods CV | Vocab server | Bulk replace (by CV) | |
+| Correction factors for data pipeline | Data pipeline config? | Bulk replace (by site? by series?) | |
+| Parameter ranges for data pipeline QC | Data pipeline config? | Bulk replace (by site? by series?) | |
+| Variable to instrument mapping (3) | ? Where is this managed? | Bulk replace? | Cleaner data to avoid preprocessing? |
+| Variable (COP) definitions | NERC + local vocab servers | Bulk replace by CV | |
+| Statistics CV | NERC or local vocab servers | Bulk replace by CV | |
+| Time series definitions | ? Where is this managed? | Bulk replace (grain size)? | Separate out S3 annotations? |
+| S3 storage annotations for time series | Data pipeline config? | Bulk replace (grain size) | |
+| Time series datasets | ? | Bulk replace (grain size?) | Should  this be automatically derived from above and site instrumentation (as present)? Or should there explicit configuration of which datasets are active at a site? |
+
+(1) New entries close the time span of prior entries which means some non-monotonicity. Could check against live data or run a post processing update which closes all but the latest entry.
+
+(2) When we have incremental additions can we assume that they are all new or do we also need to support a catchup mode where some of the data might have already been imported? Do we also need to support a bulk sync mode where history is replaced and rebuilt from scratch? 
 
 ## Sites, Network and related
 
@@ -112,7 +136,7 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 
 **What:** SENSOR_FAULTS gives list of time periods of faults on specific sensors with comments, includes the affected variables (could be multiple `;`-separated affected variables per fault). PARAMETERS gives readable label for the variables.
 
-**Preprocessing:** Splits faults to single row per variable and then checks fault for match to a deployed sensor with overlapping time periods. To test that needs mapping from variablle to sensor from `sensor_deployments` intermediate.
+**Preprocessing:** Splits faults to single row per variable and then checks fault for match to a deployed sensor with overlapping time periods. To test that, we need mapping from variable to sensor from `sensor_deployments` intermediate.
 
 > [!NOTE]
 > **_Internal question:_** Is the join to PARAMETERS used here any more? Doesn't seem to be included in the exported table.
@@ -182,7 +206,7 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 **What:** Map from variable ID to sensor (instrument ID)
 **Preprocessing:** Join to filter to just those PARAMETER_IDs in referenced in timeseries and then extract the distinct variable name to instrument IDs.
 **Generates:** Annotates each instrument with the variable (COP) it observes.
-**Future source:** ?? GH definitions 
+**Future source:** ?? 
 **Update requirements:** Bulk replace (largely fixed reference data)
 
 ### parameterProperties
