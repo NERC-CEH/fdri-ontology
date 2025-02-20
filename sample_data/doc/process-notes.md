@@ -6,25 +6,19 @@ We plan to move to a state where updates can be applied incrementally from diffe
 
 In preparation for that these notes identify the different data sources currently represented in the store and how the future update process might work. Very much work in progress and will change as we clarify the details of these data feeds.
 
-Note: In the current processing The overall pattern is that each processed source dataset `src/X.csv` is mapped to a `build/X.ttl` file via a transform template file `templates/X.yaml`. So the names given below are the `X` in those file names.
-
-Note: In many cases preprocessing is performed by a SQL processing step (duckdb). These can normalise values, simplify the transformation step or perform joins. 
- 
-Note: we use "CV" as  an abbreviation for Controlled Vocabulary, represented as a SKOS ConceptScheme. Many of these are generated here from the source data but expected to eventually come from a vocabulary server.
-
-## Summary table
+# Summary table
 
 | Data | Source | Update type | Notes and processing issues |
 |---|---|---|---|
 | Site reference | EIDC catalogue? | Bulk replace (by network?) | Are the full annotations included? |
-| Site reference CVs | Vocab server? | Bulk replace (by CV) | Soil type, Bedrock type, Public |
-| Land Cover base % | EIDC/separate reference data | Bulk replace | |
-| Land Cover observations | Field reporting - asset management? | Incremental addition (2) | Non-monotonic update (1) |
+| Site reference CVs[1]  | Vocab server? | Bulk replace (by CV) | If the annotations like soil and bedrock are, can be made, controlled terms |
+| Land Cover base % | EIDC/separate reference data | Incremental update[2] | |
+| Land Cover observations | Field reporting - asset management? | Incremental update[|2] |  |
 | Land Cover classes | Vocab server | Bulk replace (by CV) | |
-| Sensor types | Asset management? Static reference data? | Bulk replace | Either include variable mapping or have separate mapping file (3) |
-| Sensor deployments | Asset management | Incremental addition (2) | Non-monotonic update (1) |
+| Sensor types | Asset management? Static reference data? | Bulk replace | Either include variable mapping or have separate mapping file[3] |
+| Sensor deployments | Asset management | Incremental update[2]  | |
 | Sensor faults | Asset management | Incremental addition | Include sensor ID so can link directly. Assume all data is relevant and not filter to deployed sensors? |
-| Sensor config changes (firmware) | Asset management | Incremental additions.  (2) | Do cleansing/validation separately? |
+| Sensor config changes (firmware) | Asset management | Incremental updates[2] | Do cleansing/validation separately? |
 | Processing levels CV | Vocab server | Bulk replace (by CV) | Assuming continue to track processing levels |
 | Correction methods CV | Vocab server | Bulk replace (by CV) | |
 | Correction factors for data pipeline | Data pipeline config? | Bulk replace (by site? by series?) | |
@@ -32,14 +26,22 @@ Note: we use "CV" as  an abbreviation for Controlled Vocabulary, represented as 
 | Variable to instrument mapping (3) | ? Where is this managed? | Bulk replace? | Cleaner data to avoid preprocessing? |
 | Variable (COP) definitions | NERC + local vocab servers | Bulk replace by CV | |
 | Statistics CV | NERC or local vocab servers | Bulk replace by CV | |
-| Time series definitions | ? Where is this managed? | Bulk replace (grain size)? | Separate out S3 annotations? |
-| S3 storage annotations for time series | Data pipeline config? | Bulk replace (grain size) | |
-| Time series datasets | ? | Bulk replace (grain size?) | Should  this be automatically derived from above and site instrumentation (as present)? Or should there explicit configuration of which datasets are active at a site? |
+| Time series definitions | ? Managed in the metadata store? | Update API? | Separate out S3 annotations? |
+| S3 storage annotations for time series | Data pipeline config? | Update API? | |
+| Time series datasets | ? Managed in the metadata store? | Update API? | Should  this be automatically derived from above and site instrumentation (as present)? Or should there explicit configuration of which datasets are active at a site? |
 
-(1) New entries close the time span of prior entries which means some non-monotonicity. Could check against live data or run a post processing update which closes all but the latest entry.
+[1]: We use "CV" as  an abbreviation for Controlled Vocabulary, represented as a SKOS ConceptScheme. Many of these are currently inferred from the source data during ingest but are expected to eventually come from a vocabulary server.
 
-(2) When we have incremental additions can we assume that they are all new or do we also need to support a catchup mode where some of the data might have already been imported? Do we also need to support a bulk sync mode where history is replaced and rebuilt from scratch? 
+[2]: Incremental update in many cases involves updating a time-bounded sequence (time-bound annotations other resource such as deployments) which requires us to close the interval the existing value, create the new time bound value and update the `hasCurrentValue` link. This is a non-monotonic process that will either require the ingester to check against existing data or mean generating a post ingest SPARQL Update to fix up the bounds. There may also be a required to be able to replace existing values (to fix errors) rather than add to the series. A general update API pattern for this is needed.
 
+[3] It would be helpful to clarify how the sensor to variable mapping will be managed. Will this be part of the asset management system, some separate configuration management or mastered in the metadata store.
+
+# Detailed description of current data ingest
+
+Note: In the current processing The overall pattern is that each processed source dataset `src/X.csv` is mapped to a `build/X.ttl` file via a transform template file `templates/X.yaml`. So the names given below are the `X` in those file names.
+
+Note: In many cases preprocessing is performed by a SQL processing step (duckdb). These can normalise values, simplify the transformation step or perform joins. Some of this preprocessing may be simplified in future with improvements to source data and extensions to the mapping tool. These are highlighted in the sections below.
+ 
 ## Sites, Network and related
 
 ### SITES
@@ -54,9 +56,10 @@ Note: we use "CV" as  an abbreviation for Controlled Vocabulary, represented as 
 
 **Future source:** Presume that site reference information will be mastered in the data catalog and imported from there. Testing of this process is planned. To be confirmed whether that reference data covers all the annotations here.
 
-The dynamically generated CVs may move to the vocabulary server and be imported from there directly as RDF. 
+> [!NOTE]
+> The annotations such as soil type, bedrock classification appear to be free text. Current ingest builds local CVs for these. Ideally in FDRI such annotations would be controlled at source and the CVs managed in a vocabulary server - is that reasonable? In the interim maybe move these to separate graphs as preparation.
 
-**Update requirements:** Relatively static data, bulk replacement is fine. May want to move to separate graphs for the CVs, site data from catalog and any additional site reference annotations sourced from elsewhere.
+**Update requirements:** Relatively static data, bulk replacement is fine. May want to move to separate graphs for the CVs (if used), site data from catalog and any additional site reference annotations sourced from elsewhere.
 
 ### LAND_COVER_LCM_CLASSES
 
@@ -67,7 +70,7 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 
 ### landCoverLcm
 
-**What:** Landcover class and area by site and year, with percentages for different types, uses landcover class codes from LAND_COVER_LCM_CLASSES. Derived from the LC maps and not updated.
+**What:** Landcover class and area by site and year, with percentages for different types, uses landcover class codes from LAND_COVER_LCM_CLASSES. Derived from the LC maps and not routinely updated.
 
 **Preprocessing:** Convert cover from % to (rounded) fraction, map year to a date. 
 
@@ -75,9 +78,9 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 
 **Generates:** Time bounded annotations on given landcover ratio for each site. Together with definition for the ratio variable.
 
-**Future source:** Is this in site reference data in the catalogue or a separate part of onboarding new sites?
+**Future source:** Is this in site reference data in the catalogue or a separate part of onboarding new sites? 
 
-**Update requirements:** If not part of site reference then seems likely to be a bulk replace. 
+**Update requirements:** Presume that new LC maps will be issued at some point soe the (time-bounded) annoations will need updating, as well as onboarding new sites. So need incremental update supporting closing off the interval for existing value and updating `hasCurrentValue`.
 
 ### landCoverObservations
 
@@ -129,17 +132,11 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 
 **Update requirements:** Incremental record updates as deployments change.
 
-> [!NOTE]
-> **_Internal question:_** Is the join needed here? The sensor_deployments template only seems to use values from SITE_INSTRUMENTATION? Can see that the file is needed for sensor_faults later so maybe this is just a convenient intermediate?
-
 ### sensor_faults from SENSOR_FAULTS, PARAMETERS and sensor_deployments
 
 **What:** SENSOR_FAULTS gives list of time periods of faults on specific sensors with comments, includes the affected variables (could be multiple `;`-separated affected variables per fault). PARAMETERS gives readable label for the variables.
 
 **Preprocessing:** Splits faults to single row per variable and then checks fault for match to a deployed sensor with overlapping time periods. To test that, we need mapping from variable to sensor from `sensor_deployments` intermediate.
-
-> [!NOTE]
-> **_Internal question:_** Is the join to PARAMETERS used here any more? Doesn't seem to be included in the exported table.
 
 **Generates:** `Fault` records with descriptions for sensor (or station if sensor not known) with link to affected varaibles.
 
@@ -150,6 +147,9 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 **Update requirements:** Incremental fault additions, assume sensor ID is included in the update (and if not fault applies to site) and variable(s) explicit in update. May need to check if fault with matching timestamp exists to make updates idempotent.
 
 **_Question for CEH:_** Could these fault records have an ID to avoid duplicate updates?
+
+> [!NOTE]
+> Currently fault reports are only included if they refer to sensors known to be deployed. In future may wish to change this and record faults with no `affectedFacility` link; later we may learn about a deployment that sensor was one (during the relevant period) and need to fix up the link.
 
 ### sensor_firmware_configurations from Firmware_history
 
@@ -178,9 +178,6 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 
 **Generates:** `InternalDataProcessingConfiguration` for the timeseries, `ConfigurationItem`s for each entry with interval, observation interval affected and link to correction method and dummy plan. Each item is link as `hasCurrentConfiguration` to the `InternalDataProcessingConfiguration`.
 
-> [!NOTE]
-> **_Internal question_:** Presume the `hadPlan` with `-1234` is a dummy to illustrate how that would look?
-
 **Future source:** ?? 
 
 **Update requirements:** ?? Bulk replacement but what grain size (all/site/series)?
@@ -191,6 +188,9 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 **Future source:** ??
 **Update requirements:** ?? Bulk replacement but what grain size (all/site/series)?
 
+> [!NOTE]
+> The representation of this may change to be by time series definition and site.
+> 
 > [!NOTE]
 > For last two the one off definitions of parameters and config types could be a pre-prepared base load.
 
@@ -215,6 +215,9 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 **Future source:** NERC vocab server plus local vocab server for cases of only local interest?
 **Update requirements:** Bulk replace when CVs change.
 
+> [!NOTE]
+> These have been generated by Epimorphics based on best understanding of the data. A process to review and many the full COP-style variable definitions will be needed.
+
 ### STATISTICS
 **What:** Id, label and definition for statistic (MEAN_PREC, INST etc).
 **Generates:** CV for statistics
@@ -231,9 +234,9 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 
 **Generates:** `TimeSeriesDefinition` for all timeseries datasets (which are then common across individual series)
 
-**Future source:** ?? 
+**Future source:** ?? Managed in metadata store?
 
-**Update requirements:** Bulk replace (large static configuration data)? But at what grain size?
+**Update requirements:** Update API to manage definitions and related configurations?
 
 ### time_series_datasets from SITE_INSTRUMENTATION, PARAMETERS_INSTRUMENTS, PARAMETERS, TIMESERIES_S3_MAP_REFINED and above time_series_definitions
 
@@ -243,9 +246,9 @@ The dynamically generated CVs may move to the vocabulary server and be imported 
 
 **Generates:** TimeSeriesDatasets collected int a series for each site and a series for each site/variable (across processing levels).
 
-**Future source:** ??
+**Future source:** ?? Managed in metadata store?
 
-**Update requirements:** Bulk replace (large static configuration data)? But at what grain size?
+**Update requirements:** Update API if managed in metadata store.
 
 ## Data not currently represented
 
