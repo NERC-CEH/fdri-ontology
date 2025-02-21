@@ -11,18 +11,18 @@ In preparation for that these notes identify the different data sources currentl
 | Data | Source | Update type | Notes and processing issues |
 |---|---|---|---|
 | Site reference | EIDC catalogue? | Bulk replace (by network?) | Are the full annotations included? |
-| Site reference CVs[1]  | Vocab server? | Bulk replace (by CV) | If the annotations like soil and bedrock are, can be made, controlled terms |
-| Land Cover base % | EIDC/separate reference data | Incremental update[2] | |
-| Land Cover observations | Field reporting - asset management? | Incremental update[|2] |  |
+| Site reference CVs[1]  | Vocab server? | Bulk replace (by CV) | If the annotations like soil and bedrock are, or can be made, controlled terms |
+| Land Cover base % | EIDC/separate reference data | Incremental series update[2] | |
+| Land Cover observations | Field reporting - asset management? | Incremental  series update |  |
 | Land Cover classes | Vocab server | Bulk replace (by CV) | |
 | Sensor types | Asset management? Static reference data? | Bulk replace | Either include variable mapping or have separate mapping file[3] |
-| Sensor deployments | Asset management | Incremental update[2]  | |
-| Sensor faults | Asset management | Incremental addition | Include sensor ID so can link directly. Assume all data is relevant and not filter to deployed sensors? |
-| Sensor config changes (firmware) | Asset management | Incremental updates[2] | Do cleansing/validation separately? |
-| Processing levels CV | Vocab server | Bulk replace (by CV) | Assuming continue to track processing levels |
+| Sensor deployments | Asset management | Incremental series update  | |
+| Sensor faults | Asset management | Incremental addition | Include sensor ID so can link directly. Assume all supplied data is relevant and don't limit to deployed sensors? |
+| Sensor config changes (firmware) | Asset management | Incremental series updates[2] | Do cleansing/validation separately? |
+| Processing levels CV | Vocab server | Bulk replace (by CV) | If we continue to track processing levels |
 | Correction methods CV | Vocab server | Bulk replace (by CV) | |
-| Correction factors for data pipeline | Data pipeline config? | Bulk replace (by site? by series?) | |
-| Parameter ranges for data pipeline QC | Data pipeline config? | Bulk replace (by site? by series?) | |
+| Correction factors for data pipeline | Data pipeline config? | Update API? [4] | |
+| Parameter ranges for data pipeline QC | Data pipeline config? | Update API? | |
 | Variable to instrument mapping (3) | ? Where is this managed? | Bulk replace? | Cleaner data to avoid preprocessing? |
 | Variable (COP) definitions | NERC + local vocab servers | Bulk replace by CV | |
 | Statistics CV | NERC or local vocab servers | Bulk replace by CV | |
@@ -32,19 +32,21 @@ In preparation for that these notes identify the different data sources currentl
 
 [1]: We use "CV" as  an abbreviation for Controlled Vocabulary, represented as a SKOS ConceptScheme. Many of these are currently inferred from the source data during ingest but are expected to eventually come from a vocabulary server.
 
-[2]: Incremental update in many cases involves updating a time-bounded sequence (time-bound annotations other resource such as deployments) which requires us to close the interval the existing value, create the new time bound value and update the `hasCurrentValue` link. This is a non-monotonic process that will either require the ingester to check against existing data or mean generating a post ingest SPARQL Update to fix up the bounds. There may also be a required to be able to replace existing values (to fix errors) rather than add to the series. A general update API pattern for this is needed.
+[2]: Incremental update in many cases involves updating a time-qualified series of values (time-bound annotations or other resources such as deployments) which requires us to close the interval for the existing value, create the new time bound value and update the `hasCurrentValue` link. This is a non-monotonic process, so to do this incrementally will either require the ingester to check against existing data or mean generating a post ingest SPARQL Update to fix up the bounds. There may also be a requirement to be able to replace existing values (to fix errors) rather than add to the series. A general update API pattern for this is needed.
 
-[3] It would be helpful to clarify how the sensor to variable mapping will be managed. Will this be part of the asset management system, some separate configuration management or mastered in the metadata store.
+[3]: It would be helpful to clarify how the sensor to variable mapping will be managed. Will this be part of the asset management system, some separate configuration management or mastered in the metadata store?
+
+[4]: For data which will be regarded as mastered in the metadata store itself then will want a CRUD style API which gives the option of fine grain updates but is able to support batch updates.
 
 # Detailed description of current data ingest
 
 Note: In the current processing The overall pattern is that each processed source dataset `src/X.csv` is mapped to a `build/X.ttl` file via a transform template file `templates/X.yaml`. So the names given below are the `X` in those file names.
 
-Note: In many cases preprocessing is performed by a SQL processing step (duckdb). These can normalise values, simplify the transformation step or perform joins. Some of this preprocessing may be simplified in future with improvements to source data and extensions to the mapping tool. These are highlighted in the sections below.
+In many cases preprocessing is performed by a SQL processing step (duckdb). These can normalise values, simplify the transformation step or perform joins. Some of this preprocessing may be simplified in future with improvements to source data and extensions to the mapping tool. These are highlighted in the sections below.
  
 ## Sites, Network and related
 
-### SITES
+### `SITES`
 
 **What:** Core reference data on monitoring sites including geo location, description and layout.
 
@@ -59,18 +61,18 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 > [!NOTE]
 > The annotations such as soil type, bedrock classification appear to be free text. Current ingest builds local CVs for these. Ideally in FDRI such annotations would be controlled at source and the CVs managed in a vocabulary server - is that reasonable? In the interim maybe move these to separate graphs as preparation.
 
-**Update requirements:** Relatively static data, bulk replacement is fine. May want to move to separate graphs for the CVs (if used), site data from catalog and any additional site reference annotations sourced from elsewhere.
+**Update requirements:** Relatively static data so bulk replacement is fine. May want to move to separate graphs for the CVs (if used), site data from catalog and any additional site reference annotations sourced from elsewhere.
 
-### LAND_COVER_LCM_CLASSES
+### `LAND_COVER_LCM_CLASSES`
 
 **What:** Labels for landcover classes used in landCoverLcm
 **Generates:** LandCover CV
 **Future source:** Vocabulary server
 **Update requirements:** Replace whole CV graph when updated.
 
-### landCoverLcm
+### `landCoverLcm`
 
-**What:** Landcover class and area by site and year, with percentages for different types, uses landcover class codes from LAND_COVER_LCM_CLASSES. Derived from the LC maps and not routinely updated.
+**What:** Landcover class and area by site and year, with percentages for different types, uses landcover class codes from `LAND_COVER_LCM_CLASSES`. Data is derived from the LC maps and not routinely updated.
 
 **Preprocessing:** Convert cover from % to (rounded) fraction, map year to a date. 
 
@@ -78,19 +80,19 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 
 **Generates:** Time bounded annotations on given landcover ratio for each site. Together with definition for the ratio variable.
 
-**Future source:** Is this in site reference data in the catalogue or a separate part of onboarding new sites? 
+**Future source:** Is this included site reference data in the catalogue or a separate part of onboarding new sites? 
 
-**Update requirements:** Presume that new LC maps will be issued at some point soe the (time-bounded) annoations will need updating, as well as onboarding new sites. So need incremental update supporting closing off the interval for existing value and updating `hasCurrentValue`.
+**Update requirements:** Presume that new LC maps will be issued at some point so the (time-bounded) annotations will need updating, as well as onboarding new sites. So need incremental update supporting closing off the interval for existing value and updating `hasCurrentValue`.
 
-### landCoverObservations
+### `landCoverObservations`
 
-**What:** What the footprint of land cover at site is deemed to be from direct observation. Single value per site, and includes records of changes. Uses text labels rather than Landcover classes.
+**What:** The footprint of land cover at site from direct observation. Single value per site, and includes records of changes. Uses text labels rather than Landcover classes.
 
 **Preprocessing:** Determine end date for observation rows where there's a newer observation. Map text labels to landcover class codes.
 
 **Alt-preprocessing?:** If supplied incrementally end dates could be set as replacement data arrives. Reconciliation (of labels to codes) is supported in the mapper if suitable endpoint can be provided.
 
-**Generates:** Time bounded annotations on sites giving observed land cover, themselves annotated with source and comments. Together with definitions for the annotation variables.
+**Generates:** Time-bounded annotations on sites giving observed land cover, themselves annotated with source and comments. Together with definitions for the annotation variables.
 
 **Future source:** ? Presume some field reporting system would be used to report new site observations that would arrive over time.
 
@@ -98,17 +100,17 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 
 ## Deployments and sensors
 
-### INSTRUMENTATION
+### `INSTRUMENTATION`
 
 **What:** List of sensor types used.
 
-**Generates:** EnvironmentalMonitoringSystemType definitions with name and comment (as scope note).
+**Generates:** `EnvironmentalMonitoringSystemType` definitions with name and comment (as scope note).
 
 **Future source:** Reference data set on sensor types? From asset system or vocab server?
 
 **Update requirements:** Bulk replacement?
 
-### instrumentationVariables and variableProperties
+### `instrumentationVariableProperties` from `instrumentationVariables` and `variableProperties`
 
 **What:** Mapping from variable name to instrument type (instrumentationVariables) and descriptions of variables (variableProperties)
 
@@ -120,11 +122,11 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 
 **Update requirements:** Bulk replacement
 
-### sensor_deployments from SITE_INSTRUMENTATION, VARIABLE_INSTRUMENTATION and variableProperties
+### `sensor_deployments` from `SITE_INSTRUMENTATION`, `VARIABLE_INSTRUMENTATION` and `variableProperties`
 
 **What:** `SITE_INSTRUMENTATION` gives history of sensor deployments at sites with instrument id and serial number. `VARIABLE_INSTRUMENTATION` maps instrument id to variable name as given in `variableProperties`.
 
-**Preprocessing:** Join first two on instrument id and then join to variable details on variable name. Join need for later fault processing?
+**Preprocessing:** Join first two on instrument id and then join to variable details on variable name. Join need for later fault processing.
 
 **Generates:** `EnvironmentalMonitoringSensor` and `Deployment` information.
 
@@ -132,11 +134,11 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 
 **Update requirements:** Incremental record updates as deployments change.
 
-### sensor_faults from SENSOR_FAULTS, PARAMETERS and sensor_deployments
+### `sensor_faults` from `SENSOR_FAULTS`, `PARAMETERS` and `sensor_deployments`
 
-**What:** SENSOR_FAULTS gives list of time periods of faults on specific sensors with comments, includes the affected variables (could be multiple `;`-separated affected variables per fault). PARAMETERS gives readable label for the variables.
+**What:** `SENSOR_FAULTS` gives list of time periods of faults on specific sensors with comments, includes the affected variables (could be multiple `;`-separated affected variables per fault). `PARAMETERS` gives readable label for the variables.
 
-**Preprocessing:** Splits faults to single row per variable and then checks fault for match to a deployed sensor with overlapping time periods. To test that, we need mapping from variable to sensor from `sensor_deployments` intermediate.
+**Preprocessing:** Splits faults to single row per variable and then checks fault for match to a deployed sensor with overlapping time periods. To test that, we need mapping from variable to sensor from the `sensor_deployments` intermediate.
 
 **Generates:** `Fault` records with descriptions for sensor (or station if sensor not known) with link to affected varaibles.
 
@@ -149,9 +151,9 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 **_Question for CEH:_** Could these fault records have an ID to avoid duplicate updates?
 
 > [!NOTE]
-> Currently fault reports are only included if they refer to sensors known to be deployed. In future may wish to change this and record faults with no `affectedFacility` link; later we may learn about a deployment that sensor was one (during the relevant period) and need to fix up the link.
+> Currently fault reports are only included if they refer to sensors known to be deployed. In future may wish to change this and record faults with no `affectedFacility` link; later we may learn about a deployment of that sensor (during the relevant period) and need to fix up the link.
 
-### sensor_firmware_configurations from Firmware_history
+### `sensor_firmware_configurations` from `Firmware_history`
 
 **What:** Time bounded records of firmware versions for instrument id.
 
@@ -159,42 +161,47 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 
 **Alt preprocessing:** The data formatting could be moved to the transformer. For future support might want to validate data to just reject entries with no start date?
 
-**Generates:** `ConfigurationValueSeries` for the sensor, with `TimeBoundPropertyValue` for each entry a current value.
+**Generates:** `ConfigurationValueSeries` for the sensor, with `TimeBoundPropertyValue` for each entry, and sets current value.
 
-**Future source:** Assume incremental record updates from asset management system for new firmware versions. Or might be bulk export. Or might need to support both (incremental normally but )
+**Future source:** Assume incremental record updates from asset management system for new firmware versions. Or might be bulk export. Or might need to support both (incremental normally but allowance for bulk re-sync).
 
-**Update requirements:** If bulk export then process as now, replacing whole history. If incremental then check if version as actually changed and if so close off current value and set new current value. Maintaining the current value is non-monotonic so need a SPARQL Update, though that could be a general run which replaces a current value graph.
+**Update requirements:** If bulk export then process as now, replacing whole history. If incremental then check if version has actually changed and if so close off current value and set new current value. Maintaining the current value is non-monotonic so need a SPARQL Update or check against current data.
 
 ## Processing pipeline
 
-### CORRECTION_METHODS
+### `CORRECTION_METHODS`
+
 **What:** Definitions for the correction methods use to apply the correction factors.
 **Generates:** CV for correction methods.
 **Future source:** Vocabulary server?
 **Update requirements:** Replace whole graph when CV updated.
 
-### CORRECTION_FACTORS
+### `CORRECTION_FACTORS`
+
 **What:** Time bounded correction factors by site and time series.
 
-**Generates:** `InternalDataProcessingConfiguration` for the timeseries, `ConfigurationItem`s for each entry with interval, observation interval affected and link to correction method and dummy plan. Each item is link as `hasCurrentConfiguration` to the `InternalDataProcessingConfiguration`.
+**Generates:** `InternalDataProcessingConfiguration` for the timeseries, `ConfigurationItem`s for each entry with interval, observation interval affected and link to correction method and dummy plan. Each item is linked as `hasCurrentConfiguration` to the `InternalDataProcessingConfiguration`.
 
-**Future source:** ?? 
+**Future source:** ?? Will the metadata service be the master for these?
 
-**Update requirements:** ?? Bulk replacement but what grain size (all/site/series)?
+**Update requirements:** ?? General CRUD API?
 
-### PARAMETER_RANGES_QC
+### `PARAMETER_RANGES_QC`
 **What:** Legal ranges for variables by site.
+
 **Generates:** `InternalDataProcessingConfiguration` with `ConfigurationItem` for each range. One off definitions for the parameter and config type.
-**Future source:** ??
-**Update requirements:** ?? Bulk replacement but what grain size (all/site/series)?
+
+**Future source:** ??  Will the metadata service be the master for these?
+**Update requirements:** ?? General CRUD API?
 
 > [!NOTE]
 > The representation of this may change to be by time series definition and site.
-> 
-> [!NOTE]
-> For last two the one off definitions of parameters and config types could be a pre-prepared base load.
 
-### processingLevels
+> [!NOTE]
+> For this and the prior data there are the one off definitions of parameters and config types generated. Might shift these to being in a pre-prepared base load if we support CRUD rather then bulk replacement.
+
+### `processingLevels`
+
 **What:** Labels and ids for the processing levels
 **Generates:** CV for processing levels
 **Future source:** Vocab server
@@ -202,29 +209,32 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 
 ## Datasets and variables
 
-### monitoring_system_variables from VARIABLE_INSTRUMENTATION and TIMESERIES
+### `monitoring_system_variables` from `VARIABLE_INSTRUMENTATION` and `TIMESERIES`
+
 **What:** Map from variable ID to sensor (instrument ID)
 **Preprocessing:** Join to filter to just those PARAMETER_IDs in referenced in timeseries and then extract the distinct variable name to instrument IDs.
 **Generates:** Annotates each instrument with the variable (COP) it observes.
 **Future source:** ?? 
 **Update requirements:** Bulk replace (largely fixed reference data)
 
-### parameterProperties
+### `parameterProperties`
+
 **What:** Maps variable ids and names to COP elements (property, unit, domain, context).
 **Generates:** Variable (COP) definitions in a Concept scheme with associated CVs for contexts, domains and parameters.
 **Future source:** NERC vocab server plus local vocab server for cases of only local interest?
 **Update requirements:** Bulk replace when CVs change.
 
 > [!NOTE]
-> These have been generated by Epimorphics based on best understanding of the data. A process to review and many the full COP-style variable definitions will be needed.
+> These have been generated by Epimorphics based on best understanding of the data. A process to review and manage the full COP-style variable definitions will be needed.
 
-### STATISTICS
+### `STATISTICS`
+
 **What:** Id, label and definition for statistic (MEAN_PREC, INST etc).
 **Generates:** CV for statistics
 **Future source:** Vocab server
 **Update requirements:** Bulk update on CV change
 
-### time_series_definitions from TIMESERIES, TIMESERIES_S3_MAP_REFINED, and intervalDuration
+### `time_series_definitions` from `TIMESERIES`, `TIMESERIES_S3_MAP_REFINED`, and `intervalDuration`
 
 **What:** Definitions of time series with id, label, statistic, unit, processing level
 
@@ -238,13 +248,13 @@ Note: In many cases preprocessing is performed by a SQL processing step (duckdb)
 
 **Update requirements:** Update API to manage definitions and related configurations?
 
-### time_series_datasets from SITE_INSTRUMENTATION, PARAMETERS_INSTRUMENTS, PARAMETERS, TIMESERIES_S3_MAP_REFINED and above time_series_definitions
+### `time_series_datasets` from `SITE_INSTRUMENTATION`, `PARAMETERS_INSTRUMENTS`, `PARAMETERS`, `TIMESERIES_S3_MAP_REFINED` and above `time_series_definitions`
 
 **What:** Clean definition of all time timeseries datasets for each site with variable, processing level, period and start date.
 
-**Preprocessing:** Complicated. To work out which series are available which sites needs to use SITE_INSTRUMENTATION (which is given in terms of instrument id) which has to be mapped to the variable (parameter) reference in the time series definitions. Those mappings then need the PARAMETERS_INSTRUMENTS and PARAMETERS lookup tables. The data can include some duplications so the preprocessing does some grouped aggregations to pick the earliest start date and highest duration and processing level from the duplicates.
+**Preprocessing:** Complicated. To work out which series are available at which sites this needs to use `SITE_INSTRUMENTATION` (which is given in terms of instrument id) which has to be mapped to the variable (parameter) reference in the time series definitions. Those mappings then need the `PARAMETERS_INSTRUMENTS` and `PARAMETERS` lookup tables. The data can include some duplications so the preprocessing does some grouped aggregations to pick the earliest start date and highest duration and processing level from the duplicates.
 
-**Generates:** TimeSeriesDatasets collected int a series for each site and a series for each site/variable (across processing levels).
+**Generates:** `TimeSeriesDatasets` collected into a series for each site and a series for each site/variable (across processing levels).
 
 **Future source:** ?? Managed in metadata store?
 
