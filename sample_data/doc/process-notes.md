@@ -155,7 +155,7 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 
 ### `sensor_firmware_configurations` from `Firmware_history`
 
-**What:** Time bounded records of firmware versions for instrument id.
+**What:** Time bounded records of firmware versions for instrument id. Note that these might also refer to sensors that are not (currently) deployed. E.g. when a sensor is removed from the field, updated in a lab and then redeployed at a later date.
 
 **Preprocessing:** Cleansing to handle missing start dates and end dates (if two entries for same instrument have different start dates but no end date assume first started was ended when newer one was started). Format dates to ISO.
 
