@@ -19,13 +19,16 @@ RECORDS = \
 	EnvironmentalMonitoringSite \
 	ExternalDataProcessingConfiguration \
 	InternalDataProcessingConfiguration \
+	ConfigurationItem \
 	StaticDeployment \
 	TimeSeriesDataset \
 	TimeSeriesDefinition
 
 SAMPLES = \
+	$(TTL_BASE)/alt_data_config.ttl \
 	$(TTL_BASE)/CORRECTION_FACTORS.ttl \
 	$(TTL_BASE)/CORRECTION_METHODS.ttl \
+	$(TTL_BASE)/infill_config.ttl \
 	$(TTL_BASE)/INSTRUMENTATION.ttl \
 	$(TTL_BASE)/instrumentationVariablesProperties.ttl \
 	$(TTL_BASE)/LAND_COVER_LCM_CLASSES.ttl \

@@ -1,0 +1,13 @@
+FACILITY_ID,VARIABLE_ID,PRIORITY,START_DATETIME,END_DATETIME,METHOD,WINDOW,MAX_GAP_SIZE
+chimn,g1_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
+chimn,g2_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
+chimn,lwin_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
+chimn,lwout_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
+chimn,pa_raw,1,2013-01-01T00:30:00,,interp_linear,1,10
+chimn,rh_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
+chimn,swin_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
+chimn,swout_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
+chimn,ta_raw,1,2013-01-01T00:30:00,,interp_linear,1,10
+chimn,vwc_1day,1,2013-01-01T00:30:00,,interp_linear,1,8
+chimn,wd_raw,1,2013-01-01T00:30:00,,interp_linear,1,4
+chimn,ws_raw,1,2013-01-01T00:30:00,,interp_linear,1,6
