@@ -9,19 +9,19 @@
     "argument": [
         {
             "parameter": {
-                "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data_priority"
+                "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-priority"
             },
             "hasValue":{"value": {"@value": "1", "@type": "http://www.w3.org/2001/XMLSchema#integer"}}
         },
         {
             "parameter": {
-                "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data_timeseries"
+                "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-timeseries"
             },
             "hasValue":{"valueReference": {"@id": "http://fdri.ceh.ac.uk/id/dataset/cosmos-chimn-cts_mod2_raw"}}
         },
         {
             "parameter": {
-                "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data_configuration"
+                "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-configuration"
             },
             "hasValue":{"valueReference": {"@id": "http://fdri.ceh.ac.uk/id/configuration-item/cosmos-chimn-cts_mod_raw-20191217T120000-altd-data-1-config"}}
         }

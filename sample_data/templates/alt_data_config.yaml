@@ -22,7 +22,7 @@ resources:
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-configuration-type/infill-configuration>"
       "<fdri:appliesToFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{FACILITY_ID|slug}>"
       "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/id/dataset/cosmos-{FACILITY_ID|slug}-{VARIABLE_ID}>
-  
+
   - name: PriorityAnnotation
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}>"
@@ -35,11 +35,32 @@ resources:
             "@type": "<schema:PropertyValue>"
             "<schema:value>": "{PRIORITY}^^<xsd:integer>"
 
+  - name: AltDataProcessingConfigurationItem
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-configuration-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}-{ALT_FACILITY_ID}-{ALT_VARIABLE_ID}>"
+      "@type": <fdri:ConfigurationItem>
+      "<fdri:method>": <http://fdri.ceh.ac.uk/ref/common/method/infill-{METHOD|slug}>
+      "<fdri:argument>":
+        - name: CorrectionFactor
+          requires:
+            CORRECTION_FACTOR:
+          properties:
+            "@id": "<_>"
+            "@type": <fdri:Argument>
+            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/configuration-parameter/correction_factor>
+            "<fdri:hasValue>":
+              name: CorrectionFactorValue
+              properties:
+                "@id": "<_>"
+                "@type": <schema:PropertyValue>
+                "<schema:value>": "{CORRECTION_FACTOR}^^<xsd:decimal>"
+
   - name: CurrentConfigurationItem
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}>"
       "@type": <fdri:ConfigurationItem>
       "^<fdri:hasCurrentConfiguration>": <::DataProcessingConfiguration>
+      "<fdri:method>": "<http://fdri.ceh.ac.uk/ref/common/method/alt_data>"
       "<fdri:observationInterval>":
         - name: ClosedConfigurationInterval
           requires:
@@ -47,7 +68,7 @@ resources:
           properties:
             "@id": "<_>"
             "@type": <dct:PeriodOfTime>
-            "<dct:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
+            "<dcat:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
             "<dcat:endDate>": "{END_DATETIME}^^<xsd:dateTime>"
         - name: OpenConfigurationInterval
           requires:
@@ -56,43 +77,26 @@ resources:
             "@id": "<_>"
             "@type": <dct:PeriodOfTime>
             "<dcat:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
-      "<fdri:method>": "<http://fdri.ceh.ac.uk/ref/common/method/{METHOD}>"
       "<fdri:argument>":
-        - name: Priority
+        - name: AltData
           properties:
             "@id": "<_>"
-            "@type": <fdri:Argument>
-            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-priority>
+            "@type": "<fdri:Argument>"
+            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-timeseries>
             "<fdri:hasValue>":
-              - name: PriorityValue
+              - name: AltDataValue
                 properties:
                   "@id": "<_>"
                   "@type": <schema:PropertyValue>
-                  "<schema:value>": "{PRIORITY}^^<xsd:integer>"
-        - name: Window
-          requires:
-            WINDOW:
+                  "<schema:valueReference>": <http://fdri.ceh.ac.uk/id/dataset/cosmos-{ALT_FACILITY_ID|slug}-{ALT_VARIABLE_ID|slug}>
+        - name: AltDataConfig
           properties:
             "@id": "<_>"
-            "@type": <fdri:Argument>
-            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/configuration-parameter/window>
+            "@type": "<fdri:Argument>"
+            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-configuration>
             "<fdri:hasValue>":
-              name: WindowValue
-              properties:
-                "@id": "<_>"
-                "@type": <schema:PropertyValue>
-                "<schema:value>": "{WINDOW}^^<xsd:integer>"
-        - name: MaxGapSize
-          requires:
-            MAX_GAP_SIZE:
-          properties:
-            "@id": "<_>"
-            "@type": <fdri:Argument>
-            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/configuration-parameter/max-gap-size>
-            "<fdri:hasValue>":
-              name: MaxGapSizeValue
-              properties:
-                "@id": "<_>"
-                "@type": <schema:PropertyValue>
-                "<schema:value>": "{MAX_GAP_SIZE}^^<xsd:integer>"
-
+                name: AltDataConfigValue
+                properties:
+                  "@id": <_>
+                  "@type": <schema:PropertyValue>
+                  "<schema:valueReference>": "<::AltDataProcessingConfigurationItem>"

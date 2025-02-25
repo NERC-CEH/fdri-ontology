@@ -25,6 +25,7 @@ RECORDS = \
 	TimeSeriesDefinition
 
 SAMPLES = \
+	$(TTL_BASE)/alt_data_config.ttl \
 	$(TTL_BASE)/CORRECTION_FACTORS.ttl \
 	$(TTL_BASE)/CORRECTION_METHODS.ttl \
 	$(TTL_BASE)/infill_config.ttl \
