@@ -103,3 +103,19 @@ bunny-ta-1min-20241017 --replaces--> bunny-ta-1min-20240815
 
 > **QUESTION**
 > DCAT is relatively relaxed about version relationships and so we can have one TimeSeriesDataset as a version of another. However this could potentially get confusing and makes it slightly harder to filter a query to only return the top level versioned datasets (though these would be the only dataset resources with a `hasCurrentVersion` property on them). Should we consider adding `TimeSeriesDatasetVersion` to represent the dataset versions and introduce additional constraints so that a `TimeSeriesDatasetVersion` resource cannot itself have versions.
+
+### Time-Series Dataset Annotations
+
+Annotations may be used to assert quality metrics about Time-Series Datasets. The values for these metrics may be 
+qualified with a value giving the date range of observations that the annotation applies to (qualifier property 
+`http://fdri.ceh.ac.uk/ref/common/cop/observation-period`) to specify metrics that apply to a range of observations
+in the time-series. An annotation value that is not qualified with an observation period, is assumed to be providing
+a metric about the dataset as a whole.
+
+The currently defined metrics annotation properties are:
+
+* Time-Series Completeness (Percent) `http://fdri.ceh.ac.uk/ref/common/cop/timeseries-completeness-percent` - the percentage of observations in the period for which a value is provided in the time-series
+* Time-series Suspect Observations (Percent) `http://fdri.ceh.ac.uk/ref/common/cop/timseries-flagged-suspect-percent` - the percentage of observations in the period which are flagged as being suspected to be inaccurate.
+
+Additional metrics annotation properties may be defined as needed. It is recommended that all such properties should be
+defined with an `iop:hasObjectOfInterest` property with the value `fdri:TimeSeriesDataset` if the metric specifically applies to time-series data.
