@@ -37,6 +37,7 @@ SAMPLES = \
 	$(TTL_BASE)/monitoring_system_variables.ttl \
 	$(TTL_BASE)/parameterProperties.ttl \
 	$(TTL_BASE)/PARAMETER_RANGES_QC.ttl \
+	$(TTL_BASE)/phenocam_mask_config.ttl \
 	$(TTL_BASE)/processingLevels.ttl \
 	$(TTL_BASE)/sensor_calibrations.ttl \
 	$(TTL_BASE)/sensor_deployments.ttl \
@@ -117,6 +118,9 @@ build/landCoverObservations.csv: $(SRC)/LAND_COVER_OBSERVED.csv $(SQL)/landCover
 
 build/monitoring_system_variables.csv: $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/TIMESERIES.csv $(SQL)/monitoring_system_variables.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/monitoring_system_variables.sql"
+
+build/phenocam_mask_config.csv: $(SRC)/PHENOCAM_MASKS.csv $(SQL)/phenocam_mask_config.sql | build
+	$(RUN) /bin/bash -c "duckdb < $(SQL)/phenocam_mask_config.sql"
 
 # build/qc_range_configuration_items.csv: $(SRC)/PARAMETER_RANGES_QC.csv build/time_series_datasets.csv $(SQL)/qc_range_configuration_items.sql | build
 # 	$(RUN) /bin/bash -c "duckdb < $(SQL)/qc_range_configuration_items.sql"

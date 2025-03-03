@@ -4,6 +4,7 @@ globals:
 
 imports:
   - namespaces.yaml
+  - concept_schemes.yaml
   - extensions.py
 
 one_offs:
@@ -13,13 +14,30 @@ one_offs:
       "@type": "<fdri:Variable>"
       "<iop:hasObjectOfInterest>": <fdri:DataProcessingConfiguration>
       "<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/common/parameter/priority>"
-
+      "<skos:inScheme>": "<::CommonCopScheme>"
+      "^<skos:hasTopConcept>": "<::CommonCopScheme>"
+  - name: WindowParameter
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/window>"
+      "@type": "<fdri:ConfigurationParameter>"
+      "<skos:prefLabel>": "Window@en"
+      "<rdfs:label>": "Window@en"
+      "<skos:inScheme>": "<::ConfigurationParameterScheme>"
+      "^<skos:hasTopConcept>": "<::ConfigurationParameterScheme>"
+  - name: MaxGapSizeParameter
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/max-gap-size>"
+      "@type": "<fdri:ConfigurationParameter>"
+      "<skos:prefLabel>": "Maximum Gap Size@en"
+      "<rdfs:label>": "Maximum Gap Size@en"
+      "<skos:inScheme>": "<::ConfigurationParameterScheme>"
+      "^<skos:hasTopConcept>": "<::ConfigurationParameterScheme>"
 resources:
   - name: DataProcessingConfiguration
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
-      "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/data-processing-configuration-type/infill-configuration>"
+      "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/configuration-type/infill-configuration>"
       "<fdri:appliesToFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{FACILITY_ID|slug}>"
       "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/id/dataset/cosmos-{FACILITY_ID|slug}-{VARIABLE_ID}>
   
@@ -38,8 +56,8 @@ resources:
   - name: CurrentConfigurationItem
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}>"
-      "@type": <fdri:ConfigurationItem>
-      "^<fdri:hasCurrentConfiguration>": <::DataProcessingConfiguration>
+      "@type": "<fdri:ConfigurationItem>"
+      "^<fdri:hasCurrentConfiguration>": "<::DataProcessingConfiguration>"
       "<fdri:observationInterval>":
         - name: ClosedConfigurationInterval
           requires:
@@ -58,24 +76,13 @@ resources:
             "<dcat:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
       "<fdri:method>": "<http://fdri.ceh.ac.uk/ref/common/method/{METHOD}>"
       "<fdri:argument>":
-        - name: Priority
-          properties:
-            "@id": "<_>"
-            "@type": <fdri:Argument>
-            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-priority>
-            "<fdri:hasValue>":
-              - name: PriorityValue
-                properties:
-                  "@id": "<_>"
-                  "@type": <schema:PropertyValue>
-                  "<schema:value>": "{PRIORITY}^^<xsd:integer>"
         - name: Window
           requires:
             WINDOW:
           properties:
             "@id": "<_>"
             "@type": <fdri:Argument>
-            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/configuration-parameter/window>
+            "<fdri:parameter>": <::WindowParameter>
             "<fdri:hasValue>":
               name: WindowValue
               properties:
@@ -88,7 +95,7 @@ resources:
           properties:
             "@id": "<_>"
             "@type": <fdri:Argument>
-            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/configuration-parameter/max-gap-size>
+            "<fdri:parameter>": <::MaxGapSizeParameter>
             "<fdri:hasValue>":
               name: MaxGapSizeValue
               properties:
