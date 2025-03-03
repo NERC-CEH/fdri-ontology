@@ -4,6 +4,7 @@ globals:
 
 imports:
   - namespaces.yaml
+  - concept_schemes.yaml
   - extensions.py
 
 one_offs:
@@ -12,16 +13,27 @@ one_offs:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/configuration-type/qc-range>"
       "@type": "<fdri:DataProcessingConfigurationType>"
       "<skos:prefLabel>": "Range Validation@en"
+      "<rdfs:label>": "Range Validation@en"
+      "<skos:inScheme>": "<::ConfigurationTypeScheme>"
+      "^<skos:hasTopConcept>": "<::ConfigurationTypeScheme>"
+
   - name: Range
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/configuration-parameter/range>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/range>"
       "@type": "<fdri:ConfigurationParameter>"
       "<skos:prefLabel>": "Expected Range@en"
+      "<rdfs:label>": "Expected Range@en"
+      "<skos:inScheme>": "<::ConfigurationParameterScheme>"
+      "^<skos:hasTopConcept>": "<::ConfigurationParameterScheme>"
+
   - name: MinMaxRange
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/method/min-max-range>"
       "@type": "<fdri:DataProcessingMethod>"
       "<skos:prefLabel>": "Min/Max range validation@en"
+      "<rdfs:label>": "Min/Max range validation@en"
+      "<skos:inScheme>": "<::DataProcessingMethodScheme>"
+      "^<skos:hasTopConcept>": "<::DataProcessingMethodScheme>"
 
 resources:
   - name: Configuration

@@ -4,16 +4,44 @@ globals:
 
 imports:
   - namespaces.yaml
+  - concept_schemes.yaml
   - extensions.py
 
 one_offs:
+  - name: PhenocamMaskConfigurationType
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/common/configuration-type/phenocam-mask>
+      "@type": "<fdri:DataProcessingConfigurationType>"
+      "<skos:prefLabel>": "PhenoCam Mask@en"
+      "<rdfs:label>": "PhenoCam Mask@en"
+      "^<skos:hasTopConcept>": <::ConfigurationTypeScheme>
+      "<skos:inScheme>": <::ConfigurationTypeScheme>
+
+  - name: MaskFilenameParameter
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/common/parameter/mask_filename>
+      "@type": <fdri:ConfigurationParameter>
+      "<skos:prefLabel>": "Mask Filename@en"
+      "<rdfs:label>": "Mask filename@en"
+      "^<skos:hasTopConcept>": <::ConfigurationParameterScheme>
+      "<skos:inScheme>": <::ConfigurationParameterScheme>
+
+  - name: ImageMaskMethod
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/common/method/image_mask>
+      "@type": "<fdri:DataProcessingMethod>"
+      "<skos:prefLabel>": "Image masking@en"
+      "<rdfs:label>": "Image masking@en"
+      "<fdri:parameter>": <::MaskFilenameParameter>
+      "^<skos:hasTopConcept>": <::DataProcessingMethodScheme>
+      "<skos:inScheme>": <::DataProcessingMethodScheme>
 
 resources:
   - name: MaskConfiguration
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/{SITE_ID|slug}-{FEATURE_ID|slug}-mask-{RESOLUTION|slug}-configuration>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
-      "<dct:type>": <http://fdri.ceh.ac.uk/ref/common/data-processing-configuration-type/phenocam-mask>
+      "<dct:type>": <::PhenocamMaskConfigurationType>
       "<fdri:appliesToFacility>": <http://fdri.ceh.ac.uk/id/site/{SITE_ID|slug}>
       "<fdri:appliesToTimeSeries>":
         - <http://fdri.ceh.ac.uk/ref/cosmos/time-series/image_red_{FEATURE_ID|slug}>
@@ -26,13 +54,13 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/{SITE_ID|slug}-{FEATURE_ID|slug}-{RESOLUTION|slug}-{SEQ|slug}>"
       "@type": <fdri:ConfigurationItem>
-      "<fdri:method>": <http://fdri.ceh.ac.uk/ref/common/method/image_mask>
+      "<fdri:method>": <::ImageMaskMethod>
       "<fdri:argument>":
         - name: MaskFilenameArgument
           properties:
             "@id": "<_>"
             "@type": <fdri:ConfigurationArgument>
-            "<fdri:parameter>": <http://fdri.ceh.ac.uk/ref/common/parameter/mask_filename>
+            "<fdri:parameter>": <::MaskFilenameParameter>
             "<fdri:hasValue>":
               - name: MaskFilenameArgumentValue
                 properties:

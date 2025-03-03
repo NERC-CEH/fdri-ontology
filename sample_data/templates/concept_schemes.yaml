@@ -1,0 +1,29 @@
+one_offs:
+  - name: CommonCopScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop>"
+      "@type": "<fdri:VariableScheme>"
+      "<dct:title>": "FDRI Common Variables@en"
+      "<rdfs:label>": "FDRI Common Variables@en"
+
+  - name: ConfigurationTypeScheme
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/common/configuration-type>
+      "@type": "<fdri:DataProcessingConfigurationTypeScheme>"
+      "<dct:title>": "Common Configuration Types@en"
+      "<rdfs:label>": "Common Configuration Types@en"
+  
+  - name: ConfigurationParameterScheme
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/common/parameter>
+      "@type": "<fdri:ConfigurationParameterScheme>"
+      "<dct:title>": "Data Processing Configuration Parameters@en"
+      "<rdfs:label>": "Data Processing Configuration Parameters@en"
+
+  - name: DataProcessingMethodScheme
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/common/method>
+      "@type": <skos:ConceptScheme>
+      "<skos:prefLabel>": "Data Processing Methods@en"
+      "<rdfs:label>": "Data Processing Methods@en"
+  

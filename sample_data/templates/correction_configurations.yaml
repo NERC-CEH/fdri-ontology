@@ -4,6 +4,7 @@ globals:
 
 imports:
   - namespaces.yaml
+  - concept_schemes.yaml
   - extensions.py
 
 one_offs:
@@ -13,13 +14,17 @@ one_offs:
       "@type": <fdri:DataProcessingConfigurationType>
       "<skos:prefLabel>": "Correction configuration@en"
       "<rdfs:label>": "Correction configuration@en"
+      "<skos:inScheme>": <::ConfigurationTypeScheme>
+      "^<skos:hasTopConcept>": <::ConfigurationTypeScheme>
 
   - name: CorrectionFactor
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/configuration-parameter/correction-factor>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/correction-factor>"
       "@type": <fdri:ConfigurationParameter>
       "<skos:prefLabel>": "Correction factor@en"
       "<rdfs:label>": "Correction factor@en"
+      "<skos:inScheme>": <::ConfigurationParameterScheme>
+      "^<skos:hasTopConcept>": <::ConfigurationParameterScheme>
 
 resources:
   - name: Configuration
