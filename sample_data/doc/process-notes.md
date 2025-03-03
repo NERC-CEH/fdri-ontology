@@ -4,7 +4,7 @@ Currently, data loading for the metadata service is implemented a GH action (in 
 
 We plan to move to a state where updates can be applied incrementally from different source data services. 
 
-In preparation for that these notes identify the different data sources currently represented in the store and how the future update process might work. Very much work in progress and will change as we clarify the details of these data feeds.
+In preparation for that, these notes identify the different data sources currently represented in the store and how the future update process might work. Very much work in progress and will change as we clarify the details of these data feeds.
 
 # Summary table
 
@@ -40,9 +40,9 @@ In preparation for that these notes identify the different data sources currentl
 
 # Detailed description of current data ingest
 
-Note: In the current processing The overall pattern is that each processed source dataset `src/X.csv` is mapped to a `build/X.ttl` file via a transform template file `templates/X.yaml`. So the names given below are the `X` in those file names.
+Note: In the current processing, the overall pattern is that each processed source dataset `src/X.csv` is mapped to a `build/X.ttl` file via a transform template file `templates/X.yaml`. So the names given below are the `X` in those file names.
 
-In many cases preprocessing is performed by a SQL processing step (duckdb). These can normalise values, simplify the transformation step or perform joins. Some of this preprocessing may be simplified in future with improvements to source data and extensions to the mapping tool. These are highlighted in the sections below.
+In many cases some preprocessing is performed by a SQL (duckdb) script. These can normalise values, simplify the transformation step or perform joins. Some of this preprocessing may be simplified in future with improvements to source data and/or extensions to the mapping tool. These are highlighted in the sections below.
  
 ## Sites, Network and related
 
@@ -54,7 +54,7 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 
 **Alt-preprocessing?:** Preprocessing might be avoided by extending the mapper to support inline conditionals.
 
-**Generates:** `EnvironmentalMonitoringSite`s with annotations and associated `GeospatialFeatureOfInterest`. Variables used in the site annotations (`site-soil-type`, `site-public` etc). Other one off reference terms (COSMOS Programme and monitoring network). Inferred CV for COSMOS regions, soil classification and bedrock classification.
+**Generates:** `EnvironmentalMonitoringSite`s with annotations and associated `GeospatialFeatureOfInterest`. Variables used in the site annotations (`site-soil-type`, `site-public` etc). Other one-off reference terms (COSMOS Programme and monitoring network). Inferred CV for COSMOS regions, soil classification and bedrock classification.
 
 **Future source:** Presume that site reference information will be mastered in the data catalog and imported from there. Testing of this process is planned. To be confirmed whether that reference data covers all the annotations here.
 
@@ -66,8 +66,11 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 ### `LAND_COVER_LCM_CLASSES`
 
 **What:** Labels for landcover classes used in landCoverLcm
+
 **Generates:** LandCover CV
+
 **Future source:** Vocabulary server
+
 **Update requirements:** Replace whole CV graph when updated.
 
 ### `landCoverLcm`
@@ -76,7 +79,7 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 
 **Preprocessing:** Convert cover from % to (rounded) fraction, map year to a date. 
 
-**Alt-preprocessing?:** Could extend mapper to support functional transforms like this.
+**Alt-preprocessing?:** Extend mapper to support functional transforms like this.
 
 **Generates:** Time bounded annotations on given landcover ratio for each site. Together with definition for the ratio variable.
 
@@ -172,8 +175,11 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 ### `CORRECTION_METHODS`
 
 **What:** Definitions for the correction methods use to apply the correction factors.
+
 **Generates:** CV for correction methods.
+
 **Future source:** Vocabulary server?
+
 **Update requirements:** Replace whole graph when CV updated.
 
 ### `CORRECTION_FACTORS`
@@ -189,22 +195,26 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 ### `PARAMETER_RANGES_QC`
 **What:** Legal ranges for variables by site.
 
-**Generates:** `InternalDataProcessingConfiguration` with `ConfigurationItem` for each range. One off definitions for the parameter and config type.
+**Generates:** `InternalDataProcessingConfiguration` with `ConfigurationItem` for each range. One-off definitions for the parameter and config type.
 
 **Future source:** ??  Will the metadata service be the master for these?
+
 **Update requirements:** ?? General CRUD API?
 
 > [!NOTE]
 > The representation of this may change to be by time series definition and site.
 
 > [!NOTE]
-> For this and the prior data there are the one off definitions of parameters and config types generated. Might shift these to being in a pre-prepared base load if we support CRUD rather then bulk replacement.
+> For this and the prior data there are the one-off definitions of parameters and config types generated. Might shift these to being in a pre-prepared base load if we support CRUD rather then bulk replacement.
 
 ### `processingLevels`
 
 **What:** Labels and ids for the processing levels
+
 **Generates:** CV for processing levels
+
 **Future source:** Vocab server
+
 **Update requirements:** Bulk update on CV change
 
 ## Datasets and variables
@@ -212,16 +222,23 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 ### `monitoring_system_variables` from `VARIABLE_INSTRUMENTATION` and `TIMESERIES`
 
 **What:** Map from variable ID to sensor (instrument ID)
+
 **Preprocessing:** Join to filter to just those PARAMETER_IDs in referenced in timeseries and then extract the distinct variable name to instrument IDs.
+
 **Generates:** Annotates each instrument with the variable (COP) it observes.
+
 **Future source:** ?? 
+
 **Update requirements:** Bulk replace (largely fixed reference data)
 
 ### `parameterProperties`
 
 **What:** Maps variable ids and names to COP elements (property, unit, domain, context).
+
 **Generates:** Variable (COP) definitions in a Concept scheme with associated CVs for contexts, domains and parameters.
+
 **Future source:** NERC vocab server plus local vocab server for cases of only local interest?
+
 **Update requirements:** Bulk replace when CVs change.
 
 > [!NOTE]
@@ -230,8 +247,11 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 ### `STATISTICS`
 
 **What:** Id, label and definition for statistic (MEAN_PREC, INST etc).
+
 **Generates:** CV for statistics
+
 **Future source:** Vocab server
+
 **Update requirements:** Bulk update on CV change
 
 ### `time_series_definitions` from `TIMESERIES`, `TIMESERIES_S3_MAP_REFINED`, and `intervalDuration`
@@ -262,4 +282,7 @@ In many cases preprocessing is performed by a SQL processing step (duckdb). Thes
 
 ## Data not currently represented
 
-Processing runs.
+Processing activities.
+
+Sensor calibration.
+
