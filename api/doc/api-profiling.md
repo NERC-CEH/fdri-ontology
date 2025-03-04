@@ -83,6 +83,8 @@ With these in some cases may need to enumerate e.g. the `Datastreams` with one c
 * no arithmetic, string functions or compound expressions
 * basic geo filter `geo.distance` and  `st_within`  (plus maybe `st_equals` and `st_overlaps`)
 
+**Aggregation:** Simple `count` only.
+
 **Expansions:**
 
 Single level only for leaf properties.
