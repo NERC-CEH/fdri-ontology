@@ -90,3 +90,7 @@ Single level only for leaf properties.
 Used to include FDRI extensions (deployments, calibration/configuration, events) in responses.
 
 May also be needed to allow filtering of intermediate values in a chain (e.g. get data by OP and site) - this needs more checking.
+
+**Data model:**
+
+TBD clarify extensions to STA data model via `properties` field to attach deployment, specific sensors and calibration history to `Sensors` and processing provenance information to `Datastreams`
