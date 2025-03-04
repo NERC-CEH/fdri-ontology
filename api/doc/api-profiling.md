@@ -30,22 +30,22 @@ The preliminary list below is based on:
 | list observedProperties | by COP facet | `/ObservedProperties?$filter=properties.facet eq value` | |
 | list observedProperties | for site | `/ObservedProperties?$filter=datastream/thing eq STA-id-for-site` | [2] |
 | list datasets (datastreams) | by site | `/Datastreams?$filter=thing eq STA-id-for-site` | |
-| list datasets (datastreams) | by feature of interest | | |
+| list datasets (datastreams) | by feature of interest | `/Datastreams?$filter=observation/featureOfInterest eq STA-id-for-foi` | Question on performance having to link via observations |
 | list datasets (datastreams) | by observedProperties | `/ObservedProperties(op-id)/Datastreams` | |
 | describe single dataset | | `/Datastreams(id-for-dataset)` | |
 | describe single dataset | link from an observation | `/Observations(observation-id)/Datastreams` | For REST style include dataset URI in observation rows |
 | list features of interest | by Network, Programme, Collection | `/FeaturesOfInterest` | |
-| list features of interest | for site | `/FeaturesOfInterest?$filter=datastream/observation/featureOfInterest eq STA-id-for-site`  | |
+| list features of interest | for site | `/FeaturesOfInterest?$filter=datastream/observation/featureOfInterest eq STA-id-for-site`  | Question on performance having to link via observations |
 | list sensors | by type, by site | `/Sensors` | Caveats about meaning of sensor |
 | list sensors | by platform | `/Sensors?$filter=properties/platform eq uri-for-platform` | How much do end data users care about the nested platform structure? |
-| list deployments | by sensor, by dataset, by time | e.g. `/Sensor?$expand=properties/deployments&$filter=...` | This would only list deployments for this logical sensor. Tracking deployments of physical sensors across sites would natively support in STA if we picked a different mapping between FDRI and STA [3] |
-| list deployments | by platform | | |
+| list deployments | by sensor, by dataset, by time | e.g. `/Sensor?$expand=properties/deployments&$filter=...` | This would only list deployments for this logical sensor. Tracking deployments of physical sensors across sites would be natively supported in STA if we picked a different mapping between FDRI and STA [3] |
+| list deployments | by platform | N/A | |
 | list observations (get data) | by dataset(s), by time | `/Datastreams(dataset-id)/Observations?` `$select=result,phenomenonTime,datastream` `&$filter=phenomenonTime gt 2021-04-01T00:00:00+00:00` | |
 | list observations (get data) | by site, by time | `/Datastreams/Observations?$filter=thing eq site-id &$select=result,phenomenonTime,datastream` | |
 | list observations (get data) | by sensor, by time | `/Sensors(id)/Datastreams/Observations?$select=result,phenomenonTime,datastream` | Not supported by BGS so might have to use `$expand` version |
 | list observations (get data) | earliest observation for a dataset/list of datasets |  `/Datastreams(dataset-id)/Observations?` `$select=result,phenomenonTime` `&$orderby=phenomenonTime desc` `$top=1` | |
 | list observations (get data) | latest observation for a dataset/list of datasets | `/Datastreams(dataset-id)/Observations?` `$select=result,phenomenonTime` `&$orderby=phenomenonTime asc` `$top=1` | |
-| count observation | count observation for a dataset/list of datasets, by time period| `/Datastreams(dataset-id)/Observations?` `$select=result,phenomenonTime` `&$filter=phenomenonTime gt date` `&$count=true` | |
+| count observation | count observation for a dataset/list of datasets, by time period | `/Datastreams(dataset-id)/Observations?` `$select=result,phenomenonTime` `&$filter=phenomenonTime gt date` `&$count=true` | |
 | list observations (get data) | by observedProperty, by site | `/Datastreams?` `$filter=thing eq STA-id-for-site and observedproperty eq STA-id-for-op` `&$expand=Observations($select=result,phenomenonTime,datastream)` | Could we use `/Datastreams/Observations` form but filter on the observed property of the datastream on the way through? |
 | list platforms | | TBD | How much do end data users care about the nested platform structure?  |
 | list calibrations | by sensor, by dataset, by time | TBD | Are all configuration and calibration items wanted for external use? |
