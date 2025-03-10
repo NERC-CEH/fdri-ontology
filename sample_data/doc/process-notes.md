@@ -192,8 +192,10 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** ?? General CRUD API?
 
-### `PARAMETER_RANGES_QC`
+### `parameter_ranges`
 **What:** Legal ranges for variables by site.
+
+**Preprocessing:** Generates a table containing only parameter ranges for the time series defined in `TIMESERIES.csv`
 
 **Generates:** `InternalDataProcessingConfiguration` with `ConfigurationItem` for each range. One-off definitions for the parameter and config type.
 
