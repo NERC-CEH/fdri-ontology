@@ -485,6 +485,43 @@ records:
       - WithLabelAndComment
       - WithAnnotations
 
+  Aggregation:
+    label:
+      - value: Aggregation
+        lang: en
+    description:
+      - value: |
+          An Aggregation is a Concept which combines an aggregation method (fdri:valueStatistic) with a period of time over which
+          the aggregation is applied (fdri:periodicity).
+    classUri: fdri:Aggregation
+    shortCode: aggregation
+    extends: Concept
+    properties:
+      periodicity:
+        label:
+          - value: periodicity
+            lang: en
+        description:
+          - value: |
+              The time period over which a set of observed values are aggregated to derive a single aggregate value.
+            lang: en
+        propertyUri: fdri:periodicity
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      valueStatistic:
+        label:
+          - value: value statistic
+            lang: en
+        description:
+          - value: |
+              The way in which multiple values are processed to derive a single reported value of the property for some 
+              time period. Examples include mean value over period, total value over period or a single instantaneous value.
+        propertyUri: fdri:valueStatistic
+        kind: object
+        constraints:
+          - record: ValueStatistic
+
   Annotation:
     label:
       - value: Annotation
@@ -2139,6 +2176,33 @@ records:
         constraints:
           - record: ConfigurationItem
   
+  Measure:
+    label:
+      - value: Measure
+        lang: en
+    description:
+      - value: |
+          A combination of a variable that is measured with the unit of measurement and an optional aggregation.
+        lang: en
+    classUri: fdri:Measure
+    shortCode: Measure
+    properties:
+      aggregation:
+        propertyUri: fdri:aggregation
+        kind: object
+        constraints:
+          - record: Aggregation
+      hasUnit:
+        propertyUri: fdri:hasUnit
+        kind: object
+        constraints:
+          - record: Unit
+      variable:
+        propertyUri: fdri:variable
+        kind: object
+        constraints:
+          - record: Variable
+      
   ObjectOfInterest:
     label:
       - value: Object Of Interest
@@ -2202,6 +2266,18 @@ records:
         repeatable: true
         constraints:
           - record: GeospatialFeatureOfInterest
+      measure:
+        label:
+          - value: measure
+            lang: en
+        description:
+          - value: The measure(s) recorded by the dataset. A measure consists of a variable, a unit of measurement, and an optional aggregation.
+            lang: en
+        propertyUri: fdri:measure
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
       observedProperty:
         label:
           - value: observed property
@@ -3063,36 +3139,37 @@ records:
     extends: Concept
     shortCode: TimeSeriesDefinition
     properties:
-      periodicity:
-        propertyUri: fdri:periodicity
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
-      resolution:
-        propertyUri: fdri:resolution
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
-      observedProperty:
-        propertyUri: sosa:observedProperty
+      measure:
+        label:
+          - value: measure
+            lang: en
+        description:
+          - value: The measure(s) recorded by the dataset. A measure consists of a variable, a unit of measurement, and an optional aggregation.
+            lang: en
+        propertyUri: fdri:measure
         kind: object
         constraints:
-          - record: Variable
-      valueStatistic:
-        propertyUri: fdri:valueStatistic
-        kind: object
-        constraints:
-          - record: ValueStatistic
-      processingLevel:
-        propertyUri: fdri:processingLevel
-        kind: object
-        constraints:
-          - record: ProcessingLevel
+          - record: Measure
       methodology:
         propertyUri: fdri:methodology
         kind: object
         constraints:
           - record: TimeSeriesPlan
+      observedProperty:
+        propertyUri: sosa:observedProperty
+        kind: object
+        constraints:
+          - record: Variable
+      processingLevel:
+        propertyUri: fdri:processingLevel
+        kind: object
+        constraints:
+          - record: ProcessingLevel
+      resolution:
+        propertyUri: fdri:resolution
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
       sourceBucket:
         label:
           - value: source bucket
@@ -3106,18 +3183,6 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
-      sourceDataset:
-        label:
-          - value: source dataset
-            language: en
-        description:
-          - value: |
-              Provides the identifier of the partition within the source bucket which contains the source data to be
-              processed to create or update time series datasets using this definition.
-        propertyUri: fdri:sourceDataset
-        kind: literal
-        constraints:
-          - datatype: xsd:string
       sourceColumnName:
         label:
           - value: source column name
@@ -3128,6 +3193,18 @@ records:
               create or update time series datasets using this definition.
             language: en
         propertyUri: fdri:sourceColumnName
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      sourceDataset:
+        label:
+          - value: source dataset
+            language: en
+        description:
+          - value: |
+              Provides the identifier of the partition within the source bucket which contains the source data to be
+              processed to create or update time series datasets using this definition.
+        propertyUri: fdri:sourceDataset
         kind: literal
         constraints:
           - datatype: xsd:string
@@ -3250,17 +3327,6 @@ records:
         required: true
         constraints:
           - record: ObjectOfInterest
-      environmentalDomain:
-        label:
-          - value: environmental domain
-            lang: en
-        description:
-          - value: The broad environmental area of concern that this Complex Observable Property relates to.
-            lang: en
-        propertyUri: fdri:environmentalDomain
-        kind: object
-        constraints:
-          - record: EnvironmentalDomain
       hasContextObject:
         label:
           - value: has context
@@ -3286,18 +3352,6 @@ records:
         kind: object
         constraints:
           - record: ContextObject
-      hasUnit:
-        label:
-          - value: has unit
-            lang: en
-        description:
-          - value: |
-              The unit of measure used when recording values for this Complex Observable Property.
-            lang: en 
-        propertyUri: fdri:hasUnit
-        kind: object
-        constraints:
-          - record: Unit
       inScheme:
         label:
           - value: is in scheme
@@ -3310,44 +3364,6 @@ records:
         kind: object
         constraints:
           - record: VariableScheme
-      unitName:
-        label:
-          - value: unit name
-            lang: en
-        description:
-          - value: |
-              Provides a user-friendly label for the unit of measure used when recording values of this 
-              Complex Observable Property.
-            lang: en
-        propertyUri: fdri:unitName
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: rdf:langString
-      aggregationPeriod:
-        label:
-          - value: periodicity
-            lang: en
-        description:
-          - value: The period between recorded observations of the Complex Observable Property.
-            lang: en
-        propertyUri: fdri:aggregationPeriod
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
-      valueStatistic:
-        label:
-          - value: value statistic
-            lang: en
-        description:
-          - value: |
-              The way in which any values gathered in a single observation period (as defined by the
-              `fdri:aggregationPeriod` property) are processed to derive the reported value of the property for the 
-              period. Examples include mean value over period, total value over period or a single instantaneous value.
-        propertyUri: fdri:valueStatistic
-        kind: object
-        constraints:
-          - record: ValueStatistic
 
   VariableScheme:
     label:
