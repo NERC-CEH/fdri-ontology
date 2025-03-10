@@ -20,7 +20,7 @@ one_offs:
   - name: SensorCalibrationConfiguration
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/configuration-type/sensor-calibration-correction>"
-      "@type": <skos:Concept>
+      "@type": <fdri:DataProcessingConfigurationType>
       "<rdfs:label>": "Sensor Calibration Correction@en"
       "<skos:prefLabel>": "Sensor Calibration Correction@en"
       "<skos:inScheme>": "<::ConfigurationTypeScheme>"
