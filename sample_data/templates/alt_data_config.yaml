@@ -69,11 +69,12 @@ resources:
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<dct:type>": <::InfillConfiguration>
       "<fdri:appliesToFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{FACILITY_ID|slug}>"
-      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/id/dataset/cosmos-{FACILITY_ID|slug}-{VARIABLE_ID}>
+      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/ref/cosmos/time-series/{VARIABLE_ID|slug}>
 
   - name: PriorityAnnotation
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}>"
+      "@type": "<fdri:Annotation>"
       "^<fdri:hasAnnotation>": <::DataProcessingConfiguration>
       "<fdri:property>": "<::PriorityAnnotationProperty>"
       "<fdri:hasValue>":

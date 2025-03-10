@@ -44,6 +44,7 @@ resources:
   - name: PriorityAnnotation
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}>"
+      "@type": "<fdri:Annotation>"
       "^<fdri:hasAnnotation>": <::DataProcessingConfiguration>
       "<fdri:property>": "<::PriorityAnnotationProperty>"
       "<fdri:hasValue>":
@@ -52,6 +53,13 @@ resources:
             "@id": "<_>"
             "@type": "<schema:PropertyValue>"
             "<schema:value>": "{PRIORITY}^^<xsd:integer>"
+
+  - name: InfillMethod
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/method/{METHOD}>"
+      "@type": "<fdri:DataProcessingMethod>"
+      "<skos:inScheme>": "<http://fdri.ceh.ac.uk/ref/common/method>"
+      "^<skos:hasTopConcept>": "<http://fdri.ceh.ac.uk/ref/common/method>"
 
   - name: CurrentConfigurationItem
     properties:
