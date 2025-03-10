@@ -11,7 +11,7 @@ one_offs:
   - name: CorrectionFactorParameter
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/correction-factor>"
-      "@type": <skos:Concept>
+      "@type": <fdri:ConfigurationParameter>
       "<rdfs:label>": "Correction Factor@en"
       "<skos:prefLabel>": "Correction Factor@en"
       "<skos:inScheme>": "<::ConfigurationParameterScheme>"
