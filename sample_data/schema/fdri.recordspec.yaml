@@ -895,42 +895,29 @@ records:
         kind: object
         constraints:
           - record: ConfigurationProperty
-  
-  ContextObject:
+
+  Constraint:
     label:
-      - value: Context Object
+      - value: Constraint
         lang: en
     description:
-      - value: |
-          A concept which provides additional contextual information about the object of interest of a Complex
-          Observable Property or the context in which observations of the Complex Observable Property are made.
+      - value: A Constraint limits the scope of the observation and confines the context to a particular state. It describes properties of the involved entities that are relevant to the particular observation.
         lang: en
     extends: Concept
-    classUri: fdri:ContextObject
-    shortCode: ContextObject
+    classUri: fdri:Constraint
+    shortCode: Constraint
     properties:
-      inScheme:
+      constrains:
         label:
-          - value: is in scheme
+          - value: constrains
             lang: en
         description:
-          - value: The concept scheme under which the Context Object resource is managed.
+          - value: A Constraint constrains an Entity having a role in the Variable description.
             lang: en
-        propertyUri: skos:inScheme
+        propertyUri: iop:constrains
         kind: object
         constraints:
-          - record: ContextObjectScheme
-  
-  ContextObjectScheme:
-    label:
-      - value: Context Object Concept Scheme
-        lang: en
-    description:
-      - value: A concept scheme that manages a collection of concepts that define the Context Objects for Complex Observable Properties.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:ContextObjectScheme
-    shortCode: ContextObjectScheme
+          - record: Entity
 
   DataProcessingConfiguration:
     label:
@@ -1397,6 +1384,19 @@ records:
         constraints:
           - record: EnvironmentalDomainScheme
   
+  Entity:
+    label:
+      - value: Entity
+        lang: en
+    description:
+      - value: |
+          An object or process that has a role in an observation. An Entity may play one of the following roles: ObjectOfInterest, ContextObject, Matrix.
+          Whether the involvement of a particular entity is meaningful enough to include in the variable description depends on the specific context.
+        lang: en
+    classUri: iop:Entity
+    extends: Concept
+    shortCode: Entity
+
   EnvironmentalDomainScheme:
     label:
       - value: Environmental Domain Concept Scheme
@@ -2203,42 +2203,6 @@ records:
         constraints:
           - record: Variable
       
-  ObjectOfInterest:
-    label:
-      - value: Object Of Interest
-        lang: en
-    description:
-      - value: A class of entity with one or more characterstics that may be measured or described by a Complex Observable Property.
-        lang: en
-    extends: Concept
-    classUri: fdri:ObjectOfInterest
-    shortCode: ObjectOfInterest
-    properties:
-      inScheme:
-        label:
-          - value: is in scheme
-            lang: en
-        description:
-          - value: The controlled vocabulary that this concept is part of.
-            lang: en
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: ObjectOfInterestScheme
-  
-  ObjectOfInterestScheme:
-    label:
-      - value: Object Of Interest Concept Scheme
-        lang: en
-    description:
-      - value: |
-          A controlled vocabulary of (classes of) entity with characteristics that may be measured or described by
-          a Complex Observable Property.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:ObjectOfInterestScheme
-    shortCode: ObjectOfInterestScheme
-
   ObservationDataset:
     label:
       - value: Observation Dataset
@@ -2615,6 +2579,17 @@ records:
         constraints:
           - record: EnvironmentalMonitoringFacilityTypeScheme
 
+  Property:
+    label:
+      - value: Property
+        lang: en
+    description:
+      - value: A type of a characteristic of the ObjectOfInterest.
+        lang: en
+    classUri: iop:Property
+    extends: Concept
+    shortCode: Property
+
   PropertyValue:
     label:
       - value: Property Value
@@ -2765,17 +2740,6 @@ records:
         kind: object
         constraints:
           - record: Concept
-
-  QuantityKind:
-    label:
-      - value: Quantity Kind
-        lang: en
-    description:
-      - value: A characteristic of an object of interest that is described or measured by a Complex Observable Property.
-        lang: en
-    classUri: qudt:QuantityKind
-    shortCode: QuantityKind
-    # TODO: Subset of properties of QuantityKind from QUDT?
 
   Region:
     label:
@@ -3227,7 +3191,7 @@ records:
     description:
       - value: A unit of measure of an observable property.
         lang: en
-    classUri: qudt:Unit
+    classUri: fdri:Unit
     shortCode: Unit
     extends: Concept
     properties:
@@ -3314,7 +3278,7 @@ records:
         kind: object
         required: true
         constraints:
-          - record: QuantityKind
+          - record: Property
       hasObjectOfInterest:
         label:
           - value: has object of interest
@@ -3326,7 +3290,7 @@ records:
         kind: object
         required: true
         constraints:
-          - record: ObjectOfInterest
+          - record: Entity
       hasContextObject:
         label:
           - value: has context
@@ -3340,7 +3304,7 @@ records:
         kind: object
         repeatable: true
         constraints:
-          - record: ContextObject
+          - record: Entity
       hasMatrix:
         label:
           - value: has matrix
@@ -3351,7 +3315,18 @@ records:
         propertyUri: iop:hasMatrix
         kind: object
         constraints:
-          - record: ContextObject
+          - record: Entity
+      hasConstraint:
+        label:
+          - value: has constraint
+            lang: en
+        description:
+          - value: A Variable has a Constraint, that confines an Entity involved in the observation.
+            lang: en
+        propertyUri: iop:hasConstraint
+        kind: object
+        constraints:
+          - record: Constraint
       inScheme:
         label:
           - value: is in scheme

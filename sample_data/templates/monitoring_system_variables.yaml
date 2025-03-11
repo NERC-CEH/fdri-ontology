@@ -11,4 +11,4 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/monitoring-system-type/{INSTRUMENT_ID|slug}>"
       "@type": "<fdri:EnvironmentalMonitoringSystemType>"
-      "<sosa:observes>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{VARIABLE_ID|slug}>"
+      "<sosa:observes>": "<http://fdri.ceh.ac.uk/ref/common/cop/{VARIABLE_ID|slug}>"

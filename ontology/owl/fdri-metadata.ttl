@@ -644,7 +644,16 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationParameter
 :ConfigurationParameter rdf:type owl:Class ;
-                        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+                        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                          owl:allValuesFrom :ConfigurationParameterScheme
+                                        ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationParameterScheme
+:ConfigurationParameterScheme rdf:type owl:Class ;
+                              rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationProperty
@@ -682,20 +691,6 @@ above the local reference ellipsoid).""" ;
                                             owl:onProperty <http://purl.org/dc/terms/type> ;
                                             owl:allValuesFrom :ConfigurationProperty
                                           ] .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/ContextObject
-:ContextObject rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
-                                 owl:allValuesFrom :ContextObjectScheme
-                               ] .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/ContextObjectScheme
-:ContextObjectScheme rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfiguration
@@ -1234,21 +1229,6 @@ above the local reference ellipsoid).""" ;
                                   ] .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/ObjectOfInterest
-:ObjectOfInterest rdf:type owl:Class ;
-                  rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
-                                  <https://w3id.org/iadopt/ont/Entity> ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
-                                    owl:allValuesFrom :ObjectOfInterestScheme
-                                  ] .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/ObjectOfInterestScheme
-:ObjectOfInterestScheme rdf:type owl:Class ;
-                        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ObservationDataset
 :ObservationDataset rdf:type owl:Class ;
                     rdfs:subClassOf <http://www.w3.org/ns/dcat#Dataset> ,
@@ -1595,18 +1575,6 @@ above the local reference ellipsoid).""" ;
                           [ rdf:type owl:Restriction ;
                             owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
                             owl:allValuesFrom :VariableScheme
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <https://w3id.org/iadopt/ont/hasContextObject> ;
-                            owl:allValuesFrom :ContextObject
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <https://w3id.org/iadopt/ont/hasMatrix> ;
-                            owl:allValuesFrom :ContextObject
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <https://w3id.org/iadopt/ont/hasObjectOfInterest> ;
-                            owl:allValuesFrom :ObjectOfInterest
                           ] ;
           rdfs:comment "A variable whose definition also captures additional information about the context of each measurement of the property."@en ;
           rdfs:label "Variable"@en .
@@ -1673,6 +1641,14 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
 
 ###  http://www.w3.org/ns/ssn/Deployment
 <http://www.w3.org/ns/ssn/Deployment> rdfs:subClassOf <http://www.w3.org/ns/prov#Activity> .
+
+
+###  https://w3id.org/iadopt/ont/Entity
+<https://w3id.org/iadopt/ont/Entity> rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://w3id.org/iadopt/ont/Property
+<https://w3id.org/iadopt/ont/Property> rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
 
 
 #################################################################

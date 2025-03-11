@@ -15,15 +15,10 @@ one_offs:
       "<rdfs:label>": "COSMOS Programme@en"
       "<fdri:utilises>": "<http://fdri.ceh.ac.uk/id/network/cosmos>"  
 
-  - name: COPScheme
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop>"
-      "@type": "<fdri:VariableScheme>"
-
   - name: TimeSeriesDataset
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest/time-series-dataset>"
-      "@type": "<skos:Concept>"
+      "@type": "<iop:Entity>"
       "<skos:prefLabel>": "Time-series Dataset@en"
       "<rdfs:label>": "Time-series Dataset@en"
       "<skos:inScheme>": <::ObjectOfInterestScheme>
@@ -31,21 +26,21 @@ one_offs:
 
   - name: ObservationCompleteness
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/observation-completeness>"
-      "@type": "<skos:Concept>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/property/observation-completeness>"
+      "@type": "<iop:Property>"
       "<skos:prefLabel>": "Observation Completeness@en"
       "<rdfs:label>": "Observation Completeness@en"
-      "<skos:inScheme>": <::ParameterScheme>
-      "^<skos:hasTopConcept>": <::ParameterScheme>
+      "<skos:inScheme>": "<::PropertyScheme>"
+      "^<skos:hasTopConcept>": "<::PropertyScheme>"
 
   - name: SuspectObservations
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/suspect-observations>"
-      "@type": "<skos:Concept>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/property/suspect-observations>"
+      "@type": "<iop:Property>"
       "<skos:prefLabel>": "Suspect Observations@en"
       "<rdfs:label>": "Suspect Observations@en"
-      "<skos:inScheme>": <::ParameterScheme>
-      "^<skos:hasTopConcept>": <::ParameterScheme>
+      "<skos:inScheme>": "<::PropertyScheme>"
+      "^<skos:hasTopConcept>": "<::PropertyScheme>"
 
   - name: TimeSeriesCompleteness
     properties:
@@ -55,8 +50,8 @@ one_offs:
       "<skos:prefLabel>": "Time-series Observation Completeness@en"
       "<iop:hasObjectOfInterest>": "<::TimeSeriesDataset>"
       "<iop:hasProperty>": "<::ObservationCompleteness>"
-      "<skos:inScheme>": <::COPScheme>
-      "^<skos:hasTopConcept>": <::COPScheme>
+      "<skos:inScheme>": <::CommonCopScheme>
+      "^<skos:hasTopConcept>": <::CommonCopScheme>
 
   - name: FlaggedSuspectPercent
     properties:
@@ -106,7 +101,7 @@ resources:
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/mixed>
-      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>
+      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>
       "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:originatingProgramme>": <::CosmosProgramme>
 
@@ -119,7 +114,7 @@ resources:
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<fdri:processingLevel>": <http://fdri.ceh.ac.uk/ref/common/processing-level/mixed>
-      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>
+      "<sosa:observedProperty>": <http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>
       "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:originatingProgramme>": <::CosmosProgramme>
 
@@ -151,7 +146,7 @@ resources:
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>"
       "<dct:title>": "{TIMESERIES_NAME} at {SITE_ID}@en"
       "<rdfs:label>": "{TIMESERIES_NAME} at {SITE_ID}@en"
-      "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+      "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>"
       "<sosa:hasFeatureOfInterest>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dct:spatial>": "<http://fdri.ceh.ac.uk/id/feature/cosmos-{SITE_ID|slug}>"
       "<dcat:temporalResolution>": "{PERIOD}^^<xsd:duration>"

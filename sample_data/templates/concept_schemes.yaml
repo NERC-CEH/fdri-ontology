@@ -20,6 +20,13 @@ one_offs:
       "<dct:title>": "Data Processing Configuration Parameters@en"
       "<rdfs:label>": "Data Processing Configuration Parameters@en"
 
+  - name: ContextObjectScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/context>"
+      "@type": "<skos:ConceptScheme>"
+      "<dct:title>": "FDRI Common context objects@en"
+      "<rdfs:label>": "FDRI Common context objects@en"
+
   - name: DataProcessingMethodScheme
     properties:
       "@id": <http://fdri.ceh.ac.uk/ref/common/method>
@@ -30,16 +37,16 @@ one_offs:
   - name: ObjectOfInterestScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest>"
-      "@type": "<fdri:ObjectOfInterestScheme>"
+      "@type": "<skos:ConceptScheme>"
       "<dct:title>": "FDRI Common Objects Of Interest@en"
       "<rdfs:label>": "FDRI Common Objects Of Interest@en"
 
-  - name: ParameterScheme
+  - name: PropertyScheme
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter>"
-      "@type": "<fdri:ParameterScheme>"
-      "<dct:title>": "FDRI Common Parameters@en"
-      "<rdfs:label>": "FDRI Common Parameters@en"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/property>"
+      "@type": "<skos:ConceptScheme>"
+      "<dct:title>": "FDRI Common Properties@en"
+      "<rdfs:label>": "FDRI Common Properties@en"
 
   - name: ValueStatisticScheme
     properties:
@@ -47,4 +54,11 @@ one_offs:
       "@type": "<skos:ConceptScheme>"
       "<dct:title>": "Value Statistics@en"
       "<rdfs:label>": "Value Statistics@en"
+  
+  - name: UnitScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/unit>"
+      "@type": "<skos:ConceptScheme>"
+      "<dct:title>": "FDRI Common Units@en"
+      "<rdfs:label>": "FDRI Common Units@en"
   

@@ -18,10 +18,10 @@ one_offs:
 resources:
   - name: Variable
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>"
       "@type": "<fdri:Variable>"
-      "<skos:inScheme>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
-      "^<skos:hasTopConcept>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
+      "<skos:inScheme>": "<::CommonCopScheme>"
+      "^<skos:hasTopConcept>": "<::CommonCopScheme>"
 
   - name: Unit
     properties:
