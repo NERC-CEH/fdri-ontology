@@ -4,6 +4,7 @@ globals:
 
 imports:
     - namespaces.yaml
+    - concept_schemes.yaml
     - extensions.py
 
 one_offs:

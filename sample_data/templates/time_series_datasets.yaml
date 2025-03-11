@@ -4,6 +4,7 @@ globals:
 
 imports:
     - namespaces.yaml
+    - concept_schemes.yaml
     - extensions.py
 
 one_offs:
@@ -19,25 +20,52 @@ one_offs:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/cop>"
       "@type": "<fdri:VariableScheme>"
 
+  - name: TimeSeriesDataset
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest/time-series-dataset>"
+      "@type": "<skos:Concept>"
+      "<skos:prefLabel>": "Time-series Dataset@en"
+      "<rdfs:label>": "Time-series Dataset@en"
+      "<skos:inScheme>": <::ObjectOfInterestScheme>
+      "^<skos:hasTopConcept>": <::ObjectOfInterestScheme>
+
+  - name: ObservationCompleteness
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/observation-completeness>"
+      "@type": "<skos:Concept>"
+      "<skos:prefLabel>": "Observation Completeness@en"
+      "<rdfs:label>": "Observation Completeness@en"
+      "<skos:inScheme>": <::ParameterScheme>
+      "^<skos:hasTopConcept>": <::ParameterScheme>
+
+  - name: SuspectObservations
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/suspect-observations>"
+      "@type": "<skos:Concept>"
+      "<skos:prefLabel>": "Suspect Observations@en"
+      "<rdfs:label>": "Suspect Observations@en"
+      "<skos:inScheme>": <::ParameterScheme>
+      "^<skos:hasTopConcept>": <::ParameterScheme>
+
   - name: TimeSeriesCompleteness
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/timeseries-completeness-percent>"
       "@type": "<fdri:Variable>"
       "<rdfs:label>": "Time-series Observation Completeness@en"
       "<skos:prefLabel>": "Time-series Observation Completeness@en"
-      "<iop:hasObjectOfInterest>": "<fdri:TimeSeriesDataset>"
-      "<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/common/property/observation-completness>"
+      "<iop:hasObjectOfInterest>": "<::TimeSeriesDataset>"
+      "<iop:hasProperty>": "<::ObservationCompleteness>"
       "<skos:inScheme>": <::COPScheme>
       "^<skos:hasTopConcept>": <::COPScheme>
 
-  - name: SuspectObservations
+  - name: FlaggedSuspectPercent
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/timseries-flagged-suspect-percent>"
       "@type": "<fdri:Variable>"
       "<rdfs:label>": "Time-series Suspect Observations (Percent)@en"
       "<skos:prefLabel>": "Time-series Suspect Observations (Percent)@en"
-      "<iop:hasObjectOfInterest>": "<fdri:TimeSeriesDataset>"
-      "<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/common/property/observation-completness>"
+      "<iop:hasObjectOfInterest>": "<::TimeSeriesDataset>"
+      "<iop:hasProperty>": "<::SuspectObservations>"
       "<skos:inScheme>": <::COPScheme>
       "^<skos:hasTopConcept>": <::COPScheme>
 
@@ -50,6 +78,7 @@ one_offs:
         name: CurrentYearQualifierValue
         properties:
           "@id": "<http://fdri.ceh.ac.uk/id/annotation/observation-period-2025#value>"
+          "@type": "<schema:PropertyValue>"
           "<schema:minValue>": "2025-01-01T00:00:00Z^^<xsd:dateTime>"
           "<schema:maxValue>": "2025-12-31T23:59:59Z^^<xsd:dateTime>"
 
@@ -62,6 +91,7 @@ one_offs:
         name: CurrentMonthQualifierValue
         properties:
           "@id": "<http://fdri.ceh.ac.uk/id/annotation/observation-period-2025-01#value>"
+          "@type": "<schema:PropertyValue>"
           "<schema:minValue>": "2025-01-01T00:00:00Z^^<xsd:dateTime>"
           "<schema:maxValue>": "2025-01-31T23:59:59Z^^<xsd:dateTime>"
 
@@ -150,7 +180,7 @@ resources:
           properties:
             "@id" : "<_>"
             "@type": "<fdri:Annotation>"
-            "<fdri:property>": <::SuspectObservations>
+            "<fdri:property>": <::FlaggedSuspectPercent>
             "<fdri:hasValue>":
               name: "FlaggedSuspectPercentCurrentYearValue"
               properties:

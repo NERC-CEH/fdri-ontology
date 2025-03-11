@@ -27,6 +27,20 @@ one_offs:
       "<dct:title>": "Data Processing Methods@en"
       "<rdfs:label>": "Data Processing Methods@en"
   
+  - name: ObjectOfInterestScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest>"
+      "@type": "<fdri:ObjectOfInterestScheme>"
+      "<dct:title>": "FDRI Common Objects Of Interest@en"
+      "<rdfs:label>": "FDRI Common Objects Of Interest@en"
+
+  - name: ParameterScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter>"
+      "@type": "<fdri:ParameterScheme>"
+      "<dct:title>": "FDRI Common Parameters@en"
+      "<rdfs:label>": "FDRI Common Parameters@en"
+
   - name: ValueStatisticScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics>"
