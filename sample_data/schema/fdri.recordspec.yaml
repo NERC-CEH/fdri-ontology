@@ -492,7 +492,8 @@ records:
     description:
       - value: |
           An Aggregation is a Concept which combines an aggregation method (fdri:valueStatistic) with a period of time over which
-          the aggregation is applied (fdri:periodicity).
+          the aggregation is applied (fdri:periodicity). The optional `fdri:resolution` property can be used to express the 
+          frequency with which the aggregated values are measured.
     classUri: fdri:Aggregation
     shortCode: aggregation
     extends: Concept
@@ -506,6 +507,17 @@ records:
               The time period over which a set of observed values are aggregated to derive a single aggregate value.
             lang: en
         propertyUri: fdri:periodicity
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      resolution:
+        label:
+          - value: resolution
+            lang: en
+        description:
+          - value: The period between the observations of the aggregated values.
+            lang: en
+        propertyUri: fdri:resolution
         kind: literal
         constraints:
           - datatype: xsd:duration
@@ -3129,11 +3141,6 @@ records:
         kind: object
         constraints:
           - record: ProcessingLevel
-      resolution:
-        propertyUri: fdri:resolution
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
       sourceBucket:
         label:
           - value: source bucket

@@ -17,8 +17,6 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>"
       "@type": "<fdri:TimeSeriesDefinition>"
-      "<fdri:resolution>": "{DURATION}^^<xsd:duration>"
-      "<fdri:periodicity>": "{DURATION}^^<xsd:duration>"
       "<fdri:processingLevel>": "<http://fdri.ceh.ac.uk/ref/common/processing-level/{PROCESSING_LEVEL}>"
       "<skos:inScheme>": "<::TimeSeriesScheme>"
       "^<skos:hasTopConcept>": "<::TimeSeriesScheme>"

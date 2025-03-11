@@ -572,6 +572,10 @@ above the local reference ellipsoid).""" ;
                              [ rdf:type owl:Restriction ;
                                owl:onProperty :periodicity ;
                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :resolution ;
+                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
                              ] ;
              rdfs:comment "Represents the aggregation of all values over a given period of time (fdri:periodicity) using a given aggregation method (fdri:valueStatistic)."@en .
 
@@ -1526,14 +1530,6 @@ above the local reference ellipsoid).""" ;
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :valueStatistic ;
                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :periodicity ;
-                                        owl:cardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :resolution ;
-                                        owl:cardinality "1"^^xsd:nonNegativeInteger
                                       ] ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :sourceBucket ;

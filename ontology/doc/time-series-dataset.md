@@ -36,7 +36,6 @@ An `fdri:TimeSeriesDataset` is defined as a subclass of `fdri:ObservationDataset
 classDiagram
 class TimeSeriesDataset["fdri:TimeSeriesDataset"]
 class TimeSeriesDefinition["fdri:TimeSeriesDefinition"] {
-  fdri:resolution: xsd:duration
   fdri:sourceBucket: xsd:string
   fdri:sourceDataset: xsd:string
   fdri:sourceColumnName: xsd:string
@@ -63,7 +62,6 @@ An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series 
 * `sosa:observedProperty` a reference to the `iop:Variable` that defines the property being observed by the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consitency with the `fdri:ObservationDataset` base class.
 * `fdri:measure` a reference to the `fdri:Measure` that defines measurements recorded in the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consistency with the `fdri:ObservationDataset` base class.
 * `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series.
-* `fdri:resolution` specifies the temporal resolution of the monitoring of the environmental feature that was used to derive the aggregated values contaied in the time series dataset. 
 * `fdri:sourceBucket` specifies the top level container (an S3 bucket) in which the data that is processed to produce time series datasets is stored.
 * `fdri:dataset` specifies the specific partition of the top level container in which the data is stored.
 * `fdri:columName` specifies the column within the partition where the values that produce the time series dataset(s) is stored.

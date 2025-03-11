@@ -52,7 +52,7 @@ resources:
       "<fdri:hasUnit>": "<::Unit>"
       "<fdri:aggregation>": "<::Aggregation>"
 
-  - name: TimeSeries
+  - name: TimeSeriesDefinition
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>"
       "@type": "<fdri:TimeSeriesDefinition>"

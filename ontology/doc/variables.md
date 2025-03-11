@@ -111,6 +111,7 @@ class Measure
 class Variable
 class Aggregation {
     periodicity: xsd:duration
+    resolution: xsd:duration
 }
 class Unit
 class Concept
@@ -146,7 +147,9 @@ Where a measure is the result of the aggregation of multiple values over some ti
 * mean
 * standard deviation
 
-The `periodicity` property specifies the time period between aggregated values being reported.
+The `periodicity` property specifies the time period between aggregate values being reported.
+The `resolution` property specifies the time period between the measurements that are aggregated over the period.
+e.g. if `periodicity` is `PT5M` and `resolution` is `PT30S` then values are read every 30 seconds, and aggregated to produce a single aggregate value every 5 minutes.
 
 ## Specialisation and Variable Hierarchies
 
