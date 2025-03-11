@@ -123,6 +123,27 @@ resources:
       "<fdri:originatingFacility>": <http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>
       "<fdri:originatingProgramme>": <::CosmosProgramme>
 
+  - name: TimeSeriesMeasure
+    requires:
+      PARAMETER_ID:
+      UNIT:
+      INTERVAL_ID:
+      STATISTIC_ID:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/measure/cosmos-{PARAMETER_ID|slug}-{UNIT|slug}-{INTERVAL_ID|slug}-{STATISTIC_ID|slug}>"
+      "@type": "<fdri:Measure>"
+
+  - name: SiteTimeSeriesDatasetMeasure
+    requires:
+      PARAMETER_ID:
+      UNIT:
+      INTERVAL_ID:
+      STATISTIC_ID:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{TIMESERIES_ID|slug}>"
+      "@type": "<fdri:TimeSeriesDataset>"
+      "<fdri:measure>": "<::TimeSeriesMeasure>"
+
   - name: SiteTimeSeriesDataset
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/dataset/cosmos-{SITE_ID|slug}-{TIMESERIES_ID|slug}>"
