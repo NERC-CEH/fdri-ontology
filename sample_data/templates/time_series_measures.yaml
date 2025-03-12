@@ -34,6 +34,7 @@ resources:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/aggregation/{INTERVAL_ID|slug}-{STATISTIC_ID|slug}>"
       "@type": "<fdri:Aggregation>"
       "<fdri:periodicity>": "{DURATION}^^<xsd:duration>"
+      "<fdri:resolution>": "{DURATION}^^<xsd:duration>"
       "<fdri:valueStatistic>": <::ValueStatistic>
 
   - name: Measure
