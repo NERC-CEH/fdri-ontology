@@ -577,7 +577,7 @@ above the local reference ellipsoid).""" ;
                                owl:onProperty :resolution ;
                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
                              ] ;
-             rdfs:comment "Represents the aggregation of all values over a given period of time (fdri:periodicity) using a given aggregation method (fdri:valueStatistic)."@en .
+             rdfs:comment "Represents the aggregation of all values collected with a given frequency (fdri:resolution) over a given period of time (fdri:periodicity) using a given aggregation method (fdri:valueStatistic)."@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Annotation
@@ -1197,7 +1197,7 @@ above the local reference ellipsoid).""" ;
                            owl:onProperty :aggregation ;
                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ;
-         rdfs:comment "Represents the measurement of a variable (fdr:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." .
+         rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/MobileDeployment
