@@ -7,14 +7,6 @@ imports:
     - concept_schemes.yaml
     - extensions.py
 
-one_offs:
-  - name: UnitScheme
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/unit>"
-      "@type": "<skos:ConceptScheme>"
-      "dct:title": "Common Units@en"
-      "rdfs:label": "Common Units@en"
-
 resources:
   - name: Variable
     properties:
