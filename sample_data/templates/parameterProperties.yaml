@@ -4,112 +4,98 @@ globals:
 
 imports:
     - namespaces.yaml
+    - concept_schemes.yaml
     - extensions.py
 
 one_offs:
-  - name: COPScheme
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop>"
-      "@type": "<fdri:VariableScheme>"
-  - name: ParameterScheme
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter>"
-      "@type": "<skos:ConceptScheme>"
-      "<dct:title>": "Common parameters@en"
   - name: ContextScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/context>"
       "@type": "<fdri:ContextObjectScheme>"
       "<dct:title>": "Common context objects@en"
-  - name: EnvironmentalDomainScheme
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/domain>"
-      "@type": "<fdri:EnvironmentalDomainScheme>"
-      "<dct:title>": "Common environmental domains@en"
 
 resources:
   - name: COP
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>"
       "@type": "<fdri:Variable>"
-      "<skos:inScheme>": "<::COPScheme>"
-      "^<skos:hasTopConcept>": "<::COPScheme>"
+      "<skos:inScheme>": "<::CommonCopScheme>"
+      "^<skos:hasTopConcept>": "<::CommonCopScheme>"
       "<skos:prefLabel>": "{PARAMETER_NAME}@en"
   - name: COPUnitName
     requires:
       UNIT_NAME:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>"
       "@type": "<fdri:Variable>"
       "<fdri:unitName>": "{UNIT_NAME}@en"
-  - name: Parameter
+
+  - name: Property
     requires:
       PROPERTY_ID:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PROPERTY_ID|slug}>"
-      "@type": <qudt:QuantityKind>
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/property/{PROPERTY_ID|slug}>"
+      "@type": "<iop:Property>"
       "<skos:prefLabel>": "{PROPERTY_NAME}@en"
-      "^<iop:hasProperty>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
-  - name: ParameterBroader
+      "<rdfs:label>": "{PROPERTY_NAME}@en"
+      "^<iop:hasProperty>": "<::COP>"
+      "<skos:inScheme>": "<::PropertyScheme>"
+      "^<skos:hasTopConcept>": "<::PropertyScheme>"
+
+  - name: ParameterMatch
     requires:
       QUDT_EQUIV:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PROPERTY_ID|slug}>"
-      "@type": <qudt:QuantityKind>
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/property/{PROPERTY_ID|slug}>"
+      "@type": "<iop:Property>"
       "<skos:exactMatch>": <http://qudt.org/vocab/quantitykind/{QUDT_EQUIV}>
+
   - name: ObjectOfInterest
     requires:
       OBJECT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest/{OBJECT|slug}>"
-      "@type": "<fdri:ObjectOfInterest>"
+      "@type": "<iop:Entity>"
       "<skos:inScheme>": <::ObjectOfInterestScheme>
       "^<skos:hasTopConcept>": "<::ObjectOfInterestScheme>"
       "<skos:prefLabel>": "{OBJECT}@en"
-      "^<iop:hasObjectOfInterest>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+      "^<iop:hasObjectOfInterest>": "<::COP>"
 
   - name: Context
     requires:
       CONTEXT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/context/{CONTEXT|slug}>"
-      "@type": <fdri:ContextObject>
+      "@type": <iop:Entity>
       "<skos:inScheme>": <::ContextScheme>
       "^<skos:hasTopConcept>": <::ContextScheme>
       "<skos:prefLabel>": "{CONTEXT}@en"
-      "^<iop:hasContextObject>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
-
-  - name: Domain
-    requires:
-      DOMAIN:
-    properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/domain/{DOMAIN|slug}>"
-      "@type": "<fdri:EnvironmentalDomain>"
-      "<skos:inScheme>": <::EnvironmentalDomainScheme>
-      "^<skos:hasTopConcept>": <::EnvironmentalDomainScheme>
-      "<skos:prefLabel>": "{DOMAIN}@en"
-      "^<fdri:environmentalDomain>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+      "^<iop:hasContextObject>": "<::COP>"
 
   - name: Unit
     requires:
       UNIT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<qudt:Unit>"
-      "^<fdri:hasUnit>": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/{PARAMETER_ID|slug}>"
+      "@type": "<fdri:Unit>"
+      "<skos:inScheme>": "<::UnitScheme>"
+      "^<skos:hasTopConcept>": "<::UnitScheme>"
+
   - name: UnitLabel
     requires:
       UNIT_NAME:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<qudt:Unit>"
+      "@type": "<fdri:Unit>"
       "<skos:prefLabel>": "{UNIT_NAME}@en" 
+      "<rdfs:label>": "{UNIT_NAME}@en"
+
   - name: UnitMatch
     requires:
       UNIT:
       QUDT_UNIT:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/unit/{UNIT|slug}>"
-      "@type": "<qudt:Unit>"
+      "@type": "<fdri:Unit>"
       "<skos:exactMatch>": <http://qudt.org/vocab/unit/{QUDT_UNIT}>
   

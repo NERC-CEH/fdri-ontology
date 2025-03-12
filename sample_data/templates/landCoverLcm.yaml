@@ -4,29 +4,37 @@ globals:
 
 imports:
   - namespaces.yaml
+  - concept_schemes.yaml
   - extensions.py
 
 one_offs:
   - name: Ratio
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/ratio>"
-      "@type": <qudt:QuantityKind>
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/property/ratio>"
+      "@type": <iop:Property>
       "<skos:prefLabel>": "Ratio@en"
+      "<skos:inScheme>": "<::PropertyScheme>"
+      "^<skos:hasTopConcept>": "<::PropertyScheme>"
 
   - name: LandCover
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest/land_cover>"
-      "@type": <fdri:ObjectOfInterest>
+      "@type": <iop:Entity>
+      "<skos:inScheme>": "<::ObjectOfInterestScheme>"
+      "^<skos:hasTopConcept>": "<::ObjectOfInterestScheme>"
       "<skos:prefLabel>": "Land cover@en"
 
   - name: LandCoverRatio
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/cop/land-cover-ratio>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/cop/land-cover-ratio>"
       "@type": "<fdri:Variable>"
       "<skos:prefLabel>": "Land cover ratio@en"
       "<rdfs:label>": "Land cover ratio@en"
       "<iop:hasProperty>": "<::Ratio>"
       "<iop:hasObjectOfInterest>": <::LandCover>
+      "<skos:inScheme>": <::CommonCopScheme>
+      "^<skos:hasTopConcept>": <::CommonCopScheme>
+
 resources:
   - name: LandCoverMeasureSeries
     properties:
