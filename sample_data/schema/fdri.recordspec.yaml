@@ -2277,6 +2277,18 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
+      originatingSite:
+        label:
+          - value: originating site
+            lang: en
+        description:
+          - value: The environmental monitoring site whic provided some portion of the content of this dataset.
+            lang: en
+        propertyUri: fdri:originatingSite
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringSite
       originatingProgramme:
         label:
           - value: originating programme

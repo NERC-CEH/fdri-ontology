@@ -261,6 +261,12 @@ above the local reference ellipsoid).""" ;
                       rdfs:range :EnvironmentalMonitoringProgramme .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/originatingSite
+:originatingSite rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :originatingFacility ;
+                 rdfs:comment "Relates a dataset of observations to the Environmental Monitoring Site from which the observations originated."@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/parameter
 :parameter rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
@@ -1250,6 +1256,10 @@ above the local reference ellipsoid).""" ;
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :originatingProgramme ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :originatingSite ;
                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;
