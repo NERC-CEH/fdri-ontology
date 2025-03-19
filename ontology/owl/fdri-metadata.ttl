@@ -76,7 +76,11 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToTimeSeries
 :appliesToTimeSeries rdf:type owl:ObjectProperty ;
-                     rdfs:range :TimeSeriesDefinition .
+                     rdfs:range [ rdf:type owl:Class ;
+                                  owl:unionOf ( :TimeSeriesDataset
+                                                :TimeSeriesDefinition
+                                              )
+                                ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToVariable

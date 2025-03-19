@@ -981,6 +981,7 @@ records:
         repeatable: true
         constraints:
           - record: TimeSeriesDefinition
+          - record: TimeSeriesDataset
       type:
         label:
           - value: configuration type
