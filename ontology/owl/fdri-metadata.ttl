@@ -1520,6 +1520,18 @@ above the local reference ellipsoid).""" ;
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty <http://purl.org/dc/terms/type> ;
                                      owl:allValuesFrom :TimeSeriesDefinition
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :sourceBucket ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :sourceColumnName ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :sourceDataset ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
                    rdfs:comment "A Dataset consisting of a collection of measurements of one or more Observable Properties of some Feature of Interest at regular intervals over a period of time."@en ;
                    rdfs:label "Time-Series Dataset"@en .
@@ -1539,18 +1551,6 @@ above the local reference ellipsoid).""" ;
                                       ] ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :valueStatistic ;
-                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :sourceBucket ;
-                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :sourceColumnName ;
-                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :sourceDataset ;
                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                       ] .
 
