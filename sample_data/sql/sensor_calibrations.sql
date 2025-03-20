@@ -2,14 +2,14 @@ create table if not exists SITE_INSTRUMENTATION as from read_csv('./sample_data/
 create table if not exists PARAMETERS_INSTRUMENTS as from read_csv('./sample_data/src/PARAMETERS_INSTRUMENTS.csv', AUTO_DETECT=true) ;
 create table if not exists CALIB_FACTORS as select *, strptime(START_DATETIME, '%d-%m-%Y %H:%M') as START_TIMESTAMP,
     strptime(END_DATETIME, '%d-%m-%Y %H:%M') as END_TIMESTAMP from read_csv('./sample_data/src/calib_factors_nr01_anem.csv', AUTO_DETECT=true) ;
-create table if not exists TS_DEFS as from read_csv('./build/time_series_definitions.csv', AUTO_DETECT=true) ;
+create table if not exists TS_DEFS as from read_csv('./sample_data/src/TIMESERIES_DEFS.csv', AUTO_DETECT=true) ;
 
 COPY(
 select SITE_INSTRUMENTATION.INSTRUMENT_ID as INSTRUMENT_ID,
     INSTANCE,
     SERIAL_NUMBER,
     VARIABLE,
-    TIMESERIES_ID,
+    TIMESERIES_DEF,
     DESCRIPTION,
     strftime(START_TIMESTAMP, '%Y-%m-%dT%H:%M:%SZ') as START_TIMESTAMP,
     strftime(END_TIMESTAMP, '%Y-%m-%dT%H:%M:%SZ') as END_TIMESTAMP,
@@ -23,5 +23,5 @@ ON CALIB_FACTORS.SITE_ID==SITE_INSTRUMENTATION.SITE_ID AND
     PARAMETERS_INSTRUMENTS.INSTRUMENT_ID==SITE_INSTRUMENTATION.INSTRUMENT_ID AND
     CALIB_FACTORS.END_TIMESTAMP >= SITE_INSTRUMENTATION.START_DATETIME AND
    CALIB_FACTORS.END_TIMESTAMP <= SITE_INSTRUMENTATION.END_DATETIME
-INNER JOIN TS_DEFS ON TS_DEFS.PARAMETER_ID==CALIB_FACTORS.VARIABLE AND TS_DEFS.PROCESSING_LEVEL==1
+INNER JOIN TS_DEFS ON TS_DEFS.PARAMETER_ID==CALIB_FACTORS.VARIABLE AND TS_DEFS.PROCESS_LEVEL=='RAW'
 ) TO './build/sensor_calibrations.csv' (HEADER, DELIMITER ',') ;

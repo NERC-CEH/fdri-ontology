@@ -56,10 +56,10 @@ resources:
 
   - name: CalibrationConfiguration
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-calibration-configuration-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-calibration-configuration-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_DEF|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<fdri:appliesToFacility>": <::Sensor>
-      "<fdri:appliesToTimeSeries>": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>"
+      "<fdri:appliesToTimeSeries>": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_DEF|slug}>"
       "<dct:type>": <::SensorCalibrationConfiguration>
 
   
@@ -67,7 +67,7 @@ resources:
     requires:
       END_TIMESTAMP:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_ID|slug}-{START_TIMESTAMP|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_DEF|slug}-{START_TIMESTAMP|slug}>"
       "@type": "<fdri:ConfigurationItem>"
       "^<fdri:hadConfiguration>": <::CalibrationConfiguration>
       "<prov:wasGeneratedBy>": <::CalibrationActivity>
@@ -81,7 +81,7 @@ resources:
 
   - name: CalibrationConfigurationItemArgument
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-argument/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_ID|slug}-{START_TIMESTAMP|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-argument/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_DEF|slug}-{START_TIMESTAMP|slug}>"
       "@type": "<fdri:ConfigurationArgument>"
       "<fdri:method>": <::CorrectionMethod>
       "<fdri:parameter>": "<::CorrectionFactorParameter>"
