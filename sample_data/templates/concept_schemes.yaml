@@ -1,4 +1,11 @@
 one_offs:
+  - name: AggregationScheme
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/aggregation>"
+      "@type": "<skos:ConceptScheme>"
+      "<dct:title>": "FDRI Common Value Aggregations@en"
+      "<rdfs:label>": "FDRI Common Value Aggregations@en"
+
   - name: CommonCopScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/cop>"
@@ -50,7 +57,7 @@ one_offs:
 
   - name: ValueStatisticScheme
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistics>"
+      "@id": "<http://fdri.ceh.ac.uk/ref/common/statistic>"
       "@type": "<skos:ConceptScheme>"
       "<dct:title>": "Value Statistics@en"
       "<rdfs:label>": "Value Statistics@en"
