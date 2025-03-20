@@ -1572,6 +1572,20 @@ above the local reference ellipsoid).""" ;
                                 ] .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/Unit
+:Unit rdf:type owl:Class ;
+      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                        owl:allValuesFrom :UnitScheme
+                      ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/UnitScheme
+:UnitScheme rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic
 :ValueStatistic rdf:type owl:Class ;
                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
