@@ -22,4 +22,4 @@ resources:
       "<skos:prefLabel>": "{INSTRUMENT_ID}@en"
       "<skos:inScheme>": "<::SystemTypeScheme>"
       "^<skos:hasTopConcept>": "<::SystemTypeScheme>"
-      "<fdri:observes>": "<http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>"
+      "<sosa:observes>": "<http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>"
