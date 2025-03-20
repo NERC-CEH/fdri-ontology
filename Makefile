@@ -33,7 +33,6 @@ SAMPLES += $(TTL_BASE)/instrumentationVariablesProperties.ttl
 SAMPLES += $(TTL_BASE)/LAND_COVER_LCM_CLASSES.ttl
 SAMPLES += $(TTL_BASE)/landCoverLcm.ttl
 SAMPLES += $(TTL_BASE)/landCoverObservations.ttl
-# SAMPLES += $(TTL_BASE)/monitoring_system_variables.ttl
 SAMPLES += $(TTL_BASE)/PARAMETERS_IDS.ttl
 SAMPLES += $(TTL_BASE)/PARAMETERS_INSTRUMENTS.ttl
 # SAMPLES += $(TTL_BASE)/parameter_ranges.ttl
@@ -117,9 +116,6 @@ build/landCoverLcm.csv: $(SRC)/LAND_COVER_LCM.csv $(SQL)/landCoverLcm.sql | buil
 
 build/landCoverObservations.csv: $(SRC)/LAND_COVER_OBSERVED.csv $(SQL)/landCoverObservations.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/landCoverObservations.sql"
-
-build/monitoring_system_variables.csv: $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/TIMESERIES.csv $(SQL)/monitoring_system_variables.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/monitoring_system_variables.sql"
 
 build/parameter_ranges.csv: $(SRC)/PARAMETER_RANGES_QC.csv $(SRC)/TIMESERIES.csv $(SQL)/parameter_ranges.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/parameter_ranges.sql"
