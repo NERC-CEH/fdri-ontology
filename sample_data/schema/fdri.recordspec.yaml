@@ -962,7 +962,7 @@ records:
              applies to all faciltiies of that type.
         propertyUri: fdri:appliesToFacility
         kind: object
-        required: true
+        required: false
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacilityType
