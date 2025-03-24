@@ -9,6 +9,7 @@ TPL = sample_data/templates
 TTL_BASE = build/data
 SHACL_BASE = build/shacl
 SCHEMA_FILE = sample_data/schema/fdri.recordspec.yaml
+MAPPER = mapper
 
 RECORDS = \
 	Variable \
@@ -148,10 +149,10 @@ build/time_series_measures.csv: $(SRC)/TIMESERIES_DEFS.csv $(SRC)/TIMESERIES_IDS
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_measures.sql"
 
 $(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml $(SRC)/%.csv | build/data
-	$(RUN) mapper $(TPL)/$*.yaml $(SRC)/$*.csv $@
+	$(MAPPER) $(TPL)/$*.yaml $(SRC)/$*.csv $@
 
 $(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml build/%.csv | build/data
-	$(RUN) mapper $(TPL)/$*.yaml build/$*.csv $@
+	$(MAPPER) $(TPL)/$*.yaml build/$*.csv $@
 
 $(VAL)/%.ttl: $(TTL_BASE)/%.ttl $(SHACL_BASE)/fdri_shacl.ttl  | build/validation
 	$(RUN) /bin/bash -c "shacl v -d $(TTL_BASE)/$*.ttl -s $(SHACL_BASE)/fdri_shacl.ttl > $@"
