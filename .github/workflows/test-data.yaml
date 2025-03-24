@@ -22,7 +22,7 @@ jobs:
       - name: Checkout rdf-mapper
         uses: actions/checkout@v4
         with:
-          repository: NERC-CEH/rdf-mapper
+          repository: epimorphics/rdf-mapper
           path: rdf-mapper
       
       - name: Setup Python
