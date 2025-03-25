@@ -14,6 +14,7 @@ resources:
       "@type": "<fdri:TimeSeriesDataset>"
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_DEF|slug}>"
       "<sosa:observedProperty>": "<http://fdri.ceh.ac.uk/ref/common/cop/{PARAMETER_ID|slug}>"
+      "<fdri:originatingSite>": "<http://fdri.ceh.ac.uk/id/site/{SITE_ID|slug}>"
       "<fdri:sourceBucket>": "{S3_BUCKET}"
       "<fdri:sourceDataset>": "{S3_DATASET}"
       "<fdri:sourceColumnName>": "{COLUMN_NAME}"
