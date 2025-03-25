@@ -77,7 +77,6 @@ resources:
       "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-infill-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<dct:type>": <::InfillConfiguration>
-      "<fdri:appliesToFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{FACILITY_ID|slug}>"
       "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/id/dataset/{TIMESERIES_ID|slug}>
 
   - name: PriorityAnnotation
