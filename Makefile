@@ -26,9 +26,9 @@ RECORDS = \
 	TimeSeriesDefinition
 
 SAMPLES += $(TTL_BASE)/alt_data_config.ttl
-# SAMPLES += $(TTL_BASE)/CORRECTION_FACTORS.ttl
+SAMPLES += $(TTL_BASE)/CORRECTION_FACTORS.ttl
 SAMPLES += $(TTL_BASE)/CORRECTION_METHODS.ttl
-# SAMPLES += $(TTL_BASE)/infill_config.ttl
+SAMPLES += $(TTL_BASE)/infill_config.ttl
 SAMPLES += $(TTL_BASE)/INSTRUMENTATION.ttl
 SAMPLES += $(TTL_BASE)/instrumentationVariablesProperties.ttl
 SAMPLES += $(TTL_BASE)/LAND_COVER_LCM_CLASSES.ttl
