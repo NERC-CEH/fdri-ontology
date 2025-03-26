@@ -113,11 +113,11 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** Bulk replacement?
 
-### `instrumentationVariableProperties` from `instrumentationVariables` and `variableProperties`
+### `instrumentation_parameters` from `TIMESERIES_IDS` and `SENSOR_SLOT_IDS`
 
-**What:** Mapping from variable name to instrument type (instrumentationVariables) and descriptions of variables (variableProperties)
+**What:** Mapping from variable to instrument type
 
-**Preprocessing:** Join on variable name to give table of instrument type and variable descriptions.
+**Preprocessing:** Join on slot ID to give a table of instrument type and variable id
 
 **Generates:** `EnvironmentalMonitoringSystemType` concepts in a scheme with `fdri:observes` links to observed properties.
 
@@ -125,11 +125,11 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** Bulk replacement
 
-### `sensor_deployments` from `SITE_INSTRUMENTATION`, `VARIABLE_INSTRUMENTATION` and `variableProperties`
+### `sensor_deployments` from `SITE_INSTRUMENTATION`, `SENSOR_SLOT_IDS` and `TIMESERIES_IDS`
 
-**What:** `SITE_INSTRUMENTATION` gives history of sensor deployments at sites with instrument id and serial number. `VARIABLE_INSTRUMENTATION` maps instrument id to variable name as given in `variableProperties`.
+**What:** `SITE_INSTRUMENTATION` gives history of sensor deployments at sites with sensor slot id and serial number. `SENSOR_SLOT_IDS` maps a sensor slot to an instrument type id. `TIMESERIES_ID` maps a site to a sensor slot and a variable.
 
-**Preprocessing:** Join first two on instrument id and then join to variable details on variable name. Join need for later fault processing.
+**Preprocessing:** Join first two on sensor slot id and then join to time series on site and sensor slot id.
 
 **Generates:** `EnvironmentalMonitoringSensor` and `Deployment` information.
 
@@ -137,9 +137,9 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** Incremental record updates as deployments change.
 
-### `sensor_faults` from `SENSOR_FAULTS`, `PARAMETERS` and `sensor_deployments`
+### `sensor_faults` from `SENSOR_FAULTS`, `TIMESERIES_DEFS` and `sensor_deployments`
 
-**What:** `SENSOR_FAULTS` gives list of time periods of faults on specific sensors with comments, includes the affected variables (could be multiple `;`-separated affected variables per fault). `PARAMETERS` gives readable label for the variables.
+**What:** `SENSOR_FAULTS` gives list of time periods of faults on specific sensors with comments, includes the affected variables (could be multiple `;`-separated affected variables per fault). `TIMESERIES_DEFS` is used to limit the results to only variables which have an existing definition.
 
 **Preprocessing:** Splits faults to single row per variable and then checks fault for match to a deployed sensor with overlapping time periods. To test that, we need mapping from variable to sensor from the `sensor_deployments` intermediate.
 
@@ -170,6 +170,16 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** If bulk export then process as now, replacing whole history. If incremental then check if version has actually changed and if so close off current value and set new current value. Maintaining the current value is non-monotonic so need a SPARQL Update or check against current data.
 
+### `sensor_calibrations` from `calib_factors_nr01_anem`, `SITE_INSTRUMENTATION`, `SENSOR_SLOT_IDS`, `TIMESERIES_DEFS` and `TIMESERIES_IDS`
+
+**WHAT:** Records of the sensor calibration corrections that apply to time series values.
+
+**Preprocessing:** Reformat date/time strings. Join TIMESERIES_DEFS on variable then TIMESERIES_ID on TIMESERIES_DEF and SITE. Join SENSOR_SLOT_IDS and then SITE_INSTRUMENTATION filtering by the date range of the correction to select the sensor instance that the calibration applies to
+
+**Generates:** `CalibrationActivity` representing the action of sensor calibration that gives rise to the correction factor; `InternalDataProcessingConfiguration` with a `ConfigurationItem` which represents the correction factor derived from the calibration.
+
+**Future source:** Assume that calibration activities and their outcomes in terms of calibration factors to be applied to data are managed in the asset management system. Or might be bulk export. Or might need to support both (incremental normally but allowance for bulk re-sync). A future source could provide a more direct mapping between the correction factor and the affected sensor and leave the metadata store to infer the affected time series based on deployment records for the sensor.
+
 ## Processing pipeline
 
 ### `CORRECTION_METHODS`
@@ -192,10 +202,8 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** ?? General CRUD API?
 
-### `parameter_ranges`
-**What:** Legal ranges for variables by site.
-
-**Preprocessing:** Generates a table containing only parameter ranges for the time series defined in `TIMESERIES.csv`
+### `PARAMETER_RANGES_QC`
+**What:** Legal ranges for observarions by time series.
 
 **Generates:** `InternalDataProcessingConfiguration` with `ConfigurationItem` for each range. One-off definitions for the parameter and config type.
 
@@ -221,31 +229,6 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 ## Datasets and variables
 
-### `monitoring_system_variables` from `VARIABLE_INSTRUMENTATION` and `TIMESERIES`
-
-**What:** Map from variable ID to sensor (instrument ID)
-
-**Preprocessing:** Join to filter to just those PARAMETER_IDs in referenced in timeseries and then extract the distinct variable name to instrument IDs.
-
-**Generates:** Annotates each instrument with the variable (COP) it observes.
-
-**Future source:** ?? 
-
-**Update requirements:** Bulk replace (largely fixed reference data)
-
-### `parameterProperties`
-
-**What:** Maps variable ids and names to COP elements (property, unit, domain, context).
-
-**Generates:** Variable (COP) definitions in a Concept scheme with associated CVs for contexts, domains and parameters.
-
-**Future source:** NERC vocab server plus local vocab server for cases of only local interest?
-
-**Update requirements:** Bulk replace when CVs change.
-
-> [!NOTE]
-> These have been generated by Epimorphics based on best understanding of the data. A process to review and manage the full COP-style variable definitions will be needed.
-
 ### `STATISTICS`
 
 **What:** Id, label and definition for statistic (MEAN_PREC, INST etc).
@@ -256,13 +239,9 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** Bulk update on CV change
 
-### `time_series_definitions` from `TIMESERIES`, `TIMESERIES_S3_MAP_REFINED`, and `intervalDuration`
+### `TIMESERIES_DEFS`
 
-**What:** Definitions of time series with id, label, statistic, unit, processing level
-
-**Preprocessing:** Most data is from TIMESERIES but SQL script maps interval to xsd Duration notation, maps levels to level IDs to match processingLevels CV and then joins in S3 bucket information using timeseries id.
-
-**Alt preprocessing:** Duration and processing level normalisation could be moved to templates. The S3 data could be a separate supply and rely on time-series URI to do the join.
+**What:** Definitions of time series with id, label, parameter, statistic, unit, processing level
 
 **Generates:** `TimeSeriesDefinition` for all timeseries datasets (which are then common across individual series)
 
@@ -270,11 +249,9 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** Update API to manage definitions and related configurations?
 
-### `time_series_datasets` from `SITE_INSTRUMENTATION`, `PARAMETERS_INSTRUMENTS`, `PARAMETERS`, `TIMESERIES_S3_MAP_REFINED` and above `time_series_definitions`
+### `TIMESERIES_IDS`
 
-**What:** Clean definition of all time timeseries datasets for each site with variable, processing level, period and start date.
-
-**Preprocessing:** Complicated. To work out which series are available at which sites this needs to use `SITE_INSTRUMENTATION` (which is given in terms of instrument id) which has to be mapped to the variable (parameter) reference in the time series definitions. Those mappings then need the `PARAMETERS_INSTRUMENTS` and `PARAMETERS` lookup tables. The data can include some duplications so the preprocessing does some grouped aggregations to pick the earliest start date and highest duration and processing level from the duplicates.
+**What:** Definition of all time timeseries datasets for each site with time series definition, variable, sensor slot, processing level, and S3 source location information.
 
 **Generates:** `TimeSeriesDatasets` collected into a series for each site and a series for each site/variable (across processing levels).
 
@@ -285,6 +262,4 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 ## Data not currently represented
 
 Processing activities.
-
-Sensor calibration.
 
