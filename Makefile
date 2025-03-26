@@ -106,9 +106,6 @@ build/shacl:
 build/data:
 	mkdir -p build/data
 
-# build/correction_configurations.csv: build/time_series_datasets.csv $(SRC)/CORRECTION_FACTORS.csv $(SQL)/correction_configurations.sql | build
-# 	$(RUN) /bin/bash -c "duckdb < $(SQL)/correction_configurations.sql"
-
 build/instrumentationVariablesProperties.csv: $(SRC)/instrumentation_variables.csv $(SRC)/variableProperties.csv $(SQL)/instrumentationVariablesProperties.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/instrumentationVariablesProperties.sql"
 
