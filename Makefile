@@ -134,8 +134,8 @@ build/sensor_firmware_configurations.csv: $(SRC)/Firmware_history.csv $(SQL)/sen
 build/siteVariance.csv: $(SRC)/SITES.csv $(SQL)/siteLayout.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/siteLayout.sql"
 
-build/time_series_definitions.csv: $(SRC)/TIMESERIES.csv $(SRC)/TIMESERIES_S3_MAP_REFINED.csv $(SRC)/intervalDuration.csv $(SQL)/time_series_definitions.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_definitions.sql"
+# build/time_series_definitions.csv: $(SRC)/TIMESERIES.csv $(SRC)/TIMESERIES_S3_MAP_REFINED.csv $(SRC)/intervalDuration.csv $(SQL)/time_series_definitions.sql | build
+# 	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_definitions.sql"
 
 build/time_series_measures.csv: $(SRC)/TIMESERIES_DEFS.csv $(SRC)/TIMESERIES_IDS.csv $(SQL)/time_series_measures.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_measures.sql"
