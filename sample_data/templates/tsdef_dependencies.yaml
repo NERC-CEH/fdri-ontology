@@ -1,0 +1,15 @@
+globals:
+    $baseURI: http://fdri.ceh.ac.uk/
+    $datasetID: cosmos
+
+imports:
+    - namespaces.yaml
+    - concept_schemes.yaml
+    - extensions.py
+
+resources:
+  - name: TSPlan
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series-plan/{TIMESERIES_DEF|slug}>"
+      "@type": "<fdri:TimeSeriesPlan>"
+      "<fdri:uses>": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{DEPENDS_ON|slug}>"
