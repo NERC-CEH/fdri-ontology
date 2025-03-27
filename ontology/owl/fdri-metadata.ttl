@@ -1195,7 +1195,12 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Measure
 :Measure rdf:type owl:Class ;
-         rdfs:subClassOf [ rdf:type owl:Restriction ;
+         rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                           owl:allValuesFrom :MeasureScheme
+                         ] ,
+                         [ rdf:type owl:Restriction ;
                            owl:onProperty :hasUnit ;
                            owl:cardinality "1"^^xsd:nonNegativeInteger
                          ] ,
@@ -1208,6 +1213,11 @@ above the local reference ellipsoid).""" ;
                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ;
          rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/MeasureScheme
+:MeasureScheme rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/MobileDeployment

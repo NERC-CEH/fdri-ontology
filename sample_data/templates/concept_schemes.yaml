@@ -41,6 +41,13 @@ one_offs:
       "<dct:title>": "Data Processing Methods@en"
       "<rdfs:label>": "Data Processing Methods@en"
   
+  - name: MeasureScheme
+    properties:
+      "@id": <http://fdri.ceh.ac.uk/ref/common/measure>
+      "@type": "<fdri:MeasureScheme>"
+      "<dct:title>": "FDRI Commmon Measures@en"
+      "<rdfs:label>": "FDRI Commmon Measures@en"
+
   - name: ObjectOfInterestScheme
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/object-of-interest>"
