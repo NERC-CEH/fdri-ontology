@@ -55,7 +55,7 @@ resources:
       "<fdri:observationInterval>":
         name: Interval
         properties:
-          "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-{TIMESERIES_ID|slug}-{START_DATETIME|slug}#interval>"
+          "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-{TIMESERIES_ID|slug}-{START_DATETIME|slug}#observationInterval>"
           "@type": "<dct:PeriodOfTime>"
           "<dcat:startDate>": "{START_DATETIME | asDateTime}"
           "<dcat:endDate>": "{END_DATETIME | asDateTime}"
