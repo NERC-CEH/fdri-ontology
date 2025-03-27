@@ -112,7 +112,7 @@ resources:
       "<fdri:interval>":
         name: CurrentValuePeriod
         properties:
-          "@id": "<_>"
+          "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}.interval>"
           "@type": <dct:PeriodOfTime>
           "<dcat:startDate>": "{START_DATE}^^<xsd:date>"
       "<schema:valueReference>": <::LandCoverClass>
@@ -126,7 +126,7 @@ resources:
       "<fdri:interval>":
         name: PreviousValuePeriod
         properties:
-          "@id": "<_>"
+          "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}.interval>"
           "@type": <dct:PeriodOfTime>
           "<dcat:startDate>": "{START_DATE}^^<xsd:date>"
           "<dcat:endDate>": "{END_DATE}^^<xsd:date>"
@@ -135,27 +135,27 @@ resources:
     requires:
       SOURCE:
     properties:
-      "@id": "<_>"
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}.source>"
       "@type": <fdri:Annotation>
       "^<fdri:qualifier>": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}>"
       "<fdri:property>": <::ObservationSource>
       "<fdri:hasValue>":
         name: SourceAnnotationValue
         properties:
-          "@id": "<_>"
+          "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}.source.value>"
           "@type": <schema:PropertyValue>
           "<schema:value>": "{SOURCE}"
   - name: CommentAnnotation
     requires:
       COMMENTS:
     properties:
-      "@id": "<_>"
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}.comment>"
       "@type": <fdri:Annotation>
       "^<fdri:qualifier>": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}>"
       "<fdri:property>": <::ObservationComment>
       "<fdri:hasValue>":
         name: CommentAnnotationValue
         properties:
-          "@id": "<_>"
+          "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-{SITE_ID|slug}-observed-land-cover#value-{START_DATE|slug}.comment.value>"
           "@type": <schema:PropertyValue>
           "<schema:value>": "{COMMENTS}"

@@ -58,13 +58,13 @@ resources:
       "<fdri:argument>":
         - name: MaskFilenameArgument
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/{SITE_ID|slug}-{FEATURE_ID|slug}-{RESOLUTION|slug}-{SEQ|slug}#mask-filename>"
             "@type": <fdri:ConfigurationArgument>
             "<fdri:parameter>": <::MaskFilenameParameter>
             "<fdri:hasValue>":
               - name: MaskFilenameArgumentValue
                 properties:
-                  "@id": <_>
+                  "@id": <http://fdri.ceh.ac.uk/id/configuration-item/{SITE_ID|slug}-{FEATURE_ID|slug}-{RESOLUTION|slug}-{SEQ|slug}#mask-filename.value>
                   "@type": <schema:PropertyValue>
                   "<schema:value>": "{MASK_FILENAME}"
   - name: HistoricalConfigurationItem
@@ -77,7 +77,7 @@ resources:
       "<fdri:observationInterval>":
         - name: ClosedDateRange
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/{SITE_ID|slug}-{FEATURE_ID|slug}-{RESOLUTION|slug}-{SEQ|slug}.interval>"
             "@type": <dct:PeriodOfTime>
             "<dcat:startDate>": "{START}^^<xsd:dateTime>"
             "<dcat:endDate>": "{END}^^<xsd:dateTime>"
@@ -91,6 +91,6 @@ resources:
       "<fdri:observationInterval>":
         - name: OpenDateRange
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/{SITE_ID|slug}-{FEATURE_ID|slug}-{RESOLUTION|slug}-{SEQ|slug}.interval>"
             "@type": <dct:PeriodOfTime>
             "<dcat:startDate>": "{START}^^<xsd:dateTime>"
