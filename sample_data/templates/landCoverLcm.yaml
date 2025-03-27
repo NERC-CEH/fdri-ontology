@@ -38,30 +38,30 @@ one_offs:
 resources:
   - name: LandCoverMeasureSeries
     properties:
-      "@id": "<_>"
+      "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}#land-cover-series>"
       "@type": "<fdri:PropertyValueSeries>"
       "^<fdri:landCover>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}>"
       "<fdri:hasCurrentValue>":
         name: LandCoverCurrentValue
         properties:
-          "@id": "<_>"
+          "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}#land-cover-{LCM_CLASS|asInt}.{START_DATE|slug}>"
           "@type": "<fdri:TimeBoundPropertyValue>"
           "<fdri:interval>":
             name: LandCoverCurrentValueInterval
             properties:
-              "@id": "<_>"
+              "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}#land-cover-{LCM_CLASS|asInt}.{START_DATE|slug}.interval>"
               "@type": "<dct:PeriodOfTime>"
               "<dcat:startDate>": "{START_DATE | asDate}"
           "<schema:valueReference>": "<http://fdri.ceh.ac.uk/ref/cosmos/land-cover/{LCM_CLASS|asInt}>"
           "<fdri:qualifier>":
             name: LandCoverAreaQualifier
             properties:
-              "@id": "<_>"
+              "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}#land-cover-{LCM_CLASS|asInt}.{START_DATE|slug}.qualifier>"
               "@type": "<fdri:Annotation>"
               "<fdri:property>": "<::LandCoverRatio>"
               "<fdri:hasValue>":
                 name: LandCoverAreaQualifierValue
                 properties:
-                  "@id": "<_>"
+                  "@id": "<http://fdri.ceh.ac.uk/id/site/cosmos-{SITE_ID|slug}#land-cover-{LCM_CLASS|asInt}.{START_DATE|slug}.qualifier.value>"
                   "@type": "<schema:PropertyValue>"
                   "<schema:value>": "{AREA_RATIO | asDecimal}"   

@@ -25,31 +25,30 @@ RECORDS = \
 	TimeSeriesDataset \
 	TimeSeriesDefinition
 
-SAMPLES = \
-	$(TTL_BASE)/alt_data_config.ttl \
-	$(TTL_BASE)/CORRECTION_FACTORS.ttl \
-	$(TTL_BASE)/CORRECTION_METHODS.ttl \
-	$(TTL_BASE)/infill_config.ttl \
-	$(TTL_BASE)/INSTRUMENTATION.ttl \
-	$(TTL_BASE)/instrumentationVariablesProperties.ttl \
-	$(TTL_BASE)/LAND_COVER_LCM_CLASSES.ttl \
-	$(TTL_BASE)/landCoverLcm.ttl \
-	$(TTL_BASE)/landCoverObservations.ttl \
-	$(TTL_BASE)/monitoring_system_variables.ttl \
-	$(TTL_BASE)/parameterProperties.ttl \
-	$(TTL_BASE)/parameter_ranges.ttl \
-	$(TTL_BASE)/phenocam_mask_config.ttl \
-	$(TTL_BASE)/processingLevels.ttl \
-	$(TTL_BASE)/sensor_calibrations.ttl \
-	$(TTL_BASE)/sensor_deployments.ttl \
-	$(TTL_BASE)/sensor_faults.ttl \
-	$(TTL_BASE)/sensor_firmware_configurations.ttl \
-	$(TTL_BASE)/SITES.ttl \
-	$(TTL_BASE)/siteVariance.ttl \
-	$(TTL_BASE)/STATISTICS.ttl \
-	$(TTL_BASE)/time_series_datasets.ttl \
-	$(TTL_BASE)/time_series_definitions.ttl \
-	$(TTL_BASE)/time_series_measures.ttl
+SAMPLES += $(TTL_BASE)/alt_data_config.ttl
+SAMPLES += $(TTL_BASE)/CORRECTION_FACTORS.ttl
+SAMPLES += $(TTL_BASE)/CORRECTION_METHODS.ttl
+SAMPLES += $(TTL_BASE)/infill_config.ttl
+SAMPLES += $(TTL_BASE)/INSTRUMENTATION.ttl
+SAMPLES += $(TTL_BASE)/instrumentation_parameters.ttl
+SAMPLES += $(TTL_BASE)/LAND_COVER_LCM_CLASSES.ttl
+SAMPLES += $(TTL_BASE)/landCoverLcm.ttl
+SAMPLES += $(TTL_BASE)/landCoverObservations.ttl
+SAMPLES += $(TTL_BASE)/PARAMETER_RANGES_QC.ttl
+SAMPLES += $(TTL_BASE)/PARAMETERS_IDS.ttl
+# SAMPLES += $(TTL_BASE)/phenocam_mask_config.ttl
+SAMPLES += $(TTL_BASE)/processingLevels.ttl
+SAMPLES += $(TTL_BASE)/sensor_calibrations.ttl
+SAMPLES += $(TTL_BASE)/sensor_deployments.ttl
+SAMPLES += $(TTL_BASE)/sensor_faults.ttl
+SAMPLES += $(TTL_BASE)/sensor_firmware_configurations.ttl
+SAMPLES += $(TTL_BASE)/SITES.ttl
+SAMPLES += $(TTL_BASE)/siteVariance.ttl
+SAMPLES += $(TTL_BASE)/STATISTICS.ttl
+SAMPLES += $(TTL_BASE)/TIMESERIES_DEFS.ttl
+SAMPLES += $(TTL_BASE)/TIMESERIES_IDS.ttl
+SAMPLES += $(TTL_BASE)/time_series_measures.ttl
+SAMPLES += $(TTL_BASE)/UNITS.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
@@ -57,6 +56,7 @@ CONTEXTS = $(RECORDS:%=build/context/%.context.jsonld)
 
 REPORTS = $(SAMPLES:$(TTL_BASE)/%.ttl=$(VAL)/%.ttl)
 
+data: validate reports full_validation
 all: validate schemas contexts reports full_validation
 
 pull:
@@ -106,11 +106,8 @@ build/shacl:
 build/data:
 	mkdir -p build/data
 
-# build/correction_configurations.csv: build/time_series_datasets.csv $(SRC)/CORRECTION_FACTORS.csv $(SQL)/correction_configurations.sql | build
-# 	$(RUN) /bin/bash -c "duckdb < $(SQL)/correction_configurations.sql"
-
-build/instrumentationVariablesProperties.csv: $(SRC)/instrumentation_variables.csv $(SRC)/variableProperties.csv $(SQL)/instrumentationVariablesProperties.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/instrumentationVariablesProperties.sql"
+build/instrumentation_parameters.csv: $(SRC)/TIMESERIES_IDS.csv $(SRC)/SENSOR_SLOT_IDS.csv $(SQL)/instrumentation_parameters.sql | build
+	$(RUN) /bin/bash -c "duckdb < $(SQL)/instrumentation_parameters.sql"
 
 build/landCoverLcm.csv: $(SRC)/LAND_COVER_LCM.csv $(SQL)/landCoverLcm.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/landCoverLcm.sql"
@@ -118,25 +115,16 @@ build/landCoverLcm.csv: $(SRC)/LAND_COVER_LCM.csv $(SQL)/landCoverLcm.sql | buil
 build/landCoverObservations.csv: $(SRC)/LAND_COVER_OBSERVED.csv $(SQL)/landCoverObservations.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/landCoverObservations.sql"
 
-build/monitoring_system_variables.csv: $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/TIMESERIES.csv $(SQL)/monitoring_system_variables.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/monitoring_system_variables.sql"
-
-build/parameter_ranges.csv: $(SRC)/PARAMETER_RANGES_QC.csv $(SRC)/TIMESERIES.csv $(SQL)/parameter_ranges.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/parameter_ranges.sql"
-
 build/phenocam_mask_config.csv: $(SRC)/PHENOCAM_MASKS.csv $(SQL)/phenocam_mask_config.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/phenocam_mask_config.sql"
 
-# build/qc_range_configuration_items.csv: $(SRC)/PARAMETER_RANGES_QC.csv build/time_series_datasets.csv $(SQL)/qc_range_configuration_items.sql | build
-# 	$(RUN) /bin/bash -c "duckdb < $(SQL)/qc_range_configuration_items.sql"
-
-build/sensor_calibrations.csv: $(SRC)/calib_factors_nr01_anem.csv $(SRC)/PARAMETERS_INSTRUMENTS.csv $(SRC)/SITE_INSTRUMENTATION.csv build/time_series_definitions.csv $(SQL)/sensor_calibrations.sql | build
+build/sensor_calibrations.csv: $(SRC)/calib_factors_nr01_anem.csv $(SRC)/SENSOR_SLOT_IDS.csv  $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/TIMESERIES_DEFS.csv $(SRC)/TIMESERIES_IDS.csv $(SQL)/sensor_calibrations.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/sensor_calibrations.sql"
 
-build/sensor_deployments.csv: $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SRC)/variableProperties.csv $(SQL)/sensor_deployments.sql | build
+build/sensor_deployments.csv: $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/SENSOR_SLOT_IDS.csv $(SRC)/TIMESERIES_IDS.csv $(SQL)/sensor_deployments.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/sensor_deployments.sql"
 
-build/sensor_faults.csv: $(SRC)/SENSOR_FAULTS.csv $(SRC)/PARAMETERS.csv build/sensor_deployments.csv $(SQL)/sensor_faults.sql | build
+build/sensor_faults.csv: $(SRC)/SENSOR_FAULTS.csv $(SRC)/TIMESERIES_DEFS.csv build/sensor_deployments.csv $(SQL)/sensor_faults.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/sensor_faults.sql"
 
 build/sensor_firmware_configurations.csv: $(SRC)/Firmware_history.csv $(SQL)/sensor_firmware_configurations.sql | build
@@ -145,14 +133,8 @@ build/sensor_firmware_configurations.csv: $(SRC)/Firmware_history.csv $(SQL)/sen
 build/siteVariance.csv: $(SRC)/SITES.csv $(SQL)/siteLayout.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/siteLayout.sql"
 
-build/time_series_measures.csv: $(SRC)/TIMESERIES.csv $(SRC)/intervalDuration.csv $(SQL)/time_series_measures.sql | build
+build/time_series_measures.csv: $(SRC)/TIMESERIES_DEFS.csv $(SRC)/TIMESERIES_IDS.csv $(SQL)/time_series_measures.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_measures.sql"
-
-build/time_series_datasets.csv: build/time_series_definitions.csv build/time_series_measures.csv $(SRC)/SITE_INSTRUMENTATION.csv $(SRC)/TIMESERIES_S3_MAP_REFINED.csv $(SRC)/VARIABLE_INSTRUMENTATION.csv $(SQL)/time_series_datasets.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_datasets.sql"
-
-build/time_series_definitions.csv: $(SRC)/TIMESERIES.csv $(SRC)/TIMESERIES_S3_MAP_REFINED.csv $(SRC)/intervalDuration.csv $(SQL)/time_series_definitions.sql | build
-	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_definitions.sql"
 
 $(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml $(SRC)/%.csv | build/data
 	$(MAPPER) $(TPL)/$*.yaml $(SRC)/$*.csv $@
@@ -163,8 +145,8 @@ $(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml build/%.csv | build/data
 $(VAL)/%.ttl: $(TTL_BASE)/%.ttl $(SHACL_BASE)/fdri_shacl.ttl  | build/validation
 	$(RUN) /bin/bash -c "shacl v -d $(TTL_BASE)/$*.ttl -s $(SHACL_BASE)/fdri_shacl.ttl > $@"
 
-$(VAL)/data.ttl: $(SAMPLES) ontology/owl/fdri-metadata.ttl | build/validation 
-	$(RUN) riot --output=ttl $^ > $@
+$(VAL)/data.nt: $(SAMPLES) ontology/owl/fdri-metadata.ttl | build/validation 
+	$(RUN) riot --output=nt $^ > $@
 
-$(VAL)/full_report.ttl: $(VAL)/data.ttl $(SHACL_BASE)/fdri_shacl_with_refs.ttl | build/validation
-	$(RUN) shacl v -d $(VAL)/data.ttl -s $(SHACL_BASE)/fdri_shacl_with_refs.ttl > $@
+$(VAL)/full_report.ttl: $(VAL)/data.nt $(SHACL_BASE)/fdri_shacl_with_refs.ttl | build/validation
+	$(RUN) shacl v -d $(VAL)/data.nt -s $(SHACL_BASE)/fdri_shacl_with_refs.ttl > $@

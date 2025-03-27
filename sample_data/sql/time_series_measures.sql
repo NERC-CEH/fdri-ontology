@@ -1,18 +1,10 @@
-create table TS as from read_csv('./sample_data/src/TIMESERIES.csv', AUTO_DETECT=true);
-CREATE TABLE PP aS FROM read_csv('./sample_data/src/parameterProperties.csv', AUTO_DETECT=true) ;
-CREATE TABLE ID AS FROM read_csv('./sample_data/src/intervalDuration.csv', AUTO_DETECT=true);
+create table TS as from read_csv('./sample_data/src/TIMESERIES_IDS.csv', AUTO_DETECT=true);
+CREATE TABLE TD aS FROM read_csv('./sample_data/src/TIMESERIES_DEFS.csv', AUTO_DETECT=true) ;
 
 COPY(
 SELECT TIMESERIES_ID,
-    TS.PARAMETER_ID,
-    TS.INTERVAL_ID,
-    DURATION,
-    STATISTIC_ID,
-    UNIT,
-    QUDT_UNIT,
-    UNIT_NAME
+    CONCAT(TD.PARAMETER_ID, '-', TD.UNIT_ID, '-', TD.STATISTIC_ID, '-', TD.RESOLUTION, '-', TD.PERIODICITY) AS MEASURE_ID,
+    TD.PROCESS_LEVEL
 FROM TS
-JOIN PP on TS.PARAMETER_ID=PP.PARAMETER_ID
-JOIN ID on TS.INTERVAL_ID=ID.INTERVAL_ID
-WHERE UNIT IS NOT NULL
+JOIN TD on TS.TIMESERIES_DEF=TD.TIMESERIES_DEF
 ) TO './build/time_series_measures.csv' (HEADER, DELIMITER ',') ;

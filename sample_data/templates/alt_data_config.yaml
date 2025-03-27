@@ -74,22 +74,21 @@ one_offs:
 resources:
   - name: DataProcessingConfiguration
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-infill-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<dct:type>": <::InfillConfiguration>
-      "<fdri:appliesToFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{FACILITY_ID|slug}>"
-      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/ref/cosmos/time-series/{VARIABLE_ID|slug}>
+      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/id/dataset/{TIMESERIES_ID|slug}>
 
   - name: PriorityAnnotation
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}>"
       "@type": "<fdri:Annotation>"
       "^<fdri:hasAnnotation>": <::DataProcessingConfiguration>
       "<fdri:property>": "<::PriorityAnnotationProperty>"
       "<fdri:hasValue>":
         - name: PriorityAnnotationValue
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}#value>"
             "@type": "<schema:PropertyValue>"
             "<schema:value>": "{PRIORITY}^^<xsd:integer>"
 
@@ -104,7 +103,7 @@ resources:
 
   - name: AltDataProcessingConfigurationItem
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-configuration-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}-{ALT_FACILITY_ID}-{ALT_VARIABLE_ID}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-configuration-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}-{ALT_TIMESERIES_ID|slug}>"
       "@type": <fdri:ConfigurationItem>
       "<fdri:method>": <::InfillMethod>
       "<fdri:argument>":
@@ -112,19 +111,19 @@ resources:
           requires:
             CORRECTION_FACTOR:
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-configuration-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}-{ALT_TIMESERIES_ID|slug}#correction-factor>"
             "@type": <fdri:Argument>
             "<fdri:parameter>": <::CorrectionFactorParameter>
             "<fdri:hasValue>":
               name: CorrectionFactorValue
               properties:
-                "@id": "<_>"
+                "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-configuration-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}-{ALT_TIMESERIES_ID|slug}#correction-factor.value>"
                 "@type": <schema:PropertyValue>
                 "<schema:value>": "{CORRECTION_FACTOR}^^<xsd:decimal>"
 
   - name: CurrentConfigurationItem
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}>"
       "@type": <fdri:ConfigurationItem>
       "^<fdri:hasCurrentConfiguration>": <::DataProcessingConfiguration>
       "<fdri:method>": <::AltDataMethod>
@@ -133,7 +132,7 @@ resources:
           requires:
             END_DATETIME:
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#interval>"
             "@type": <dct:PeriodOfTime>
             "<dcat:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
             "<dcat:endDate>": "{END_DATETIME}^^<xsd:dateTime>"
@@ -141,29 +140,29 @@ resources:
           requires:
             END_DATETIME: ""
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#interval>"
             "@type": <dct:PeriodOfTime>
             "<dcat:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
       "<fdri:argument>":
         - name: AltData
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#alt-data>"
             "@type": "<fdri:Argument>"
             "<fdri:parameter>": "<::AltDataTimeseriesParameter>"
             "<fdri:hasValue>":
               - name: AltDataValue
                 properties:
-                  "@id": "<_>"
+                  "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#alt-data.value>"
                   "@type": <schema:PropertyValue>
-                  "<schema:valueReference>": <http://fdri.ceh.ac.uk/id/dataset/cosmos-{ALT_FACILITY_ID|slug}-{ALT_VARIABLE_ID|slug}>
+                  "<schema:valueReference>": <http://fdri.ceh.ac.uk/id/time-series/{ALT_TIMESERIES_ID|slug}>
         - name: AltDataConfig
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#alt-data-config>"
             "@type": "<fdri:Argument>"
             "<fdri:parameter>": "<::AltDataConfigurationParameter>"
             "<fdri:hasValue>":
                 name: AltDataConfigValue
                 properties:
-                  "@id": <_>
+                  "@id": <http://fdri.ceh.ac.uk/id/configuration-item/cosmos-alt_data-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#alt-data-config.value>
                   "@type": <schema:PropertyValue>
                   "<schema:valueReference>": "<::AltDataProcessingConfigurationItem>"

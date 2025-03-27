@@ -53,22 +53,21 @@ one_offs:
 resources:
   - name: DataProcessingConfiguration
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-infill-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/configuration-type/infill-configuration>"
-      "<fdri:appliesToFacility>": "<http://fdri.ceh.ac.uk/id/site/cosmos-{FACILITY_ID|slug}>"
-      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/ref/cosmos/time-series/{VARIABLE_ID|slug}>
+      "<fdri:appliesToTimeSeries>": <http://fdri.ceh.ac.uk/id/dataset/{TIMESERIES_ID|slug}>
   
   - name: PriorityAnnotation
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}>"
       "@type": "<fdri:Annotation>"
       "^<fdri:hasAnnotation>": <::DataProcessingConfiguration>
       "<fdri:property>": "<::PriorityAnnotationProperty>"
       "<fdri:hasValue>":
         - name: PriorityAnnotationValue
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}#value>"
             "@type": "<schema:PropertyValue>"
             "<schema:value>": "{PRIORITY}^^<xsd:integer>"
 
@@ -81,7 +80,7 @@ resources:
 
   - name: CurrentConfigurationItem
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{FACILITY_ID|slug}-{VARIABLE_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}>"
       "@type": "<fdri:ConfigurationItem>"
       "^<fdri:hasCurrentConfiguration>": "<::DataProcessingConfiguration>"
       "<fdri:observationInterval>":
@@ -89,7 +88,7 @@ resources:
           requires:
             END_DATETIME:
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#value>"
             "@type": <dct:PeriodOfTime>
             "<dct:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
             "<dcat:endDate>": "{END_DATETIME}^^<xsd:dateTime>"
@@ -97,7 +96,7 @@ resources:
           requires:
             END_DATETIME: ""
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#value>"
             "@type": <dct:PeriodOfTime>
             "<dcat:startDate>": "{START_DATETIME}^^<xsd:dateTime>"
       "<fdri:method>": "<http://fdri.ceh.ac.uk/ref/common/method/{METHOD}>"
@@ -106,26 +105,26 @@ resources:
           requires:
             WINDOW:
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#window>"
             "@type": <fdri:Argument>
             "<fdri:parameter>": <::WindowParameter>
             "<fdri:hasValue>":
               name: WindowValue
               properties:
-                "@id": "<_>"
+                "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#window.value>"
                 "@type": <schema:PropertyValue>
                 "<schema:value>": "{WINDOW}^^<xsd:integer>"
         - name: MaxGapSize
           requires:
             MAX_GAP_SIZE:
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#gap>"
             "@type": <fdri:Argument>
             "<fdri:parameter>": <::MaxGapSizeParameter>
             "<fdri:hasValue>":
               name: MaxGapSizeValue
               properties:
-                "@id": "<_>"
+                "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-infill-{TIMESERIES_ID|slug}-{PRIORITY|slug}-{START_DATETIME|slug}#gap.value>"
                 "@type": <schema:PropertyValue>
                 "<schema:value>": "{MAX_GAP_SIZE}^^<xsd:integer>"
 

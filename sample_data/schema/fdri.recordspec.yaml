@@ -962,7 +962,7 @@ records:
              applies to all faciltiies of that type.
         propertyUri: fdri:appliesToFacility
         kind: object
-        required: true
+        required: false
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacilityType
@@ -981,6 +981,7 @@ records:
         repeatable: true
         constraints:
           - record: TimeSeriesDefinition
+          - record: TimeSeriesDataset
       type:
         label:
           - value: configuration type
@@ -2197,8 +2198,14 @@ records:
           A combination of a variable that is measured with the unit of measurement and an optional aggregation.
         lang: en
     classUri: fdri:Measure
+    extends: Concept
     shortCode: Measure
     properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: MeasureScheme
       aggregation:
         propertyUri: fdri:aggregation
         kind: object
@@ -2214,7 +2221,15 @@ records:
         kind: object
         constraints:
           - record: Variable
-      
+  
+  MeasureScheme:
+    label:
+      - value: Measure Scheme
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:MeasureScheme
+    shortCode: MeasureScheme
+
   ObservationDataset:
     label:
       - value: Observation Dataset
@@ -2277,6 +2292,18 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
+      originatingSite:
+        label:
+          - value: originating site
+            lang: en
+        description:
+          - value: The environmental monitoring site whic provided some portion of the content of this dataset.
+            lang: en
+        propertyUri: fdri:originatingSite
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringSite
       originatingProgramme:
         label:
           - value: originating programme
@@ -3102,45 +3129,18 @@ records:
         repeatable: false
         constraints:
           - record: EnvironmentalMonitoringFacility
-
-
-  TimeSeriesDefinition:
-    label:
-      - value: Time Series Definition
-        lang: en
-    description:
-      - value: A representation of a time series of some observed or derived measurement of a variable.
-        lang: en
-    classUri: fdri:TimeSeriesDefinition
-    extends: Concept
-    shortCode: TimeSeriesDefinition
-    properties:
-      measure:
+      originatingSite:
         label:
-          - value: measure
+          - value: originating site
             lang: en
         description:
-          - value: The measure(s) recorded by the dataset. A measure consists of a variable, a unit of measurement, and an optional aggregation.
+          - value: The environmental monitoring site whic provided some portion of the content of this dataset.
             lang: en
-        propertyUri: fdri:measure
+        propertyUri: fdri:originatingSite
         kind: object
+        repeatable: false
         constraints:
-          - record: Measure
-      methodology:
-        propertyUri: fdri:methodology
-        kind: object
-        constraints:
-          - record: TimeSeriesPlan
-      observedProperty:
-        propertyUri: sosa:observedProperty
-        kind: object
-        constraints:
-          - record: Variable
-      processingLevel:
-        propertyUri: fdri:processingLevel
-        kind: object
-        constraints:
-          - record: ProcessingLevel
+          - record: EnvironmentalMonitoringSite
       sourceBucket:
         label:
           - value: source bucket
@@ -3179,6 +3179,44 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
+
+  TimeSeriesDefinition:
+    label:
+      - value: Time Series Definition
+        lang: en
+    description:
+      - value: A representation of a time series of some observed or derived measurement of a variable.
+        lang: en
+    classUri: fdri:TimeSeriesDefinition
+    extends: Concept
+    shortCode: TimeSeriesDefinition
+    properties:
+      measure:
+        label:
+          - value: measure
+            lang: en
+        description:
+          - value: The measure(s) recorded by the dataset. A measure consists of a variable, a unit of measurement, and an optional aggregation.
+            lang: en
+        propertyUri: fdri:measure
+        kind: object
+        constraints:
+          - record: Measure
+      methodology:
+        propertyUri: fdri:methodology
+        kind: object
+        constraints:
+          - record: TimeSeriesPlan
+      observedProperty:
+        propertyUri: sosa:observedProperty
+        kind: object
+        constraints:
+          - record: Variable
+      processingLevel:
+        propertyUri: fdri:processingLevel
+        kind: object
+        constraints:
+          - record: ProcessingLevel
 
   TimeSeriesPlan:
     classUri: fdri:TimeSeriesPlan

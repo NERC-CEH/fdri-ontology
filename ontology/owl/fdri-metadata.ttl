@@ -76,7 +76,11 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToTimeSeries
 :appliesToTimeSeries rdf:type owl:ObjectProperty ;
-                     rdfs:range :TimeSeriesDefinition .
+                     rdfs:range [ rdf:type owl:Class ;
+                                  owl:unionOf ( :TimeSeriesDataset
+                                                :TimeSeriesDefinition
+                                              )
+                                ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToVariable
@@ -259,6 +263,12 @@ above the local reference ellipsoid).""" ;
 :originatingProgramme rdf:type owl:ObjectProperty ;
                       rdfs:domain :ObservationDataset ;
                       rdfs:range :EnvironmentalMonitoringProgramme .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/originatingSite
+:originatingSite rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :originatingFacility ;
+                 rdfs:comment "Relates a dataset of observations to the Environmental Monitoring Site from which the observations originated."@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/parameter
@@ -1185,7 +1195,12 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Measure
 :Measure rdf:type owl:Class ;
-         rdfs:subClassOf [ rdf:type owl:Restriction ;
+         rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                           owl:allValuesFrom :MeasureScheme
+                         ] ,
+                         [ rdf:type owl:Restriction ;
                            owl:onProperty :hasUnit ;
                            owl:cardinality "1"^^xsd:nonNegativeInteger
                          ] ,
@@ -1198,6 +1213,11 @@ above the local reference ellipsoid).""" ;
                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ;
          rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/MeasureScheme
+:MeasureScheme rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/MobileDeployment
@@ -1250,6 +1270,10 @@ above the local reference ellipsoid).""" ;
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :originatingProgramme ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :originatingSite ;
                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;
@@ -1510,6 +1534,18 @@ above the local reference ellipsoid).""" ;
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty <http://purl.org/dc/terms/type> ;
                                      owl:allValuesFrom :TimeSeriesDefinition
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :sourceBucket ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :sourceColumnName ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :sourceDataset ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
                    rdfs:comment "A Dataset consisting of a collection of measurements of one or more Observable Properties of some Feature of Interest at regular intervals over a period of time."@en ;
                    rdfs:label "Time-Series Dataset"@en .
@@ -1530,18 +1566,6 @@ above the local reference ellipsoid).""" ;
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :valueStatistic ;
                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :sourceBucket ;
-                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :sourceColumnName ;
-                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :sourceDataset ;
-                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                       ] .
 
 
@@ -1556,6 +1580,20 @@ above the local reference ellipsoid).""" ;
                                   owl:onProperty :uses ;
                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
                                 ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/Unit
+:Unit rdf:type owl:Class ;
+      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                        owl:allValuesFrom :UnitScheme
+                      ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/UnitScheme
+:UnitScheme rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic

@@ -59,7 +59,7 @@ resources:
       "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-calibration-configuration-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_ID|slug}>"
       "@type": "<fdri:InternalDataProcessingConfiguration>"
       "<fdri:appliesToFacility>": <::Sensor>
-      "<fdri:appliesToTimeSeries>": "<http://fdri.ceh.ac.uk/ref/cosmos/time-series/{TIMESERIES_ID|slug}>"
+      "<fdri:appliesToTimeSeries>": "<http://fdri.ceh.ac.uk/id/dataset/{TIMESERIES_ID|slug}>"
       "<dct:type>": <::SensorCalibrationConfiguration>
 
   
@@ -74,7 +74,7 @@ resources:
       "<fdri:observationInterval>":
         - name: CalibrationConfigurationInterval
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_ID|slug}-{START_TIMESTAMP|slug}#interval>"
             "@type": "<dct:PeriodOfTime>"
             "<dcat:startDate>": "{START_TIMESTAMP}^^<xsd:dateTime>"
             "<dcat:endDate>": "{END_TIMESTAMP}^^<xsd:dateTime>"
@@ -88,7 +88,7 @@ resources:
       "<fdri:hasValue>":
         - name: CalibrationConfigurationItemValue
           properties:
-            "@id": "<_>"
+            "@id": "<http://fdri.ceh.ac.uk/id/configuration-argument/cosmos-{INSTRUMENT_ID|slug}-{SERIAL_NUMBER|slug}-{TIMESERIES_ID|slug}-{START_TIMESTAMP|slug}#value>"
             "@type": "<schema:PropertyValue>"
             "<schema:value>": "{CORRECTION_FACTOR}^^<xsd:decimal>"
       "^<fdri:argument>": <::CalibrationConfigurationItem>
