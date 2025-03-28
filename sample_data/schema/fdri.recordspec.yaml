@@ -2198,8 +2198,14 @@ records:
           A combination of a variable that is measured with the unit of measurement and an optional aggregation.
         lang: en
     classUri: fdri:Measure
+    extends: Concept
     shortCode: Measure
     properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: MeasureScheme
       aggregation:
         propertyUri: fdri:aggregation
         kind: object
@@ -2215,7 +2221,15 @@ records:
         kind: object
         constraints:
           - record: Variable
-      
+  
+  MeasureScheme:
+    label:
+      - value: Measure Scheme
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:MeasureScheme
+    shortCode: MeasureScheme
+
   ObservationDataset:
     label:
       - value: Observation Dataset
