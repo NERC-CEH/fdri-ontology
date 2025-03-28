@@ -3229,6 +3229,12 @@ records:
         repeatable: true
         constraints:
           - record: TimeSeriesDefinition
+      configuration:
+        propertyUri: fdri:configuration
+        kind: object
+        repeatable: false
+        constraints:
+          - record: DataProcessingConfiguration
   Unit:
     label:
       - value: Unit Of Measure

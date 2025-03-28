@@ -48,6 +48,8 @@ SAMPLES += $(TTL_BASE)/STATISTICS.ttl
 SAMPLES += $(TTL_BASE)/TIMESERIES_DEFS.ttl
 SAMPLES += $(TTL_BASE)/TIMESERIES_IDS.ttl
 SAMPLES += $(TTL_BASE)/time_series_measures.ttl
+SAMPLES += $(TTL_BASE)/tsdef_dependencies.ttl
+SAMPLES += $(TTL_BASE)/tsdef_methods.ttl
 SAMPLES += $(TTL_BASE)/UNITS.ttl
 
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
@@ -136,8 +138,20 @@ build/siteVariance.csv: $(SRC)/SITES.csv $(SQL)/siteLayout.sql | build
 build/time_series_measures.csv: $(SRC)/TIMESERIES_DEFS.csv $(SRC)/TIMESERIES_IDS.csv $(SQL)/time_series_measures.sql | build
 	$(RUN) /bin/bash -c "duckdb < $(SQL)/time_series_measures.sql"
 
+build/tsdef_dependencies.csv: build/TIMESERIES_DEF_DEPENDENCIES_LINES.json $(SQL)/tsdef_dependencies.sql | build
+	$(RUN) /bin/bash -c "duckdb < $(SQL)/tsdef_dependencies.sql"
+
+build/tsdef_methods.csv: build/TIMESERIES_DEF_DEPENDENCIES_LINES.json $(SQL)/tsdef_methods.sql | build
+	$(RUN) /bin/bash -c "duckdb < $(SQL)/tsdef_methods.sql"
+
+build/TIMESERIES_DEF_DEPENDENCIES_LINES.json: $(SRC)/TIMESERIES_DEF_DEPENDENCIES.json $(SQL)/TIMESERIES_DEF_DEPENDENCIES_LINES.jq | build
+	$(RUN) /bin/bash -c "jq -c -f $(SQL)/TIMESERIES_DEF_DEPENDENCIES_LINES.jq < $(SRC)/TIMESERIES_DEF_DEPENDENCIES.json > $@"
+
 $(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml $(SRC)/%.csv | build/data
 	$(MAPPER) $(TPL)/$*.yaml $(SRC)/$*.csv $@
+
+$(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml $(SRC)/%.json | build/data
+	$(MAPPER) $(TPL)/$*.yaml $(SRC)/$*.json $@
 
 $(TTL_BASE)/%.ttl: $(TPL)/namespaces.yaml $(TPL)/%.yaml build/%.csv | build/data
 	$(MAPPER) $(TPL)/$*.yaml build/$*.csv $@
