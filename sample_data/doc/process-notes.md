@@ -227,6 +227,20 @@ In many cases some preprocessing is performed by a SQL (duckdb) script. These ca
 
 **Update requirements:** Bulk update on CV change
 
+### Time Series Derivations
+
+**What:** Provides the derivation process, sources, method, and parameters for the processing of derived time series.
+
+**Pre-processing**: Conversion from singleton JSON object to JSON lines to aid pre-processing in duckdb. The converted
+JSON is then loaded into duckdb and transformed into a pair of tables: one mapping the derived TSDEF to its dependency TSDEFs,
+the other providing the derivation, method and additional arguments for the TSDEF.
+
+**Generates**: TimeSeriesPlan associated with the derived TSDEF, specifying dependencies and the processing configuration.
+
+**Future source:** Assume incrementally updated as new derived TSDEFs are defined and/or when the processing for a derived TSDEF is modified.
+
+**Update requirements:** Update API to create new plans or update the sources and configuration for existing plans
+
 ## Datasets and variables
 
 ### `STATISTICS`
