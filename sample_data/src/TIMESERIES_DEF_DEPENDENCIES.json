@@ -824,7 +824,7 @@
         "depends_on": [
             "RHO_A_MEAN_30MIN_RAW"
         ],
-        "derivation": ""
+        "derivation": "PROCESS"
     },
     "RN_1DAY_PROCESSED": {
         "depends_on": [

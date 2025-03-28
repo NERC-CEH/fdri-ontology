@@ -1,4 +1,4 @@
-CREATE TABLE DEP_ARRAY AS FROM read_json('./sample_data/src/TIMESERIES_DEF_DEPENDENCIES_ARRAY.json', auto_detect=true, format=auto);
+CREATE TABLE DEP_LINES AS FROM read_json('./build/TIMESERIES_DEF_DEPENDENCIES_LINES.json', auto_detect=true, format=auto);
 COPY (
-    SELECT key as TIMESERIES_DEF, unnest(value.depends_on) as DEPENDS_ON from DEP_ARRAY
+    SELECT id as TIMESERIES_DEF, unnest(depends_on) as DEPENDS_ON from DEP_LINES
 ) TO './build/tsdef_dependencies.csv' (HEADER, DELIMITER ',') ;
