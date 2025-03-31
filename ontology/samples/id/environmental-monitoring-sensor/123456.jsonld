@@ -1,6 +1,6 @@
 {
-  "$schema": "../../schema/EnvironmentalMonitoringSensor.schema.json",
-  "@context":"../../schema/EnvironmentalMonitoringSensor.context.jsonld",
+  "$schema": "../../../../build/schema/EnvironmentalMonitoringSensor.schema.json",
+  "@context":"../../../../build/context/EnvironmentalMonitoringSensor.context.jsonld",
   "@id": "http://fdri.ceh.ac.uk/id/envrionmental-monitoring-sensor/123456",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSensor",
   "type": {

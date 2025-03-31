@@ -67,7 +67,7 @@ The `removeData` flag is set to true to indicate that affected observations shou
 ```mermaid
 classDiagram
   class EMF["fdri:EnvironmentalMonitoringFacility"]
-  class COP["fdri:Variable"]
+  class COP["iop:Variable"]
   class Fault["fdri:Fault"]
   class Fault {
     fdri:removeData: xsd:boolean
@@ -78,8 +78,7 @@ classDiagram
     dcat:startDate: rdfs:Literal
     dcat:endDate: rdfs:Literal
   }
-  EMSystem --> Fault: fdri_hadFault
-  Fault --> EMF: fdri_affected
+  Fault --> EMF: fdri_affectedFacility
   Fault --> COP: fdri_affectedVariable
   Fault --> Period: fdri_interval
 ```
@@ -233,3 +232,67 @@ flowchart
 
 > **QUESTION**
 > Replace prov:used with a more meaningful relationship such as `affected` or `appliedTo` to relate the activity to the system affected by the activity.
+
+### Sensor Calibration Factors
+
+In the FDRI model, a sensor calibration factor is modelled as a `InternalDataProcessingConfiguration` which applies to a combination of an `EnvironmentalMonitoringSensor` and one or more `Variable`s. When a sensor is calibrated, a new `ConfigurationItem` is added to the `InternalDataProcessingConfiguration` as the current configuration item and any previous value is retained using the `hadConfigurationItem` relationship.
+
+The `prov:wasGeneratedBy` relation can also be applied to relate a calibration `ConfigurationItem` to the maintainance `Activity` that represents the sensor calibration.
+
+An initial calibration performed by the manufacturer can also be recorded as an activity based on the information provided on the calibration certificate received.
+
+```mermaid
+flowchart
+sensor["`fdri:EMSensor
+Sensor #1234`"]
+variable["`iop:Variable
+SWIN`"]
+type["`skos:Concept
+Calibration Configuration`"]
+calibconfig["`fdri:InternalDataProcessingConfiguration
+Calibration configuration for sensor #1234`"]
+subgraph "Initial Calibration"
+  calib1["`prov:Activity
+    Manufacturer's callibration of sensor #1234 on 2020-01-05`"]
+  calibconfig1["`fdri:ConfigurationItem
+  Calibration value from 2020-01-05`"]
+  calib1interval["`dcterms:PeriodOfTime
+  startDate: 2020-01-05T00:00:00Z
+  endDate: 2024-08-01T12:30:00Z`"]
+  calibconfig1 -- fdri:observationInterval --> calib1interval
+  calibconfig1 -- fdri:argument --> calibarg1
+  calibarg1["`fdri:ConfigurationArgument
+  Correction Factor Argument #1`"]
+  calibval1["`schema:PropertyValue
+  schema:value 0.923`"]
+  calibarg1 -- fdri:hasValue --> calibval1
+end
+subgraph "Field Recalibration"
+calib2["`prov:Activity
+  Field callibration of sensor #1234 on 2024-08-01`"]
+  calibconfig2["`fdri:ConfigurationItem
+  Calibration value from 2024-08-01`"]
+  calib2interval["`dcterms:PeriodOfTime
+  startDate: 2024-08-01T12:30:00Z`"]
+  calibconfig2 -- fdri:observationInterval --> calib2interval
+  calibarg2["`fdri:ConfigurationArgument
+  Correction Factor Argument #2`"]
+  calibconfig2 -- fdri:argument --> calibarg2
+  calibval2["`schema:PropertyValue
+  schema:value 0.935`"]
+  calibarg2 -- fdri:hasValue --> calibval2
+end
+calibconfig -- fdri:hadConfigurationItem --> calibconfig1
+calibconfig -- fdri:hasCurrentConfigurationItem --> calibconfig2
+calibconfig -- fdri:appliesToSystem --> sensor
+calibconfig -- fdri:appliesToVariable --> variable
+calibconfig --> dcterms:type --> type
+calib1 -- prov:used --> sensor
+calib2 -- prov:used --> sensor
+calibconfig1 -- prov:wasGeneratedBy --> calib1
+calibconfig2 -- prov:wasGeneratedBy --> calib2
+scalar["`fdri:DataProcessingMethod
+Scalar correction`"]
+calibconfig1 -- fdri:method --> scalar
+calibconfig2 -- fdri:method --> scalar
+```

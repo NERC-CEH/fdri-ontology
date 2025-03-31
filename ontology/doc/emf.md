@@ -13,7 +13,7 @@ An `fdri:EnvironmentalMonitoringFacility` may have:
  * Any nubmer of related parties. Each related party is a person or organsiation with some form of responsibility for the facility. The nature of that responsibility is conveyed by the `fdri:RelatedPartyRole`
 * A type indicating the class of facilities that the instance belongs to. This can be used on subclasses to distinguish between different kinds of platform, or to indicate the class of device that a sensor belongs to.
 * Any number of related `fdri:EnvironmentalDomain` concepts listing the domains of the environment monitored by the facility.
-* Any number of related `fdri:Variable`s listing the specific variables observed by the facility.
+* Any number of related `iop:Variable`s listing the specific variables observed by the facility.
 * Any number of related `sosa:Feature`s listing the environmental features monitored by the facility.
 
 Activities which affect the facility
@@ -26,7 +26,7 @@ Typically a dataset will be related to the `fdri:EnvironmentalMonitoringProgramm
 
 `fdri:EnvironmentalMonitoringFacility` is defined as a subclass of `dcat:Resource`, meaning it is an item with an entry in the catalog and so can be the subject of a `dcat:CatalogRecord`. The `dcat:Resource` class aslo defines a number of useful properties which can be used to capture many of the properties of an `fdri:EnvironmentalMonitoringFacility` such as title, description, modified date and themes (keywords). Although not shown here, the DCAT model also provides common relationships between resources which can be used such as `dcterms:hasPart` and `dcterms:replaces`, as well as `dcterms:qualifiedRelation` which could be used to capture any other more specialised forms of relation between facilities and other catalogued resourcers. Additional properties are defined to cover the proposed model for `fdri:EnvironmentalMonitoringFacility` in the external catalog, although it may be possible to exlude some of these from the detailed metadata catalog if the external catalog is the canonical record for these resources. 
 
-We use the `sosa:observes` property to record a relationship between an `fdri:EnvironmentalMonitoringFacility` and the `fdri:Variable`(s) it observes. This would most likely only be defined at the level of `fdri:EnvironmentalMonitoringSensor` resources, and then aggregated through query to parent facilities to avoid the need to keep multiple resources in sync as new sensors are deployed or existing sensors removed from a site. 
+We use the `sosa:observes` property to record a relationship between an `fdri:EnvironmentalMonitoringFacility` and the `iop:Variable`(s) it observes. This would most likely only be defined at the level of `fdri:EnvironmentalMonitoringSensor` resources, and then aggregated through query to parent facilities to avoid the need to keep multiple resources in sync as new sensors are deployed or existing sensors removed from a site. 
 
 Activities which affect a facility can be related to the `fdri:EnvironmentalMonitoringFacility` by using properties `prov:wasGeneratedBy`, `prov:wasInvalidatedBy`, and `fdri:wasModifiedBy`. `prov:wasGeneratedBy` should be reserved for commissioning / manufacturing activities. `prov:wasInvalidatedBy` should be reserved for decomissioning activities. `fdri:wasModifiedBy` should be used for all other activities which affect the facility (e.g. maintenance activities).
 
@@ -56,7 +56,7 @@ class AgentRole["fdri:RelatedPartyRole"]
     dcat:endDate xsd:date/xsd:dateTime
   }
 class Concept["skos:Concept"]
-class Variable["fdri:Variable"]
+class Variable["iop:Variable"]
 class Activity["prov:Activity"]
 
 Resource <|-- Facility
@@ -176,7 +176,7 @@ PropertyValue --> Unit: schema_unit
 
 An `fdri:EnvironmentalMonitoringSystem` is a device which measures properties in the environment. As already noted, an `fdri:EnvironmentalMonitoringSystem` may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
 
-An `fdri:EnvironmentalMonitoringSystem` carries several other metadata properties as shown in the diagram below. Faults can also be recorded at this level in the model (such a fault would be presumed to potentially affect all subsystems of the affected system).
+An `fdri:EnvironmentalMonitoringSystem` carries several other metadata properties as shown in the diagram below.
 
 
 ```mermaid
@@ -193,7 +193,6 @@ class System["fdri:EnvironmentalMonitoringSystem"] {
 
   }
 System --> System: sosa_hasSubsystem
-System --> Fault: fdri_hadFault
 ```
 
 ### EnvironmentalMonitoringSensor
@@ -226,3 +225,47 @@ Feature <|-- GeoFeature
 The properties of `fdri:GeospatialFeatureOfInterest` provide ways of describing the geo-spatial extent of the feature which are described in more detail in [Notes on Geo-spatial Resources](geospatial.md)
 
 As already shown, the `GeospatialFeatureOfInterest` may also be referenced from the `Dataset` which contains observations of that feature.
+
+## FacilityGroup
+
+A `FacilityGroup` is an unordered collection of `EnvironmentalMonitoringFacility` instances that share some common feature. A `FacilityGroup` is treated as a `Resource` in the metadata catalog and so may have a title, provenance and publication information and so on.
+
+For simple groupings where there is no need to record historical membership or to provide a date range for a membership,
+the `fdri:hasMember` property can be used. For cases where membership of a group may change over time, the class `fdri:FacilityGroupMembership`
+can be used.
+
+The `dct:type` property can be used to specify the nature of the grouping.
+
+Where facility groupings are used to represent geospatial areas, there are optional properties to capture the geopatial extent of the grouping (e.g. the boundary of the region or catchment area that the group represents).
+
+
+```mermaid
+classDiagram
+class EMF["fdri:EMFacility"]
+class Resource["dcat:Resource"] {
+  dct:title?
+  dct:description?
+}
+class FacilityGroup["fdri:FacilityGroup"] {
+    geos:hasGeometry: geos:Geometry?
+    geos:hasRepresentativePoint: geos:Geometry?
+    geos:hasCentroid: geos:Geometry?
+    geos:hasBoundingBox: geos:Geometry?
+    geo:lat: string?
+    geo:long: string?
+    spatialrelations:easting?
+    spatialrelations:northing?
+}
+class FacilityGroupMembership["fdri:FacilityGroupMembership"]
+class PeriodOfTime["dct:PeriodOfTime"]
+class Concept["skos:Concept"]
+class FacilityGroupType["fdri:FacilityGroupType"]
+
+Concept <|-- FacilityGroupType
+Resource <|-- FacilityGroup
+FacilityGroup --> EMF: fdri_hasMember
+FacilityGroupType <-- FacilityGroup: dct_type
+FacilityGroup <-- FacilityGroupMembership: fdri_group
+FacilityGroupMembership --> EMF: fdri_member
+FacilityGroupMembership --> PeriodOfTime: fdri_interval
+```
