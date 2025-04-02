@@ -1,0 +1,3 @@
+PROCESSING_TYPE,CATEGORY,METHOD_ID,METHOD_NAME,METHOD_DESCRIPTION
+QC,COSMOS Specific,PLUVIO_DIAG,Pluvio Diagnostic,Diagnostic Value > 0
+QC,COSMOS Specific,SNOWD_SIGNAL,Snow distance signal,Signal value too low

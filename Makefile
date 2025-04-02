@@ -52,6 +52,11 @@ SAMPLES += $(TTL_BASE)/tsdef_dependencies.ttl
 SAMPLES += $(TTL_BASE)/tsdef_methods.ttl
 SAMPLES += $(TTL_BASE)/UNITS.ttl
 
+SAMPLES += $(TTL_BASE)/METHODS.ttl
+SAMPLES += $(TTL_BASE)/PARAMS.ttl
+SAMPLES += $(TTL_BASE)/METHOD_PARAMS.ttl
+SAMPLES += $(TTL_BASE)/QC_CONFIGS.ttl
+
 SCHEMAS = $(RECORDS:%=build/schema/%.schema.json)
 
 CONTEXTS = $(RECORDS:%=build/context/%.context.jsonld)

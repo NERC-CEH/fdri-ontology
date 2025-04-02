@@ -1,0 +1,6 @@
+PARAM_ID,PARAM_NAME,PARAM_DESCRIPTION
+FLAG_TS,Flag Timeseries,The time-series that is flagged by a QC processing method
+DEP_TS,Dependency Timeseries,The time-series that a processing method depends on
+THRESHOLD,Threshold,Threshold value
+MIN,Minimum,Minimum value
+MAX,Maximum,Maximum value
