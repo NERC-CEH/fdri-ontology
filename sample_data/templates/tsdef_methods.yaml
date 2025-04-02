@@ -78,7 +78,7 @@ resources:
 
   - name: TSPlan
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/plan/{TIMESERIES_DEF|slug}-derivation>"
+      "@id": "<http://fdri.ceh.ac.uk/id/plan/cosmos-{TIMESERIES_DEF|slug}-derivation>"
       "@type": "<fdri:TimeSeriesPlan>"
       "<fdri:configuration>": <::ProcessingConfiguration>
 
