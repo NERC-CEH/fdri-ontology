@@ -9,13 +9,13 @@ If we can identify a bounded set of query patterns that cover the main use cases
 The preliminary list below is based on:
 * enumerating all the elements in the STA data model and key additional elements in FDRI
 * examples in the BGS and USGS STA documentation
-* queries mentioned email discussions (may have missed some)
+* queries mentioned in email discussions (may have missed some)
 * focussed on external use rather than driving the processing chain, since that's already catered for
 * omits fault information, or is that wanted as well?
 * doesn't spell out assumed common features such as
    * lists can be limited/paged
-   * lists can be sorted on property to the top level resources returned
-   * properties of returned resources can chosen - `$select` in STA, `_projection` in LDA/sapi-nt
+   * lists can be sorted on property of the top level resources returned
+   * properties of returned resources can be chosen - `$select` in STA, `_projection` in LDA/sapi-nt
    * return formats support CSV, json and geoJSON (for geo entities only)
 
 ## Preliminary list of query types
