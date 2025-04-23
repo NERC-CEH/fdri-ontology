@@ -1,0 +1,10 @@
+PARAM_ID,PARAM_NAME,PARAM_DESCRIPTION
+FLAG_TS,Flag Timeseries,The time-series that is flagged by a QC processing method
+DEP_TS,Dependency Timeseries,The time-series that a processing method depends on
+GT,Greater than,Value greater than
+LT,Less than,Value less than
+GE,Equal or greater than,Value equal or greater than
+LE,Equal or less than,Value equal or less than
+VALUE,Numeric value,Exact numeric value
+TIME_GE,Equal or later than time,Time equal or later than
+TIME_LE,Equal or earlier than time,Time equal or earlier than
