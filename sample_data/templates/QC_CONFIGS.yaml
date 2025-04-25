@@ -30,7 +30,7 @@ resources:
       "^<fdri:hasCurrentConfiguration>": <::ProcessingConfiguration>
   - name: ConfigurationArgument
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/id/configuration-argument/current-${row}>"
+      "@id": "<http://fdri.ceh.ac.uk/id/configuration-argument/current-{$row}>"
       "@type": <fdri:ConfigurationArgument>
       "<fdri:parameter>": <::Parameter>
       "^<fdri:argument>": <::CurrentConfigurationItem>
@@ -39,7 +39,7 @@ resources:
     requires:
       PARAM_NUMERIC_VALUE:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/configuration-argument/current-${row}#value>"
+      "@id": "<http://fdri.ceh.ac.uk/configuration-argument/current-{$row}#value>"
       "@type": <schema:PropertyValue>
       "<schema:value>": "{PARAM_NUMERIC_VALUE}@<xsd:decimal>"
       "^<fdri:hasValue>": <::ConfigurationArgument>
@@ -47,7 +47,7 @@ resources:
     requires:
       PARAM_TS_VALUE:
     properties:
-      "@id": "<http://fdri.ceh.ac.uk/configuration-argument/current-${row}#value>"
+      "@id": "<http://fdri.ceh.ac.uk/configuration-argument/current-{$row}#value>"
       "@type": <schema:PropertyValue>
       "<schema:valueReference>": "<http://fdri.ceh.ac.uk/id/dataset/{PARAM_TS_VALUE|slug}>"
       "^<fdri:hasValue>": <::ConfigurationArgument>
