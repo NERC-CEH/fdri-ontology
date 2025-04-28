@@ -41,7 +41,7 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/configuration-argument/current-{$row}#value>"
       "@type": <schema:PropertyValue>
-      "<schema:value>": "{PARAM_NUMERIC_VALUE}@<xsd:decimal>"
+      "<schema:value>": "{PARAM_NUMERIC_VALUE}^^<xsd:decimal>"
       "^<fdri:hasValue>": <::ConfigurationArgument>
   - name: TSRefValue
     requires:
