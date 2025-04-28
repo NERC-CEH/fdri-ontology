@@ -11,24 +11,32 @@ resources:
   - name: FlagTS
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/dataset/{FLAG_TS|slug}>"
+
   - name: Method
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/method/{METHOD_ID|slug}>"
+      "@type": "<fdri:DataProcessingMethod>"
+      "<skos:inScheme>": "<::DataProcessingMethodScheme>"
+      "^<skos:hasTopConcept>": "<::DataProcessingMethodScheme>"
+
   - name: Parameter
     properties:
       "@id": "<http://fdri.ceh.ac.uk/ref/common/parameter/{PARAM_ID|slug}>"    
+
   - name: ProcessingConfiguration
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/data-processing-configuration/{FLAG_TS|slug}-{METHOD_ID|slug}>"
       "@type": <fdri:InternalDataProcessingConfiguration>
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/configuration-type/qc>"
       "<fdri:appliesToTimeSeries>": <::FlagTS>
-      "<fdri:method>": <::Method>
+
   - name: CurrentConfigurationItem
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/{FLAG_TS|slug}-{METHOD_ID|slug}-current>"
       "@type": <fdri:ConfigurationItem>
       "^<fdri:hasCurrentConfiguration>": <::ProcessingConfiguration>
+      "<fdri:method>": <::Method>
+
   - name: ConfigurationArgument
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/configuration-argument/current-{$row}>"
@@ -44,6 +52,7 @@ resources:
       "@type": <schema:PropertyValue>
       "<schema:value>": "{PARAM_NUMERIC_VALUE}^^<xsd:decimal>"
       "^<fdri:hasValue>": <::ConfigurationArgument>
+
   - name: TSRefValue
     requires:
       PARAM_TS_VALUE:
