@@ -23,6 +23,7 @@ resources:
       "@type": <fdri:InternalDataProcessingConfiguration>
       "<dct:type>": "<http://fdri.ceh.ac.uk/ref/common/configuration-type/qc>"
       "<fdri:appliesToTimeSeries>": <::FlagTS>
+      "<fdri:method>": <::Method>
   - name: CurrentConfigurationItem
     properties:
       "@id": "<http://fdri.ceh.ac.uk/id/configuration-item/{FLAG_TS|slug}-{METHOD_ID|slug}-current>"
