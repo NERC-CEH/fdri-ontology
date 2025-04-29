@@ -43,7 +43,7 @@
     },
     "COSMOS_VWC_1HOUR_PROCESSED": {
         "depends_on": [
-            "CTS_MOD_1HOUR_PROCESSED"
+            "CTS_MOD_CORR_1HOUR_PROCESSED"
         ],
         "derivation": "CALCULATE",
         "method": "calculate_VWC",
