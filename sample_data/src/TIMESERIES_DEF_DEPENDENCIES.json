@@ -32,7 +32,7 @@
     },
     "COSMOS_VWC_1DAY_PROCESSED": {
         "depends_on": [
-            "CTS_MOD_1DAY_PROCESSED",
+            "CTS_MOD_CORR_1DAY_PROCESSED",
             "CTS_EST_CRNS_1DAY_PROCESSED"
         ],
         "derivation": "CALCULATE",
@@ -43,7 +43,7 @@
     },
     "COSMOS_VWC_1HOUR_PROCESSED": {
         "depends_on": [
-            "CTS_MOD_1HOUR_PROCESSED"
+            "CTS_MOD_CORR_1HOUR_PROCESSED"
         ],
         "derivation": "CALCULATE",
         "method": "calculate_VWC",
@@ -53,7 +53,7 @@
     },
     "COSMOS_VWC_NO_SNOW_1DAY_PROCESSED": {
         "depends_on": [
-            "CTS_MOD_1DAY_PROCESSED"
+            "CTS_MOD_CORR_1DAY_PROCESSED"
         ],
         "derivation": "CALCULATE",
         "method": "calculate_VWC",
@@ -727,13 +727,30 @@
     },
     "PRECIP_TIPPING_30MIN_RAW": {
         "depends_on": [
-            "PRECIP_TIPPING_A_1MIN_RAW",
-            "PRECIP_TIPPING_B_1MIN_RAW"
+            "PRECIP_TIPPING_A_30MIN_RAW",
+            "PRECIP_TIPPING_B_30MIN_RAW"
         ],
         "derivation": "CALCULATE",
-        "method": "get_precip_tipping",
+        "method": "get_precip_tipping"
+    },
+    "PRECIP_TIPPING_A_30MIN_RAW": {
+        "depends_on": [
+            "PRECIP_TIPPING_A_1MIN_RAW"
+        ],
+        "derivation": "AGGREGATE",
+        "method": "sum",
         "args": {
-            "round": 3
+            "threshold": 27
+        }
+    },
+    "PRECIP_TIPPING_B_30MIN_RAW": {
+        "depends_on": [
+            "PRECIP_TIPPING_B_1MIN_RAW"
+        ],
+        "derivation": "AGGREGATE",
+        "method": "sum",
+        "args": {
+            "threshold": 27
         }
     },
     "PRECIP_TIPPING2_30MIN_PROCESSED": {
