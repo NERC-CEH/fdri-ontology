@@ -61,3 +61,12 @@ resources:
       "@type": <schema:PropertyValue>
       "<schema:valueReference>": "<http://fdri.ceh.ac.uk/id/dataset/{PARAM_TS_VALUE|slug}>"
       "^<fdri:hasValue>": <::ConfigurationArgument>
+
+  - name: TimeValue
+    requires:
+      PARAM_TIME_VALUE:
+    properties:
+      "@id": "<http://fdri.ceh.ac.uk/configuration-argument/current-{$row}#value>"
+      "@type": <schema:PropertyValue>
+      "<schema:value>": "{PARAM_TIME_VALUE}^^<xsd:time>"
+      "^<fdri:hasValue>": <::ConfigurationArgument>
