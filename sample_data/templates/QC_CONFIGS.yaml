@@ -68,5 +68,5 @@ resources:
     properties:
       "@id": "<http://fdri.ceh.ac.uk/configuration-argument/current-{$row}#value>"
       "@type": <schema:PropertyValue>
-      "<schema:time>": "{PARAM_TIME_VALUE}^^<xsd:time>"
+      "<schema:value>": "{PARAM_TIME_VALUE}^^<xsd:time>"
       "^<fdri:hasValue>": <::ConfigurationArgument>
