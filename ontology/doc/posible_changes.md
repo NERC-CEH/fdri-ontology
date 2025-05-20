@@ -8,6 +8,6 @@ With this change, there may then be a case for collapsing `StaticDeployment` int
 
 Rather than remove the FDRI ontology classes we opted to instead just root the FDRI Agent hierarhcy as a subclass of prov:Agent.
 
-# Remove Catchment and Region types
+# DONE: Remove Catchment and Region types
 
 These are now terms in a FacilityGroupType concept scheme

@@ -617,15 +617,6 @@ geo:long rdf:type owl:DatatypeProperty ;
                             ] .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/Catchment
-:Catchment rdf:type owl:Class ;
-           rdfs:subClassOf skos:Concept ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty skos:inScheme ;
-                             owl:allValuesFrom :CatchmentScheme
-                           ] .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
 :CatchmentScheme rdf:type owl:Class ;
                  rdfs:subClassOf skos:ConceptScheme .
@@ -1399,15 +1390,6 @@ geo:long rdf:type owl:DatatypeProperty ;
                                     ] .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/Region
-:Region rdf:type owl:Class ;
-        rdfs:subClassOf skos:Concept ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty skos:inScheme ;
-                          owl:allValuesFrom :RegionScheme
-                        ] .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RegionScheme
 :RegionScheme rdf:type owl:Class ;
               rdfs:subClassOf skos:ConceptScheme .
@@ -1475,7 +1457,6 @@ geo:long rdf:type owl:DatatypeProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoftwareAgent
 :SoftwareAgent rdf:type owl:Class ;
                rdfs:subClassOf :Agent ,
-                               prov:SoftwareAgent ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :repositoryPath ;
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
