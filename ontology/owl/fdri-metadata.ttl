@@ -1,15 +1,24 @@
 @prefix : <http://fdri.ceh.ac.uk/vocab/metadata/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix iop: <https://w3id.org/iadopt/ont/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix geos: <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix schema: <http://schema.org/> .
+@prefix spatialrelations: <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/> .
 @base <http://fdri.ceh.ac.uk/vocab/metadata/> .
 
 <http://fdri.ceh.ac.uk/vocab/metadata> rdf:type owl:Ontology ;
-                                        owl:imports <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/> ,
+                                        owl:imports spatialrelations: ,
                                                     <http://www.opengis.net/ont/geosparql/1.1> ,
                                                     <http://www.w3.org/2006/time#2016> ,
                                                     <http://www.w3.org/ns/dcat3> ,
@@ -24,17 +33,17 @@
 #################################################################
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
-<http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:AnnotationProperty ;
-                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
+geo:alt rdf:type owl:AnnotationProperty ;
+        rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
 above the local reference ellipsoid).""" ;
-                                              rdfs:label "altitude" ;
-                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+        rdfs:label "altitude" ;
+        rdfs:domain geo:SpatialThing .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:AnnotationProperty ;
-                                                   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
-                                                   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+geo:location rdf:type owl:AnnotationProperty ;
+             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
+             rdfs:range geo:SpatialThing .
 
 
 ###  http://xmlns.com/foaf/0.1/based_near
@@ -66,7 +75,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/annotationPropertyScheme
 :annotationPropertyScheme rdf:type owl:ObjectProperty ;
-                          rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
+                          rdfs:subPropertyOf dcat:themeTaxonomy ;
                           rdfs:range :VariableScheme .
 
 
@@ -99,7 +108,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/catchmentScheme
 :catchmentScheme rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
+                 rdfs:subPropertyOf dcat:themeTaxonomy ;
                  rdfs:range :CatchmentScheme .
 
 
@@ -114,7 +123,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/configurationPropertyScheme
 :configurationPropertyScheme rdf:type owl:ObjectProperty ;
-                             rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
+                             rdfs:subPropertyOf dcat:themeTaxonomy ;
                              rdfs:range :ConfigurationPropertyScheme .
 
 
@@ -124,7 +133,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/environmentalDomain
 :environmentalDomain rdf:type owl:ObjectProperty ;
-                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+                     rdfs:range skos:Concept .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/group
@@ -171,7 +180,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasRepresentativePoint
 :hasRepresentativePoint rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasGeometry> .
+                        rdfs:subPropertyOf geos:hasGeometry .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasUnit
@@ -184,12 +193,12 @@ above the local reference ellipsoid).""" ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValue
 :hasValue rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
-          rdfs:range <http://schema.org/PropertyValue> .
+          rdfs:range schema:PropertyValue .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValueScheme
 :hasValueScheme rdf:type owl:ObjectProperty ;
-                rdfs:range <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                rdfs:range skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValueSeries
@@ -200,7 +209,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/interval
 :interval rdf:type owl:ObjectProperty ;
-          rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
+          rdfs:range dct:PeriodOfTime .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/measure
@@ -216,41 +225,41 @@ above the local reference ellipsoid).""" ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/method
 :method rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf owl:topObjectProperty ;
-        rdfs:domain <http://www.w3.org/2004/02/skos/core#Concept> .
+        rdfs:domain skos:Concept .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/methodology
 :methodology rdf:type owl:ObjectProperty ;
-             rdfs:range <http://www.w3.org/ns/prov#Plan> .
+             rdfs:range prov:Plan .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/monitoringFacilityTypeScheme
 :monitoringFacilityTypeScheme rdf:type owl:ObjectProperty ;
-                              rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
+                              rdfs:subPropertyOf dcat:themeTaxonomy ;
                               rdfs:range :EnvironmentalMonitoringFacilityTypeScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/monitoringSystemTypeScheme
 :monitoringSystemTypeScheme rdf:type owl:ObjectProperty ;
-                            rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
+                            rdfs:subPropertyOf dcat:themeTaxonomy ;
                             rdfs:range :EnvironmentalMonitoringFacilityTypeScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/observationInterval
 :observationInterval rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty ;
-                     rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
+                     rdfs:range dct:PeriodOfTime .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/observedPropertyScheme
 :observedPropertyScheme rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
+                        rdfs:subPropertyOf dcat:themeTaxonomy ;
                         rdfs:range :VariableScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/operatingPeriod
 :operatingPeriod rdf:type owl:ObjectProperty ;
-                 rdfs:range <http://purl.org/dc/terms/PeriodOfTime> .
+                 rdfs:range dct:PeriodOfTime .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/originatingFacility
@@ -296,7 +305,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/regionScheme
 :regionScheme rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf <http://www.w3.org/ns/dcat#themeTaxonomy> ;
+              rdfs:subPropertyOf dcat:themeTaxonomy ;
               rdfs:range :RegionScheme .
 
 
@@ -345,41 +354,41 @@ above the local reference ellipsoid).""" ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/wasModifiedBy
 :wasModifiedBy rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasInfluencedBy> ;
+               rdfs:subPropertyOf prov:wasInfluencedBy ;
                rdfs:domain :ObservationDataset .
 
 
 ###  http://purl.org/dc/terms/replaces
-<http://purl.org/dc/terms/replaces> rdf:type owl:ObjectProperty .
+dct:replaces rdf:type owl:ObjectProperty .
 
 
 ###  http://purl.org/dc/terms/type
-<http://purl.org/dc/terms/type> rdf:type owl:ObjectProperty .
+dct:type rdf:type owl:ObjectProperty .
 
 
 ###  http://schema.org/unit
-<http://schema.org/unit> rdf:type owl:ObjectProperty ;
-                         rdfs:domain <http://qudt.org/schema/qudt/Unit> .
+schema:unit rdf:type owl:ObjectProperty ;
+            rdfs:domain <http://qudt.org/schema/qudt/Unit> .
 
 
 ###  http://schema.org/valueReference
-<http://schema.org/valueReference> rdf:type owl:ObjectProperty .
+schema:valueReference rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty .
+geo:location rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/ns/prov#wasInfluencedBy
-<http://www.w3.org/ns/prov#wasInfluencedBy> rdfs:subPropertyOf ssn:wasOriginatedBy .
+prov:wasInfluencedBy rdfs:subPropertyOf ssn:wasOriginatedBy .
 
 
 ###  http://www.w3.org/ns/sosa/hasFeatureOfInterest
-sosa:hasFeatureOfInterest <http://schema.org/domainIncludes> :EnvironmentalMonitoringFacility .
+sosa:hasFeatureOfInterest schema:domainIncludes :EnvironmentalMonitoringFacility .
 
 
 ###  http://www.w3.org/ns/sosa/observedProperty
-sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
+sosa:observedProperty schema:domainIncludes :ObservationDataset .
 
 
 #################################################################
@@ -482,7 +491,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 ###  http://fdri.ceh.ac.uk/vocab/metadata/repository
 :repository rdf:type owl:DatatypeProperty ;
             rdfs:range xsd:anyURI ;
-            <http://schema.org/domainIncludes> <http://www.w3.org/ns/prov#SoftwareAgent> ;
+            schema:domainIncludes prov:SoftwareAgent ;
             rdfs:comment "The IRI of the source control repository which holds the source code for a prov:SoftwareAgent."@en ;
             rdfs:label "source control repository"@en .
 
@@ -537,17 +546,17 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
-<http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:DatatypeProperty ;
-                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
-                                              rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)." ;
-                                              rdfs:label "latitude" .
+geo:lat rdf:type owl:DatatypeProperty ;
+        rdfs:domain geo:SpatialThing ;
+        rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)." ;
+        rdfs:label "latitude" .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#long
-<http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:DatatypeProperty ;
-                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
-                                               rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)." ;
-                                               rdfs:label "longitude" .
+geo:long rdf:type owl:DatatypeProperty ;
+         rdfs:domain geo:SpatialThing ;
+         rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)." ;
+         rdfs:label "longitude" .
 
 
 #################################################################
@@ -556,27 +565,27 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ActivityType
 :ActivityType rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+              rdfs:subClassOf skos:Concept ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                owl:onProperty skos:inScheme ;
                                 owl:allValuesFrom :ActivityTypeScheme
                               ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ActivityTypeScheme
 :ActivityTypeScheme rdf:type owl:Class ;
-                    rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                    rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Agent
 :Agent rdf:type owl:Class ;
-       rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ,
-                       <http://www.w3.org/ns/prov#Agent> .
+       rdfs:subClassOf dcat:Resource ,
+                       prov:Agent .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Aggregation
 :Aggregation rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+             rdfs:subClassOf skos:Concept ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty :valueStatistic ;
                                owl:cardinality "1"^^xsd:nonNegativeInteger
@@ -610,16 +619,16 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Catchment
 :Catchment rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+           rdfs:subClassOf skos:Concept ,
                            [ rdf:type owl:Restriction ;
-                             owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                             owl:onProperty skos:inScheme ;
                              owl:allValuesFrom :CatchmentScheme
                            ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
 :CatchmentScheme rdf:type owl:Class ;
-                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                 rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgument
@@ -637,7 +646,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationItem
 :ConfigurationItem rdf:type owl:Class ;
                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                     owl:onProperty <http://purl.org/dc/terms/replaces> ;
+                                     owl:onProperty dct:replaces ;
                                      owl:allValuesFrom :ConfigurationItem
                                    ] ,
                                    [ rdf:type owl:Restriction ;
@@ -660,30 +669,30 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationParameter
 :ConfigurationParameter rdf:type owl:Class ;
-                        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                        rdfs:subClassOf skos:Concept ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                          owl:onProperty skos:inScheme ;
                                           owl:allValuesFrom :ConfigurationParameterScheme
                                         ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationParameterScheme
 :ConfigurationParameterScheme rdf:type owl:Class ;
-                              rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                              rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationProperty
 :ConfigurationProperty rdf:type owl:Class ;
-                       rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                       rdfs:subClassOf skos:Concept ,
                                        [ rdf:type owl:Restriction ;
-                                         owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                         owl:onProperty skos:inScheme ;
                                          owl:allValuesFrom :ConfigurationPropertyScheme
                                        ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationPropertyScheme
 :ConfigurationPropertyScheme rdf:type owl:Class ;
-                             rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                             rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationValue
@@ -694,9 +703,9 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;
-                                      owl:onProperty <http://purl.org/dc/terms/type> ;
+                                      owl:onProperty dct:type ;
                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                      owl:onClass <http://www.w3.org/2004/02/skos/core#Concept>
+                                      owl:onClass skos:Concept
                                     ] .
 
 
@@ -704,14 +713,14 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 :ConfigurationValueSeries rdf:type owl:Class ;
                           rdfs:subClassOf :PropertyValueSeries ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty <http://purl.org/dc/terms/type> ;
+                                            owl:onProperty dct:type ;
                                             owl:allValuesFrom :ConfigurationProperty
                                           ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfiguration
 :DataProcessingConfiguration rdf:type owl:Class ;
-                             rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
+                             rdfs:subClassOf prov:Plan ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty :appliesToFacility ;
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -725,7 +734,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty <http://purl.org/dc/terms/type> ;
+                                               owl:onProperty dct:type ;
                                                owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                                owl:onClass :DataProcessingConfigurationType
                                              ] .
@@ -733,21 +742,21 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfigurationType
 :DataProcessingConfigurationType rdf:type owl:Class ;
-                                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                 rdfs:subClassOf skos:Concept ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                                   owl:onProperty skos:inScheme ;
                                                    owl:allValuesFrom :DataProcessingConfigurationTypeScheme
                                                  ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfigurationTypeScheme
 :DataProcessingConfigurationTypeScheme rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                                       rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingMethod
 :DataProcessingMethod rdf:type owl:Class ;
-                      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                      rdfs:subClassOf skos:Concept ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :parameter ;
                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
@@ -774,31 +783,31 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalDomain
 :EnvironmentalDomain rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                     rdfs:subClassOf skos:Concept ,
                                      [ rdf:type owl:Restriction ;
-                                       owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                       owl:onProperty skos:inScheme ;
                                        owl:allValuesFrom :EnvironmentalDomainScheme
                                      ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalDomainScheme
 :EnvironmentalDomainScheme rdf:type owl:Class ;
-                           rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                           rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacility
 :EnvironmentalMonitoringFacility rdf:type owl:Class ;
-                                 rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ,
+                                 rdfs:subClassOf dcat:Resource ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty :environmentalDomain ;
-                                                   owl:allValuesFrom <http://www.w3.org/2004/02/skos/core#Concept>
+                                                   owl:allValuesFrom skos:Concept
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://purl.org/dc/terms/type> ;
+                                                   owl:onProperty dct:type ;
                                                    owl:allValuesFrom :EnvironmentalMonitoringFacilityType
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.w3.org/ns/prov#qualifiedAttribution> ;
+                                                   owl:onProperty prov:qualifiedAttribution ;
                                                    owl:allValuesFrom :RelatedPartyAttribution
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
@@ -814,15 +823,15 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.w3.org/ns/prov#qualifiedAttribution> ;
+                                                   owl:onProperty prov:qualifiedAttribution ;
                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.w3.org/ns/prov#wasGeneratedBy> ;
+                                                   owl:onProperty prov:wasGeneratedBy ;
                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.w3.org/ns/prov#wasInvalidatedBy> ;
+                                                   owl:onProperty prov:wasInvalidatedBy ;
                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
@@ -830,19 +839,19 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://purl.org/dc/terms/type> ;
+                                                   owl:onProperty dct:type ;
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.opengis.net/ont/geosparql#hasBoundingBox> ;
+                                                   owl:onProperty geos:hasBoundingBox ;
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.opengis.net/ont/geosparql#hasCentroid> ;
+                                                   owl:onProperty geos:hasCentroid ;
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+                                                   owl:onProperty geos:hasGeometry ;
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
@@ -850,12 +859,12 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                                   owl:onProperty spatialrelations:easting ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                    owl:onDataRange xsd:string
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                                   owl:onProperty spatialrelations:northing ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                    owl:onDataRange xsd:string
                                                  ] ,
@@ -864,12 +873,12 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                                   owl:onProperty geo:lat ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                    owl:onDataRange xsd:string
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
-                                                   owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                                   owl:onProperty geo:long ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                    owl:onDataRange xsd:string
                                                  ] ;
@@ -878,16 +887,16 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacilityType
 :EnvironmentalMonitoringFacilityType rdf:type owl:Class ;
-                                     rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                     rdfs:subClassOf skos:Concept ,
                                                      [ rdf:type owl:Restriction ;
-                                                       owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                                       owl:onProperty skos:inScheme ;
                                                        owl:allValuesFrom :EnvironmentalMonitoringFacilityTypeScheme
                                                      ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacilityTypeScheme
 :EnvironmentalMonitoringFacilityTypeScheme rdf:type owl:Class ;
-                                           rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                                           rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringNetwork
@@ -973,7 +982,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                rdfs:subClassOf :EnvironmentalMonitoringFacility ,
                                                ssn:System ,
                                                [ rdf:type owl:Restriction ;
-                                                 owl:onProperty <http://purl.org/dc/terms/type> ;
+                                                 owl:onProperty dct:type ;
                                                  owl:allValuesFrom :EnvironmentalMonitoringFacilityType
                                                ] ,
                                                [ rdf:type owl:Restriction ;
@@ -1017,7 +1026,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                      ] ,
                                                      [ rdf:type owl:Restriction ;
-                                                       owl:onProperty <http://www.w3.org/ns/dcat#version> ;
+                                                       owl:onProperty dcat:version ;
                                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                        owl:onDataRange xsd:string
                                                      ] .
@@ -1025,9 +1034,9 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroup
 :FacilityGroup rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ,
+               rdfs:subClassOf dcat:Resource ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://purl.org/dc/terms/type> ;
+                                 owl:onProperty dct:type ;
                                  owl:allValuesFrom :FacilityGroupType
                                ] ,
                                [ rdf:type owl:Restriction ;
@@ -1039,38 +1048,38 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.opengis.net/ont/geosparql#hasBoundingBox> ;
+                                 owl:onProperty geos:hasBoundingBox ;
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.opengis.net/ont/geosparql#hasCentroid> ;
+                                 owl:onProperty geos:hasCentroid ;
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+                                 owl:onProperty geos:hasGeometry ;
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://purl.org/dc/terms/type> ;
+                                 owl:onProperty dct:type ;
                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                 owl:onProperty spatialrelations:easting ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:string
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                 owl:onProperty spatialrelations:northing ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:string
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                 owl:onProperty geo:lat ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:string
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                 owl:onProperty geo:long ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:string
                                ] .
@@ -1094,16 +1103,16 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupType
 :FacilityGroupType rdf:type owl:Class ;
-                   rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                   rdfs:subClassOf skos:Concept ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                     owl:onProperty skos:inScheme ;
                                      owl:allValuesFrom :FacilityGroupTypeScheme
                                    ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupTypeScheme
 :FacilityGroupTypeScheme rdf:type owl:Class ;
-                         rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                         rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Fault
@@ -1119,7 +1128,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :interval ;
                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                         owl:onClass <http://purl.org/dc/terms/PeriodOfTime>
+                         owl:onClass dct:PeriodOfTime
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :removeData ;
@@ -1132,11 +1141,11 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 :GeospatialFeatureOfInterest rdf:type owl:Class ;
                              rdfs:subClassOf sosa:Sample ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty <http://www.opengis.net/ont/geosparql#hasGeometry> ;
-                                               owl:allValuesFrom <http://www.opengis.net/ont/geosparql#Geometry>
+                                               owl:onProperty geos:hasGeometry ;
+                                               owl:allValuesFrom geos:Geometry
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+                                               owl:onProperty geos:hasGeometry ;
                                                owl:minCardinality "1"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
@@ -1144,22 +1153,22 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                                owl:cardinality "1"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                               owl:onProperty spatialrelations:easting ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                owl:onDataRange xsd:string
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                               owl:onProperty spatialrelations:northing ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                owl:onDataRange xsd:string
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                               owl:onProperty geo:lat ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                owl:onDataRange xsd:string
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                               owl:onProperty geo:long ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                owl:onDataRange xsd:string
                                              ] ;
@@ -1170,7 +1179,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 ###  http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration
 :InternalDataProcessingConfiguration rdf:type owl:Class ;
                                      rdfs:subClassOf :DataProcessingConfiguration ,
-                                                     <http://www.w3.org/ns/dcat#Resource> ,
+                                                     dcat:Resource ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hadConfigurationItem ;
                                                        owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -1183,23 +1192,23 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/LandCoverType
 :LandCoverType rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+               rdfs:subClassOf skos:Concept ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                 owl:onProperty skos:inScheme ;
                                  owl:allValuesFrom :LandCoverTypeScheme
                                ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/LandCoverTypeScheme
 :LandCoverTypeScheme rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                     rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Measure
 :Measure rdf:type owl:Class ;
-         rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+         rdfs:subClassOf skos:Concept ,
                          [ rdf:type owl:Restriction ;
-                           owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                           owl:onProperty skos:inScheme ;
                            owl:allValuesFrom :MeasureScheme
                          ] ,
                          [ rdf:type owl:Restriction ;
@@ -1219,14 +1228,14 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/MeasureScheme
 :MeasureScheme rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+               rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/MobileDeployment
 :MobileDeployment rdf:type owl:Class ;
                   rdfs:subClassOf :Deployment ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+                                    owl:onProperty geos:hasGeometry ;
                                     owl:someValuesFrom owl:Thing
                                   ] ,
                                   [ rdf:type owl:Restriction ;
@@ -1234,22 +1243,22 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                   ] ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/easting> ;
+                                    owl:onProperty spatialrelations:easting ;
                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onDataRange xsd:string
                                   ] ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://data.ordnancesurvey.co.uk/ontology/spatialrelations/northing> ;
+                                    owl:onProperty spatialrelations:northing ;
                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onDataRange xsd:string
                                   ] ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                                    owl:onProperty geo:lat ;
                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onDataRange xsd:string
                                   ] ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                                    owl:onProperty geo:long ;
                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onDataRange xsd:string
                                   ] .
@@ -1257,9 +1266,9 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ObservationDataset
 :ObservationDataset rdf:type owl:Class ;
-                    rdfs:subClassOf <http://www.w3.org/ns/dcat#Dataset> ,
+                    rdfs:subClassOf dcat:Dataset ,
                                     [ rdf:type owl:Restriction ;
-                                      owl:onProperty <http://www.w3.org/ns/dcat#inSeries> ;
+                                      owl:onProperty dcat:inSeries ;
                                       owl:allValuesFrom :ObservationDatasetSeries
                                     ] ,
                                     [ rdf:type owl:Restriction ;
@@ -1296,7 +1305,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ObservationDatasetSeries
 :ObservationDatasetSeries rdf:type owl:Class ;
                           rdfs:subClassOf :ObservationDataset ,
-                                          <http://www.w3.org/ns/dcat#DatasetSeries> .
+                                          dcat:DatasetSeries .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Organisation
@@ -1311,10 +1320,10 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Procedure
 :Procedure rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ,
-                           <http://www.w3.org/ns/prov#Plan> ,
+           rdfs:subClassOf dcat:Resource ,
+                           prov:Plan ,
                            [ rdf:type owl:Restriction ;
-                             owl:onProperty <http://purl.org/dc/terms/type> ;
+                             owl:onProperty dct:type ;
                              owl:allValuesFrom :ProcedureType
                            ] ,
                            [ rdf:type owl:Restriction ;
@@ -1325,35 +1334,35 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcedureType
 :ProcedureType rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+               rdfs:subClassOf skos:Concept ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                 owl:onProperty skos:inScheme ;
                                  owl:allValuesFrom :ProcedureTypeScheme
                                ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcedureTypeScheme
 :ProcedureTypeScheme rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                     rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcessingLevel
 :ProcessingLevel rdf:type owl:Class ;
-                 rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                 rdfs:subClassOf skos:Concept ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                   owl:onProperty skos:inScheme ;
                                    owl:allValuesFrom :ProcessingLevelScheme
                                  ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcessingLevelScheme
 :ProcessingLevelScheme rdf:type owl:Class ;
-                       rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                       rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProgrammeCatalog
 :ProgrammeCatalog rdf:type owl:Class ;
-                  rdfs:subClassOf <http://www.w3.org/ns/dcat#Catalog> ,
+                  rdfs:subClassOf dcat:Catalog ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :programme ;
                                     owl:cardinality "1"^^xsd:nonNegativeInteger
@@ -1362,7 +1371,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/PropertyValue
 :PropertyValue rdf:type owl:Class ;
-               rdfs:subClassOf <http://schema.org/PropertyValue> ,
+               rdfs:subClassOf schema:PropertyValue ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :qualifier ;
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -1386,49 +1395,49 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
                     rdfs:subClassOf sosa:Observation ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty sosa:hasFeatureOfInterest ;
-                                      owl:allValuesFrom <http://www.w3.org/ns/dcat#Dataset>
+                                      owl:allValuesFrom dcat:Dataset
                                     ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Region
 :Region rdf:type owl:Class ;
-        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+        rdfs:subClassOf skos:Concept ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                          owl:onProperty skos:inScheme ;
                           owl:allValuesFrom :RegionScheme
                         ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RegionScheme
 :RegionScheme rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+              rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAttribution
 :RelatedPartyAttribution rdf:type owl:Class ;
-                         rdfs:subClassOf <http://www.w3.org/ns/prov#Attribution> ,
+                         rdfs:subClassOf prov:Attribution ,
                                          [ rdf:type owl:Restriction ;
-                                           owl:onProperty <http://www.w3.org/ns/prov#agent> ;
+                                           owl:onProperty prov:agent ;
                                            owl:allValuesFrom :Agent
                                          ] ,
                                          [ rdf:type owl:Restriction ;
-                                           owl:onProperty <http://www.w3.org/ns/prov#hadRole> ;
+                                           owl:onProperty prov:hadRole ;
                                            owl:allValuesFrom :RelatedPartyRole
                                          ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyRole
 :RelatedPartyRole rdf:type owl:Class ;
-                  rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                  rdfs:subClassOf skos:Concept ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                    owl:onProperty skos:inScheme ;
                                     owl:allValuesFrom :RelatedPartyRoleScheme
                                   ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyRoleScheme
 :RelatedPartyRoleScheme rdf:type owl:Class ;
-                        rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                        rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelativeLocation
@@ -1451,22 +1460,22 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SensorStatus
 :SensorStatus rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+              rdfs:subClassOf skos:Concept ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                owl:onProperty skos:inScheme ;
                                 owl:allValuesFrom :SensorStatusScheme
                               ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SensorStatusScheme
 :SensorStatusScheme rdf:type owl:Class ;
-                    rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                    rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoftwareAgent
 :SoftwareAgent rdf:type owl:Class ;
                rdfs:subClassOf :Agent ,
-                               <http://www.w3.org/ns/prov#SoftwareAgent> ,
+                               prov:SoftwareAgent ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :repositoryPath ;
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -1479,27 +1488,27 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoilType
 :SoilType rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+          rdfs:subClassOf skos:Concept ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                            owl:onProperty skos:inScheme ;
                             owl:allValuesFrom :SoilTypeScheme
                           ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoilTypeScheme
 :SoilTypeScheme rdf:type owl:Class ;
-                rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/StaticDeployment
 :StaticDeployment rdf:type owl:Class ;
                   rdfs:subClassOf :Deployment ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://www.w3.org/ns/prov#atLocation> ;
+                                    owl:onProperty prov:atLocation ;
                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onClass [ rdf:type owl:Class ;
                                                   owl:unionOf ( :RelativeLocation
-                                                                <http://www.opengis.net/ont/geosparql#Feature>
+                                                                geos:Feature
                                                               )
                                                 ]
                                   ] ,
@@ -1521,7 +1530,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 :TimeBoundPropertyValue rdf:type owl:Class ;
                         rdfs:subClassOf :PropertyValue ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty <http://purl.org/dc/terms/replaces> ;
+                                          owl:onProperty dct:replaces ;
                                           owl:allValuesFrom :TimeBoundPropertyValue
                                         ] ,
                                         [ rdf:type owl:Restriction ;
@@ -1534,7 +1543,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 :TimeSeriesDataset rdf:type owl:Class ;
                    rdfs:subClassOf :ObservationDataset ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty <http://purl.org/dc/terms/type> ;
+                                     owl:onProperty dct:type ;
                                      owl:allValuesFrom :TimeSeriesDefinition
                                    ] ,
                                    [ rdf:type owl:Restriction ;
@@ -1555,7 +1564,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDefinition
 :TimeSeriesDefinition rdf:type owl:Class ;
-                      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+                      rdfs:subClassOf skos:Concept ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty sosa:observedProperty ;
                                         owl:minCardinality "1"^^xsd:nonNegativeInteger
@@ -1573,7 +1582,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesPlan
 :TimeSeriesPlan rdf:type owl:Class ;
-                rdfs:subClassOf <http://www.w3.org/ns/prov#Plan> ,
+                rdfs:subClassOf prov:Plan ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :hasAnnotation ;
                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -1586,30 +1595,30 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Unit
 :Unit rdf:type owl:Class ;
-      rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+      rdfs:subClassOf skos:Concept ,
                       [ rdf:type owl:Restriction ;
-                        owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                        owl:onProperty skos:inScheme ;
                         owl:allValuesFrom :UnitScheme
                       ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/UnitScheme
 :UnitScheme rdf:type owl:Class ;
-            rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+            rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic
 :ValueStatistic rdf:type owl:Class ;
-                rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+                rdfs:subClassOf skos:Concept .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Variable
 :Variable rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ,
+          rdfs:subClassOf skos:Concept ,
                           sosa:ObservableProperty ,
-                          <https://w3id.org/iadopt/ont/Variable> ,
+                          iop:Variable ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                            owl:onProperty skos:inScheme ;
                             owl:allValuesFrom :VariableScheme
                           ] ;
           rdfs:comment "A variable whose definition also captures additional information about the context of each measurement of the property."@en ;
@@ -1618,7 +1627,7 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/VariableScheme
 :VariableScheme rdf:type owl:Class ;
-                rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+                rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://qudt.org/schema/qudt/Unit
@@ -1626,21 +1635,21 @@ sosa:observedProperty <http://schema.org/domainIncludes> :ObservationDataset .
 
 
 ###  http://schema.org/PropertyValue
-<http://schema.org/PropertyValue> rdf:type owl:Class ;
-                                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                    owl:onProperty <http://schema.org/unit> ;
-                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                                  ] ,
-                                                  [ rdf:type owl:Restriction ;
-                                                    owl:onProperty <http://schema.org/valueReference> ;
-                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                                  ] .
+schema:PropertyValue rdf:type owl:Class ;
+                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty schema:unit ;
+                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty schema:valueReference ;
+                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                     ] .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
-<http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
-                                                rdfs:comment """ 
+geo:Point rdf:type owl:Class ;
+          rdfs:subClassOf geo:SpatialThing ;
+          rdfs:comment """ 
 Uniquely identified by lat/long/alt. i.e.
 
 spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
@@ -1648,55 +1657,55 @@ spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
 
 sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
   """ ,
-                                                             """A point, typically described using a coordinate system relative to Earth, such as WGS84.
+                       """A point, typically described using a coordinate system relative to Earth, such as WGS84.
   """ ;
-                                                rdfs:label "point" .
+          rdfs:label "point" .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
-<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> rdf:type owl:Class ;
-                                                       rdfs:comment """Anything with spatial extent, i.e. size, shape, or position.
+geo:SpatialThing rdf:type owl:Class ;
+                 rdfs:comment """Anything with spatial extent, i.e. size, shape, or position.
  e.g. people, places, bowling balls, as well as abstract areas like cubes.
 """ ;
-                                                       rdfs:label "SpatialThing" .
+                 rdfs:label "SpatialThing" .
 
 
 ###  http://www.w3.org/ns/dcat#Resource
-<http://www.w3.org/ns/dcat#Resource> rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :hasAnnotation ;
-                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                                     ] .
+dcat:Resource rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasAnnotation ;
+                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                              ] .
 
 
 ###  http://www.w3.org/ns/prov#Activity
-<http://www.w3.org/ns/prov#Activity> rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                       owl:onProperty <http://purl.org/dc/terms/type> ;
-                                                       owl:allValuesFrom :ActivityType
-                                                     ] .
+prov:Activity rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty dct:type ;
+                                owl:allValuesFrom :ActivityType
+                              ] .
 
 
 ###  http://www.w3.org/ns/ssn/Deployment
-ssn:Deployment rdfs:subClassOf <http://www.w3.org/ns/prov#Activity> .
+ssn:Deployment rdfs:subClassOf prov:Activity .
 
 
 ###  https://w3id.org/iadopt/ont/Entity
-<https://w3id.org/iadopt/ont/Entity> rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+iop:Entity rdfs:subClassOf skos:Concept .
 
 
 ###  https://w3id.org/iadopt/ont/Property
-<https://w3id.org/iadopt/ont/Property> rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+iop:Property rdfs:subClassOf skos:Concept .
 
 
 #################################################################
 #    Annotations
 #################################################################
 
-<http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
-                                           <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
+geo: <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
+     <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
  altitude information in the WGS84 geodetic reference datum. 
  Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
-                                           <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
-                                           rdfs:comment """
+     <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
+     rdfs:comment """
 Recent changes to this namespace:
 $Log: wgs84_pos.rdf,v $
 Revision 1.22  2009/04/20 15:00:30  timbl
@@ -1780,14 +1789,14 @@ date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
 basic geo vocab
 
 """ ;
-                                           rdfs:label "geo" .
+     rdfs:label "geo" .
 
 
-<http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
-                                                   rdfs:label "lat/long" .
+geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
+             rdfs:label "lat/long" .
 
 
-<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point, 
+geo:location rdfs:comment """The relation between something and the point, 
  or other geometrical thing in space, where it is.  For example, the realtionship between
  a radio tower and a Point with a given lat and long.
  Or a relationship between a park and its outline as a closed arc of points, or a road and
@@ -1795,13 +1804,13 @@ basic geo vocab
  Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
  an accuracy appropriate for the size of the object and uses such as mapping .
  """ ;
-                                                   rdfs:label "location" .
+             rdfs:label "location" .
 
 
-sosa:hasUltimateFeatureOfInterest <http://schema.org/domainIncludes> <http://www.w3.org/ns/dcat#Dataset> .
+sosa:hasUltimateFeatureOfInterest schema:domainIncludes dcat:Dataset .
 
 
-sosa:isFeatureOfInterestOf <http://schema.org/rangeIncludes> :EnvironmentalMonitoringFacility .
+sosa:isFeatureOfInterestOf schema:rangeIncludes :EnvironmentalMonitoringFacility .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
