@@ -1,4 +1,4 @@
-## Remove Mobile Deployment
+## DONE: Remove Mobile Deployment
 
 `MobileDeployment` is not really needed to capture activities involving mobile platforms. A better solution is proposed in the draft notes for UAV datasets where sensors are deployed to a mobile platform which then participates in Environmental Monitoring Activities.
 

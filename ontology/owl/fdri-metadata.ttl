@@ -1222,39 +1222,6 @@ geo:long rdf:type owl:DatatypeProperty ;
                rdfs:subClassOf skos:ConceptScheme .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/MobileDeployment
-:MobileDeployment rdf:type owl:Class ;
-                  rdfs:subClassOf :Deployment ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty geos:hasGeometry ;
-                                    owl:someValuesFrom owl:Thing
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :trackLog ;
-                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty spatialrelations:easting ;
-                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:string
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty spatialrelations:northing ;
-                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:string
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty geo:lat ;
-                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:string
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty geo:long ;
-                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:string
-                                  ] .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ObservationDataset
 :ObservationDataset rdf:type owl:Class ;
                     rdfs:subClassOf dcat:Dataset ,
