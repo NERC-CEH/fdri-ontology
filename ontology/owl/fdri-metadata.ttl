@@ -58,31 +58,41 @@ geo:location rdf:type owl:AnnotationProperty ;
 :affectedFacility rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   rdfs:domain :Fault ;
-                  rdfs:range :EnvironmentalMonitoringFacility .
+                  rdfs:range :EnvironmentalMonitoringFacility ;
+                  rdfs:comment "Relates an `fdri:Fault` to the `fdri:EnvironmentalMonitoringFacility` whose operation is or may be affected by the Fault"@en ;
+                  rdfs:label "affected facility"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/affectedVariable
 :affectedVariable rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   rdfs:domain :Fault ;
-                  rdfs:range :Variable .
+                  rdfs:range :Variable ;
+                  rdfs:comment "Relates an `fdri:Fault` to the `fdri:Variable` the observation of which is or may be affected by the fault."@en ;
+                  rdfs:label "affected variable"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/aggregation
 :aggregation rdf:type owl:ObjectProperty ;
-             rdfs:range :Aggregation .
+             rdfs:range :Aggregation ;
+             rdfs:comment "Defines the statistical aggregation applied to observations to produce a measure."@en ;
+             rdfs:label "aggregation"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/annotationPropertyScheme
 :annotationPropertyScheme rdf:type owl:ObjectProperty ;
                           rdfs:subPropertyOf dcat:themeTaxonomy ;
-                          rdfs:range :VariableScheme .
+                          rdfs:range :VariableScheme ;
+                          rdfs:comment "References a controlled list of annotation properties used by this catalog."@en ;
+                          rdfs:label "annotation property scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToFacility
 :appliesToFacility rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
-                   rdfs:range :EnvironmentalMonitoringFacility .
+                   rdfs:range :EnvironmentalMonitoringFacility ;
+                   rdfs:comment "Defines the Environmental Monitoring Facility that a data processing configuration applies to."@en ;
+                   rdfs:label "applies to facility"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToTimeSeries
@@ -91,29 +101,39 @@ geo:location rdf:type owl:AnnotationProperty ;
                                   owl:unionOf ( :TimeSeriesDataset
                                                 :TimeSeriesDefinition
                                               )
-                                ] .
+                                ] ;
+                     rdfs:comment "Defines the Time-Series Dataset or Time-Series Definition that a Data Processing Configuration is used for."@en ;
+                     rdfs:label "applies to time-series"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToVariable
 :appliesToVariable rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
-                   rdfs:range :Variable .
+                   rdfs:range :Variable ;
+                   rdfs:comment "Defines the Variable that a Data Processing Configuration is applied to."@en ;
+                   rdfs:label "applies to variable"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/argument
 :argument rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
-          rdfs:range :ConfigurationArgument .
+          rdfs:range :ConfigurationArgument ;
+          rdfs:comment "An argument passed to the Data Processing Method of an Internal Data Processing Configuration."@en ;
+          rdfs:label "argument"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/catchmentScheme
 :catchmentScheme rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf dcat:themeTaxonomy ;
-                 rdfs:range :CatchmentScheme .
+                 rdfs:range :CatchmentScheme ;
+                 rdfs:comment "References a controlled list of Catchment areas referenced by the catalog."@en ;
+                 rdfs:label "catchment scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/certification
-:certification rdf:type owl:ObjectProperty .
+:certification rdf:type owl:ObjectProperty ;
+               rdfs:comment "A link to the document that certifies the system"@en ;
+               rdfs:label "certification"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/configuration
@@ -123,13 +143,16 @@ geo:location rdf:type owl:AnnotationProperty ;
                                           :DataProcessingConfiguration
                                         )
                           ] ;
+               rdfs:comment "The current and historical configuration of one or more aspects of the parent resource."@en ;
                rdfs:label "configuration"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/configurationPropertyScheme
 :configurationPropertyScheme rdf:type owl:ObjectProperty ;
                              rdfs:subPropertyOf dcat:themeTaxonomy ;
-                             rdfs:range :ConfigurationPropertyScheme .
+                             rdfs:range :ConfigurationPropertyScheme ;
+                             rdfs:comment "References a controlled list of configuration properties referenced by the catalog."@en ;
+                             rdfs:label "configiuration property scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/contains
@@ -138,23 +161,31 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/environmentalDomain
 :environmentalDomain rdf:type owl:ObjectProperty ;
-                     rdfs:range skos:Concept .
+                     rdfs:range :EnvironmentalDomain ;
+                     rdfs:comment "The domain(s) of environmental study that the observations of this facility relate to."@en ;
+                     rdfs:label "environmental domain"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/group
 :group rdf:type owl:ObjectProperty ;
-       rdfs:range :FacilityGroup .
+       rdfs:range :FacilityGroup ;
+       rdfs:comment "Defines the Environmental Monitoring Facility Group that participates in an Environmental Monitoring Facility Group Membership relation."@en ;
+       rdfs:label "group"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hadConfigurationItem
 :hadConfigurationItem rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
-                      rdfs:range :ConfigurationItem .
+                      rdfs:range :ConfigurationItem ;
+                      rdfs:comment "The configuration item that was part of the parent configuration at some past period in time."@en ;
+                      rdfs:label "had configuration item"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hadValue
 :hadValue rdf:type owl:ObjectProperty ;
-          rdfs:range :TimeBoundPropertyValue .
+          rdfs:range :TimeBoundPropertyValue ;
+          rdfs:comment "Defines a value which a property had at during some past period of time."@en ;
+          rdfs:label "had value"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasAnnotation
@@ -167,34 +198,44 @@ geo:location rdf:type owl:AnnotationProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasCurrentConfigurationItem
 :hasCurrentConfigurationItem rdf:type owl:ObjectProperty ;
                              rdfs:subPropertyOf owl:topObjectProperty ;
-                             rdfs:range :ConfigurationItem .
+                             rdfs:range :ConfigurationItem ;
+                             rdfs:comment "The configuration item that is part of the parent configuration at the present time."@en ;
+                             rdfs:label "has current configuration item"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasCurrentValue
 :hasCurrentValue rdf:type owl:ObjectProperty ;
-                 rdfs:range :TimeBoundPropertyValue .
+                 rdfs:range :TimeBoundPropertyValue ;
+                 rdfs:comment "The value that a property currently has."@en ;
+                 rdfs:label "has current value"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasMember
 :hasMember rdf:type owl:ObjectProperty ;
-           rdfs:range :EnvironmentalMonitoringFacility .
+           rdfs:comment "Represents a simple group-membership relationship in which the subject of the statement is the group and the object of the statement the group member"@en ;
+           rdfs:label "has member"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasProcedure
 :hasProcedure rdf:type owl:ObjectProperty ;
-              rdfs:range :Procedure .
+              rdfs:range :Procedure ;
+              rdfs:comment "Relates a resource to a Procedure which may be applied to that resource."@en ;
+              rdfs:label "has procedure"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasRepresentativePoint
 :hasRepresentativePoint rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf geos:hasGeometry .
+                        rdfs:subPropertyOf geos:hasGeometry ;
+                        rdfs:comment "Provides a represenataive point location for an item which may have more complex spatial geometry assocaited with it."@en ;
+                        rdfs:label "has representative point"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasUnit
 :hasUnit rdf:type owl:ObjectProperty ;
-         rdfs:domain :Variable ;
+         rdfs:domain :Measure ;
          rdfs:range <http://qudt.org/schema/qudt/Unit> ;
-         rdfs:comment "Relates a Complex Observable Property to the unit of measurement used by observations of the property."@en .
+         rdfs:comment "Relates a Measure to the unit of measurement used by observations of the property."@en ;
+         rdfs:label "has unit"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValue
@@ -209,11 +250,6 @@ When `fdri:hasValueSeries` is present on an item, this property SHOULD NOT be pr
           rdfs:label "has value"@en .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/hasValueScheme
-:hasValueScheme rdf:type owl:ObjectProperty ;
-                rdfs:range skos:ConceptScheme .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValueSeries
 :hasValueSeries rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
@@ -226,57 +262,78 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/interval
 :interval rdf:type owl:ObjectProperty ;
-          rdfs:range dct:PeriodOfTime .
+          rdfs:range dct:PeriodOfTime ;
+          rdfs:comment "Relates a time-bound property or relationship to the period of time during which that property or relationship was valid."@en ;
+          rdfs:label "interval"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/measure
 :measure rdf:type owl:ObjectProperty ;
-         rdfs:range :Measure .
+         rdfs:domain :ObservationDataset ;
+         rdfs:range :Measure ;
+         rdfs:comment "Relates an ObservationDataset to a Measure that the dataset provides values for."@en ;
+         rdfs:label "measure"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/member
 :member rdf:type owl:ObjectProperty ;
-        rdfs:range :EnvironmentalMonitoringFacility .
+        rdfs:range :EnvironmentalMonitoringFacility ;
+        rdfs:comment "Defines the Environmental Monitoring Facility that is a member of some Environmental Monitoring Facility Group in a qualified Environmental Monitoring Facility Group Membership relationship."@en ;
+        rdfs:label "member"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/method
 :method rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf owl:topObjectProperty ;
-        rdfs:domain skos:Concept .
+        rdfs:domain skos:Concept ;
+        rdfs:comment "Relates a Data Processing Configuration Item to the data processing method that is configured."@en ;
+        rdfs:label "method"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/methodology
 :methodology rdf:type owl:ObjectProperty ;
-             rdfs:range prov:Plan .
+             rdfs:range prov:Plan ;
+             rdfs:comment "Relates a Time-Series Definition to the Plan that defines how instances of the Time-Series Definition are generated and/or updated."@en ;
+             rdfs:label "methodology"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/monitoringFacilityTypeScheme
 :monitoringFacilityTypeScheme rdf:type owl:ObjectProperty ;
                               rdfs:subPropertyOf dcat:themeTaxonomy ;
-                              rdfs:range :EnvironmentalMonitoringFacilityTypeScheme .
+                              rdfs:range :EnvironmentalMonitoringFacilityTypeScheme ;
+                              rdfs:comment "References a controlled list of monintoring facility types referenced by the catalog."@en ;
+                              rdfs:label "monitoring facility type scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/monitoringSystemTypeScheme
 :monitoringSystemTypeScheme rdf:type owl:ObjectProperty ;
                             rdfs:subPropertyOf dcat:themeTaxonomy ;
-                            rdfs:range :EnvironmentalMonitoringFacilityTypeScheme .
+                            rdfs:range :EnvironmentalMonitoringFacilityTypeScheme ;
+                            rdfs:comment "References a controlled list of monitoring system types referenced by the catalog."@en ;
+                            rdfs:label "monitoring system type scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/observationInterval
 :observationInterval rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty ;
-                     rdfs:range dct:PeriodOfTime .
+                     rdfs:range dct:PeriodOfTime ;
+                     rdfs:comment "Defines a time-slice of observations that a configuration item applies to. This is distinct from the `interval` which defines the period during which the configuration item is/was used in data processing."@en ;
+                     rdfs:label "observation interval"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/observedPropertyScheme
 :observedPropertyScheme rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf dcat:themeTaxonomy ;
-                        rdfs:range :VariableScheme .
+                        rdfs:range :VariableScheme ;
+                        rdfs:comment "References a controlled vocabulary of Variables that is referenced by the catalog."@en ;
+                        rdfs:label "observed property scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/operatingPeriod
 :operatingPeriod rdf:type owl:ObjectProperty ;
-                 rdfs:range dct:PeriodOfTime .
+                 rdfs:range dct:PeriodOfTime ;
+                 rdfs:comment "The period of time during which an Environmental Monitoring Facility is/was operational."@en ;
+                 rdfs:label "operating period"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/originatingFacility
@@ -284,30 +341,38 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
                      rdfs:subPropertyOf owl:topObjectProperty ;
                      rdfs:domain :ObservationDataset ;
                      rdfs:range :EnvironmentalMonitoringFacility ;
-                     rdfs:comment "Relates a dataset of observations to the Environmental Monitoring Facility from which the observations originated. The choice of facilit(ies) to use as the value of this property should be restricted to those which apply to all observations in the temporal range of the dataset (such as a site or a platform), and not to facilities which might be replaced over the time span of the dataset (such as a replacable sensor or sensor package)."@en .
+                     rdfs:comment "Relates a dataset of observations to the Environmental Monitoring Facility from which the observations originated. The choice of facilit(ies) to use as the value of this property should be restricted to those which apply to all observations in the temporal range of the dataset (such as a site or a platform), and not to facilities which might be replaced over the time span of the dataset (such as a replacable sensor or sensor package)."@en ;
+                     rdfs:label "originating facility"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/originatingProgramme
 :originatingProgramme rdf:type owl:ObjectProperty ;
                       rdfs:domain :ObservationDataset ;
-                      rdfs:range :EnvironmentalMonitoringProgramme .
+                      rdfs:range :EnvironmentalMonitoringProgramme ;
+                      rdfs:comment "The environmental monitoring programme that intiated the activities that resulted in the production of this dataset."@en ;
+                      rdfs:label "originating programme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/originatingSite
 :originatingSite rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf :originatingFacility ;
-                 rdfs:comment "Relates a dataset of observations to the Environmental Monitoring Site from which the observations originated."@en .
+                 rdfs:comment "Relates a dataset of observations to the Environmental Monitoring Site from which the observations originated."@en ;
+                 rdfs:label "originating site"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/parameter
 :parameter rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
-           rdfs:range :ConfigurationParameter .
+           rdfs:range :ConfigurationParameter ;
+           rdfs:comment "Relates a Data Processing Method to one of the paramters that the method takes, or a Data Processing Configuration Argument to the parameter that it provides a value for."@en ;
+           rdfs:label "parameter"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/programme
 :programme rdf:type owl:ObjectProperty ;
-           rdfs:range :EnvironmentalMonitoringProgramme .
+           rdfs:range :EnvironmentalMonitoringProgramme ;
+           rdfs:comment "Relates a Programme Catalog to the Environmental Monitoring Programme that the catalog covers."@en ;
+           rdfs:label "programme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/property
@@ -319,36 +384,30 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/qualifier
 :qualifier rdf:type owl:ObjectProperty ;
-           rdfs:range :Annotation .
+           rdfs:range :Annotation ;
+           rdfs:comment "Provides an additional qualifier value for an annotation value."@en ;
+           rdfs:label "qualifier"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/regionScheme
 :regionScheme rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf dcat:themeTaxonomy ;
-              rdfs:range :RegionScheme .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/relativeLocation
-:relativeLocation rdf:type owl:ObjectProperty ;
-                  rdfs:range :RelativeLocation .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/serviceContactDetails
-:serviceContactDetails rdf:type owl:ObjectProperty ;
-                       rdfs:range <http://www.w3.org/2006/vcard/ns#Kind> .
+              rdfs:range :RegionScheme ;
+              rdfs:comment "References a controlled list of geographical regions that are referenced by the catalog."@en ;
+              rdfs:label "region scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/status
-:status rdf:type owl:ObjectProperty .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/trackLog
-:trackLog rdf:type owl:ObjectProperty .
+:status rdf:type owl:ObjectProperty ;
+        rdfs:comment "The operational status of an Environmental Monitoring System."@en ;
+        rdfs:label "status"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/uses
 :uses rdf:type owl:ObjectProperty ;
-      rdfs:range :TimeSeriesDefinition .
+      rdfs:range :TimeSeriesDefinition ;
+      rdfs:comment "Relates a Time Series Plan for the production of some Time Series to the Time Series Definitions that define the input Time Series used by the plan."@en ;
+      rdfs:label "uses"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/utilises
@@ -358,23 +417,31 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
                        owl:unionOf ( :EnvironmentalMonitoringFacility
                                      :EnvironmentalMonitoringNetwork
                                    )
-                     ] .
+                     ] ;
+          rdfs:label "Relates an Environmental Monitoring Programme to the Environmental Monitoring Facility or Environmental Monitoring Network used by the programme in the delivery of its outputs."@en ,
+                     "utilises"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/valueStatistic
 :valueStatistic rdf:type owl:ObjectProperty ;
-                rdfs:range :ValueStatistic .
+                rdfs:range :ValueStatistic ;
+                rdfs:comment "Relates an aggregated data resource to the type of aggregation applied."@en ;
+                rdfs:label "value statistic"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/variable
 :variable rdf:type owl:ObjectProperty ;
-          rdfs:range :Variable .
+          rdfs:range :Variable ;
+          rdfs:comment "Relates a Measure to the Variable that the is measured."@en ;
+          rdfs:label "measure"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/wasModifiedBy
 :wasModifiedBy rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf prov:wasInfluencedBy ;
-               rdfs:domain :ObservationDataset .
+               rdfs:domain :ObservationDataset ;
+               rdfs:comment "Relates a resource to the activity that modified the resource in some way."@en ;
+               rdfs:label "was modified by"@en .
 
 
 ###  http://purl.org/dc/terms/replaces
@@ -416,84 +483,106 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/aggregationPeriod
 :aggregationPeriod rdf:type owl:DatatypeProperty ;
-                   rdfs:range xsd:duration .
+                   rdfs:range xsd:duration ;
+                   rdfs:comment "The duration of time over which an time-series aggregation applies."@en ;
+                   rdfs:label "aggregation period"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/altitude
 :altitude rdf:type owl:DatatypeProperty ;
           rdfs:range xsd:decimal ;
-          rdfs:comment "Height above sea-level measured in metres."@en .
+          rdfs:comment "Height above sea-level measured in metres."@en ;
+          rdfs:label "altitude"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/assetNumber
 :assetNumber rdf:type owl:DatatypeProperty ;
-             rdfs:range xsd:string .
+             rdfs:range xsd:string ;
+             rdfs:comment "An identifier assigned to a piece of infrastructure or equipment by the entity that is responsible for the management of that item."@en ;
+             rdfs:label "asset number"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/dateOfDisposal
 :dateOfDisposal rdf:type owl:DatatypeProperty ;
-                rdfs:range xsd:date .
+                rdfs:subPropertyOf dct:date ;
+                rdfs:range xsd:date ;
+                rdfs:comment "The date on which an item was disposed of by the entity that manged it up to that date."@en ;
+                rdfs:label "date of disposal"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/dateOfPurchase
 :dateOfPurchase rdf:type owl:DatatypeProperty ;
-                rdfs:range xsd:date .
+                rdfs:subPropertyOf dct:date ;
+                rdfs:range xsd:date ;
+                rdfs:comment "The date on which an item was purchased by the entity that manages it."@en ;
+                rdfs:label "date of purchase" .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deployedDepth
 :deployedDepth rdf:type owl:DatatypeProperty ;
                rdfs:range xsd:decimal ;
-               rdfs:comment "The depth (in metres) below ground level at which an environmental monitoring system is deployed."@en .
+               rdfs:comment "The depth (in metres) below ground level at which an environmental monitoring system is deployed."@en ;
+               rdfs:label "deployed depth"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deployedHeight
 :deployedHeight rdf:type owl:DatatypeProperty ;
                 rdfs:range xsd:decimal ;
-                rdfs:comment "The height (in metres) above ground level at which an environmental monitoring system is deployed."@en .
+                rdfs:comment "The height (in metres) above ground level at which an environmental monitoring system is deployed."@en ;
+                rdfs:label "deployed height"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deploymentPosition
 :deploymentPosition rdf:type owl:DatatypeProperty ;
                     rdfs:range rdf:langString ;
-                    rdfs:comment "Descriptive information about the positioning of an Environmental Monitoring System as the result of the containing StaticDeployment activity"@en .
+                    rdfs:comment "Descriptive information about the positioning of an Environmental Monitoring System as the result of the containing StaticDeployment activity"@en ;
+                    rdfs:label "deployment position"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deploymentVariance
 :deploymentVariance rdf:type owl:DatatypeProperty ;
                     rdfs:range rdf:langString ;
-                    rdfs:comment "Descriptive information about the way in which the deployment of an Environmental Monitoring System differs from the standard deployment of a system of its type."@en .
+                    rdfs:comment "Descriptive information about the way in which the deployment of an Environmental Monitoring System differs from the standard deployment of a system of its type."@en ;
+                    rdfs:label "deployment variance"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/elevation
 :elevation rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:range xsd:decimal ;
-           rdfs:comment "The height offset of a relative location from its origin, measured in metres."@en .
+           rdfs:comment "The height offset of a relative location from its origin, measured in metres."@en ;
+           rdfs:label "elevation"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/isMobile
 :isMobile rdf:type owl:DatatypeProperty ;
-          rdfs:range xsd:boolean .
+          rdfs:range xsd:boolean ;
+          rdfs:comment "True if this Environmental Monitoring Facility is not static when reporting measurements. e.g. a UAV, ship"@en ;
+          rdfs:label "is mobile"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/offsetEast
 :offsetEast rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf owl:topDataProperty ;
             rdfs:range xsd:decimal ;
-            rdfs:comment "The easterly offset of a relative location from its origin, measured in metres."@en .
+            rdfs:comment "The easterly offset of a relative location from its origin, measured in metres."@en ;
+            rdfs:label "offset east"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/offsetNorth
 :offsetNorth rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
              rdfs:range xsd:decimal ;
-             rdfs:comment "The northerly offset of a relative location from its origin measured in metres."@en .
+             rdfs:comment "The northerly offset of a relative location from its origin measured in metres."@en ;
+             rdfs:label "offset north"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/periodicity
 :periodicity rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
-             rdfs:range xsd:duration .
+             rdfs:range xsd:duration ;
+             rdfs:comment "The duration over which an time-based aggregation applies."@en ;
+             rdfs:label "periodicity"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/procedurePeriodicity
@@ -505,7 +594,9 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/removeData
 :removeData rdf:type owl:DatatypeProperty ;
-            rdfs:range xsd:boolean .
+            rdfs:range xsd:boolean ;
+            rdfs:comment "True if data that was measured during the existence of a Fault should be removed from the observation dataset."@en ;
+            rdfs:label "remove data"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/repository
@@ -525,45 +616,59 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 ###  http://fdri.ceh.ac.uk/vocab/metadata/resolution
 :resolution rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf owl:topDataProperty ;
-            rdfs:range xsd:duration .
+            rdfs:range xsd:duration ;
+            rdfs:comment "The duration between the individual measurements that are aggregated to produce an aggregate value."@en ;
+            rdfs:label "resolution"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/serialNumber
 :serialNumber rdf:type owl:DatatypeProperty ;
-              rdfs:range xsd:string .
+              rdfs:range xsd:string ;
+              rdfs:comment "The unique identifier assigned to a piece of equipment by its manufacturer."@en ;
+              rdfs:label "serial number"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/siteVariance
 :siteVariance rdf:type owl:DatatypeProperty ;
               rdfs:range rdf:langString ;
-              rdfs:comment "Descriptive information about the way in which the layout of an Environmental Monitoring Facility differs from the standard layout for a facility of its type."@en .
+              rdfs:comment "Descriptive information about the way in which the layout of an Environmental Monitoring Facility differs from the standard layout for a facility of its type."@en ;
+              rdfs:label "site variance"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/sourceBucket
 :sourceBucket rdf:type owl:DatatypeProperty ;
-              rdfs:range xsd:string .
+              rdfs:range xsd:string ;
+              rdfs:comment "A reference to the AWS S3 bucket that contains the data for an FDRI dataset."@en ;
+              rdfs:label "source bucket"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/sourceColumnName
 :sourceColumnName rdf:type owl:DatatypeProperty ;
-                  rdfs:range xsd:string .
+                  rdfs:range xsd:string ;
+                  rdfs:comment "The name of the column within a source dataset that contain values for an FDRI dataset."@en ;
+                  rdfs:label "source column name"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/sourceDataset
 :sourceDataset rdf:type owl:DatatypeProperty ;
-               rdfs:range xsd:string .
+               rdfs:range xsd:string ;
+               rdfs:comment "The name of the dataset in an AWS S3 bucket which contains the values for an FDRI dataset."@en ;
+               rdfs:label "source dataset"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/storageLocation
 :storageLocation rdf:type owl:DatatypeProperty ;
-                 rdfs:range xsd:string .
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The place in which a piece of infrastructure is currently stored."@en ;
+                 rdfs:label "storage location"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/unitName
 :unitName rdf:type owl:DatatypeProperty ;
           rdfs:domain :Variable ;
           rdfs:range rdf:langString ;
-          rdfs:comment "Provides the display label to use for the unit of measurement of a Complex Observable Property."@en .
+          rdfs:comment "Provides the display label to use for the unit of measurement of a Complex Observable Property."@en ;
+          rdfs:label "unit name"@en .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
@@ -986,10 +1091,6 @@ An Environmental Monitoring Platform may be a physical piece of infrastructure s
                                rdfs:subClassOf :EnvironmentalMonitoringSystem ,
                                                sosa:Sensor ,
                                                [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :serviceContactDetails ;
-                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
                                                  owl:onProperty :certification ;
                                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                ] ,
@@ -1112,7 +1213,8 @@ The `dct:type` property of this class SHOULD be used to reference the `fdri:Data
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasMember ;
-                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                 owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :EnvironmentalMonitoringFacility
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasRepresentativePoint ;
@@ -1342,13 +1444,17 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                                       owl:onProperty sosa:observedProperty ;
                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                       owl:onClass :Variable
-                                    ] .
+                                    ] ;
+                    rdfs:comment "A dataset that provides values for Measures from some Environmental Monitoring Facility or Programme."@en ;
+                    rdfs:label "Observation Dataset"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ObservationDatasetSeries
 :ObservationDatasetSeries rdf:type owl:Class ;
                           rdfs:subClassOf :ObservationDataset ,
-                                          dcat:DatasetSeries .
+                                          dcat:DatasetSeries ;
+                          rdfs:comment "A Dataset Series that groups a collection of related Observation Datasets together."@en ;
+                          rdfs:label "Observation Dataset Series"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Organization
@@ -1633,7 +1739,7 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                                      owl:onProperty :sourceDataset ;
                                      owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
-                   rdfs:comment "A Dataset consisting of a collection of measurements of one or more Observable Properties of some Feature of Interest at regular intervals over a period of time."@en ;
+                   rdfs:comment "A Observation Dataset consisting of a collection of values of one or more Measures of some Feature of Interest at regular intervals over a period of time."@en ;
                    rdfs:label "Time-Series Dataset"@en .
 
 
