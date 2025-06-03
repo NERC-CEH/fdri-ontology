@@ -118,7 +118,12 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/configuration
 :configuration rdf:type owl:ObjectProperty ;
-               rdfs:range :ConfigurationValueSeries .
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( :ConfigurationValueSeries
+                                          :DataProcessingConfiguration
+                                        )
+                          ] ;
+               rdfs:label "configuration"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/configurationPropertyScheme
@@ -154,7 +159,9 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasAnnotation
 :hasAnnotation rdf:type owl:ObjectProperty ;
-               rdfs:range :Annotation .
+               rdfs:range :Annotation ;
+               rdfs:comment "Relates an item to the `fdri:Annotation` items that provide additional property values for that item."@en ;
+               rdfs:label "has annotation"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasCurrentConfigurationItem
@@ -193,7 +200,13 @@ geo:location rdf:type owl:AnnotationProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValue
 :hasValue rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
-          rdfs:range schema:PropertyValue .
+          rdfs:range schema:PropertyValue ;
+          rdfs:comment """Provides the current value of the item (an `fdri:Annotation` or `fdri:ConfigurationValue`).
+
+This property should be used for annotations where it is not necessary to track an historical record of the annotation values over time, and should be used to provide the currently accepted value of the parent item.
+
+When `fdri:hasValueSeries` is present on an item, this property SHOULD NOT be present on the same item."""@en ;
+          rdfs:label "has value"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValueScheme
@@ -204,7 +217,11 @@ geo:location rdf:type owl:AnnotationProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasValueSeries
 :hasValueSeries rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
-                rdfs:range :PropertyValueSeries .
+                rdfs:range :PropertyValueSeries ;
+                rdfs:comment """Provides a historical record of the values of the parent item (an fdri:Annotation) including the current annotation value.
+
+When `fdri:hasValue` is present on an item, this property SHOULD NOT be present on the same item."""@en ;
+                rdfs:label "has value series"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/interval
@@ -295,7 +312,9 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/property
 :property rdf:type owl:ObjectProperty ;
-          rdfs:range :Variable .
+          rdfs:range :Variable ;
+          rdfs:comment "References the `fdri:Variable` which describes the property for which an `fdri:Annotation` provides a value or value series."@en ;
+          rdfs:label "property"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/qualifier
@@ -480,7 +499,8 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 ###  http://fdri.ceh.ac.uk/vocab/metadata/procedurePeriodicity
 :procedurePeriodicity rdf:type owl:DatatypeProperty ;
                       rdfs:range xsd:duration ;
-                      rdfs:comment "How frequently a process or procedure should be carried out."@en .
+                      rdfs:comment "How frequently a process or procedure should be carried out."@en ;
+                      rdfs:label "procedure periodicity"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/removeData
@@ -498,6 +518,7 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/repositoryPath
 :repositoryPath rdf:type owl:DatatypeProperty ;
+                rdfs:comment "A repository-relative path to the files or directories that contain the data processing configuration values."@en ;
                 rdfs:label "source control repository path"@en .
 
 
@@ -569,18 +590,24 @@ geo:long rdf:type owl:DatatypeProperty ;
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty skos:inScheme ;
                                 owl:allValuesFrom :ActivityTypeScheme
-                              ] .
+                              ] ;
+              rdfs:comment "A Concept which defines a category of activity."@en ;
+              rdfs:label "Activity Type"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ActivityTypeScheme
 :ActivityTypeScheme rdf:type owl:Class ;
-                    rdfs:subClassOf skos:ConceptScheme .
+                    rdfs:subClassOf skos:ConceptScheme ;
+                    rdfs:comment "A concept scheme that manages a controlled list of activity types."@en ;
+                    rdfs:label "Activity Type Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Agent
 :Agent rdf:type owl:Class ;
        rdfs:subClassOf dcat:Resource ,
-                       prov:Agent .
+                       prov:Agent ;
+       rdfs:comment "An Agent is something that has responsibility for an activity that takes place, for the existence or modification of some resource, or for the activity of another Agent."@en ;
+       rdfs:label "Agent"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Aggregation
@@ -598,7 +625,8 @@ geo:long rdf:type owl:DatatypeProperty ;
                                owl:onProperty :resolution ;
                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
                              ] ;
-             rdfs:comment "Represents the aggregation of all values collected with a given frequency (fdri:resolution) over a given period of time (fdri:periodicity) using a given aggregation method (fdri:valueStatistic)."@en .
+             rdfs:comment "Represents the aggregation of all values collected with a given frequency (fdri:resolution) over a given period of time (fdri:periodicity) using a given aggregation method (fdri:valueStatistic)."@en ;
+             rdfs:label "Aggregation"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Annotation
@@ -614,12 +642,18 @@ geo:long rdf:type owl:DatatypeProperty ;
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :property ;
                               owl:cardinality "1"^^xsd:nonNegativeInteger
-                            ] .
+                            ] ;
+            rdfs:comment """Annotations provide an extension point to the FDRI metadata model to allow a more diverse range of metadata to be captured than is explicitly allowed for in the model.
+
+Each Annotation instance provides either a single value (`fdri:hasValue`) or a time-based series of values (`fdri:hasValueSeries`) for a single property (`fdri:property`)."""@en ;
+            rdfs:label "Annotation"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
 :CatchmentScheme rdf:type owl:Class ;
-                 rdfs:subClassOf skos:ConceptScheme .
+                 rdfs:subClassOf skos:ConceptScheme ;
+                 rdfs:comment "A concept scheme consisting of Catchment concepts."@en ;
+                 rdfs:label "Catchment Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgument
@@ -631,7 +665,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :parameter ;
                                          owl:cardinality "1"^^xsd:nonNegativeInteger
-                                       ] .
+                                       ] ;
+                       rdfs:comment "Represents a single argument passed to a configuration method as part of an `fdri:ConfigurationItem`."@en ;
+                       rdfs:label "Data Processing Configuration Argument"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationItem
@@ -655,7 +691,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :interval ;
                                      owl:cardinality "1"^^xsd:nonNegativeInteger
-                                   ] .
+                                   ] ;
+                   rdfs:comment "Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run."@en ;
+                   rdfs:label "Data Processing Configuration Item"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationParameter
@@ -664,12 +702,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty skos:inScheme ;
                                           owl:allValuesFrom :ConfigurationParameterScheme
-                                        ] .
+                                        ] ;
+                        rdfs:comment "Represents a single parameter that may be passed to an `fdri:DataProcessingMethod` as part of a data processing pipeline."@en ;
+                        rdfs:label "Configuration Parameter"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationParameterScheme
 :ConfigurationParameterScheme rdf:type owl:Class ;
-                              rdfs:subClassOf skos:ConceptScheme .
+                              rdfs:subClassOf skos:ConceptScheme ;
+                              rdfs:comment "A concept scheme that manages a controlled list of configuration parameters."@en ;
+                              rdfs:label "Configuration Parameter Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationProperty
@@ -678,26 +720,18 @@ geo:long rdf:type owl:DatatypeProperty ;
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty skos:inScheme ;
                                          owl:allValuesFrom :ConfigurationPropertyScheme
-                                       ] .
+                                       ] ;
+                       rdfs:comment """A property of a system or process which may be altered in order to affect the way in which that system or process behaves.
+
+Instances of this class are used to define the properties by which the behaviour of `fdri:EnvironmentalMonitoringSystem`s may be constrained or modified."""@en ;
+                       rdfs:label "Configuration Property"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationPropertyScheme
 :ConfigurationPropertyScheme rdf:type owl:Class ;
-                             rdfs:subClassOf skos:ConceptScheme .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationValue
-:ConfigurationValue rdf:type owl:Class ;
-                    rdfs:subClassOf :PropertyValue ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :interval ;
-                                      owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty dct:type ;
-                                      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                      owl:onClass skos:Concept
-                                    ] .
+                             rdfs:subClassOf skos:ConceptScheme ;
+                             rdfs:comment "A Concept Scheme that manages a collection of configuration property concepts."@en ;
+                             rdfs:label "Configuration Property Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationValueSeries
@@ -706,12 +740,15 @@ geo:long rdf:type owl:DatatypeProperty ;
                                           [ rdf:type owl:Restriction ;
                                             owl:onProperty dct:type ;
                                             owl:allValuesFrom :ConfigurationProperty
-                                          ] .
+                                          ] ;
+                          rdfs:comment "A resources which provides the current and historically configured values for some configuration property."@en ;
+                          rdfs:label "Configuration Value Series"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfiguration
 :DataProcessingConfiguration rdf:type owl:Class ;
-                             rdfs:subClassOf prov:Plan ,
+                             rdfs:subClassOf dcat:Resource ,
+                                             prov:Plan ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty :appliesToFacility ;
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -728,7 +765,11 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                owl:onProperty dct:type ;
                                                owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                                owl:onClass :DataProcessingConfigurationType
-                                             ] .
+                                             ] ;
+                             rdfs:comment """The configuration information which is used by a data processing activity to control the way in which the processing activity behaves.
+
+A Data Processing Configuration is defined as a sub-type of `prov:Plan` allowing it to be associated with an Actitvity via the `prov:qualifiedAssociation` property."""@en ;
+                             rdfs:label "Data Processing Configuration"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfigurationType
@@ -737,12 +778,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty skos:inScheme ;
                                                    owl:allValuesFrom :DataProcessingConfigurationTypeScheme
-                                                 ] .
+                                                 ] ;
+                                 rdfs:comment "A Concept which defines a category of data processing configuration."@en ;
+                                 rdfs:label "Data Processing Configuration Type"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfigurationTypeScheme
 :DataProcessingConfigurationTypeScheme rdf:type owl:Class ;
-                                       rdfs:subClassOf skos:ConceptScheme .
+                                       rdfs:subClassOf skos:ConceptScheme ;
+                                       rdfs:comment "A Concept Scheme which manages a controlled list of Data Processing Configuration Type concepts."@en ;
+                                       rdfs:label "Data Processing Configuration Type Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingMethod
@@ -752,12 +797,15 @@ geo:long rdf:type owl:DatatypeProperty ;
                                         owl:onProperty :parameter ;
                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                         owl:onClass :ConfigurationParameter
-                                      ] .
+                                      ] ;
+                      rdfs:comment "A Concept which represents a data processing methodology/procedure and the parameters it can take."@en ;
+                      rdfs:label "Data Processing Method"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Deployment
 :Deployment rdf:type owl:Class ;
-            rdfs:subClassOf ssn:Deployment ,
+            rdfs:subClassOf prov:Activity ,
+                            ssn:Deployment ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty ssn:deployedOnPlatform ;
                               owl:allValuesFrom :EnvironmentalMonitoringPlatform
@@ -769,7 +817,11 @@ geo:long rdf:type owl:DatatypeProperty ;
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :deploymentVariance ;
                               owl:minCardinality "0"^^xsd:nonNegativeInteger
-                            ] .
+                            ] ;
+            rdfs:comment """Describes the deployment of one or more systems of sensors for some purpose.
+
+A deployment may be associated with a platform on which the sensors or systems were deployed."""@en ;
+            rdfs:label "Deployment"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalDomain
@@ -778,12 +830,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                      [ rdf:type owl:Restriction ;
                                        owl:onProperty skos:inScheme ;
                                        owl:allValuesFrom :EnvironmentalDomainScheme
-                                     ] .
+                                     ] ;
+                     rdfs:comment "A broad aspect of study of the natural environment."@en ;
+                     rdfs:label "Environmental Domain"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalDomainScheme
 :EnvironmentalDomainScheme rdf:type owl:Class ;
-                           rdfs:subClassOf skos:ConceptScheme .
+                           rdfs:subClassOf skos:ConceptScheme ;
+                           rdfs:comment "A controlled vocabulary of Environmental Domain concepts."@en ;
+                           rdfs:label "Environmental Domain Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacility
@@ -873,6 +929,7 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                    owl:onDataRange xsd:string
                                                  ] ;
+                                 rdfs:comment "A piece of infrastructure used by an environmental monitoring programme for some purpose."@en ;
                                  rdfs:label "Environmental Monitoring Facility"@en .
 
 
@@ -882,12 +939,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty skos:inScheme ;
                                                        owl:allValuesFrom :EnvironmentalMonitoringFacilityTypeScheme
-                                                     ] .
+                                                     ] ;
+                                     rdfs:comment "A Concept that represents a class of Environmental Monitoring Facility as defined by the monitoring programme that uses it."@en ;
+                                     rdfs:label "Environmental Monitoring Facility Type"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacilityTypeScheme
 :EnvironmentalMonitoringFacilityTypeScheme rdf:type owl:Class ;
-                                           rdfs:subClassOf skos:ConceptScheme .
+                                           rdfs:subClassOf skos:ConceptScheme ;
+                                           rdfs:comment "A controlled vocabulary of monitoring facility types."@en ;
+                                           rdfs:label "Environmental Monitoring Facility Type Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringNetwork
@@ -895,13 +956,18 @@ geo:long rdf:type owl:DatatypeProperty ;
                                 rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                   owl:onProperty :contains ;
                                                   owl:allValuesFrom :EnvironmentalMonitoringFacility
-                                                ] .
+                                                ] ;
+                                rdfs:comment "A collection of infrastructure elements which are used together for some environmental monitoring purpose."@en ;
+                                rdfs:label "Environmental Monitoring Network"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringPlatform
 :EnvironmentalMonitoringPlatform rdf:type owl:Class ;
                                  rdfs:subClassOf :EnvironmentalMonitoringFacility ,
                                                  sosa:Platform ;
+                                 rdfs:comment """A piece of infrastructure at a site that is used in the monitoring of the environment at that site.
+
+An Environmental Monitoring Platform may be a physical piece of infrastructure such as a post in the ground, a raised platform or a hole in the ground. It may also be used to represent a \"slot\" in the site infrastructure to which sensors may be serially deployed over time in order to monitor the same phenomenon."""@en ;
                                  rdfs:label "Environmental Monitoring Platform"@en .
 
 
@@ -910,7 +976,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                     owl:onProperty :utilises ;
                                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                                  ] .
+                                                  ] ;
+                                  rdfs:comment "An activity which undertakes the monitoring of some aspect(s) of the natural environment."@en ;
+                                  rdfs:label "Environmental Monitoring Programme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSensor
@@ -928,7 +996,7 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty :status ;
                                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass :SensorStatus
+                                                 owl:onClass :SystemStatus
                                                ] ,
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty :assetNumber ;
@@ -946,6 +1014,7 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                  owl:onProperty :storageLocation ;
                                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                ] ;
+                               rdfs:comment "A device which responds to a stimulus such as a change in the environment and reports a resulting observation."@en ;
                                rdfs:label "Environmental Monitoring Sensor"@en .
 
 
@@ -965,6 +1034,7 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                owl:onProperty :altitude ;
                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                              ] ;
+                             rdfs:comment "A geo-spatial location which contains infrastructure elements to which environmental monitoring systms are deployed."@en ;
                              rdfs:label "Environmental Monitoring Site"@en .
 
 
@@ -973,16 +1043,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                rdfs:subClassOf :EnvironmentalMonitoringFacility ,
                                                ssn:System ,
                                                [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :configuration ;
+                                                 owl:allValuesFrom :ConfigurationValueSeries
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
                                                  owl:onProperty dct:type ;
                                                  owl:allValuesFrom :EnvironmentalMonitoringFacilityType
                                                ] ,
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty ssn:hasSubSystem ;
                                                  owl:allValuesFrom :EnvironmentalMonitoringSystem
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :configuration ;
-                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                ] ,
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty :serialNumber ;
@@ -1002,7 +1072,11 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty :hasProcedure ;
                                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                                   ] .
+                                                   ] ;
+                                   rdfs:comment """A concept that defines a classification of monitoring system type.
+
+System type classification includes both broad functional classification (e.g. anenometer), and more narrow make and model classification."""@en ;
+                                   rdfs:label "Environmental Monitoring System Type"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ExternalDataProcessingConfiguration
@@ -1020,7 +1094,13 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                        owl:onProperty dcat:version ;
                                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                        owl:onDataRange xsd:string
-                                                     ] .
+                                                     ] ;
+                                     rdfs:comment """A Data Processing Configuration whose values are maintained in a system external to the FDRI metadata store.
+
+The `dct:version` property of this class SHOULD be used to provide the commit hash, tag or other stable identifier of a specifiic version of the referenced configuration data in the source repository.
+
+The `dct:type` property of this class SHOULD be used to reference the `fdri:DataProcessingConfigurationType` concept that defines the category of configuration data provided by the configuration."""@en ;
+                                     rdfs:label "External Data Processing Configuration"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroup
@@ -1073,7 +1153,11 @@ geo:long rdf:type owl:DatatypeProperty ;
                                  owl:onProperty geo:long ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:string
-                               ] .
+                               ] ;
+               rdfs:comment """Represents a collection of related Environmental Monitoring Facilities.
+
+Membership may be expressed directly using the `fdri:hasMember` property, or indirectly (with an optional temporal constraint) by creating `fdri:FacilityGroupMembership` instances."""@en ;
+               rdfs:label "Environmental Monitoring Facility Group"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupMembership
@@ -1089,7 +1173,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                          [ rdf:type owl:Restriction ;
                                            owl:onProperty :member ;
                                            owl:cardinality "1"^^xsd:nonNegativeInteger
-                                         ] .
+                                         ] ;
+                         rdfs:comment "Represents an optionally time-bounded membership of an `fdri:FacilityGroup` by some `fdri:EnvironmenalMonitoringFacility`."@en ;
+                         rdfs:label "Facility Group Membership"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupType
@@ -1098,12 +1184,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty skos:inScheme ;
                                      owl:allValuesFrom :FacilityGroupTypeScheme
-                                   ] .
+                                   ] ;
+                   rdfs:comment "A concept representing the nature of a facility group. e.g. catchment, region, project."@en ;
+                   rdfs:label "Facility Group Type"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityGroupTypeScheme
 :FacilityGroupTypeScheme rdf:type owl:Class ;
-                         rdfs:subClassOf skos:ConceptScheme .
+                         rdfs:subClassOf skos:ConceptScheme ;
+                         rdfs:comment "A controlled vocabulary of monitoring facility group types."@en ;
+                         rdfs:label "Environmental Monitoring Facility Group Type Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Fault
@@ -1125,7 +1215,8 @@ geo:long rdf:type owl:DatatypeProperty ;
                          owl:onProperty :removeData ;
                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                        ] ;
-       rdfs:comment "A record of a fault that affects the capture of one or more observable properties by one or more systems for a given period of time. A persistent or unresolved fault may be represented by using an internal with no defined end time."@en .
+       rdfs:comment "A record of a fault that affects the capture of one or more observable properties by one or more systems for a given period of time. A persistent or unresolved fault may be represented by using an internal with no defined end time."@en ;
+       rdfs:label "Fault"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/GeospatialFeatureOfInterest
@@ -1170,7 +1261,6 @@ geo:long rdf:type owl:DatatypeProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration
 :InternalDataProcessingConfiguration rdf:type owl:Class ;
                                      rdfs:subClassOf :DataProcessingConfiguration ,
-                                                     dcat:Resource ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hadConfigurationItem ;
                                                        owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -1178,21 +1268,13 @@ geo:long rdf:type owl:DatatypeProperty ;
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hasCurrentConfigurationItem ;
                                                        owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                                     ] .
+                                                     ] ;
+                                     rdfs:comment """A data processing configuration whose values are stored in the FDRI metadata service.
 
+Configuration values are conveyed by a collection of `fdri:ConfigurationItem` instances referenced from this item using the properties `fdri:hasCurrentConfiguration` for items which represent currently active values, and `fdri:hadConfiguration` for items which represent historically active values.
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/LandCoverType
-:LandCoverType rdf:type owl:Class ;
-               rdfs:subClassOf skos:Concept ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty skos:inScheme ;
-                                 owl:allValuesFrom :LandCoverTypeScheme
-                               ] .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/LandCoverTypeScheme
-:LandCoverTypeScheme rdf:type owl:Class ;
-                     rdfs:subClassOf skos:ConceptScheme .
+A current configuration MAY consist of multiple `fdri:ConfigurationItem` instances providing configuration details for different data processing methods."""@en ;
+                                     rdfs:label "Internal Data Processing Configuration"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Measure
@@ -1214,12 +1296,15 @@ geo:long rdf:type owl:DatatypeProperty ;
                            owl:onProperty :aggregation ;
                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ;
-         rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." .
+         rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." ;
+         rdfs:label "Measure"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/MeasureScheme
 :MeasureScheme rdf:type owl:Class ;
-               rdfs:subClassOf skos:ConceptScheme .
+               rdfs:subClassOf skos:ConceptScheme ;
+               rdfs:comment "A controlled vocabulary of variable measures."@en ;
+               rdfs:label "Measure Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ObservationDataset
@@ -1266,14 +1351,18 @@ geo:long rdf:type owl:DatatypeProperty ;
                                           dcat:DatasetSeries .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/Organisation
-:Organisation rdf:type owl:Class ;
-              rdfs:subClassOf :Agent .
+###  http://fdri.ceh.ac.uk/vocab/metadata/Organization
+:Organization rdf:type owl:Class ;
+              rdfs:subClassOf :Agent ;
+              rdfs:comment "A social or legal institution such as a company, society etc."@en ;
+              rdfs:label "Organization"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Person
 :Person rdf:type owl:Class ;
-        rdfs:subClassOf :Agent .
+        rdfs:subClassOf :Agent ;
+        rdfs:comment "A natural person."@en ;
+        rdfs:label "Person"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Procedure
@@ -1287,7 +1376,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :procedurePeriodicity ;
                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                           ] .
+                           ] ;
+           rdfs:comment "A process follwed by an `fdri:Agent` during the execution of a `prov:Activity`. The categorization of the procedure SHOULD be indicated using the `dct:type` property referencing an `fdri:ProcedureType` concept."@en ;
+           rdfs:label "Procedure"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcedureType
@@ -1296,12 +1387,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty skos:inScheme ;
                                  owl:allValuesFrom :ProcedureTypeScheme
-                               ] .
+                               ] ;
+               rdfs:comment "A concept which defines a category or type of `fdri:Procedure`."@en ;
+               rdfs:label "Procedure Type"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcedureTypeScheme
 :ProcedureTypeScheme rdf:type owl:Class ;
-                     rdfs:subClassOf skos:ConceptScheme .
+                     rdfs:subClassOf skos:ConceptScheme ;
+                     rdfs:comment "A controlled vocabulary of types or categories of procedure that might be undertaken by an Agent as (part of) an Activity."@en ;
+                     rdfs:label "Procedure Type Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcessingLevel
@@ -1310,12 +1405,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty skos:inScheme ;
                                    owl:allValuesFrom :ProcessingLevelScheme
-                                 ] .
+                                 ] ;
+                 rdfs:comment "A concept which defines a level of data processing that has been applied to a dataset."@en ;
+                 rdfs:label "Processing Level"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProcessingLevelScheme
 :ProcessingLevelScheme rdf:type owl:Class ;
-                       rdfs:subClassOf skos:ConceptScheme .
+                       rdfs:subClassOf skos:ConceptScheme ;
+                       rdfs:comment "A controlled vocabulary of the levels of data processing which may be applied to a dataaset."@en ;
+                       rdfs:label "Processing Level Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ProgrammeCatalog
@@ -1333,7 +1432,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :qualifier ;
                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
-                               ] .
+                               ] ;
+               rdfs:comment "A structured representation of the value of a property, allowing for values that are simple values, value ranges, or classifications."@en ;
+               rdfs:label "Property Value"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/PropertyValueSeries
@@ -1345,7 +1446,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                      [ rdf:type owl:Restriction ;
                                        owl:onProperty :hasCurrentValue ;
                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                     ] .
+                                     ] ;
+                     rdfs:comment "An historical record of values of a property."@en ;
+                     rdfs:label "Property Value Series"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/QualityObservation
@@ -1354,12 +1457,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty sosa:hasFeatureOfInterest ;
                                       owl:allValuesFrom dcat:Dataset
-                                    ] .
+                                    ] ;
+                    rdfs:comment "A type of `sosa:Observation` that provides quality metrics for some `dcat:Dataset`"@en ;
+                    rdfs:label "Quality Observation"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RegionScheme
 :RegionScheme rdf:type owl:Class ;
-              rdfs:subClassOf skos:ConceptScheme .
+              rdfs:subClassOf skos:ConceptScheme ;
+              rdfs:comment "A controlled vocabulary of Regions."@en ;
+              rdfs:label "Region Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAttribution
@@ -1372,7 +1479,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                          [ rdf:type owl:Restriction ;
                                            owl:onProperty prov:hadRole ;
                                            owl:allValuesFrom :RelatedPartyRole
-                                         ] .
+                                         ] ;
+                         rdfs:comment "An association between an Agent and the role that they play in relation to the referencing resource."@en ;
+                         rdfs:label "Related Party Attribution"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyRole
@@ -1381,12 +1490,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty skos:inScheme ;
                                     owl:allValuesFrom :RelatedPartyRoleScheme
-                                  ] .
+                                  ] ;
+                  rdfs:comment "A concept that defines the role an `fdri:Agent` may play in relation to some resource."@en ;
+                  rdfs:label "Related Party Role"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyRoleScheme
 :RelatedPartyRoleScheme rdf:type owl:Class ;
-                        rdfs:subClassOf skos:ConceptScheme .
+                        rdfs:subClassOf skos:ConceptScheme ;
+                        rdfs:comment "A concept scheme that defines a controlled vocabulary for the roles that an Agent may play in relation to other resources."@en ;
+                        rdfs:label "Related Party Role Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelativeLocation
@@ -1407,20 +1520,6 @@ geo:long rdf:type owl:DatatypeProperty ;
                   rdfs:label "Relative Location"@en .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/SensorStatus
-:SensorStatus rdf:type owl:Class ;
-              rdfs:subClassOf skos:Concept ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty skos:inScheme ;
-                                owl:allValuesFrom :SensorStatusScheme
-                              ] .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/SensorStatusScheme
-:SensorStatusScheme rdf:type owl:Class ;
-                    rdfs:subClassOf skos:ConceptScheme .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoftwareAgent
 :SoftwareAgent rdf:type owl:Class ;
                rdfs:subClassOf :Agent ,
@@ -1431,7 +1530,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :repository ;
                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                               ] .
+                               ] ;
+               rdfs:comment "A software system"@en ;
+               rdfs:label "Software Agent"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoilType
@@ -1440,12 +1541,16 @@ geo:long rdf:type owl:DatatypeProperty ;
                           [ rdf:type owl:Restriction ;
                             owl:onProperty skos:inScheme ;
                             owl:allValuesFrom :SoilTypeScheme
-                          ] .
+                          ] ;
+          rdfs:comment "A concept that defines a soil type classification."@en ;
+          rdfs:label "Soil Type"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoilTypeScheme
 :SoilTypeScheme rdf:type owl:Class ;
-                rdfs:subClassOf skos:ConceptScheme .
+                rdfs:subClassOf skos:ConceptScheme ;
+                rdfs:comment "A concept scheme that defines a controlled vocabulary of soil type classifications."@en ;
+                rdfs:label "Soil Type Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/StaticDeployment
@@ -1471,7 +1576,27 @@ geo:long rdf:type owl:DatatypeProperty ;
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :deployedHeight ;
                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] .
+                                  ] ;
+                  rdfs:comment "A deployment of a sensor or system of sensors in a fixed relationship to some location."@en ;
+                  rdfs:label "Static Deploment"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/SystemStatus
+:SystemStatus rdf:type owl:Class ;
+              rdfs:subClassOf skos:Concept ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty skos:inScheme ;
+                                owl:allValuesFrom :SystemStatusScheme
+                              ] ;
+              rdfs:comment "A concept that defines an operational status category for an Environmental Monitoring System."@en ;
+              rdfs:label "System Status"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/SystemStatusScheme
+:SystemStatusScheme rdf:type owl:Class ;
+                    rdfs:subClassOf skos:ConceptScheme ;
+                    rdfs:comment "A controlled vocabulary of system status categories."@en ;
+                    rdfs:label "System Status Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/TimeBoundPropertyValue
@@ -1484,7 +1609,9 @@ geo:long rdf:type owl:DatatypeProperty ;
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty :interval ;
                                           owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                        ] .
+                                        ] ;
+                        rdfs:comment "A value with an associated period of time during which the value is/was vaild."@en ;
+                        rdfs:label "Time-bound Property Value"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDataset
@@ -1525,20 +1652,26 @@ geo:long rdf:type owl:DatatypeProperty ;
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :valueStatistic ;
                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                      ] .
+                                      ] ;
+                      rdfs:comment """A representation of a time series of some observed or derived measurement of a variable.
+
+A Time-Series Definition captures the information that is common across multiple Time-Series Datasets that measure or derive values for the same Variable using the same procedure."""@en ;
+                      rdfs:label "Time-Series Definition"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesPlan
 :TimeSeriesPlan rdf:type owl:Class ;
-                rdfs:subClassOf prov:Plan ,
+                rdfs:subClassOf :Procedure ,
                                 [ rdf:type owl:Restriction ;
-                                  owl:onProperty :hasAnnotation ;
-                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                  owl:onProperty :configuration ;
+                                  owl:allValuesFrom :DataProcessingConfiguration
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :uses ;
                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                ] .
+                                ] ;
+                rdfs:comment "A procedure which results in the creation or update of instances of a `fdri:TimeSeriesDefinition` through the application of one or more `fdri:DataProcessingConfiguration`s to any number of input time series."@en ;
+                rdfs:label "Time-series Plan"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Unit
@@ -1547,17 +1680,23 @@ geo:long rdf:type owl:DatatypeProperty ;
                       [ rdf:type owl:Restriction ;
                         owl:onProperty skos:inScheme ;
                         owl:allValuesFrom :UnitScheme
-                      ] .
+                      ] ;
+      rdfs:comment "A Concept which represents a unit of measure of an observable property."@en ;
+      rdfs:label "Unit of Measure"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/UnitScheme
 :UnitScheme rdf:type owl:Class ;
-            rdfs:subClassOf skos:ConceptScheme .
+            rdfs:subClassOf skos:ConceptScheme ;
+            rdfs:comment "A concept scheme providing a controlled vocabulary of units of measure."@en ;
+            rdfs:label "Unit of Measure Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic
 :ValueStatistic rdf:type owl:Class ;
-                rdfs:subClassOf skos:Concept .
+                rdfs:subClassOf skos:Concept ;
+                rdfs:comment "A concept that defines a statistical method for the derivation of a single aggregated value from a series of source values."@en ;
+                rdfs:label "Value Statistic"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Variable
@@ -1575,7 +1714,9 @@ geo:long rdf:type owl:DatatypeProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/VariableScheme
 :VariableScheme rdf:type owl:Class ;
-                rdfs:subClassOf skos:ConceptScheme .
+                rdfs:subClassOf skos:ConceptScheme ;
+                rdfs:comment "A concept scheme which manages a controlled set of Variable definitions."@en ;
+                rdfs:label "Variable Scheme"@en .
 
 
 ###  http://qudt.org/schema/qudt/Unit
@@ -1632,16 +1773,20 @@ prov:Activity rdfs:subClassOf [ rdf:type owl:Restriction ;
                               ] .
 
 
-###  http://www.w3.org/ns/ssn/Deployment
-ssn:Deployment rdfs:subClassOf prov:Activity .
-
-
 ###  https://w3id.org/iadopt/ont/Entity
-iop:Entity rdfs:subClassOf skos:Concept .
+iop:Entity rdf:type owl:Class ;
+           rdfs:subClassOf skos:Concept .
 
 
 ###  https://w3id.org/iadopt/ont/Property
-iop:Property rdfs:subClassOf skos:Concept .
+iop:Property rdf:type owl:Class ;
+             rdfs:subClassOf skos:Concept ;
+             rdfs:comment "A type of a characteristic of an `iop:ObjectOfInterest`."@en ;
+             rdfs:label "Property"@en .
+
+
+###  https://w3id.org/iadopt/ont/Variable
+iop:Variable rdf:type owl:Class .
 
 
 #################################################################

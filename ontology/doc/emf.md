@@ -118,7 +118,6 @@ class EMSite["fdri:EnvironmentalMonitoringSite"] {
   fdri:altitude: xsd:decimal
   fdri:siteVariance: rdf:langString
 }
-class LandCover["fdri:LandCover"]
 class PeriodOfTime["dct:PeriodOfTime"] {
   dcat:startDate: xsd:date/xsd:dateTime
   dcat:endDate: xsd:date/xsd:dateTime
@@ -147,7 +146,6 @@ PropertyValueSeries --> TimeBoundPropertyValue: fdri_hasCurrentValue
 TimeBoundPropertyValue --|> PropertyValue
 TimeBoundPropertyValue --> PeriodOfTime: fdri_interval
 TimeBoundPropertyValue --> TimeBoundPropertyValue: dct_replaces
-LandCover --|> Concept
 SoilType --|> Concept
 Region --|> Concept
 Catchment --|> Concept

@@ -540,8 +540,11 @@ records:
         lang: en
     description:
       - value: |
-          An Annotation attaches a value or an historical series of values for a property to the resource that
-          has the annotation.
+          Annotations provide an extension point to the FDRI metadata model to allow a more diverse range of metadata to
+          be captured than is explicitly allowed for in the model.
+          
+          Each Annotation instance provides either a single value (`fdri:hasValue`) or a time-based series of values
+          (`fdri:hasValueSeries`) for a single property (`fdri:property`).
         lang: en
     classUri: fdri:Annotation
     shortCode: Annotation
@@ -1703,7 +1706,7 @@ records:
         lang: en
     description:
       - value: |
-          A sensor or package that of sensors for monitoring the environment.
+          An abstraction for a pieces of environmental monitoring infrastructure that may be deployed to provide observations of environmental features of interest.
         lang: en
     extends: EnvironmentalMonitoringFacility
     classUri: fdri:EnvironmentalMonitoringSystem
@@ -2703,7 +2706,7 @@ records:
       - value: Property Value Series
         lang: en
     description:
-      - value: An historical record of values
+      - value: An historical record of values of a property.
         lang: en
     classUri: fdri:PropertyValueSeries
     shortCode: PropertyValueSeries
@@ -3323,7 +3326,7 @@ records:
           - value: has property
             lang: en
         description:
-          - value: The characteristic of the object of interest that is described or observed by this Complex Observable Property.
+          - value: The characteristic of the object of interest that is described or observed by this Variable.
             lang: en
         propertyUri: "iop:hasProperty"
         kind: object
@@ -3335,7 +3338,7 @@ records:
           - value: has object of interest
             lang: en
         description:
-          - value: The kind of entity whose characteristic is observed by this Complex Observable Property.
+          - value: The kind of entity whose characteristic is observed by this Variable.
             lang: en
         propertyUri: iop:hasObjectOfInterest
         kind: object
@@ -3349,7 +3352,7 @@ records:
         description:
           - value: | 
               A resource which provides additional background information regarding the Object of Interest or the
-              measurement of the Complex Observable Property.
+              measurement of the Variable.
             lang: en
         propertyUri: iop:hasContextObject
         kind: object
@@ -3384,8 +3387,8 @@ records:
             lang: en
         description:
           - value: |
-              Complex Observable Properties are managed in a concept scheme structure. This property
-              relates the Complex Observable Property to the concept scheme that it is a part of.
+              Variables are managed in a concept scheme structure. This property
+              relates the Variable to the concept scheme that it is a part of.
         propertyUri: skos:inScheme
         kind: object
         constraints:
@@ -3396,7 +3399,7 @@ records:
       - value: Variable Concept Scheme
         lang: en
     description:
-      - value: A concept scheme which manages a controlled set of Complex Observable Property definitions.
+      - value: A concept scheme which manages a controlled set of Variable definitions.
         lang: en
     extends: ConceptScheme
     classUri: fdri:VariableScheme

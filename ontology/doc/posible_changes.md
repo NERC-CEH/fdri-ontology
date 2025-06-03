@@ -11,3 +11,7 @@ Rather than remove the FDRI ontology classes we opted to instead just root the F
 # DONE: Remove Catchment and Region types
 
 These are now terms in a FacilityGroupType concept scheme
+
+# Make InternalDataProcessingConfiguration a subclass of ConfigurationValueSeries
+
+An InternalDataProcessingConfiguration has hasCurrentConfiguration and hadConfiguration which are mirrored in ConfigurationValueSeries as hasCurrentValue and hadValue. Thus an  InternalDataProcessingConfiguration could be seen as a ConfigurationValueSeries where the value item is a ConfigurationItem (or a set of ConfigurationItems, although I do not believe we are currently using this).
