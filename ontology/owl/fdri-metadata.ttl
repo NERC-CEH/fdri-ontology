@@ -797,7 +797,11 @@ Each Annotation instance provides either a single value (`fdri:hasValue`) or a t
                                      owl:onProperty :interval ;
                                      owl:cardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
-                   rdfs:comment "Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run."@en ;
+                   rdfs:comment """Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run.
+
+The property `fdri:method` references the concept that defines the data processing method applied. Each argument passed to the data processing method is provided through an `fdri:argument` property.
+
+The property `fdri:interval` indicates the period of time during which this configuration item is/was used. The property `fdri:observationInterval` indicates the date range of the measurements that the configuration item applies to."""@en ;
                    rdfs:label "Data Processing Configuration Item"@en .
 
 
@@ -1034,7 +1038,9 @@ A deployment may be associated with a platform on which the sensors or systems w
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                    owl:onDataRange xsd:string
                                                  ] ;
-                                 rdfs:comment "A piece of infrastructure used by an environmental monitoring programme for some purpose."@en ;
+                                 rdfs:comment """A piece of infrastructure used by an environmental monitoring programme for some purpose.
+
+The derived classes `fdri:EnvironmentalMonitoringSite`, `fdri:EnvironmentalMonitoringPlatform`,  `fdri:EnvironmentalMonitoringSystem`, and `fdri:EnvironmentalMonitoringSensor` should be used in preference to this class."""@en ;
                                  rdfs:label "Environmental Monitoring Facility"@en .
 
 
@@ -1062,7 +1068,7 @@ A deployment may be associated with a platform on which the sensors or systems w
                                                   owl:onProperty :contains ;
                                                   owl:allValuesFrom :EnvironmentalMonitoringFacility
                                                 ] ;
-                                rdfs:comment "A collection of infrastructure elements which are used together for some environmental monitoring purpose."@en ;
+                                rdfs:comment "A collection of infrastructure elements (`fdri:EnvironmentalMonitoringFacility`) which are used together for some environmental monitoring purpose."@en ;
                                 rdfs:label "Environmental Monitoring Network"@en .
 
 
@@ -1072,7 +1078,9 @@ A deployment may be associated with a platform on which the sensors or systems w
                                                  sosa:Platform ;
                                  rdfs:comment """A piece of infrastructure at a site that is used in the monitoring of the environment at that site.
 
-An Environmental Monitoring Platform may be a physical piece of infrastructure such as a post in the ground, a raised platform or a hole in the ground. It may also be used to represent a \"slot\" in the site infrastructure to which sensors may be serially deployed over time in order to monitor the same phenomenon."""@en ;
+An Environmental Monitoring Platform may be a physical piece of infrastructure such as a post in the ground, a raised platform or a hole in the ground. It may also be used to represent a \"slot\" in the site infrastructure to which sensors may be serially deployed over time in order to monitor the same phenomenon.
+
+An Environmental Monitoring Platform may host (`sosa:hosts`) any number of systems (`fdri:EnvironmentalMonitoringSystem`). It may also be the target of a Deployment (`fdri:deployedOnPlatform` on `fdri:Deployment`) of some `fdri:EnvironmentalMonitoringSystem`. This latter formulation is preferred when the system(s) deployed on the platform may change over time."""@en ;
                                  rdfs:label "Environmental Monitoring Platform"@en .
 
 
@@ -1082,7 +1090,9 @@ An Environmental Monitoring Platform may be a physical piece of infrastructure s
                                                     owl:onProperty :utilises ;
                                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                   ] ;
-                                  rdfs:comment "An activity which undertakes the monitoring of some aspect(s) of the natural environment."@en ;
+                                  rdfs:comment """An activity which undertakes the monitoring of some aspect(s) of the natural environment.
+
+An Environmental Monitoring Programme may make use of (`fdri:utilises`) any number of Environmental Monitoring Networks (`fdri:EnvironmentalMonitoringNetwork`) and/or Environmental Monitoring Facilities (`fdri:EnvironmentalMonitoringFacility`) in order to achieive its goals."""@en ;
                                   rdfs:label "Environmental Monitoring Programme"@en .
 
 
@@ -1135,7 +1145,11 @@ An Environmental Monitoring Platform may be a physical piece of infrastructure s
                                                owl:onProperty :altitude ;
                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                              ] ;
-                             rdfs:comment "A geo-spatial location which contains infrastructure elements to which environmental monitoring systms are deployed."@en ;
+                             rdfs:comment """A geo-spatial location which contains infrastructure elements to which environmental monitoring systms are deployed.
+
+An Environmental Monitoring Site may host any number of systems (`fdri:EnvironmentalMonitoringSystem`) and it may be the target of any number of deployments (`fdri:deployedOnPlatform` on `fdri:Deployment`) of systems. This latter formulation should be used when the system(s) deployed to a site may change over time. 
+
+If information is available regarding the platforms (`fdri:EnvironmentalMonitoringPlatform`) at a site, then hosting and deployment relationships should target the platform(s) rather than the site where possible."""@en ;
                              rdfs:label "Environmental Monitoring Site"@en .
 
 
@@ -1258,6 +1272,8 @@ The `dct:type` property of this class SHOULD be used to reference the `fdri:Data
                                ] ;
                rdfs:comment """Represents a collection of related Environmental Monitoring Facilities.
 
+Facility Groups may be geographic (e.g. region, catchment), administrative (e.g. local authority, commisioning group) or created for any other purpose.
+
 Membership may be expressed directly using the `fdri:hasMember` property, or indirectly (with an optional temporal constraint) by creating `fdri:FacilityGroupMembership` instances."""@en ;
                rdfs:label "Environmental Monitoring Facility Group"@en .
 
@@ -1317,7 +1333,11 @@ Membership may be expressed directly using the `fdri:hasMember` property, or ind
                          owl:onProperty :removeData ;
                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                        ] ;
-       rdfs:comment "A record of a fault that affects the capture of one or more observable properties by one or more systems for a given period of time. A persistent or unresolved fault may be represented by using an internal with no defined end time."@en ;
+       rdfs:comment """A record of a fault that affects the capture of one or more variables (`fdri:affectedVariable`) by one or more monitoring facilities (`fdri:affectedFacility`) for a given period of time (`fdri:interval).
+
+A fault may or may not require that data collected for the affected variables by the affected facilities be removed from the published datasets (`fdri:removeData`). 
+
+A persistent or unresolved fault may be represented by using an internal with no defined end time."""@en ;
        rdfs:label "Fault"@en .
 
 
@@ -1373,7 +1393,7 @@ Membership may be expressed directly using the `fdri:hasMember` property, or ind
                                                      ] ;
                                      rdfs:comment """A data processing configuration whose values are stored in the FDRI metadata service.
 
-Configuration values are conveyed by a collection of `fdri:ConfigurationItem` instances referenced from this item using the properties `fdri:hasCurrentConfiguration` for items which represent currently active values, and `fdri:hadConfiguration` for items which represent historically active values.
+Configuration values are conveyed by a collection of Configiration Items (`fdri:ConfigurationItem`) referenced from this item using the properties `fdri:hasCurrentConfiguration` for items which represent currently active values, and `fdri:hadConfiguration` for items which represent historically active values.
 
 A current configuration MAY consist of multiple `fdri:ConfigurationItem` instances providing configuration details for different data processing methods."""@en ;
                                      rdfs:label "Internal Data Processing Configuration"@en .
@@ -1445,7 +1465,11 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                                       owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                       owl:onClass :Variable
                                     ] ;
-                    rdfs:comment "A dataset that provides values for Measures from some Environmental Monitoring Facility or Programme."@en ;
+                    rdfs:comment """A dataset that provides values for Measures from some Environmental Monitoring Facility or Programme.
+
+The property `fdri:measure` should be use to specify the Measures recorded by the dataset and `sosa:observedProperty` should be used to specify the Variables measured by those measures.
+
+It is recommended that every dataset should specify the feature(s) of interest (sosa:hasFeatureOfInterest) observed by the measures in the dataset, and the originating programme (fdri:originatingProgramme) for the data. Datasets that provide observations from static sites should also reference these using the `fdri:originatingSite` property."""@en ;
                     rdfs:label "Observation Dataset"@en .
 
 
@@ -1483,7 +1507,11 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                              owl:onProperty :procedurePeriodicity ;
                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
                            ] ;
-           rdfs:comment "A process follwed by an `fdri:Agent` during the execution of a `prov:Activity`. The categorization of the procedure SHOULD be indicated using the `dct:type` property referencing an `fdri:ProcedureType` concept."@en ;
+           rdfs:comment """A process follwed by an Agent (`fdri:Agent`) during the execution of an Activity (`prov:Activity`).
+
+The categorization of the procedure SHOULD be indicated using the `dct:type` property referencing an `fdri:ProcedureType` concept.
+
+The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture the expected frequency of execution of the Procedure."""@en ;
            rdfs:label "Procedure"@en .
 
 
@@ -1553,7 +1581,7 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                                        owl:onProperty :hasCurrentValue ;
                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                      ] ;
-                     rdfs:comment "An historical record of values of a property."@en ;
+                     rdfs:comment "An record of values of a property. The currently active/valid value is given by `fdri:hasCurrentValue` and historic values are given by `fdri:hadValue`."@en ;
                      rdfs:label "Property Value Series"@en .
 
 
@@ -1739,7 +1767,9 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                                      owl:onProperty :sourceDataset ;
                                      owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
-                   rdfs:comment "A Observation Dataset consisting of a collection of values of one or more Measures of some Feature of Interest at regular intervals over a period of time."@en ;
+                   rdfs:comment """A Observation Dataset consisting of a collection of values of one or more Measures of some Feature of Interest at regular intervals over a period of time.
+
+This class extends `fdri:ObservationDataset` with metadata properties that assist in the processing of the data through the FDRI data pipeline. `fdri:sourceBucket`, `fdri:sourceDataset` and `fdri:sourceColumnName` are used to access the dataset values. The `dct:type` property references the `fdri:TimeSeriesDefinition` instance which provides processing configuration information for the dataset."""@en ;
                    rdfs:label "Time-Series Dataset"@en .
 
 
@@ -1776,7 +1806,7 @@ A Time-Series Definition captures the information that is common across multiple
                                   owl:onProperty :uses ;
                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
                                 ] ;
-                rdfs:comment "A procedure which results in the creation or update of instances of a `fdri:TimeSeriesDefinition` through the application of one or more `fdri:DataProcessingConfiguration`s to any number of input time series."@en ;
+                rdfs:comment "A procedure which results in the creation or update of instances of a Time-Series Definition (`fdri:TimeSeriesDefinition`) through the application of one or more data processing configurations (`fdri:DataProcessingConfiguration`) to it's input time series."@en ;
                 rdfs:label "Time-series Plan"@en .
 
 
