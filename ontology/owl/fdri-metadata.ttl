@@ -432,8 +432,8 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/variable
 :variable rdf:type owl:ObjectProperty ;
           rdfs:range :Variable ;
-          rdfs:comment "Relates a Measure to the Variable that the is measured."@en ;
-          rdfs:label "measure"@en .
+          rdfs:comment "Relates a Measure to the Variable that is measured."@en ;
+          rdfs:label "variable"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/wasModifiedBy
@@ -1337,7 +1337,7 @@ Membership may be expressed directly using the `fdri:hasMember` property, or ind
 
 A fault may or may not require that data collected for the affected variables by the affected facilities be removed from the published datasets (`fdri:removeData`). 
 
-A persistent or unresolved fault may be represented by using an internal with no defined end time."""@en ;
+A persistent or unresolved fault may be represented by using an interval with no defined end time."""@en ;
        rdfs:label "Fault"@en .
 
 
