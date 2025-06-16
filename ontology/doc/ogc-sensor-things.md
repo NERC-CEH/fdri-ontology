@@ -1,12 +1,12 @@
-# OGC SensorThings API Specification and FDRI Model
+## OGC SensorThings API Specification and FDRI Model
 
-## Introduction
+### Introduction
 
 This section discusses how the FDRI model might be aligned with the data model proposed by the [OGC SensorThings API Part 1: Sensing Version 1.1](http://www.opengis.net/doc/is/sensorthings/1.1).
 
 The SensorThings API specificiation is divided into two parts. Part 1 covers Sensing, Part 2 covers Tasking. The Sensing part is intended to address managing and retrieving observations and metadata from heterogeneous IoT sensor systems, and so is the part which FDRI might most simply align. In the following discussion, a reference to "SensorThings" or the "SensorThings API" should be taken to refer specifically to the Sensing part of the SensorThings API specification. 
 
-## Type Mappings
+### Type Mappings
 
 ![Sensor Things Entity Types diagram](sensor-things-types.png)
 
@@ -25,7 +25,7 @@ This proposal recommends the following mappings of FDRI classes to SensorThings 
 | FeatureOfInterest     | NOT MAPPED |
 | ValueCode             | NOT MAPPED |
 
-### Datastream
+#### Datastream
 
 The SensorThings `Datastream` has a partial mapping to the FDRI `TimeSeriesDataset` class. The mapping is partial because the modelling of the SensorThings `Datastream` assumes that a `Datastream` is the result of observations from a single sensor, whereas the FDRI model makes no such assumption and the relation between an FDRI `TimeSeriesDataset` and the sensor (or sensors) which produced the observations contained in the dataset is indirect. Thus an accurate mapping will only be possible for `TimeSeriesDataset` instances which are restricted to observations of a single property of a single feature of interest made by a single sensor.
 
@@ -69,7 +69,7 @@ observations
 thing
 : In the SensorThings API this relation is to a Thing in an IOT network. In the FDRI model this could be considered to be the EnvironmentalMonitoringFacility from which the TimeSeriesDataset originates. If this interpretation holds, then this relationship maps to the property `fdri:originatingFacility` on the FDRI TimeSeriesDataset.
 
-### Thing
+#### Thing
 
 In the SensorThings API the "Thing" is the physical element of the IOT infrastructure that holds one or more sensors. This maps to the FDRI concept of the EnvironmentalMonitoringFaciltiy and in particular to the sub-classes of EnvironmentalMonitoringSite and EnvironmentalMonitoringPlatform.
 
@@ -93,7 +93,7 @@ HistoricalLocation
 Datastream
 : Maps to those TimeSeriesDatasets with an `fdri:originatingFacility` of this facility or one of its parts. 
 
-### Location
+#### Location
 
 **Property Mappings**
 name
@@ -112,7 +112,7 @@ location
 things
 : Maps back to the EnvironmentalMonitoringFacility instance that has this location.
 
-### Sensor
+#### Sensor
 
 Sensor maps to the FDRI EnvironmentalMonitoringSystem type (and its sub-class EnvironmentalMonitoringSensor). 
 
@@ -137,7 +137,7 @@ metadata
 Datastream
 : The Datastreams mapped from the TimeSeriesDataset(s) with an fdri:originatingFacility which hosts a (current) deployment of this EnvironmentalMonitoringSystem
 
-### ObservedProperty
+#### ObservedProperty
 
 ObservedProperty maps to Variable in the FDRI model.
 
@@ -157,17 +157,17 @@ definition
 Datastream
 : The Datastreams mapped from those TimeSeriesDataset(s) with a sosa:observedProperty of this Variable.
 
-### HistoricalLocation
+#### HistoricalLocation
 
 This entity is not mapped to any FDRI class and is unused under the FDRI to SensorThibgs mapping
 
-### Observation
+#### Observation
 
 This entity is not mapped to any FDRI class as the FDRI metadata store does not cover row-level observation metadata.
 The mapping to Observation will need to be addressed in the workstream focussed on delivering metadata+data via an API. 
 
 
-### FeatureOfInterest
+#### FeatureOfInterest
 
 This entity is only used in relation to the unmapped Observation class, however it is likely that in an implementation
 that includes Observation entities, the FeatureOfInterest entities will be derived from the reference data in the FDRI metadata store.
@@ -192,17 +192,17 @@ feature
 Observations
 : The observations for a feature of interest can be found be querying for all TimeSeriesDatasets that have the mapped GeospatialFeatureOfInterest as their feature of interest and providing access to the observations from those datasets.
 
-### ValueCode
+#### ValueCode
 
 This entity is used primarily to represent the value of classification observations in the SensorThings API model. As the FDRI mapping does not include observation data, there is no need to map ValueCode. However, in principal the obvious type mapping in the model is to `skos:Concept`.
 
-## Extension Properties
+### Extension Properties
 
 All of the entity types defined in SensorThings have a property named `properties`. The value of this property is defined as "A JSON Object containing user-annotated properties as key-value pairs.". This provides an extension point where FDRI-specific properties could be included in the SensorThings API. The requirements for these properties will depend on the particular use cases for a SensorThings API over FDRI data, in the absence of specific use cases, it is recommended that the `properties` object should contain a JSON-LD representation of the FDRI resource that is mapped to the SensorThings entity. The Location entity might be treated as a special case where only the IRI identifier and geolocation properties of the FDRI resource are included in the properties.
 
-## Implications for the FDRI model
+### Implications for the FDRI model
 
-### Introduce resource identifiers
+#### Introduce resource identifiers
 
 In the SensorThings API, each resource requires an ID property which is used to retrieve the resource from the collection that it is in. This ID property could simply be the IRI of the mapped resource but this would require escaping when used in the URIs of the SensorThings API and would make for longer, potentially less readable SensorThings API paths.
 
@@ -210,13 +210,13 @@ To address this issue, the FDRI data model could be extended to allow a property
 
 Alternatively if there are consistent templates for resource identifiers it may be possible to map FDRI resource IRIs into stub identifiers in a consistent manner that does not require any additiona property to store them.
 
-### Consider adding a Location resource type
+#### Consider adding a Location resource type
 
 Consider making a resource type equivalent to the SensorThings Location entity type. This would involve moving the properties `hasGeometry`, `hasBoundingBox` etc. which are currently defined on classes such as `EnvironmentalMonitoringFacility` and `GeospatialFeatureOfInterest` into a separate class (possibly using the GeoSPARQL `geos:Feature` class), and then having a specific relation such as `fdri:hasLocation` to relate the facility or feature of interest to its location. 
 
 **NOTE** The use of the `geo:Feature` class may be inappropriate for this purpose as its definition overlaps more strongly with the FDRI `GeospatialFeatureOfInterest` than it does with the SensorThings notion of `Location`.
 
-### Consider how to ensure a name and descrption for all entities
+#### Consider how to ensure a name and descrption for all entities
 
 In the current FDRI data model, a label is not mandatory, but in the SensorThings API the name property is mandatory for all entities. This issue may be addressed either by making an rfds:label, skos:prefLabel and/or dct:title mandatory on the relevant FDRI resource types or by defining an approach to generating labels for resources that do not have any of these properties.
 

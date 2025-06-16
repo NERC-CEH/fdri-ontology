@@ -1,4 +1,4 @@
-  ## Sensor / System Model
+## Sensor / System Model
 
 This area of the model is concerned with defining sensor packages, models of sensor used and related procedures as well as the relationship to deployed instances of specific packages/sensors.
 

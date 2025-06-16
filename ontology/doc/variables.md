@@ -1,4 +1,4 @@
-# Variables
+## Variables
 
 A `Variable` is a "description of something observed or derived, minimally consisting of an ObjectOfInterest and its Property" (taken from the description of the [I-Adopt ontology](https://i-adopt.github.io/ontology/#/Variable) upon which this part of the modelling is based).
 
@@ -20,7 +20,7 @@ Variable --> "0..n" Constraint: hasConstraint
 Constraint --> "1..n" Entity: constrains
 ```
 
-## Property
+### Property
 
 The Property facet represents the abstract characteristic of the object of interest that is measured by the Variable. Some examples:
 
@@ -30,7 +30,7 @@ The Property facet represents the abstract characteristic of the object of inter
 
 These properties should be gathered into a shared reference vocabulary and where possible it is recommended to relate properties to [QUDT QuantityKind](https://www.qudt.org/doc/DOC_VOCAB-QUANTITY-KINDS.html) instances.
 
-## ObjectOfInterest
+### ObjectOfInterest
 
 The ObjectOfInterest facet represents the class of thing whose property is measured by the Variable. e.g.
 
@@ -79,24 +79,24 @@ block-beta
 ```
 Through this reuse of vocabulary terms it is possibel to create networks of related variables and to construct more complex shared vocabularies (of variables), from more simple building blocks (properties and objects of interest).
 
-## Context
+### Context
 
 The Context facet relates a Variable to concepts which provide additional background information regarding the object of interest.
 
 > [!TODO]
 > Find an example of context from the COSMOS data
 
-## Matrix
+### Matrix
 
 Tne Matrix facet describes the thing within which the object of interest is contained. For example if a variable measures "Dissolved nitrate molar concentration in precipitation water", the object of interest is "nitrate" and the matrix is "precipitation".
 
-## Constraint
+### Constraint
 
 Constraints provide additional contextual information for the object of interest, matrix and/or context object facets. A constraint may apply to any one of these facets or to multiple facets.
 
 Constraints are often used to specify more detail about the context in which a measurement is taken e.g. "20cm depth" (which may contextualise the object of interest of a variable)
 
-# Measures
+## Measures
 
 The iAdopt framework provides a means of describing what is being observed by a dataset. However, this does not provide information about how the observations are recorded and treated in the dataset. The Measure class combines the observed property with information about the unit and statistical aggregation of the measures taken of the observed property.
 
@@ -122,10 +122,10 @@ Aggregation --> "1..1" Concept: valueStatistic
 Concept <|-- Unit
 ```
 
-## Variable
+### Variable
 The `hasVariable` property relats a Measure to the Variable for which values are provided.
 
-## Unit
+### Unit
 
 The `hasUnit` property relates a Measure to a concept that describes the units in which the measurement is expressed. Examples include:
 
@@ -138,7 +138,7 @@ Where a unit is specified, the unit name property SHOULD also be specified provi
 
 It is strongly recommended to use a common vocabulary for expressing units. The [QUDT unit vocabulary](https://www.qudt.org/doc/DOC_VOCAB-UNITS.html) provides a wide range of units as a controlled vocabulary.
 
-## Aggregation
+### Aggregation
 
 Where a measure is the result of the aggregation of multiple values over some time period, the `aggregation` property can be used to relate the Measure to an Aggregation which represents both how the input values are aggregated (using the `valueStatistic` property) to produce the recorded measurement, and the time period over which that aggregation is applied. Examples of value statistic concepts include:
 
@@ -151,7 +151,7 @@ The `periodicity` property specifies the time period between aggregate values be
 The `resolution` property specifies the time period between the measurements that are aggregated over the period.
 e.g. if `periodicity` is `PT5M` and `resolution` is `PT30S` then values are read every 30 seconds, and aggregated to produce a single aggregate value every 5 minutes.
 
-## Specialisation and Variable Hierarchies
+### Specialisation and Variable Hierarchies
 
 A Variable can have broader/narrower relations to other Variables which define more generic or more specialised variants of the Variable.
 

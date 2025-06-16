@@ -1,6 +1,6 @@
-# Environmental Monitoring Facility Model
+## Environmental Monitoring Facility Model
 
-## Programme, Network and Facility
+### Programme, Network and Facility
 
 Based on the [INSPIRE Environmental Monitoring Facility Technical Guidelines framework](https://inspire-mif.github.io/technical-guidelines/data/ef/dataspecification_ef.pdf), the catalog models  reference information about infrastructure such as sites, stations, and drones using the `fdri:EnvironmentalMonitoringFacility` class.
 
@@ -75,7 +75,7 @@ Facility --> Activity: prov_wasInvalidatedBy
 Facility --> Facility: dct_hasPart
 ```
 
-## Site, Platform, System and Sensor
+### Site, Platform, System and Sensor
 
 The `fdri:EnvironmentalMonitoringFacility` class has several subclasses defined to aid in mapping to the SOSA/SSN concepts of Platform, System and Sensor. The diagram below shows the relationship between the FDRI types and the mapping (via subclass relationships) to the SOSA/SSN types.
 
@@ -102,7 +102,7 @@ Site --|> SosaPlatform
 Platform --|> SosaPlatform
 ```
 
-### EnvironmentalMonitoringSite
+#### EnvironmentalMonitoringSite
 
 `fdri:EnvironmentalMonitoringSite` is used to represent a static geospatial location at which one or more pieces of monitoring infrastructure may be deployed. It is subclassed from `fdri:EnvironmentalMonitoringFacility` and so has all the same core metadata that is provided by that class, but it is also mapped through a subclass relationship to the `sosa:Platform` type from the SOSA/SSN vocabulary which means that it can be the host of a deployment of a sensor or system of sensors. 
 
@@ -162,7 +162,7 @@ PropertyValue --> Unit: schema_unit
 > Should all measures such as altitude be expressed as a `schema:PropertyValue` value with units, or do we bake the assumed units into the ontology?
 
 
-### EnvironmentalMonitoringPlatform
+#### EnvironmentalMonitoringPlatform
 
 `fdri:EnvironmentalMonitoringPlatform` is used to represent either static or mobile infrastructure on which sensors or systems of sensors may be deployed. Examples include a post in the ground at a site, or a UAV or drone. It is subclassed from `fdri:EnvironmentalMonitoringFacility` to inherit the core facility metadata, and mapped to `sosa:Platform` to allow it to be the host of deployments of sensors.
 
@@ -170,7 +170,7 @@ PropertyValue --> Unit: schema_unit
 > By mapping both `fdri:EnvironmentalMonitoringSite` and `fdri:EnvironmentalMonitoringPlatform` to `sosa:Platform`, a deployment of a sensor can be registered at the site level without having to model the detail of the physical infrastructure at the site, but that the model still has the flexibility to represent more detailed information if it is available and if deemed desireable to do so.
 
 
-### EnvironmentalMonitoringSystem
+#### EnvironmentalMonitoringSystem
 
 An `fdri:EnvironmentalMonitoringSystem` is a device which measures properties in the environment. As already noted, an `fdri:EnvironmentalMonitoringSystem` may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
 
@@ -193,13 +193,13 @@ class System["fdri:EnvironmentalMonitoringSystem"] {
 System --> System: sosa_hasSubsystem
 ```
 
-### EnvironmentalMonitoringSensor
+#### EnvironmentalMonitoringSensor
 
 An `fdri:EnvironmentalMonitoringSensor` is intended to represent an individual sensor and is subclassed from `sosa:Sensor` and may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
 
 As `fdri:EnvironmentalMonitoringSensor` is subclassed from `fdri:EnvironmentalMonitoringSystem` it also inherits the additional metadata shown for that class and faults can be recorded against individual sensors.
 
-## Geo-Spatial Feature Of Interest
+### Geo-Spatial Feature Of Interest
 
 An `fdri:EnvironmentalMonitoringFacility` monitors some set of features of the environment. Where those features are spatially located, the class `fdri:GeospatialFeatureOfInterest` may be used to represent them.
 
@@ -224,7 +224,7 @@ The properties of `fdri:GeospatialFeatureOfInterest` provide ways of describing 
 
 As already shown, the `GeospatialFeatureOfInterest` may also be referenced from the `Dataset` which contains observations of that feature.
 
-## FacilityGroup
+### FacilityGroup
 
 A `FacilityGroup` is an unordered collection of `EnvironmentalMonitoringFacility` instances that share some common feature. A `FacilityGroup` is treated as a `Resource` in the metadata catalog and so may have a title, provenance and publication information and so on.
 
