@@ -37,6 +37,7 @@ dist: validate doc schemas contexts
 	cp -R samples/* build
 	cp schema/fdri.recordspec.yaml build/schema
 
+doc: doc/html/index.html
 schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)
 samples: $(SAMPLES)
@@ -66,7 +67,7 @@ clean:
 build:
 	mkdir -p build
 
-doc:
+doc/html/index.html: doc/*.md owl/fdri-metadata.ttl
 	python make_doc.py
 
 $(SCHEMA_BASE):
