@@ -1,0 +1,8 @@
+{
+    "$schema": "../../schema/Measure.schema.json",
+    "@context": "../../context/Measure.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/measure/ta-degc-inst",
+    "variable": {"@id": "http://fdri.ceh.ac.uk/id/variable/ta"},
+    "hasUnit": {"@id": "http://qudt.org/vocab/unit/DEG_C"},
+    "prefLabel": [{"@value": "instantaneous air temperature (celsius)"}]
+}

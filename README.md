@@ -1,5 +1,6 @@
-# FDRI Metadata Discovery
+# FDRI Ontology
 
-Working area for coordination, desgin documents and sample data for FDRI Metadata server (and other topics as needed).
+This directory contains the ontology used in the FDRI project, its documentation and some sample data.
 
-See [Wiki](https://github.com/NERC-CEH/fdri-discovery/wiki) for supporting documents.
+A Python script is provided to generate HTML documentation for the GitHub pages website. The script requires
+Python 3.13+ with the modules listed in `requirements.txt` installed.

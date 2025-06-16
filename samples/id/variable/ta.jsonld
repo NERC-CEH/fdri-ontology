@@ -1,0 +1,10 @@
+{
+    "$schema": "../../schema/Variable.schema.json",
+    "@context": "../../context/Variable.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/variable/ta",
+    "prefLabel": [
+        {"@value": "air temperature", "@language": "en"}
+    ],
+    "hasProperty": {"@id": "http://qudt.org/vocab/quantitykind/Temperature"},
+    "hasObjectOfInterest": {"@id": "http://fdri.ceh.ac.uk/id/object-of-interest/air"}
+}
