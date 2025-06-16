@@ -1,7 +1,0 @@
-These files are configs currently used in our time series processing workflow app, as an interim solution before
-a real metadata store is developed.
-
-corrections.json: For defining "pre-processing" corrections applied to raw data
-quality_control.json: For defining which QC tests to apply to which variables, along with any necessary parameters
-                      for those tests
-infilling.json: For defining which infilling methods to apply to which variables
