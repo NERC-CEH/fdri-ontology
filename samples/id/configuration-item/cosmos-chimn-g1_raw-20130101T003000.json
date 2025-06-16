@@ -1,6 +1,6 @@
 {
-    "$schema": "../../../../build/schema/ConfigurationItem.schema.json",
-    "@context": "../../../../build/context/ConfigurationItem.context.jsonld",
+    "$schema": "../../schema/ConfigurationItem.schema.json",
+    "@context": "../../context/ConfigurationItem.context.jsonld",
     "@id": "http://fdri.ceh.ac.uk/id/configuration-item/cosmos-chimn-g1_raw-20130101T003000",
     "@type": "http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationItem",
     "method": {"@id": "http://fdri.ceh.ac.uk/ref/common/method/linear_interp"},

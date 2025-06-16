@@ -1,6 +1,6 @@
 {
-    "$schema": "../../../../build/schema/InternalDataProcessingConfiguration.schema.json",
-    "@context": "../../../../build/context/InternalDataProcessingConfiguration.context.jsonld",
+    "$schema": "../../schema/InternalDataProcessingConfiguration.schema.json",
+    "@context": "../../context/InternalDataProcessingConfiguration.context.jsonld",
     "@id": "http://fdri.ceh.ac.uk/id/data-processing-configuration/cosmos-infill-chimn-g1_raw",
     "@type": "http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration",
     "type": {"@id": "http://fdri.ceh.ac.uk/ref/common/data-processing-configuration-type/infill-configuration"},

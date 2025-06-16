@@ -1,15 +1,10 @@
 {
-    "$schema": "../../../build/schema/Variable.schema.json",
-    "@context": "../../../build/context/Variable.context.jsonld",
+    "$schema": "../../schema/Variable.schema.json",
+    "@context": "../../context/Variable.context.jsonld",
     "@id": "http://fdri.ceh.ac.uk/id/variable/ta",
     "prefLabel": [
         {"@value": "air temperature", "@language": "en"}
     ],
     "hasProperty": {"@id": "http://qudt.org/vocab/quantitykind/Temperature"},
-    "hasObjectOfInterest": {"@id": "http://fdri.ceh.ac.uk/id/object-of-interest/air"},
-    "environmentalDomain": {"@id": "http://fdri.ceh.ac.uk/id/environmental-domain/atmosphere"},
-    "hasUnit": {"@id": "http://qudt.org/vocab/unit/DEG_C"},
-    "unitName": [
-        {"@value": "degrees Celsius", "@language": "en"}
-    ]
+    "hasObjectOfInterest": {"@id": "http://fdri.ceh.ac.uk/id/object-of-interest/air"}
 }

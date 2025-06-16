@@ -1,7 +1,7 @@
 {
-  "$schema": "../../../../build/schema/Activity.schema.json",
-  "@context":"../../../../build/context/DataProcessingActivity.context.jsonld",
-  "@id": "http://fdri.ceh.ac.uk/id/activity/bunny-1-ingest-20200101",
+  "$schema": "../../schema/Activity.schema.json",
+  "@context":"../../context/DataProcessingActivity.context.jsonld",
+  "@id": "http://fdri.ceh.ac.uk/id/activity/bunny-ta-1min-ingest-20200101",
   "@type": "http://www.w3.org/ns/prov#Activity",
   "type": {
     "@id": "http://fdri.ceh.ac.uk/id/data-processing-activity-type/ingest-raw"
