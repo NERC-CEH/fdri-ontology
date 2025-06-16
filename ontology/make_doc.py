@@ -111,7 +111,6 @@ if __name__ == '__main__':
     html += make_section('doc/sensor-system.md')
     html += make_section('doc/data-processing-configurations.md')
     html += make_section('doc/geospatial.md')
-    html += make_section('doc/ogc-connected-systems.md')
     html += make_reference_doc()
     html += make_foot()
     soup = BeautifulSoup(html, 'html.parser')
