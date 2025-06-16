@@ -171,3 +171,5 @@ DuckDB.session.sql
 # Generated Files
 doc/html/*.html
 doc/html/*.png
+samples/schema/
+samples/context/
