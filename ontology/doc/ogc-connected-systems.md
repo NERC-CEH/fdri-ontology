@@ -1,6 +1,6 @@
-# OGC Connected Systems API Specification and FDRI Model
+## OGC Connected Systems API Specification and FDRI Model
 
-## Introduction
+### Introduction
 
 This section discusses how the proposed FDRI metadata model might be aligned with the [OGC Connected Systems API standard](https://ogcapi.ogc.org/connectedsystems/). 
 
@@ -9,7 +9,7 @@ This section discusses how the proposed FDRI metadata model might be aligned wit
 
 For brevity, this document does not go into detail about the content of the OGC specification. It is assumed that the reader has read (or has access to read) the two specification documents linked to above.
 
-## Part 1 Type Mappings
+### Part 1 Type Mappings
 
 Part 1 of the OGC specification focusses on the description of the systems that measure properties of features of the environment, the properties measured and the features observed. It reuses many concepts from SOSA/SSN and so has a fairly close alignment to the proposed FDRI model.
 
@@ -32,7 +32,7 @@ The diagram below, taken from the OGC spec, shows the relevant types. Types defi
 | Property          | Variable |
 | Sampling Feature  | GeospatialFeatureOfInterest |
 
-## Part 2 Type Mappings
+### Part 2 Type Mappings
 
 NOTE: For the purpose of this discussion we limit our mappings to those related to observations and ignore actuations and events which currently have no equivalence in the FDRI data model.
 
@@ -42,13 +42,13 @@ NOTE: For the purpose of this discussion we limit our mappings to those related 
 |            | TimeSeriesDataset |
 | Observation | | No direct mapping in FDRI as the model is not intended to store observations. There is an indirect mapping to the SOSA/SSN Observation type.
 
-## Model extensibility
+### Model extensibility
 
 The OGC API schema definitions are open, so additional properties can be added to the JSON to cover domain-specific metadata.
 
-## Missing from OGC
+### Missing from OGC
 
-### Provenance
+#### Provenance
 
 The OGC specification does not directly addresss provenance information for datasets.
 
@@ -66,10 +66,10 @@ TSProc --featuresOfInterest--> Site1FoI
 TSProc --featuresOfInterest--> Site1
 ```
 
-### Sensor interventions
+#### Sensor interventions
 
 Installation and replacement could be covered by Deployment, but calibration and cleaning do not have any equivalence in the OGC API.
 
-### Data Processing Configurations
+#### Data Processing Configurations
 
 Potentially these could be modelled as procedures. The precise modelling and how it can be applied to data processing agents would depend on the related issue of representing dataset provenance relations.

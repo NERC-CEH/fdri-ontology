@@ -1,4 +1,4 @@
-# Notes on Geo-spatial Resources
+## Notes on Geo-spatial Resources
 
 Several classes in the FDRI ontology represent geo-spatially located entities which are either persistent or temporary in nature. In particular `fdri:EnvironmentalMonitoringFacility`, `fdri:GeospatialFeature` and `fdri:MobileDeployment`. To facilitate a range of both machine and human access to geospatial data relating to these entities the model provides a number of distinct properties on these classes.
 
