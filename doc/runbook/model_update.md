@@ -41,9 +41,8 @@ The following pre-requisite steps should be completed:
 
 1. Move the model to a separate repository (https://github.com/NERC-CEH/fdri-discovery/issues/160)
 2. Update the processes for release of a model version
-   1. Ensure a changelog of model updates is maintained
-   2. Generate a release when the repository is tagged
-   3. Ensure the release package contains the source OWL and recordspec files and the generated SHACL files, JSON Schemas, JSON-LD contexts, and modelspec files
-   4. Update processes in downstream repositories to make use of a release artefact or to include the model repository as a git submodule (at the discretion of the repository owner). Submodules should be pinned to a commit that has been tagged as a release in the model repository.
+   1. Ensure a changelog of model updates is maintained, in particular noting breaking changes to the model which may affect its use by dependent projects.
+   2. Generate a release package in GitHub when the repository is tagged with a release version tag. The release package should contain the source OWL and recordspec files as well as the generated SHACL, JSON Schemas, JSON-LD contexts, and modelspec files.
+   3. Update processes in downstream repositories to make use of a release artefact or to include the model repository as a git submodule (at the discretion of the repository owner). Submodules should be pinned to a commit that has been tagged as a release in the model repository.
 
-TBD: Downstream steps?
+TBD: Downstream steps. This will require input from downstream repo owners, and maybe form part of their dependency update runbook.
