@@ -22,14 +22,13 @@ jobs:
         run:
           pip install -r requirements.txt
       - name: Build documentation
-        working-directory: ontology
         run: |
-          python make_doc.py
+          make dist
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ontology/doc/html/
+          path: build/
 
   deploy:
     environment:
