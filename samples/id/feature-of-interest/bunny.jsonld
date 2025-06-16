@@ -1,0 +1,6 @@
+{
+  "$schema": "../../schema/GeospatialFeatureOfInterest.schema.json",
+  "@context": "../../context/EnvironmentalFeatureOfInterest.context.jsonld",
+  "@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny",
+  "@type": "http://fdri.ceh.ac.uk/vocab/metadata/GeospatialFeatureOfInterest"
+}

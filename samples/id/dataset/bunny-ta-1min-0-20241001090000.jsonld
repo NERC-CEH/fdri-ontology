@@ -1,6 +1,6 @@
 {
-  "$schema": "../../../../build/schema/TimeSeriesDataset.schema.json",
-  "@context": "../../schema/TimeSeriesDataset.context.jsonld",
+  "$schema": "../../schema/TimeSeriesDataset.schema.json",
+  "@context": "../../context/TimeSeriesDataset.context.jsonld",
 
   "@id":"http://fdri.ceh.ac.uk/id/dataset/bunny-ta-1min-0",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDataset",
@@ -16,7 +16,8 @@
   "license": {"@id": "https://eidc.ceh.ac.uk/licences/OGL/plain"},
   "isVersionOf": {"@id": "http://fdri.ceh.ac.uk/id/activity/bunny-ta-1min-0" },
   "previousVersion": { "@id": "http://fdri.ceh.ac.uk/id/dataset/bunny-ta-1min-0-20240903" },
-  "spatial": {"@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny-air" },
+  "hasFeatureOfInterest": [{"@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny" }],
+  "spatial": {"@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny" },
   "temporal": {
     "startDate": {"@value": "2017-01-01", "@type": "http://www.w3.org/2001/XMLSchema#date"},
     "endDate": { "@value": "2024-10-17", "@type": "http://www.w3.org/2001/XMLSchema#date"}
