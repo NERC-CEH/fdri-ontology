@@ -37,6 +37,8 @@ dist: validate doc schemas contexts
 	cp -R samples/* build
 	cp schema/fdri.recordspec.yaml build/schema
 
+doc: doc/html/index.html
+release: build/release/doc/index.html build/release/fdri.recordspec.yaml build/release/fdri-metadata.ttl build/release/CHANGELOG.txt
 schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)
 samples: $(SAMPLES)
@@ -66,7 +68,7 @@ clean:
 build:
 	mkdir -p build
 
-doc:
+doc/html/index.html: doc/*.md owl/fdri-metadata.ttl
 	python make_doc.py
 
 $(SCHEMA_BASE):
@@ -81,3 +83,18 @@ build/shacl:
 build/data:
 	mkdir -p build/data
 
+build/release/doc/index.html: doc/html/index.html
+	mkdir -p build/release/doc
+	cp doc/html/* build/release/doc
+
+build/release/CHANGELOG.txt: CHANGELOG.txt
+	mkdir -p build/release
+	cp $^ build/release
+
+build/release/fdri.recordspec.yaml: schema/fdri.recordspec.yaml
+	mkdir -p build/release
+	cp $^ build/release
+
+build/release/fdri-metadata.ttl: owl/fdri-metadata.ttl
+	mkdir -p build/release
+	cp $^ build/release
