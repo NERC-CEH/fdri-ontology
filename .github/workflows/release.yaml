@@ -1,11 +1,11 @@
-name: publish model documentation
+name: make release
 on:
   push:
     tags:
       - "v*"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
   actions: read
@@ -52,4 +52,4 @@ jobs:
           draft: true
           prerelease: true
           files: |
-            release/*
+            build/release/*
