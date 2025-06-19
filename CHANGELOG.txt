@@ -1,5 +1,19 @@
 # CHANGELOG
 
-Upcoming (DRAFT 0.4)
---------------------
+DRAFT 0.4
+---------
 
+* NEW: Added documentation strings to OWL model
+* BREAKING: Removed unused types Catchment, Region and MobileDeployment from OWL model. Catchment and Region are replaced by fdri:FacilityGroup.
+* NEW: Add fdri:FacilityGroup to be used to capture arbitrary groupings of facilities into e.g. catchments, geographical regions, administrative areas etc.
+* NON-BREAKING: Removed sub-class relationship between fdri:SoftwareAgent and prov:SoftwareAgent
+* NEW: Add fdri:Measure, fdri:MeasureScheme
+* NEW: Add fdri:Unit and fdri:UnitScheme to be used for measures in preference to qudt:Unit
+* NEW: Add S3 source properties to fdri:TimeSeriesDataset
+* NON-BREAKING: Declare a subclass relationship between skos:Concept and the iAdopt classes iop:Entity, iop:Property and iop:Variable to support managing these terms as controlled vocabularies.
+* BREAKING: Remove fdri:Site properties fdri:soilType and fdri:landCover. These are now encoded as annotations
+* BREAKING: Remove fdri:hadFault property. Use the inverse fdri:affectsFacility instead.
+* NEW: Add provenance properties to fdri:EnvironmentalMonitoringFacility
+* NEW: Allow fdri:appliesToTimeSeries property to appear on DataProcessingConfiguration.
+* BREAKING: Update recordspec schema to only support fdri:appliesToTimeSeries and not allow fdri:appliesToVariable on a DataProcessingConfiguration (though this is stil supported by the OWL model)
+* BREAKING: Remove fdri:DataProcessingActivity and replace with soft-typing via dct:type on Activity. Added ActivityType and ActivityTypeScheme to manage controlled vocabularies of activity type.

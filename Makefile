@@ -26,19 +26,20 @@ CONTEXTS = $(RECORDS:%=$(CONTEXT_BASE)/%.context.jsonld)
 SCHEMAS_DIST=$(RECORDS:%=build/schema/%.schema.json)
 CONTEXTS_DIST=$(RECORDS:%=build/context/%.context.jsonld)
 
-all: validate schemas contexts
+all: validate schemas contexts modelspec
 
 pull:
 	docker pull $(IMAGE)
 
-dist: validate doc schemas contexts
+dist: validate doc schemas contexts modelspec
 	mkdir -p build/schema
 	cp doc/html/* build
 	cp -R samples/* build
 	cp schema/fdri.recordspec.yaml build/schema
 
 doc: doc/html/index.html
-release: build/release/doc/index.html build/release/fdri.recordspec.yaml build/release/fdri-metadata.ttl build/release/CHANGELOG.txt
+modelspec: build/fdri.modelspec.yaml
+release: build/release/doc.tar.gz build/release/fdri.recordspec.yaml build/release/fdri.modelspec.yaml build/release/fdri-metadata.ttl build/release/CHANGELOG.txt
 schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)
 samples: $(SAMPLES)
@@ -83,15 +84,23 @@ build/shacl:
 build/data:
 	mkdir -p build/data
 
-build/release/doc/index.html: doc/html/index.html
+build/release/doc.tar.gz: doc/html/index.html
 	mkdir -p build/release/doc
 	cp doc/html/* build/release/doc
+	tar -C build/release/doc -zcf build/release/doc.tar.gz .
 
 build/release/CHANGELOG.txt: CHANGELOG.txt
 	mkdir -p build/release
 	cp $^ build/release
 
 build/release/fdri.recordspec.yaml: schema/fdri.recordspec.yaml
+	mkdir -p build/release
+	cp $^ build/release
+
+build/fdri.modelspec.yaml: schema/fdri.recordspec.yaml
+	$(RUN) model-spec-cmd -m $^ -f recordspec -t spec -o $@
+
+build/release/fdri.modelspec.yaml: build/fdri.modelspec.yaml
 	mkdir -p build/release
 	cp $^ build/release
 
