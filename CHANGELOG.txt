@@ -10,7 +10,7 @@ DRAFT 0.4.1
 * NEW: Allow property `prov:qualifiedAttribution` with range only `fdri:RelatedPartyAttribution` on `fdri:EnvironmentalMonitoringFacilityType`. This allows the capture of parties related to a category of facilities (e.g. the manufacturer of a type of sensor). (#4)
 * NEW: Allow property `skos:altLabel` on `skos:Concept` records in the recordspec schema. (#7)
 * NEW: Added property `fdri:measures` with range `fdri:Measure`. Property is used on `fdri:EnvironmentalMonitoringFacility` to capture the measures that the facility has the capablity to make, or on `fdri:EnvironmentalMonitoringFacilityType` to capture the measures that facilities of that type have the capablity to make. (#5)
-* NEW: Allow property `dct:identifier` on the `fdri:EnvironmentalMonitoringFacility` and `fdri:FacilityGroup` in the recordspec schema.
+* NEW: Allow property `dct:identifier` on the `fdri:EnvironmentalMonitoringFacility` and `fdri:FacilityGroup` in the recordspec schema. (#18)
 
 DRAFT 0.4
 ---------
