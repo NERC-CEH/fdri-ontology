@@ -1563,6 +1563,21 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringFacilityTypeScheme
+      qualifiedAttribution:
+        label:
+          - value: related party attribution
+            lang: en
+        description:
+          - value: |
+              Relates the facility type to the agent(s) and the role(s) played by those agents in the life-cycle of the facility type.
+              Related parties might include the manufacturer or distributor of a facilities of the enclosing facility type.
+            lang: en 
+        propertyUri: prov:qualifiedAttribution
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: RelatedPartyAttribution
   
   EnvironmentalMonitoringFacilityTypeScheme:
     label:

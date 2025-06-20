@@ -1058,6 +1058,10 @@ The derived classes `fdri:EnvironmentalMonitoringSite`, `fdri:EnvironmentalMonit
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty skos:inScheme ;
                                                        owl:allValuesFrom :EnvironmentalMonitoringFacilityTypeScheme
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty prov:qualifiedAssociation ;
+                                                       owl:allValuesFrom :RelatedPartyAttribution
                                                      ] ;
                                      rdfs:comment "A Concept that represents a class of Environmental Monitoring Facility as defined by the monitoring programme that uses it."@en ;
                                      rdfs:label "Environmental Monitoring Facility Type"@en .

@@ -11,6 +11,7 @@ RECORDS = \
 	GeospatialFeatureOfInterest \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
+	EnvironmentalMonitoringSystemType \
 	EnvironmentalMonitoringSite \
 	ExternalDataProcessingConfiguration \
 	InternalDataProcessingConfiguration \

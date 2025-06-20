@@ -4,7 +4,7 @@
   "@id": "http://fdri.ceh.ac.uk/id/envrionmental-monitoring-sensor/123456",
   "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSensor",
   "type": {
-    "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-sensor-type/hmp155a"
+    "@id": "http://fdri.ceh.ac.uk/ref/common/sensor-type/hmp155"
   },
   "observes": [
     {
