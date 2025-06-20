@@ -12,7 +12,16 @@
   "observes": [
       {"@id": "http://fdri.ceh.ac.uk/ref/common/variable/ta"}
   ],
+  "assetNumber": "123456",
   "serialNumber": "123456",
+  "dateOfPurchase": {
+    "@value": "2018-05-18",
+    "@type": "http://www.w3.org/2001/XMLSchema#date"
+  },
+  "calibrationDue": {
+    "@value": "2025-12-12",
+    "@type": "http://www.w3.org/2001/XMLSchema#date"
+  },
   "retirementDate": {
     "@value": "2040-12-12",
     "@type": "http://www.w3.org/2001/XMLSchema#date"

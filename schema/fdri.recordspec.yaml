@@ -1795,6 +1795,18 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
+      calibrationDue:
+        label:
+          - value: calibration due
+            lang: en
+        description:
+          - value: The date or date/time by which the system should be (re)calibrated.
+            lang: en
+        propertyUri: fdri:calibrationDue
+        kind: literal
+        constraints:
+          - datatype: xsd:date
+          - datatype: xsd:dateTime
       certification:
         label:
           - value: certification
