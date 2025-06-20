@@ -37,6 +37,27 @@ prefixes:
 mixins:
   # Mixins represent reusable packages of properties that can be applied to classes.
 
+  CataloguedResource:
+    label:
+      - value: Catalogued Resource
+        language: en
+    description:
+      - value: |
+          Additional metadata that applies to all catalogued resources.
+        language: en
+    properties:
+      identifier:
+        label:
+          - value: identifier
+            lang: en
+        description:
+          - value: A unique identifier of the resource being described or cataloged.
+            lang: en
+        propertyUri: dct:identifier
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
   WithAnnotations:
     label:
       - value: With Annotations
@@ -1449,6 +1470,7 @@ records:
       - WithAnnotations
       - WithIndexedGeometry
       - WithProvenance
+      - CataloguedResource
     properties:
       hasPart:
         label:
@@ -2012,6 +2034,7 @@ records:
       - WithAnnotations
       - WithIndexedGeometry
       - WithProvenance
+      - CataloguedResource
     properties:
       hasMember:
         label:
