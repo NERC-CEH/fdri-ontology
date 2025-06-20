@@ -1479,6 +1479,18 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:boolean
+      measures:
+        label:
+          - value: measures
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that the enclosing facility has the capability to make.
+            lang: en
+        propertyUri: fdri:measures
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
       operatingPeriod:
         label:
           - value: operating period
@@ -1574,6 +1586,18 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringFacilityTypeScheme
+      measures:
+        label:
+          - value: measures
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that a facility of this type has the capability to make.
+            lang: en
+        propertyUri: fdri:measures
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
       qualifiedAttribution:
         label:
           - value: related party attribution

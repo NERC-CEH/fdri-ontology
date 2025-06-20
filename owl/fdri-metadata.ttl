@@ -275,6 +275,13 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
          rdfs:label "measure"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/measures
+:measures rdf:type owl:ObjectProperty ;
+          rdfs:range :Measure ;
+          rdfs:comment "Relates a resource to the `fdri:Measure` that the resource has capacity to measure."@en ;
+          rdfs:label "measures"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/member
 :member rdf:type owl:ObjectProperty ;
         rdfs:range :EnvironmentalMonitoringFacility ;
@@ -985,6 +992,10 @@ A deployment may be associated with a platform on which the sensors or systems w
                                                    owl:allValuesFrom sosa:ObservableProperty
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :measures ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
                                                    owl:onProperty :wasModifiedBy ;
                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                  ] ,
@@ -1064,6 +1075,10 @@ The derived classes `fdri:EnvironmentalMonitoringSite`, `fdri:EnvironmentalMonit
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty prov:qualifiedAssociation ;
                                                        owl:allValuesFrom :RelatedPartyAttribution
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :measures ;
+                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                      ] ;
                                      rdfs:comment "A Concept that represents a class of Environmental Monitoring Facility as defined by the monitoring programme that uses it."@en ;
                                      rdfs:label "Environmental Monitoring Facility Type"@en .
