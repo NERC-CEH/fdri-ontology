@@ -37,6 +37,27 @@ prefixes:
 mixins:
   # Mixins represent reusable packages of properties that can be applied to classes.
 
+  CataloguedResource:
+    label:
+      - value: Catalogued Resource
+        language: en
+    description:
+      - value: |
+          Additional metadata that applies to all catalogued resources.
+        language: en
+    properties:
+      identifier:
+        label:
+          - value: identifier
+            lang: en
+        description:
+          - value: A unique identifier of the resource being described or cataloged.
+            lang: en
+        propertyUri: dct:identifier
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
   WithAnnotations:
     label:
       - value: With Annotations
@@ -648,6 +669,17 @@ records:
               The preferred lexical label for a concept in a given language. A Concept SHOULD have no more than one
               preferred label in a given language.
         propertyUri: skos:prefLabel
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      altLabel:
+        label:
+          - value: alternate label
+            lang: en
+        description:
+          - value: An alternative lexical label for a resource.
+        propertyUri: skos:altLabel
         kind: literal
         repeatable: true
         constraints:
@@ -1438,6 +1470,7 @@ records:
       - WithAnnotations
       - WithIndexedGeometry
       - WithProvenance
+      - CataloguedResource
     properties:
       hasPart:
         label:
@@ -1468,6 +1501,18 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:boolean
+      measures:
+        label:
+          - value: measures
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that the enclosing facility has the capability to make.
+            lang: en
+        propertyUri: fdri:measures
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
       operatingPeriod:
         label:
           - value: operating period
@@ -1563,6 +1608,33 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringFacilityTypeScheme
+      measures:
+        label:
+          - value: measures
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that a facility of this type has the capability to make.
+            lang: en
+        propertyUri: fdri:measures
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
+      qualifiedAttribution:
+        label:
+          - value: related party attribution
+            lang: en
+        description:
+          - value: |
+              Relates the facility type to the agent(s) and the role(s) played by those agents in the life-cycle of the facility type.
+              Related parties might include the manufacturer or distributor of a facilities of the enclosing facility type.
+            lang: en 
+        propertyUri: prov:qualifiedAttribution
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: RelatedPartyAttribution
   
   EnvironmentalMonitoringFacilityTypeScheme:
     label:
@@ -1723,6 +1795,18 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
+      calibrationDue:
+        label:
+          - value: calibration due
+            lang: en
+        description:
+          - value: The date or date/time by which the system should be (re)calibrated.
+            lang: en
+        propertyUri: fdri:calibrationDue
+        kind: literal
+        constraints:
+          - datatype: xsd:date
+          - datatype: xsd:dateTime
       certification:
         label:
           - value: certification
@@ -1962,6 +2046,7 @@ records:
       - WithAnnotations
       - WithIndexedGeometry
       - WithProvenance
+      - CataloguedResource
     properties:
       hasMember:
         label:
@@ -2219,6 +2304,14 @@ records:
         kind: object
         constraints:
           - record: Unit
+      valueType:
+        label:
+          - value: value type
+            lang: en
+        description:
+          - value: The expected datatype for observed values of this measure.
+        propertyUri: fdri:valueType
+        kind: object
       variable:
         propertyUri: fdri:variable
         kind: object
@@ -2676,6 +2769,18 @@ records:
           - value: A reference to a complex structured value or a classification value.
             lang: en
         propertyUri: schema:valueReference
+        kind: object
+      valueType:
+        label:
+          - value: value type
+            lang: en
+        description:
+          - value: |
+              The type of the value of the enclosing resource.
+
+              On a `schema:PropertyValue` resource, the value of this property should be the IRI of the datatype of
+              `minValue`, `maxValue` and/or `value` or the IRI of the class of the resource referenced by `valueReference`.
+        propertyUri: fdri:valueType
         kind: object
       unit:
         label:

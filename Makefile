@@ -8,9 +8,11 @@ SCHEMA_FILE = schema/fdri.recordspec.yaml
 RECORDS = \
 	Variable \
 	Activity \
+	Aggregation \
 	GeospatialFeatureOfInterest \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
+	EnvironmentalMonitoringSystemType \
 	EnvironmentalMonitoringSite \
 	ExternalDataProcessingConfiguration \
 	InternalDataProcessingConfiguration \
