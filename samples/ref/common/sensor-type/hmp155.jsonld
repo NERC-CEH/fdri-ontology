@@ -3,6 +3,7 @@
     "@id": "http://fdri.ceh.ac.uk/ref/common/sensor-type/hmp155",
     "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSystemType",
     "prefLabel": [{"@value": "Vaisala HUMICAP Humidity and temperature probe HMP155", "@language": "en"}],
+    "altLabel": [{"@value": "HMP155", "@language":"en"}],
     "inScheme": {"@id": "http://fdri.ceh.ac.uk/ref/common/sensor-type"},
     "observes": [
         {"@id": "http://fdri.ceh.ac.uk/ref/common/variable/ta"}

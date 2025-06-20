@@ -652,6 +652,17 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+      altLabel:
+        label:
+          - value: alternate label
+            lang: en
+        description:
+          - value: An alternative lexical label for a resource.
+        propertyUri: skos:altLabel
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
       scopeNote:
         label:
           - value: note
