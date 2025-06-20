@@ -2677,6 +2677,18 @@ records:
             lang: en
         propertyUri: schema:valueReference
         kind: object
+      valueType:
+        label:
+          - value: value type
+            lang: en
+        description:
+          - value: |
+              The type of the value of the enclosing resource.
+
+              On a `schema:PropertyValue` resource, the value of this property should be the IRI of the datatype of
+              `minValue`, `maxValue` and/or `value` or the IRI of the class of the resource referenced by `valueReference`.
+        propertyUri: fdri:valueType
+        kind: object
       unit:
         label:
           - value: unit

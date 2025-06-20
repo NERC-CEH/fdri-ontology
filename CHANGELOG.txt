@@ -1,5 +1,12 @@
 # CHANGELOG
 
+Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub repository at https://github.com/NERC-CEH/fdri-ontology/issues
+
+DRAFT 0.4.1
+-----------
+
+* NEW: Added property `fdri:valueType` which can be used on a `schema:PropertyValue` to convey the datatype or class of the value of the property. (#23)
+
 DRAFT 0.4
 ---------
 
