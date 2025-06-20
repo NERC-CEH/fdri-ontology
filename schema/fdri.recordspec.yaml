@@ -2245,6 +2245,14 @@ records:
         kind: object
         constraints:
           - record: Unit
+      valueType:
+        label:
+          - value: value type
+            lang: en
+        description:
+          - value: The expected datatype for observed values of this measure.
+        propertyUri: fdri:valueType
+        kind: object
       variable:
         propertyUri: fdri:variable
         kind: object

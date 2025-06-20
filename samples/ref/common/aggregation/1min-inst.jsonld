@@ -1,0 +1,7 @@
+{
+    "$schema": "../../../schema/Aggregation.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/ref/common/aggregation/1min-inst",
+    "prefLabel": [{"@value": "instantaneous value every 1 minute"}],
+    "periodicity": {"@value": "PT1M", "@type": "http://www.w3.org/2001/XMLSchema#duration"},
+    "valueStatistic": {"@id": "http://fdri.ceh.ac.uk/ref/common/value-statistic/instantaneous"}
+}

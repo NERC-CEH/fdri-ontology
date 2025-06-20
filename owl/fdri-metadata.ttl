@@ -433,7 +433,9 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 :valueType rdf:type owl:ObjectProperty ;
            rdfs:comment """The type of the value of the enclosing resource.
 
-On a schema:PropertyValue resource, the value of this property should be the IRI of the datatype of `minValue`, `maxValue` and/or `value` or the IRI of the class of the resource referenced by `valueReference`."""@en ;
+On a `schema:PropertyValue` resource, the value of this property should be the IRI of the datatype of `minValue`, `maxValue` and/or `value` or the IRI of the class of the resource referenced by `valueReference`.
+
+On an `fdri:Measure` resource, this property specifies the expected datatype for observed values of the `fdri:Measure`."""@en ;
            rdfs:label "value type"@en .
 
 
@@ -1428,6 +1430,10 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :aggregation ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :valueType ;
                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ;
          rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." ;
