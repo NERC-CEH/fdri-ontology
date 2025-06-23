@@ -37,6 +37,27 @@ prefixes:
 mixins:
   # Mixins represent reusable packages of properties that can be applied to classes.
 
+  CataloguedResource:
+    label:
+      - value: Catalogued Resource
+        language: en
+    description:
+      - value: |
+          Additional metadata that applies to all catalogued resources.
+        language: en
+    properties:
+      identifier:
+        label:
+          - value: identifier
+            lang: en
+        description:
+          - value: A unique identifier of the resource being described or cataloged.
+            lang: en
+        propertyUri: dct:identifier
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
   WithAnnotations:
     label:
       - value: With Annotations
@@ -652,6 +673,17 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+      altLabel:
+        label:
+          - value: alternate label
+            lang: en
+        description:
+          - value: An alternative lexical label for a resource.
+        propertyUri: skos:altLabel
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
       scopeNote:
         label:
           - value: note
@@ -1102,6 +1134,17 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:dateTime
+      canopyHeight:
+        label:
+          - value: canopy height
+            lang: en
+        description:
+          - value: The observed height of the tree canopy at the deployment site. Reported in metres above ground level.
+            lang: en
+        propertyUri: fdri:canopyHeight
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
       deployedOnPlatform:
         label:
           - value: deployed on
@@ -1126,6 +1169,46 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringSystem
+      implements:
+        label:
+          - value: implements
+            lang: en
+        description:
+          - value: |
+              A procedure which is implemented by this deployment. e.g. sensor sampling regime.
+            lang: en
+        propertyUri: ssn:implements
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Procedure
+      dependencyNote:
+        label:
+          - value: dependency note
+            lang: en
+        description:
+          - value: |
+              A note about a deployment that provides additional information about deployment dependencies.
+            lang: en
+        propertyUri: fdri:dependencyNote
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      deploymentNote:
+        label:
+          - value: deployment note
+            lang: en
+        description:
+          - value: |
+              A textual note providing additional information about the enclosing Deployment.
+              This property should be used only if there is not a more specific property to capture the information.
+              More specific properties currently defined are `dependencyNote` and `deploymentVariance`.
+        propertyUri: fdri:deploymentNote
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
       deploymentVariance:
         label:
           - value: deployment variance
@@ -1140,6 +1223,18 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+      settleInPeriod:
+        label:
+          - value: settle-in period
+            lang: en
+        description:
+          - value: |
+              The period of time that should be allowed to elapse from the start date of this deployment before
+              the measures that the deployed system make are considered accurate.
+        propertyUri: fdri:settleInPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
 
   Dataset:
     label:
@@ -1438,6 +1533,7 @@ records:
       - WithAnnotations
       - WithIndexedGeometry
       - WithProvenance
+      - CataloguedResource
     properties:
       hasPart:
         label:
@@ -1468,6 +1564,18 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:boolean
+      measures:
+        label:
+          - value: measures
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that the enclosing facility has the capability to make.
+            lang: en
+        propertyUri: fdri:measures
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
       operatingPeriod:
         label:
           - value: operating period
@@ -1563,6 +1671,33 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringFacilityTypeScheme
+      measures:
+        label:
+          - value: measures
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that a facility of this type has the capability to make.
+            lang: en
+        propertyUri: fdri:measures
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
+      qualifiedAttribution:
+        label:
+          - value: related party attribution
+            lang: en
+        description:
+          - value: |
+              Relates the facility type to the agent(s) and the role(s) played by those agents in the life-cycle of the facility type.
+              Related parties might include the manufacturer or distributor of a facilities of the enclosing facility type.
+            lang: en 
+        propertyUri: prov:qualifiedAttribution
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: RelatedPartyAttribution
   
   EnvironmentalMonitoringFacilityTypeScheme:
     label:
@@ -1723,6 +1858,18 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
+      calibrationDue:
+        label:
+          - value: calibration due
+            lang: en
+        description:
+          - value: The date or date/time by which the system should be (re)calibrated.
+            lang: en
+        propertyUri: fdri:calibrationDue
+        kind: literal
+        constraints:
+          - datatype: xsd:date
+          - datatype: xsd:dateTime
       certification:
         label:
           - value: certification
@@ -1859,8 +2006,19 @@ records:
             lang: en
         propertyUri: fdri:hasProcedure
         kind: object
+        repeatable: true
         constraints:
           - record: Procedure
+      keyword:
+        label:
+          - value: keyword
+            lang: en
+        description:
+          - value: A keyword or tag describing a resource.
+            lang: en
+        propertyUri: dcat:keyword
+        kind: literal
+        repeatable: true
       observes:
         label:
           - value: observes
@@ -1872,6 +2030,18 @@ records:
         repeatable: true
         constraints:
           - record: Variable
+      settleInPeriod:
+        label:
+          - value: settle-in period
+            lang: en
+        description:
+          - value: |
+              The period of time that should be allowed to elapse from the deployment of a system of this type before
+              the measures that the system make are considered accurate.
+        propertyUri: fdri:settleInPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
   
   ExternalDataProcessingConfiguration:
     label:
@@ -1962,6 +2132,7 @@ records:
       - WithAnnotations
       - WithIndexedGeometry
       - WithProvenance
+      - CataloguedResource
     properties:
       hasMember:
         label:
@@ -2219,6 +2390,14 @@ records:
         kind: object
         constraints:
           - record: Unit
+      valueType:
+        label:
+          - value: value type
+            lang: en
+        description:
+          - value: The expected datatype for observed values of this measure.
+        propertyUri: fdri:valueType
+        kind: object
       variable:
         propertyUri: fdri:variable
         kind: object
@@ -2676,6 +2855,18 @@ records:
           - value: A reference to a complex structured value or a classification value.
             lang: en
         propertyUri: schema:valueReference
+        kind: object
+      valueType:
+        label:
+          - value: value type
+            lang: en
+        description:
+          - value: |
+              The type of the value of the enclosing resource.
+
+              On a `schema:PropertyValue` resource, the value of this property should be the IRI of the datatype of
+              `minValue`, `maxValue` and/or `value` or the IRI of the class of the resource referenced by `valueReference`.
+        propertyUri: fdri:valueType
         kind: object
       unit:
         label:

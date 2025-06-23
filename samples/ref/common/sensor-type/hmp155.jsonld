@@ -1,0 +1,20 @@
+{
+    "$schema": "../../../schema/EnvironmentalMonitoringSystemType.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/ref/common/sensor-type/hmp155",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSystemType",
+    "prefLabel": [{"@value": "Vaisala HUMICAP Humidity and temperature probe HMP155", "@language": "en"}],
+    "altLabel": [{"@value": "HMP155", "@language":"en"}],
+    "inScheme": {"@id": "http://fdri.ceh.ac.uk/ref/common/sensor-type"},
+    "measures": [
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/measure/ta-degc-inst" }
+    ],
+    "observes": [
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/variable/ta"}
+    ],
+    "qualifiedAttribution": [{
+        "agent": {"@id": "http://fdri.ceh.ac.uk/ref/common/manufacturer/vaisala"},
+        "hasRole": {"@id": "http://fdri.ceh.ac.uk/ref/common/related-party-role/manufacturer"}
+    }],
+    "hasProcedure": [{"@id": "http://fdri.ceh.ac.uk/id/procedure/cosmos-sampling-regime-ta.jsonld"}],
+    "settleInPeriod": "PT24H"
+}

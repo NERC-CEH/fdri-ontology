@@ -6,19 +6,22 @@ CONTEXT_BASE = samples/context
 SCHEMA_FILE = schema/fdri.recordspec.yaml
 
 RECORDS = \
-	Variable \
 	Activity \
-	GeospatialFeatureOfInterest \
+	Aggregation \
+	ConfigurationItem \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
 	EnvironmentalMonitoringSite \
+	EnvironmentalMonitoringSystemType \
 	ExternalDataProcessingConfiguration \
+	GeospatialFeatureOfInterest \
 	InternalDataProcessingConfiguration \
-	ConfigurationItem \
+	Measure \
+	Procedure \
 	StaticDeployment \
 	TimeSeriesDataset \
 	TimeSeriesDefinition \
-	Measure
+	Variable
 
 SCHEMAS = $(RECORDS:%=$(SCHEMA_BASE)/%.schema.json)
 CONTEXTS = $(RECORDS:%=$(CONTEXT_BASE)/%.context.jsonld)
