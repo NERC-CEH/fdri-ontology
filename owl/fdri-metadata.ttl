@@ -1154,10 +1154,6 @@ An Environmental Monitoring Programme may make use of (`fdri:utilises`) any numb
                                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                ] ,
                                                [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :calibrationDue ;
-                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
                                                  owl:onProperty :dateOfDisposal ;
                                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                ] ,
@@ -1214,6 +1210,10 @@ If information is available regarding the platforms (`fdri:EnvironmentalMonitori
                                                  owl:allValuesFrom :EnvironmentalMonitoringSystem
                                                ] ,
                                                [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :calibrationDue ;
+                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
                                                  owl:onProperty :serialNumber ;
                                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                ] ;
@@ -1230,6 +1230,10 @@ If information is available regarding the platforms (`fdri:EnvironmentalMonitori
                                                    ] ,
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty :hasProcedure ;
+                                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty dcat:keyword ;
                                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                    ] ;
                                    rdfs:comment """A concept that defines a classification of monitoring system type.
