@@ -5,5 +5,5 @@
     "variable": {"@id": "http://fdri.ceh.ac.uk/id/variable/ta"},
     "hasUnit": {"@id": "http://qudt.org/vocab/unit/DEG_C"},
     "valueType": {"@id": "http://www.w3.org/2001/XMLSchema#decimal"},
-    "prefLabel": [{"@value": "instantaneous air temperature (celsius)"}]
+    "prefLabel": [{"@value": "instantaneous air temperature (celsius)", "@language": "en"}]
 }

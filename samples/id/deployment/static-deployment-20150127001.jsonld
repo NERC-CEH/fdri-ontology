@@ -6,7 +6,11 @@
   "deployedOnPlatform": { "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-platform/bunny-1"},
   "startedAtTime": { "@value": "2015-01-27T00:00Z", "@type": "http://www.w3.org/2001/XMLSchema#dateTime"},
   "deploymentPosition": "West facing, mounted on tripod",
+  "canopyHeight":{"@value": "3.8", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
   "deploymentVariance": [{ "@value": "3 m cable", "@language": "en" }],
+  "dependencyNote": [{ "@value": "Maintained represetative canopy height", "@language": "en" }],
+  "deploymentNote": [{ "@value": "Deployment notes are for other text inforation about the deployment. ", "@language": "en" }],
+  "deployedHeight": { "@value": "1.5", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
   "deployedSystem": [
     {"@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-sensor/123456"}
   ]

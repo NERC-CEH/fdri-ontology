@@ -1191,6 +1191,7 @@ records:
               A textual note providing additional information about the enclosing Deployment.
               This property should be used only if there is not a more specific property to capture the information.
               More specific properties currently defined are `dependencyNote` and `deploymentVariance`.
+        propertyUri: fdri:deploymentNote
         kind: literal
         repeatable: true
         constraints:
