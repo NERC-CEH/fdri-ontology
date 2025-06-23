@@ -442,7 +442,9 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 
 On a `schema:PropertyValue` resource, the value of this property should be the IRI of the datatype of `minValue`, `maxValue` and/or `value` or the IRI of the class of the resource referenced by `valueReference`.
 
-On an `fdri:Measure` resource, this property specifies the expected datatype for observed values of the `fdri:Measure`."""@en ;
+On an `fdri:Measure` resource, this property specifies the expected datatype for observed values of the `fdri:Measure`.
+
+When this property is used to convey a datatype for `minValue`, `maxValue` and/or `value`, the datatypes defined by XML Schema 1.1 SHOULD be used."""@en ;
            rdfs:label "value type"@en .
 
 
