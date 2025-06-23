@@ -1169,15 +1169,15 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringSystem
-      deployedSystemProcedure:
+      implements:
         label:
-          - value: deployed system procedure
+          - value: implements
             lang: en
         description:
           - value: |
-              A procedure which applies to the system(s) which are deployed by this deployment. e.g. sensor sampling regime.
+              A procedure which is implemented by this deployment. e.g. sensor sampling regime.
             lang: en
-        propertyUri: fdri:deployedSystemProcedure
+        propertyUri: ssn:implements
         kind: object
         repeatable: true
         constraints:

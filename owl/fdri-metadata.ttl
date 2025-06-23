@@ -159,16 +159,6 @@ geo:location rdf:type owl:AnnotationProperty ;
 :contains rdf:type owl:ObjectProperty .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/deployedSystemProcedure
-:deployedSystemProcedure rdf:type owl:ObjectProperty ;
-                         rdfs:subPropertyOf owl:topObjectProperty ;
-                         rdfs:range :Procedure ;
-                         rdfs:comment """Relates a deployment to a Procedure that applies to the system deployed.
-
-E.g. the sampling regime that applies to the sensor"""@en ;
-                         rdfs:label "deployed system procedure"@en .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/environmentalDomain
 :environmentalDomain rdf:type owl:ObjectProperty ;
                      rdfs:range :EnvironmentalDomain ;
@@ -995,7 +985,11 @@ A Data Processing Configuration is defined as a sub-type of `prov:Plan` allowing
                               owl:allValuesFrom :EnvironmentalMonitoringSystem
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :deployedSystemProcedure ;
+                              owl:onProperty ssn:implements ;
+                              owl:allValuesFrom :Procedure
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty ssn:implements ;
                               owl:minCardinality "0"^^xsd:nonNegativeInteger
                             ] ,
                             [ rdf:type owl:Restriction ;
