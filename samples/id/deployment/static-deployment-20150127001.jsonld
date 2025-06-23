@@ -13,5 +13,6 @@
   "deployedHeight": { "@value": "1.5", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
   "deployedSystem": [
     {"@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-sensor/123456"}
-  ]
+  ],
+  "deployedSystemProcedure": [{"@id": "http://fdri.ceh.ac.uk/id/procedure/cosmos-sampling-regime-ta"}]
 }

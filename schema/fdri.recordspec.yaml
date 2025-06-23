@@ -1994,6 +1994,7 @@ records:
             lang: en
         propertyUri: fdri:hasProcedure
         kind: object
+        repeatable: true
         constraints:
           - record: Procedure
       keyword:
