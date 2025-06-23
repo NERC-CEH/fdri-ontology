@@ -691,6 +691,14 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
               rdfs:label "serial number"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/settleInPeriod
+:settleInPeriod rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:range xsd:duration ;
+                rdfs:comment "The period of time required from the deployment of a sensor to its measurements being reliable due to the settling of the surrounding environment following the deployment."@en ;
+                rdfs:label "settle-in period"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/siteVariance
 :siteVariance rdf:type owl:DatatypeProperty ;
               rdfs:range rdf:langString ;
@@ -1005,6 +1013,10 @@ A Data Processing Configuration is defined as a sub-type of `prov:Plan` allowing
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :canopyHeight ;
                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :settleInPeriod ;
+                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
                             ] ;
             rdfs:comment """Describes the deployment of one or more systems of sensors for some purpose.
 
@@ -1286,6 +1298,10 @@ If information is available regarding the platforms (`fdri:EnvironmentalMonitori
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty dcat:keyword ;
                                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :settleInPeriod ;
+                                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                    ] ;
                                    rdfs:comment """A concept that defines a classification of monitoring system type.
 

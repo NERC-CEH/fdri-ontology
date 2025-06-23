@@ -1223,6 +1223,18 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+      settleInPeriod:
+        label:
+          - value: settle-in period
+            lang: en
+        description:
+          - value: |
+              The period of time that should be allowed to elapse from the start date of this deployment before
+              the measures that the deployed system make are considered accurate.
+        propertyUri: fdri:settleInPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
 
   Dataset:
     label:
@@ -2018,6 +2030,18 @@ records:
         repeatable: true
         constraints:
           - record: Variable
+      settleInPeriod:
+        label:
+          - value: settle-in period
+            lang: en
+        description:
+          - value: |
+              The period of time that should be allowed to elapse from the deployment of a system of this type before
+              the measures that the system make are considered accurate.
+        propertyUri: fdri:settleInPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
   
   ExternalDataProcessingConfiguration:
     label:

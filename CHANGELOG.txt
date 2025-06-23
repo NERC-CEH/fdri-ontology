@@ -17,6 +17,7 @@ DRAFT 0.4.1
 * NEW: Added property `fdri:canopyHeight` as an optional property of `fdri:Deployment`. (#15)
 * NEW: Added property `fdri:deployedSystemProcedure` as an optional repeatable property of `fdri:Deployment` to capture procedures that apply to the systems deployed by that Deployment. (#10)
 * CHANGE: Made `hasProcedure` on `EnvironmentalMonitoringSystemType` repeatable in the recordspec schema to match the OWL definition.
+* NEW: Added property `fdri:settleInPeriod` as an optional property of both `fdri:EnvironmentalMonitoringSystemType` and `fdri:Deployment` to capture the settle-in time that should elapse from the deployment start before readinds are considered to be accurate. (#9)
 
 DRAFT 0.4
 ---------
