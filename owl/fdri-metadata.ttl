@@ -570,6 +570,7 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deploymentNote
 :deploymentNote rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain :Deployment ;
                 rdfs:comment """A note provinding some additional contextual information about the deployment of a system. 
 
 More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance` are provided to capture specific types of note and should be used where appropriate in preference to this property."""@en ;
@@ -714,10 +715,6 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
           rdfs:range rdf:langString ;
           rdfs:comment "Provides the display label to use for the unit of measurement of a Complex Observable Property."@en ;
           rdfs:label "unit name"@en .
-
-
-###  http://www.w3.org/2002/07/owl#topDataProperty
-owl:topDataProperty rdfs:domain :Deployment .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
