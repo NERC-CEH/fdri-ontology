@@ -1134,6 +1134,17 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:dateTime
+      canopyHeight:
+        label:
+          - value: canopy height
+            lang: en
+        description:
+          - value: The observed height of the tree canopy at the deployment site. Reported in metres above ground level.
+            lang: en
+        propertyUri: fdri:canopyHeight
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
       deployedOnPlatform:
         label:
           - value: deployed on

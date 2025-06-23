@@ -530,6 +530,13 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
                 rdfs:label "calibration due"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/canopyHeight
+:canopyHeight rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:decimal ;
+              rdfs:comment "The observed height of the tree canopy (in metres above ground level) at the time of the deployment."@en ;
+              rdfs:label "canopy height"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/dateOfDisposal
 :dateOfDisposal rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf dct:date ;
@@ -980,6 +987,10 @@ A Data Processing Configuration is defined as a sub-type of `prov:Plan` allowing
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :deploymentVariance ;
                               owl:minCardinality "0"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :canopyHeight ;
+                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
                             ] ;
             rdfs:comment """Describes the deployment of one or more systems of sensors for some purpose.
 
