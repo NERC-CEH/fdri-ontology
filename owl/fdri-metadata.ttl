@@ -546,6 +546,13 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
                 rdfs:label "date of purchase" .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/dependencyNote
+:dependencyNote rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :deploymentNote ;
+                rdfs:comment "A note regarding dependency of the enclosing Deployment."@en ;
+                rdfs:label "dependency note"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deployedDepth
 :deployedDepth rdf:type owl:DatatypeProperty ;
                rdfs:range xsd:decimal ;
@@ -560,6 +567,15 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
                 rdfs:label "deployed height"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/deploymentNote
+:deploymentNote rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:comment """A note provinding some additional contextual information about the deployment of a system. 
+
+More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance` are provided to capture specific types of note and should be used where appropriate in preference to this property."""@en ;
+                rdfs:label "deployment note"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deploymentPosition
 :deploymentPosition rdf:type owl:DatatypeProperty ;
                     rdfs:range rdf:langString ;
@@ -569,6 +585,7 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deploymentVariance
 :deploymentVariance rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :deploymentNote ;
                     rdfs:range rdf:langString ;
                     rdfs:comment "Descriptive information about the way in which the deployment of an Environmental Monitoring System differs from the standard deployment of a system of its type."@en ;
                     rdfs:label "deployment variance"@en .
@@ -697,6 +714,10 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
           rdfs:range rdf:langString ;
           rdfs:comment "Provides the display label to use for the unit of measurement of a Complex Observable Property."@en ;
           rdfs:label "unit name"@en .
+
+
+###  http://www.w3.org/2002/07/owl#topDataProperty
+owl:topDataProperty rdfs:domain :Deployment .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
@@ -950,6 +971,14 @@ A Data Processing Configuration is defined as a sub-type of `prov:Plan` allowing
                             [ rdf:type owl:Restriction ;
                               owl:onProperty ssn:deployedSystem ;
                               owl:allValuesFrom :EnvironmentalMonitoringSystem
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :dependencyNote ;
+                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :deploymentNote ;
+                              owl:minCardinality "0"^^xsd:nonNegativeInteger
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :deploymentVariance ;

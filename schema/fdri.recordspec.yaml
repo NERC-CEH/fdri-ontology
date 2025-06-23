@@ -1158,6 +1158,32 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringSystem
+      dependencyNote:
+        label:
+          - value: dependency note
+            lang: en
+        description:
+          - value: |
+              A note about a deployment that provides additional information about deployment dependencies.
+            lang: en
+        propertyUri: fdri:dependencyNote
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      deploymentNote:
+        label:
+          - value: deployment note
+            lang: en
+        description:
+          - value: |
+              A textual note providing additional information about the enclosing Deployment.
+              This property should be used only if there is not a more specific property to capture the information.
+              More specific properties currently defined are `dependencyNote` and `deploymentVariance`.
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
       deploymentVariance:
         label:
           - value: deployment variance

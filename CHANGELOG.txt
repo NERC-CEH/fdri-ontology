@@ -13,6 +13,7 @@ DRAFT 0.4.1
 * NEW: Allow property `dct:identifier` on the `fdri:EnvironmentalMonitoringFacility` and `fdri:FacilityGroup` in the recordspec schema. (#18)
 * NEW: Added new property `fdri:calibrationDue` as an optional property of `fdri:EnvironmentalMonitoringSystem`. (#17)
 * NEW: Added property `dcat:keyword` as an optional, repeatable propety of `fdri:EnvironmentalMonitoringSystemType`. (#8)
+* NEW: Added properties `fdri:deploymentNote` and `fdri:dependencyNote`. Made `fdri:deploymentVariance` and `fdri:dependencyNote` sub-properties of `fdri:deploymentNote`. The domain of `fdri:deploymentNote` is restricted to `fdri:Deployment`. (#16)
 
 DRAFT 0.4
 ---------
