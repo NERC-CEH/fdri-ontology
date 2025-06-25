@@ -735,6 +735,21 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
           rdfs:label "unit name"@en .
 
 
+###  http://schema.org/maxValue
+schema:maxValue rdf:type owl:DatatypeProperty ;
+                rdfs:range rdfs:Literal .
+
+
+###  http://schema.org/minValue
+schema:minValue rdf:type owl:DatatypeProperty ;
+                rdfs:range rdfs:Literal .
+
+
+###  http://schema.org/value
+schema:value rdf:type owl:DatatypeProperty ;
+             rdfs:range rdfs:Literal .
+
+
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
 geo:lat rdf:type owl:DatatypeProperty ;
         rdfs:domain geo:SpatialThing ;
@@ -823,6 +838,37 @@ Each Annotation instance provides either a single value (`fdri:hasValue`) or a t
                  rdfs:subClassOf skos:ConceptScheme ;
                  rdfs:comment "A concept scheme consisting of Catchment concepts."@en ;
                  rdfs:label "Catchment Scheme"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/Condition
+:Condition rdf:type owl:Class ;
+           rdfs:subClassOf :PropertyValue ,
+                           <http://www.w3.org/ns/ssn/systems/Condition> ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :property ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Variable
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty schema:unit ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty schema:maxValue ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty schema:minValue ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty schema:value ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] ;
+           rdfs:comment """Used to specify ranges for qualities that act as conditions on a system/sensor's operation.  For example, wind speed of 10-60m/s may be used as the condition on a SystemProperty, for example, to state that a sensor has a particular accuracy in that condition.
+
+The `fdri:property` property references the `fdri:Variable` that defines the condition property. The properties `schema:minValue` and `schema:maxValue` may be used to express a value range for the condition, or the property `schema:value` used to express a single value. The property `schema:unit` MUST also be used to express the unit of measure for the condition."""@en ;
+           rdfs:label "Condition" .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgument
@@ -1621,6 +1667,35 @@ It is recommended that every dataset should specify the feature(s) of interest (
                           rdfs:label "Observation Dataset Series"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/OperatingRange
+:OperatingRange rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/OperatingRange> ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:unit ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass <http://qudt.org/schema/qudt/Unit>
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty <http://www.w3.org/ns/ssn/systems/hasOperatingProperty> ;
+                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :Variable
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:maxValue ;
+                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:minValue ;
+                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:value ;
+                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                ] ;
+                rdfs:comment "The FDRI ontology extends the SOSA/SSN class `ssn-system:OperatingRange` to restrict the range of `ssn-system:hasOperatingProperty` to `fdri:Varaible` as well as to make explicit the use of `schema:minValue`, `schema:maxValue`, `schema:value` and `schema:unit` to capture the survival property value and unit of measure."@en ;
+                rdfs:label "Operating Range"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Organization
 :Organization rdf:type owl:Class ;
               rdfs:subClassOf :Agent ;
@@ -1853,6 +1928,64 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
                                   ] ;
                   rdfs:comment "A deployment of a sensor or system of sensors in a fixed relationship to some location."@en ;
                   rdfs:label "Static Deploment"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/SurvivalRange
+:SurvivalRange rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SurvivalRange> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty schema:unit ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass <http://qudt.org/schema/qudt/Unit>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.w3.org/ns/ssn/systems/hasSurvivalProperty> ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Variable
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty schema:maxValue ;
+                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty schema:minValue ;
+                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty schema:value ;
+                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                               ] ;
+               rdfs:comment "The FDRI ontology extends the SOSA/SSN class `ssn-system:SurvivalRange` to restrict the range of `ssn-system:hasSurvivalProperty` to `fdri:Varaible` as well as to make explicit the use of `schema:minValue`, `schema:maxValue`, `schema:value` and `schema:unit` to capture the survival property value and unit of measure.en"@en ;
+               rdfs:label "Survival Range"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/SystemProperty
+:SystemProperty rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :property ;
+                                  owl:cardinality "1"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:unit ;
+                                  owl:cardinality "1"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:maxValue ;
+                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:minValue ;
+                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty schema:value ;
+                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                ] ;
+                rdfs:comment """The FDRI ontology definition of System Property extends the SOSA/SSN `ssn-system:SystemProperty` to use the property `fdri:Property` to reference the `fdri:Variable` that defines the system characteristic being measured.
+
+In addition the use of `schema:minValue`, `schema:maxValue`, `schema:value` and `schema:unit` to capture the characteristic value is made explicity on this class."""@en ;
+                rdfs:label "System Property"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SystemStatus

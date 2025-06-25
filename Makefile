@@ -9,6 +9,7 @@ RECORDS = \
 	Activity \
 	Aggregation \
 	ConfigurationItem \
+	Condition \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
 	EnvironmentalMonitoringSite \
@@ -17,8 +18,12 @@ RECORDS = \
 	GeospatialFeatureOfInterest \
 	InternalDataProcessingConfiguration \
 	Measure \
+	OperatingRange \
 	Procedure \
 	StaticDeployment \
+	SurvivalRange \
+	SystemCapability \
+	SystemProperty \
 	TimeSeriesDataset \
 	TimeSeriesDefinition \
 	Variable

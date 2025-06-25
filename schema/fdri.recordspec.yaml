@@ -30,6 +30,8 @@ prefixes:
     uri: http://data.ordnancesurvey.co.uk/ontology/spatialrelations/
   - prefix: ssn
     uri: http://www.w3.org/ns/ssn/
+  - prefix: sys
+    uri: http://www.w3.org/ns/ssn/systems/
   - prefix: xsd
     uri: http://www.w3.org/2001/XMLSchema#
 
@@ -388,6 +390,51 @@ mixins:
         constraints:
           - datatype: xsd:string
 
+  WithValueOrRange:
+    label:
+      - value: With Value or Range
+        lang: en
+    description:
+      - value: |
+          Provides properties for recording either a single value or a value range with a required unit of measure.
+    properties:
+      minValue:
+        label:
+          - value: minimum
+            lang: en
+        description:
+          - value: The lower bound of a range value.
+            lang: en
+        propertyUri: schema:minValue
+        kind: literal
+      maxValue:
+        label:
+          - value: maximum
+            lang: en
+        description:
+          - value: The upper bound of a range value.
+            lang: en
+        propertyUri: schema:maxValue
+        kind: literal
+      value:
+        label:
+          - value: value
+            lang: en
+        description:
+          - value: The scalar or string literal value
+        propertyUri: schema:value
+        kind: literal
+      unit:
+        label:
+          - value: unit
+            lang: en
+        description:
+          - value: The unit of measurement associated with a scalar value or the minimum and maximum values.
+            lang: en
+        propertyUri: schema:unit
+        kind: object
+        constraints:
+          - record: Unit
 
 records:
 
@@ -747,6 +794,35 @@ records:
         constraints:
           - record: Concept
 
+  Condition:
+    label:
+      - value: Condition
+        lang: en
+    description:
+      - value: |
+          Used to specify ranges for qualities that act as conditions on the operation of a system.
+
+          A Condition consists of a property (`property`), a value or range of values for that property
+          (value, or minValue and maxValue), and a unit for the values (`unit`).
+        lang: en
+    mixins:
+      - WithValueOrRange
+    classUri: fdri:Condition
+    shortCode: Condition
+    properties:
+      property:
+        label:
+          - value: property
+            lang: en
+        description:
+          - value: |
+              References the definition of the property that measures this condition.
+            lang: en
+        propertyUri: fdri:property
+        kind: object
+        constraints:
+          - record: Variable
+  
   ConfigurationArgument:
     label:
       - value: Data Processing Configuration Argument
@@ -1915,6 +1991,31 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:date
+      hasOperatingRange:
+        label:
+          - value: has operating range
+            lang: en
+        description:
+          - value: |
+              Relation from a `EnvironmentalMonitoringSystem` to an `OperatingRange` describing the normal operating
+              environment of the `EnvironmentalMonitoringSystem`.
+        propertyUri: sys:hasOperatingRange
+        kind: object
+        repeatable: true
+        constraints:
+          - record: OperatingRange
+      hasSurvivalRange:
+        label:
+          - value: has survival range
+            lang: en
+        description:
+          - value: Relation from an `EnvironmentalMonitoringSystem` to a `SurvivalRange`
+            lang: en
+        propertyUri: sys:hasSurvivalRange
+        kind: object
+        repeatable: true
+        constraints:
+          - record: SurvivalRange
       hasSubsystem:
         label:
           - value: has subsystem
@@ -1927,6 +2028,18 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringSystem
+      hasSystemCapability:
+        label:
+          - value: has system capability
+            lang: en
+        description:
+          - value: Relation from an `EnvironmentalMonitoringSystem` to a `SystemCapability` describing the capabilities of the `EnvironmentalMonitoringSystem` under certain `Condition`s.
+            lang: en
+        propertyUri: sys:hasSystemCapability
+        kind: object
+        repeatable: true
+        constraints:
+          - record: SystemCapability
       retirementDate:
         label:
           - value: retirement date
@@ -1997,6 +2110,19 @@ records:
     classUri: fdri:EnvironmentalMonitoringSystemType
     shortCode: EnvironmentalMonitoringSystemType
     properties:
+      hasOperatingRange:
+        label:
+          - value: has operating range
+            lang: en
+        description:
+          - value: |
+              Relation from a `EnvironmentalMonitoringSystemType` to an `OperatingRange` describing the normal operating
+              environment of systems of that type.
+        propertyUri: sys:hasOperatingRange
+        kind: object
+        repeatable: true
+        constraints:
+          - record: OperatingRange
       hasProcedure:
         label:
           - value: has procedure
@@ -2009,6 +2135,32 @@ records:
         repeatable: true
         constraints:
           - record: Procedure
+      hasSurvivalRange:
+        label:
+          - value: has survival range
+            lang: en
+        description:
+          - value: Relation from an `EnvironmentalMonitoringSystemType` to a `SurvivalRange`
+            lang: en
+        propertyUri: sys:hasSurvivalRange
+        kind: object
+        repeatable: true
+        constraints:
+          - record: SurvivalRange
+      hasSystemCapability:
+        label:
+          - value: has system capability
+            lang: en
+        description:
+          - value: |
+              Relation from an `EnvironmentalMonitoringSystemType` to a `SystemCapability` describing the capabilities 
+              of the systems of that type under certain `Condition`s.
+            lang: en
+        propertyUri: sys:hasSystemCapability
+        kind: object
+        repeatable: true
+        constraints:
+          - record: SystemCapability
       keyword:
         label:
           - value: keyword
@@ -2545,6 +2697,55 @@ records:
         repeatable: true
         constraints:
           - record: ObservationDataset
+
+  OperatingRange:
+    label:
+      - value: Operating Range
+        lang: en
+    description:
+      - value: |
+          Describes normal operating properties (`hasOperatingProperty`) of an `EnvironmentalMonitoringSystem` 
+          or `EnvironmentalMonitoringSystemType` under some specified `Condition`s (`inCondition`). 
+          
+          For example, the power requirement or maintenance schedule of a system under a specified temperature range.
+
+          In the absence of any `hasOperatingProperty` properties, it simply describes the conditions in which a system
+          is expected to operate.
+          
+          The system continues to operate as defined using `SystemCapability`. 
+          If, however, the `Condition`s are violated, the system is operating 'out of operating range' and 
+          `SystemCapability` specifications may no longer hold.
+    classUri: fdri:OperatingRange
+    shortCode: OperatingRange
+    mixins:
+      - WithValueOrRange
+    properties:
+      hasOperatingProperty:
+        label:
+          - value: has operating property
+            lang: en
+        description:
+          - value: |
+              References the definition of the property that measures this operating range.
+            lang: en
+        propertyUri: sys:hasOperatingProperty
+        kind: object
+        constraints:
+          - record: Variable
+      inCondition:
+        label:
+          - value: in condition
+            lang: en
+        description:
+          - value: |
+              The environmental condition(s) under which this operating range applies.
+            lang: en
+        propertyUri: sys:inCondition
+        kind: object
+        repeatable: true
+        required: true
+        constraints:
+          - record: Condition
 
   PeriodOfTime:
     label:
@@ -3224,6 +3425,123 @@ records:
         constraints:
           - record: RelativeLocation
           - record: Feature
+
+  SurvivalRange:
+    classUri: fdri:SurvivalRange
+    shortCode: SurvivalRange
+    mixins:
+      - WithValueOrRange
+    properties:
+      hasSurvivalProperty:
+        label:
+          - value: has survival property
+            lang: en
+        description:
+          - value: |
+              References the property that this `SurvivalRange` provides a value for.
+
+              Examples might include, "Battery lifetime" or "System lifetime".
+
+              This property is optional. If omitted, the `SurvivalRange` describes the conditions
+              that a system may be exposed to without becoming damaged.
+            lang: en
+        propertyUri: sys:hasSurvivalProperty
+        kind: object
+        constraints:
+          - record: Variable
+      inCondition:
+        label:
+          - value: in condition
+            lang: en
+        description:
+          - value: |
+              The condition(s) under which this `SurvivalRange` applies.
+            lang: en
+        propertyUri: sys:inCondition
+        kind: object
+        required: true
+        repeatable: true
+        constraints:
+          - record: Condition
+
+  SystemCapability:
+    label:
+      - value: System Capability
+        lang: en
+    description:
+      - value: |
+          Describes normal measurement, actuation, sampling properties such as accuracy, range, precision, etc. of a
+          System under some specified Conditions such as a temperature range.
+
+          The capabilities specified here are those that affect the primary purpose of the System, while those in
+          OperatingRange represent the system's normal operating environment, including Conditions that don't affect the
+          Observations or the Actuations of the System.
+        lang: en
+    classUri: sys:SystemCapability
+    shortCode: SystemCapability
+    properties:
+      forProperty:
+        label:
+          - value: for property
+            lang: en
+        description:
+          - value: The variable(s) measured by the system that this system capability applies to.
+            lang: en
+        propertyUri: ssn:forProperty
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Variable
+      hasSystemProperty:
+        label:
+          - value: has system property
+            lang: en
+        description:
+          - value: Relation from a `SystemCapability` of a System to a `SystemProperty` describing the capabilities of the System.
+            lang: en
+        propertyUri: sys:hasSystemProperty
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: SystemProperty
+      inCondition:
+        label:
+          - value: in condition
+            lang: en
+        description:
+          - value: Describes the prevailing environmental Conditions for SystemCapabilites, OperatingRanges and SurvivalRanges.
+            lang: en
+        propertyUri: sys:inCondition
+        kind: object
+        required: true
+        constraints:
+          - record: Condition
+
+  SystemProperty:
+    classUri: fdri:SystemProperty
+    shortCode: SystemProperty
+    mixins:
+      - WithValueOrRange
+    properties:
+      property:
+        label:
+          - value: property
+            lang: en
+        description:
+          - value: |
+              References the definition of the system property.
+            lang: en
+        propertyUri: fdri:property
+        kind: object
+        constraints:
+          - record: Variable
+      unit:
+        propertyUri: schema:unit
+        kind: object
+        required: true
+        constraints:
+          - record: Unit
 
   SystemStatus:
     label:
