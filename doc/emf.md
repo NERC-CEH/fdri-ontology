@@ -26,10 +26,12 @@ Typically a dataset will be related to the `fdri:EnvironmentalMonitoringProgramm
 
 `fdri:EnvironmentalMonitoringFacility` is defined as a subclass of `dcat:Resource`, meaning it is an item with an entry in the catalog and so can be the subject of a `dcat:CatalogRecord`. The `dcat:Resource` class aslo defines a number of useful properties which can be used to capture many of the properties of an `fdri:EnvironmentalMonitoringFacility` such as title, description, modified date and themes (keywords). Although not shown here, the DCAT model also provides common relationships between resources which can be used such as `dcterms:hasPart` and `dcterms:replaces`, as well as `dcterms:qualifiedRelation` which could be used to capture any other more specialised forms of relation between facilities and other catalogued resourcers. Additional properties are defined to cover the proposed model for `fdri:EnvironmentalMonitoringFacility` in the external catalog, although it may be possible to exlude some of these from the detailed metadata catalog if the external catalog is the canonical record for these resources. 
 
-We use the `sosa:observes` property to record a relationship between an `fdri:EnvironmentalMonitoringFacility` and the `iop:Variable`(s) it observes. This would most likely only be defined at the level of `fdri:EnvironmentalMonitoringSensor` resources, and then aggregated through query to parent facilities to avoid the need to keep multiple resources in sync as new sensors are deployed or existing sensors removed from a site. 
+We use the `sosa:observes` property to record a relationship between an `fdri:EnvironmentalMonitoringFacility` and the `iop:Variable`(s) it observes. This would most likely only be defined at the level of `fdri:EnvironmentalMonitoringSensor` resources, and then aggregated through query to parent facilities to avoid the need to keep multiple resources in sync as new sensors are deployed or existing sensors removed from a site. In addition to `sosa:observes` it is also possible to use `fdri:measures` to record a relatioship between an `fdri:EnvironmentalMonitoringFacility` and the `fdri:Measure`(s) it makes. An `fdri:Measure` combines an variable with additional information about the unit of measure and any statistical aggregation applied. A facility may report multiple `fdri:Measure`s for the same `fdri:Variable` that it observes (e.g. an hourly mean, and a standard deviation).
 
 Activities which affect a facility can be related to the `fdri:EnvironmentalMonitoringFacility` by using properties `prov:wasGeneratedBy`, `prov:wasInvalidatedBy`, and `fdri:wasModifiedBy`. `prov:wasGeneratedBy` should be reserved for commissioning / manufacturing activities. `prov:wasInvalidatedBy` should be reserved for decomissioning activities. `fdri:wasModifiedBy` should be used for all other activities which affect the facility (e.g. maintenance activities).
 
+A number of organisations or individuals may be involved in some aspect of the commission and/or maintenance of a facility. The `prov:qualifiedAttribution` property can be used to relate an `fdri:EnvironmentalMonitoringFacility` to any number of `fdri:RelatedPartyAttribution` resources. Each `fdri:RelatedPartyAttribution` specifies an `fdri:Agent` (`prov:agent`) acting in a particular `fdri:RelatedParyRole` (`dcat:hadRole`).
+ 
 ```mermaid
 classDiagram
 class Resource["dcat:Resource"]
@@ -51,13 +53,14 @@ class Facility["fdri:EnvironmentalMonitoringFacility"]{
 class RelatedParty["fdri:RelatedPartyAttribution"]
 class Agent["prov:Agent"]
 class AgentRole["fdri:RelatedPartyRole"]
-  class PeriodOfTime["dct:PeriodOfTime"] {
-    dcat:startDate xsd:date/xsd:dateTime
-    dcat:endDate xsd:date/xsd:dateTime
-  }
+class PeriodOfTime["dct:PeriodOfTime"] {
+  dcat:startDate xsd:date/xsd:dateTime
+  dcat:endDate xsd:date/xsd:dateTime
+}
 class Concept["skos:Concept"]
 class Variable["iop:Variable"]
 class Activity["prov:Activity"]
+class Measure["fdri:Measure"]
 
 Resource <|-- Facility
 Programme --> Network: fdri_utilises
@@ -69,6 +72,7 @@ RelatedParty --> Agent: prov_Agent
 Facility --> PeriodOfTime: fdri_operatingPeriod
 Facility --> Concept: dct_type
 Facility --> Variable: sosa_observes
+Facility --> Measure: fdri_measures
 Facility --> Activity: fdri_wasModifiedBy
 Facility --> Activity: prov_wasGeneratedBy
 Facility --> Activity: prov_wasInvalidatedBy
@@ -106,56 +110,23 @@ Platform --|> SosaPlatform
 
 `fdri:EnvironmentalMonitoringSite` is used to represent a static geospatial location at which one or more pieces of monitoring infrastructure may be deployed. It is subclassed from `fdri:EnvironmentalMonitoringFacility` and so has all the same core metadata that is provided by that class, but it is also mapped through a subclass relationship to the `sosa:Platform` type from the SOSA/SSN vocabulary which means that it can be the host of a deployment of a sensor or system of sensors. 
 
-Several properties of an `EnvironmentalMonitoringSite` may change over time. To capture the historic as well as the current values of these properties we introduce the `fdri:PropertyValueSeries` and `fdri:TimeBoundPropertyValue` types.
+The property `fdri:siteVariance` can be used to capture textual notes about the ways in which the layout of a site varies from the standard layout that would be expected of a site of this type (as defined by the `dct:type` property).
 
-`fdri:TimeBoundPropertyValue` represents a property value with an assocaited interval during which the value is valid. The value part is represented with the `schema:PropertyValue` structure from the schema.org vocabulary and can be either a literal value using the `schema:value` property, a range using the `schema:minValue` and `schema:maxValue` properties, or a reference to a concept or structured value using `schema:valueReference`. The property `dct:replaces` can be used to relate one `fdri:TimeBoundPropertyValue` to the previoud `fdri:TimeBoundPropertyValue` that it provides an updated value for.
-
-`fdri:ProperyValueSeries` represents a collection of `fdri:TimeBoundPropertyValues` providing values for the same property over different intervals. The property `fdri:hadValue` relates the `fdri:PropertyValueSeries` to all of the `fdri:TimeBoundPropertyValue`s that the property had over time (excluding the current value). The property `fdri:hasCurrentValue` relates the `fdri:PropertyValueSeries` to the `fdri:TimeBoundPropertyValue` that provides the current value of the property. For a property which is currently being monitored, it would be expected that `fdri:hasCurrentValue` has a value that is an `fdri:TimeBoundPropertyValue` with no `dcat:endDate` specified for its interval. 
+The property `fdri:altitude` can be used to record the altitude of the site in metres above sea-level.
 
 ```mermaid
 classDiagram
+class EMFacility["fdri:EnvironmentalMonitoringFacility"]
 class EMSite["fdri:EnvironmentalMonitoringSite"] {
   fdri:altitude: xsd:decimal
   fdri:siteVariance: rdf:langString
 }
-class PeriodOfTime["dct:PeriodOfTime"] {
-  dcat:startDate: xsd:date/xsd:dateTime
-  dcat:endDate: xsd:date/xsd:dateTime
-}
-class SoilType["fdri:SoilType"]
-class Concept["skos:Concept"]
-class TimeBoundPropertyValue["fdri:TimeBoundPropertyValue"] 
-class PropertyValue["schema:PropertyValue"] {
-    schema:maxValue rdfs:Literal
-    schema:minValue rdfs:Literal
-    schema:value rdfs:Literal
-    schema:valueReference rdf:Resource
-}
-class Unit["qudt:Unit"]
-class Region["fdri:Region"]
-class Catchment["fdri:Catchment"]
-class PropertyValueSeries["fdri:PropertyValueSeries"]
-
-EMSite --> PropertyValueSeries: fdri_landCover
-EMSite --> SoilType: fdri_soilType
-EMSite --> PropertyValueSeries: fdri_inRegion
-EMSite --> PropertyValueSeries: fdri_inCatchment
-
-PropertyValueSeries --> TimeBoundPropertyValue: fdri_hadValue
-PropertyValueSeries --> TimeBoundPropertyValue: fdri_hasCurrentValue
-TimeBoundPropertyValue --|> PropertyValue
-TimeBoundPropertyValue --> PeriodOfTime: fdri_interval
-TimeBoundPropertyValue --> TimeBoundPropertyValue: dct_replaces
-SoilType --|> Concept
-Region --|> Concept
-Catchment --|> Concept
-PropertyValue --> Unit: schema_unit
+EMFacility <|-- EMSite
 ```
 
 > **QUESTION**
 > Is site variance information available in a more structured form that makes it possible to relate the information to the sensor deployment?
 > Does site variance information change over time? 
-> If site variance information is captured as text, should this really be a language tagged string rather than a simple string ?
 
 
 > **QUESTION**
