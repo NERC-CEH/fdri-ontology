@@ -16,5 +16,14 @@
         "hasRole": {"@id": "http://fdri.ceh.ac.uk/ref/common/related-party-role/manufacturer"}
     }],
     "hasProcedure": [{"@id": "http://fdri.ceh.ac.uk/id/procedure/cosmos-sampling-regime-ta.jsonld"}],
-    "settleInPeriod": "PT24H"
+    "settleInPeriod": "PT24H",
+    "hasSystemCapability": [
+        {"@id": "http://fdri.ceh.ac.uk/id/system-capability/hmp155"}
+    ],
+    "hasOperatingRange": [
+        { "@id": "http://fdri.ceh.ac.uk/id/operating-range/hmp155" }
+    ],
+    "hasSurvivalRange": [
+        {"@id": "http://fdri.ceh.ac.uk/id/survival-range/hmp155"}
+    ]
 }

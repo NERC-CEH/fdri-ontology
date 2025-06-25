@@ -1,0 +1,9 @@
+{
+    "$schema": "../../schema/Condition.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/id/condition/hmp155-normal-temperature",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/Condition",
+    "property": {"@id": "http://fdri.ceh.ac.uk/ref/common/variable/ta"},
+    "minValue": {"@value": "-40.0", "@type": "xsd:decimal"},
+    "maxValue": {"@value": "80.0", "@type": "xsd:decimal"},
+    "unit": {"@id": "http://fdri.ceh.ac.uk/ref/common/unit/degc"}
+}

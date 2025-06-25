@@ -1,0 +1,6 @@
+{
+    "$schema": "../../schema/SurvivalRange.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/id/survival-range/hmp155",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/SurvivalRange",
+    "inCondition": [{"@id": "http://fdri.ceh.ac.uk/id/condition/hmp155-normal-temperature"}]
+}

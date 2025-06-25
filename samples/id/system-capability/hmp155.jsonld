@@ -1,0 +1,35 @@
+{
+    "$schema": "../../schema/SystemCapability.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/id/system-capability/hmp155",
+    "@type": "http://www.w3.org/ns/ssn/systems/SystemCapability",
+    "inCondition": {"@id": "http://fdri.ceh.ac.uk/id/condition/hmp155-normal-temperature"},
+    "forProperty": [{"@id": "http://fdri.ceh.ac.uk/ref/common/variable/ta"}],
+    "hasSystemProperty": [
+        {
+            "@type": "http://fdri.ceh.ac.uk/vocab/metadata/SystemProperty",
+            "property": {"@id": "http://fdri.ceh.ac.uk/ref/common/system-property/accuracy"},
+            "minValue": {"@value": "-0.5", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
+            "maxValue": {"@value": "0.5", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
+            "unit": {"@id": "http://fdri.ceh.ac.uk/ref/common/unit/degc"}
+        },
+        {
+            "@type": "http://fdri.ceh.ac.uk/vocab/metadata/SystemProperty",
+            "property": {"@id": "http://fdri.ceh.ac.uk/ref/common/system-property/sensitivity"},
+            "value": {"@value": "0.1", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
+            "unit": {"@id": "http://fdri.ceh.ac.uk/ref/common/unit/degc"}
+        },
+        {
+            "@type": "http://fdri.ceh.ac.uk/vocab/metadata/SystemProperty",
+            "property": {"@id": "http://fdri.ceh.ac.uk/ref/common/system-property/precision"},
+            "minValue": {"@value": "-0.2", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
+            "maxValue": {"@value": "0.2", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
+            "unit": {"@id": "http://fdri.ceh.ac.uk/ref/common/unit/degc"}
+        },
+        {
+            "@type": "http://fdri.ceh.ac.uk/vocab/metadata/SystemProperty",
+            "property": {"@id": "http://fdri.ceh.ac.uk/ref/common/system-property/frequency"},
+            "value": {"@value": "2.0", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
+            "unit": {"@id": "http://fdri.ceh.ac.uk/ref/common/unit/sec"}
+        }
+    ]
+}

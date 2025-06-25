@@ -109,6 +109,7 @@ if __name__ == '__main__':
     html += make_section('doc/emf.md')
     html += make_section('doc/deployments.md')
     html += make_section('doc/sensor-system.md')
+    html += make_section('doc/sensor-capabilities.md')
     html += make_section('doc/data-processing-configurations.md')
     html += make_section('doc/geospatial.md')
     html += make_reference_doc()

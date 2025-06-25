@@ -19,5 +19,6 @@
 * [Environmental Monitoring Facility Model](emf.md)
 * [Deployment Model](deployments.md)
 * [Sensor/System Model](sensor-system.md)
+* [Sensor/System Capabilities Model](sensor-capabilities.md)
 * [Data-processing Configuration Model](data-processing-configurations.md)
 * [OGC Connected Systems Spec Mapping](ogc-connected-systems.md)
