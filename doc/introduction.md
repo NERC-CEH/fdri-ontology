@@ -8,6 +8,12 @@ PROV-O provides a model of activities that create, modify and use entities and t
 SOSA/SSN provides the notions of observable properties as things that can be measured by sensors against some feature of interest.
 i-Adopt provides the foudation for structuring the definition of observable properties.
 
+### GitHub Repository
+
+The FDRI ontology and its documentation are maintained at https://github.com/NERC-CEH/fdri-ontology
+
+The latest releases are available at https://github.com/NERC-CEH/fdri-ontology/releases and include the OWL ontology (`fdri-metadata.ttl`), and the version of this documentation that goes with the release as a zipped package (`doc.tar.gz`).
+
 ### Note on diagrams
 
 UML class diagrams have been used extensively to document model design. Familiarity with UML class diagram notation is assumed. Examples of how the model is intended to be used are diagrammed in a simpler flowchart notation.
