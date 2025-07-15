@@ -18,6 +18,9 @@
     "@value": "2018-05-18",
     "@type": "http://www.w3.org/2001/XMLSchema#date"
   },
+  "certification": {
+    "@id": "http://fdri.ceh.ac.uk/id/document/certification-123456"
+  },
   "calibrationDue": {
     "@value": "2025-12-12",
     "@type": "http://www.w3.org/2001/XMLSchema#date"

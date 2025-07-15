@@ -10,6 +10,7 @@ RECORDS = \
 	Aggregation \
 	ConfigurationItem \
 	Condition \
+	DigitalDocument \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
 	EnvironmentalMonitoringSite \
@@ -105,7 +106,7 @@ build/release/fdri.recordspec.yaml: schema/fdri.recordspec.yaml
 	mkdir -p build/release
 	cp $^ build/release
 
-build/fdri.modelspec.yaml: schema/fdri.recordspec.yaml
+build/fdri.modelspec.yaml: schema/fdri.recordspec.yaml | build
 	$(RUN) model-spec-cmd -m $^ -f recordspec -t spec -o $@
 
 build/release/fdri.modelspec.yaml: build/fdri.modelspec.yaml

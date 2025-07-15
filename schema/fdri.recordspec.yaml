@@ -1175,143 +1175,6 @@ records:
         constraints:
           - record: ConfigurationParameter
   
-  Deployment:
-    label:
-      - value: Deployment
-        lang: en
-    description:
-      - value: |
-          Describes the deployment of one or more systems of sensors for some purpose.
-          A deployment may be associated with a platform on which the sensors or systems were deployed.
-    classUri: fdri:Deployment
-    shortCode: Deployment
-    mixins:
-      - WithLabelAndComment
-    properties:
-      startedAtTime:
-        label:
-          - value: started at
-            lang: en
-        description:
-          - value: The date and time at which the deployment commenced.
-            lang: en
-        propertyUri: prov:startedAtTime
-        kind: literal
-        constraints:
-          - datatype: xsd:dateTime
-      endedAtTime:
-        label:
-          - value: ended at
-            lang: en
-        description:
-          - value: The date and time at which the deployment is considered to have ended.
-            lang: en
-        propertyUri: prov:endedAtTime
-        kind: literal
-        constraints:
-          - datatype: xsd:dateTime
-      canopyHeight:
-        label:
-          - value: canopy height
-            lang: en
-        description:
-          - value: The observed height of the tree canopy at the deployment site. Reported in metres above ground level.
-            lang: en
-        propertyUri: fdri:canopyHeight
-        kind: literal
-        constraints:
-          - datatype: xsd:decimal
-      deployedOnPlatform:
-        label:
-          - value: deployed on
-            lang: en
-        description:
-          - value: A reference to the entity which hosts the deployed system.
-            lang: en
-        propertyUri: ssn:deployedOnPlatform
-        kind: object
-        constraints:
-          - record: EnvironmentalMonitoringPlatform
-          - record: EnvironmentalMonitoringSite
-      deployedSystem:
-        label:
-          - value: deployed system
-            lang: en
-        description:
-          - value: The sensor or sensor package which was deployed.
-            lang: en
-        propertyUri: ssn:deployedSystem
-        kind: object
-        repeatable: true
-        constraints:
-          - record: EnvironmentalMonitoringSystem
-      implements:
-        label:
-          - value: implements
-            lang: en
-        description:
-          - value: |
-              A procedure which is implemented by this deployment. e.g. sensor sampling regime.
-            lang: en
-        propertyUri: ssn:implements
-        kind: object
-        repeatable: true
-        constraints:
-          - record: Procedure
-      dependencyNote:
-        label:
-          - value: dependency note
-            lang: en
-        description:
-          - value: |
-              A note about a deployment that provides additional information about deployment dependencies.
-            lang: en
-        propertyUri: fdri:dependencyNote
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: rdf:langString
-      deploymentNote:
-        label:
-          - value: deployment note
-            lang: en
-        description:
-          - value: |
-              A textual note providing additional information about the enclosing Deployment.
-              This property should be used only if there is not a more specific property to capture the information.
-              More specific properties currently defined are `dependencyNote` and `deploymentVariance`.
-        propertyUri: fdri:deploymentNote
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: rdf:langString
-      deploymentVariance:
-        label:
-          - value: deployment variance
-            lang: en
-        description:
-          - value: |
-              A description of any way(s) in which this specific deployment differs from the standard way in which 
-              a deployment of the same kind of system to the same kind of platform would be carried out.
-            lang: en
-        propertyUri: fdri:deploymentVariance
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: rdf:langString
-      settleInPeriod:
-        label:
-          - value: settle-in period
-            lang: en
-        description:
-          - value: |
-              The period of time that should be allowed to elapse from the start date of this deployment before
-              the measures that the deployed system make are considered accurate.
-        propertyUri: fdri:settleInPeriod
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
-
   Dataset:
     label:
       - value: Dataset
@@ -1507,7 +1370,171 @@ records:
         repeatable: true
         constraints:
           - record: Concept
-      
+
+  Deployment:
+    label:
+      - value: Deployment
+        lang: en
+    description:
+      - value: |
+          Describes the deployment of one or more systems of sensors for some purpose.
+          A deployment may be associated with a platform on which the sensors or systems were deployed.
+    classUri: fdri:Deployment
+    shortCode: Deployment
+    mixins:
+      - WithLabelAndComment
+    properties:
+      startedAtTime:
+        label:
+          - value: started at
+            lang: en
+        description:
+          - value: The date and time at which the deployment commenced.
+            lang: en
+        propertyUri: prov:startedAtTime
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+      endedAtTime:
+        label:
+          - value: ended at
+            lang: en
+        description:
+          - value: The date and time at which the deployment is considered to have ended.
+            lang: en
+        propertyUri: prov:endedAtTime
+        kind: literal
+        constraints:
+          - datatype: xsd:dateTime
+      canopyHeight:
+        label:
+          - value: canopy height
+            lang: en
+        description:
+          - value: The observed height of the tree canopy at the deployment site. Reported in metres above ground level.
+            lang: en
+        propertyUri: fdri:canopyHeight
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      deployedOnPlatform:
+        label:
+          - value: deployed on
+            lang: en
+        description:
+          - value: A reference to the entity which hosts the deployed system.
+            lang: en
+        propertyUri: ssn:deployedOnPlatform
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringPlatform
+          - record: EnvironmentalMonitoringSite
+      deployedSystem:
+        label:
+          - value: deployed system
+            lang: en
+        description:
+          - value: The sensor or sensor package which was deployed.
+            lang: en
+        propertyUri: ssn:deployedSystem
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringSystem
+      implements:
+        label:
+          - value: implements
+            lang: en
+        description:
+          - value: |
+              A procedure which is implemented by this deployment. e.g. sensor sampling regime.
+            lang: en
+        propertyUri: ssn:implements
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Procedure
+      dependencyNote:
+        label:
+          - value: dependency note
+            lang: en
+        description:
+          - value: |
+              A note about a deployment that provides additional information about deployment dependencies.
+            lang: en
+        propertyUri: fdri:dependencyNote
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      deploymentNote:
+        label:
+          - value: deployment note
+            lang: en
+        description:
+          - value: |
+              A textual note providing additional information about the enclosing Deployment.
+              This property should be used only if there is not a more specific property to capture the information.
+              More specific properties currently defined are `dependencyNote` and `deploymentVariance`.
+        propertyUri: fdri:deploymentNote
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      deploymentVariance:
+        label:
+          - value: deployment variance
+            lang: en
+        description:
+          - value: |
+              A description of any way(s) in which this specific deployment differs from the standard way in which 
+              a deployment of the same kind of system to the same kind of platform would be carried out.
+            lang: en
+        propertyUri: fdri:deploymentVariance
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: rdf:langString
+      settleInPeriod:
+        label:
+          - value: settle-in period
+            lang: en
+        description:
+          - value: |
+              The period of time that should be allowed to elapse from the start date of this deployment before
+              the measures that the deployed system make are considered accurate.
+        propertyUri: fdri:settleInPeriod
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+
+  DigitalDocument:
+    label:
+      - value: Digital document
+        lang: en
+    description:
+      - value: An electronic file or document.
+        lang: en
+    classUri: schema:DigitalDocument
+    shortCode: DigitalDocument
+    mixins:
+      - CataloguedResource
+      - WithTitleAndDescription
+      - WithPublicationMetadata
+    properties:
+      associatedMedia:
+        label:
+          - value: encoding
+            lang: en
+        description:
+          - value: A media object that encodes this DigitalDocument.
+            lang: en
+        propertyUri: schema:associatedMedia
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: MediaObject
 
   Distribution:
     label:
@@ -2564,6 +2591,37 @@ records:
     classUri: fdri:MeasureScheme
     shortCode: MeasureScheme
 
+  MediaObject:
+    label:
+      - value: MediaObject
+        lang: en
+    description:
+      - value: A media object, such as an image, video, audio, or text object embedded in a web page or as a separate downloadable resource.
+        lang: en
+    classUri: schema:MediaObject
+    shortCode: MediaObject
+    properties:
+      contentUrl:
+        label:
+          - value: content URL
+            lang: en
+        description:
+          - value: Actual bytes of the media object, for example the image file or video file.
+            lang: en
+        propertyUri: schema:contentUrl
+        kind: object     
+      encodingFormat:
+        label:
+          - value: encoding format
+            lang: en
+        description:
+          - value: Media type typically expressed using a MIME format (see IANA site and MDN reference), e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.
+            lang: en
+        propertyUri: schema:encodingFormat
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+
   ObservationDataset:
     label:
       - value: Observation Dataset
@@ -2836,6 +2894,18 @@ records:
         kind: object
         constraints:
           - record: ProcedureType
+      document:
+        label:
+          - value: document
+            lang: en
+        description:
+          - value: The documentation that relates to this Procedure.
+            lang: en
+        propertyUri: fdri:document
+        kind: object
+        repeatable: true
+        constraints:
+          - record: MediaObject
   
   ProcedureType:
     label:

@@ -133,7 +133,8 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/certification
 :certification rdf:type owl:ObjectProperty ;
-               rdfs:comment "A link to the document that certifies the system"@en ;
+               rdfs:subPropertyOf :document ;
+               rdfs:comment "A reference to the document that certifies the system"@en ;
                rdfs:label "certification"@en .
 
 
@@ -158,6 +159,13 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/contains
 :contains rdf:type owl:ObjectProperty .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/document
+:document rdf:type owl:ObjectProperty ;
+          rdfs:range schema:DigitalDocument ;
+          rdfs:comment "A reference to a document that is related to the enclosing resource."@en ;
+          rdfs:label "document"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/environmentalDomain
@@ -470,6 +478,11 @@ dct:replaces rdf:type owl:ObjectProperty .
 
 ###  http://purl.org/dc/terms/type
 dct:type rdf:type owl:ObjectProperty .
+
+
+###  http://schema.org/associatedMedia
+schema:associatedMedia rdf:type owl:ObjectProperty ;
+                       rdfs:range schema:MediaObject .
 
 
 ###  http://schema.org/unit
@@ -1719,6 +1732,10 @@ It is recommended that every dataset should specify the feature(s) of interest (
                              owl:allValuesFrom :ProcedureType
                            ] ,
                            [ rdf:type owl:Restriction ;
+                             owl:onProperty :document ;
+                             owl:minCardinality "0"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
                              owl:onProperty :procedurePeriodicity ;
                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
                            ] ;
@@ -2130,6 +2147,21 @@ A Time-Series Definition captures the information that is common across multiple
 
 ###  http://qudt.org/schema/qudt/Unit
 <http://qudt.org/schema/qudt/Unit> rdf:type owl:Class .
+
+
+###  http://schema.org/DigitalDocument
+schema:DigitalDocument rdf:type owl:Class ;
+                       rdfs:subClassOf dcat:Resource ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty schema:associatedMedia ;
+                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                       ] ;
+                       rdfs:comment "An electronic file or document."@en ;
+                       rdfs:label "Digital Document"@en .
+
+
+###  http://schema.org/MediaObject
+schema:MediaObject rdf:type owl:Class .
 
 
 ###  http://schema.org/PropertyValue
