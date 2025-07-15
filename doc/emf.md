@@ -112,13 +112,16 @@ Platform --|> SosaPlatform
 
 `fdri:EnvironmentalMonitoringFacilityType` is used to represent a category of facility. Categories may include broad groups of facility (e.g. drone, weather station, flow monitoring station), as well as narrower ones (e.g. a specific model of sensor).
 
-As `fdri:EnvironmentalMonitoringFacilityType` extends `skos:Concept` facility categories may be organised into a hierarchical taxonomy of terms with broader/narrower relationships between them.
+As `fdri:EnvironmentalMonitoringFacilityType` extends `skos:Concept` facility categories may be organised into a hierarchical taxonomy of terms with broader/narrower relationships between them. `skos:prefLabel` can be used to capture the preferred term to describe the category, and `skos:altLabel` can be used to capture alternate non-preferred labels for findability. In addition, `dcat:keyword` can be used to add short string "tags" to an `fdri:EnvironmentalMonitoringFacilityType` to support other search use-cases.
 
 Where a given agent is related to all facilities of a given type (e.g. the manufacturer of a specific model of sensor), this can be represented using the `prov:qualifiedAttribiton` property with a value of an `fdri:RelatedPartyAttribution` which specifies both the agent and the role they play in relation to the category of facility.
 
+
 ```mermaid
 classDiagram
-class EMFType["fdri:EnvironmentalMonitoringFacilityType"]
+class EMFType["fdri:EnvironmentalMonitoringFacilityType"] {
+  dcat_keyword: xsd:string [0..*]
+}
 class Concept["skos:Concept"]
 class RPA["fdri:RelatedPartyAttribution"]
 class Agent["prov:Agent"]
@@ -129,7 +132,7 @@ Concept <|-- RPR
 EMFType --> RPA: prov_qualifiedAttribution
 RPA --> Agent: prov_agent
 RPA --> RPR : dcat_hadRole
-Concept --> Concept: skos_broader/skos_narrower 
+Concept --> Concept: skos_broader/skos_narrower
 ```
 
 #### EnvironmentalMonitoringSite
