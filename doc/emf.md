@@ -7,6 +7,7 @@ Based on the [INSPIRE Environmental Monitoring Facility Technical Guidelines fra
 An `fdri:EnvironmentalMonitoringFacility` may have:
 
 * A type (an `fdri:EnvironmentalMonitoringFacilityType`) indicating the class of facilities that the instance belongs to. This can be used on subclasses to distinguish between different kinds of platform, or to indicate the class of device that a sensor belongs to.
+* An optional identifier (`dct:identifier`) which can be used to capture the identifier assigned to a facility by a programme (e.g. `SHEEP` for the Sheepdrove site in the COSMOS network).
 * Any number of parts, each of which is another `fdri:EnvironmentalMonitoringFacility`, enabling the construction of a part-whole hierarchy (e.g. a site hosts one or more stations, and each station has one or more platforms on which sensors may be deployed).
 * A flag that indicates that the facility is a mobile platform.
 * A range of geo-spatial properties for specifying the location, boundary or bounding box of a static facility. These properties are described in more detail in [Notes on Geo-Spatial Resources](geospatial.md)
@@ -34,7 +35,11 @@ A number of organisations or individuals may be involved in some aspect of the c
  
 ```mermaid
 classDiagram
-class Resource["dcat:Resource"]
+class Resource["dcat:Resource"] {
+  dct:title?
+  dct:description?
+  dct:identifier?
+}
 class Programme["fdri:EnvironmentalMonitoringProgramme"]
 class Network["fdri:EnvironmentalMonitoringNetwork"]
 class Facility["fdri:EnvironmentalMonitoringFacility"]{
@@ -253,6 +258,8 @@ As already shown, the `GeospatialFeatureOfInterest` may also be referenced from 
 
 A `FacilityGroup` is an unordered collection of `EnvironmentalMonitoringFacility` instances that share some common feature. A `FacilityGroup` is treated as a `Resource` in the metadata catalog and so may have a title, provenance and publication information and so on.
 
+The `dct:identifier` property can be used to capture the identifier(s) assigned to the group by a programme.
+
 For simple groupings where there is no need to record historical membership or to provide a date range for a membership,
 the `fdri:hasMember` property can be used. For cases where membership of a group may change over time, the class `fdri:FacilityGroupMembership`
 can be used.
@@ -268,6 +275,7 @@ class EMF["fdri:EMFacility"]
 class Resource["dcat:Resource"] {
   dct:title?
   dct:description?
+  dct:identifier?
 }
 class FacilityGroup["fdri:FacilityGroup"] {
     geos:hasGeometry: geos:Geometry?
