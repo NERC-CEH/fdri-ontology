@@ -180,27 +180,19 @@ An `fdri:EnvironmentalMonitoringSystem` carries several other metadata propertie
 ```mermaid
 classDiagram
 class System["fdri:EnvironmentalMonitoringSystem"] {
-  assetNumber: string
-  certification: Document
-  configuration: ConfigurationValueSeries
-  dateOfPurchase: date
-  dateOfDisposal: date
-  retirementDate: date
-  serialNumber: string
-  status: Status
-
-  }
-class EMFType["fdri:EnvironmentalMonitoringFacilityType"]
-class SystemType["fdri:EnvironmentalMonitoringSystemType"] {
-  fdri_settleInPeriod: xsd:duration [0..1]
+  fdri:assetNumber: xsd:string
+  fdri:certification: rdf:Resource
+  fdri:configuration: fdri:ConfigurationValueSeries
+  fdri:dateOfPurchase: xsd:date
+  fdri:dateOfDisposal: xsd:date
+  fdri:cailbrationDue: xsd:date / xsd:dateTime
+  fdri:retirementDate: xsd:date
+  fdri:serialNumber: xsd:string
+  adms:status: fdri:SystemStatus
 }
-class Concept["skos:Concept"]
-class Variable["fdri:Variable"]
+class SystemType["fdri:EnvironmentalMonitoringSystemType"]
 System --> System: sosa_hasSubsystem
 System --> SystemType: dct_type
-SystemType --> Variable: sosa_observes
-SystemType --|> EMFType
-EMFType --|> Concept
 ```
 
 #### EnvironmentalMonitoringSystemType
