@@ -7,17 +7,22 @@ The purpose of the `Variable` is to provide a structured way to capture informat
 The description of a Variable consists of multiple facets. The property, object of interest, context, matrix and constraints. Only the property and object of interest facets are required.
 
 ```mermaid
+---
+config:
+    class:
+        hideEmptyMembersBox: true
+---
 classDiagram
-class Variable
-class Entity
-class Constraint
-class Property
-Variable --> "1..1" Property : hasProperty
-Variable --> "1..1" Entity: hasObjectOfInterest
-Variable --> "0..n" Entity: hasContextObject
-Variable --> "0..1" Entity: hasMatrix
-Variable --> "0..n" Constraint: hasConstraint
-Constraint --> "1..n" Entity: constrains
+class Variable["fdri:Variable"]
+class Entity["iop:Entity"]
+class Constraint["fdri:Constraint"]
+class Property["iop:Property"]
+Variable --> "1..1" Property : iop_hasProperty
+Variable --> "1..1" Entity: iop_hasObjectOfInterest
+Variable --> "0..n" Entity: iop_hasContextObject
+Variable --> "0..1" Entity: iop_hasMatrix
+Variable --> "0..n" Constraint: iop_hasConstraint
+Constraint --> "1..n" Entity: iop_constrains
 ```
 
 ### Property
@@ -107,27 +112,33 @@ config:
         hideEmptyMembersBox: true
 ---
 classDiagram
-class Measure
-class Variable
-class Aggregation {
-    periodicity: xsd:duration
-    resolution: xsd:duration
+class Measure["fdri:Measure"] {
+  fdri:valueType: rdf:Resource [0..1]
 }
-class Unit
-class Concept
-Measure --> "1..1" Variable: variable
-Measure --> "1..1" Unit: hasUnit
-Measure --> "0..1" Aggregation: aggregation
-Aggregation --> "1..1" Concept: valueStatistic
+class Variable["fdri:Variable"]
+class Aggregation["fdri:Aggregation"] {
+    fdri:periodicity: xsd:duration
+    fdri:resolution: xsd:duration
+}
+class Unit["fdri:Unit"]
+class Concept["skos:Concept"]
+Measure --> "1..1" Variable: fdri_variable
+Measure --> "1..1" Unit: fdri_hasUnit
+Measure --> "0..1" Aggregation: fdri_aggregation
+Aggregation --> "1..1" Concept: fdri_valueStatistic
 Concept <|-- Unit
 ```
 
+### Value Type
+
+The `fdri:valueType` property relates a Measure to the datatype used for representing the measure values. The range of this property is open, but values for simple properties should be taken from the XML Schema datatypes (e.g. `xsd:decimal`).
+
 ### Variable
-The `hasVariable` property relats a Measure to the Variable for which values are provided.
+The `fdri:hasVariable` property relates a Measure to the Variable for which values are provided.
 
 ### Unit
 
-The `hasUnit` property relates a Measure to a concept that describes the units in which the measurement is expressed. Examples include:
+The `fdri:hasUnit` property relates a Measure to a concept that describes the units in which the measurement is expressed. Examples include:
 
 * hecto-Pascal
 * metres per second
@@ -140,16 +151,16 @@ It is strongly recommended to use a common vocabulary for expressing units. The 
 
 ### Aggregation
 
-Where a measure is the result of the aggregation of multiple values over some time period, the `aggregation` property can be used to relate the Measure to an Aggregation which represents both how the input values are aggregated (using the `valueStatistic` property) to produce the recorded measurement, and the time period over which that aggregation is applied. Examples of value statistic concepts include:
+Where a measure is the result of the aggregation of multiple values over some time period, the `fdri:aggregation` property can be used to relate the Measure to an Aggregation which represents both how the input values are aggregated (using the `fdri:valueStatistic` property) to produce the recorded measurement, and the time period over which that aggregation is applied. Examples of value statistic concepts include:
 
 * minimum
 * maximum
 * mean
 * standard deviation
 
-The `periodicity` property specifies the time period between aggregate values being reported.
-The `resolution` property specifies the time period between the measurements that are aggregated over the period.
-e.g. if `periodicity` is `PT5M` and `resolution` is `PT30S` then values are read every 30 seconds, and aggregated to produce a single aggregate value every 5 minutes.
+The `fdri:periodicity` property specifies the time period between aggregate values being reported.
+The `fdri:resolution` property specifies the time period between the measurements that are aggregated over the period.
+e.g. if `fdri:periodicity` is `PT5M` and `fdri:resolution` is `PT30S` then values are read every 30 seconds, and aggregated to produce a single aggregate value every 5 minutes.
 
 ### Specialisation and Variable Hierarchies
 

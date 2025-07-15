@@ -4,7 +4,21 @@ Deployments are used when a system (a sensor or package of sensors) is deployed 
   * A `MobileDeployment` is a deployment of a system on a platform that moves along a track recorded by a track log.
   * A `StaticDeployment` is a deployment of a system at a fixed location, optionally at some height above or depth below local ground level. The fixed location may be specified either by its own geometry or relative to the geometry of the platform or site at which it is deployed.
 
-Deployments are modelled as a sub-class of `prov:Activity` and can be given time bounds using `prov:startedAt` and `prov:endedAt`, and a location using `prov:atLocation`. 
+Deployments are modelled as a sub-class of `prov:Activity` and of `ssn:Deployment`.
+
+A Deployment may have:
+
+* a deployed system (`ssn:deployedSystem`) referencing the `fdri:EnvironmentalMonitoringSystem` that was deployed.
+* a target platform (`ssn:deployedOnPlatform`) referencing the `fdri:EnvironmentalMonitoringPlatform` or `fdri:EnvironmentalMonitoringSite` on which the system was deployed. It is recommended to only record the most fine-grained level of infrastructure where the deployment took place. For example, if a site hosts several platforms or stations, record deployments at the platform/station level if that information is available.
+* time bounds using `prov:startedAt` and `prov:endedAt`, and a location using `prov:atLocation`
+* a monitoring regime/procedure (`fdri:Procedure`) that the deployment is intended to implement (`ssn:implements`)
+* several forms of note about the deployment:
+  * `fdri:deploymentVariance` to capture notes about the ways in which the deployment differs from the standard deployment expected for this system/platform combination
+  * `fdri:dependencyNote` to capture notes about deployment dependencies
+  * `fdri:settleInPeriod` to capture the period of settling in that the deployment requires
+  * `fdri:canopyHeight` to capture the height above ground level (in metres) of the tree canopy local to the deployed position.
+  * `fdri:deploymentNote` to capture notes about the deployment that are not covered by the other properties.
+
 ```mermaid
 classDiagram
   direction TB
@@ -12,19 +26,26 @@ classDiagram
   class EMSystem["fdri:EnvironmentalMonitoringSystem"]
   class EMSite["fdri:EnvironmentalMonitoringSite"]
   class Activity["prov:Activity"] {
-    startedAtTime: xsd_dateTime
-    endedAtTime: xsd_dateTime
+    prov:startedAtTime: xsd:dateTime [0..1]
+    prov:endedAtTime: xsd:dateTime [0..1]
   }
   class Deployment["ssn:Deployment"]
   class EMDeployment["fdri:Deployment"]
   class EMDeployment {
-    dataloggerPort: xsd_string
+    fdri:canopyHeight: xsd:decimal [0..1]
+    fdri:settleInPeriod: xsd:duration [0..1]
+    fdri:dependencyNote: rdf:langString [0..*]
+    fdri:deploymentNote: rdf:langString [0..*]
+    fdri:deploymentVariance: rdf:langString[0..*]
   }
+  class Procedure["fdri:Procedure"]
   Activity <|-- Deployment
   Deployment <|-- EMDeployment
 
   EMDeployment --> EMPlatform: ssn_deployedOnPlatform
+  EMDeployment --> EMSite: ssn_deployedOnPlatform
   EMDeployment --> EMSystem: ssn_deployedSystem
+  EMDeployment --> Procedure: ssn_implements
   EMPlatform --> EMSite: fdri_atSite
 ```
 
