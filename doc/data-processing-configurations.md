@@ -69,6 +69,8 @@ classDiagram
     schema:value: rdfs:Literal
     schema:minValue: rdfs:Literal
     schema:maxValue: rdfs:Literal
+    schema:valueReference: rdfs:Resource
+    fdri:valueType: rdf:Resource
   }
   class ConfigurationItem["fdri:ConfigurationItem"]
   class Param["fdri:ConfigurationParameter"]
@@ -99,6 +101,12 @@ An `fdri:ConfigurationItem` resource has:
 An `fdri:ConfigurationArgument` resource has:
 * a required `fdri:parameter` property which specifies the configuration parameter that the argument provides a value for.
 * a required `fdri:hasValue` property which specifies the value of the argument.
+
+An `fdri:PropertyValue` resource has:
+* `schema:minValue` and `schema:maxValue` to denote a value range.
+* `schema:value` to denote an single literal value.
+* `schema:valueReference` to provide a value that is another concept (e.g. a value from a taxonomy)
+* `fdri:valueType` to define the type of the value provided. If the value is a literal value or value range, then `fdri:valueType` should be the XML Schema Datatypes identifier for the datatype of the value(s). If the value is a reference to another concept then `fdri:valueType` should be the IRI of the RDF class of that concept.
 
 Both `fdri:DataProcessingMethod` and `fdri:ConfigurationParameter` are subclasses of skos:Concept. 
 
