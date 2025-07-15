@@ -190,7 +190,40 @@ class System["fdri:EnvironmentalMonitoringSystem"] {
   status: Status
 
   }
+class EMFType["fdri:EnvironmentalMonitoringFacilityType"]
+class SystemType["fdri:EnvironmentalMonitoringSystemType"] {
+  fdri_settleInPeriod: xsd:duration [0..1]
+}
+class Concept["skos:Concept"]
+class Variable["fdri:Variable"]
 System --> System: sosa_hasSubsystem
+System --> SystemType: dct_type
+SystemType --> Variable: sosa_observes
+SystemType --|> EMFType
+EMFType --|> Concept
+```
+
+#### EnvironmentalMonitoringSystemType
+
+An `fdri:EnvironmentalMonitoringSystemType` defines a category of monitoring system. Such categories may be broad (e.g. a category of sensor), or narrow (e.g. a specific model of sensor). `fdri:EnvironmentalMonitoringSystemType` extends `fdri:EnvironmentalMonitoringFacilityType` and can have the same relationships to related parties such as manufacturers as outlined above.
+
+The `fdri:settleInPeriod` property allows the capture of the typical length of time that a system of this type needs to be allowed to settle in position before readings should be taken.
+
+The `sosa:observes` property can be used to relate the `fdri:EnvironmentalMonitoringSystemType` to any number of `fdri:Variables` that a system of this type is capable of observing. It is recommended that this property should be used only for those variables that the system in question can directly observe and to *not* include any variables that are observed by a sub-system.
+
+```mermaid
+classDiagram
+class System["fdri:EnvironmentalMonitoringSystem"]
+class EMFType["fdri:EnvironmentalMonitoringFacilityType"]
+class SystemType["fdri:EnvironmentalMonitoringSystemType"] {
+  fdri_settleInPeriod: xsd:duration [0..1]
+}
+class Concept["skos:Concept"]
+class Variable["fdri:Variable"]
+System --> SystemType: dct_type
+SystemType --> Variable: sosa_observes
+SystemType --|> EMFType
+EMFType --|> Concept
 ```
 
 #### EnvironmentalMonitoringSensor
