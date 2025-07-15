@@ -6,12 +6,12 @@ Based on the [INSPIRE Environmental Monitoring Facility Technical Guidelines fra
 
 An `fdri:EnvironmentalMonitoringFacility` may have:
 
+* A type (an `fdri:EnvironmentalMonitoringFacilityType`) indicating the class of facilities that the instance belongs to. This can be used on subclasses to distinguish between different kinds of platform, or to indicate the class of device that a sensor belongs to.
 * Any number of parts, each of which is another `fdri:EnvironmentalMonitoringFacility`, enabling the construction of a part-whole hierarchy (e.g. a site hosts one or more stations, and each station has one or more platforms on which sensors may be deployed).
 * A flag that indicates that the facility is a mobile platform.
 * A range of geo-spatial properties for specifying the location, boundary or bounding box of a static facility. These properties are described in more detail in [Notes on Geo-Spatial Resources](geospatial.md)
  * A specified period of operation
  * Any nubmer of related parties. Each related party is a person or organsiation with some form of responsibility for the facility. The nature of that responsibility is conveyed by the `fdri:RelatedPartyRole`
-* A type indicating the class of facilities that the instance belongs to. This can be used on subclasses to distinguish between different kinds of platform, or to indicate the class of device that a sensor belongs to.
 * Any number of related `fdri:EnvironmentalDomain` concepts listing the domains of the environment monitored by the facility.
 * Any number of related `iop:Variable`s listing the specific variables observed by the facility.
 * Any number of related `sosa:Feature`s listing the environmental features monitored by the facility.
@@ -58,6 +58,7 @@ class PeriodOfTime["dct:PeriodOfTime"] {
   dcat:endDate xsd:date/xsd:dateTime
 }
 class Concept["skos:Concept"]
+class FacilityType["fdri:EnvironmentalMonitoringFacilityType"]
 class Variable["iop:Variable"]
 class Activity["prov:Activity"]
 class Measure["fdri:Measure"]
@@ -70,7 +71,8 @@ Facility --> RelatedParty: prov_qualifiedAttribution
 RelatedParty --> AgentRole: dcat_hadRole
 RelatedParty --> Agent: prov_Agent
 Facility --> PeriodOfTime: fdri_operatingPeriod
-Facility --> Concept: dct_type
+Facility --> FacilityType: dct_type
+FacilityType --|> Concept
 Facility --> Variable: sosa_observes
 Facility --> Measure: fdri_measures
 Facility --> Activity: fdri_wasModifiedBy
@@ -104,6 +106,30 @@ SosaSensor <|-- Sensor
 SosaSystem <|-- SosaSensor
 Site --|> SosaPlatform
 Platform --|> SosaPlatform
+```
+
+#### EnvironmentalMonitoringFacilityType
+
+`fdri:EnvironmentalMonitoringFacilityType` is used to represent a category of facility. Categories may include broad groups of facility (e.g. drone, weather station, flow monitoring station), as well as narrower ones (e.g. a specific model of sensor).
+
+As `fdri:EnvironmentalMonitoringFacilityType` extends `skos:Concept` facility categories may be organised into a hierarchical taxonomy of terms with broader/narrower relationships between them.
+
+Where a given agent is related to all facilities of a given type (e.g. the manufacturer of a specific model of sensor), this can be represented using the `prov:qualifiedAttribiton` property with a value of an `fdri:RelatedPartyAttribution` which specifies both the agent and the role they play in relation to the category of facility.
+
+```mermaid
+classDiagram
+class EMFType["fdri:EnvironmentalMonitoringFacilityType"]
+class Concept["skos:Concept"]
+class RPA["fdri:RelatedPartyAttribution"]
+class Agent["prov:Agent"]
+class RPR["fdri:RelatedPartyRole"]
+
+Concept <|-- EMFType
+Concept <|-- RPR
+EMFType --> RPA: prov_qualifiedAttribution
+RPA --> Agent: prov_agent
+RPA --> RPR : dcat_hadRole
+Concept --> Concept: skos_broader/skos_narrower 
 ```
 
 #### EnvironmentalMonitoringSite
