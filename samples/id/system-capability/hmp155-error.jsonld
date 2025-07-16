@@ -1,0 +1,14 @@
+{
+    "$schema": "../../schema/SystemCapability.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/id/system-capability/hmp155",
+    "@type": "http://www.w3.org/ns/ssn/systems/SystemCapability",
+    "forProperty": [{"@id": "http://fdri.ceh.ac.uk/ref/common/variable/ta"}],
+    "hasSystemProperty": [
+        {
+            "@type": "http://fdri.ceh.ac.uk/vocab/metadata/SystemProperty",
+            "property": {"@id": "http://fdri.ceh.ac.uk/ref/common/system-property/error-value"},
+            "value": {"@value": "-9999", "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
+            "unit": {"@id": "http://fdri.ceh.ac.uk/ref/common/unit/unitless"}
+        }
+    ]
+}
