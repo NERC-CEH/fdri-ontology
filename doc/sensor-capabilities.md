@@ -130,6 +130,40 @@ taOp --maxValue--> taOpMax["80"]
 taOp --unit--> degc
 ```
 
+#### Capturing Sensor Error Codes as System Capability
+
+The `fdri:SystemCapability` structure can also be used to capture the value(s) that a sensor reports under error conditions. By using a property representing the concept of an error value, and either a value range or a single value depending on how errors are reported.
+
+`fdri:Condition`s may be attached to contextualize the conditions under which the error code is reported if this is known.
+
+> **NOTE**
+> This capability is not intended to capture the separate error flags channel that some sensor systems provide, but only to capture the case where the measure channel can report an error value rather than a normal reading.
+
+> **TODO**
+> Define the vocabulary for System Capability properties and include the IRI for the error code property here.
+
+For example, if our fictional sensor is in an error state it will report a value of -9999. As this value is not a temperature reading, we encode it as a unitless value. This value may be reported under any condition and so no `fdri:Condition` is attached to the `fdri:SystemCapability`. For this reason this capability is recorded separately from details such as the accuracy and sensitivity of the sensor, which are values that apply only under normal operating conditions. This can be represented as shown in the diagram below.
+
+```mermaid
+flowchart
+ta["`Air Temperature
+&lt;&lt;fdri:Variable&gt;&gt;`"]
+taError["`TempMaster Error Value
+&lt;&lt;fdri:SystemProperty&gt;&gt;`"]
+err["`Error Value
+&lt;&lt;fdri:Variable&gt;&gt;`"]
+unitless["`Unitless
+&lt;&lt;fdri:Unit&gt;&gt`"]
+taSensor["`TempMaster
+&lt;&lt;fdri:EMSystemType&gt;&gt;`"] --hasSystemCapability--> taCap
+taCap["`Temp Master Error Capability
+&lt;&lt;fdri:SystemCapability&gt;&gt;`"] --forProperty--> ta
+taCap --hasSystemProperty--> taError
+taError --property--> err
+taError --value--> taErrorValue["-9999"]
+taError --unit--> unitless
+```
+
 ### Operating Range
 
 An `fdri:OperatingRange` specifies the operational characteristics of a system. It can be used either to specify quality values for specific operational characteristics such as "maintenance schedule" or "operating voltage range", or it can be used without any such characteristics. If no operational characteristics are defined on an `fdri:OperatingRange`, then the resource is interepreted as specifying the conditions under which the system will operate normally. When conditions go beyond the specified ranges, a system is considered to be operating "out of range", which may affect the quality of its observations.
