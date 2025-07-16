@@ -202,7 +202,7 @@ The proposed metadata fields for an ADCP survey are summarised in the following 
 | Area (mÂ²) | N | Area of the spatial coverage of this survey
 | Mean Speed (m/s) | N | Ignored for this analysis
 | % Measured (%) | Y  | **TO CHECK** - not sure what this is a ratio of
-| Total Q (mÂ³/s) | Y | **TO CHECK** - is this is a measure of confidence in the observations?
+| Total Q (mÂ³/s) | Y | Total observed flow
 | Total number of transects | Y | Number of transects undertaken - i.e. number of individual sorties performed in this activity.
 | Number of transects used | Y | **TO CHECK** - Number of transects that contributed to the data?
 | Mean Samples Per Transect | Y | Mean number of observations recorded in each sortie
@@ -231,7 +231,7 @@ The proposed metadata fields for an ADCP survey are summarised in the following 
 | Width (m) | Y | REQUIRES CHANGES | It is possible that adding a `spatialExtent` property would address this, although if only the width of the survey area is captured it may not totally align, in which case we may need additional properties. Understanding what "width" here really refers to might clarify things.
 | Area (mÂ²) | N | REQUIRES CHANGES: Add a property to capture survey area as a measurement. | 
 | % Measured (%) | Y  | **TO CHECK** - not sure what this is a ratio of |
-| Total Q (mÂ³/s) | Y | **TO CHECK** - is this is a measure of confidence in the observations? |
+| Total Q (mÂ³/s) | Y | TO DISCUSS: Dataset-level observation or annotation ? | As this is an aggregate of the observations in the dataset there is a question about whether or not this value belongs in the metadata store. There is currently no other example of aggregated values being stored as dataset metadata. |
 | Total number of transects | Y | REQUIRES CHANGES: Add a property to record the number of sorties in a survey activity. | This may imply creating a subclass of EMActivity for survey (and possibly a separate subclass for sortie) |
 | Number of transects used | Y | REQUIRES CHANGES: Add a property to record the number of sorties used in a survey activity. | *See above *
 | Mean Samples Per Transect | Y | REQUIRES CHANGES: Add a property to record samples per sortie on a survey activity |
