@@ -161,7 +161,11 @@ flight log | Partial | A flight log file can be associated with a flight activit
 
 ## Analysis of ADCP metadata
 
-ADCP provides metadata regarding measurements taken from boats and other water-craft. The proposed metadata fields for an ADCP survey are summarised in the following table.
+ADCP provides metadata regarding measurements taken from boats and other water-craft. 
+
+### Proposed ADCP survey metadata
+
+The proposed metadata fields for an ADCP survey are summarised in the following table.
 
 | Field Name | Core Field? | Description/Notes |
 |------------|-------------|----------|
@@ -205,3 +209,33 @@ ADCP provides metadata regarding measurements taken from boats and other water-c
 | Maximum Speed (m/s) | N | Ignored for this analysis
 | Mean Depth (m) | Y | **TO CHECK** mean depth at which observations were made? or mean depth of water on transect?
 | Maximum Depth (m) | Y | **TO CHECK** maximum depth at which observations were made? or max depth of water?
+
+### Model Mapping
+
+| Field Name | Core Field? | Model Mapping | Model Mapping Notes
+|------------|-------------|---------------|--------------------|
+| DateTime   | Y | SUPPORTED: Date/Time of activity start. | Ideally the ADCP metadata should include both a start and an end time. In the absence of that the metadata store could map to a sart time of 00:00 on the specified day and an end time of 23:59, or it may be possible for an ingest pipeline to read the earliest and latest timestamps from the track logs/observation data |
+| Site Name  | Y | REQUIRES CHANGES: Add `sosa:hasFeatureOfInterest` to EMActivity. | This would require a controlled taxonomy of locations. In the case of recording at established sites, this should refer to the site ID. In the case of ad-hoc activities, would it be possible to use the smallest containing area (e.g. catchment)? Ideally there should always be some "place" concept referenced here.
+| lat        | Y | REQUIRES CHANGES: Add the common geo-spatial properties on EMFacility to EMActivity and use `geo:lat` | Can be used as the representative point of the EMActivity
+| lon        | Y| See above, use `geo:long` |
+| Station Number| Y | REQUIRES CHANGES: Add `sosa:hasFeatureOfInterest` | Combine with Site ID to generate a unique sub-site identifier and use that as the feature of interest of the activity.
+| Location   | Y | REQUIRES CHANGES: May require a new property. | If it were possible to extrapolate a geospatial bounding box from the observation data, could this qualifier then be avoided? Otherwise perhaps capture as an ADCP-specific annotation as the controlled list of qualifier terms would presumably be quite ADCP-specific? |
+| Party      | Y | SUPPORTED: `prov:qualifiedAssociation` on the EMActivity  |
+| Boat/Motor | Y | SUPPORTED? | Assuming that there is some identifier for the specific craft used (i.e. that is what the serial number refers to).
+| Measurement Number | Y | TODO: Not currently clearly defined |
+| Comments   | Y | REQUIRES CHANGES: Add a field to capture notes on activities | Property would be similar to (or perhaps reuse?) the `fdri:deploymentNote` property used to record comments on deployments. |
+| System Type | Y | **TO CHECK**: The type/model of craft (or is it of sensor) used in the activity |
+| Serial Number | Y | **TO CHECK**: The serial number of the craft (or sensor?) used in the activity |
+| Firmware Version | N | **TO CHECK**: The version of firmware installed on the craft (or sensor?) |
+| Transducer Depth (m) | N | **TO CHECK**: Not sure what this refers to |
+| Width (m) | Y | REQUIRES CHANGES | It is possible that adding a `spatialExtent` property would address this, although if only the width of the survey area is captured it may not totally align, in which case we may need additional properties. Understanding what "width" here really refers to might clarify things.
+| Area (mÂ²) | N | REQUIRES CHANGES: Add a property to capture survey area as a measurement. | 
+| % Measured (%) | Y  | **TO CHECK** - not sure what this is a ratio of |
+| Total Q (mÂ³/s) | Y | **TO CHECK** - is this is a measure of confidence in the observations? |
+| Total number of transects | Y | REQUIRES CHANGES: Add a property to record the number of sorties in a survey activity. | This may imply creating a subclass of EMActivity for survey (and possibly a separate subclass for sortie) |
+| Number of transects used | Y | REQUIRES CHANGES: Add a property to record the number of sorties used in a survey activity. | *See above *
+| Mean Samples Per Transect | Y | REQUIRES CHANGES: Add a property to record samples per sortie on a survey activity |
+| Mean Depth (m) | Y | **TO CHECK** mean depth at which observations were made? or mean depth of water on transect? | Feels like this should be an ADCP-specific annotation on the survey
+| Maximum Depth (m) | Y | **TO CHECK** maximum depth at which observations were made? or max depth of water? | As above, could be an annotation?
+
+
