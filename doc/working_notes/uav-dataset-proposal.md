@@ -106,6 +106,8 @@ SurveyUsage -- prov:hadRole --> WeatherReportConcept
 
 ## Analysis of UAV Dataset Metadata Recommendations
 
+The following sections review the [UAV data management handbook](https://nora.nerc.ac.uk/id/eprint/536392/) to analyse how the metadata fields recommended in that document could map to the FDRI data model with the changes proposed in the preceding section.
+
 ### The UAV platform and its sensor type 
 
 | Metadata Field | Supported? | Comments
@@ -156,3 +158,50 @@ flight log | Partial | A flight log file can be associated with a flight activit
 **QUESTION** Is there any value in capturing the duration of the flight log?
 
 **NOTE** Currently the FDRI model does not have a generic "Document" resource type with associated Distributions. This sort of model might be useful not only for providing a means to associate metadata with a flight log, but also for specifying distribution formats and locations for other files (e.g. sensor certifications)
+
+## Analysis of ADCP metadata
+
+ADCP provides metadata regarding measurements taken from boats and other water-craft. The proposed metadata fields for an ADCP survey are summarised in the following table.
+
+| Field Name | Core Field? | Description/Notes |
+|------------|-------------|----------|
+| DateTime   | Y | Date/time of survey |
+| Site Name  | Y | Location of survey. Some surveys may take place in ad-hoc locations.
+| lat        | Y | Lat of first GPS point in sortie |
+| lon        | Y| Long of first GPS point in sortie |
+| Station Number| Y | Identifies the sub-site where the activity took place using a controlled identifier
+| Location   | Y | Identifies the sub-site where the activity took place using a site qualifier string (could be standardised)
+| Party      | Y | List of the operatives who participated in the survey. Operatives are identified only by their initials. |
+| Boat/Motor | Y | The type of craft used for the survey |
+| Measurement Number | Y | Not currently clearly defined |
+| Comments   | Y | Text notes regarding the activity, e.g. "proximity to bridge causing compass interference" |
+| System Type | Y | **TO CHECK**: The type/model of craft (or is it of sensor) used in the activity |
+| Serial Number | Y | **TO CHECK**: The serial number of the craft (or sensor?) used in the activity |
+| Firmware Version | N | **TO CHECK**: The version of firmware installed on the craft (or sensor?) |
+| Transducer Depth (m) | N | **TO CHECK**: Not sure what this refers to
+| Screening Distance (m) | N | Ignored for this analysis
+| Salinity (PSS-78) | N | Ignored for this analyss
+| Magnetic Declination (deg) | N | Ignored for this analysis
+| Distance   | N | Unit of measure 
+| Velocity   | N | Unit of measure 
+| Area       | N | Unit of measure  
+| Discharge  | N | Unit of measure 
+| Temperature | N | Unit of measure
+| Track Reference | N | Ignored for this analysis
+| Bottom Fit Type | N | Ignored for this analysis
+| Left Method | N | Ignored for this analysis
+| Depth Reference | N | Ignored for this analysis
+| Top Fit Type | N | Ignored for this analysis
+| Right Method | N | Ignored for this analysis
+| Coordinate System | N | Ignored for this analysis
+| Width (m) | Y | Width of the spatial coverage of this survey
+| Area (mÂ²) | N | Area of the spatial coverage of this survey
+| Mean Speed (m/s) | N | Ignored for this analysis
+| % Measured (%) | Y  | **TO CHECK** - not sure what this is a ratio of
+| Total Q (mÂ³/s) | Y | **TO CHECK** - is this is a measure of confidence in the observations?
+| Total number of transects | Y | Number of transects undertaken - i.e. number of individual sorties performed in this activity.
+| Number of transects used | Y | **TO CHECK** - Number of transects that contributed to the data?
+| Mean Samples Per Transect | Y | Mean number of observations recorded in each sortie
+| Maximum Speed (m/s) | N | Ignored for this analysis
+| Mean Depth (m) | Y | **TO CHECK** mean depth at which observations were made? or mean depth of water on transect?
+| Maximum Depth (m) | Y | **TO CHECK** maximum depth at which observations were made? or max depth of water?
