@@ -18,6 +18,9 @@ DRAFT 0.4.1
 * NEW: Added property `ssn:implements` as an optional repeatable property of `fdri:Deployment` to capture procedures are implemented by the deployment such as sampling regimes. (#10)
 * CHANGE: Made `hasProcedure` on `EnvironmentalMonitoringSystemType` repeatable in the recordspec schema to match the OWL definition.
 * NEW: Added property `fdri:settleInPeriod` as an optional property of both `fdri:EnvironmentalMonitoringSystemType` and `fdri:Deployment` to capture the settle-in time that should elapse from the deployment start before readinds are considered to be accurate. (#9)
+* NEW: Added support for relating an `fdri:Procedure` to the document(s) for that procedure:
+  * Add schema:DigitalDocument and schema:MediaObject classes to represent a document and a document download respectively, and add fdri:document property that has schema:DigitalDocument as its range.
+* CHANGE: Made fdri:certification a sub-property of fdri:document, this allows the certification document location and format to be specified.
 
 DRAFT 0.4
 ---------

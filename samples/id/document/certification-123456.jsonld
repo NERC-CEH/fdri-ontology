@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/DigitalDocument.schema.json",
+  "@context":"../../context/DigitalDocument.context.jsonld",
+  "@id": "http://fdri.ceh.ac.uk/id/doc/certification-123456",
+  "title": [{"@value": "Certification for Sensor 123456", "@language": "en"}],
+  "associatedMedia": [
+    {
+        "contentUrl": {"@id": "http://doc.ceh.ac.uk/some/path/to/the.doc"},
+        "encodingFormat": "application/pdf"
+    }
+  ]
+}

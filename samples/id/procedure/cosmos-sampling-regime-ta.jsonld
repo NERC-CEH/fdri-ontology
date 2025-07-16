@@ -2,5 +2,6 @@
     "$schema": "../../schema/Procedure.schema.json",
     "@type": "http://fdri.ceh.ac.uk/vocab/metadata/Procedure",
     "type": {"@id": "http://fdri.ceh.ac.uk/ref/common/procedure-type/sampling-regime"},
-    "label": [{"@value": "Sampling regime for COSMOS Air temperature Measurements", "@language": "en"}]
+    "label": [{"@value": "Sampling regime for COSMOS Air temperature Measurements", "@language": "en"}],
+    "document": [{"@id": "http://fdri.ceh.ac.uk/id/document/cosmos-ta-samping-regime"}]
 }

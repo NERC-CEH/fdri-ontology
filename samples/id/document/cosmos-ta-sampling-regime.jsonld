@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/DigitalDocument.schema.json",
+  "@context":"../../context/DigitalDocument.context.jsonld",
+  "@id": "http://fdri.ceh.ac.uk/id/doc/cosmos-ta-sampling-regime",
+  "title": [{"@value": "COSMOS Air Temperature Sampling Regime", "@language": "en"}],
+  "associatedMedia": [
+    {
+        "contentUrl": {"@id": "http://doc.ceh.ac.uk/some/path/to/the.doc"},
+        "encodingFormat": "application/pdf"
+    },
+    {
+        "contentUrl": {"@id": "http://doc.ceh.ac.uk/some/path/to/a/webpage"},
+        "encodingFormat": "text/html"
+    }
+  ]
+}
