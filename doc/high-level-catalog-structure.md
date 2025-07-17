@@ -160,7 +160,7 @@ The property `fdri:originatingProgramme` can be used to reference the `Environme
   ObservationDataset <|-- ObservationDatasetSeries
   CatalogResource --> Concept: dct_theme
   ObservationDataset --> ObservedProperty: sosa_observedProperty
-  ObesrvationDataset --> Measure: fdri_measure
+  ObservationDataset --> Measure: fdri_measure
   ObservationDataset --> Facility: fdri_originatingFacility
   ObservationDataset --> Program: fdri_originatingProgramme
   CatalogResource --> Agent: dct_creator
