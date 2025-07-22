@@ -53,3 +53,4 @@ jobs:
           prerelease: true
           files: |
             build/release/*
+            CHANGELOG.txt
