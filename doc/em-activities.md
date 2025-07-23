@@ -8,12 +8,14 @@ An `fdri:EnvironmentalMonitoringActivity` has the following properties:
 
   * `dct:type` relates the activity to an `fdri:ActivityType` concept which qualifies the kind of activity (e.g. UAV survey)
   * `sosa:observes` relates the activity to one or more `fdri:Variable`s that are measured during the activity
-  * `fdri:measures` relates the activity to the specific `fdri:Measures` that are used when observing the variables
-  * `fdri:facilityUsage` relates the activity to a `fdri:FacilityUsage` that combines an `fdri:EnvironmentalMonitoringFacility` (via `prov:entity`) used in the activity, and an `fdri:FacilityUsageRole` (via `prov:hadRole`) that indicates the relationship between the activity and the facility (e.g. craft). Any `fdri:EnvironmentalMonitoringFacility` may be used by an activity including sites, platforms, sensor packages and individual sensors.
-  * `prov:qualifiedAssociation` relates the activity to a `prov:Association` which combines:
-    * An optional `fdri:Procedure` followed by any number of `prov:Agent`s in the execution of the activity (via `prov:hadPlan`).
+  * `fdri:measures` relates the activity to the specific `fdri:Measure`s that are used when observing the variables
+  * `fdri:facilityUsage` relates the activity to a `fdri:FacilityUsage` which combines:
+    * an `fdri:EnvironmentalMonitoringFacility` (thus including sites, platforms and individual sensors) used in the activity (via `prov:entity`)
+    * an `fdri:FacilityUsageRole` that indicates the relationship between the activity and the facility (e.g. craft) (via `prov:hadRole`). 
+  * `prov:qualifiedAssociation` relates the activity to an `fdri:RelatedPartyAssociation` which combines:
+    * An optional `fdri:Procedure` followed in the execution of the activity (via `prov:hadPlan`).
     * Any number of `prov:Agent`s involved in the activity (via `prov:agent`)
-    * An optional `skos:Concept` representing the role played by the agents in activity when they executed that procedure.
+    * An optional `fdri:RelatedPartyRole` representing the role played by the agents in activity when they executed that procedure (via `prov:hadRole`).
   * `prov:startedAtTime` and `prov:endedAtTime` properties may be used to capture the start and end timestamps for the activity.
 
 An `fdri:EnvironmentalMonitoringActivity` may be initiated (`fdri:initiated`) by either an `fdri:EnvironmentalMonitoringProgramme` or by another `fdri:EnvironmentalMonitoringActivity`.
@@ -100,12 +102,16 @@ Survey -- fdri:initiated --> Flight2
 
 #### Site of the survey
 
-The site over which the sorties are flown can be modelled as the feature of interest of the activities. In this case the sorties treated as having the same feature of interest as the survey and so the relationship does not need to be repeated.
+The site over which the sorties are flown can be modelled as the feature of interest of the activities.
+In this case the sorties treated as having the same feature of interest as the survey and so the relationship does not need to be repeated.
 
-As the site is an `fdri:GeospatialFeatureOfInterest` it can have geospatial co-ordinates and/or boundaries associated with it to locate the survey in geospatial terms. In this case only the latitude and longitude of a representative point for the survey site is given.
+As the site is an `fdri:GeospatialFeatureOfInterest` it can have geospatial co-ordinates and/or boundaries associated with it to locate the survey in geospatial terms.
+In this case only the latitude and longitude of a representative point for the survey site is given.
 
 > **NOTE:**
-> This is a very simple example of providing geospatial information for an activity. In more detailed modelling it would be possible to use `sosa:hasFeatureOfInterest` to denote the geometry of each individual sortie as well as the bounding geometry of all sorties at the survey level.
+> This is a very simple example of providing geospatial information for an activity.
+> In more detailed modelling it would be possible to use `sosa:hasFeatureOfInterest` to denote the geometry of each individual sortie as well as the bounding geometry of all sorties at the survey level.
+
 ```mermaid
 flowchart
 Survey["Survey
@@ -119,9 +125,10 @@ Survey -- sosa:hasFeatureOfInterest --> Site
 
 #### Platform and Sensor Usage
 
-The drone used in the survey is an `fdri:EnvironmentalMonitoringPlatform` that is used in the role of `PilotedCraft`
+The drone used in the survey is an `fdri:EnvironmentalMonitoringPlatform` and it plays the role of `Piloted Craft`.
 
-There is an `fdri:Deployment` of the sensor to the drone for the duration of the survey. In some cases a sensor or package of sensors may be more permanently affixed to a craft, in which case the time span for the `fdri:Deployment` may be much broader than the time span of any `fdri:EnvironmentalMonitoringActivity` that makes use of the drone.
+There is an `fdri:Deployment` of the sensor to the drone for the duration of the survey.
+In some cases a sensor or package of sensors may be more permanently affixed to a craft, in which case the time span for the `fdri:Deployment` may be much broader than the time span of any `fdri:EnvironmentalMonitoringActivity` that makes use of the drone.
 
 As the same drone is used for the same purpose in each survey, the metadata about the use of the drone can be captured at the survey level.
 
@@ -188,6 +195,9 @@ Piloting -- prov:hadRole --> Pilot
 #### Outputs generated by each sortie
 
 A raw flight log is produced for each sortie. These are the directly generated data files which are then processed in conjunction with the sensor logs to produce the dataset. These files could be modelled as `prov:wasGeneratedBy` each sortie.
+
+> **NOTE**
+> This optional modelling of the outputs of each sortie does not preclude the option of creating full-blown `fdri:ObservationDatasets` from each sortie and relating them to the sortie activity that the data came from.
 
 ```mermaid
 flowchart

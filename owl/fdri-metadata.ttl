@@ -1977,7 +1977,7 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
                                     owl:onProperty skos:inScheme ;
                                     owl:allValuesFrom :RelatedPartyRoleScheme
                                   ] ;
-                  rdfs:comment "A concept that defines the role an `fdri:Agent` may play in relation to some resource."@en ;
+                  rdfs:comment "A concept that defines the role an `fdri:Agent` may play in relation to some resource or activity."@en ;
                   rdfs:label "Related Party Role"@en .
 
 
