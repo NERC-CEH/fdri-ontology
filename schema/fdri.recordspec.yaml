@@ -478,6 +478,21 @@ records:
         repeatable: true
         constraints:
           - record: QualifiedAssociation
+      qualifiedUsage:
+        label:
+          - value: qualified usage
+            lang: en
+        description:
+          - value: |
+              A qualified usage is a usage of an entity in the context of an activity, where the usage is qualified by
+              entity used and the role that the entity played in relation to the activity.
+            lang: en
+        propertyUri: prov:qualifiedUsage
+        kind: object
+        nested: true
+        repeatable: true
+        constraints:
+          - record: QualifiedUsage
       startedAtTime:
         label:
           - value: started at
@@ -1622,6 +1637,97 @@ records:
     classUri: fdri:EnvironmentalDomainScheme
     shortCode: EnvironmentalDomainScheme
 
+  EnvironmentalMonitoringActivity:
+    label:
+      - value: Environmental Monitoring Activity
+        lang: en
+    description:
+      - value: |
+          An activity that is part of an Environmental Monitoring Programme.
+          An Environmental Monitoring Activity is a sub-type of prov:Activity allowing it to be associated with
+          an Environmental Monitoring Facility via the prov:qualifiedAssociation property.
+    classUri: fdri:EnvironmentalMonitoringActivity
+    shortCode: EnvironmentalMonitoringActivity
+    extends: Activity
+    mixins:
+      - WithLabelAndComment
+      - WithAnnotations
+      - CataloguedResource
+    properties:
+      facilityUsage:
+        label:
+          - value: facility usage
+            lang: en
+        description:
+          - value: |
+              A reference to the Environmental Monitoring Facility or Facilities that are used by this activity,
+              each reference may be qualified by the role that the facility played in the activity.
+            lang: en
+        propertyUri: fdri:facilityUsage
+        kind: object
+        nested: true
+        repeatable: true
+        constraints:
+          - record: FacilityUsage
+      hasFeatureOfInterest:
+        label:
+          - value: has feature of interest
+            lang: en
+        description:
+          - value: The geo-spatial location which is directly observed by the activity.
+            lang: en
+        propertyUri: sosa:hasFeatureOfInterest
+        kind: object
+        constraints:
+          - record: GeospatialFeatureOfInterest
+      initiated:
+        label:
+          - value: initiated
+            lang: en
+        description:
+          - value: The sub-activity or activities that were initiated by this activity.
+        propertyUri: fdri:initiated
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringActivity
+      observes:
+        label:
+          - value: observes
+            lang: en
+        description:
+          - value: |
+              The observable property or properties monitored by the activity.
+        propertyUri: sosa:observes
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Variable
+      qualifiedAssociation:
+        label:
+          - value: related party attribution
+            lang: en
+        description:
+          - value: Relates the activity to the agent(s), the role(s) played by those agents, and the procedure that they follow, in the performance of the activity.
+            lang: en 
+        propertyUri: prov:qualifiedAssociation
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: RelatedPartyAssociation
+      type:
+        label:
+          - value: activity type
+            lang: en
+        description:
+          - value: The kind of activity that this Environmental Monitoring Activity represents.
+            lang: en
+        propertyUri: dct:type
+        kind: object
+        constraints:
+          - record: ActivityType
+
   EnvironmentalMonitoringFacility:
     label:
       - value: Environmental Monitoring Faciltiy
@@ -1876,6 +1982,18 @@ records:
       - WithAnnotations
       - WithLabelAndComment
     properties:
+      initiated:
+        label:
+          - value: initiated
+            lang: en
+        description:
+          - value: An Environmental Monitoring Programme may have initiated some Environmental Monitoring Activities.
+            lang: en
+        propertyUri: fdri:initiated
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringActivity
       utilises:
         label:
           - value: utilises
@@ -2411,6 +2529,70 @@ records:
     classUri: fdri:FacilityGroupTypeScheme
     shortCode: FacilityGroupTypeScheme
 
+  FacilityUsage:
+    label:
+      - value: Facility Usage
+        lang: en
+    description:
+      - value: |
+          A reference to an Environmental Monitoring Facility or Facilities that are used by an Environmental Monitoring Activity, qualified by the role that the facility played in the activity.
+        lang: en
+    classUri: fdri:FacilityUsage
+    shortCode: FacilityUsage
+    mixins:
+      - WithLabelAndComment
+    properties:
+      entity:
+        label:
+          - value: entity
+            lang: en
+        description:
+          - value: The Environmental Monitoring Facility or Facilities that were used by the activity.
+            lang: en
+        propertyUri: prov:entity
+        kind: object
+        constraints:
+          - record: EnvironmentalMonitoringFacility
+      hadRole:
+        label:
+          - value: had role
+            lang: en
+        description:
+          - value: The role that the facility played in the activity.
+            lang: en
+        propertyUri: prov:hadRole
+        kind: object
+        constraints:
+          - record: FacilityUsageRole
+
+  FacilityUsageRole:
+    label:
+      - value: Facility Usage Role
+        lang: en
+    description:
+      - value: A concept that describes the role that an Environmental Monitoring Facility played in an Environmental Monitoring Activity.
+        lang: en
+    extends: Concept
+    classUri: fdri:FacilityUsageRole
+    shortCode: FacilityUsageRole
+    properties:
+      inScheme:
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: FacilityUsageRoleScheme
+
+  FacilityUsageRoleScheme:
+    label:
+      - value: Facility Usage Role Concept Scheme
+        lang: en
+    description:
+      - value: A controlled vocabulary of facility usage roles.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:FacilityUsageRoleScheme
+    shortCode: FacilityUsageRoleScheme
+
   Fault:
     label:
       - value: Fault
@@ -2684,6 +2866,18 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
+      originatingActivity:
+        label:
+          - value: originating activity
+            lang: en
+        description:
+          - value: The environmental monitoring activity that resulted in the production of this dataset.
+            lang: en
+        propertyUri: fdri:originatingActivity
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringActivity
       originatingSite:
         label:
           - value: originating site
@@ -3207,7 +3401,7 @@ records:
     label:
       - value: A relationship between an Agent, the role that it plaed and the plan that it followed in the execution of some activity.
         lang: en
-    classUri: prov:QualifiedAssociation
+    classUri: prov:Association
     shortCode: QualifiedAssociation
     properties:
       agent:
@@ -3233,6 +3427,37 @@ records:
         repeatable: true
         constraints:
           - record: Plan
+      hadRole:
+        label:
+          - value: had role
+            lang: en
+        description:
+          - value: The role played by the agent in the execution of the activity.
+            lang: en
+        propertyUri: prov:hadRole
+        kind: object
+        constraints:
+          - record: Concept
+
+  QualifiedUsage:
+    label:
+      - value: Qualified Usage
+        lang: en
+    description:
+      - value: A relationship between an entity and the role that it played in the execution of some activity.
+        lang: en
+    classUri: prov:Usage
+    shortCode: QualifiedUsage
+    properties:
+      entity:
+        label:
+          - value: entity
+            lang: en
+        description:
+          - value: The entity involved in the activity
+            lang: en
+        propertyUri: prov:entity
+        kind: object
       hadRole:
         label:
           - value: had role
@@ -3292,6 +3517,53 @@ records:
     extends: ConceptScheme
     classUri: fdri:RegionScheme
     shortCode: RegionScheme
+
+  RelatedPartyAssociation:
+    label:
+      - value: Related Party Association
+        lang: en
+    description:
+      - value: An association between an Agent, the role that they play, and the procedure that they follow, in relation to some `prov:Activity`.
+        lang: en
+    classUri: fdri:RelatedPartyAssociation
+    shortCode: RelatedPartyAssociation
+    properties:
+      hasRole:
+        label:
+          - value: has role
+            lang: en
+        description:
+          - value: The role played by the agent in this association.
+            lang: en
+        propertyUri: dcat:hasRole
+        kind: object
+        required: true
+        constraints:
+          - record: RelatedPartyRole
+      agent:
+        label:
+          - value: agent
+            lang: en
+        description:
+          - value: The agent involved in this association.
+            lang: en
+        propertyUri: prov:Agent
+        kind: object
+        required: true
+        constraints:
+          - record: Agent
+      hadPlan:
+        label:
+          - value: had plan
+            lang: en
+        description:
+          - value: A plan that informed the behaviour of the agent during the execution of the activity.
+            lang: en
+        propertyUri: prov:hadPlan
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Plan
 
   RelatedPartyAttribution:
     label:

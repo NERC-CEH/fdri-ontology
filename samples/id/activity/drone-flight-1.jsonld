@@ -1,0 +1,21 @@
+{
+    "$schema": "../../schema/EnvironmentalMonitoringActivity.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/id/activity/drone-flight-1.jsonld",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringActivity",
+    "type": {
+        "@id": "http://fdri.ceh.ac.uk/ref/common/activity-type/sortie"
+    },
+    "qualifiedAssociation": [
+        {
+            "entity": {
+                "@id": "http://fdri.ceh.ac.uk/id/agent/js"
+            },
+            "hadRole": {
+                "@id": "http://fdri.ceh.ac.uk/ref/common/related-party-role/pilot"
+            },
+            "hadPlan": {
+                "@id": "http://fdri.ceh.ac.uk/id/procedure/drone-sortie-procedure"
+            }
+        }
+    ]
+}

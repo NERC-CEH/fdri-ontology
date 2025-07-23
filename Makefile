@@ -10,7 +10,10 @@ RECORDS = \
 	Aggregation \
 	ConfigurationItem \
 	Condition \
+	Dataset \
+	Deployment \
 	DigitalDocument \
+	EnvironmentalMonitoringActivity \
 	EnvironmentalMonitoringPlatform \
 	EnvironmentalMonitoringSensor \
 	EnvironmentalMonitoringSite \
@@ -19,6 +22,7 @@ RECORDS = \
 	GeospatialFeatureOfInterest \
 	InternalDataProcessingConfiguration \
 	Measure \
+	ObservationDataset \
 	OperatingRange \
 	Procedure \
 	StaticDeployment \

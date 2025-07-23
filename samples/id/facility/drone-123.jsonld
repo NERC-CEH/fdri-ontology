@@ -1,0 +1,10 @@
+{
+    "$schema": "../../schema/EnvironmentalMonitoringPlatform.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/samples/id/facility/drone-123.jsonld",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringPlatform",
+    "type": {
+        "@id": "http://fdri.ceh.ac.uk/ref/common/platform-type/octo-quad"
+    },
+    "isMobile": true,
+    "identifier": ["Drone-123"]
+}

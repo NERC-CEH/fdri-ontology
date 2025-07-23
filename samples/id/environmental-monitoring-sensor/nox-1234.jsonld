@@ -1,0 +1,9 @@
+{
+    "$schema": "../../schema/EnvironmentalMonitoringSensor.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-sensor/nox-1234",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSensor",
+    "type": {"@id": "http://fdri.ceh.ac.uk/ref/common/sensor-type/nox"},
+    "observes": [
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/variable/nox-concentration"}
+    ]
+}
