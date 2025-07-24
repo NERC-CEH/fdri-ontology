@@ -107,6 +107,7 @@ if __name__ == '__main__':
     html += make_section('doc/provenance-and-activity.md')
     html += make_section('doc/variables.md')
     html += make_section('doc/emf.md')
+    html += make_section('doc/em-activities.md')
     html += make_section('doc/deployments.md')
     html += make_section('doc/sensor-system.md')
     html += make_section('doc/sensor-capabilities.md')

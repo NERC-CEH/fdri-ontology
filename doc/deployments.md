@@ -1,8 +1,6 @@
 ## Deployments
 
-Deployments are used when a system (a sensor or package of sensors) is deployed in the field. 
-  * A `MobileDeployment` is a deployment of a system on a platform that moves along a track recorded by a track log.
-  * A `StaticDeployment` is a deployment of a system at a fixed location, optionally at some height above or depth below local ground level. The fixed location may be specified either by its own geometry or relative to the geometry of the platform or site at which it is deployed.
+Deployments are used when a system (a sensor or package of sensors) is deployed in the field.
 
 Deployments are modelled as a sub-class of `prov:Activity` and of `ssn:Deployment`.
 

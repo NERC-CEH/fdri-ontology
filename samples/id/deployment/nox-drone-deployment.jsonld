@@ -1,0 +1,7 @@
+{
+    "$schema": "../../schema/Deployment.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/samples/id/deployment/nox-drone-deployment.jsonld",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/Deployment",
+    "deployedSystem": [{"@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-sensor/nox-1234"}],
+    "deployedOnPlatform": {"@id": "http://fdri.ceh.ac.uk/id/facility/drone-123" }
+}

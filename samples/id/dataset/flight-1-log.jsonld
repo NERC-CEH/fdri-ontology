@@ -1,0 +1,7 @@
+{
+    "$schema": "../../schema/Dataset.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/id/dataset/flight-1-log",
+    "@type": "http://www.w3.org/ns/dcat#Dataset",
+    "type": [{"@id": "http://fdri.ceh.ac.uk/ref/common/dataset-type/flight-log"}]
+
+}

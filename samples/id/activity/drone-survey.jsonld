@@ -1,0 +1,35 @@
+{
+    "$schema": "../../schema/EnvironmentalMonitoringActivity.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/samples/id/activity/drone-survey",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringActivity",
+    "type": {
+        "@id": "http://fdri.ceh.ac.uk/ref/common/activity-type/drone-survey"
+    },
+    "label": [{"@value": "Example Drone Survey Activity", "@language": "en"}],
+    "initiated": [
+        {"@id": "http://fdri.ceh.ac.uk/samples/id/activity/drone-flight-1"},
+        {"@id": "http://fdri.ceh.ac.uk/samples/id/activity/drone-flight-2"}
+    ],
+    "hasFeatureOfInterest": {
+        "@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny"
+    },
+    "startedAtTime": {
+        "@value": "2025-06-21T09:00:00.000Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "endedAtTime":{
+        "@value": "2025-06-21T11:00:00.000Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "facilityUsage": [
+        {
+            "entity": {
+                "@id": "http://fdri.ceh.ac.uk/id/facility/drone-123"
+            },
+            "hadRole": {
+                "@id": "http://fdri.ceh.ac.uk/ref/common/facility-usage-role/piloted-craft"
+            }
+        }
+    ]
+
+}

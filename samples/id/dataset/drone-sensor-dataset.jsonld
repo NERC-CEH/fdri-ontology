@@ -1,0 +1,30 @@
+{
+    "$schema": "../../schema/ObservationDataset.schema.json",
+    "@id": "http://fdri.ceh.ac.uk/samples/id/dataset/drone-sensor-dataset.jsonld",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/ObservationDataset",
+    "processingLevel": {
+        "@id": "http://fdri.ceh.ac.uk/ref/common/processing-level/raw"
+    },
+    "observedProperty": [
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/variable/nox-concentration"}
+    ],
+    "originatingActivity": [
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/drone-survey.jsonld"}
+    ],
+    "originatingFacility": [
+        {"@id": "http://fdri.ceh.ac.uk/samples/id/facility/drone-123.jsonld"}
+    ],
+    "hasFeatureOfInterest": [
+        {"@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/bunny"}
+    ],
+    "temporal": {
+        "startDate": {
+            "@value": "2025-06-21T09:15:00.000Z",
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "endDate":{
+            "@value": "2025-06-21T10:45:00.000Z",
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+        }
+    }
+}

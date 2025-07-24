@@ -175,6 +175,14 @@ geo:location rdf:type owl:AnnotationProperty ;
                      rdfs:label "environmental domain"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/facilityUsage
+:facilityUsage rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf prov:qualifiedUsage ;
+               rdfs:range :FacilityUsage ;
+               rdfs:comment "Relates the enclosing `prov:Activity` resource to an `fdri:FacilityUsage` qualified association resource that specifies the facility used and the role played by the facility in the activity."@en ;
+               rdfs:label "facility usage"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/group
 :group rdf:type owl:ObjectProperty ;
        rdfs:range :FacilityGroup ;
@@ -269,6 +277,13 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
                 rdfs:label "has value series"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/initiated
+:initiated rdf:type owl:ObjectProperty ;
+           rdfs:range :EnvironmentalMonitoringActivity ;
+           rdfs:comment "An `fdri:EnvironmentalMonitoringActivity` may be initiated by an `fdri:EnvironmentalMonitoringProgramme` or by another `fdri:EnvironmentalMonitoringActivity`."@en ;
+           rdfs:label "initiated"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/interval
 :interval rdf:type owl:ObjectProperty ;
           rdfs:range dct:PeriodOfTime ;
@@ -350,6 +365,13 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
                  rdfs:range dct:PeriodOfTime ;
                  rdfs:comment "The period of time during which an Environmental Monitoring Facility is/was operational."@en ;
                  rdfs:label "operating period"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/originatingActivity
+:originatingActivity rdf:type owl:ObjectProperty ;
+                     rdfs:range :EnvironmentalMonitoringActivity ;
+                     rdfs:comment "The Environmental Monitoring Activities that give rise to the data contained in the enclosing dataset."@en ;
+                     rdfs:label "originating activity"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/originatingFacility
@@ -1098,6 +1120,44 @@ A deployment may be associated with a platform on which the sensors or systems w
                            rdfs:label "Environmental Domain Scheme"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringActivity
+:EnvironmentalMonitoringActivity rdf:type owl:Class ;
+                                 rdfs:subClassOf dcat:Resource ,
+                                                 prov:Activity ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty prov:qualifiedAssociation ;
+                                                   owl:allValuesFrom :RelatedPartyAssociation
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty sosa:hasFeatureOfInterest ;
+                                                   owl:allValuesFrom :GeospatialFeatureOfInterest
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty sosa:observes ;
+                                                   owl:allValuesFrom :Variable
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :initiated ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :measures ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty sosa:hasFeatureOfInterest ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty sosa:observes ;
+                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                 ] ;
+                                 rdfs:comment """An Activity which gives rise to a set of observations of some environmental feature of interest. Examples include sorties by UAV, a person counting plastic waste in a gridded area of a beach, or a team of people trapping and measuring the size and weight of fish.
+
+An EnvironmentalMonitoringActivity may follow a documented Procedure, and may involve the completion of one or more sub-activities each with their own Procedures."""@en ;
+                                 rdfs:label "Environmental Monitoring Activity"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacility
 :EnvironmentalMonitoringFacility rdf:type owl:Class ;
                                  rdfs:subClassOf dcat:Resource ,
@@ -1246,6 +1306,10 @@ An Environmental Monitoring Platform may host (`sosa:hosts`) any number of syste
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringProgramme
 :EnvironmentalMonitoringProgramme rdf:type owl:Class ;
                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :initiated ;
+                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
                                                     owl:onProperty :utilises ;
                                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                   ] ;
@@ -1509,6 +1573,39 @@ Membership may be expressed directly using the `fdri:hasMember` property, or ind
                          rdfs:label "Environmental Monitoring Facility Group Type Scheme"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityUsage
+:FacilityUsage rdf:type owl:Class ;
+               rdfs:subClassOf prov:Usage ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty prov:entity ;
+                                 owl:allValuesFrom :EnvironmentalMonitoringFacility
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty prov:hadRole ;
+                                 owl:allValuesFrom :FacilityUsageRole
+                               ] ;
+               rdfs:comment "Specifies the role played by an `fdri:EnvironmentalMonitoringFacility` in relation to the referencing `fdri:EnvironmentalMonitoringActivity`"@en ;
+               rdfs:label "Facility Usage"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityUsageRole
+:FacilityUsageRole rdf:type owl:Class ;
+                   rdfs:subClassOf skos:Concept ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty skos:inScheme ;
+                                     owl:allValuesFrom :FacilityUsageRoleScheme
+                                   ] ;
+                   rdfs:comment "A skos:Concept representing the role played by an `fdri:EnvironmentalMonitoringFacility` in an `fdri:FacilityUsage` relation. The role describes the way in which the facility is used by the `fdri:EnvironmentalMonitoringActivity` that encloses the `fdri:FacilityUsage`."@en ;
+                   rdfs:label "Facility Usage Role"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FacilityUsageRoleScheme
+:FacilityUsageRoleScheme rdf:type owl:Class ;
+                         rdfs:subClassOf skos:ConceptScheme ;
+                         rdfs:comment "A skos:ConceptScheme that manages a controlled list of `fdri:FacilityUsageRole` concepts."@en ;
+                         rdfs:label "Facility Usage Role Scheme"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Fault
 :Fault rdf:type owl:Class ;
        rdfs:subClassOf [ rdf:type owl:Restriction ;
@@ -1637,6 +1734,10 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :measure ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :originatingActivity ;
                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;
@@ -1835,6 +1936,25 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
               rdfs:label "Region Scheme"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAssociation
+:RelatedPartyAssociation rdf:type owl:Class ;
+                         rdfs:subClassOf prov:Association ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty prov:agent ;
+                                           owl:allValuesFrom :Agent
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty prov:hadPlan ;
+                                           owl:allValuesFrom :Procedure
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty prov:hadRole ;
+                                           owl:allValuesFrom :RelatedPartyRole
+                                         ] ;
+                         rdfs:comment "An association between an Agent, the role that they play, and the procedure they followed, in relation to the referencing activity."@en ;
+                         rdfs:label "Related Party Association"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAttribution
 :RelatedPartyAttribution rdf:type owl:Class ;
                          rdfs:subClassOf prov:Attribution ,
@@ -1857,7 +1977,7 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
                                     owl:onProperty skos:inScheme ;
                                     owl:allValuesFrom :RelatedPartyRoleScheme
                                   ] ;
-                  rdfs:comment "A concept that defines the role an `fdri:Agent` may play in relation to some resource."@en ;
+                  rdfs:comment "A concept that defines the role an `fdri:Agent` may play in relation to some resource or activity."@en ;
                   rdfs:label "Related Party Role"@en .
 
 

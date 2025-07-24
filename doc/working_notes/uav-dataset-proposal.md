@@ -25,6 +25,7 @@ The majority of sensor and platform related information which is required by use
 flowchart
 Activity[EnvironmentalMonitoringActivity]
 Programme[EnvironmentalMonitoringProgramme]
+Usage[FacilityUsage]
 ObservationDataset-- originatingActivity -->Activity
 Programme-- initiated-->Activity
 Activity-- initiated -->Activity
@@ -32,11 +33,12 @@ Activity-- qualifiedAssociation -->Association
 Association -- agent --> Agent
 Association -- hadPlan --> Procedure
 Association -- hadRole --> Concept
-Activity-- qualifiedUsage -->Usage
+Activity-- facilityUsage -->Usage
 Usage -- entity --> EnvironmentalMonitoringFacility
 Usage -- hadRole --> Concept
 Activity -- type --> ActivityType
 Activity -- observes --> Variable
+Activity -- hasFeatureOfInterest --> GeospatialFeatureOfInterest
 ```
 
 * A UAV is modelled as an `EnvironmentalMonitoringPlatform`
