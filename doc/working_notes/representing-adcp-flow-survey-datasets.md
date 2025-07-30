@@ -38,5 +38,7 @@ NOTE: In the example data we invented a craft serial number.
 
 * This data does not fit neatly into the single-variable-timeseries approach used in the COSMOS data
 * The model has a higher level "ObservationDataset" type which is intended to represent any kind of observational data and perhaps be most appropriate, but this says nothing about the format of the data.
-* Do these remain as CSV files? If so how is a common structure ensured so that data can be combined easily? Could a CSV-W schema be used?
+* Do these get published as CSV files? If so how is a common structure ensured so that data can be combined easily? Could a CSV-W schema be used?
+* Will the parquet files be used? In this case the the parquet schema should be somehow reflected in or accessible through the metadata.
+* Is there a need for some new dataset type derived from `ObservationDataset` that allows for "complex" packages of data as parquet or an explicitly packaged format such as [RO-Crate](https://www.researchobject.org/ro-crate/)?
 * If combining surveys, would a gridded format be more suitable with dimensions for time and location? 
