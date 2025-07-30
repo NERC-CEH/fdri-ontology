@@ -1,0 +1,27 @@
+{
+    "$schema": "../../schema/ObservationDataset.schema.json",
+    "@context": "../../context/ObservationDataset.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/dataset/adcp-survey-ch_cbkhs_01_guaging-2024-12-10_transect-summary-activity",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/ObservationDataset",
+    "description": [{
+        "@value": "The summary dataset for the ADCP survey gauging activity at CH_CBKHS_01 on 2024-12-10, which includes aggregated measurements for each of the transects undertaken.",
+        "@language": "en"
+    }],
+    "hasFeatureOfInterest": [
+        {"@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/ch_cbkhs_01_gauging"}
+    ],
+    "originatingActivity": [{"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10"}],
+    "processingLevel": { "@id": "http://fdri.ceh.ac.uk/ref/common/processing-level/2" },
+    "measure": [
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/cop/total-q-m3s-1" },
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/cop/left-q-m3s-1" },
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/cop/right-q-m3s-1" },
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/cop/top-q-m3s-1" },
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/cop/bottom-q-m3s-1" },
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/cop/middle-q-m3s-1" },
+        { "@id": "http://fdri.ceh.ac.uk/ref/common/cop/q-percent-measured" }
+    ],
+    "wasGeneratedBy": {
+        "@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-summary-derivation-activity"
+    }
+}

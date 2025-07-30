@@ -1,0 +1,17 @@
+{
+    "$schema": "../../schema/EnvironmentalMonitoringSensor.schema.json",
+    "@context": "../../context/EnvironmentalMonitoringSensor.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/environmental-monitoring-sensor/system/adcp-rs2-rs5-RS52435008",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringSensor",
+    "comment": [{"@value": "ADCP RS2/RS5 with serial number RS52435008", "@language": "en"}],
+    "serialNumber": "RS52435008",
+    "type": {"@id": "http://fdri.ceh.ac.uk/ref/sensor-type/rs2-rs5"},
+    "measures": [
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/measure/water-velocity-ms-1"},
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/measure/q-m3s-1"}
+    ],
+    "observes": [
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/cop/water-velocity"},
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/cop/q"}
+    ]
+}

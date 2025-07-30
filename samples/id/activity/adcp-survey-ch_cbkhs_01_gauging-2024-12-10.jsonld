@@ -1,0 +1,48 @@
+{
+    "$schema": "../../schema/EnvironmentalMonitoringActivity.schema.json",
+    "@context": "../../context/Activity.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringActivity",
+    "type": {"@id": "http://fdri.ceh.ac.uk/ref/activity/adcp-survey"},
+    "comment": [
+        { "@value": "The ADCP survey gauging activity at CH_CBKHS_01 on 2024-12-10, consisting of 8 separate transects.", "@language": "en" }
+    ],
+    "startedAtTime": {"@value":"2024-12-10T00:00:00Z", "@type": "http://www.w3.org/2001/XMLSchema#dateTime"},
+    "endedAtTime": {"@value":"2024-12-10T23:59:59Z", "@type": "http://www.w3.org/2001/XMLSchema#dateTime"},
+    "hasFeatureOfInterest": {
+        "@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/ch_cbkhs_01_gauging"
+    },
+    "observes": [
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/cop/total-q"}
+    ],
+    "initiated": [
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-01"},
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-02"},
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-03"},
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-04"},
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-05"},
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-06"},
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-07"},
+        {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-08"}
+    ],
+    "facilityUsage": [
+        {
+            "entity": {
+                "@id": "http://fdri.ceh.ac.uk/id/facility/adcp-mini-hydroboat-78910"
+            },
+            "hadRole": {
+                "@id": "http://fdri.ceh.ac.uk/ref/common/facility-usage-role/piloted-craft"
+            }
+        }
+    ],
+    "qualifiedAssociation": [
+        {
+            "entity": { "@id": "http://fdri.ceh.ac.uk/id/agent/adcp-tb"},
+            "hadRole": { "@id": "http://fdri.ceh.ac.uk/ref/common/associated-party-role/surveyor" }
+        },
+        {
+            "entity": { "@id": "http://fdri.ceh.ac.uk/id/agent/adcp-tb"},
+            "hadRole": { "@id": "http://fdri.ceh.ac.uk/ref/common/associated-party-role/pilot" }
+        }
+    ]
+}

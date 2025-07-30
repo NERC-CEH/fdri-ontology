@@ -1,0 +1,14 @@
+{
+    "$schema": "../../schema/Deployment.schema.json",
+    "@context": "../../context/Deployment.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/deployment/adcp-mini-hydroboat-78910-2024-12-10",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/Deployment",
+    "deployedOnPlatform": {
+        "@id": "http://fdri.ceh.ac.uk/id/facility/adcp-mini-hydroboat-78910"
+    },
+    "deployedSystem": [
+        { "@id": "http://fdri.ceh.ac.uk/id/system/adcp-rs2-rs5-RS52435008" }
+    ],
+    "startedAtTime": {"@value":"2024-12-10T00:00:00Z", "@type": "http://www.w3.org/2001/XMLSchema#dateTime"},
+    "endedAtTime": {"@value":"2024-12-10T23:59:59Z", "@type": "http://www.w3.org/2001/XMLSchema#dateTime"}
+}

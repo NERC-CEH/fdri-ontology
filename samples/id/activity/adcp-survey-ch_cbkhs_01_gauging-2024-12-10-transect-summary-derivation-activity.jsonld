@@ -1,0 +1,20 @@
+{
+    "$schema": "../../schema/Activity.schema.json",
+    "@context": "../../context/Activity.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-summary-derivation-activity",
+    "@type": "http://www.w3.org/ns/prov#Activity",
+    "comment": [
+        {"@value": "The action of creating a summary of the transect data collected during the gauging activity on 2024-12-10 at CH_CBKHS_01_GUAGING. Uses the velocity and sensor data from that survey", "@language": "en"}
+    ],
+    "qualifiedUsage": [
+        {
+            "entity": {"@id": "http://fdri.ceh.ac.uk/id/dataset/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-velocity-data"},
+            "hadRole": {"@id": "http://fdri.ceh.ac.uk/ref/common/usage-role/derived-from"}
+        },
+        {
+            "entity": {"@id": "http://fdri.ceh.ac.uk/id/dataset/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-sensor-data"},
+            "hadRole": {"@id": "http://fdri.ceh.ac.uk/ref/common/usage-role/derived-from"}
+        }
+    ]
+
+}

@@ -1,0 +1,22 @@
+{
+    "$schema": "../../schema/EnvironmentalMonitoringActivity.schema.json",
+    "@context": "../../context/EnvironmentalMonitoringActivity.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-02",
+    "@type": "http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringActivity",
+    "type": {"@id": "http://fdri.ceh.ac.uk/ref/activity/adcp-survey-transect"},
+    "comment": [
+        { "@value": "The second transect of the gauging activity on 2024-12-10 at CH_CBKHS_01_GUAGING.", "@language": "en" }
+    ],
+    "startedAtTime": {"@value":"2024-12-10 14:26:40" , "@type": "http://www.w3.org/2001/XMLSchema#dateTime"},
+    "endedAtTime": {"@value":"2024-12-10 14:28:04" , "@type": "http://www.w3.org/2001/XMLSchema#dateTime"},
+    "hasFeatureOfInterest": {
+        "@id": "http://fdri.ceh.ac.uk/id/feature-of-interest/ch_cbkhs_01_gauging"
+    },
+    "observes": [
+        {"@id": "http://fdri.ceh.ac.uk/ref/common/cop/total-q"}
+    ],
+    "hasAnnotation": [
+        { "@id": "http://fdri.ceh.ac.uk/id/annotation/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-02#area" },
+        { "@id": "http://fdri.ceh.ac.uk/id/annotation/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-02#width" }
+    ]
+}
