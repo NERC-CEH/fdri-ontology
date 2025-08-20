@@ -6,6 +6,7 @@ DRAFT 0.4.2
 -----------
 
 * FIX: Fixed the property URI of RelatedPartyAttribution.agent in the recordspec schema to match the OWL schema.
+* FIX: Fixed the class URI of RelatedPartyRole to match the OWL ontology.
 
 DRAFT 0.4.1
 -----------

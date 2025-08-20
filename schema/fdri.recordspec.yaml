@@ -3336,7 +3336,7 @@ records:
       - value: A concept that defines the role an agent may play in relation to some resource.
         lang: en
     extends: Concept
-    classUri: fdri:RelatedParyRole
+    classUri: fdri:RelatedPartyRole
     shortCode: RelatedPartyRole
     properties:
       inScheme:
