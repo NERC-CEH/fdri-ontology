@@ -2,6 +2,11 @@
 
 Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub repository at https://github.com/NERC-CEH/fdri-ontology/issues
 
+DRAFT 0.4.2
+-----------
+
+* FIX: Fixed the property URI of RelatedPartyAttribution.agent in the recordspec schema to match the OWL schema.
+
 DRAFT 0.4.1
 -----------
 

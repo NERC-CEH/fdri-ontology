@@ -3322,7 +3322,7 @@ records:
         description:
           - value: The agent involved in this attribution.
             lang: en
-        propertyUri: prov:Agent
+        propertyUri: prov:agent
         kind: object
         required: true
         constraints:
