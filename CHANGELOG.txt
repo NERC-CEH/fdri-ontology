@@ -2,6 +2,18 @@
 
 Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub repository at https://github.com/NERC-CEH/fdri-ontology/issues
 
+DRAFT 0.5
+---------
+
+* NEW: Add fdri:EnvironmentalMonitoringActivity to represent activities such as surveys that give rise to environmental datasets. The overall model is desribed in the documentation in the section titled "Environmental Monitoring Activity Model". The key model changes involved are listed below.
+  * Add new `fdri:EnvironmenalMonitoringActivity` class to OWL and matching `EnvironmenalMonitoringActivity` record to schema.
+  * Add `qualifiedUsage` to `Activity` in the schema to reflect the existing prov:qualifiedUsage property in the OWL ontology.
+  * Add `QualifiedUsage` record to the schema to reflect the existing prov:Usage type in the OWL ontology.
+  * Add `fdri:initiated` property to `fdri:EnvironmentalMonitoringProgramme` to relate an EnvironmentalMonitoringProgramme to the EnvironmentalMonitoringActivities that are carried out under that programme. 
+  * Add `fdri:FacilityUsage` class as a subclass of `prov:Usage` to represent the use of some EnvironmentalMonitoringFacility in some EnvironmenalMonitoringActivity, qualified by the role (fdri:FacilityUsageRole) that the facility played in the activity.
+  * Add `fdri:originatingActivity` to relate an `fdri:ObservationDataset` to the `fdri:EnvironmenalMonitoringActivity` that originated the data contained in the dataset.
+  * Add `fdri:RelatedPartyAssociation` to represent the association between an `fdri:Agent` and the role that the played in some `prov:Activity`
+
 DRAFT 0.4.2
 -----------
 
