@@ -4,23 +4,20 @@
 
 For the FDRI project it is envisaged that gridded data in netCDF format will be provided in the form of netCDF files conforming to a version of the netCDF conventions (currently CF 1.6+). The netCDF files contain metadata describing both the dataset itself and describing the structure of the netCDF file. For the latter of these, there is a proposed ontology hosted by OGC - BALD (binary array linked data).
 
-> NOTE
+> [NOTE]
 > The BALD ontology is described in the document [OGC Encoding Linked Data Graphs in NetCDF Files](https://portal.ogc.org/files/100757). This does not appear to be a published OGC document and it cannot be found in a search on https://ogc.org. While the mapping proposed by the document appears to be well thought through and documented, it does not have the force of a published OGC standard and so some consideration should be given to whether it is appropriate to adopt for FDRI.
+>
+> Even if it is decided not to use the BALD ontology directly, the concepts that it introduces around mapping property names and describing the structure of netCDF file content could be incorporated into the FDRI ontology.
 
 A netCDF file's header contains both the structural information (variables and dimensions) that properly belong as a description of the netCDF distribution along with global properties a subset of which could be harvested to populate FDRI dataset metadata - especially in the case that the netCDF file is the only distribution of the dataset.
 
-> [NOTE]
-> In the document referenced above, it is stated both that `bald:Container` subclasses `dcat:Distribution` and that `bald:Container` has `dcat:distribution` properties - implying that `bald:Container` must also be a subclass of `dcat:Dataset`. The latter seems more consistent with the examples presented in the document.
-> 
-> At the time of writing it has not been possible to locate an OWL definition of the BALD ontology, making it difficult to determine if this is deliberate modelling or if the statement about subclassing `dcat:Distribution` is an error.
->
-> This distnction is important to make as it would affect the modelling for datasets that consist of multiple netCDF files. If `bald:Container` subclasses `dcat:Dataset` then each netCDF is a separate dataset with a parent `dcat:DatasetSeries` that gathers them all together. Whereas, if `bald:Container` subclasses `dcat:Distribution` then the netCDF files would be distributions of a single parent dataset.
->
-> The output of the Python tool, and the examples given in the documentation tend to indicate that the interpretation that has `bald:Container` as a subclass of `dcat:Dataset` is the intended one, as the tool output and the examples all have `dcat:distribution` properties on `bald:Container`.
+In the document referenced above, it is stated both that `bald:Container` subclasses `dcat:Distribution` and that `bald:Container` has `dcat:distribution` properties - implying that `bald:Container` must also be a subclass of `dcat:Dataset`. The latter seems more consistent with the examples presented in the document. This is confirmed by the existing OWL definition of the BALD ontology at https://github.com/binary-array-ld/net.binary_array_ld.bald/blob/master/binary-array-ld-lib/src/main/resources/bald/vocab/bald.ttl
+
+This approach would mean that a dataset that consists of multiple netCDF files would have to be modelled as a `dcat:DatasetSeries` with each netCDF file as a separate child `dcat:Dataset`. An alternate approach that would not be consistent with the BALD ontology would be to treat the netCDF file metadata as being metadata on a `dcat:Distribution` and in this case a dataset consisting of multiple netCDF files would be modelled as one `dcat:Dataset` with multiple `dcat:Distribution` resources. The main problem with treating netCDF files as `dcat:Distribution` though is that the DCAT model has limited metadata properties for distributions - e.g. with regard to spatial and temporal coverage. Overall the recommended approach would be to consider each netCDF file as a `dcat:Dataset` with a single netCDF file `dcat:Distribtution` and to use `dcat:DatasetSeries` to group together related netCDF files.
 
 ## Representing Zarr Metadata
 
-In principle the metadata of Zarr archives can be treated in the same way as netCDF files, treating the top level `.zattrs` as the global properties, and the second level `foo/.zarray` and `foo/.zattrs` as the structural metadata.
+In principle the metadata of Zarr archives can be treated in the same way as netCDF files, treating the top level `.zattrs` as the global properties, and the second level `foo/.zarray` and `foo/.zattrs` as the structural metadata. A precise definition of the mapping would need further investigation and as far as we are aware there are no tools available that implement such a mapping and so the toolchain to support this would also need to be developed.
 
 ## Global Property Mapping
 
@@ -93,6 +90,10 @@ BALD provides two ways of mapping netCDF property names to URIs. The first is to
 By providing a single mapping that covers the subset of existing global properties that can be directly mapped to FDRI, plus the FDRI "preferred" properties, metadata creators are free to pick the most appropriate set of properties for their needs. 
 
 Any minimum metadata requirements for FDRI (e.g. in order to fulfil minimum metadata requirements when publising to the EIDC) should also be communicated to metadata creators and validated as part of the ingestion pipeline. 
+
+## Mapping FDRI Variables to CF Standard Names
+
+Another complementary approach to consider for FDRI would be for FDRI to define a mapping from an FDRI Variable to its CF Standard Name. This could be accomodated either through the use of the existint dct:identifier property of fdri:Variable or through adding a specific property to capture the CF Standard Name. Such a mapping would enable (semi-)automated extraction of metadata about the variables contained in a netCDF file that uses properties with names defined in the CF standard names list.
 
 ## NetCDF Structural Metadata Mapping
 
