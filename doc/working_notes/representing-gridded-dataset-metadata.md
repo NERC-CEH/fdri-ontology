@@ -93,7 +93,8 @@ Any minimum metadata requirements for FDRI (e.g. in order to fulfil minimum meta
 
 ## Mapping FDRI Variables to CF Standard Names
 
-Another complementary approach to consider for FDRI would be for FDRI to define a mapping from an FDRI Variable to its CF Standard Name. This could be accomodated either through the use of the existint dct:identifier property of fdri:Variable or through adding a specific property to capture the CF Standard Name. Such a mapping would enable (semi-)automated extraction of metadata about the variables contained in a netCDF file that uses properties with names defined in the CF standard names list.
+Another complementary approach to consider for FDRI would be for FDRI to define a mapping from an FDRI Variable to its CF Standard Name.
+The NERC Vocabulary Server already carries a [taxonomy of CF standard names in SKOS format](https://vocab.nerc.ac.uk/standard_name/), so using the SKOS mapping proprties such as `skos:exactMatch` would be possible. 
 
 ## NetCDF Structural Metadata Mapping
 
@@ -106,3 +107,11 @@ The model should also be extended to add an explicit type for gridded datasets. 
 > The tools for performing this metadata mapping are relatively thin on the ground, but there is a (Python library)[https://github.com/binary-array-ld/bald] and a [Kotlin library](https://github.com/binary-array-ld/net.binary_array_ld.bald). The Kotlin library was originally developed by Simon Oakes who is at Epimorphics. The Python library required a few minor tweaks to get running locally but otherwise appears to be usable from the cursory use we have made of it thus far. If the extraction of metadata from netCDF files is planned to be part of the FDRI processing pipeline, it is recommended that the FDRI project fork the GitHub repo and consider contributing back the changes needed to bring it up to date.
 
 The BALD container model includes some relatively involved modelling of the dimensions of a netCDF file using a technique of "broadcasting", borrowed from the numPy toolkit (https://numpy.org/devdocs/user/basics.broadcasting.html). This technique allows mappings between related dimensions but relies on interpretation of ordred lists in RDF. There is a question about the usefulness of this metadata in the context of dataset publication - would it really be necessary for users of the data to know about these dimension relations at this level of detail before accessing the netCDF content?
+
+
+# Overall Recommendations
+
+* Adopt the BALD ontology for now as we wait to find out what the status of that ontology is. If it turns out to be moribund, the FDRI ontology can be extended to cover the concepts in the BALD ontology
+* Fork and update the existing Python tooling for BALD metadata. This could form the basis of a library/tool to be used in FDRI processing chains dealing with netCDF files
+* Add a type for gridded datasets that includes a reference to the top level BALD Container (or its FDRI equivalent) as a property
+* Ensure any fdri:Variables that have an equivalent CF Standard name are properly mapped to the existing NERC vocabulary.
