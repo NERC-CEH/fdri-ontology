@@ -4,6 +4,8 @@ prefixes:
     uri: http://www.w3.org/ns/dcat#
   - prefix: dct
     uri: http://purl.org/dc/terms/
+  - prefix: foaf
+    uri: http://xmlns.com/foaf/0.1/
   - prefix: fdri
     uri: http://fdri.ceh.ac.uk/vocab/metadata/
   - prefix: geo
@@ -3000,6 +3002,27 @@ records:
         constraints:
           - record: Condition
 
+  Organization:
+    label:
+      - value: Organization
+        lang: en
+    classUri: fdri:Organization
+    shortCode: Organization
+    extends: Agent
+    properties:
+      member:
+        label:
+          - value: member
+            lang: en
+        description:
+          - value: An agent who is a member of the organization.
+            lang: en
+        propertyUri: foaf:member
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Agent
+
   PeriodOfTime:
     label:
       - value: Period Of Time
@@ -3037,7 +3060,15 @@ records:
         constraints:
           - datatype: xsd:date
           - datatype: xsd:dateTime
-  
+
+  Person:
+    label:
+      - value: Person
+        lang: en
+    classUri: fdri:Person
+    shortCode: Person
+    extends: Agent
+
   Plan:
     label:
       - value: Plan
@@ -3678,6 +3709,50 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:decimal
+
+  SoftwareAgent:
+    label:
+      - value: Software Agent
+        lang: en
+    classUri: fdri:SoftwareAgent
+    shortCode: SoftwareAgent
+    extends: Agent
+    properties:
+      repository:
+        label:
+          - value: repository
+            lang: en
+        description:
+          - value: A URL reference to the source control repository where the software agent source code is stored.
+            lang: en
+        propertyUri: fdri:repository
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:anyURI
+      repositoryPath:
+        label:
+          - value: repository path
+            lang: en
+        description:
+          - value: A repository-relative path to the files or directories that contain the software agent source code.
+        propertyUri: fdri:repositoryPath
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
+      version:
+        label:
+          - value: version
+            lang: en
+        description:
+          - value: |
+              A version identifier string that specifies the specific version of source code used by the software agent.
+              Where possible the version specified here SHOULD be a source repository version label such as a Git commit hash or tag reference.
+        propertyUri: dct:version
+        kind: literal
+        constraints:
+          - datatype: xsd:string
 
   SoilType:
     label:
