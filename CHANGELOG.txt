@@ -13,6 +13,12 @@ DRAFT 0.5
   * Add `fdri:FacilityUsage` class as a subclass of `prov:Usage` to represent the use of some EnvironmentalMonitoringFacility in some EnvironmenalMonitoringActivity, qualified by the role (fdri:FacilityUsageRole) that the facility played in the activity.
   * Add `fdri:originatingActivity` to relate an `fdri:ObservationDataset` to the `fdri:EnvironmenalMonitoringActivity` that originated the data contained in the dataset.
   * Add `fdri:RelatedPartyAssociation` to represent the association between an `fdri:Agent` and the role that the played in some `prov:Activity`
+* NEW: Add FOAF ontology as an import for the FDRI ontology
+  * Map fdri:Agent as a subclass of foaf:Agent and prov:Agent
+  * Map fdri:Organization as a subclass of prov:Agent, foaf:Organization, and foaf:Group
+  * Map fdri:Person as a subclass of foaf:Person
+* Add subclasses of fdri:Agent to the recordspec schema
+  * Added fdri:Organization, fdri:Person and fdri:SoftwareAgent to the recordspec schema
 
 DRAFT 0.4.2
 -----------
