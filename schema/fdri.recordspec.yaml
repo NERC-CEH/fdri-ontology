@@ -569,6 +569,20 @@ records:
     mixins:
       - WithLabelAndComment
       - WithAnnotations
+    properties:
+      identifier:
+        label:
+          - value: identifier
+            lang: en
+        description:
+          - value: A unique identifier assigned to the Agent.
+            lang: en
+        propertyUri: dct:identifier
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
+
 
   Aggregation:
     label:

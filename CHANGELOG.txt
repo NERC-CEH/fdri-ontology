@@ -19,6 +19,7 @@ DRAFT 0.5
   * Map fdri:Person as a subclass of foaf:Person
 * Add subclasses of fdri:Agent to the recordspec schema
   * Added fdri:Organization, fdri:Person and fdri:SoftwareAgent to the recordspec schema
+* Add dct:identifier as a property allowed on fdri:Agent
 
 DRAFT 0.4.2
 -----------
