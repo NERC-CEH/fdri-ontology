@@ -44,7 +44,6 @@ above the local reference ellipsoid).""" ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 geo:location rdf:type owl:AnnotationProperty ;
-             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
              rdfs:range geo:SpatialThing .
 
 
@@ -428,6 +427,13 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
            rdfs:label "qualifier"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/references
+:references rdf:type owl:ObjectProperty ;
+            rdfs:domain :Array ;
+            rdfs:range :GriddedDatasetResource ;
+            rdfs:comment "An Array may reference one or more other gridded dataset resources (other arrays or dimensions)."@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/regionScheme
 :regionScheme rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf dcat:themeTaxonomy ;
@@ -518,7 +524,8 @@ schema:valueReference rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-geo:location rdf:type owl:ObjectProperty .
+geo:location rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
 
 ###  http://www.w3.org/ns/prov#wasInfluencedBy
@@ -646,6 +653,18 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
            rdfs:label "elevation"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/hasShape
+:hasShape rdf:type owl:DatatypeProperty ;
+          rdfs:comment "A property specifying the shape of a multidimensional array as a list of the integer size of each dimension of the array."@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/isCoordinate
+:isCoordinate rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Array ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "Indicates if the containing `fdri:Array` is a co-ordinate variable, having a single dimension of the same name in the containing netCDF file."@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/isMobile
 :isMobile rdf:type owl:DatatypeProperty ;
           rdfs:range xsd:boolean ;
@@ -728,11 +747,22 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
                 rdfs:label "settle-in period"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/shape
+:shape rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Array ;
+       rdfs:comment "The shape of the enclosing `fdri:Array`"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/siteVariance
 :siteVariance rdf:type owl:DatatypeProperty ;
               rdfs:range rdf:langString ;
               rdfs:comment "Descriptive information about the way in which the layout of an Environmental Monitoring Facility differs from the standard layout for a facility of its type."@en ;
               rdfs:label "site variance"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/size
+:size rdf:type owl:DatatypeProperty ;
+      rdfs:comment "The size of the enclosing `fdri:Dimension`"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/sourceBucket
@@ -868,6 +898,15 @@ geo:long rdf:type owl:DatatypeProperty ;
 
 Each Annotation instance provides either a single value (`fdri:hasValue`) or a time-based series of values (`fdri:hasValueSeries`) for a single property (`fdri:property`)."""@en ;
             rdfs:label "Annotation"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/Array
+:Array rdf:type owl:Class ;
+       rdfs:subClassOf :GriddedDatasetResource ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :references ;
+                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                       ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
@@ -1102,6 +1141,11 @@ A Data Processing Configuration is defined as a sub-type of `prov:Plan` allowing
 
 A deployment may be associated with a platform on which the sensors or systems were deployed."""@en ;
             rdfs:label "Deployment"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/Dimension
+:Dimension rdf:type owl:Class ;
+           rdfs:subClassOf :GriddedDatasetResource .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalDomain
@@ -1672,6 +1716,31 @@ A persistent or unresolved fault may be represented by using an interval with no
                                              ] ;
                              rdfs:comment "A Feature of Interest with a geospatial location."@en ;
                              rdfs:label "Geo-spatial Feature Of Interest"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/GriddedDataset
+:GriddedDataset rdf:type owl:Class ;
+                rdfs:subClassOf :ObservationDataset ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :contains ;
+                                  owl:allValuesFrom :GriddedDatasetResource
+                                ] .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/GriddedDatasetResource
+:GriddedDatasetResource rdf:type owl:Class ;
+                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasAnnotation ;
+                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :measures ;
+                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty sosa:observes ;
+                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                        ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration
