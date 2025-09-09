@@ -2819,6 +2819,36 @@ records:
     mixins:
       - WithIndexedGeometry
   
+  GriddedContainer:
+    label:
+      - value: Gridded Container
+        lang: en
+    description:
+      - value: A container for gridded data, typically used to organize and manage multiple gridded datasets as a single dataset.
+        lang: en
+    classUri: fdri:GriddedContainer
+    shortCode: GriddedContainer
+    mixins:
+      - WithLabelAndComment
+      - WithAnnotations
+      - WithObservableProperties
+    properties:
+      contains:
+        label:
+          - value: contains
+            lang: en
+        description:
+          - value: The arrays and dimensions contained within the gridded dataset.
+            lang: en
+        propertyUri: fdri:contains
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: Array
+          - record: Dimension
+          - record: GriddedContainer
+
   GriddedDataset:
     label:
       - value: Gridded dataset
@@ -2845,6 +2875,7 @@ records:
         constraints:
           - record: Array
           - record: Dimension
+          - record: GriddedContainer
 
   InternalDataProcessingConfiguration:
     label:

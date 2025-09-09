@@ -906,7 +906,9 @@ Each Annotation instance provides either a single value (`fdri:hasValue`) or a t
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :references ;
                          owl:minCardinality "0"^^xsd:nonNegativeInteger
-                       ] .
+                       ] ;
+       rdfs:comment "A multi-dimensional array contained in an `fdri:GriddedDataset`."@en ;
+       rdfs:label "Array"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
@@ -1145,7 +1147,9 @@ A deployment may be associated with a platform on which the sensors or systems w
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Dimension
 :Dimension rdf:type owl:Class ;
-           rdfs:subClassOf :GriddedDatasetResource .
+           rdfs:subClassOf :GriddedDatasetResource ;
+           rdfs:comment "A single dimension of a multi-dimensional array contained in an `fdri:GriddedDataset`."@en ;
+           rdfs:label "Dimension"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalDomain
@@ -1718,13 +1722,26 @@ A persistent or unresolved fault may be represented by using an interval with no
                              rdfs:label "Geo-spatial Feature Of Interest"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/GriddedContainer
+:GriddedContainer rdf:type owl:Class ;
+                  rdfs:subClassOf :GriddedDatasetResource ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :contains ;
+                                    owl:allValuesFrom :GriddedDatasetResource
+                                  ] ;
+                  rdfs:comment "A container for gridded data, typically used to organize and manage multiple gridded datasets as a single dataset. Referred to as `groups` in netCDF."@en ;
+                  rdfs:label "Gridded Container"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/GriddedDataset
 :GriddedDataset rdf:type owl:Class ;
                 rdfs:subClassOf :ObservationDataset ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :contains ;
                                   owl:allValuesFrom :GriddedDatasetResource
-                                ] .
+                                ] ;
+                rdfs:comment "A dataset in an array format such as ZARR or netCDF."@en ;
+                rdfs:label "Gridded Dataset"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/GriddedDatasetResource
@@ -1740,7 +1757,9 @@ A persistent or unresolved fault may be represented by using an interval with no
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty sosa:observes ;
                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                        ] .
+                                        ] ;
+                        rdfs:comment "Base type for resources which form the structure of a Gridded Dataset."@en ;
+                        rdfs:label "Gridded Dataset Resource"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration
