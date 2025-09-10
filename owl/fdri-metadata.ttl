@@ -1751,11 +1751,11 @@ A persistent or unresolved fault may be represented by using an interval with no
                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
                                         ] ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :measures ;
+                                          owl:onProperty :measure ;
                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
                                         ] ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty sosa:observes ;
+                                          owl:onProperty sosa:observedProperty ;
                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
                                         ] ;
                         rdfs:comment "Base type for resources which form the structure of a Gridded Dataset."@en ;

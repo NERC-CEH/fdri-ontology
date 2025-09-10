@@ -72,26 +72,26 @@ mixins:
           A resource with reference to observable properties and their measures.
         language: en
     properties:
-      measures:
+      measure:
         label:
-          - value: measures
+          - value: measure
             lang: en
         description:
           - value: A reference to the `fdri:Measure` that the enclosing resource observes or provides.
             lang: en
-        propertyUri: fdri:measures
+        propertyUri: fdri:measure
         kind: object
         repeatable: true
         constraints:
           - record: Measure
-      observes:
+      observedProperty:
         label:
-          - value: observes
+          - value: observed property
             lang: en
         description:
           - value: |
               The observable property or properties monitored by, or provided by the enclosing resource.
-        propertyUri: sosa:observes
+        propertyUri: sosa:observedProperty
         kind: object
         repeatable: true
         constraints:
@@ -618,7 +618,18 @@ records:
         repeatable: true
         constraints:
           - datatype: xsd:string
-
+      mbox:
+        label:
+          - value: email
+            lang: en
+        description:
+          - value: An email address of the Agent.
+            lang: en
+        propertyUri: foaf:mbox
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
 
   Aggregation:
     label:
