@@ -54,3 +54,6 @@ GriddedDatasetResource --> Annotation: fdri_hasAnnotation
 GriddedDatasetResource --> Variable: sosa_observedProperty
 GriddedDatasetResource --> Measure: fdri_measure
 ```
+
+> **QUESTION**
+> The current modelling does not preserve the ordering of references from an Array to its members in the `fdri:references` property, but *does* preserve the ordering of the dimensions in the `fdri:shape` property. This has been done to keep the `fdri:references` relation simple and to avoid requiring rdf:List processing to access the references. If there are use-cases for preserving the order of references in the metadata store, then either the range of `fdri:references` should be changed, or a new order-preserving property (e.g. `fdri:referenceList`?) should be introduced. 
