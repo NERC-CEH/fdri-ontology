@@ -62,6 +62,41 @@ mixins:
         repeatable: true
         constraints:
           - datatype: xsd:string
+
+  WithObservableProperties:
+    label:
+      - value: With Observable Properties
+        language: en
+    description:
+      - value: |
+          A resource with reference to observable properties and their measures.
+        language: en
+    properties:
+      measure:
+        label:
+          - value: measure
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that the enclosing resource observes or provides.
+            lang: en
+        propertyUri: fdri:measure
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Measure
+      observedProperty:
+        label:
+          - value: observed property
+            lang: en
+        description:
+          - value: |
+              The observable property or properties monitored by, or provided by the enclosing resource.
+        propertyUri: sosa:observedProperty
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Variable
+
   WithAnnotations:
     label:
       - value: With Annotations
@@ -104,6 +139,7 @@ mixins:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+          - datatype: xsd:string
       comment:
         label:
           - value: comment
@@ -582,7 +618,18 @@ records:
         repeatable: true
         constraints:
           - datatype: xsd:string
-
+      mbox:
+        label:
+          - value: email
+            lang: en
+        description:
+          - value: An email address of the Agent.
+            lang: en
+        propertyUri: foaf:mbox
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
 
   Aggregation:
     label:
@@ -690,6 +737,59 @@ records:
         kind: object
         constraints:
           - record: PropertyValueSeries
+
+  Array:
+    label:
+      - value: Array
+        lang: en
+    description:
+      - value: |
+          A multi-dimensional array contained in an `fdri:GriddedDataset`.
+        lang: en
+    mixins:
+      - WithLabelAndComment
+      - WithAnnotations
+      - WithObservableProperties
+    classUri: fdri:Array
+    shortCode: Array
+    properties:
+      isCoordinate:
+        label:
+          - value: is coordinate
+            lang: en
+        description:
+          - value: A boolean value indicating whether the enclosing fdri:Array is considered to be a co-ordinate variable, having a single dimension of the same name, in the containing netCDF file.
+            lang: en
+        propertyUri: fdri:isCoordinate
+        kind: literal
+        constraints:
+          - datatype: xsd:boolean
+      references:
+        label:
+          - value: references
+            lang: en
+        description:
+          - value: |
+              References to other resources in a gridded dataset are referenced by this array.
+            lang: en
+        propertyUri: fdri:references
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: Array
+          - record: Dimension
+      shape:
+        label:
+          - value: shape
+            lang: en
+        description:
+          - value: |
+              The shape of the array, which may be multi-dimensional.
+            lang: en
+        propertyUri: fdri:shape
+        kind: object
+
 
   Catchment:
     label:
@@ -1324,6 +1424,16 @@ records:
         kind: object
         constraints:
           - record: ObservationDataset
+      keyword:
+        label:
+          - value: keyword
+            lang: en
+        description:
+          - value: A keyword or tag describing a resource.
+            lang: en
+        propertyUri: dcat:keyword
+        kind: literal
+        repeatable: true
       license:
         label:
           - value: license
@@ -1566,6 +1676,32 @@ records:
         nested: true
         constraints:
           - record: MediaObject
+
+  Dimension:
+    label:
+      - value: Dimension
+        lang: en
+    description:
+      - value: A single dimension of a multi-dimensional array contained in an `fdri:GriddedDataset`.
+        lang: en
+    mixins:
+      - WithLabelAndComment
+      - WithAnnotations
+      - WithObservableProperties
+    classUri: fdri:Dimension
+    shortCode: Dimension
+    properties:
+      size:
+        label:
+          - value: size
+            lang: en
+        description:
+          - value: The size of the dimension, i.e. the number of elements along this dimension.
+            lang: en
+        propertyUri: fdri:size
+        kind: literal
+        constraints:
+          - datatype: xsd:integer
 
   Distribution:
     label:
@@ -2705,6 +2841,64 @@ records:
     mixins:
       - WithIndexedGeometry
   
+  GriddedContainer:
+    label:
+      - value: Gridded Container
+        lang: en
+    description:
+      - value: A container for gridded data, typically used to organize and manage multiple gridded datasets as a single dataset.
+        lang: en
+    classUri: fdri:GriddedContainer
+    shortCode: GriddedContainer
+    mixins:
+      - WithLabelAndComment
+      - WithAnnotations
+      - WithObservableProperties
+    properties:
+      contains:
+        label:
+          - value: contains
+            lang: en
+        description:
+          - value: The arrays and dimensions contained within the gridded dataset.
+            lang: en
+        propertyUri: fdri:contains
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: Array
+          - record: Dimension
+          - record: GriddedContainer
+
+  GriddedDataset:
+    label:
+      - value: Gridded dataset
+        lang: en
+    description:
+      - value: |
+          A dataset containing multi-dimensional arrays of data, typically represented as a grid.
+        lang: en
+    extends: ObservationDataset
+    classUri: fdri:GriddedDataset
+    shortCode: GriddedDataset
+    properties:
+      contains:
+        label:
+          - value: contains
+            lang: en
+        description:
+          - value: The arrays and dimensions contained within the gridded dataset.
+            lang: en
+        propertyUri: fdri:contains
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: Array
+          - record: Dimension
+          - record: GriddedContainer
+
   InternalDataProcessingConfiguration:
     label:
       - value: Internal Data Processing Configuration

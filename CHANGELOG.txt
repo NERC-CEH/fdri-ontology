@@ -20,6 +20,14 @@ DRAFT 0.5
 * Add subclasses of fdri:Agent to the recordspec schema
   * Added fdri:Organization, fdri:Person and fdri:SoftwareAgent to the recordspec schema
 * Add dct:identifier as a property allowed on fdri:Agent
+* NEW: Add types to support gridded datasets
+  * Add `fdri:GriddedDataset` for the top level dataset.
+  * Add `fdri:GriddedContainer`, `fdri:Array` and `fdri:Dimension` to represent groups, arrays and dimensions with their metadata
+  * Use `fdri:contains` with type restrictions to create nesting relations between gridded datasets, groups, arrays and dimensions.
+  * Add `fdri:references` to express the relation between Arrays and the dimensions(s) they use.
+* NON-BREAKING: Relax the definition of rdfs:label in the recordspec schema to allow both xsd:string and rdf:langString literals (was only rdf:langString).
+* NON-BREAKING: Add keyword (dcat:keyword) as an optional property of Dataset in the recordspec schema.
+* NEW: Add mbox (`foaf:mbox`) as an allowed property on the `Agent` record type in the recordspec schema.
 
 DRAFT 0.4.2
 -----------
