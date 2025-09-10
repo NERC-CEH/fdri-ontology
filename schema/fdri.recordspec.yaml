@@ -1413,6 +1413,16 @@ records:
         kind: object
         constraints:
           - record: ObservationDataset
+      keyword:
+        label:
+          - value: keyword
+            lang: en
+        description:
+          - value: A keyword or tag describing a resource.
+            lang: en
+        propertyUri: dcat:keyword
+        kind: literal
+        repeatable: true
       license:
         label:
           - value: license
