@@ -25,6 +25,7 @@ DRAFT 0.5
   * Add `fdri:GriddedContainer`, `fdri:Array` and `fdri:Dimension` to represent groups, arrays and dimensions with their metadata
   * Use `fdri:contains` with type restrictions to create nesting relations between gridded datasets, groups, arrays and dimensions.
   * Add `fdri:references` to express the relation between Arrays and the dimensions(s) they use.
+* NON-BREAKING: Relax the definition of rdfs:label in the recordspec schema to allow both xsd:string and rdf:langString literals (was only rdf:langString).
 
 DRAFT 0.4.2
 -----------

@@ -139,6 +139,7 @@ mixins:
         repeatable: true
         constraints:
           - datatype: rdf:langString
+          - datatype: xsd:string
       comment:
         label:
           - value: comment
