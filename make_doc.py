@@ -104,6 +104,7 @@ if __name__ == '__main__':
     html += make_section('doc/high-level-catalog-structure.md')
     html += make_section('doc/annotations.md')
     html += make_section('doc/time-series-dataset.md')
+    html += make_section('doc/gridded-data.md')
     html += make_section('doc/provenance-and-activity.md')
     html += make_section('doc/variables.md')
     html += make_section('doc/emf.md')
