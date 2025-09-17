@@ -123,6 +123,14 @@ geo:location rdf:type owl:AnnotationProperty ;
           rdfs:label "argument"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/calibrationValue
+:calibrationValue rdf:type owl:ObjectProperty ;
+                  rdfs:domain :EnvironmentalMonitoringSystem ;
+                  rdfs:range :CalibrationValueSeries ;
+                  rdfs:comment "Relates an `fdri:EnvironmentalMonitoringSystem` to the `fdri:CalibrationValueSeries` that provide the calibration co-efficients for the system."@en ;
+                  rdfs:label "calibration value"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/catchmentScheme
 :catchmentScheme rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf dcat:themeTaxonomy ;
@@ -909,6 +917,23 @@ Each Annotation instance provides either a single value (`fdri:hasValue`) or a t
                        ] ;
        rdfs:comment "A multi-dimensional array contained in an `fdri:GriddedDataset`."@en ;
        rdfs:label "Array"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/CalibrationValueSeries
+:CalibrationValueSeries rdf:type owl:Class ;
+                        rdfs:subClassOf :PropertyValueSeries ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :appliesToVariable ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass :Variable
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :method ;
+                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass :DataProcessingMethod
+                                        ] ;
+                        rdfs:comment "A series of calibration co-efficients to be used to correct the raw values of the specified variable using the specified data processing method."@en ;
+                        rdfs:label "Calibration Value Series"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme

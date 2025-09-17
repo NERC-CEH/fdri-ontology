@@ -790,6 +790,31 @@ records:
         propertyUri: fdri:shape
         kind: object
 
+  CalibrationValueSeries:
+    label:
+      - value: Calibration Value Series
+        lang: en
+    description:
+      - value: A series of calibration values to be applied to the raw values of a specific variable, using a specific calibration method to provide the calibrated values.
+        lang: en
+    extends: PropertyValueSeries
+    classUri: fdri:CalibrationValueSeries
+    shortCode: CalibrationValueSeries
+    properties:
+      appliesToVariable:
+        description:
+          - value: The variable that this calibration series provides calibration values for.
+        propertyUri: fdri:appliesToVariable
+        kind: object
+        constraints:
+          - record: Variable
+      method:
+        description:
+          - value: A reference to the concept that defines the calibration method to be used when applying the values in this series.
+        propertyUri: fdri:method
+        kind: object
+        constraints:
+          - record: DataProcessingMethod
 
   Catchment:
     label:
@@ -2231,6 +2256,17 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
+      calibrationValue:
+        label:
+          - value: calibration value
+            lang: en
+        description:
+          - value: The calibration co-efficients or settings that were determined when the system was calibrated.
+            lang: en
+        propertyUri: fdri:calibrationValue
+        kind: object
+        constraints:
+          - record: CalibrationValueSeries
       calibrationDue:
         label:
           - value: calibration due
