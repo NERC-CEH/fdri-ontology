@@ -2840,6 +2840,7 @@ records:
     shortCode: GeospatialFeatureOfInterest
     mixins:
       - WithIndexedGeometry
+      - WithAnnotations
   
   GriddedContainer:
     label:
