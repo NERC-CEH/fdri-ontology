@@ -1,6 +1,6 @@
 ## Notes on Geo-spatial Resources
 
-Several classes in the FDRI ontology represent geo-spatially located entities which are either persistent or temporary in nature. In particular `fdri:EnvironmentalMonitoringFacility`, `fdri:GeospatialFeature` and `fdri:MobileDeployment`. To facilitate a range of both machine and human access to geospatial data relating to these entities the model provides a number of distinct properties on these classes.
+Several classes in the FDRI ontology represent geo-spatially located entities which are either persistent or temporary in nature. In particular `fdri:EnvironmentalMonitoringFacility`, `fdri:GeospatialFeatureOfInterest` and `fdri:MobileDeployment`. To facilitate a range of both machine and human access to geospatial data relating to these entities the model provides a number of distinct properties on these classes.
 
 `geos:hasGeometry` MUST be provided and is intended to be used to provide the preferred geometry for the entity, whether this be a boundary, path or point. This property is intended to provide a consistently available property for machine processing of geospatial entities with some flexibility with regards to how the entity is described geospatially.
 
@@ -13,4 +13,5 @@ Several classes in the FDRI ontology represent geo-spatially located entities wh
 `geos:hasCentroid` MAY be used to provide the coordinates of a centroid point for the entity.
 
 `geos:hasBoundingBox` MAY be used to provide the coordinates of a bounding box that contains the entity.
+
 

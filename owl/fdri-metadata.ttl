@@ -1691,6 +1691,10 @@ A persistent or unresolved fault may be represented by using an interval with no
                                                owl:allValuesFrom geos:Geometry
                                              ] ,
                                              [ rdf:type owl:Restriction ;
+                                               owl:onProperty :hasAnnotation ;
+                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
                                                owl:onProperty geos:hasGeometry ;
                                                owl:minCardinality "1"^^xsd:nonNegativeInteger
                                              ] ,
