@@ -4250,6 +4250,30 @@ records:
     classUri: fdri:TimeSeriesDataset
     shortCode: TimeSeriesDataset
     properties:
+      dependsOn:
+        label:
+          - value: depends on
+            lang: en
+        description:
+          - value: References other time series datasets that this dataset is derived from.
+            lang: en
+        propertyUri: fdri:dependsOn
+        kind: object
+        repeatable: true
+        constraints:
+          - record: TimeSeriesDataset
+      directDependsOn:
+        label:
+          - value: direct depends on
+            lang: en
+        description:
+          - value: References other time series datasets that this dataset is directly derived from.
+            lang: en
+        propertyUri: fdri:directDependsOn
+        kind: object
+        repeatable: true
+        constraints:
+          - record: TimeSeriesDataset
       type:
         propertyUri: dct:type
         kind: object
