@@ -44,6 +44,7 @@ above the local reference ellipsoid).""" ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 geo:location rdf:type owl:AnnotationProperty ;
+             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
              rdfs:range geo:SpatialThing .
 
 
@@ -159,6 +160,21 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/contains
 :contains rdf:type owl:ObjectProperty .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/dependsOn
+:dependsOn rdf:type owl:ObjectProperty ;
+           rdfs:domain :TimeSeriesDataset ;
+           rdfs:range :TimeSeriesDataset ;
+           rdfs:comment "The subject Time Series Dataset contains values that depends (directly or indirectly) on the values in the object Time Series Dataset."@en ;
+           rdfs:label "depends on" .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/directDependsOn
+:directDependsOn rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :dependsOn ;
+                 rdfs:comment "The subject Time Series Dataset contains values that depends directly on the values in the object Time Series Dataset."@en ;
+                 rdfs:label "directly depends on"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/document
@@ -524,8 +540,7 @@ schema:valueReference rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-geo:location rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
+geo:location rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/ns/prov#wasInfluencedBy
@@ -2433,6 +2448,14 @@ prov:Activity rdfs:subClassOf [ rdf:type owl:Restriction ;
                                 owl:onProperty dct:type ;
                                 owl:allValuesFrom :ActivityType
                               ] .
+
+
+###  http://xmlns.com/foaf/0.1/Group
+<http://xmlns.com/foaf/0.1/Group> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class .
 
 
 ###  https://w3id.org/iadopt/ont/Entity

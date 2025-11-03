@@ -54,6 +54,7 @@ Plan --> TimeSeriesDefinition: fdri_uses
 TimeSeriesDataset --> ProcessingLevel: fdri_processingLevel
 TimeSeriesDataset --> Variable: sosa_observedProperty
 TimeSeriesDataset --> Measure: fdri_measure
+TimeSeriesDataset --> TimeSeriesDataset: fdri_dependsOn, fdri_directDependsOn
 ```
 
 An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series of observations of a single variable by some `fdri:EnvironmentalMonitoringFacility`, the time series itself is soft-typed (using `dct:type`) by an `fdri:TimeSeriesDefinition`, which in turn has the following properties:
@@ -65,10 +66,11 @@ An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series 
 * `fdri:sourceBucket` specifies the top level container (an S3 bucket) in which the data that is processed to produce time series datasets is stored.
 * `fdri:dataset` specifies the specific partition of the top level container in which the data is stored.
 * `fdri:columName` specifies the column within the partition where the values that produce the time series dataset(s) is stored.
-
+* `fdri:dependsOn` and `fdri:directDependsOn` express processing dependencies between TimeSeriesDatasets. `fdri:directDependsOn` should be used only for direct dependencies and `fdri:dependsOn` may be used to capture the transitive closure of `fdri:directDependsOn`. The precise nature of the dependency between datasets should be captured by the `fdri:TimeSeriesPlan` associated with the dataset.
 
 > **NOTE**
 > The datasets for different sites are saved in separate folders within the same path structure within the bucket. This is expected to be the case for other projects processed through the DRI pipeline, and so site specific paths are not currently specified in the time series definition metadata.
+
 
 ### Time-Series Dataset Versioning
 
