@@ -7,7 +7,7 @@ The annotation property is defined as a complex observable property which allows
 An annotation can also be used to qualify a property value. For example when a measurement applies to some percentage of the observed entity, that percentage value can be captured as an annotation of the property value using the `fdri:qualifier` relation.
 
 Annotations have:
-* an annotation property (`fdri:property`) which is a [complex observable property](observations-observable-properties.md) drawn from a controlled list defined by the parent catalog of the annotated resource
+* an annotation property (`fdri:property`) which is a SKOS Concept drawn from a controlled list defined by the parent catalog of the annotated resource. Where annotations represent measures it is recommended to use a [complex observable property](observations-observable-properties.md) 
 * either
   * an `fdri:hasValue` property whose value is a single `fdri:PropertyValue` providing the static value of the annotation or
   * an `fdri:hasValueSeries` property whose value is an `fdri:PropertyValueSeries` providing a series of values for the annotation that changes over time. 
@@ -18,7 +18,8 @@ An `fdri:Annotation` can also be used as the value of an `fdri:qualifier` proper
 classDiagram
 class Resource["dcat:Resource"]
 class Annotation["fdri:Annotation"]
-class COP["iop:Variable"]
+class Concept["skos:Concept"]
+class COP["fdri:Variable"]
 class PropertyValue["fdri:PropertyValue"] {
     value: rdfs:Literal
     minValue: rdfs:Literal
@@ -30,7 +31,7 @@ class TBPV["fdri:TimeBoundPropertyValue"]
 class Period["dcat:PeriodOfTime"]
 
 Resource --> Annotation: fdri_hasAnnotation
-Annotation --> COP: fdri_property
+Annotation --> Concept: fdri_property
 Annotation --> PropertyValue: fdri_hasValue
 Annotation --> PropertyValueSeries: fdri_hasValueSeries
 PropertyValueSeries --> TBPV: fdri_hasCurrentValue
@@ -38,4 +39,5 @@ PropertyValueSeries --> TBPV: fdri_hadValue
 TBPV --> Period: fdri_interval
 TBPV --|> PropertyValue
 PropertyValue --> Annotation: fdri_qualifier
+Concept <|-- COP
 ```

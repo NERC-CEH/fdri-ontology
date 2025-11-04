@@ -708,7 +708,7 @@ records:
         propertyUri: fdri:property
         kind: object
         constraints:
-          - record: Variable
+          - record: Concept
       hasValue:
         label:
           - value: has value

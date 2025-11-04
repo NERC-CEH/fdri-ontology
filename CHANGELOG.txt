@@ -29,6 +29,8 @@ DRAFT 0.5
 * NON-BREAKING: Add keyword (dcat:keyword) as an optional property of Dataset in the recordspec schema.
 * NEW: Add mbox (`foaf:mbox`) as an allowed property on the `Agent` record type in the recordspec schema.
 * NEW: Allow `hasAnnotation` on `GeospatialFeatureOfInterest`.
+* NEW: Add `fdri:dependsOn` and `fdri:directDependsOn` to `fdri:TimeSeriesDataset` to allow the direct expression of dependency relationships between time-series datasets.
+* NON-BREAKING: Changed the range of `fdri:property` on `fdri:Annotation` from `fdri:Variable` to the super-class `skos:Concept`, to allow any kind of Concept to be used to define an annotation property.
 
 DRAFT 0.4.2
 -----------
