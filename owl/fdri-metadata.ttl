@@ -431,7 +431,7 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/property
 :property rdf:type owl:ObjectProperty ;
-          rdfs:range :Variable ;
+          rdfs:range skos:Concept ;
           rdfs:comment "References the `fdri:Variable` which describes the property for which an `fdri:Annotation` provides a value or value series."@en ;
           rdfs:label "property"@en .
 
