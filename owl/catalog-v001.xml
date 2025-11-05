@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://xmlns.com/foaf/0.1/" uri="foaf.rdf"/>
     <uri id="Imports Wizard Entry" name="http://www.w3.org/ns/ssn/systems/" uri="http://www.w3.org/ns/ssn/systems"/>
     <uri id="User Edited Redirect" name="http://www.opengis.net/ont/geosparql" uri="geo.ttl"/>
     <uri id="Imports Wizard Entry" name="http://data.ordnancesurvey.co.uk/ontology/spatialrelations/" uri="https://www.ordnancesurvey.co.uk/linked-data/ontology/spatialrelations.owl"/>
