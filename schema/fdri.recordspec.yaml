@@ -14,6 +14,8 @@ prefixes:
     uri: http://www.opengis.net/ont/geosparql#
   - prefix: iop
     uri: https://w3id.org/iadopt/ont/
+  - prefix: owl
+    uri: http://www.w3.org/2002/07/owl#
   - prefix: prov
     uri: http://www.w3.org/ns/prov#
   - prefix: qudt
@@ -487,6 +489,7 @@ records:
     shortCode: Activity
     mixins:
       - WithLabelAndComment
+    extends: Thing
     properties:
       type:
         label:
@@ -605,6 +608,7 @@ records:
     mixins:
       - WithLabelAndComment
       - WithAnnotations
+    extends: Thing
     properties:
       identifier:
         label:
@@ -696,6 +700,7 @@ records:
     shortCode: Annotation
     mixins:
       - WithLabelAndComment
+    extends: Thing
     properties:
       property:
         label:
@@ -750,6 +755,7 @@ records:
       - WithLabelAndComment
       - WithAnnotations
       - WithObservableProperties
+    extends: Thing
     classUri: fdri:Array
     shortCode: Array
     properties:
@@ -788,6 +794,8 @@ records:
               The shape of the array, which may be multi-dimensional.
             lang: en
         propertyUri: fdri:shape
+        # Shape properties are represented as an RDF list of integers.
+        # There is currently no way to express this constraint in the record spec.
         kind: object
 
 
@@ -837,6 +845,7 @@ records:
         lang: en
     classUri: skos:Concept
     shortCode: Concept
+    extends: Thing
     properties:
       prefLabel:
         label:
@@ -911,6 +920,7 @@ records:
     mixins:
       - WithTitleAndDescription
       - WithPublicationMetadata
+    extends: Thing
     properties:
       hasTopConcept:
         label:
@@ -938,6 +948,7 @@ records:
         lang: en
     mixins:
       - WithValueOrRange
+    extends: Thing
     classUri: fdri:Condition
     shortCode: Condition
     properties:
@@ -961,6 +972,7 @@ records:
     description:
       - value: Represents a single argument passed to a configuration method as part of a data processing configuration item.
         language: en
+    extends: Thing
     classUri: fdri:ConfigurationArgument
     shortCode: ConfigurationArgument
     properties:
@@ -989,6 +1001,7 @@ records:
     description:
       - value: Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run.
         language: en
+    extends: Thing
     classUri: fdri:ConfigurationItem
     shortCode: ConfigurationItem
     properties:
@@ -1110,6 +1123,7 @@ records:
           A resources which provides the current and historically configured values for some configuration property
           of the parent resource.
         lang: en
+    extends: Thing
     classUri: fdri:ConfigurationValueSeries
     shortCode: ConfigurationValueSeries
     properties:
@@ -1319,6 +1333,7 @@ records:
       - WithTitleAndDescription
       - WithPublicationMetadata
       - WithAnnotations
+    extends: Thing
     properties:
       accessRights:
         label:
@@ -1412,7 +1427,7 @@ records:
         kind: object
         repeatable: true
         constraints:
-          - record: ObservationDataset
+          - record: Dataset
       isVersionOf:
         label:
           - value: is version of
@@ -1423,7 +1438,7 @@ records:
         propertyUri: dct:isVersionOf
         kind: object
         constraints:
-          - record: ObservationDataset
+          - record: Dataset
       keyword:
         label:
           - value: keyword
@@ -1524,6 +1539,7 @@ records:
     shortCode: Deployment
     mixins:
       - WithLabelAndComment
+    extends: Thing
     properties:
       startedAtTime:
         label:
@@ -1662,6 +1678,7 @@ records:
       - CataloguedResource
       - WithTitleAndDescription
       - WithPublicationMetadata
+    extends: Thing
     properties:
       associatedMedia:
         label:
@@ -1688,6 +1705,7 @@ records:
       - WithLabelAndComment
       - WithAnnotations
       - WithObservableProperties
+    extends: Thing
     classUri: fdri:Dimension
     shortCode: Dimension
     properties:
@@ -1714,6 +1732,7 @@ records:
       - WithTitleAndDescription
       - WithProvenance
       - WithPublicationMetadata
+    extends: Thing
     classUri: dcat:Distribution
     shortCode: Distribution
     properties:
@@ -1741,6 +1760,8 @@ records:
         propertyUri: dct:format
         kind: object
         required: true
+        constraints:
+          - record: Concept
 
   EnvironmentalDomain:
     label:
@@ -1895,6 +1916,7 @@ records:
       - WithIndexedGeometry
       - WithProvenance
       - CataloguedResource
+    extends: Thing
     properties:
       hasPart:
         label:
@@ -2083,6 +2105,7 @@ records:
     mixins:
       - WithAnnotations
       - WithLabelAndComment
+    extends: Thing
     properties:
       contains:
         label:
@@ -2133,6 +2156,7 @@ records:
     mixins:
       - WithAnnotations
       - WithLabelAndComment
+    extends: Thing
     properties:
       initiated:
         label:
@@ -2582,6 +2606,7 @@ records:
       - WithIndexedGeometry
       - WithProvenance
       - CataloguedResource
+    extends: Thing
     properties:
       hasMember:
         label:
@@ -2610,6 +2635,7 @@ records:
         lang: en
     classUri: fdri:FacilityGroupMembership
     shortCode: FacilityGroupMembership
+    extends: Thing
     properties:
       group:
         label:
@@ -2655,7 +2681,7 @@ records:
     description:
       - value: A concept representing the nature of a facility group. e.g. catchment, region, project
         lang: en
-        extends: Concept
+    extends: Concept
     classUri: fdri:FacilityGroupType
     shortCode: FacilityGroupType
     properties:
@@ -2694,6 +2720,7 @@ records:
     shortCode: FacilityUsage
     mixins:
       - WithLabelAndComment
+    extends: Thing
     properties:
       entity:
         label:
@@ -2757,6 +2784,7 @@ records:
     shortCode: Fault
     mixins:
       - WithLabelAndComment
+    extends: Thing
     properties:
       affectedFacility:
         label:
@@ -2805,6 +2833,7 @@ records:
     shortCode: Feature
     mixins:
       - WithLabelAndComment
+    extends: Thing
 
   Geometry:
     label:
@@ -2814,6 +2843,7 @@ records:
       - value: A defined line, region or point in space.
         lang: en
     classUri: geos:Geometry
+    extends: Thing
     shortCode: Geometry
     properties:
       asWKT:
@@ -2855,6 +2885,7 @@ records:
       - WithLabelAndComment
       - WithAnnotations
       - WithObservableProperties
+    extends: Thing
     properties:
       contains:
         label:
@@ -2994,6 +3025,7 @@ records:
         lang: en
     classUri: schema:MediaObject
     shortCode: MediaObject
+    extends: Thing
     properties:
       contentUrl:
         label:
@@ -3183,6 +3215,7 @@ records:
     shortCode: OperatingRange
     mixins:
       - WithValueOrRange
+    extends: Thing
     properties:
       hasOperatingProperty:
         label:
@@ -3241,6 +3274,7 @@ records:
         lang: en
     classUri: dct:PeriodOfTime
     shortCode: PeriodOfTime
+    extends: Thing
     properties:
       startDate:
         label:
@@ -3292,6 +3326,7 @@ records:
     mixins:
       - WithTitleAndDescription
       - WithAnnotations
+    extends: Thing
 
   Procedure:
     label:
@@ -3422,11 +3457,12 @@ records:
           A catalog of resources that are used by, related to or generated as the result of an Environmental Monitoring
           Programme.
         lang: en
+    classUri: fdri:ProgrammeCatalog
+    shortCode: ProgrammeCatalog
     mixins:
       - WithTitleAndDescription
       - WithPublicationMetadata
-    classUri: fdri:ProgrammeCatalog
-    shortCode: ProgrammeCatalog
+    extends: Thing
     properties:
       programme:
         label:
@@ -3526,6 +3562,7 @@ records:
         lang: en
     classUri: schema:PropertyValue
     shortCode: PropertyValue
+    extends: Thing
     properties:
       minValue:
         label:
@@ -3562,6 +3599,8 @@ records:
             lang: en
         propertyUri: schema:valueReference
         kind: object
+        constraints:
+          - record: Thing
       valueType:
         label:
           - value: value type
@@ -3607,6 +3646,7 @@ records:
         lang: en
     classUri: fdri:PropertyValueSeries
     shortCode: PropertyValueSeries
+    extends: Thing
     properties:
       hadValue:
         label:
@@ -3644,6 +3684,7 @@ records:
         lang: en
     classUri: prov:Association
     shortCode: QualifiedAssociation
+    extends: Thing
     properties:
       agent:
         label:
@@ -3689,6 +3730,7 @@ records:
         lang: en
     classUri: prov:Usage
     shortCode: QualifiedUsage
+    extends: Thing
     properties:
       entity:
         label:
@@ -3699,6 +3741,8 @@ records:
             lang: en
         propertyUri: prov:entity
         kind: object
+        constraints:
+          - record: Thing
       hadRole:
         label:
           - value: had role
@@ -3768,6 +3812,7 @@ records:
         lang: en
     classUri: fdri:RelatedPartyAssociation
     shortCode: RelatedPartyAssociation
+    extends: Thing
     properties:
       hasRole:
         label:
@@ -3815,6 +3860,7 @@ records:
         lang: en
     classUri: fdri:RelatedPartyAttribution
     shortCode: RelatedPartyAttribution
+    extends: Thing
     properties:
       hasRole:
         label:
@@ -3884,6 +3930,7 @@ records:
         lang: en
     classUri: fdri:RelativeLocation
     shortCode: RelativeLocation
+    extends: Thing
     properties:
       offsetNorth:
         label:
@@ -4058,6 +4105,7 @@ records:
     shortCode: SurvivalRange
     mixins:
       - WithValueOrRange
+    extends: Thing
     properties:
       hasSurvivalProperty:
         label:
@@ -4106,6 +4154,7 @@ records:
         lang: en
     classUri: sys:SystemCapability
     shortCode: SystemCapability
+    extends: Thing
     properties:
       forProperty:
         label:
@@ -4150,6 +4199,7 @@ records:
     shortCode: SystemProperty
     mixins:
       - WithValueOrRange
+    extends: Thing
     properties:
       property:
         label:
@@ -4204,12 +4254,22 @@ records:
     classUri: fdri:SystemStatusScheme
     shortCode: SystemStatusScheme
 
+  Thing:
+    label:
+      - value: Thing
+        lang: en
+    description:
+      - value: The most generic class of entity.
+        lang: en
+    classUri: owl:Thing
+    shortCode: Thing
+
   TimeBoundPropertyValue:
     label:
       - value: Time-bound Property Value
         lang: en
     description:
-      - value: A value with an associated period of time during which the value is/was vaild.
+      - value: A value with an associated period of time during which the value is/was valid.
         lang: en
     classUri: fdri:TimeBoundPropertyValue
     extends: PropertyValue
@@ -4430,6 +4490,7 @@ records:
         lang: en
     classUri: fdri:UnitScheme
     shortCode: UnitScheme
+    extends: ConceptScheme
     properties:
       hasTopConcept:
         label:
