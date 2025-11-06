@@ -848,6 +848,8 @@ records:
     classUri: fdri:CalibrationValueSeries
     shortCode: CalibrationValueSeries
     extends: PropertyValueSeries
+    mixins:
+      - WithProvenance
     properties:
       appliesToVariable:
         label:
