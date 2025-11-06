@@ -44,7 +44,6 @@ above the local reference ellipsoid).""" ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 geo:location rdf:type owl:AnnotationProperty ;
-             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
              rdfs:range geo:SpatialThing .
 
 
@@ -226,6 +225,16 @@ geo:location rdf:type owl:AnnotationProperty ;
                rdfs:range :Annotation ;
                rdfs:comment "Relates an item to the `fdri:Annotation` items that provide additional property values for that item."@en ;
                rdfs:label "has annotation"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/hasCalibrationMethod
+:hasCalibrationMethod rdf:type owl:ObjectProperty ;
+                      rdfs:range :CalibrationMethod .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/hasCalibrationValueSeries
+:hasCalibrationValueSeries rdf:type owl:ObjectProperty ;
+                           rdfs:range :CalibrationValueSeries .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasCurrentConfigurationItem
@@ -540,7 +549,8 @@ schema:valueReference rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-geo:location rdf:type owl:ObjectProperty .
+geo:location rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
 
 
 ###  http://www.w3.org/ns/prov#wasInfluencedBy
@@ -924,6 +934,33 @@ Each Annotation instance provides either a single value (`fdri:hasValue`) or a t
                        ] ;
        rdfs:comment "A multi-dimensional array contained in an `fdri:GriddedDataset`."@en ;
        rdfs:label "Array"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/CalibrationMethod
+:CalibrationMethod rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :appliesToVariable ;
+                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :Variable
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :method ;
+                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :DataProcessingMethod
+                                   ] ;
+                   rdfs:comment "Captures the `fdri:DataProcessingMethod` that applies to a given `fdri:Variable` or set of variables for systems of the type specified by the enclosing `fdri:EnvironmentalMonitoringSystemType`"@en ;
+                   rdfs:label "Calibration Method"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/CalibrationValueSeries
+:CalibrationValueSeries rdf:type owl:Class ;
+                        rdfs:subClassOf :PropertyValueSeries ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :appliesToVariable ;
+                                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                        ] ;
+                        rdfs:comment "Represents a series of calibration values that apply to the enclosing `fdri:EnvironmentalMonitoringSystem` for a given `fdri:Variable` or set of variables."@en ;
+                        rdfs:label "Calibration Value Series"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
@@ -1451,11 +1488,15 @@ If information is available regarding the platforms (`fdri:EnvironmentalMonitori
                                                ] ,
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty dct:type ;
-                                                 owl:allValuesFrom :EnvironmentalMonitoringFacilityType
+                                                 owl:allValuesFrom :EnvironmentalMonitoringSystemType
                                                ] ,
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty ssn:hasSubSystem ;
                                                  owl:allValuesFrom :EnvironmentalMonitoringSystem
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasCalibrationValueSeries ;
+                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
                                                ] ,
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty :calibrationDue ;
@@ -1487,6 +1528,11 @@ If information is available regarding the platforms (`fdri:EnvironmentalMonitori
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty <http://www.w3.org/ns/ssn/systems/hasSystemCapability> ;
                                                      owl:allValuesFrom <http://www.w3.org/ns/ssn/systems/SystemCapability>
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :hasCalibrationMethod ;
+                                                     owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass :CalibrationMethod
                                                    ] ,
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty :hasProcedure ;
