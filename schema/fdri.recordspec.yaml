@@ -798,6 +798,68 @@ records:
         # There is currently no way to express this constraint in the record spec.
         kind: object
 
+  CalibrationMethod:
+    label:
+      - value: Calibration Method
+        lang: en
+    description:
+      - value: |
+          Captures the `fdri:DataProcessingMethod` that applies to a given `fdri:Variable` or set of variables for
+          systems of the type specified by the enclosing `fdri:EnvironmentalMonitoringSystemType`
+        lang: en
+    extends: Thing
+    classUri: fdri:CalibrationMethod
+    shortCode: CalibrationMethod
+    properties:
+      method:
+        label:
+          - value: method
+            lang: en
+        description:
+          - value: A reference to the data processing method that defines the calibration procedure.
+            lang: en
+        propertyUri: fdri:method
+        kind: object
+        constraints:
+          - record: DataProcessingMethod
+      appliesToVariable:
+        label:
+          - value: applies to variable
+            lang: en
+        description:
+          - value: A reference to the variable or variables to which this calibration method applies.
+            lang: en
+        propertyUri: fdri:appliesToVariable
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Variable
+
+  CalibrationValueSeries:
+    label:
+      - value: Calibration Value Series
+        lang: en
+    description:
+      - value: |
+          A series of calibration values applied to a sensor or instrument as part of its calibration history.
+        lang: en
+    classUri: fdri:CalibrationValueSeries
+    shortCode: CalibrationValueSeries
+    extends: PropertyValueSeries
+    properties:
+      appliesToVariable:
+        label:
+          - value: applies to variable
+            lang: en
+        description:
+          - value: A reference to the variable or variables to which this calibration value series applies.
+            lang: en
+        propertyUri: fdri:appliesToVariable
+        kind: object
+        repeatable: true
+        required: true
+        constraints:
+          - record: Variable
 
   Catchment:
     label:
@@ -2325,6 +2387,18 @@ records:
         repeatable: true
         constraints:
           - record: OperatingRange
+      hasCalibrationValueSeries:
+        label:
+          - value: has calibration value series
+            lang: en
+        description:
+          - value: A reference to a series of calibration values that have been recorded for this system over time.
+            lang: en
+        propertyUri: fdri:hasCalibrationValueSeries
+        kind: object
+        repeatable: true
+        constraints:
+          - record: CalibrationValueSeries
       hasSurvivalRange:
         label:
           - value: has survival range
@@ -2431,6 +2505,18 @@ records:
     classUri: fdri:EnvironmentalMonitoringSystemType
     shortCode: EnvironmentalMonitoringSystemType
     properties:
+      hasCalibrationMethod:
+        label:
+          - value: has calibration method
+            lang: en
+        description:
+          - value: A reference to the calibration method that applies to systems of this type.
+            lang: en
+        propertyUri: fdri:hasCalibrationMethod
+        kind: object
+        repeatable: true
+        constraints:
+          - record: CalibrationMethod
       hasOperatingRange:
         label:
           - value: has operating range
