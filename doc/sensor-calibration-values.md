@@ -37,3 +37,24 @@ CalibrationMethod --> Method: fdri_method
 EMSystemType --> CalibrationMethod: fdri_hasCalibrationMethod
 EMSystem --> EMSystemType: dct_type
 ```
+
+### Calibration activities and provenance
+
+The `fdri:CalibrationValueSeries` class supports provenance statements that can link the update of the value series to sensor calibration activity/activities.
+
+```mermaid
+---
+config:
+    class:
+        hideEmptyMembersBox: true
+---
+classDiagram
+class CalibrationValueSeries["fdri:CalibrationValueSeries"]
+class Activity["prov:Activity"]
+
+CalibrationValueSeries --> Activity: prov_wasGeneratedBy
+CalibrationValueSeries --> Activity: fdri_wasModifiedBy
+```
+
+> [!NOTE]
+> The provenance tracking is at the level of the `fdir:CalibrationValueSeries`, not on each value in the series making it possible to see in one place all of the activities that have affected a givent calibration coefficient for a sensor.
