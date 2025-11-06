@@ -820,6 +820,7 @@ records:
             lang: en
         propertyUri: fdri:method
         kind: object
+        required: true
         constraints:
           - record: DataProcessingMethod
       appliesToVariable:
@@ -831,6 +832,7 @@ records:
             lang: en
         propertyUri: fdri:appliesToVariable
         kind: object
+        required: true
         repeatable: true
         constraints:
           - record: Variable
