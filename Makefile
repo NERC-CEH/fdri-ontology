@@ -39,7 +39,7 @@ CONTEXTS = $(RECORDS:%=$(CONTEXT_BASE)/%.context.jsonld)
 SCHEMAS_DIST=$(RECORDS:%=build/schema/%.schema.json)
 CONTEXTS_DIST=$(RECORDS:%=build/context/%.context.jsonld)
 
-all: validate schemas contexts modelspec
+all: validate schemas contexts modelspec rdfs
 
 pull:
 	docker pull $(IMAGE)
@@ -52,6 +52,7 @@ dist: validate doc schemas contexts modelspec
 
 doc: doc/html/index.html
 modelspec: build/fdri.modelspec.yaml
+rdfs: build/fdri-metadata.rdfs.ttl
 release: build/release/doc.tar.gz build/release/fdri.recordspec.yaml build/release/fdri.modelspec.yaml build/release/fdri-metadata.ttl build/release/CHANGELOG.txt
 schemas: $(SCHEMAS)
 contexts: $(CONTEXTS)
@@ -120,3 +121,7 @@ build/release/fdri.modelspec.yaml: build/fdri.modelspec.yaml
 build/release/fdri-metadata.ttl: owl/fdri-metadata.ttl
 	mkdir -p build/release
 	cp $^ build/release
+
+build/fdri-metadata.rdfs.ttl: schema/fdri.recordspec.yaml
+	mkdir -p build
+	$(RUN) record-spec-cmd rdfs -f yaml -o $@ $^
