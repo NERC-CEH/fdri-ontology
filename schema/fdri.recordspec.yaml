@@ -4152,7 +4152,7 @@ records:
         description:
           - value: The height above the surface of the ground of the deployed system (in metres) .
             lang: en
-        propertyUri: fdri:deloyedHeight
+        propertyUri: fdri:deployedHeight
         kind: literal
         constraints:
           - datatype: xsd:decimal
