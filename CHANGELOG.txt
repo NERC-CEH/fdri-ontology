@@ -32,6 +32,7 @@ DRAFT 0.5
 * NEW: Add `fdri:dependsOn` and `fdri:directDependsOn` to `fdri:TimeSeriesDataset` to allow the direct expression of dependency relationships between time-series datasets.
 * NON-BREAKING: Changed the range of `fdri:property` on `fdri:Annotation` from `fdri:Variable` to the super-class `skos:Concept`, to allow any kind of Concept to be used to define an annotation property.
 * FIX: Fix typo in the URI of the `deployedHeight` property on the `StaticDeployment` record in the Recordspec model.
+* NON-BREAKING: Relax the definition of `fdri:Variable` so that the IAdopt properties `iop:hasProperty` and `iop:hasObjectOfInterest` are optional.
 
 DRAFT 0.4.2
 -----------
