@@ -4,7 +4,9 @@ A `Variable` is a "description of something observed or derived, minimally consi
 
 The purpose of the `Variable` is to provide a structured way to capture information about what observations are recorded in environmental datasetes and to attempt to provide some commonality in descriptions across multiple projects. By describing datasets in terms of the `Variables` that they provide measurements for, we can improve discoverability and help users more quickly locate related datasets within the FDRI catalog.
 
-The description of a Variable consists of multiple facets. The property, object of interest, context, matrix and constraints. Only the property and object of interest facets are required.
+The description of a Variable consists of multiple facets. The property, object of interest, context, matrix and constraints.
+To allow for the incremental development of Variable vocabularies, none of these facets are required by the schema.
+The the property and object of interest facets are recommended and SHOULD be provided if possible.
 
 ```mermaid
 ---
@@ -17,8 +19,8 @@ class Variable["fdri:Variable"]
 class Entity["iop:Entity"]
 class Constraint["fdri:Constraint"]
 class Property["iop:Property"]
-Variable --> "1..1" Property : iop_hasProperty
-Variable --> "1..1" Entity: iop_hasObjectOfInterest
+Variable --> "0..1" Property : iop_hasProperty
+Variable --> "0..1" Entity: iop_hasObjectOfInterest
 Variable --> "0..n" Entity: iop_hasContextObject
 Variable --> "0..1" Entity: iop_hasMatrix
 Variable --> "0..n" Constraint: iop_hasConstraint

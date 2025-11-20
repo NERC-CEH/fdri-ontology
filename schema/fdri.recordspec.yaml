@@ -4627,6 +4627,7 @@ records:
           A description of something that is observed or described.
           A Variable consists minimally of a Property (the characteristic observed) and an Object of Interest (the class of entity that has the observed characteristic).
           Additional properties serve to describe the context of the observation of the characteristic and the way in which the observed value is recorded.
+          This schema allows that a Variable may be initially defined without a Property or Object Of Interest to allow the incremental development of Variable definitions.
         lang: en
     extends: Concept
     classUri: fdri:Variable
@@ -4641,7 +4642,6 @@ records:
             lang: en
         propertyUri: "iop:hasProperty"
         kind: object
-        required: true
         constraints:
           - record: Property
       hasObjectOfInterest:
@@ -4653,7 +4653,6 @@ records:
             lang: en
         propertyUri: iop:hasObjectOfInterest
         kind: object
-        required: true
         constraints:
           - record: Entity
       hasContextObject:
