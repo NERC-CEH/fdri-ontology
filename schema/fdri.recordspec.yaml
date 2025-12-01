@@ -120,6 +120,24 @@ mixins:
         constraints:
           - record: Annotation
 
+  WithHomepage:
+    label:
+      - value: With Homepage
+        language: en
+    properties:
+      homepage:
+        label:
+          - value: homepage
+            lang: en
+        description:
+          - value: A URL pointing to a web page that provides more information about this resource.
+            lang: en
+        propertyUri: foaf:homepage
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:anyURI
+
   WithLabelAndComment:
     label:
       - value: With Label And Comment
@@ -2171,6 +2189,7 @@ records:
     mixins:
       - WithAnnotations
       - WithLabelAndComment
+      - WithHomepage
     extends: Thing
     properties:
       contains:
@@ -2222,6 +2241,7 @@ records:
     mixins:
       - WithAnnotations
       - WithLabelAndComment
+      - WithHomepage
     extends: Thing
     properties:
       initiated:

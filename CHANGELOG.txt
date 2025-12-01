@@ -33,6 +33,7 @@ DRAFT 0.5
 * NON-BREAKING: Changed the range of `fdri:property` on `fdri:Annotation` from `fdri:Variable` to the super-class `skos:Concept`, to allow any kind of Concept to be used to define an annotation property.
 * FIX: Fix typo in the URI of the `deployedHeight` property on the `StaticDeployment` record in the Recordspec model.
 * NON-BREAKING: Relax the definition of `fdri:Variable` so that the IAdopt properties `iop:hasProperty` and `iop:hasObjectOfInterest` are optional.
+* NEW: Added foaf:homepage property to `fdri:EnvironmentalMonitoringProgramme` and `fdri:EnvironmenalMonitoringNetwork`
 
 DRAFT 0.4.2
 -----------
