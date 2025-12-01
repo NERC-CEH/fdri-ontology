@@ -133,7 +133,8 @@ mixins:
           - value: A URL pointing to a web page that provides more information about this resource.
             lang: en
         propertyUri: foaf:homepage
-        kind: object
+        kind: literal
+        repeatable: true
         constraints:
           - datatype: xsd:anyURI
 
