@@ -4467,7 +4467,7 @@ records:
           - value: originating site
             lang: en
         description:
-          - value: The environmental monitoring site whic provided some portion of the content of this dataset.
+          - value: The environmental monitoring site which provided some portion of the content of this dataset.
             lang: en
         propertyUri: fdri:originatingSite
         kind: object
@@ -4481,7 +4481,7 @@ records:
         description:
           - value: |
               Provides the identifier of the S3 bucket which contains the source data processed to create or update
-              time series datasets using this definition.
+              the enclosing TimeSeriesDataset.
             language: en
         propertyUri: fdri:sourceBucket
         kind: literal
@@ -4494,7 +4494,7 @@ records:
         description:
           - value: |
               Provides the name of the column within the source dataset which provides the values to be processed to 
-              create or update time series datasets using this definition.
+              create or update the enclosing TimeSeriesDataset.
             language: en
         propertyUri: fdri:sourceColumnName
         kind: literal
@@ -4507,8 +4507,21 @@ records:
         description:
           - value: |
               Provides the identifier of the partition within the source bucket which contains the source data to be
-              processed to create or update time series datasets using this definition.
+              processed to create or update the enclosing TimeSeriesDataset.
         propertyUri: fdri:sourceDataset
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      sourceTimeColumnName:
+        label:
+          - value: source timestamp column name
+            language: en
+        description:
+          - value: |
+              Provides the name of the column within the source dataset which provides the timestamps associated with
+              the values to be processed to create or update the enclosing TimeSeriesDataset.
+            language: en
+        propertyUri: fdri:sourceTimeColumnName
         kind: literal
         constraints:
           - datatype: xsd:string
