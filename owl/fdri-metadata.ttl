@@ -811,6 +811,13 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
                rdfs:label "source dataset"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/sourceTimeColumnName
+:sourceTimeColumnName rdf:type owl:DatatypeProperty ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Provides the name of the column within the source dataset which provides the timestamps associated with the observations contained in an FDRI time series dataset."@en ;
+                      rdfs:label "source timestamp column name"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/storageLocation
 :storageLocation rdf:type owl:DatatypeProperty ;
                  rdfs:range xsd:string ;
@@ -2334,6 +2341,10 @@ In addition the use of `schema:minValue`, `schema:maxValue`, `schema:value` and 
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :sourceDataset ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :sourceTimeColumnName ;
                                      owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
                    rdfs:comment """A Observation Dataset consisting of a collection of values of one or more Measures of some Feature of Interest at regular intervals over a period of time.
