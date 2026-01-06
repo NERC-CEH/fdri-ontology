@@ -1077,6 +1077,36 @@ records:
         nested: true
         constraints:
           - record: PropertyValue
+      hasStructuredValue:
+        description:
+          - value: The value of the cofiguration item as a structured object containing a set of named properties represented as nested ConfigurationArgument resources.
+            language: en
+        propertyUri: fdri:hasStructuredValue
+        kind: object
+        nested: true
+        constraints:
+          - record: ConfigurationArgumentList
+
+  ConfigurationArgumentList:
+    label:
+      - value: Configuration Argument List
+        language: en
+    description:
+      - value: A structured object containing a set of named properties represented as nested ConfigurationArgument resources.
+    classUri: fdri:ConfigurationArgumentList
+    shortCode: ConfigurationArgumentList
+    extends: Thing
+    properties:
+      hasArgument:
+        description:
+          - value: A configuration argument that is part of this structured argument list.
+            language: en
+        propertyUri: fdri:hasArgument
+        kind: object
+        repeatable: true
+        nested: true
+        constraints:
+          - record: ConfigurationArgument
 
   ConfigurationItem:
     label:
