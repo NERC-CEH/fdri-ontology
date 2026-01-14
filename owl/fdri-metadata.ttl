@@ -480,6 +480,14 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
       rdfs:label "uses"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/utilisedBy
+:utilisedBy rdf:type owl:ObjectProperty ;
+            owl:inverseOf :utilises ;
+            rdfs:range :EnvironmentalMonitoringProgramme ;
+            rdfs:comment "A reference to the Environmental Monitoring Programme(s) that use this monitoring network or facility in the achievement of their environmental monitoring aims."@en ;
+            rdfs:label "utilised by"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/utilises
 :utilises rdf:type owl:ObjectProperty ;
           rdfs:domain :EnvironmentalMonitoringProgramme ;

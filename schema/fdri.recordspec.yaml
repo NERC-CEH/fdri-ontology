@@ -2114,6 +2114,19 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringFacilityType
+      utilisedBy:
+        label:
+          - value: utilised by
+            lang: en
+        description:
+          - value: |
+              A reference to the Environmental Monitoring Programme(s) that use this monitoring network or facility in the achievement of their environmental monitoring aims.
+            lang: en
+        propertyUri: fdri:utilisedBy
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringProgramme
 
   EnvironmentalMonitoringFacilityType:
     label:
@@ -2205,6 +2218,19 @@ records:
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
+      utilisedBy:
+        label:
+          - value: utilised by
+            lang: en
+        description:
+          - value: |
+              A reference to the Environmental Monitoring Programme(s) that use this monitoring network in the achievement of their environmental monitoring aims.
+            lang: en
+        propertyUri: fdri:utilisedBy
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringProgramme
 
   EnvironmentalMonitoringPlatform:
     label:

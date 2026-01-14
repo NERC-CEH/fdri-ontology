@@ -70,7 +70,9 @@ class Measure["fdri:Measure"]
 
 Resource <|-- Facility
 Programme --> Network: fdri_utilises
+Network --> Programme: fdri_utilisedBy
 Programme --> Facility: fdri_utilises
+Facility --> Programme: fdri_utilisedBy
 Network --> Facility: fdri_contains
 Facility --> RelatedParty: prov_qualifiedAttribution
 RelatedParty --> AgentRole: dcat_hadRole
