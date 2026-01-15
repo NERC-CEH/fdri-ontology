@@ -788,21 +788,20 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:boolean
-      references:
+      referencesList:
         label:
-          - value: references
+          - value: reference list
             lang: en
         description:
           - value: |
-              References to other resources in a gridded dataset are referenced by this array.
+              Indexed references to other resources in a gridded dataset are referenced by this array.
             lang: en
-        propertyUri: fdri:references
+        propertyUri: fdri:referencesList
         kind: object
         repeatable: true
         nested: true
         constraints:
-          - record: Array
-          - record: Dimension
+          - record: GriddedArrayItem
       shape:
         label:
           - value: shape
@@ -3007,7 +3006,43 @@ records:
     mixins:
       - WithIndexedGeometry
       - WithAnnotations
-  
+
+  GriddedArrayItem:
+    label:
+      - value: Gridded Array Item
+        lang: en
+    description:
+      - value: An item that is part of an array in a gridded dataset.
+        lang: en
+    classUri: fdri:GriddedArrayItem
+    shortCode: GriddedArrayItem
+    properties:
+      index:
+        label:
+          - value: index
+            lang: en
+        description:
+          - value: The index value that identifies the position of the item within the gridded array.
+            lang: en
+        propertyUri: fdri:index
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:nonNegativeInteger
+      valueReference:
+        label:
+          - value: value reference
+            lang: en
+        description:
+          - value: A reference to the actual value or resource that the gridded array item represents.
+            lang: en
+        propertyUri: schema:valueReference
+        kind: object
+        required: true
+        constraints:
+          - record: Array
+          - record: Dimension
+
   GriddedContainer:
     label:
       - value: Gridded Container
@@ -3066,6 +3101,41 @@ records:
           - record: Array
           - record: Dimension
           - record: GriddedContainer
+
+  IndexedItem:
+    label:
+      - value: Indexed Item
+        lang: en
+    description:
+      - value: An item that is part of an indexed collection.
+        lang: en
+    classUri: fdri:IndexedItem
+    shortCode: IndexedItem
+    properties:
+      index:
+        label:
+          - value: index
+            lang: en
+        description:
+          - value: The index value that identifies the position of the item within the indexed collection.
+            lang: en
+        propertyUri: fdri:index
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:nonNegativeInteger
+      valueReference:
+        label:
+          - value: value reference
+            lang: en
+        description:
+          - value: A reference to the actual value or resource that the indexed item represents.
+            lang: en
+        propertyUri: schema:valueReference
+        kind: object
+        required: true
+        constraints:
+          - record: Thing
 
   InternalDataProcessingConfiguration:
     label:

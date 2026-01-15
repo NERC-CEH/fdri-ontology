@@ -35,6 +35,7 @@ DRAFT 0.5
 * NON-BREAKING: Relax the definition of `fdri:Variable` so that the IAdopt properties `iop:hasProperty` and `iop:hasObjectOfInterest` are optional.
 * NEW: Added `foaf:homepage` property to `fdri:EnvironmentalMonitoringProgramme` and `fdri:EnvironmenalMonitoringNetwork`
 * NEW: Added `fdri:sourceTimeColumnName` to `fdri:TimeSeriesDataset` to capture the name of the column that holds the timestamp for each observation. 
+* BREAKING: Replaced `fdri:reference` with `fdri:referenceList` on `fdri:Array`. This allows for the items in a gridded data array to be assigned an index that indicates the item's index in the storage array of the underlying gridded dataset. 
 
 DRAFT 0.4.2
 -----------
