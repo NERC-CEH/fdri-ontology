@@ -4543,7 +4543,6 @@ records:
       type:
         propertyUri: dct:type
         kind: object
-        required: true
         constraints:
           - record: TimeSeriesDefinition
       originatingFacility:
