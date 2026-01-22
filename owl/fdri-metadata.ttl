@@ -1353,12 +1353,12 @@ An EnvironmentalMonitoringActivity may follow a documented Procedure, and may in
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty spatialrelations:easting ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                   owl:onDataRange xsd:string
+                                                   owl:onDataRange xsd:decimal
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty spatialrelations:northing ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                   owl:onDataRange xsd:string
+                                                   owl:onDataRange xsd:decimal
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty :isMobile ;
@@ -1367,12 +1367,12 @@ An EnvironmentalMonitoringActivity may follow a documented Procedure, and may in
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty geo:lat ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                   owl:onDataRange xsd:string
+                                                   owl:onDataRange xsd:decimal
                                                  ] ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty geo:long ;
                                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                   owl:onDataRange xsd:string
+                                                   owl:onDataRange xsd:decimal
                                                  ] ;
                                  rdfs:comment """A piece of infrastructure used by an environmental monitoring programme for some purpose.
 
@@ -1646,22 +1646,22 @@ The `dct:type` property of this class SHOULD be used to reference the `fdri:Data
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty spatialrelations:easting ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:string
+                                 owl:onDataRange xsd:decimal
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty spatialrelations:northing ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:string
+                                 owl:onDataRange xsd:decimal
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty geo:lat ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:string
+                                 owl:onDataRange xsd:decimal
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty geo:long ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:string
+                                 owl:onDataRange xsd:decimal
                                ] ;
                rdfs:comment """Represents a collection of related Environmental Monitoring Facilities.
 
@@ -1789,22 +1789,22 @@ A persistent or unresolved fault may be represented by using an interval with no
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty spatialrelations:easting ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                               owl:onDataRange xsd:string
+                                               owl:onDataRange xsd:decimal
                                              ] ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty spatialrelations:northing ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                               owl:onDataRange xsd:string
+                                               owl:onDataRange xsd:decimal
                                              ] ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty geo:lat ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                               owl:onDataRange xsd:string
+                                               owl:onDataRange xsd:decimal
                                              ] ,
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty geo:long ;
                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                               owl:onDataRange xsd:string
+                                               owl:onDataRange xsd:decimal
                                              ] ;
                              rdfs:comment "A Feature of Interest with a geospatial location."@en ;
                              rdfs:label "Geo-spatial Feature Of Interest"@en .

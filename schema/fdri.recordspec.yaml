@@ -410,7 +410,7 @@ mixins:
         propertyUri: geo:lat
         kind: literal
         constraints:
-          - datatype: xsd:string
+          - datatype: xsd:decimal
       long:
         label:
           - value: longitude of representative point
@@ -422,7 +422,7 @@ mixins:
         propertyUri: geo:long
         kind: literal
         constraints:
-          - datatype: xsd:string
+          - datatype: xsd:decimal
       easting:
         label:
           - value: easting of representative point
@@ -434,7 +434,7 @@ mixins:
         propertyUri: spatialrelations:easting
         kind: literal
         constraints:
-          - datatype: xsd:string
+          - datatype: xsd:decimal
       northing:
         label:
           - value: northing of representative point
@@ -446,7 +446,7 @@ mixins:
         propertyUri: spatialrelations:northing
         kind: literal
         constraints:
-          - datatype: xsd:string
+          - datatype: xsd:decimal
 
   WithValueOrRange:
     label:

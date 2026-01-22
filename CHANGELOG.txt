@@ -36,6 +36,7 @@ DRAFT 0.5
 * NEW: Added `foaf:homepage` property to `fdri:EnvironmentalMonitoringProgramme` and `fdri:EnvironmenalMonitoringNetwork`
 * NEW: Added `fdri:sourceTimeColumnName` to `fdri:TimeSeriesDataset` to capture the name of the column that holds the timestamp for each observation. 
 * BREAKING: Replaced `fdri:reference` with `fdri:referenceList` on `fdri:Array`. This allows for the items in a gridded data array to be assigned an index that indicates the item's index in the storage array of the underlying gridded dataset. 
+* BREAKING: Change the range of geo:lat, geo:long, spatialrelations:easting and spatialrelations:northing from string to decimal to enable numeric comparison in SPARQL queries.
 
 DRAFT 0.4.2
 -----------
