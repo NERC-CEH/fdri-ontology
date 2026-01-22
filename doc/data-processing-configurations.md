@@ -77,6 +77,7 @@ classDiagram
   class Period["dcterms:PeriodOfTime"]
   class Method["fdri:DataProcessingMethod"]
   class Arg["fdri:ConfigurationArgument"]
+  class ArgList["fdri:ConfigurationArgumentList"]
   class Concept["skos:Concept"]
 
   ConfigurationItem --> Method: fdri_method
@@ -86,6 +87,8 @@ classDiagram
   Method --> Param: fdri_parameter
   Arg --> Param: fdri_parameter
   Arg --> PropertyValue: fdri_hasValue
+  Arg --> ArgList: fdri_hasStructuredValue
+  ArgList --> Arg: fdri_argument
   ConfigurationItem --> ConfigurationItem: dct_replaces
   Method --|> Concept
   Param --|> Concept
@@ -100,7 +103,9 @@ An `fdri:ConfigurationItem` resource has:
 
 An `fdri:ConfigurationArgument` resource has:
 * a required `fdri:parameter` property which specifies the configuration parameter that the argument provides a value for.
-* a required `fdri:hasValue` property which specifies the value of the argument.
+* and one of:
+  * a required `fdri:hasValue` property which specifies the value of the argument
+  * a required `fdri:hasStructuredValue` property which specifies the value of the argument as a set of nested arguments. This can be used to represent structured values (a la JSON objects or Python dicts) that are passed to data processing methods.
 
 An `fdri:PropertyValue` resource has:
 * `schema:minValue` and `schema:maxValue` to denote a value range.
