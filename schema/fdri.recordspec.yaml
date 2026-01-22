@@ -1100,7 +1100,7 @@ records:
         description:
           - value: A configuration argument that is part of this structured argument list.
             language: en
-        propertyUri: fdri:hasArgument
+        propertyUri: fdri:argument
         kind: object
         repeatable: true
         nested: true
