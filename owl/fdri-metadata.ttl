@@ -272,6 +272,12 @@ geo:location rdf:type owl:AnnotationProperty ;
                         rdfs:label "has representative point"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/hasStructuredValue
+:hasStructuredValue rdf:type owl:ObjectProperty ;
+                    rdfs:range :ConfigurationArgumentList ;
+                    rdfs:label "has structured value"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasUnit
 :hasUnit rdf:type owl:ObjectProperty ;
          rdfs:domain :Measure ;
@@ -1026,9 +1032,16 @@ The `fdri:property` property references the `fdri:Variable` that defines the con
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgument
 :ConfigurationArgument rdf:type owl:Class ;
-                       rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                         owl:onProperty :hasValue ;
-                                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       rdfs:subClassOf [ rdf:type owl:Class ;
+                                         owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasStructuredValue ;
+                                                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasValue ;
+                                                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                       ]
+                                                     )
                                        ] ,
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :parameter ;
@@ -1036,6 +1049,16 @@ The `fdri:property` property references the `fdri:Variable` that defines the con
                                        ] ;
                        rdfs:comment "Represents a single argument passed to a configuration method as part of an `fdri:ConfigurationItem`."@en ;
                        rdfs:label "Data Processing Configuration Argument"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationArgumentList
+:ConfigurationArgumentList rdf:type owl:Class ;
+                           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                             owl:onProperty :argument ;
+                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass :ConfigurationArgument
+                                           ] ;
+                           rdfs:label "Data Processing Configuration Argument List"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationItem
