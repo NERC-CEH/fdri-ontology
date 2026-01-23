@@ -481,7 +481,11 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/uses
 :uses rdf:type owl:ObjectProperty ;
-      rdfs:range :TimeSeriesDefinition ;
+      rdfs:range [ rdf:type owl:Class ;
+                   owl:unionOf ( :TimeSeriesDataset
+                                 :TimeSeriesDefinition
+                               )
+                 ] ;
       rdfs:comment "Relates a Time Series Plan for the production of some Time Series to the Time Series Definitions that define the input Time Series used by the plan."@en ;
       rdfs:label "uses"@en .
 
