@@ -587,12 +587,6 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 #    Data properties
 #################################################################
 
-###  http://fdri.ceh.ac.uk/vocab/metadata#rawConfiguration
-:rawConfiguration rdf:type owl:DatatypeProperty ;
-                  rdfs:comment "The raw JSON configuration for the execution of the enclosing Plan."@en ;
-                  rdfs:label "raw configuration"@en .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/aggregationPeriod
 :aggregationPeriod rdf:type owl:DatatypeProperty ;
                    rdfs:range xsd:duration ;
@@ -757,6 +751,12 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
                       rdfs:range xsd:duration ;
                       rdfs:comment "How frequently a process or procedure should be carried out."@en ;
                       rdfs:label "procedure periodicity"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/rawConfiguration
+:rawConfiguration rdf:type owl:DatatypeProperty ;
+                  rdfs:comment "The raw JSON configuration for the execution of the enclosing Plan."@en ;
+                  rdfs:label "raw configuration"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/removeData
@@ -1969,7 +1969,7 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                     rdfs:subClassOf dcat:Dataset ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :methodology ;
-                                      owl:allValuesFrom :TimeSeriesPlan
+                                      owl:allValuesFrom prov:Plan
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty dcat:inSeries ;

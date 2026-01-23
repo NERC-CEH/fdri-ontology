@@ -1096,7 +1096,7 @@ records:
     shortCode: ConfigurationArgumentList
     extends: Thing
     properties:
-      hasArgument:
+      argument:
         description:
           - value: A configuration argument that is part of this structured argument list.
             language: en
@@ -3323,6 +3323,18 @@ records:
         repeatable: true
         constraints:
           - record: Measure
+      methodology:
+        label:
+          - value: methodology
+            lang: en
+        description:
+          - value: The data processing methodology that has been applied to the content of this dataset.
+            lang: en
+        propertyUri: fdri:methodology
+        kind: object
+        required: true
+        constraints:
+          - record: Plan
       observedProperty:
         label:
           - value: observed property
