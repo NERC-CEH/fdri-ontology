@@ -587,6 +587,12 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 #    Data properties
 #################################################################
 
+###  http://fdri.ceh.ac.uk/vocab/metadata#rawConfiguration
+:rawConfiguration rdf:type owl:DatatypeProperty ;
+                  rdfs:comment "The raw JSON configuration for the execution of the enclosing Plan."@en ;
+                  rdfs:label "raw configuration"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/aggregationPeriod
 :aggregationPeriod rdf:type owl:DatatypeProperty ;
                    rdfs:range xsd:duration ;
@@ -1962,6 +1968,10 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
 :ObservationDataset rdf:type owl:Class ;
                     rdfs:subClassOf dcat:Dataset ,
                                     [ rdf:type owl:Restriction ;
+                                      owl:onProperty :methodology ;
+                                      owl:allValuesFrom :TimeSeriesPlan
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
                                       owl:onProperty dcat:inSeries ;
                                       owl:allValuesFrom :ObservationDatasetSeries
                                     ] ,
@@ -2455,6 +2465,10 @@ A Time-Series Definition captures the information that is common across multiple
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :uses ;
                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :rawConfiguration ;
+                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                 ] ;
                 rdfs:comment "A procedure which results in the creation or update of instances of a Time-Series Definition (`fdri:TimeSeriesDefinition`) through the application of one or more data processing configurations (`fdri:DataProcessingConfiguration`) to it's input time series."@en ;
                 rdfs:label "Time-series Plan"@en .
