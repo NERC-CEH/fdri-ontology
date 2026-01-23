@@ -51,6 +51,7 @@ TimeSeriesDefinition --> Variable: sosa_observedProperty
 TimeSeriesDefinition --> Measure: fdri_measure
 TimeSeriesDefinition --> Plan: fdri_methodology
 Plan --> TimeSeriesDefinition: fdri_uses
+Plan --> TimeSeriesDataset: fdri_uses
 TimeSeriesDataset --> ProcessingLevel: fdri_processingLevel
 TimeSeriesDataset --> Variable: sosa_observedProperty
 TimeSeriesDataset --> Measure: fdri_measure
@@ -62,7 +63,7 @@ An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series 
 * `fdri:processingLevel` a reference to the concept that defines the level of data processing applied to the time series. This property is repeated on `fdri:TimeSeriesDataset` to ensure consistency with the `fdri:ObservationDataset` base class.
 * `sosa:observedProperty` a reference to the `iop:Variable` that defines the property being observed by the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consitency with the `fdri:ObservationDataset` base class.
 * `fdri:measure` a reference to the `fdri:Measure` that defines measurements recorded in the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consistency with the `fdri:ObservationDataset` base class.
-* `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series.
+* `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series, either by direct reference to the `fdri:TimeSeriesDataset` or to the `fdri:TimeSeriesDefinition` that types the input dataset.
 * `fdri:sourceBucket` specifies the top level container (an S3 bucket) in which the data that is processed to produce time series datasets is stored.
 * `fdri:dataset` specifies the specific partition of the top level container in which the data is stored.
 * `fdri:columName` specifies the column within the partition where the values that produce the time series dataset(s) is stored.
