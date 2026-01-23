@@ -3332,7 +3332,6 @@ records:
             lang: en
         propertyUri: fdri:methodology
         kind: object
-        required: true
         constraints:
           - record: Plan
       observedProperty:
