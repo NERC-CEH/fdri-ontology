@@ -1126,15 +1126,6 @@ records:
         kind: object
         constraints:
           - record: DataProcessingMethod
-      interval:
-        description:
-          - value: The time period during which this configuration applies.
-            language: en
-        propertyUri: fdri:interval
-        kind: object
-        nested: true
-        constraints:
-          - record: PeriodOfTime
       observationInterval:
         description:
           - value: The period of observational data that this configuration applies to.
