@@ -1114,7 +1114,7 @@ records:
     description:
       - value: Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run.
         language: en
-    extends: Thing
+    extends: TimeBoundPropertyValue
     classUri: fdri:ConfigurationItem
     shortCode: ConfigurationItem
     properties:
@@ -3178,26 +3178,26 @@ records:
     shortCode: InternalDataProcessingConfiguration
     extends: DataProcessingConfiguration
     properties:
-      hadConfiguration:
+      hadValue:
         label:
-          - value: had configuration
+          - value: had value
             lang: en
         description:
           - value: References the configuration property/value pairs that were historically used by this configuration.
             lang: en 
-        propertyUri: fdri:hadConfiguration
+        propertyUri: fdri:hadValue
         kind: object
         repeatable: true
         constraints:
           - record: ConfigurationItem
-      hasCurrentConfiguration:
+      hasCurrentValue:
         label:
-          - value: has current configuration
+          - value: has current value
             lang: en
         description:
           - value: Referenes the configuration property/value pairs that are currently used by this configuration.
             lang: en
-        propertyUri: fdri:hasCurrentConfiguration
+        propertyUri: fdri:hasCurrentValue
         kind: object
         repeatable: true
         constraints:

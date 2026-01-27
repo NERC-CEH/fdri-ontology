@@ -205,14 +205,6 @@ geo:location rdf:type owl:AnnotationProperty ;
        rdfs:label "group"@en .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/hadConfigurationItem
-:hadConfigurationItem rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf owl:topObjectProperty ;
-                      rdfs:range :ConfigurationItem ;
-                      rdfs:comment "The configuration item that was part of the parent configuration at some past period in time."@en ;
-                      rdfs:label "had configuration item"@en .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hadValue
 :hadValue rdf:type owl:ObjectProperty ;
           rdfs:range :TimeBoundPropertyValue ;
@@ -235,14 +227,6 @@ geo:location rdf:type owl:AnnotationProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasCalibrationValueSeries
 :hasCalibrationValueSeries rdf:type owl:ObjectProperty ;
                            rdfs:range :CalibrationValueSeries .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/hasCurrentConfigurationItem
-:hasCurrentConfigurationItem rdf:type owl:ObjectProperty ;
-                             rdfs:subPropertyOf owl:topObjectProperty ;
-                             rdfs:range :ConfigurationItem ;
-                             rdfs:comment "The configuration item that is part of the parent configuration at the present time."@en ;
-                             rdfs:label "has current configuration item"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasCurrentValue
@@ -1073,7 +1057,8 @@ The `fdri:property` property references the `fdri:Variable` that defines the con
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ConfigurationItem
 :ConfigurationItem rdf:type owl:Class ;
-                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                   rdfs:subClassOf :TimeBoundPropertyValue ,
+                                   [ rdf:type owl:Restriction ;
                                      owl:onProperty dct:replaces ;
                                      owl:allValuesFrom :ConfigurationItem
                                    ] ,
@@ -1155,6 +1140,10 @@ Instances of this class are used to define the properties by which the behaviour
                              rdfs:subClassOf dcat:Resource ,
                                              prov:Plan ,
                                              [ rdf:type owl:Restriction ;
+                                               owl:onProperty dct:type ;
+                                               owl:allValuesFrom :DataProcessingConfigurationType
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
                                                owl:onProperty :appliesToFacility ;
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
                                              ] ,
@@ -1165,11 +1154,6 @@ Instances of this class are used to define the properties by which the behaviour
                                              [ rdf:type owl:Restriction ;
                                                owl:onProperty :appliesToVariable ;
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                             ] ,
-                                             [ rdf:type owl:Restriction ;
-                                               owl:onProperty dct:type ;
-                                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                               owl:onClass :DataProcessingConfigurationType
                                              ] ;
                              rdfs:comment """The configuration information which is used by a data processing activity to control the way in which the processing activity behaves.
 
@@ -1914,13 +1898,14 @@ A persistent or unresolved fault may be represented by using an interval with no
 ###  http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration
 :InternalDataProcessingConfiguration rdf:type owl:Class ;
                                      rdfs:subClassOf :DataProcessingConfiguration ,
+                                                     :PropertyValueSeries ,
                                                      [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :hadConfigurationItem ;
-                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                       owl:onProperty :hadValue ;
+                                                       owl:allValuesFrom :DataProcessingConfiguration
                                                      ] ,
                                                      [ rdf:type owl:Restriction ;
-                                                       owl:onProperty :hasCurrentConfigurationItem ;
-                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                       owl:onProperty :hasCurrentValue ;
+                                                       owl:allValuesFrom :ConfigurationItem
                                                      ] ;
                                      rdfs:comment """A data processing configuration whose values are stored in the FDRI metadata service.
 
@@ -2546,10 +2531,6 @@ schema:PropertyValue rdf:type owl:Class ;
                                      ] ,
                                      [ rdf:type owl:Restriction ;
                                        owl:onProperty schema:unit ;
-                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty schema:valueReference ;
                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                      ] .
 
