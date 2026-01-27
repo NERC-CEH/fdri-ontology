@@ -3837,6 +3837,7 @@ records:
           - value: The scalar or string literal value
         propertyUri: schema:value
         kind: literal
+        repeatable: true
       valueReference:
         label:
           - value: value reference
@@ -3846,6 +3847,7 @@ records:
             lang: en
         propertyUri: schema:valueReference
         kind: object
+        repeatable: true
         constraints:
           - record: Thing
       valueType:
