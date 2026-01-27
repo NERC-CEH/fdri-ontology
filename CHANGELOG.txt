@@ -42,6 +42,7 @@ DRAFT 0.5
 * NON-BREAKING: Extend range of `fdri:uses` from `fdri:TimeSeriesDefinition` only, to `fdri:TimeSeriesDataset` or `fdri:TimeSeriesDefinition`.
 * NEW: Add `fdri:rawConfiguration` property to `fdri:TimeSeriesPlan` to record the JSON configuration for the plan.
 * NEW: Allow `fdri:methodology` on an `fdri:TimeSeriesDataset` to allow dataset-specific processing plans to be described.
+* BREAKING: Refactor `fdri:InternalDataProcessingConfiguration` to be a subclass of `fdri:PropertyValueSeries`. This replaces the `fdri:hadConfiguration` and `fdri:hasCurrentConfiguration` properties with `fdri:hadValue` and `fdri:hasCurrentValue` properties inherited from the new superclass.
 
 DRAFT 0.4.2
 -----------
