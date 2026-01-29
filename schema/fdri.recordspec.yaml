@@ -2346,7 +2346,7 @@ records:
         description:
           - value: The height of the site location above sea-level, specified in metres.
             lang: en
-        propertyUri: fdri:altitude
+        propertyUri: geo:alt
         kind: literal
         constraints:
           - datatype: xsd:decimal

@@ -36,9 +36,6 @@
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
 geo:alt rdf:type owl:AnnotationProperty ;
-        rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
-above the local reference ellipsoid).""" ;
-        rdfs:label "altitude" ;
         rdfs:domain geo:SpatialThing .
 
 
@@ -578,13 +575,6 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
                    rdfs:label "aggregation period"@en .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/altitude
-:altitude rdf:type owl:DatatypeProperty ;
-          rdfs:range xsd:decimal ;
-          rdfs:comment "Height above sea-level measured in metres."@en ;
-          rdfs:label "altitude"@en .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/assetNumber
 :assetNumber rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:string ;
@@ -861,6 +851,11 @@ schema:minValue rdf:type owl:DatatypeProperty ;
 ###  http://schema.org/value
 schema:value rdf:type owl:DatatypeProperty ;
              rdfs:range rdfs:Literal .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
+geo:alt rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:decimal .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
@@ -1507,7 +1502,7 @@ An Environmental Monitoring Programme may make use of (`fdri:utilises`) any numb
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty :altitude ;
+                                               owl:onProperty geo:alt ;
                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                              ] ;
                              rdfs:comment """A geo-spatial location which contains infrastructure elements to which environmental monitoring systms are deployed.
@@ -2691,6 +2686,13 @@ basic geo vocab
 
 """ ;
      rdfs:label "geo" .
+
+
+geo:alt rdfs:comment "Height above sea-level measured in metres."@en ,
+                     """The WGS84 altitude of a SpatialThing (decimal meters 
+above the local reference ellipsoid).""" ;
+        rdfs:label "altitude"@en ,
+                   "altitude" .
 
 
 geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
