@@ -43,6 +43,7 @@ DRAFT 0.5
 * NEW: Add `fdri:rawConfiguration` property to `fdri:TimeSeriesPlan` to record the JSON configuration for the plan.
 * NEW: Allow `fdri:methodology` on an `fdri:TimeSeriesDataset` to allow dataset-specific processing plans to be described.
 * BREAKING: Refactor `fdri:InternalDataProcessingConfiguration` to be a subclass of `fdri:PropertyValueSeries`. This replaces the `fdri:hadConfiguration` and `fdri:hasCurrentConfiguration` properties with `fdri:hadValue` and `fdri:hasCurrentValue` properties inherited from the new superclass.
+* BREAKING: Change the IRI used for the `altitude` property from `fdri:altitude` to `geo:alt`. This affects the data conversion templates, but as the name remains the same in the schema should have no impact on API users.
 
 DRAFT 0.4.2
 -----------
