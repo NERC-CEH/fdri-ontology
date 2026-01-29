@@ -97,7 +97,7 @@ mixins:
         kind: object
         repeatable: true
         constraints:
-          - record: Variable
+          - record: Concept
 
   WithAnnotations:
     label:
@@ -652,6 +652,18 @@ records:
         repeatable: true
         constraints:
           - datatype: xsd:string
+      homepage:
+        label:
+          - value: homepage
+            lang: en
+        description:
+          - value: A URL pointing to a web page that provides more information about this Agent.
+            lang: en
+        propertyUri: foaf:homepage
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
 
   Aggregation:
     label:
@@ -777,6 +789,17 @@ records:
     classUri: fdri:Array
     shortCode: Array
     properties:
+      identifier:
+        label:
+          - value: identifier
+            lang: en
+        description:
+          - value: The standard identifier assigned to the array. Typically a CFNames standard name string.
+            lang: en
+        propertyUri: dct:identifier
+        kind: literal
+        constraints:
+          - datatype: xsd:string
       isCoordinate:
         label:
           - value: is coordinate
@@ -929,6 +952,8 @@ records:
     classUri: skos:Concept
     shortCode: Concept
     extends: Thing
+    mixins:
+      - WithLabelAndComment
     properties:
       prefLabel:
         label:
@@ -989,6 +1014,30 @@ records:
         kind: object
         constraints:
           - record: Concept
+      narrower:
+        label:
+          - value: narrower term
+            lang: en
+        description:
+          - value: Relates a concept to another concept which is narrower in meaning/scope.
+            lang: en
+        propertyUri: skos:narrower
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Concept
+      notation:
+        label:
+          - value: notation
+            lang: en
+        description:
+          - value: A symbolic identifier or code for the concept within a given concept scheme.
+            lang: en
+        propertyUri: skos:notation
+        kind: literal
+        repeatable: true
+        constraints:
+          - datatype: xsd:string
 
   ConceptScheme:
     label:
@@ -1002,6 +1051,7 @@ records:
     shortCode: ConceptScheme
     mixins:
       - WithTitleAndDescription
+      - WithLabelAndComment
       - WithPublicationMetadata
     extends: Thing
     properties:
@@ -1115,6 +1165,9 @@ records:
       - value: Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run.
         language: en
     extends: TimeBoundPropertyValue
+    mixins:
+      - WithLabelAndComment
+      - WithProvenance
     classUri: fdri:ConfigurationItem
     shortCode: ConfigurationItem
     properties:
@@ -1228,6 +1281,8 @@ records:
           of the parent resource.
         lang: en
     extends: Thing
+    mixins:
+      - WithLabelAndComment
     classUri: fdri:ConfigurationValueSeries
     shortCode: ConfigurationValueSeries
     properties:
@@ -1435,6 +1490,7 @@ records:
     shortCode: Dataset
     mixins:
       - WithTitleAndDescription
+      - WithLabelAndComment
       - WithPublicationMetadata
       - WithAnnotations
     extends: Thing
@@ -2007,7 +2063,7 @@ records:
 
   EnvironmentalMonitoringFacility:
     label:
-      - value: Environmental Monitoring Faciltiy
+      - value: Environmental Monitoring Facility
         lang: en
     description:
       - value: A piece of infrastructure used by an environmental monitoring programme for some purpose.
@@ -2977,6 +3033,17 @@ records:
         kind: object
         constraints:
           - record: PeriodOfTime
+      removeData:
+        label:
+          - value: remove data
+            lang: en
+        description:
+          - value: A boolean property indicating whether or not data affected by the fault should be removed from datasets.
+            lang: en
+        propertyUri: fdri:removeData
+        kind: literal
+        constraints:
+          - datatype: xsd:boolean
 
   Feature:
     label:
@@ -3289,6 +3356,7 @@ records:
     mixins:
       - WithProvenance
       - WithAnnotations
+      - WithObservableProperties
     properties:
       hasFeatureOfInterest:
         label:
@@ -3302,18 +3370,6 @@ records:
         repeatable: true
         constraints:
           - record: GeospatialFeatureOfInterest
-      measure:
-        label:
-          - value: measure
-            lang: en
-        description:
-          - value: The measure(s) recorded by the dataset. A measure consists of a variable, a unit of measurement, and an optional aggregation.
-            lang: en
-        propertyUri: fdri:measure
-        kind: object
-        repeatable: true
-        constraints:
-          - record: Measure
       methodology:
         label:
           - value: methodology
@@ -3325,17 +3381,6 @@ records:
         kind: object
         constraints:
           - record: Plan
-      observedProperty:
-        label:
-          - value: observed property
-            lang: en
-        description:
-          - value: The properties whose values are included in the dataset content.
-        propertyUri: sosa:observedProperty
-        kind: object
-        repeatable: true
-        constraints:
-          - record: Variable
       originatingFacility:
         label:
           - value: originating facility
@@ -4513,6 +4558,8 @@ records:
         lang: en
     classUri: fdri:TimeBoundPropertyValue
     extends: PropertyValue
+    mixins:
+      - WithLabelAndComment
     shortCode: TimeBoundPropertyValue
     properties:
       interval:
@@ -4669,29 +4716,15 @@ records:
         lang: en
     classUri: fdri:TimeSeriesDefinition
     extends: Concept
+    mixins:
+      - WithObservableProperties
     shortCode: TimeSeriesDefinition
     properties:
-      measure:
-        label:
-          - value: measure
-            lang: en
-        description:
-          - value: The measure(s) recorded by the dataset. A measure consists of a variable, a unit of measurement, and an optional aggregation.
-            lang: en
-        propertyUri: fdri:measure
-        kind: object
-        constraints:
-          - record: Measure
       methodology:
         propertyUri: fdri:methodology
         kind: object
         constraints:
           - record: TimeSeriesPlan
-      observedProperty:
-        propertyUri: sosa:observedProperty
-        kind: object
-        constraints:
-          - record: Variable
       processingLevel:
         propertyUri: fdri:processingLevel
         kind: object
