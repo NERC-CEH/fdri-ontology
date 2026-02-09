@@ -36,7 +36,7 @@
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
 geo:alt rdf:type owl:AnnotationProperty ;
-        rdfs:domain geo:SpatialThing .
+        rdfs:range xsd:decimal .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
@@ -123,7 +123,6 @@ geo:location rdf:type owl:AnnotationProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/catchmentScheme
 :catchmentScheme rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf dcat:themeTaxonomy ;
-                 rdfs:range :CatchmentScheme ;
                  rdfs:comment "References a controlled list of Catchment areas referenced by the catalog."@en ;
                  rdfs:label "catchment scheme"@en .
 
@@ -449,7 +448,6 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/regionScheme
 :regionScheme rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf dcat:themeTaxonomy ;
-              rdfs:range :RegionScheme ;
               rdfs:comment "References a controlled list of geographical regions that are referenced by the catalog."@en ;
               rdfs:label "region scheme"@en .
 
@@ -855,7 +853,7 @@ schema:value rdf:type owl:DatatypeProperty ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
 geo:alt rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:decimal .
+        rdfs:domain geo:SpatialThing .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
@@ -979,13 +977,6 @@ Each Annotation instance provides either a single value (`fdri:hasValue`) or a t
                                         ] ;
                         rdfs:comment "Represents a series of calibration values that apply to the enclosing `fdri:EnvironmentalMonitoringSystem` for a given `fdri:Variable` or set of variables."@en ;
                         rdfs:label "Calibration Value Series"@en .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/CatchmentScheme
-:CatchmentScheme rdf:type owl:Class ;
-                 rdfs:subClassOf skos:ConceptScheme ;
-                 rdfs:comment "A concept scheme consisting of Catchment concepts."@en ;
-                 rdfs:label "Catchment Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Condition
@@ -2153,13 +2144,6 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
                                     ] ;
                     rdfs:comment "A type of `sosa:Observation` that provides quality metrics for some `dcat:Dataset`"@en ;
                     rdfs:label "Quality Observation"@en .
-
-
-###  http://fdri.ceh.ac.uk/vocab/metadata/RegionScheme
-:RegionScheme rdf:type owl:Class ;
-              rdfs:subClassOf skos:ConceptScheme ;
-              rdfs:comment "A controlled vocabulary of Regions."@en ;
-              rdfs:label "Region Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelatedPartyAssociation

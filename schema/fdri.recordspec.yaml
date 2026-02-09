@@ -905,43 +905,6 @@ records:
         constraints:
           - record: Variable
 
-  Catchment:
-    label:
-      - value: Catchment
-        lang: en
-    description:
-      - value: |
-          A water catchment is an area of land through which water from any form of precipitation
-          (such as rain, melting snow or ice) drains into a body of water.
-    extends: Concept
-    classUri: fdri:Catchment
-    shortCode: Catchment
-    mixins:
-      - WithIndexedGeometry
-    properties:
-      inScheme:
-        label:
-          - value: is in scheme
-            lang: en
-        description:
-          - value: Relates a Catchment to the concept scheme from which the catchment definition is drawn.
-            lang: en
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: CatchmentScheme
-  
-  CatchmentScheme:
-    label:
-      - value: Catchment Concept Scheme
-        lang: en
-    description:
-      - value: A concept scheme consisting of Catchment concepts.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:CatchmentScheme
-    shortCode: CatchmentScheme
-  
   Concept:
     label:
       - value: Concept
@@ -3780,28 +3743,6 @@ records:
         kind: object
         constraints:
           - record: VariableScheme
-      regionScheme:
-        label:
-          - value: region scheme
-            lang: en
-        description:
-          - value: The concept scheme that defines the geographic regions that may be used to group the sites in this catalog.
-            lang: en
-        propertyUri: fdri:regionScheme
-        kind: object
-        constraints:
-          - record: RegionScheme
-      catchmentScheme:
-        label:
-          - value: catchment scheme
-            lang: en
-        description:
-          - value: The concept scheme that defines the catchment areas that may be used to group the sites in this catalog.
-            lang: en
-        propertyUri: fdri:catchmentScheme
-        kind: object
-        constraints:
-          - record: CatchmentScheme
       configurationPropertyScheme:
         label:
           - value: configuration property scheme
@@ -4039,54 +3980,6 @@ records:
         kind: object
         constraints:
           - record: Concept
-
-  Region:
-    label:
-      - value: Region
-        lang: en
-    description:
-      - value: A geographic area which may contain infrastructure relating to an Environmental Monitoring Network.
-        lang: en
-    extends: Concept
-    classUri: fdri:Region
-    shortCode: Region
-    properties:
-      hasGeometry:
-        label:
-          - value: has geometry
-            lang: en
-        description:
-          - value: |
-              A representative geometry for the region.
-              A good value would be the boundary of the region.
-            lang: en
-        propertyUri: geos:hasGeometry
-        kind: object
-        nested: true
-        constraints:
-          - record: Geometry
-      inScheme:
-        label:
-          - value: is in scheme
-            lang: en
-        description:
-          - value: The controlled vocabulary that this concept belongs to.
-            lang: en
-        propertyUri: skos:inScheme
-        kind: object
-        constraints:
-          - record: RegionScheme
-
-  RegionScheme:
-    label:
-      - value: Region Concept Scheme
-        lang: en
-    description:
-      - value: A controlled vocabulary of Regions.
-        lang: en
-    extends: ConceptScheme
-    classUri: fdri:RegionScheme
-    shortCode: RegionScheme
 
   RelatedPartyAssociation:
     label:
