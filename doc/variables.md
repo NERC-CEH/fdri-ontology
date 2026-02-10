@@ -2,7 +2,7 @@
 
 A `Variable` is a "description of something observed or derived, minimally consisting of an ObjectOfInterest and its Property" (taken from the description of the [I-Adopt ontology](https://i-adopt.github.io/ontology/#/Variable) upon which this part of the modelling is based).
 
-The purpose of the `Variable` is to provide a structured way to capture information about what observations are recorded in environmental datasetes and to attempt to provide some commonality in descriptions across multiple projects. By describing datasets in terms of the `Variables` that they provide measurements for, we can improve discoverability and help users more quickly locate related datasets within the FDRI catalog.
+The purpose of the `Variable` is to provide a structured way to capture information about what observations are recorded in environmental datasets and to attempt to provide some commonality in descriptions across multiple projects. By describing datasets in terms of the `Variables` that they provide measurements for, we can improve discoverability and help users more quickly locate related datasets within the FDRI catalog.
 
 The description of a Variable consists of multiple facets. The property, object of interest, context, matrix and constraints.
 To allow for the incremental development of Variable vocabularies, none of these facets are required by the schema.
@@ -35,7 +35,7 @@ The Property facet represents the abstract characteristic of the object of inter
 * Relative Humidity
 * Depth
 
-These properties should be gathered into a shared reference vocabulary and where possible it is recommended to relate properties to [QUDT QuantityKind](https://www.qudt.org/doc/DOC_VOCAB-QUANTITY-KINDS.html) instances.
+These properties should be gathered into a shared reference vocabulary.
 
 ### ObjectOfInterest
 
@@ -43,7 +43,7 @@ The ObjectOfInterest facet represents the class of thing whose property is measu
 
 * Air
 * Soil
-* Longwave Radiation
+* Long-wave Radiation
 * Wind
 * Water
 
@@ -84,7 +84,7 @@ block-beta
     end
 
 ```
-Through this reuse of vocabulary terms it is possibel to create networks of related variables and to construct more complex shared vocabularies (of variables), from more simple building blocks (properties and objects of interest).
+Through this reuse of vocabulary terms it is possible to create networks of related variables and to construct complex shared vocabularies (of variables), from simple building blocks (properties and objects of interest).
 
 ### Context
 
@@ -95,7 +95,7 @@ The Context facet relates a Variable to concepts which provide additional backgr
 
 ### Matrix
 
-Tne Matrix facet describes the thing within which the object of interest is contained. For example if a variable measures "Dissolved nitrate molar concentration in precipitation water", the object of interest is "nitrate" and the matrix is "precipitation".
+The matrix facet describes the thing within which the object of interest is contained. For example if a variable measures "Dissolved nitrate molar concentration in precipitation water", the object of interest is "nitrate" and the matrix is "precipitation".
 
 ### Constraint
 
@@ -133,7 +133,7 @@ Concept <|-- Unit
 
 ### Value Type
 
-The `fdri:valueType` property relates a Measure to the datatype used for representing the measure values. The range of this property is open, but values for simple properties should be taken from the XML Schema datatypes (e.g. `xsd:decimal`).
+The `fdri:valueType` property relates a Measure to the data-type used for representing the measure values. The range of this property is open, but values for simple properties should be taken from the XML Schema data-types (e.g. `xsd:decimal`).
 
 ### Variable
 The `fdri:hasVariable` property relates a Measure to the Variable for which values are provided.
@@ -149,7 +149,7 @@ The `fdri:hasUnit` property relates a Measure to a concept that describes the un
 
 Where a unit is specified, the unit name property SHOULD also be specified providing a default display string for rendering a value with its units.
 
-It is strongly recommended to use a common vocabulary for expressing units. The [QUDT unit vocabulary](https://www.qudt.org/doc/DOC_VOCAB-UNITS.html) provides a wide range of units as a controlled vocabulary.
+It is strongly recommended to use a shared vocabulary for expressing units. 
 
 ### Aggregation
 

@@ -1,34 +1,49 @@
 ## Provenance and Activity Model
 
-The core model will use the PROV-O ontology to record details of activities, their inputs and their outputs.
-Activities related to datasets would include processes such as data ingestion, quality checking, quality improvement, statistical derivation and so on. Activities can also be related to other assets, e.g. the installation of an asset, the repair or replacement of an asset, the decomissioning of an asset and so on.
+The FDRI model uses the PROV-O ontology to record details of activities, their inputs and their outputs.
+Activities related to datasets would include processes such as data ingestion, quality checking, quality improvement, statistical derivation and so on. Activities can also be related to other assets, e.g. the installation of an sensor at a site, the repair or replacement of an instrument, the decommissioning of a monitoring platform and so on.
 
-We recommend using unqualified provenance relationships and a simple taxonomy of activity types. For example the derivation of one dataset from another could be modelled as:
+PROV-O allows activities to be related to the entities involved in the activity either through a "qualified" or an "unqualified" relationship. An unqualified relationship is represented as a direct property on the activity that references the entity - e.g. `prov:used` indicates that the entity that is the object of the statement was used in some way during the execution of the activity that is the subject of the statement.
+A qualified relationship is a separate resource that represents the relationship itself. The primary advantage of a qualified relationship is that detailed information about the nature of the relationship can be captured. For example, in what way the entity was used by the activity.
+
+Given that supporting multiple forms of representation can lead to some complex queries, we recommend using the qualified relationship approach at all times. To this end, the schema version of the FDRI model supports only the `prov:qualifiedUsage` and `prov:qualifiedAssociation` properties on an Activity.
+
+The diagram below shows the structure for activities that is supported by the FDRI schema.
 
 ```mermaid
-flowchart TB
-  entity1([Dataset 1])
-  entity2([Dataset 2])
-  activity[Aggregation Activity]
-  script[Aggregation Script]
-  dailyMeanAggregation[Daily Mean Aggregation]
-  plan[Aggregation Script Configuration]
-  entity1 -.prov:wasDerviedFrom.-> entity2([Entity])
-  activity --dct:type--> dailyMeanAggregation
-  activity --prov:used--> entity2
-  activity --prov:wasAssociatedWith--> script
-  activity -- prov:startedAtTime --> x[2024-02-01T20:00:00Z]
-  activity -- prov:endedAtTime --> y[2024-02-01T20:10:11Z]
-  activity -- prov:hadPlan --> plan
-  entity1 --prov:wasGeneratedBy--> activity
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class Activity["prov:Activity"] {
+  startedAtTime: xsd:dateTime
+  endedAtTime: xsd:dateTime
+}
+class Agent["prov:Agent"]
+class Thing["fdri:Thing"]
+class Association["prov:Association"]
+class Usage["prov:Usage"]
+class Concept["skos:Concept"]
+class Plan["prov:Plan"]
+
+Activity --> Usage: prov_qualifiedUsage
+Activity --> Association: prov_qualifedAssociation
+Association --> Agent: prov_agent
+Association --> Plan: prov_hadPlan
+Association --> Concept: prov_hadRole
+Usage --> Thing: prov_used
+Usage --> Concept: prov_hadRole
 ```
+
 
 > **NOTE**
 > In situations where the ingest is streaming/near-realtime it might make sense to have an open-ended Derivation and Ingest Activity which are only ended when the stream is closed or the ingest software agent updated. If so then it might be worth adding a notion of a run log (timestamp and log pointer) structure that can be appended to an open activity for each run instance.
 
 ### PROV-O extension properties
 
-PROV-O defines entity to activity relations only for generation(`prov:wasGeneratedBy`) and invalidation(`prov:wasInvalidatedBy`). To model the case where an activity extends or otherwise modifies an existing dataset without creating a new dataset instance, we add `fdri:wasModifiedBy` as a subproperty of `prov:wasInfluencedBy`.
+PROV-O defines entity to activity relations only for generation(`prov:wasGeneratedBy`) and invalidation(`prov:wasInvalidatedBy`). To model the case where an activity extends or otherwise modifies an existing dataset without creating a new dataset instance, we add `fdri:wasModifiedBy` as a sub-property of `prov:wasInfluencedBy`.
 
 ### Model for Agents
 
@@ -41,7 +56,10 @@ The model for agents is deliberately kept simple and inherits from `dcat:Catalog
 classDiagram
   direction BT
   class ProvAgent["prov:Agent"]
-  class Agent["fdri:Agent"]
+  class Agent["fdri:Agent"] {
+    foaf:mbox: xsd:string
+    foaf:homepage xsd:string
+  }
   class SoftwareAgent["fdri:SoftwareAgent"] {
     fdri:repository xsd:anyURI
     fdri:repositoryPath xsd:string
@@ -76,4 +94,4 @@ If additional software agent metadata should be captured, this model could be ex
 
 ### Model for Software Agent Configuration
 
-The configuration used by an agent for an activity is captured by the `prov:hadPlan` property on the activity resource. The modelling for software agent configurations is discussed in more detail in [Data Processing Configurations](data-processing-configurations.md).
+The configuration used by an agent for an activity is captured by the `prov:hadPlan` property on the `prov:Association` resource. The modelling for software agent configurations is discussed in more detail in [Data Processing Configurations](data-processing-configurations.md).
