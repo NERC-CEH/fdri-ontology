@@ -192,7 +192,7 @@ EMFacility <|-- EMSite
 
 #### EnvironmentalMonitoringSystem
 
-An `fdri:EnvironmentalMonitoringSystem` is a device which measures properties in the environment. As already noted, an `fdri:EnvironmentalMonitoringSystem` may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
+An `fdri:EnvironmentalMonitoringSystem` is a device which measures properties in the environment. As already noted, an `fdri:EnvironmentalMonitoringSystem` may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`. An `fdri:EnvironmentalMonitoringSystem` may consist of a number of separate `fdri:EnvironmentalMonitoringSensor`s working together to observe several properties (e.g. a system combining temperature and relative humidity sensors).
 
 An `fdri:EnvironmentalMonitoringSystem` carries several other metadata properties as shown in the diagram below.
 
@@ -250,9 +250,9 @@ EMFType --|> Concept
 
 #### EnvironmentalMonitoringSensor
 
-An `fdri:EnvironmentalMonitoringSensor` is intended to represent an individual sensor and is subclassed from `sosa:Sensor` and may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
+An `fdri:EnvironmentalMonitoringSensor` is intended to represent an individual sensor and is sub-classed from `sosa:Sensor` and may be deployed either to an `fdri:EnvironmentalMonitoringPlatform` or directly to an `fdri:EnvironmentalMonitoringSite`.
 
-As `fdri:EnvironmentalMonitoringSensor` is subclassed from `fdri:EnvironmentalMonitoringSystem` it also inherits the additional metadata shown for that class and faults can be recorded against individual sensors.
+As `fdri:EnvironmentalMonitoringSensor` is sub-classed from `fdri:EnvironmentalMonitoringSystem` it also inherits the additional metadata shown for that class and faults can be recorded against individual sensors.
 
 ### Geo-Spatial Feature Of Interest
 
