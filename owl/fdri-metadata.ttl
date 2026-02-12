@@ -109,7 +109,8 @@ geo:location rdf:type owl:AnnotationProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
                    rdfs:range :Variable ;
                    rdfs:comment "Defines the Variable that a Data Processing Configuration is applied to."@en ;
-                   rdfs:label "applies to variable"@en .
+                   rdfs:label "applies to variable"@en ;
+                   owl:deprecated "This property is deprecated as of version 0.5 of the model and should not be used."@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/argument
