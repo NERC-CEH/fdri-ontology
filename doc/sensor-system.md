@@ -148,15 +148,20 @@ use of a specific version of firmware on a sensor with the firmware version iden
 
 ```mermaid
 flowchart
-  Sensor123 --fdri:configuration--> FIS
-  FIS("Firmware Installation Configuration Series") --dct:type--> FirmwareInstallation
+  Sensor123("Sensor #123
+  &lt;&lt;fdri:EnvironmentalMonitoringSensor>>") --fdri:configuration--> FIS
+  FIS("Firmware Installation Configuration Series
+   &lt;&lt;fdri:ConfigurationValueSeries>>") --dct:type--> FirmwareInstallation("Firmware Installation
+   &lt;&lt;fdri:ConfigurationProperty>>")
   FIS --fdri:hadValue--> F1
   FIS --fdri:hadValue--> F2
   FIS --fdri:hasCurrentValue--> F1
-  F1("Latest Value") --schema:valueReference--> http:/fdri.ceh.ac.uk/id/firmware-version/some-model/v2
+  F1("Latest Value
+  &lt;&lt;fdri:TimeBoundPropertyValue>>") --schema:valueReference--> http:/fdri.ceh.ac.uk/id/firmware-version/some-model/v2
   F1 --fdri:interval --> int1("`dcat:startDate:...`")
   F2 --schema:valueReference--> http:/fdri.ceh.ac.uk/id/firmware-version/some-model/v1
-  F2("Previous Value") --fdri:interval --> int2("`dcat:startDate:...
+  F2("Previous Value
+  &lt;&lt;fdri:TimeBoundPropertyValue>>") --fdri:interval --> int2("`dcat:startDate:...
   dcat:endDate:...`")
   F1 --dct:replaces--> F2
 ```
@@ -165,15 +170,19 @@ The same configuration value could also be captured as a string value if there i
 
 ```mermaid
 flowchart
-    Sensor123 --fdri:configuration--> FIS
-  FIS("Firmware Installation Configuration Series") --dct:type--> FirmwareInstallation
+    Sensor123("Sensor #123
+  &lt;&lt;fdri:EnvironmentalMonitoringSensor>>") --fdri:configuration--> FIS
+  FIS("Firmware Installation Configuration Series
+  &lt;&lt:fdri:ConfigurationValueSeries>>") --dct:type--> FirmwareInstallation("Firmware Installation
+   &lt;&lt;fdri:ConfigurationProperty>>")
   FIS --fdri:hadValue--> F1
   FIS --fdri:hadValue--> F2
   FIS --fdri:hasCurrentValue--> F1
   F1("`Latest Value
+  &lt;&lt;fdri:TimeBoundPropertyValue>>
   schema:value 'v1'`") --fdri:interval --> int1("`dcat:startDate:...`")
   F2("`Previous Value
-  schema:value 'v2'`") --fdri:interval --> int2("`dcat:startDate:...
+  &lt;&lt;fdri:TimeBoundPropertyValue>>  schema:value 'v2'`") --fdri:interval --> int2("`dcat:startDate:...
   dcat:endDate:...`")
   F1 --dct:replaces--> F2
 ```
@@ -225,20 +234,20 @@ Interventions made on a sensor, such as calibration or repair can be modelled as
 
 ```mermaid
 flowchart
-  activity["`prov:Activity
-  Calibration of sensor #1234 on 2024-02-08`"]
-  sensor["`fdri:EMSensor
-  Sensor #1234`"]
-  agent["`foaf:Agent
-  Bob Smith`"]
-  calibration["`fdri:ActivityType
-  Sensor Calibration`"]
-  usage["`prov:Usage`"]
-  sensorRole["`skos:Concept
-  calibrated system`"]
-  association["`prov:Association`"]
-  agentRole["`skos:Concept
-  engineer`"]
+  activity["`Calibration of sensor #1234 on 2024-02-08
+  &lt;&lt;prov:Activity>>`"]
+  sensor["`Sensor #1234
+  &lt;&lt;fdri:EMSensor>>`"]
+  agent["`Bob Smith
+  &lt;&lt;foaf:Agent>>`"]
+  calibration["`Sensor Calibration
+  &lt;&lt;fdri:ActivityType>>`"]
+  usage["`&lt;&lt;prov:Usage>>`"]
+  sensorRole["`Calibrated System
+  &lt;&lt;skos:Concept>>`"]
+  association["`&lt;&lt;prov:Association>>`"]
+  agentRole["`Engineer
+  &lt;&lt;skos:Concept>>`"]
   activity -- prov:startedAtTime --> x[2024-08-01T10:00:00Z]
   activity -- prov:endedAtTime --> y[2024-02-08T10:30:11Z]
   activity -- prov:qualifiedUsage --> usage
@@ -266,43 +275,43 @@ An initial calibration performed by the manufacturer can also be recorded as an 
 
 ```mermaid
 flowchart
-sensor["`fdri:EMSensor
-Sensor #1234`"]
-variable["`iop:Variable
-SWIN`"]
-type["`skos:Concept
-Calibration Configuration`"]
-calibconfig["`fdri:InternalDataProcessingConfiguration
-Calibration configuration for sensor #1234`"]
-sensorUsage["`prov:Usage`"]
+sensor["`Sensor #1234
+&lt;&lt;fdri:EMSensor>>`"]
+variable["`SWIN
+&lt;&lt;iop:Variable>>`"]
+type["`Calibration Configuration
+&lt;&lt;skos:Concept>>`"]
+calibconfig["`Calibration configuration for sensor #1234
+&lt;&lt;fdri:InternalDataProcessingConfiguration>>`"]
+sensorUsage["`&lt;&lt;prov:Usage>>`"]
 subgraph "Initial Calibration"
-  calib1["`prov:Activity
-    Manufacturer's calibration of sensor #1234 on 2020-01-05`"]
-  calibconfig1["`fdri:ConfigurationItem
-  Calibration value from 2020-01-05`"]
-  calib1interval["`dcterms:PeriodOfTime
-  startDate: 2020-01-05T00:00:00Z
-  endDate: 2024-08-01T12:30:00Z`"]
+  calib1["`Manufacturer's calibration of sensor #1234 on 2020-01-05
+  &lt;&lt;prov:Activity>>`"]
+  calibconfig1["`Calibration value from 2020-01-05
+  &lt;&lt;fdri:ConfigurationItem>>`"]
+  calib1interval["`startDate: 2020-01-05T00:00:00Z
+  endDate: 2024-08-01T12:30:00Z
+  &lt;&lt;dcterms:PeriodOfTime>>`"]
   calibconfig1 -- fdri:observationInterval --> calib1interval
   calibconfig1 -- fdri:argument --> calibarg1
-  calibarg1["`fdri:ConfigurationArgument
-  Correction Factor Argument #1`"]
-  calibval1["`schema:PropertyValue
-  schema:value 0.923`"]
+  calibarg1["`Correction Factor Argument #1
+  &lt;&lt;fdri:ConfigurationArgument>>`"]
+  calibval1["`schema:value 0.923
+  &lt;&lt;schema:PropertyValue>>`"]
   calibarg1 -- fdri:hasValue --> calibval1
 end
 subgraph "Field Recalibration"
-calib2["`prov:Activity
-  Field calibration of sensor #1234 on 2024-08-01`"]
-  calibconfig2["`fdri:ConfigurationItem
-  Calibration value from 2024-08-01`"]
-  calib2interval["`dcterms:PeriodOfTime
-  startDate: 2024-08-01T12:30:00Z`"]
+calib2["`Field calibration of sensor #1234 on 2024-08-01
+&lt;&lt;prov:Activity>>`"]
+  calibconfig2["`Calibration value from 2024-08-01
+  &lt;&lt;fdri:ConfigurationItem>>`"]
+  calib2interval["`startDate: 2024-08-01T12:30:00Z
+  &lt;&lt;dcterms:PeriodOfTime>>`"]
   calibconfig2 -- fdri:observationInterval --> calib2interval
-  calibarg2["`fdri:ConfigurationArgument
-  Correction Factor Argument #2`"]
+  calibarg2["`Correction Factor Argument #2
+  &lt;&lt;fdri:ConfigurationArgument>>`"]
   calibconfig2 -- fdri:argument --> calibarg2
-  calibval2["`schema:PropertyValue
+  calibval2["`&lt;&lt;schema:PropertyValue>>
   schema:value 0.935`"]
   calibarg2 -- fdri:hasValue --> calibval2
 end
@@ -315,10 +324,10 @@ calib1 -- prov:qualifiedUsage ----> sensorUsage
 calib2 -- prov:qualifiedUsage ----> sensorUsage
 calibconfig1 -- prov:wasGeneratedBy --> calib1
 calibconfig2 -- prov:wasGeneratedBy --> calib2
-scalar["`fdri:DataProcessingMethod
-Scalar correction`"]
-sensorRole["`skos:Concept
-Calibrated System`"]
+scalar["`Scalar correction
+&lt;&lt;fdri:DataProcessingMethod`"]
+sensorRole["`Calibrated System
+&lt;&lt;skos:Concept>>`"]
 calibconfig1 -- fdri:method ----> scalar
 calibconfig2 -- fdri:method ----> scalar
 sensorUsage -- prov:entity ----> sensor

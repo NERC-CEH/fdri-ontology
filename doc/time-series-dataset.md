@@ -84,14 +84,17 @@ For each time-series, there is a dataset resource representing the time-series (
 
 ```mermaid
 flowchart
-bunny-ta-1min
-bunny-ta-1min-20240815
-bunny-ta-1min-20241017
+bunny-ta-1min["bunny-ta-1min
+&lt;&lt;dcat:Dataset>>"]
+bunny-ta-1min-20240815["bunny-ta-1min-20240815
+&lt;&lt;dcat:Dataset>>"]
+bunny-ta-1min-20241017["bunny-ta-1min-20241017
+&lt;&lt;dcat:Dataset>>"]
 
-bunny-ta-1min --hasVersion--> bunny-ta-1min-20240815
-bunny-ta-1min --hasVersion--> bunny-ta-1min-20241017
-bunny-ta-1min --hasCurrentVersion--> bunny-ta-1min-20241017
-bunny-ta-1min-20241017 --replaces--> bunny-ta-1min-20240815
+bunny-ta-1min --dcat:hasVersion--> bunny-ta-1min-20240815
+bunny-ta-1min --dcat:hasVersion--> bunny-ta-1min-20241017
+bunny-ta-1min --dcat:hasCurrentVersion--> bunny-ta-1min-20241017
+bunny-ta-1min-20241017 --dct:replaces--> bunny-ta-1min-20240815
 
 ```
 
