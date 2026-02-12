@@ -1,8 +1,11 @@
 ## System Capabilities and Ranges
 
-The FDRI data model extends the [SOSA/SSN System Capabilities Module](https://www.w3.org/TR/vocab-ssn/#System-capabilities) to provide a way to capture information about the range of conditions under which a sensor can be operational, and to associate sensor-related operational properties such as sensitivity, accurracy and frequency with those operational ranges. Typically this model will be used to record the manufacturer's specification of the operational properties of a make/model of sensor under a manufacturer-defined "normal" operating condition.
+The FDRI data model extends the [SOSA/SSN System Capabilities Module](https://www.w3.org/TR/vocab-ssn/#System-capabilities) to provide a way to capture information about the range of conditions under which a sensor can be operational, and to associate sensor-related operational properties such as sensitivity, accuracy and frequency with those operational ranges. Typically this model will be used to record the manufacturer's specification of the operational properties of a make/model of sensor under a manufacturer-defined "normal" operating condition.
 
 ```mermaid
+---
+  config: { class: {hideEmptyMembersBox: true}}
+---
 classDiagram
     direction LR
     class EMSystemType["fdri:EnvironmentalMonitoringSystemType"]
@@ -32,6 +35,9 @@ An `fdri:Condition` has the following properties:
 * `fdri:unit` - an `fdri:Unit` specifying the unit of measure of the value or value range.
 
 ```mermaid
+---
+  config: { class: {hideEmptyMembersBox: true}}
+---
 classDiagram
 class Condition["fdri:Condition"] {
     schema:minValue: rdfs:Literal
@@ -48,9 +54,12 @@ For example, a condition of an air temperature between -40&deg;C and +80&deg;C c
 
 ```mermaid
 flowchart
-taCond["Condition: Air Temperature -40 to +80 degrees C"]
-ta["Air Temperature"]
-degc["Degrees Celsius"]
+taCond["Condition: Air Temperature -40 to +80 degrees C
+&lt;&lt;fdri:Condition&gt;&gt;"]
+ta["Air Temperature
+&lt;&lt;fdri:Variable&gt;&gt;"]
+degc["Degrees Celsius
+&lt;&lt;fdri:Unit&gt;&gt;"]
 taCond --property--> ta
 taCond --minValue--> taMin["-40.0"]
 taCond --maxValue--> taMax["80.0"]
@@ -71,11 +80,14 @@ A `sys:SystemCapability` may be associated with either an `fdri:EnvironmentalMon
 
 An `fdri:SystemProperty` provides the value of one capability characteristics. It has the following properties:
 
-* `fdri:property` references an `fdri:Variable` which defines the sensor characteristic (e.g. accuracy, sensitivity, repeatablility).
+* `fdri:property` references an `fdri:Variable` which defines the sensor characteristic (e.g. accuracy, sensitivity, repeatability).
 * `schema:value`, `schema:minValue`, `schema:maxValue` - a single value or, more typically, a value range for the characteristic,
 * `fdri:unit` - an `fdri:Unit` specifying the unit of measure of the value or value range.
 
 ```mermaid
+---
+  config: { class: {hideEmptyMembersBox: true}}
+---
 classDiagram
     class SystemCapability["sys:SystemCapability"]
     class Variable["fdri:Variable"]
@@ -93,7 +105,7 @@ classDiagram
     SystemProperty "0..*" --> "1" Unit: fdri_unit
 ```
 
-The example below shows an imagined air temperature sensor and its capability. In this example the sensor under its normal operating range has an accuracy of +/- 0.5 degrees celsius, and a sensitivity of 0.1 degrees celsius.
+The example below shows an imagined air temperature sensor and its capability. In this example the sensor under its normal operating range has an accuracy of +/- 0.5 degrees Celsius, and a sensitivity of 0.1 degrees Celsius.
 
 ```mermaid
 flowchart
@@ -101,7 +113,7 @@ ta["`Air Temperature
 &lt;&lt;fdri:Variable&gt;&gt;`"]
 taOp["`Temperature -40 to +80
 &lt;&lt;fdri:Condition&gt;&gt;`"]
-taAcc["`TempMaster Accurracy
+taAcc["`TempMaster Accuracy
 &lt;&lt;fdri:SystemProperty&gt;&gt;`"]
 taSen["`TempMaster Sensitivity
 &lt;&lt;fdri:SystemProperty&gt;&gt;`"]
@@ -121,13 +133,13 @@ taCap --hasSystemProperty--> taSen
 taAcc --property--> acc
 taAcc --minValue--> taAccMin["-0.5"]
 taAcc --maxValue--> taAccMax["+0.5"]
-taAcc --unit--> degc
+taAcc --unit----> degc
 taSen --property--> sen
 taSen --value--> taSenVal["0.1"]
-taSen --unit--> degc
+taSen --unit----> degc
 taOp --minValue--> taOpMin["-40"]
 taOp --maxValue--> taOpMax["80"]
-taOp --unit--> degc
+taOp --unit----> degc
 ```
 
 #### Capturing Sensor Error Codes as System Capability
@@ -166,7 +178,7 @@ taError --unit--> unitless
 
 ### Operating Range
 
-An `fdri:OperatingRange` specifies the operational characteristics of a system. It can be used either to specify quality values for specific operational characteristics such as "maintenance schedule" or "operating voltage range", or it can be used without any such characteristics. If no operational characteristics are defined on an `fdri:OperatingRange`, then the resource is interepreted as specifying the conditions under which the system will operate normally. When conditions go beyond the specified ranges, a system is considered to be operating "out of range", which may affect the quality of its observations.
+An `fdri:OperatingRange` specifies the operational characteristics of a system. It can be used either to specify quality values for specific operational characteristics such as "maintenance schedule" or "operating voltage range", or it can be used without any such characteristics. If no operational characteristics are defined on an `fdri:OperatingRange`, then the resource is interpreted as specifying the conditions under which the system will operate normally. When conditions go beyond the specified ranges, a system is considered to be operating "out of range", which may affect the quality of its observations.
 
 `fdri:OperatingRange` has the following properties:
 * `sys:hasOperatingProperty` optionally references the `fdri:Variable` which defines the operational characteristic that this operating range provides a value for.
@@ -175,6 +187,9 @@ An `fdri:OperatingRange` specifies the operational characteristics of a system. 
 * `fdri:unit` - an `fdri:Unit` specifying the unit of measure of the value or value range (if one is provided).
 
 ```mermaid
+---
+  config: { class: {hideEmptyMembersBox: true}}
+---
 classDiagram
     class OperatingRange["fdri:OperatingRange"] {
         schema:minValue: rdfs:Literal
@@ -224,6 +239,9 @@ The structure of `fdri:SurvivalRange` is similar to that of `fdri:OperatingRange
 * `fdri:unit` - an `fdri:Unit` specifying the unit of measure of the value or value range (if one is provided).
 
 ```mermaid
+---
+  config: { class: {hideEmptyMembersBox: true}}
+---
 classDiagram
     class OperatingRange["fdri:SurvivalRange"] {
         schema:minValue: rdfs:Literal
