@@ -905,6 +905,10 @@ geo:long rdf:type owl:DatatypeProperty ;
 :Aggregation rdf:type owl:Class ;
              rdfs:subClassOf skos:Concept ,
                              [ rdf:type owl:Restriction ;
+                               owl:onProperty skos:inScheme ;
+                               owl:allValuesFrom :AggregationScheme
+                             ] ,
+                             [ rdf:type owl:Restriction ;
                                owl:onProperty :valueStatistic ;
                                owl:cardinality "1"^^xsd:nonNegativeInteger
                              ] ,
@@ -918,6 +922,13 @@ geo:long rdf:type owl:DatatypeProperty ;
                              ] ;
              rdfs:comment "Represents the aggregation of all values collected with a given frequency (fdri:resolution) over a given period of time (fdri:periodicity) using a given aggregation method (fdri:valueStatistic)."@en ;
              rdfs:label "Aggregation"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/AggregationScheme
+:AggregationScheme rdf:type owl:Class ;
+                   rdfs:subClassOf skos:ConceptScheme ;
+                   rdfs:comment "A concept scheme of `fdri:Aggregation` instances, defining the set of aggregations (value statistic, periodicity and resolution) applied by the FDRI data processing."@en ;
+                   rdfs:label "Aggregation Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Annotation
@@ -1121,6 +1132,13 @@ Instances of this class are used to define the properties by which the behaviour
                           rdfs:label "Configuration Value Series"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/ConstraintScheme
+:ConstraintScheme rdf:type owl:Class ;
+                  rdfs:subClassOf skos:ConceptScheme ;
+                  rdfs:comment "A concept scheme that manages a collection of iop:Constraint definitions."@en ;
+                  rdfs:label "Constraint Scheme"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfiguration
 :DataProcessingConfiguration rdf:type owl:Class ;
                              rdfs:subClassOf dcat:Resource ,
@@ -1169,12 +1187,21 @@ A Data Processing Configuration is defined as a sub-type of `prov:Plan` allowing
 :DataProcessingMethod rdf:type owl:Class ;
                       rdfs:subClassOf skos:Concept ,
                                       [ rdf:type owl:Restriction ;
+                                        owl:onProperty skos:inScheme ;
+                                        owl:allValuesFrom :DataProcessingMethodScheme
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
                                         owl:onProperty :parameter ;
                                         owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                         owl:onClass :ConfigurationParameter
                                       ] ;
                       rdfs:comment "A Concept which represents a data processing methodology/procedure and the parameters it can take."@en ;
                       rdfs:label "Data Processing Method"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingMethodScheme
+:DataProcessingMethodScheme rdf:type owl:Class ;
+                            rdfs:subClassOf skos:ConceptScheme .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Deployment
@@ -1228,6 +1255,13 @@ A deployment may be associated with a platform on which the sensors or systems w
            rdfs:subClassOf :GriddedDatasetResource ;
            rdfs:comment "A single dimension of a multi-dimensional array contained in an `fdri:GriddedDataset`."@en ;
            rdfs:label "Dimension"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/EntityScheme
+:EntityScheme rdf:type owl:Class ;
+              rdfs:subClassOf skos:ConceptScheme ;
+              rdfs:comment "A concept scheme that manages a collection of iAdopt iop:Entity definitions."@en ;
+              rdfs:label "Entity Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalDomain
@@ -2110,6 +2144,13 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
                                   ] .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/PropertyScheme
+:PropertyScheme rdf:type owl:Class ;
+                rdfs:subClassOf skos:ConceptScheme ;
+                rdfs:comment "A concept scheme that manages a collection of iAdopt iop:Property definitions."@en ;
+                rdfs:label "Property Scheme"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/PropertyValue
 :PropertyValue rdf:type owl:Class ;
                rdfs:subClassOf schema:PropertyValue ,
@@ -2458,9 +2499,20 @@ A Time-Series Definition captures the information that is common across multiple
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic
 :ValueStatistic rdf:type owl:Class ;
-                rdfs:subClassOf skos:Concept ;
+                rdfs:subClassOf skos:Concept ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty skos:inScheme ;
+                                  owl:allValuesFrom :ValueStatisticScheme
+                                ] ;
                 rdfs:comment "A concept that defines a statistical method for the derivation of a single aggregated value from a series of source values."@en ;
                 rdfs:label "Value Statistic"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatisticScheme
+:ValueStatisticScheme rdf:type owl:Class ;
+                      rdfs:subClassOf skos:ConceptScheme ;
+                      rdfs:comment "A concept scheme of `fdri:ValueStatistic` concepts that define the types of aggregation applied to values in the FDRI data processing pipelines."@en ;
+                      rdfs:label "Value Statistic Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Variable
@@ -2560,14 +2612,30 @@ prov:Activity rdfs:subClassOf [ rdf:type owl:Restriction ;
 <http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class .
 
 
+###  https://w3id.org/iadopt/ont/Constraint
+iop:Constraint rdfs:subClassOf skos:Concept ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty skos:inScheme ;
+                                 owl:allValuesFrom :ConstraintScheme
+                               ] .
+
+
 ###  https://w3id.org/iadopt/ont/Entity
 iop:Entity rdf:type owl:Class ;
-           rdfs:subClassOf skos:Concept .
+           rdfs:subClassOf skos:Concept ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty skos:inScheme ;
+                             owl:allValuesFrom :EntityScheme
+                           ] .
 
 
 ###  https://w3id.org/iadopt/ont/Property
 iop:Property rdf:type owl:Class ;
-             rdfs:subClassOf skos:Concept ;
+             rdfs:subClassOf skos:Concept ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty skos:inScheme ;
+                               owl:allValuesFrom :PropertyScheme
+                             ] ;
              rdfs:comment "A type of a characteristic of an `iop:ObjectOfInterest`."@en ;
              rdfs:label "Property"@en .
 

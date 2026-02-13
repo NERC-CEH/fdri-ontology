@@ -713,6 +713,28 @@ records:
         kind: object
         constraints:
           - record: ValueStatistic
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: A reference to the concept scheme under which this aggregation definition is managed.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: AggregationScheme
+
+  AggregationScheme:
+    label:
+      - value: Aggregation Scheme
+        lang: en
+    description:
+      - value: A concept scheme that defines a controlled vocabulary of aggregation methods, defined as a value statistic applied over a given period to values measured to a given frequency.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:AggregationScheme
+    shortCode: AggregationScheme
 
   Annotation:
     label:
@@ -1291,10 +1313,12 @@ records:
       - value: Constraint
         lang: en
     description:
-      - value: A Constraint limits the scope of the observation and confines the context to a particular state. It describes properties of the involved entities that are relevant to the particular observation.
+      - value: |
+          A Constraint limits the scope of the observation and confines the context to a particular state.
+          It describes properties of the involved entities that are relevant to the particular observation.
         lang: en
     extends: Concept
-    classUri: fdri:Constraint
+    classUri: iop:Constraint
     shortCode: Constraint
     properties:
       constrains:
@@ -1308,6 +1332,29 @@ records:
         kind: object
         constraints:
           - record: Entity
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: A reference to the concept scheme under which this constraint definition is managed.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: ConstraintScheme
+  
+  ConstraintScheme:
+    label:
+      - value: Constraint Scheme
+        lang: en
+    description:
+      - value: A Concept Scheme that manages a collection of Constraint definitions.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:ConstraintScheme
+    shortCode: ConstraintScheme
+
 
   DataProcessingConfiguration:
     label:
@@ -1428,7 +1475,7 @@ records:
         propertyUri: skos:inScheme
         kind: object
         constraints:
-          - record: ConceptScheme
+          - record: DataProcessingMethodScheme
       parameter:
         label:
           - value: has parameter
@@ -1441,7 +1488,18 @@ records:
         repeatable: true
         constraints:
           - record: ConfigurationParameter
-  
+
+  DataProcessingMethodScheme:
+    label:
+      - value: Data Processing Method Scheme
+        lang: en
+    description:
+      - value: A Concept Scheme which manages a controlled list of Data Processing Method concepts.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:DataProcessingMethodScheme
+    shortCode: DataProcessingMethodScheme
+
   Dataset:
     label:
       - value: Dataset
@@ -1886,6 +1944,42 @@ records:
         constraints:
           - record: Concept
 
+  Entity:
+    label:
+      - value: Entity
+        lang: en
+    description:
+      - value: |
+          An object or process that has a role in an observation. An Entity may play one of the following roles: ObjectOfInterest, ContextObject, Matrix.
+          Whether the involvement of a particular entity is meaningful enough to include in the variable description depends on the specific context.
+        lang: en
+    classUri: iop:Entity
+    extends: Concept
+    shortCode: Entity
+    properties:
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: A reference to the concept scheme under which this entity definition is managed.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: EntityScheme
+  
+  EntityScheme:
+    label:
+      - value: Entity Scheme
+        lang: en
+    description:
+      - value: A Concept Scheme that manages a collection of iAdopt iop:Entity definitions.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:EntityScheme
+    shortCode: EntityScheme
+
   EnvironmentalDomain:
     label:
       - value: Environmental Domain
@@ -1909,19 +2003,6 @@ records:
         constraints:
           - record: EnvironmentalDomainScheme
   
-  Entity:
-    label:
-      - value: Entity
-        lang: en
-    description:
-      - value: |
-          An object or process that has a role in an observation. An Entity may play one of the following roles: ObjectOfInterest, ContextObject, Matrix.
-          Whether the involvement of a particular entity is meaningful enough to include in the variable description depends on the specific context.
-        lang: en
-    classUri: iop:Entity
-    extends: Concept
-    shortCode: Entity
-
   EnvironmentalDomainScheme:
     label:
       - value: Environmental Domain Concept Scheme
@@ -3776,7 +3857,30 @@ records:
     classUri: iop:Property
     extends: Concept
     shortCode: Property
-
+    properties:
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: The controlled vocabulary to which this concept belongs.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: PropertyScheme
+  
+  PropertyScheme:
+    label:
+      - value: Property Scheme
+        lang: en
+    description:
+      - value: A controlled vocabulary of properties that can be used to describe characteristics of an ObjectOfInterest.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:PropertyScheme
+    shortCode: PropertyScheme
+  
   PropertyValue:
     label:
       - value: Property Value
@@ -4219,7 +4323,7 @@ records:
       - value: A concept scheme that defines a controlled vocabulary of soil type classifications.
         lang: en
     extends: ConceptScheme
-    classUri: fdri:ConceptScheme
+    classUri: fdri:SoilTypeScheme
     shortCode: SoilTypeScheme
 
   StaticDeployment:
@@ -4687,19 +4791,6 @@ records:
     classUri: fdri:UnitScheme
     shortCode: UnitScheme
     extends: ConceptScheme
-    properties:
-      hasTopConcept:
-        label:
-          - value: has top concept
-            lang: en
-        description:
-          - value: Relates a concept scheme to the concept(s) which appear at the top level of the concept scheme hierarchy.
-            lang: en
-        propertyUri: skos:hasTopConcept
-        kind: object
-        repeatable: true
-        constraints:
-          - record: Unit
 
   ValueStatistic:
     label:
@@ -4722,7 +4813,20 @@ records:
         propertyUri: skos:inScheme
         kind: object
         constraints:
-          - record: ConceptScheme
+          - record: ValueStatisticScheme
+
+  ValueStatisticScheme:
+    label:
+      - value: Value Statistic Concept Scheme
+        lang: en
+    description:
+      - value: |
+          A concept scheme that defines a controlled vocabulary of statistical methods for the derivation
+          of single aggregated values from a series of source values.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:ValueStatisticScheme
+    shortCode: ValueStatisticScheme
 
   Variable:
     label:
