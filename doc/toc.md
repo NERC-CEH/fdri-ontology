@@ -22,4 +22,5 @@
 * [Sensor/System Model](sensor-system.md)
 * [Sensor/System Capabilities Model](sensor-capabilities.md)
 * [Data-processing Configuration Model](data-processing-configurations.md)
+* [Identifier Patterns](identifier-patterns.md)
 * [OGC Connected Systems Spec Mapping](ogc-connected-systems.md)
