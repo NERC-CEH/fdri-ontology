@@ -71,6 +71,8 @@ There is a special category of resources which share the `{parent}#{id}` pattern
 
 A few classes are identified as having no identifier pattern. This is reserved for classes that appear in the class hierarchy but which only serve as super-classes and which are not expected to be directly instantiated in the data.
 
+The value chosen for the `{id}` portion of the IRI is context-dependant. Ideally the value should be a unique identifier assigned by some external authority, possibly prefixed with a well-known identifier for that authority. E.g. COSMOS sites all have an identifier assigned by the programme, and so an `{id}` can be constructed as `cosmos-xxx` where `xxx` is the COSMOS-assigned site identifier, folded to lowercase. In other cases and identifier may have to be constructed based on key properties of the entity in question - in such cases care should be taken to ensure that the chosen properties really are distinct across distinct entities and that they are normalised in such a way that when the same entity is described in different sources, the generated identifier string remains the same.
+
 > [!NOTE]
 > The proposed identifier patterns below are not entirely the same as those currently used in the deployed metadata. Moving over to supporting this identifier scheme may result in some downstream impacts on the data processing code, but once adopted it is anticipated that future changes should only be to extend this scheme, or to remove patterns for obsoleted classes.
 
@@ -101,3 +103,81 @@ A few classes are identified as having no identifier pattern. This is reserved f
 | /id/value-series/{id} | fdri:ConfigurationValueSeries, fdri:PropertyValueSeries |
 | {parent}#{id} | fdri:Annotation, fdri:Array, fdri:CalibrationMethod, fdri:CalibrationValueSeries, fdri:ConfigurationArgumentList, fdri:Dimension, geos:Geometry, fdri:GriddedArrayItem, fdri:GriddedContainer, fdri:OperatingRange, dct:PeriodOfTime, schema:PropertyValue, prov:Association, prov:Usage, fdri:RelatedPartyAssociation, fdri:RelatedPartyAttribution, fdri:RelativeLocation, fdri:SurvivalRange, sys:SystemCapability, fdri:SystemProperty, fdri:TimeBoundPropertyValue |
 | *No Identifier Pattern* | fdri:IndexedItem, owl:Thing, fdri:TimeSeriesDefinition |
+
+## Identifier Migration
+
+As noted above, some of the proposed identifier patterns differ from those currently in use in the FDRI metadata store. The following table lists the proposed identifier patterns alongside the currently used identifier patterns (current as of 19/02/2026, using the `dev` instance of the metadata store). A value of `N/A` indicates that there are currently no instances of the specified class in the metadata store.
+
+Existing identifier patterns that differ from the proposed identifier pattern are indicated in **bold face**.
+
+| Proposed Identifier Pattern | Class(es) using pattern | Existing Identifier Pattern(s) |
+| --- | --- | -- |
+| /id/activity/{id} | prov:Activity | /id/activity/{id} |
+| /id/agent/{id} | fdri:Agent | /id/agent/{id}, **/id/dataset/{parent id}#{role}** |
+| | fdri:Organization | /id/agent/{id} |
+| | fdri:Person | N/A |
+| | fdri:SoftwareAgent | N/A |
+| /id/argument/{id} | fdri:ConfigurationArgument | /id/argument/{id}, **/id/configuration-item/{parent id}#{argument name}** |
+| /id/catalog/{id} | fdri:ProgrammeCatalog | N/A |
+| /id/condition/{id} | fdri:Condition | N/A |
+| /id/configuration-item/{id} | fdri:ConfigurationItem | /id/configuration-item/{id} |
+| /id/dataset/{id} | dcat:Dataset | N/A |
+| | fdri:GriddedDataset | /id/dataset/{id} |
+| | fdri:ObservationDataset | /id/dataset/{id} |
+| | fdri:ObservationDatasetSeries | /id/dataset/{id} |
+| | fdri:TimeSeriesDataset | /id/dataset/{id} |
+| /id/deployment/{id} | fdri:Deployment | N/A |
+| | fdri:StaticDeployment | /id/deployment/{id} |
+| /id/distribution/{id} | dcat:Distribution | N/A |
+| | schema:MediaObject | N/A |
+| /id/document/{id} | schema:DigitalDocument | N/A |
+| /id/facility-group/{id} | fdri:FacilityGroup | /id/facility-group/{id} |
+| /id/facility/{id} | fdri:EnvironmentalMonitoringFacility | N/A |
+| | fdri:EnvironmentalMonitoringPlatform | **/id/platform/{id}** |
+| /id/fault/{id} | fdri:Fault | /id/fault/{id} |
+| /id/feature/{id} | sosa:FeatureOfInterest | N/A |
+| | fdri:GeospatialFeatureOfInterest | /id/feature/{id}, **/id/dataset/{parent id}#geospatialFeature** |
+| /id/membership/{id} | fdri:FacilityGroupMembership | **/id/facility-group-membership/{id}** |
+| /id/monitoring-activity/{id} | fdri:EnvironmentalMonitoringActivity | **/id/activity/{id}** |
+| /id/network/{id} | fdri:EnvironmentalMonitoringNetwork | /id/network/{id} |
+| /id/plan/{id} | fdri:DataProcessingConfiguration | N/A |
+| | fdri:ExternalDataProcessingConfiguration | N/A |
+| | fdri:InternalDataProcessingConfiguration | **/id/data-processing-configuration/{id}** |
+| | prov:Plan | N/A |
+| | fdri:Procedure | N/A |
+| | fdri:TimeSeriesPlan | /id/plan/{id} |
+| /id/programme/{id} | fdri:EnvironmentalMonitoringProgramme | /id/programme/{id} |
+| /id/site/{id} | fdri:EnvironmentalMonitoringSite | /id/site/{id}, **/ref/cosmos/site/{id}** |
+| /id/system/{id} | fdri:EnvironmentalMonitoringSensor | **/id/sensor/{id}** |
+| | fdri:EnvironmentalMonitoringSystem | /id/system/{id}, **/id/sensor/{id}** |
+| /id/usage/{id} | fdri:FacilityUsage | **/id/facility-usage/{id}**, **/id/activity/{parent id}#{usage role}** |
+| /id/value-series/{id} | fdri:ConfigurationValueSeries | **/id/configuration-value-series/{id}**, **/id/sensor/{parent id}#{configuration type}** |
+| | fdri:PropertyValueSeries | **/id/site/{parent id}#{property}**, **/id/annotation/{parent id}#value-series** |
+| {parent}#{id} | fdri:Annotation | {parent}#{id}, **/id/annotation/{id}** |
+| | fdri:Array | {parent}#id |
+| | fdri:CalibrationMethod | N/A |
+| | fdri:CalibrationValueSeries | N/A |
+| | fdri:ConfigurationArgumentList | {parent}#id |
+| | fdri:Dimension | {parent}#id |
+| | geos:Geometry |  {parent}#id |
+| | fdri:GriddedArrayItem | **BLANK NODES** |
+| | fdri:GriddedContainer | **/id/dataset/{id}**<sup>1</sup> |
+| | fdri:OperatingRange | N/A |
+| | dct:PeriodOfTime | **/id/observation-interval/{id}**, {parent}#{id} |
+| | schema:PropertyValue | {parent}#{id} |
+| | prov:Association | {parent}#{id} |
+| | prov:Usage | {parent}#{id} |
+| | fdri:RelatedPartyAssociation | N/A |
+| | fdri:RelatedPartyAttribution | {parent}#{id} |
+| | fdri:RelativeLocation | N/A |
+| | fdri:SurvivalRange | N/A |
+| | sys:SystemCapability | N/A |
+| | fdri:SystemProperty | N/A |
+| | fdri:TimeBoundPropertyValue | {parent}#{id} |
+
+<sup>1</sup> There is one instance of an `fdri:GriddedContainer` that is also an instance of `fdri:GriddedDataset` and so uses the `/id/dataset/{id}` identifier pattern of the latter. This is the expected approach for gridded datasets where the top level dataset is itself a gridded container. This indicates that the ontology could/should be updated so that `fdri:GriddedDataset` is made a subclass of `fdri:GriddedContainer`.
+
+### Impact Analysis
+
+It is proposed to migrate all identifier over to the new identifier scheme. It is expected that few of the changes should cause any real impact on downstream users of the metadata store. The change of identifier pattern for `fdri:InteranlDataProcessingConfiguration` may cause an impact on downstream code if it directly constructs the identifier for the configuration of a dataset, but if all such configurations are retrieved using a query then a change in the identifier pattern should have no impact on the code.
+
