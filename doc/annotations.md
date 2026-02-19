@@ -2,7 +2,7 @@
 
 Annotations provide an extension point in the model where different kinds of annotation may be added to a catalogued resource.
 
-The annotation property is defined as a complex observable property which allows for the ability to specify units of measurement etc.
+The annotation property is defined as a `skos:Concept` but may optionally be an `fdri:Variable` or `fdri:Measure` which allows for the ability to specify the observed property, context, units of measurement etc.
 
 An annotation can also be used to qualify a property value. For example when a measurement applies to some percentage of the observed entity, that percentage value can be captured as an annotation of the property value using the `fdri:qualifier` relation.
 
@@ -15,11 +15,17 @@ Annotations have:
 An `fdri:Annotation` can also be used as the value of an `fdri:qualifier` property on a `fdri:PropertyValue` or `fdri:TimeBoundPropertyValue`, to provide additional contextual qualification to a property value.
  
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
 class Resource["dcat:Resource"]
 class Annotation["fdri:Annotation"]
 class Concept["skos:Concept"]
 class COP["fdri:Variable"]
+class Measure["fdri:Measure"]
 class PropertyValue["fdri:PropertyValue"] {
     value: rdfs:Literal
     minValue: rdfs:Literal
@@ -28,7 +34,10 @@ class PropertyValue["fdri:PropertyValue"] {
 }
 class PropertyValueSeries["fdri:PropertyValueSeries"]
 class TBPV["fdri:TimeBoundPropertyValue"]
-class Period["dcat:PeriodOfTime"]
+class Period["dcat:PeriodOfTime"] {
+  startDate: xsd:dateTime
+  endDate: xsd:dateTime
+}
 
 Resource --> Annotation: fdri_hasAnnotation
 Annotation --> Concept: fdri_property
@@ -40,4 +49,5 @@ TBPV --> Period: fdri_interval
 TBPV --|> PropertyValue
 PropertyValue --> Annotation: fdri_qualifier
 Concept <|-- COP
+Concept <|-- Measure
 ```

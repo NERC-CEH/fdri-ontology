@@ -15,8 +15,6 @@ Catalog <|-- ProgrammeCatalog
 ProgrammeCatalog --> Programme: fdri_programme
 ProgrammeCatalog --> VariableScheme: fdri_observedPropertyScheme
 ProgrammeCatalog --> VariableScheme: fdri_annotationPropertyScheme
-ProgrammeCatalog --> RegionScheme: fdri_regionScheme
-ProgrammeCatalog --> CatchmentScheme: fdri_catchmentScheme
 ProgrammeCatalog --> ConfigurationPropertyScheme: fdri_configurationPropertyScheme
 ProgrammeCatalog --> EnvironmentalMonitoringFacilityTypeScheme: fdri_monitoringFacilityTypeScheme
 ProgrammeCatalog --> EnvironmentalMonitoringFacilityTypeScheme: fdri_monitoringSystemTypeScheme
@@ -29,23 +27,18 @@ ProgrammeCatalog --> EnvironmentalMonitoringFacilityTypeScheme: fdri_monitoringS
 |----------|--------|
 | fdri:observedPropertyScheme | The list of observed properties which are measured by the programme. |
 | fdri:annotationPropertyScheme | The list of metadata annotations which may be used in the metadata records for sites, stations and sensors associated with this programme. |
-| fdri:regionScheme | The list or hierarchy of geographic regions covered by this programme.
-| fdri:catchmentScheme | The list or hierarchy of hydrographic catchment areas covered by this programme.
 | fdri:configurationPropertyScheme | The list of sensor (or system) configuration properties applied to the sensors (or systems of sensors) used by this programme.
 | fdri:monitoringFacilityTypeScheme | The scheme of concepts that define types of network sites and stations participating in the programme.
 | fdri:monitoringSystemTypeScheme | The scheme of concepts that define the types of sensors and sensor systems used by the facilities that participate in the programme.
 
 > **NOTE**
-> There are no maximum cardinality constraints on these scheme refernce properties, allowing them to be repeated to indicate that values may come from several different concept schemes.
+> There are no maximum cardinality constraints on these scheme reference properties, allowing them to be repeated to indicate that values may come from several different concept schemes.
 
 > **NOTE**
 > For this release of the model we have decided that the schema should not mark any of these properties as required. As we establish more concretely how the properties will be used by downstream applications we can tighten constraints and mark some properties as required in future releases.
 
 > **NOTE**
 > The properties listed above do not include additional concept schemes which are used indirectly, such as the  `fdri:ObjectOfInterestScheme` and  `fdri:ContextObjectScheme` that are used by the Complex Observable Properties defined in the `fdri:VariableScheme`.
-
-> **QUESTION**
-> Now that there is a mechanism for annotations do we want to drop the specific catchment and reigon relations in favour of using annotations for those instead? If we do that though, how do we identify those annotation properties that provide geospatial information for resources?
 
 ### Other Properties
 

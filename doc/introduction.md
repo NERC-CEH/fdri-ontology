@@ -6,7 +6,7 @@ It outlines a model designed to make use of existing standards such as DCAT, PRO
 DCAT provides the concepts of Dataset, DataService and a catalog consisting of records of resources which are managed separate from the resources they describe.
 PROV-O provides a model of activities that create, modify and use entities and that are associated with Agents (both human and non-human) who perform or otherwise participate in those activities.
 SOSA/SSN provides the notions of observable properties as things that can be measured by sensors against some feature of interest.
-i-Adopt provides the foudation for structuring the definition of observable properties.
+i-Adopt provides the foundation for structuring the definition of observable properties.
 
 ### GitHub Repository
 

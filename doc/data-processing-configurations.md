@@ -12,24 +12,33 @@ classDiagram
   class IntDPConfig["fdri:InternalDataProcessingConfiguration"]
   class ExtDPConfig["fdri:ExternalDataProcessingConfiguration"]
   class Concept["skos:Concept"]
-  Activity <|-- DPActivity
+  class Activity["prov:Activity"]
   Plan <|-- DPConfig
   DPConfig --> DPConfigType: dct_type
   DPConfig <|-- IntDPConfig
   DPConfig <|-- ExtDPConfig
   DPConfigType --|> Concept
+  Activity --> Plan: prov_hadPlan
 ```
 
 An `fdri:DataProcessingConfiguration` may be soft-typed with an `fdri:DataProcessingConfigurationType` which is a concept drawn from a data processing configuration type controlled vocabulary.
 
 There are two subclasses defined for `fdri:DataProcessingConfiguration`. `fdri:InternalDataProcessingConfiguration` resources store configuration properties and their values in the metadata store. `fdri:ExternalDataProcessingConfiguration` resources refer to a configuration file stored in a source control repository.
 
+`fdri:DataProcessingConfiguration` is sub-classed from `prov:Plan` allowing it to be the target of the `prov:hadPlan` property on a `prov:Activity`. Such a `prov:Activity` would represent the execution of a processing run using the `fdri:DataProcessingConfiguration`.
+
 ### Internal Data Processing Configuration
 
 The `fdri:InteralDataProcessingConfiguration` class provides a structure for keeping a complete historic record of the data processing methods applied to a data set. The configuration is modelled as a collection of items, each item representing a data processing method that is applied along with the arguments passed into that method. Methods and their parameters are modelled as SKOS concepts with the method concept having an additional property to relate the method to the parameters that it accepts.
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
+  direction LR
   class Plan["fdri:DataProcessingConfiguration"]
   class DPConfig["fdri:InternalDataProcessingConfiguration"]
   class COP["iop:Variable"]
@@ -37,14 +46,13 @@ classDiagram
   class EMF["fdri:EnvironmentalMonitoringFacility"]
   class ConfigurationItem["fdri:ConfigurationItem"]
   class DataProcessingConfigurationType["fdri:DataProcessingConfigurationType"]
-  class TimeSeriesDefinition["fdri:TimeSeriesDefinition"]
+  class TimeSeries["fdri:TimeSeriesDataset"]
 
   Plan <|-- DPConfig
   
   DPConfig --> EMF: fdri_appliesToFacility
-  DPConfig --> EMFType: fdri_appliesToSystem
-  DPConfig --> COP: fdri_appliesToVariable
-  DPConfig --> TimeSeriesDefinition: fdri_appliesToTimeSeries
+  DPConfig --> EMFType: fdri_appliesToFacility
+  DPConfig --> TimeSeries: fdri_appliesToTimeSeries
   DPConfig --> ConfigurationItem: fdri_hadConfigurationItem
   DPConfig --> ConfigurationItem: fdri_hasCurrentConfigurationItem
   DPConfig --> DataProcessingConfigurationType: dct_type
@@ -55,15 +63,20 @@ An `fdri:InternalDataProcessingConfiguration` is used to capture a collection of
 The relation `fdri:appliesToFacility` relates a `fdri:DataProcessingConfiguration` to the `fdri:EnvironmentalMonitoringFacility` or `fdri:EnvironmentalMonitoringFacilityType` whose measurements are affected by the configuration.  The relation `fdri:appliesToTimeSeries` relates an `fdri:DataProcessingConfiguration` to the time series affected by the configuration.
 
 > **NOTE**
-> The use of `fdri:appliesToVariable` to relate an `fdri:DataProcessingConfiguration` to the variable affected by the configuration is deprecated in favour of using `fdri:appliesToTimeSeries` and may be removed from the model.
+> The use of `fdri:appliesToVariable` (not shown in the diagram above) to relate an `fdri:DataProcessingConfiguration` to the variable affected by the configuration is deprecated in favour of using  `fdri:appliesToTimeSeries` and will be removed from the model.
 
-The relation `fdri:hasCurrentConfigurationItem` relates an `fdri:DataProcessingConfiguration` to one or more `fdri:ConfigurationItem`s, which provide the current set of configuration values for the processing. Each `fdri:ConfigurationItem` specifies a method (e.g. multiply, spike etc.); a property value (which may be a specific value or a min/max range); a `fdri:phenomenonInterval` which indicates the date range of the observations to be affected by the configuration item; and an `fdri:interval` which specifies the interval during which the configuration item applies. If `fdri:phenomenonInterval` is omitted, the configuration would be treated as applying to all observations processed during the `fdri:interval`
+The property `fdri:hasCurrentConfigurationItem` relates an `fdri:DataProcessingConfiguration` to one or more `fdri:ConfigurationItem`s, which provide the current set of configuration values for the processing. Each `fdri:ConfigurationItem` specifies a method (e.g. multiply, spike etc.); a property value (which may be a specific value or a min/max range); a `fdri:phenomenonInterval` which indicates the date range of the observations to be affected by the configuration item; and an `fdri:interval` which specifies the interval during which the configuration item applies. If `fdri:phenomenonInterval` is omitted, the configuration would be treated as applying to all observations processed during the `fdri:interval`
 
 The relation `fdri:hadConfigurationItem` relates an `fdri:DataProcessingConfiguration` to the configuration items which were historically used by the configuration.
 
-#### Configuration Item Strucutre
+#### Configuration Item Structure
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
   class PropertyValue["schema:PropertyValue"] {
     schema:value: rdfs:Literal
@@ -90,7 +103,7 @@ classDiagram
   Arg --> ArgList: fdri_hasStructuredValue
   ArgList --> Arg: fdri_argument
   ConfigurationItem --> ConfigurationItem: dct_replaces
-  Method --|> Concept
+  Method --|> Concept-
   Param --|> Concept
 ```
 
@@ -111,12 +124,12 @@ An `fdri:PropertyValue` resource has:
 * `schema:minValue` and `schema:maxValue` to denote a value range.
 * `schema:value` to denote an single literal value.
 * `schema:valueReference` to provide a value that is another concept (e.g. a value from a taxonomy)
-* `fdri:valueType` to define the type of the value provided. If the value is a literal value or value range, then `fdri:valueType` should be the XML Schema Datatypes identifier for the datatype of the value(s). If the value is a reference to another concept then `fdri:valueType` should be the IRI of the RDF class of that concept.
+* `fdri:valueType` to define the type of the value provided. If the value is a literal value or value range, then `fdri:valueType` should be the XML Schema Data-types identifier for the data-type of the value(s). If the value is a reference to another concept then `fdri:valueType` should be the IRI of the RDF class of that concept.
 
-Both `fdri:DataProcessingMethod` and `fdri:ConfigurationParameter` are subclasses of skos:Concept. 
+Both `fdri:DataProcessingMethod` and `fdri:ConfigurationParameter` are subclasses of `skos:Concept`.
 
 `fdri:DataProcessingMethod` also has:
-* an optional, repeatable property `fdri:hasParameter` which relates the method to the parameters that may be passed to the method.
+* an optional, repeatable property `fdri:parameter` which relates the method to the parameters that may be passed to the method. It is expected that each parameter specified in the `fdri:ConfigurationArgument` should be the same as one of the parameters specified on the data processing method used by the parent configuration.
 
 > **QUESTION**
 > Is configuration history managed at the individual configuration property level or at the whole configuration level?
@@ -125,6 +138,11 @@ Both `fdri:DataProcessingMethod` and `fdri:ConfigurationParameter` are subclasse
 ### External Data Processing Configuration
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
   class Plan["fdri:DataProcessingConfiguration"]
   class DPConfig["fdri:ExternalDataProcessingConfiguration"] {

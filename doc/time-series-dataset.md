@@ -6,8 +6,10 @@
 classDiagram
 class ObservationDataset["fdri:ObservationDataset"]
 class FoI["fdri:GeospatialFeatureOfInterest"]
+class EMS["fdri:EnvironmentalMonitoringSite"]
 class EMF["fdri:EnvironmentalMonitoringFacility"]
 class EMP["fdri:EnvironmentalMonitoringProgramme"]
+class Activity["fdri:EnvironmentalMonitoringActivity"]
 class Variable["iop:Variable"]
 class Measure["fdri:Measure"]
 class ProcessingLevel["fdri:ProcessingLevel"]
@@ -15,6 +17,7 @@ ObservationDataset --> FoI: sosa_hasFeatureOfInterest
 ObservationDataset --> Variable: sosa_observedProperty
 ObservationDataset --> Measure: fdri_measure
 ObservationDataset --> EMF: fdri_originatingFacility
+ObservationDataset --> EMS: fdri_originatingSite
 ObservationDataset --> EMP: fdri_originatingProgramme
 ObservationDataset --> ProcessingLevel: fdri_processingLevel
 ```
@@ -24,45 +27,46 @@ ObservationDataset --> ProcessingLevel: fdri_processingLevel
 * `sosa:hasFeatureOfInterest` relates the dataset to the feature(s) in the environment that the dataset provides observations on.
 * `sosa:observedProperty` relates the dataset to the variable(s) that the dataset provides values for.
 * `fdri:measure` relates the dataset to the description of the measurements that the dataset contains. A Measure is a combination of `Variable`, unit of measure, and aggregation and time period where appropriate.
+* `fdri:originatingActivity` relates the dataset to the activity or activities that contributed some or all of the measurements recorded in the dataset.
 * `fdri:originatingFacility` relates the dataset to the facility or facilities that contribute some or all of the measurements recorded in the dataset.
+* `fdri:originatingSite` relates the dataset to the monitoring site (or sites) that contribute some or all of the measurements recorded in the dataset. Note: Although the model states that `fdri:EnvironmentalMonitoringSite` is a subclass of `fdri:EnvironmentalMonitoringFacility`, this more restrictive property is useful for grouping datasets specifically at the most commonly used facility level.  
 * `fdri:originatingProgramme` relates the dataset to the monitoring programme or programmes that contribute some or all of the measurements recorded in the dataset (this may be indirectly, via some facility which is part of the programme).
 * `fdri:processingLevel` specifies the level of data processing that has been carried out on the data in the dataset.
 
 ## Time-Series Dataset Model
 
-An `fdri:TimeSeriesDataset` is defined as a subclass of `fdri:ObservationDataset` with some additional properties to convey any statistical aggregation applied to the observations in the dataset.
+An `fdri:TimeSeriesDataset` is defined as a subclass of `fdri:ObservationDataset` and has some additional properties relating to the processing and/or derivation of the time series.
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
-class TimeSeriesDataset["fdri:TimeSeriesDataset"]
-class TimeSeriesDefinition["fdri:TimeSeriesDefinition"] {
+direction LR
+class TimeSeriesDataset["fdri:TimeSeriesDataset"] {
   fdri:sourceBucket: xsd:string
   fdri:sourceDataset: xsd:string
   fdri:sourceColumnName: xsd:string
 }
 class Plan["fdri:TimeSeriesPlan"]
 class ProcessingLevel["fdri:ProcessingLevel"]
-class Variable["iop:Variable"]
+class Variable["skos:Concept"]
 class Measure["fdri:Measure"]
 
-TimeSeriesDefinition --> ProcessingLevel: fdri_processingLevel
-TimeSeriesDataset --> TimeSeriesDefinition: dct_type
-TimeSeriesDefinition --> Variable: sosa_observedProperty
-TimeSeriesDefinition --> Measure: fdri_measure
-TimeSeriesDefinition --> Plan: fdri_methodology
-Plan --> TimeSeriesDefinition: fdri_uses
-Plan --> TimeSeriesDataset: fdri_uses
 TimeSeriesDataset --> ProcessingLevel: fdri_processingLevel
 TimeSeriesDataset --> Variable: sosa_observedProperty
 TimeSeriesDataset --> Measure: fdri_measure
+TimeSeriesDataset --> Plan: fdri_methodology
+Plan --> TimeSeriesDataset: fdri_uses
 TimeSeriesDataset --> TimeSeriesDataset: fdri_dependsOn, fdri_directDependsOn
 ```
 
-An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series of observations of a single variable by some `fdri:EnvironmentalMonitoringFacility`, the time series itself is soft-typed (using `dct:type`) by an `fdri:TimeSeriesDefinition`, which in turn has the following properties:
+An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series of observations of a single variable by some `fdri:EnvironmentalMonitoringFacility`.
 
-* `fdri:processingLevel` a reference to the concept that defines the level of data processing applied to the time series. This property is repeated on `fdri:TimeSeriesDataset` to ensure consistency with the `fdri:ObservationDataset` base class.
-* `sosa:observedProperty` a reference to the `iop:Variable` that defines the property being observed by the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consitency with the `fdri:ObservationDataset` base class.
-* `fdri:measure` a reference to the `fdri:Measure` that defines measurements recorded in the dataset. This property is repeated on `fdri:TimeSeriesDataset` to ensure consistency with the `fdri:ObservationDataset` base class.
+The following additional properties are defined for an `fdri:TimeSeriesDataset`.
+
 * `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series, either by direct reference to the `fdri:TimeSeriesDataset` or to the `fdri:TimeSeriesDefinition` that types the input dataset.
 * `fdri:sourceBucket` specifies the top level container (an S3 bucket) in which the data that is processed to produce time series datasets is stored.
 * `fdri:dataset` specifies the specific partition of the top level container in which the data is stored.
@@ -80,14 +84,17 @@ For each time-series, there is a dataset resource representing the time-series (
 
 ```mermaid
 flowchart
-bunny-ta-1min
-bunny-ta-1min-20240815
-bunny-ta-1min-20241017
+bunny-ta-1min["bunny-ta-1min
+&lt;&lt;dcat:Dataset>>"]
+bunny-ta-1min-20240815["bunny-ta-1min-20240815
+&lt;&lt;dcat:Dataset>>"]
+bunny-ta-1min-20241017["bunny-ta-1min-20241017
+&lt;&lt;dcat:Dataset>>"]
 
-bunny-ta-1min --hasVersion--> bunny-ta-1min-20240815
-bunny-ta-1min --hasVersion--> bunny-ta-1min-20241017
-bunny-ta-1min --hasCurrentVersion--> bunny-ta-1min-20241017
-bunny-ta-1min-20241017 --replaces--> bunny-ta-1min-20240815
+bunny-ta-1min --dcat:hasVersion--> bunny-ta-1min-20240815
+bunny-ta-1min --dcat:hasVersion--> bunny-ta-1min-20241017
+bunny-ta-1min --dcat:hasCurrentVersion--> bunny-ta-1min-20241017
+bunny-ta-1min-20241017 --dct:replaces--> bunny-ta-1min-20240815
 
 ```
 

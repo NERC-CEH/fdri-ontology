@@ -6,6 +6,8 @@ an `fdri:GriddedDataset` includes metadata about the structure of the multi-dime
 
 ### Gridded Dataset Structure
 
+The additional metadata for gridded datasets is intended to provide users with information about the structure of the dataset. A gridded dataset consists of one or more multi-dimensional arrays. Both netCDF and ZARR also support structures where arrays may be nested.
+
 An `fdri:GriddedDataset` contains:
   * zero or more `fdri:GriddedContainer`s
   * zero or more `fdri:Dimension`s,
@@ -15,7 +17,7 @@ An `fdri:GriddedContainer` is a nested structure which may itself contain `fdri:
 
 An `fdri:Dimension` can be used to provide a common definition of the extent of a dimension which is shared by many `fdri:Arrays`. The size of the dimension can be specified as an integer value using the `fdri:size` property.
 
-An `fdri:Array` represents one multi-dimensional array in the dataset. The property `fdri:shape` can be used to define the shape of an array as an RDF list of integer values giving the size of each dimension of the array. The property `fdri:referenceList` can be used to reference the `fdri:Dimension`s and/or `fdri:Array`s that define each of the dimensions of this array. 
+An `fdri:Array` represents one multi-dimensional array in the dataset. The property `fdri:shape` can be used to define the shape of an array as an RDF list of integer values giving the size of each dimension of the array. The property `fdri:referenceList` can be used to reference the `fdri:Dimension`s and/or `fdri:Array`s that define each of the dimensions of this array. The property `fdri:isCoordinate` provides a boolean value which can be used to indicate if the array represents a co-ordinate variable - having a single dimension with the same name in the containing netCDF file.
 
 The value of `fdri:referenceList` is an `fdri:GriddedArrayItem` which has two properties:
 
@@ -23,7 +25,7 @@ The value of `fdri:referenceList` is an `fdri:GriddedArrayItem` which has two pr
   * `schema:valueReference` is a reference to the `fdri:Array` or `fdri:Dimension` that appears at that index in the enclosing `fdri:Array`
 
 An `fdri:Array`, `fdri:Dimension` or `fdri:GriddedContainer` may reference the `fdri:Variable`(s) it provides values for using the `sosa:observedProperty` property, or the `fdri:Measure`(s) it provides values for using the `fdri:measure`. 
-All of these types also allow annotations to be referenced using `fdri:hasAnnotation`. Annotations are the recommended way to capture additional metadata that may be encoded in the dataset such as unit of meaure, coordinates, methods used etc.
+All of these types also allow annotations to be referenced using `fdri:hasAnnotation`. Annotations are the recommended way to capture additional metadata that may be encoded in the dataset such as unit of measure, coordinates, methods used etc.
 
 ```mermaid
 ---
@@ -44,9 +46,10 @@ class Dimension["fdri:Dimension"] {
 }
 class Array["fdri:Array"] {
   fdri:shape: List&lt;xsd:integer&gt;
+  fdri:isCoordinate: xsd:boolean
 }
 class Annotation["fdri:Annotation"]
-class Variable["fdri:Variable"]
+class Variable["skos:Concept"]
 class Measure["fdri:Measure"]
 
 ObservationDataset <|-- GriddedDataset

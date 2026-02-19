@@ -2,9 +2,9 @@
 
 Deployments are used when a system (a sensor or package of sensors) is deployed in the field.
 
-Deployments are modelled as a sub-class of `prov:Activity` and of `ssn:Deployment`.
+Deployments are modelled using the class `fdri:Deployment` which is defined as a sub-class of `prov:Activity` and of `ssn:Deployment`.
 
-A Deployment may have:
+An `fdri:Deployment` may have:
 
 * a deployed system (`ssn:deployedSystem`) referencing the `fdri:EnvironmentalMonitoringSystem` that was deployed.
 * a target platform (`ssn:deployedOnPlatform`) referencing the `fdri:EnvironmentalMonitoringPlatform` or `fdri:EnvironmentalMonitoringSite` on which the system was deployed. It is recommended to only record the most fine-grained level of infrastructure where the deployment took place. For example, if a site hosts several platforms or stations, record deployments at the platform/station level if that information is available.
@@ -18,6 +18,9 @@ A Deployment may have:
   * `fdri:deploymentNote` to capture notes about the deployment that are not covered by the other properties.
 
 ```mermaid
+---
+  config: { class: { hideEmptyMembersBox: true } }
+---
 classDiagram
   direction TB
   class EMPlatform["fdri:EnvironmentalMonitoringPlatform"]
@@ -85,31 +88,3 @@ Deployment <|-- StaticDeployment
   StaticDeployment --> Feature: prov_atLocation
 
 ```
-
-### Mobile Deployments
-
-The class `fdri:MobileDeployment` is used to capture the deployment of a system to a mobile platform such as a boat or a drone. In such cases, each sortie of mobile platform with the deployed system should be recorded as a separate `fdri:MobileDeployment` (e.g. when multiple flights are made by a drone with a particular package of sensors). 
-
-The `fdri:trackLog` property should be used to reference the detailed (possibly timed) track of the sortie, but the properties `geos:hasGeometry`, `geos:hasRepresentativePoint`, `geos:hasCentroid`, `geos:hasBoundingBox`, `geo:lat`, `geo:long`, `spatialrelations:easting` and `spatialrelations:northing` are also provided to allow the representative point location, geospatial path or the area extent of the track to be captured in a form suitable for display and/or geo-spatial query. For notes on these additional properties please refer to [Notes on Geo-spatial Resources](geospatial.md).
-
-```mermaid
-classDiagram
-class Deployment["fdri:Deployment"]
-class MobileDeployment["fdri:MobileDeployment"]
-class MobileDeployment {
-    fdri:trackLog: Resource
-    geos:hasGeometry: geos:Geometry
-    geos:hasRepresentativePoint: geos:Geometry
-    geos:hasCentroid: geos:Geometry?
-    geos:hasBoundingBox: geos:Geometry?
-    geo:lat: string?
-    geo:long: string?
-    spatialrelations:easting?
-    spatialrelations:northing?
-}
-Deployment <|-- MobileDeployment
-```
-
-> **QUESTION**
-> Should the range of `trackLog` be more specialised? The assumption is that we don't want to try and model a flight path, but just reference it. If we are just referencing a resource do we want to use the DCAT `Distribution` class to capture information about the track log such as its format and size? 
-
