@@ -16,7 +16,8 @@ The top level namespace for the FDRI Metadata Store shall be `http://fdri.ceh.ac
 Underneath that namespace we define two distinct sub-namespaces
 
 `ref/` shall be used for the management of reference data.
-`id/` shall be used for the management of all other data.
+`id/` shall be used for the management of all other metadata entities.
+`data/` shall be reserved for identifying data values (this may be later supported by systems outside the scope of the metadata service).
 
 ## Identifier Patterns for Reference Data
 
@@ -62,7 +63,7 @@ The following table lists the identifier patterns used for RDF resources that do
 
 In a number of cases, resources of several different types may use the same identifier pattern. The types are generally related either through a subclass relationship between them or by sharing a common super-class.
 
-In the table that follows, the identifier patters all take the form `/id/CAETGORY/{id}`. The `{id}` portion is the contextually unique identifier assigned to each resource. These identifiers should conform to the IRI production for a single path segment without any fragment identifier.
+In the table that follows, the identifier patters all take the form `/id/CATEGORY/{id}`. The `{id}` portion is the contextually unique identifier assigned to each resource. These identifiers should conform to the IRI production for a single path segment without any fragment identifier.
 
 There is a special category of resources which share the `{parent}#{id}` pattern. This is used for resources that are considered to be "nested" inside their parent resource. The actual identifier would be created by concatenating the URI of the parent resource with either `#{id}` or `.{id}` - the latter being used if the parent resource itself already includes an IRI fragment (`#`).
 
@@ -179,5 +180,5 @@ Existing identifier patterns that differ from the proposed identifier pattern ar
 
 ### Impact Analysis
 
-It is proposed to migrate all identifier over to the new identifier scheme. It is expected that few of the changes should cause any real impact on downstream users of the metadata store. The change of identifier pattern for `fdri:InteranlDataProcessingConfiguration` may cause an impact on downstream code if it directly constructs the identifier for the configuration of a dataset, but if all such configurations are retrieved using a query then a change in the identifier pattern should have no impact on the code.
+It is proposed to migrate all identifier over to the new identifier scheme. It is expected that few of the changes should cause any real impact on downstream users of the metadata store. The change of identifier pattern for `fdri:InternalDataProcessingConfiguration` may cause an impact on downstream code if it directly constructs the identifier for the configuration of a dataset, but if all such configurations are retrieved using a query then a change in the identifier pattern should have no impact on the code.
 
