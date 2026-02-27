@@ -2,6 +2,11 @@
 
 Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub repository at https://github.com/NERC-CEH/fdri-ontology/issues
 
+DRAFT 0.6
+---------
+
+* BREAKING: Deprecated the use of `fdri:appliesToTimeSeries` in favour of `fdri:appliesToDataset` to relate an fdri:DataProcessingConfiguration to the dataset or datasets that result from the application of that configuration. In the recordspec schema, the appliesToTimeSeries property has been removed.
+
 DRAFT 0.5
 ---------
 

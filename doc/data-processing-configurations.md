@@ -46,13 +46,13 @@ classDiagram
   class EMF["fdri:EnvironmentalMonitoringFacility"]
   class ConfigurationItem["fdri:ConfigurationItem"]
   class DataProcessingConfigurationType["fdri:DataProcessingConfigurationType"]
-  class TimeSeries["fdri:TimeSeriesDataset"]
+  class Dataset["dcat:Dataset"]
 
   Plan <|-- DPConfig
   
   DPConfig --> EMF: fdri_appliesToFacility
   DPConfig --> EMFType: fdri_appliesToFacility
-  DPConfig --> TimeSeries: fdri_appliesToTimeSeries
+  DPConfig --> Dataset: fdri_appliesToDataset
   DPConfig --> ConfigurationItem: fdri_hadConfigurationItem
   DPConfig --> ConfigurationItem: fdri_hasCurrentConfigurationItem
   DPConfig --> DataProcessingConfigurationType: dct_type
@@ -60,10 +60,10 @@ classDiagram
 
 An `fdri:InternalDataProcessingConfiguration` is used to capture a collection of configuration items that apply to part of the data processing pipeline.
 
-The relation `fdri:appliesToFacility` relates a `fdri:DataProcessingConfiguration` to the `fdri:EnvironmentalMonitoringFacility` or `fdri:EnvironmentalMonitoringFacilityType` whose measurements are affected by the configuration.  The relation `fdri:appliesToTimeSeries` relates an `fdri:DataProcessingConfiguration` to the time series affected by the configuration.
+The relation `fdri:appliesToFacility` relates a `fdri:DataProcessingConfiguration` to the `fdri:EnvironmentalMonitoringFacility` or `fdri:EnvironmentalMonitoringFacilityType` whose measurements are affected by the configuration.  The relation `fdri:appliesToDataset` relates an `fdri:DataProcessingConfiguration` to the dataset or datasets affected by the configuration.
 
 > **NOTE**
-> The use of `fdri:appliesToVariable` (not shown in the diagram above) to relate an `fdri:DataProcessingConfiguration` to the variable affected by the configuration is deprecated in favour of using  `fdri:appliesToTimeSeries` and will be removed from the model.
+> The use of `fdri:appliesToVariable` (not shown in the diagram above) to relate an `fdri:DataProcessingConfiguration` to the variable affected by the configuration is deprecated in favour of using  `fdri:appliesToDataset` and will be removed from the model.
 
 The property `fdri:hasCurrentConfigurationItem` relates an `fdri:DataProcessingConfiguration` to one or more `fdri:ConfigurationItem`s, which provide the current set of configuration values for the processing. Each `fdri:ConfigurationItem` specifies a method (e.g. multiply, spike etc.); a property value (which may be a specific value or a min/max range); a `fdri:phenomenonInterval` which indicates the date range of the observations to be affected by the configuration item; and an `fdri:interval` which specifies the interval during which the configuration item applies. If `fdri:phenomenonInterval` is omitted, the configuration would be treated as applying to all observations processed during the `fdri:interval`
 
