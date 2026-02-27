@@ -85,6 +85,13 @@ geo:location rdf:type owl:AnnotationProperty ;
                           rdfs:label "annotation property scheme"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToDataset
+:appliesToDataset rdf:type owl:ObjectProperty ;
+                  rdfs:range dcat:Dataset ;
+                  rdfs:comment "Relates the enclosing entity to the Dataset(s) that it applies to."@en ;
+                  rdfs:label "applies to dataset"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToFacility
 :appliesToFacility rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
@@ -95,13 +102,11 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToTimeSeries
 :appliesToTimeSeries rdf:type owl:ObjectProperty ;
-                     rdfs:range [ rdf:type owl:Class ;
-                                  owl:unionOf ( :TimeSeriesDataset
-                                                :TimeSeriesDefinition
-                                              )
-                                ] ;
-                     rdfs:comment "Defines the Time-Series Dataset or Time-Series Definition that a Data Processing Configuration is used for."@en ;
-                     rdfs:label "applies to time-series"@en .
+                     rdfs:comment "DEPRECATED Defines the Time-Series Dataset or Time-Series Definition that a Data Processing Configuration is used for."@en ,
+                                  "With the deprecation of the fdri:TimeSeriesDefinition class, the range and scope of this property is no longer appropriate. Instead use fdri:appliesToDataset."@en ;
+                     rdfs:label "DEPRECATED applies to time-series"@en ;
+                     rdfs:seeAlso :appliesToDataset ;
+                     owl:deprecated "true"^^xsd:boolean .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/appliesToVariable
@@ -1148,11 +1153,11 @@ Instances of this class are used to define the properties by which the behaviour
                                                owl:allValuesFrom :DataProcessingConfigurationType
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty :appliesToFacility ;
+                                               owl:onProperty :appliesToDataset ;
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
-                                               owl:onProperty :appliesToTimeSeries ;
+                                               owl:onProperty :appliesToFacility ;
                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
                                              ] ,
                                              [ rdf:type owl:Restriction ;
