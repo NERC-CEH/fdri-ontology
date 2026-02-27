@@ -1392,21 +1392,20 @@ records:
         constraints:
           - record: EnvironmentalMonitoringFacilityType
           - record: EnvironmentalMonitoringFacility
-      appliesToTimeSeries:
+      appliesToDataset:
         label:
-          - value: applies to time-series
+          - value: applies to dataset
             lang: en
         description:
           - value: |
-              References the time series that are affected by this configuration.
+              References the dataset(s) affected by this configuration.
             lang: en
-        propertyUri: fdri:appliesToTimeSeries
+        propertyUri: fdri:appliesToDataset
         kind: object
         required: true
         repeatable: true
         constraints:
-          - record: TimeSeriesDefinition
-          - record: TimeSeriesDataset
+          - record: Dataset
       type:
         label:
           - value: configuration type
