@@ -4369,7 +4369,7 @@ records:
         label:
           - value: datum
             lang: en
-        propertyUri: fdri:datumPoint
+        propertyUri: fdri:datum
         kind: literal
         constraints:
           - datatype: xsd:decimal
