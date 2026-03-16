@@ -585,6 +585,13 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
              rdfs:label "asset number"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/azimuth
+:azimuth rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdfs:range xsd:decimal ;
+         rdfs:label "aizmuth"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/calibrationDue
 :calibrationDue rdf:type owl:DatatypeProperty ;
                 rdfs:range [ rdf:type rdfs:Datatype ;
@@ -617,6 +624,13 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
                 rdfs:range xsd:date ;
                 rdfs:comment "The date on which an item was purchased by the entity that manages it."@en ;
                 rdfs:label "date of purchase" .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/datum
+:datum rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:range xsd:decimal ;
+       rdfs:label "datum"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/dependencyNote
@@ -652,6 +666,7 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/deploymentPosition
 :deploymentPosition rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :deploymentNote ;
                     rdfs:range rdf:langString ;
                     rdfs:comment "Descriptive information about the positioning of an Environmental Monitoring System as the result of the containing StaticDeployment activity"@en ;
                     rdfs:label "deployment position"@en .
@@ -665,12 +680,36 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
                     rdfs:label "deployment variance"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/distanceFromDatum
+:distanceFromDatum rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:range xsd:decimal ;
+                   rdfs:label "distance from datum"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/distanceFromInlet
+:distanceFromInlet rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:range xsd:decimal ;
+                   rdfs:label "distance from inlet"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/eastOffset
+:eastOffset rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:range xsd:decimal ;
+            rdfs:label "east offset"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/elevation
 :elevation rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:range xsd:decimal ;
-           rdfs:comment "The height offset of a relative location from its origin, measured in metres."@en ;
-           rdfs:label "elevation"@en .
+           rdfs:comment "DEPRECATED The height offset of a relative location from its origin, measured in metres."@en ,
+                        "Replaced by `verticalOffset`" ;
+           rdfs:label "DEPRECATED elevation"@en ;
+           rdfs:seeAlso :verticalOffset ;
+           owl:deprecated "true"^^xsd:boolean .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasShape
@@ -699,20 +738,32 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
           rdfs:label "is mobile"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/northOffset
+:northOffset rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:label "north offset"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/offsetEast
 :offsetEast rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf owl:topDataProperty ;
             rdfs:range xsd:decimal ;
-            rdfs:comment "The easterly offset of a relative location from its origin, measured in metres."@en ;
-            rdfs:label "offset east"@en .
+            rdfs:comment "DEPRECATED The easterly offset of a relative location from its origin, measured in metres."@en ,
+                         "Replaced by `eastOffset`" ;
+            rdfs:label "DEPRECATED offset east"@en ;
+            rdfs:seeAlso :eastOffset ;
+            owl:deprecated "true"^^xsd:boolean .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/offsetNorth
 :offsetNorth rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
              rdfs:range xsd:decimal ;
-             rdfs:comment "The northerly offset of a relative location from its origin measured in metres."@en ;
-             rdfs:label "offset north"@en .
+             rdfs:comment "DEPRECATED The northerly offset of a relative location from its origin measured in metres."@en ,
+                          "Replaced by `northOffset`" ;
+             rdfs:label "DEPRECATED offset north"@en ;
+             rdfs:seeAlso :northOffset ;
+             owl:deprecated "true"^^xsd:boolean .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/periodicity
@@ -839,6 +890,13 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
           rdfs:range rdf:langString ;
           rdfs:comment "Provides the display label to use for the unit of measurement of a Complex Observable Property."@en ;
           rdfs:label "unit name"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/verticalOffset
+:verticalOffset rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:range xsd:decimal ;
+                rdfs:label "vertical offset"@en .
 
 
 ###  http://schema.org/maxValue
@@ -2246,20 +2304,10 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/RelativeLocation
 :RelativeLocation rdf:type owl:Class ;
-                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                    owl:onProperty :elevation ;
-                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :offsetEast ;
-                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :offsetNorth ;
-                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] ;
-                  rdfs:comment "Specifies a geographic point as an offset from some contextually-defined reference point."@en ;
-                  rdfs:label "Relative Location"@en .
+                  rdfs:comment "DEPRECATED Specifies a geographic point as an offset from some contextually-defined reference point."@en ,
+                               "This type is no longer used." ;
+                  rdfs:label "DEPRECATED Relative Location"@en ;
+                  owl:deprecated "true"^^xsd:boolean .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/SoftwareAgent
@@ -2299,17 +2347,16 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
 :StaticDeployment rdf:type owl:Class ;
                   rdfs:subClassOf :Deployment ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty prov:atLocation ;
-                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onClass [ rdf:type owl:Class ;
-                                                  owl:unionOf ( :RelativeLocation
-                                                                geos:Feature
-                                                              )
-                                                ]
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
                                     owl:onProperty :deploymentPosition ;
                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :azimuth ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :datum ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :deployedDepth ;
@@ -2317,6 +2364,26 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :deployedHeight ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :distanceFromDatum ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :distanceFromInlet ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :eastOffset ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :northOffset ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :verticalOffset ;
                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                   ] ;
                   rdfs:comment "A deployment of a sensor or system of sensors in a fixed relationship to some location."@en ;

@@ -6,7 +6,11 @@ DRAFT 0.6
 ---------
 
 * BREAKING: Deprecated the use of `fdri:appliesToTimeSeries` in favour of `fdri:appliesToDataset` to relate an fdri:DataProcessingConfiguration to the dataset or datasets that result from the application of that configuration. In the recordspec schema, the appliesToTimeSeries property has been removed.
-
+* BREAKING: Changed the structure for recording the relative location of a static deployment.
+  * Deprecated fdri:RelativeLocation and its child properties
+  * Added properties `fdri:eastOffset`, `fdri:northOffset` and `fdri:verticalOffset` as optional properties of `fdri:StaticDeployment` to record positional offset.
+  * Added property `fdri:azimuth` to record the angle of a deployed system relative to the target of the deployment.
+* NEW: Additional properties for `fdri:StaticDeployment`: `fdri:distanceFromInlet`, `fdri:datumPoint`, `fdri:distanceFromDatum`  
 DRAFT 0.5
 ---------
 
