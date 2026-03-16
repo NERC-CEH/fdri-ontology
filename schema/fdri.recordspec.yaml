@@ -4202,51 +4202,6 @@ records:
     classUri: fdri:RelatedPartyRoleScheme
     shortCode: RelatedPartyRoleScheme
 
-  RelativeLocation:
-    label:
-      - value: Relative location
-        lang: en
-    description:
-      - value: A positioning of a point in relation to some contextually defined point.
-        lang: en
-    classUri: fdri:RelativeLocation
-    shortCode: RelativeLocation
-    extends: Thing
-    properties:
-      offsetNorth:
-        label:
-          - value: offest north
-            lang: en
-        description:
-          - value: The norherly offset of the relative location from the reference point, in metres.
-            lang: en
-        propertyUri: fdri:offsetNorth
-        kind: literal
-        constraints:
-          - datatype: xsd:decimal
-      offsetEast:
-        label:
-          - value: offset east
-            lang: en
-        description:
-          - value: The easterly offset of the relative location from the reference point, in metres.
-            lang: en
-        propertyUri: fdri:offsetEast
-        kind: literal
-        constraints:
-          - datatype: xsd:decimal
-      elevation:
-        label:
-          - value: elevation
-            lang: en
-        description:
-          - value: The vertical offst of the relative location from the reference point, in metres.
-            lang: en
-        propertyUri: fdri:elevation
-        kind: literal
-        constraints:
-          - datatype: xsd:decimal
-
   SoftwareAgent:
     label:
       - value: Software Agent
@@ -4369,17 +4324,77 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
-      atLocation:
+      eastOffset:
         label:
-          - value: |
-              The geo-spatial positioing of the deployed systm specified either as a Feature (for absolute positioning),
-              or as a ReltiveLocation where the positioning is relative to the origin point of the platform that the deployment is on.
+          - value: east offset
             lang: en
-        propertyUri: prov:atLocation
-        kind: object
+        description:
+          - value: The eastward offset of the deployed system from the location of the deployment (in metres).
+            lang: en
+        propertyUri: fdri:eastOffset
+        kind: literal
         constraints:
-          - record: RelativeLocation
-          - record: Feature
+          - datatype: xsd:decimal
+      northOffset:
+        label:
+          - value: north offset
+            lang: en
+        description:
+          - value: The northward offset of the deployed system from the location of the deployment (in metres).
+            lang: en
+        propertyUri: fdri:northOffset
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      verticalOffset:
+        label:
+          - value: vertical offset
+            lang: en
+        description:
+          - value: The vertical offset of the deployed system from the location of the deployment (in metres).
+            lang: en
+        propertyUri: fdri:verticalOffset
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      azimuth:
+        label:
+          - value: azimuth
+            lang: en
+        propertyUri: fdri:azimuth
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      datum:
+        label:
+          - value: datum
+            lang: en
+        propertyUri: fdri:datumPoint
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      distanceFromDatum:
+        label:
+          - value: distance from datum
+            lang: en
+        description:
+          - value: The distance of the deployed system from the datum point (in metres).
+            lang: en
+        propertyUri: fdri:distanceFromDatum
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      distanceFromInlet:
+        label:
+          - value: distance from inlet
+            lang: en
+        description:
+          - value: The distance of the deployed system from the inlet point (in metres).
+            lang: en
+        propertyUri: fdri:distanceFromInlet
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
 
   SurvivalRange:
     classUri: fdri:SurvivalRange

@@ -62,7 +62,9 @@ classDiagram
 
 The class `fdri:StaticDeployment`is used to represent the deployment of a sensor or a package of sensors to a static platform such as a weather station at a monitoring site. The class carries additional properties `deployedHeight` and `deployedDepth` to capture the height above or below the ground where the sensor or sensor package was deployed.
 
-The precise location of a static deployment may be captured either as an absolute location encapsulated as a `geos:Feature` resource, or as a location relative to an origin point defined by the `fdri:EnvironmentalMonitoringPlatform` that the deployment is on.
+The properties `fdri:eastOffset`, `fdri:northOffset` and `fdri:verticalOffset` represent the distance in metres of the deployed system from a reference point on the deployed platform.
+
+Additional properties are provided to record the azimuth of the deployed system, and its distance from a datum, or an inlet as appropriate to the deployment.
 
 ```mermaid
 classDiagram
@@ -73,18 +75,15 @@ classDiagram
     fdri:deployedHeight: xsd_decimal
     fdri:deployedDepth: xsd_decimal
     fdri:deploymentPosition: xsd_string
-  }
-  class RelativeLocation["fdri:RelativeLocation"] {
-    fdri:offsetNorth: xsd:decimal
-    fdri:offsetEast: xsd:decimal
-    fdri:elevation: xsd:decimal
-  }
-  class Feature["geos:Feature"] {
-    geos:hasGeometry: geos:Geometry
+    fdri:eastOffset: xsd:decimal
+    fdri:northOffset: xsd:decimal
+    fdri:vericalOffset: xsd:decimal
+    fdri:azimuth: xsd:decimal
+    fdri:datum: xsd:decimal
+    fdri:distanceFromDatum: xsd:decimal
+    fdri:distanceFromInlet: xsd:decimal
   }
 
 Deployment <|-- StaticDeployment
-  StaticDeployment --> RelativeLocation: prov_atLocation
-  StaticDeployment --> Feature: prov_atLocation
 
 ```
