@@ -125,7 +125,8 @@ The AMS-assigned identifier would be used to correlate the metadata record with 
 * Affected system(s)
 * Affected measurement variables
 * Start timestamp
-* End timestamp
+* End/Resolved timestamp
+* "Remove data" flag
 
 ## Facilities
 
@@ -137,16 +138,16 @@ We need sufficient typing of assets to be able to determine which asset records 
 
 For Sites (and Platforms?) we would expect to be able to retrieve both the AMS identifier and the Site Vocab DB identifier from the AMS along with additional metadata as outlined below.
 
-* Common Metadata
+* Common Facility Metadata
   * AMS identifier
-  * Operating period
+  * Site Vocab DB Identifier (sites and platforms only)
+  * Operating period (date commissioned to date decommissioned)
+  * Geospatial location (may be as a point, bounding box, or polygon or some combination of these)
 
 * Sites
   * Name
   * Site type
   * Network that the site belongs to
-  * Site Vocab DB Identifier
-  * Geospatial coordinates
   * Altitude
   * Description
   * Land usage
@@ -155,7 +156,7 @@ For Sites (and Platforms?) we would expect to be able to retrieve both the AMS i
   * Layout variation notes
   * Public access
   * Site owner category
-  * Other network-specific site metadata
+  * Other network-specific site metadata (the above may not be an exhaustive list - we would expect to pull all available metadata fields and then map them to extension points in the model)
 
 * Platforms
   * Location relative to site
@@ -167,6 +168,10 @@ For Sites (and Platforms?) we would expect to be able to retrieve both the AMS i
   * Serial Number
   * Date calibration is due
   * Date maintenance is due
+  * Date of purchase
+  * Date of disposal
+  * Expected retirement date
+  * Storage location
 
 * Sensor Models
   * Variables Measured
