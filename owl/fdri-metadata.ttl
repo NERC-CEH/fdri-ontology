@@ -199,6 +199,12 @@ geo:location rdf:type owl:AnnotationProperty ;
                rdfs:label "facility usage"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/flagType
+:flagType rdf:type owl:ObjectProperty ;
+          rdfs:range :FlagType ;
+          rdfs:label "flag type"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/group
 :group rdf:type owl:ObjectProperty ;
        rdfs:range :FacilityGroup ;
@@ -235,6 +241,12 @@ geo:location rdf:type owl:AnnotationProperty ;
                  rdfs:range :TimeBoundPropertyValue ;
                  rdfs:comment "The value that a property currently has."@en ;
                  rdfs:label "has current value"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/hasFlagColumn
+:hasFlagColumn rdf:type owl:ObjectProperty ;
+               rdfs:range :FlagColumn ;
+               rdfs:label "has flag column"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasMember
@@ -494,6 +506,11 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
                      "utilises"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/valueScheme
+:valueScheme rdf:type owl:ObjectProperty ;
+             rdfs:range :FlagValueScheme .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/valueStatistic
 :valueStatistic rdf:type owl:ObjectProperty ;
                 rdfs:range :ValueStatistic ;
@@ -608,6 +625,12 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
               rdfs:range xsd:decimal ;
               rdfs:comment "The observed height of the tree canopy (in metres above ground level) at the time of the deployment."@en ;
               rdfs:label "canopy height"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/columnName
+:columnName rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string ;
+            rdfs:label "column name"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/dateOfDisposal
@@ -1867,6 +1890,67 @@ A persistent or unresolved fault may be represented by using an interval with no
        rdfs:label "Fault"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/FlagColumn
+:FlagColumn rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :flagType ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :FlagType
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :valueScheme ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :FlagValueScheme
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :columnName ;
+                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                            ] ;
+            rdfs:comment "Defines a flag value column in a dataset, specifying the column name, the type of flag represented by that column, and the flag value scheme for the column."@en ;
+            rdfs:label "Flag Column"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FlagType
+:FlagType rdf:type owl:Class ;
+          rdfs:subClassOf skos:Concept ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty skos:inScheme ;
+                            owl:allValuesFrom :FlagTypeScheme
+                          ] ;
+          rdfs:comment "A concept that represents a category of flag that may be applied to an observation."@en ;
+          rdfs:label "Flag Type"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FlagTypeScheme
+:FlagTypeScheme rdf:type owl:Class ;
+                rdfs:subClassOf skos:ConceptScheme ;
+                rdfs:comment "A concept scheme that lists the types of flags that may be applied to an observation."@en ;
+                rdfs:label "Flag Type Scheme"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FlagValue
+:FlagValue rdf:type owl:Class ;
+           rdfs:subClassOf skos:Concept ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty skos:inScheme ;
+                             owl:allValuesFrom :FlagValueScheme
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty schema:value ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:integer
+                           ] ;
+           rdfs:comment "A concept that represents a distinct flag value. The schema:value property may be used to associate the concept with an integer value."@en ;
+           rdfs:label "Flag Value"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/FlagValueScheme
+:FlagValueScheme rdf:type owl:Class ;
+                 rdfs:subClassOf skos:ConceptScheme ;
+                 rdfs:comment "A concept scheme that lists a set of flag values which may be bit-wised combined to produce a single integer flag value for an observation."@en ;
+                 rdfs:label "Flag Value Scheme"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/GeospatialFeatureOfInterest
 :GeospatialFeatureOfInterest rdf:type owl:Class ;
                              rdfs:subClassOf sosa:Sample ,
@@ -2484,6 +2568,10 @@ In addition the use of `schema:minValue`, `schema:maxValue`, `schema:value` and 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesDataset
 :TimeSeriesDataset rdf:type owl:Class ;
                    rdfs:subClassOf :ObservationDataset ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasFlagColumn ;
+                                     owl:allValuesFrom :FlagColumn
+                                   ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty dct:type ;
                                      owl:allValuesFrom :TimeSeriesDefinition
