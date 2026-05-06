@@ -5,6 +5,43 @@
 The class diagram below shows the sub-set of the FDRI metadata data model that touches on the entities we expect to retrieve data about from the AMS.
 
 ```mermaid
+---
+config:
+    class:
+        hideEmptyMembersBox: true
+---
+classDiagram
+class Fault
+class Facility
+class Platform
+class Site
+class System
+class Sensor
+class Variable
+class Deployment
+
+Facility <|-- Site
+Facility <|-- System
+Facility <|-- Platform
+System <|-- Sensor
+Fault --> "0..*" Facility: affectedFacility
+Fault --> "0..*" Variable: affectedVariable
+Facility --> "0..*" Variable: observes
+System <-- Deployment: deployedSystem
+Platform <-- Deployment: deployedOnPlatform
+Site <-- Deployment:  deployedOnPlatform
+```
+
+`Facility` is the base class for monitoring infrastructure assets.
+A `Site` may host any number of `Platform`s. A `System` is deployed to a `Site` or a `Platform` at a site. A `System` may consist of a number of subsystems, or it may be a single `Sensor`.
+
+A `Variable` is some observable environmental phenomenon - e.g. wind speed, soil moisture etc. Any `Facility` can be related to the `Variable`s that it measures.
+
+A `Fault` is some reported issue that affects the measurement of some `Variable`s by some `Facility`.
+
+## Fault
+
+```mermaid
 classDiagram
     class Fault {
         ams_id: string
@@ -13,8 +50,32 @@ classDiagram
         description: string
         removeData: boolean
     }
-    class Sensor {
-    }
+    class Facility 
+    class Variable
+    Fault --> "0..*" Facility: affectedFacility
+    Fault --> "0..*" Variable: affectedVariable
+```
+
+We would expect most fault data to be pulled from the AMS.
+Faults that are reported via the SOD would still be pulled from the AMS rather than implementing a separate ingestion path for them.
+
+Ideally we would be able to bulk retrieve fault entities which have been created or updated within a given time period.
+
+The AMS-assigned identifier would be used to correlate the metadata record with the fault record. It is assumed that all updates to a fault status would modify the fault record.
+
+* AMS identifier
+* Description
+* Affected system(s)
+* Affected measurement variables
+* Start timestamp
+* End/Resolved timestamp
+* "Remove data" flag
+
+## Facilities
+
+```mermaid
+classDiagram
+    class Sensor
     class Facility {
         ams_id: string
         fdri_id: string
@@ -43,62 +104,19 @@ classDiagram
         model: string
     }
     class FacilityType
-    class Activity {
-        ams_id: string
-        startedAt: datetime
-        endedAt: datetime?
-        description: string?
-    }
-    class Agent {
-        ams_id: string
-        name: string
-    }
-    class ActivityType
-    class Deployment {
-        ams_id: string
-        startedAt: datetime
-        endedAt: datetime
-        deployedHeight: decimal
-        deployedDepth: decimal
-        offsetNorth: decimal
-        offsetEast: decimal
-    }
     class Variable
-    class PropertyValueSeries {
-        hasCurrentValue: TimeBoundPropertyValue
-        hadValue: TimeBoundPropertyValue*
-    }
-    class ConfigurationValueSeries
-    class CalibrationValueSeries
-    class OperatingRange {
-        minValue: any
-        maxValue: any
-        value: any
-    }
     class SurvivalRange
     class SystemCapability
     class Condition
     Facility <|-- System
     System <|-- Sensor
     Facility <|-- Site
-    Agent <|-- Person
-    Agent <|-- Organisation
-    PropertyValueSeries <|-- CalibrationValueSeries
-    PropertyValueSeries <|-- ConfigurationValueSeries
-    Fault --> "0..*" Facility: affectedFacility
-    Fault --> "0..*" Variable: affectedVariable
     Facility --> "1" FacilityType: type
     Facility --> "0..1" Facility: isPartOf
     Sensor --> "1" SensorType: type
     Sensor --> "1" SensorModel: model
     SensorModel --> "1..*" Variable: measures
-    Activity --> "1" ActivityType: type
-    Deployment --> "1..*" Sensor: deployedSystem
-    Deployment --> "1" Facility: deployedOnPlatform
     System --> "0..*" System: subsystem
-    Activity --> "0..*" Facility: affectedFacility
-    Activity --> "0..*" Agent: performedBy
-    CalibrationValueSeries --> "0..1" Variable: appliesToVariable
     OperatingRange --> "1" Variable: operatingProperty
     OperatingRange --> "1..*" Condition: inCondition
     SurvivalRange --> "1" Variable: survivalProperty
@@ -110,25 +128,6 @@ classDiagram
     SystemProperty --> "1" Unit: unit
 
 ```
-
-## Fault
-
-We would expect most fault data to be pulled from the AMS.
-Faults that are reported via the SOD would still be pulled from the AMS rather than implementing a separate ingestion path for them.
-
-Ideally we would be able to bulk retrieve fault entities which have been created or updated within a given time period.
-
-The AMS-assigned identifier would be used to correlate the metadata record with the fault record. It is assumed that all updates to a fault status would modify the fault record.
-
-* AMS identifier
-* Description
-* Affected system(s)
-* Affected measurement variables
-* Start timestamp
-* End/Resolved timestamp
-* "Remove data" flag
-
-## Facilities
 
 In the metadata model a Facility is the base class for many of the categories of physical asset. The primary subclasses we are interested in are Sites, Platforms and Systems/Sensors. A Site is a location which may host several platforms, each platform hosts Systems or Sensors. A System is a physical package containing one or more sensors.
 
@@ -158,6 +157,8 @@ For Sites (and Platforms?) we would expect to be able to retrieve both the AMS i
   * Site owner category
   * Other network-specific site metadata (the above may not be an exhaustive list - we would expect to pull all available metadata fields and then map them to extension points in the model)
 
+QUESTION: Which of this site metadata is mastered in the AMS and which is mastered in the Site Vocab database? The SOD metadata store should pull from the master source.
+
 * Platforms
   * Location relative to site
   * Platform type
@@ -185,7 +186,28 @@ We could retrieve each of these types of entity in separate batch requests, usin
 
 ## Deployments
 
-Represents the period during which a sensor or system is deployed on a platform.
+```mermaid
+classDiagram
+    class Sensor
+    class Site
+    class Platform
+    class System 
+    class Deployment {
+        ams_id: string
+        startedAt: datetime
+        endedAt: datetime
+        deployedHeight: decimal
+        deployedDepth: decimal
+        offsetNorth: decimal
+        offsetEast: decimal
+    }
+    System <|-- Sensor
+    Deployment --> "1..*" Sensor: deployedSystem
+    Deployment --> "1" Platform: deployedOnPlatform
+    Deployment --> "1" Site: deployedOnPlatform
+```
+
+Represents the period during which a sensor or system is deployed on a platform or to a site (if the site has no known platforms).
 
 * start timestamp
 * end timestamp
@@ -196,6 +218,40 @@ NOTE: A deployment may be associated with a number of activities - an installati
 At this stage we are not sure if the the AMS treats deployments as first-class entities. Ideally this would be the case, allowing us to ingest them without having to infer deployments from these individual activities. If that is not the case we need to have a clear understanding of which activity type(s) infer the start and end of a deployment.
 
 ## Activities
+
+```mermaid
+classDiagram
+    class Facility
+    class Activity {
+        ams_id: string
+        startedAt: datetime
+        endedAt: datetime?
+        description: string?
+    }
+    class Agent {
+        ams_id: string
+        name: string
+    }
+    class ActivityType
+    class PropertyValueSeries {
+        hasCurrentValue: TimeBoundPropertyValue
+        hadValue: TimeBoundPropertyValue*
+    }
+    class ConfigurationValueSeries
+    class CalibrationValueSeries
+    Agent <|-- Person
+    Agent <|-- Organisation
+    PropertyValueSeries <|-- CalibrationValueSeries
+    PropertyValueSeries <|-- ConfigurationValueSeries
+    Facility --> "1" FacilityType: type
+    Facility --> "0..1" Facility: isPartOf
+    Activity --> "1" ActivityType: type
+    Activity --> "0..*" Facility: affectedFacility
+    Activity --> "0..*" Agent: performedBy
+    CalibrationValueSeries --> "0..1" Variable: appliesToVariable
+    PropertyValueSeries --> Activity: wasGeneratedBy
+    PropertyValueSeries --> Activity: wasModifiedBy
+```
 
 The SOD metadata store is primarily interested in activities that affect deployed sensors/systems and the facilities where they are deployed.
 
@@ -215,6 +271,28 @@ At this stage it is not clear if it would be better to be able to retrieve activ
   * Configuration values/configuration file reference
 
 ### Configuration and Calibration Values
+
+```mermaid
+classDiagram
+    class Facility
+    class System
+    class Activity 
+    class PropertyValueSeries {
+        hasCurrentValue: TimeBoundPropertyValue
+        hadValue: TimeBoundPropertyValue*
+    }
+    class ConfigurationValueSeries
+    class CalibrationValueSeries
+    System --> CalibrationValueSeries: hasCalibrationValueSeries
+    System --> ConfigurationValueSeries: configuration
+    PropertyValueSeries <|-- CalibrationValueSeries
+    PropertyValueSeries <|-- ConfigurationValueSeries
+    Activity --> "1" ActivityType: type
+    Activity --> "0..*" Facility: affectedFacility
+    Activity --> "0..*" Agent: performedBy
+    CalibrationValueSeries --> "0..1" Variable: appliesToVariable
+    PropertyValueSeries --> Activity: wasModifiedBy
+```
 
 NOTE: It is not clear yet whether this information would be retrieved from the AMS or some other system.
 
