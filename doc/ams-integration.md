@@ -98,8 +98,7 @@ classDiagram
         dateOfDisposal: date
         storageLocation: string
     }
-    class SensorType
-    class SensorModel {
+    class SystemType {
         manufacturer: string
         model: string
     }
@@ -113,9 +112,8 @@ classDiagram
     Facility <|-- Site
     Facility --> "1" FacilityType: type
     Facility --> "0..1" Facility: isPartOf
-    Sensor --> "1" SensorType: type
-    Sensor --> "1" SensorModel: model
-    SensorModel --> "1..*" Variable: measures
+    System --> "1" SystemType: type
+    SystemType --> "1..*" Variable: measures
     System --> "0..*" System: subsystem
     OperatingRange --> "1" Variable: operatingProperty
     OperatingRange --> "1..*" Condition: inCondition
@@ -165,7 +163,7 @@ QUESTION: Which of this site metadata is mastered in the AMS and which is master
 
 * Systems/Sensors
   * System Type
-  * Model
+    * Model
   * Serial Number
   * Date calibration is due
   * Date maintenance is due
@@ -174,15 +172,15 @@ QUESTION: Which of this site metadata is mastered in the AMS and which is master
   * Expected retirement date
   * Storage location
 
-* Sensor Models
+* System Models
   * Variables Measured
   * Capabilities: Sensitivity, Accuracy etc.
   * Operational Range
   * Survival Range (e.g battery lifetime)
 
-NOTE: capabilities, operational ranges and survival ranges can all be qualified by a condition (e.g. an standard operating temperature range)
+The `SystemType` is drawn from a vocabulary in which the broadest terms are generic types of sensor system (e.g. "Anemometer"), and narrower terms are specific models of sensor system (e.g. "Windmaster 3000"). In general the specific variables measured and the capabilities of the sensor system type will be recorded at this lower level. The capabilities, operational ranges and survival ranges of sensor systems can all be qualified by a condition (e.g. an standard operating temperature range).
 
-We could retrieve each of these types of entity in separate batch requests, using the record last modified date as a filter so as to only retrieve records that were modified since the last ingest.
+QUESTION: Which system will be the master for the list of generic system types. Which system will be the master for the list of specific models and their capabilities?
 
 ## Deployments
 
