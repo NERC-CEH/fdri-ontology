@@ -181,4 +181,3 @@ Existing identifier patterns that differ from the proposed identifier pattern ar
 ### Impact Analysis
 
 It is proposed to migrate all identifier over to the new identifier scheme. It is expected that few of the changes should cause any real impact on downstream users of the metadata store. The change of identifier pattern for `fdri:InternalDataProcessingConfiguration` may cause an impact on downstream code if it directly constructs the identifier for the configuration of a dataset, but if all such configurations are retrieved using a query then a change in the identifier pattern should have no impact on the code.
-

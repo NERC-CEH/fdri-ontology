@@ -117,6 +117,7 @@ mixins:
         propertyUri: fdri:hasAnnotation
         kind: object
         repeatable: true
+        nested: true
         constraints:
           - record: Annotation
 
@@ -779,6 +780,7 @@ records:
             lang: en
         propertyUri: fdri:hasValue
         kind: object
+        nested: true
         constraints:
           - record: PropertyValue
       hasValueSeries:
@@ -792,6 +794,7 @@ records:
             lang: en
         propertyUri: fdri:hasValueSeries
         kind: object
+        nested: true
         constraints:
           - record: PropertyValueSeries
 
@@ -2697,6 +2700,7 @@ records:
         propertyUri: sys:hasOperatingRange
         kind: object
         repeatable: true
+        nested: true
         constraints:
           - record: OperatingRange
       hasProcedure:
@@ -2721,6 +2725,7 @@ records:
         propertyUri: sys:hasSurvivalRange
         kind: object
         repeatable: true
+        nested: true
         constraints:
           - record: SurvivalRange
       hasSystemCapability:
@@ -2734,6 +2739,7 @@ records:
             lang: en
         propertyUri: sys:hasSystemCapability
         kind: object
+        nested: true
         repeatable: true
         constraints:
           - record: SystemCapability
@@ -2925,6 +2931,7 @@ records:
             lang: en
         propertyUri: fdri:interval
         required: false
+        nested: true
         kind: object
         constraints:
           - record: PeriodOfTime
@@ -3074,6 +3081,7 @@ records:
             lang: en
         propertyUri: fdri:interval
         kind: object
+        nested: true
         constraints:
           - record: PeriodOfTime
       removeData:
@@ -4670,7 +4678,7 @@ records:
 
   SystemStatus:
     label:
-      - value: Systen Status
+      - value: System Status
         lang: en
     description:
       - value: A concept that defines an operational status category for an Environmental Monitoring System.
