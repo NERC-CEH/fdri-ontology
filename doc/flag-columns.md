@@ -19,6 +19,7 @@ class FlagValue["fdri:FlagValue"] {
 class FlagValueScheme["fdri:FlagValueScheme"]
 class FlagType["fdri:FlagType"]
 class FlagTypeScheme["fdri:FlagTypeScheme"]
+
 TS --> "0..*" FlagCol: fdri_hasFlagColumn
 FlagValueScheme --> "1" FlagType: fdri_flagType
 FlagCol --> "1" FlagValueScheme: fdri_valueScheme
@@ -36,3 +37,7 @@ An `fdri:flagColumn` has the following required properties:
 An `fdri:FlagValueScheme` is a `skos:ConceptScheme` with one additional required property:
 
 * `fdri:flagType` - a reference to the `fdri:FlagType` concept that defines the type of flag that is represented in the concept scheme. Examples of a flag type include "Error flag", "QC flag", "Infill Flag" etc.
+
+An `fdri:FlagValue` is a `skos:Concept` with one additional required property:
+
+* `schema:value` - the integer value associated with the flag being set.
