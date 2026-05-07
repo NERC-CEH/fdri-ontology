@@ -20,7 +20,7 @@ class FlagValueScheme["fdri:FlagValueScheme"]
 class FlagType["fdri:FlagType"]
 class FlagTypeScheme["fdri:FlagTypeScheme"]
 TS --> "0..*" FlagCol: fdri_hasFlagColumn
-FlagCol --> "1" FlagType: fdri_flagType
+FlagValueScheme --> "1" FlagType: fdri_flagType
 FlagCol --> "1" FlagValueScheme: fdri_valueScheme
 FlagValueScheme <-- FlagValue: skos_inScheme
 FlagType --> FlagTypeScheme: skos_inScheme
@@ -31,5 +31,8 @@ An `fdri:TimeSeriesDataset` specifies any number of flag columns by using the `f
 An `fdri:flagColumn` has the following required properties:
 
 * `fdri:columnName` - the string name of the column that contains the flag value.
-* `fdri:flagType` - a reference to the `fdri:FlagType` concept that defines the type of flag that is represented in the column. Examples of a flag type include "Error flag", "QC flag", "Infill Flag" etc.
 * `fdri:valueScheme` - a reference to the `fdri:FlagValueScheme` which is a `skos:ConceptScheme` whose members define the allowed flag values and their meaning.
+
+An `fdri:FlagValueScheme` is a `skos:ConceptScheme` with one additional required property:
+
+* `fdri:flagType` - a reference to the `fdri:FlagType` concept that defines the type of flag that is represented in the concept scheme. Examples of a flag type include "Error flag", "QC flag", "Infill Flag" etc.
