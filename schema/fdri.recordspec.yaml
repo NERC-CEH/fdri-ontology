@@ -3529,6 +3529,30 @@ records:
       - WithAnnotations
       - WithObservableProperties
     properties:
+      dependsOn:
+        label:
+          - value: depends on
+            lang: en
+        description:
+          - value: References other observation datasets that this dataset is derived from (directly or indirectly).
+            lang: en
+        propertyUri: fdri:dependsOn
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ObservationDataset
+      directDependsOn:
+        label:
+          - value: direct depends on
+            lang: en
+        description:
+          - value: References other observation datasets that this dataset is directly derived from.
+            lang: en
+        propertyUri: fdri:directDependsOn
+        kind: object
+        repeatable: true
+        constraints:
+          - record: ObservationDataset
       hasFeatureOfInterest:
         label:
           - value: has feature of interest
@@ -4741,30 +4765,6 @@ records:
         kind: object
         constraints:
           - record: TimeSeriesPlan
-      dependsOn:
-        label:
-          - value: depends on
-            lang: en
-        description:
-          - value: References other time series datasets that this dataset is derived from.
-            lang: en
-        propertyUri: fdri:dependsOn
-        kind: object
-        repeatable: true
-        constraints:
-          - record: TimeSeriesDataset
-      directDependsOn:
-        label:
-          - value: direct depends on
-            lang: en
-        description:
-          - value: References other time series datasets that this dataset is directly derived from.
-            lang: en
-        propertyUri: fdri:directDependsOn
-        kind: object
-        repeatable: true
-        constraints:
-          - record: TimeSeriesDataset
       type:
         propertyUri: dct:type
         kind: object

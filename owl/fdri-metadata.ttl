@@ -28,7 +28,7 @@
                                                     <https://w3id.org/iadopt/ont/1.0.3> ;
                                         rdfs:comment "An ontology for the recording of dataset metadata, provenance information and related reference data for use in the fine-grained metadata store element of the FDRI project."@en ;
                                         rdfs:label "FDRI Fine-grained Metadata Store Ontology"@en ;
-                                        owl:versionInfo "0.5.0 DRAFT" .
+                                        owl:versionInfo "0.6.0 DRAFT" .
 
 #################################################################
 #    Annotation properties
@@ -164,16 +164,15 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/dependsOn
 :dependsOn rdf:type owl:ObjectProperty ;
-           rdfs:domain :TimeSeriesDataset ;
-           rdfs:range :TimeSeriesDataset ;
-           rdfs:comment "The subject Time Series Dataset contains values that depends (directly or indirectly) on the values in the object Time Series Dataset."@en ;
+           rdfs:range :ObservationDataset ;
+           rdfs:comment "The subject Observation Dataset contains values that depends (directly or indirectly) on the values in the object Observation Dataset."@en ;
            rdfs:label "depends on" .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/directDependsOn
 :directDependsOn rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf :dependsOn ;
-                 rdfs:comment "The subject Time Series Dataset contains values that depends directly on the values in the object Time Series Dataset."@en ;
+                 rdfs:comment "The subject Observation Dataset contains values that depends directly on the values in the object Observation Dataset."@en ;
                  rdfs:label "directly depends on"@en .
 
 
@@ -2127,6 +2126,14 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty dcat:inSeries ;
                                       owl:allValuesFrom :ObservationDatasetSeries
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :dependsOn ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :directDependsOn ;
+                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :measure ;
