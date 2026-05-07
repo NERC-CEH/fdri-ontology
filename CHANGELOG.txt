@@ -11,7 +11,7 @@ DRAFT 0.6
   * Added properties `fdri:eastOffset`, `fdri:northOffset` and `fdri:verticalOffset` as optional properties of `fdri:StaticDeployment` to record positional offset.
   * Added property `fdri:azimuth` to record the angle of a deployed system relative to the target of the deployment.
 * NEW: Additional properties for `fdri:StaticDeployment`: `fdri:distanceFromInlet`, `fdri:datum`, `fdri:distanceFromDatum`  
-* MEW: Added support for defining the flag columns of a TimeSeriesDataset. See [doc/flag-columns.md](doc/flag-columns.md) for details.
+* MEW: Added support for defining the flag columns of a TimeSeriesDataset. See doc/flag-columns.md for details.
 
 DRAFT 0.5
 ---------
