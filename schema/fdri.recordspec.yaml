@@ -3188,6 +3188,7 @@ records:
             lang: en
         propertyUri: schema:value
         kind: literal
+        required: true
         constraints:
           - datatype: xsd:integer
 
@@ -3215,7 +3216,6 @@ records:
         constraints:
           - record: FlagType
 
-  
   Feature:
     label:
       - value: Feature Of Interest
@@ -4816,6 +4816,7 @@ records:
             language: en
         propertyUri: fdri:hasFlagColumn
         kind: object
+        nested: true
         repeatable: true
         constraints:
           - record: FlagColumn
