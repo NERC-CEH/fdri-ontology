@@ -3088,6 +3088,134 @@ records:
         constraints:
           - datatype: xsd:boolean
 
+  FlagColumn:
+    label:
+      - value: Flag Column
+        lang: en
+    description:
+      - value: The definition of a column in a dataset that contains flag values that qualify the observations in the dataset.
+        lang: en
+    classUri: fdri:FlagColumn
+    shortCode: FlagColumn
+    properties:
+      columnName:
+        label:
+          - value: column name
+            lang: en
+        description:
+          - value: The name of the column in the dataset that contains the flag values.
+            lang: en
+        propertyUri: fdri:columnName
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:string
+      valueScheme:
+        label:
+          - value: value scheme
+            lang: en
+        description:
+          - value: A reference to a `fdri:FlagValueScheme` that describes the allowed values and the meaning of the flag values in the column.
+            lang: en
+        propertyUri: fdri:valueScheme
+        kind: object
+        required: true
+        constraints:
+          - record: FlagValueScheme
+
+  FlagType:
+    label:
+      - value: Flag Type
+        lang: en
+    description:
+      - value: A concept representing the nature of a flag. e.g. QC flag, Error flag etc.
+        lang: en
+    extends: Concept
+    classUri: fdri:FlagType
+    shortCode: FlagType
+    properties:
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: A reference to the concept scheme under which this concept is managed.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: FlagTypeScheme
+
+  FlagTypeScheme:
+    label:
+      - value: Flag Type Concept Scheme
+        lang: en
+    description:
+      - value: A controlled vocabulary of flag types.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:FlagTypeScheme
+    shortCode: FlagTypeScheme
+
+  FlagValue:
+    label:
+      - value: Flag Value
+        lang: en
+    description:
+      - value: A concept that represents a single value of a flag, optionally with an associated integer value.
+        lang: en
+    extends: Concept
+    classUri: fdri:FlagValue
+    shortCode: FlagValue
+    properties:
+      inScheme:
+        label:
+          - value: is in scheme
+            lang: en
+        description:
+          - value: A reference to the concept scheme under which this concept is managed.
+            lang: en
+        propertyUri: skos:inScheme
+        kind: object
+        constraints:
+          - record: FlagValueScheme
+      value:
+        label:
+          - value: value
+            lang: en
+        description:
+          - value: The integer value of the flag.
+            lang: en
+        propertyUri: schema:value
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:integer
+
+  FlagValueScheme:
+    label:
+      - value: Flag Value Scheme
+        lang: en
+    description:
+      - value: A controlled list of flag values that may be combined into a single flag value for an observation.
+        lang: en
+    extends: ConceptScheme
+    classUri: fdri:FlagValueScheme
+    shortCode: FlagValueScheme
+    properties:
+      flagType:
+        label:
+          - value: flag type
+            lang: en
+        description:
+          - value: A reference to a `fdri:FlagType` that describes the category of the flag values in this scheme.
+            lang: en
+        propertyUri: fdri:flagType
+        kind: object
+        required: true
+        constraints:
+          - record: FlagType
+
   Feature:
     label:
       - value: Feature Of Interest
@@ -4679,6 +4807,19 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
+      hasFlagColumn:
+        label:
+          - value: has flag column
+            language: en
+        description:
+          - value: References the definitions of any flag columns associated with the value column of this dataset.
+            language: en
+        propertyUri: fdri:hasFlagColumn
+        kind: object
+        nested: true
+        repeatable: true
+        constraints:
+          - record: FlagColumn
       sourceColumnName:
         label:
           - value: source column name

@@ -13,6 +13,7 @@
 * [Programme Catalog](programme-catalog.md)
 * [High-level Catalog Structure](high-level-catalog-structure.md)
 * [Time-Series Dataset Model](time-series-dataset.md)
+* [Flag Columns](flag-columns.md)
 * [Gridded Dataset Model](gridded-data.md)
 * [Annotations on Catalogued Resources](annotations.md)
 * [Provenance and Activity Model](provenance-and-activity.md)
