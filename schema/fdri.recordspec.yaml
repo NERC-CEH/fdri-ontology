@@ -3110,18 +3110,6 @@ records:
         required: true
         constraints:
           - datatype: xsd:string
-      flagType:
-        label:
-          - value: flag type
-            lang: en
-        description:
-          - value: A reference to a `fdri:FlagType` that describes the nature of the flags in the column.
-            lang: en
-        propertyUri: fdri:flagType
-        kind: object
-        required: true
-        constraints:
-          - record: FlagType
       valueScheme:
         label:
           - value: value scheme
@@ -3213,6 +3201,20 @@ records:
     extends: ConceptScheme
     classUri: fdri:FlagValueScheme
     shortCode: FlagValueScheme
+    properties:
+      flagType:
+        label:
+          - value: flag type
+            lang: en
+        description:
+          - value: A reference to a `fdri:FlagType` that describes the category of the flag values in this scheme.
+            lang: en
+        propertyUri: fdri:flagType
+        kind: object
+        required: true
+        constraints:
+          - record: FlagType
+
   
   Feature:
     label:

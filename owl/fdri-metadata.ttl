@@ -202,6 +202,7 @@ geo:location rdf:type owl:AnnotationProperty ;
 ###  http://fdri.ceh.ac.uk/vocab/metadata/flagType
 :flagType rdf:type owl:ObjectProperty ;
           rdfs:range :FlagType ;
+          rdfs:comment "References the concept that defines the category of flag that the enclosing concept scheme provides a set of values for."@en ;
           rdfs:label "flag type"@en .
 
 
@@ -1893,11 +1894,6 @@ A persistent or unresolved fault may be represented by using an interval with no
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FlagColumn
 :FlagColumn rdf:type owl:Class ;
             rdfs:subClassOf [ rdf:type owl:Restriction ;
-                              owl:onProperty :flagType ;
-                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onClass :FlagType
-                            ] ,
-                            [ rdf:type owl:Restriction ;
                               owl:onProperty :valueScheme ;
                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                               owl:onClass :FlagValueScheme
@@ -1906,7 +1902,7 @@ A persistent or unresolved fault may be represented by using an interval with no
                               owl:onProperty :columnName ;
                               owl:cardinality "1"^^xsd:nonNegativeInteger
                             ] ;
-            rdfs:comment "Defines a flag value column in a dataset, specifying the column name, the type of flag represented by that column, and the flag value scheme for the column."@en ;
+            rdfs:comment "Defines a flag value column in a dataset, specifying the column name, and the flag value scheme for the column."@en ;
             rdfs:label "Flag Column"@en .
 
 
@@ -1946,7 +1942,12 @@ A persistent or unresolved fault may be represented by using an interval with no
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/FlagValueScheme
 :FlagValueScheme rdf:type owl:Class ;
-                 rdfs:subClassOf skos:ConceptScheme ;
+                 rdfs:subClassOf skos:ConceptScheme ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :flagType ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :FlagType
+                                 ] ;
                  rdfs:comment "A concept scheme that lists a set of flag values which may be bit-wised combined to produce a single integer flag value for an observation."@en ;
                  rdfs:label "Flag Value Scheme"@en .
 
