@@ -57,7 +57,7 @@ classDiagram
 ```
 
 We would expect most fault data to be pulled from the AMS.
-Faults that are reported via the SOD would still be pulled from the AMS rather than implementing a separate ingestion path for them.
+Faults that are reported via the SODB would still be pulled from the AMS rather than implementing a separate ingestion path for them.
 
 Ideally we would be able to bulk retrieve fault entities which have been created or updated within a given time period.
 
@@ -155,7 +155,7 @@ For Sites (and Platforms?) we would expect to be able to retrieve both the AMS i
   * Site owner category
   * Other network-specific site metadata (the above may not be an exhaustive list - we would expect to pull all available metadata fields and then map them to extension points in the model)
 
-QUESTION: Which of this site metadata is mastered in the AMS and which is mastered in the Site Vocab database? The SOD metadata store should pull from the master source.
+QUESTION: Which of this site metadata is mastered in the AMS and which is mastered in the Site Vocab database? The SODB metadata store should pull from the master source.
 
 * Platforms
   * Location relative to site
@@ -251,7 +251,7 @@ classDiagram
     PropertyValueSeries --> Activity: wasModifiedBy
 ```
 
-The SOD metadata store is primarily interested in activities that affect deployed sensors/systems and the facilities where they are deployed.
+The SODB metadata store is primarily interested in activities that affect deployed sensors/systems and the facilities where they are deployed.
 
 As the metadata for activities is intended to be used publicly, we would want to avoid including PII in this data. Hence the suggestion that where there are individuals associated with an activity, it would be preferable if we can just retrieve their organisation.
 
@@ -294,6 +294,18 @@ classDiagram
 
 NOTE: It is not clear yet whether this information would be retrieved from the AMS or some other system.
 
-The SOD metadata includes both current and historic configuration and calibration property values. There is/will be a controlled vocabulary of the properties. Calibration property values may be additionally scoped by the variable(s) affected by the calibration. As values can be changed over time, every value should be associated with a start timestamp and (if historic) an end timestamp.
+The SODB metadata includes both current and historic configuration and calibration property values. There is/will be a controlled vocabulary of the properties. Calibration property values may be additionally scoped by the variable(s) affected by the calibration. As values can be changed over time, every value should be associated with a start timestamp and (if historic) an end timestamp.
 
 Some configuration is in the form of files, in such cases the configuration value should be a reference to (ideally the URL of) the configuration.
+
+## General Questions
+
+* What data is mastered in the AMS vs other systems that are external to the SODB?
+  * esp. is there overlap with site information?
+* Do all entities in the AMS have persistent identifiers that we can use to relate metadata entities to AMS entities?
+* When entities that are mastered elsewhere are included in the AMS will there be a way to identify the system that they came from and the identifier used by that system?
+* Do AMS events have both a start and end date or just a timestamp?
+  * In particular how are sensor deployments recorded - is it a start event and an end event or a single deployment event?
+  * If it is two separate events, how are they related to each other?
+* Is there any push API that could be used for the subset of events we might want to monitor with low latency? (e.g. faults)
+* When a fault is reported on a piece of equipment, how easy is it to retrieve the full set of child assets for that piece of equipment?
