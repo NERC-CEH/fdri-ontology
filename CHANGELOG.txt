@@ -13,6 +13,7 @@ DRAFT 0.6
 * NEW: Additional properties for `fdri:StaticDeployment`: `fdri:distanceFromInlet`, `fdri:datum`, `fdri:distanceFromDatum`  
 * MEW: Added support for defining the flag columns of a TimeSeriesDataset. See doc/flag-columns.md for details.
 * NON-BREAKING: The definition of the properties `fdri:dependsOn` and `fdri:directDependsOn` has been relaxed. These properties can now be used on any `fdri:ObservationDataset` and reference any `fdri:ObservationDataset`.
+* NON-BREAKING: The definition of the property `fdri:uses` on fdri:TimeSeriesPlan has been modified. The range of the property is now `fdri:ObservationDataset`
 * BREAKING: Change `hasAnnotation` to a nested property
 * BREAKING: Change `hasValue` and `hasValueSeries` on `Annotation` to nested properties
 * BREAKING: Change `hasOperatingRange`, `hasSurvivalRange` and `hasSystemCapability` to nested properties

@@ -4901,8 +4901,7 @@ records:
         kind: object
         repeatable: true
         constraints:
-          - record: TimeSeriesDefinition
-          - record: TimeSeriesDataset
+          - record: ObservationDataset
       configuration:
         propertyUri: fdri:configuration
         kind: object
