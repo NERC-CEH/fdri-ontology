@@ -4902,6 +4902,28 @@ records:
         repeatable: true
         constraints:
           - record: ObservationDataset
+      hasStep:
+        propertyUri: fdri:hasStep
+        kind: object
+        repeatable: true
+        constraints:
+          - record: TimeSeriesPlanStep
+
+  TimeSeriesPlanStep:
+    classUri: fdri:TimeSeriesPlanStep
+    shortCode: TimeSeriesPlanStep
+    properties:
+      stepNumber:
+        label:
+          - value: step number
+            lang: en
+        description:
+          - value: The sequential number of this step within the plan.
+            lang: en
+        propertyUri: fdri:stepNumber
+        kind: literal
+        constraints:
+          - datatype: xsd:integer
       configuration:
         propertyUri: fdri:configuration
         kind: object
@@ -4914,7 +4936,7 @@ records:
             lang: en
         description:
           - value: |
-              A JSON representation of the raw configuration used by the data processing system to implement this plan.
+              A JSON representation of the raw configuration used by the data processing system to implement this plan step.
             lang: en
         propertyUri: fdri:rawConfiguration
         kind: literal
