@@ -2628,12 +2628,13 @@ A Time-Series Definition captures the information that is common across multiple
 :TimeSeriesPlan rdf:type owl:Class ;
                 rdfs:subClassOf :Procedure ,
                                 [ rdf:type owl:Restriction ;
-                                  owl:onProperty :configuration ;
-                                  owl:allValuesFrom :DataProcessingConfiguration
+                                  owl:onProperty dct:hasPart ;
+                                  owl:allValuesFrom :TimeSeriesPlanStep
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :uses ;
-                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                  owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :ObservationDataset
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :rawConfiguration ;
@@ -2641,6 +2642,26 @@ A Time-Series Definition captures the information that is common across multiple
                                 ] ;
                 rdfs:comment "A procedure which results in the creation or update of instances of a Time-Series Definition (`fdri:TimeSeriesDefinition`) through the application of one or more data processing configurations (`fdri:DataProcessingConfiguration`) to it's input time series."@en ;
                 rdfs:label "Time-series Plan"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/TimeSeriesPlanStep
+:TimeSeriesPlanStep rdf:type owl:Class ;
+                    rdfs:subClassOf :Procedure ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :configuration ;
+                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :DataProcessingConfiguration
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :index ;
+                                      owl:cardinality "1"^^xsd:nonNegativeInteger
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :rawConfiguration ;
+                                      owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                    ] ;
+                    rdfs:comment "A processing step in a Time-series Plan, representing the application of a single algorithm or method to one or more input datasets to produce one or more output datasets."@en ;
+                    rdfs:label "Time-series Plan Step"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Unit

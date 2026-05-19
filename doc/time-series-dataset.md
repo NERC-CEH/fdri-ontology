@@ -50,7 +50,14 @@ class TimeSeriesDataset["fdri:TimeSeriesDataset"] {
   fdri:sourceDataset: xsd:string
   fdri:sourceColumnName: xsd:string
 }
-class Plan["fdri:TimeSeriesPlan"]
+class Plan["fdri:TimeSeriesPlan"] {
+    rawConfiguration: xsd:string
+}
+class Step["fdri:TimeSeriesPlanStep"] {
+    index: xsd:integer
+    rawConfiguration: xsd:string
+}
+class DataProcessingConfiguration["fdri:DataProcessingConfiguration"]
 class ProcessingLevel["fdri:ProcessingLevel"]
 class Variable["skos:Concept"]
 class Measure["fdri:Measure"]
@@ -59,7 +66,9 @@ TimeSeriesDataset --> ProcessingLevel: fdri_processingLevel
 TimeSeriesDataset --> Variable: sosa_observedProperty
 TimeSeriesDataset --> Measure: fdri_measure
 TimeSeriesDataset --> Plan: fdri_methodology
-Plan --> TimeSeriesDataset: fdri_uses
+Plan --> ObservationDataset: fdri_uses
+Plan --> Step: dct_hasPart
+Step --> DataProcessingConfig: fdri_configuration
 TimeSeriesDataset --> TimeSeriesDataset: fdri_dependsOn, fdri_directDependsOn
 ```
 
@@ -67,20 +76,30 @@ An `fdri:TimeSeriesDataset` represents a dataset that consists of a time-series 
 
 The following additional properties are defined for an `fdri:TimeSeriesDataset`.
 
-* `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced. Where a time series is produced by derivation from one or more input time series, the `fdri:uses` relation relates the `fdri:TimeSeriesPlan` to the input time series, either by direct reference to the `fdri:TimeSeriesDataset` or to the `fdri:TimeSeriesDefinition` that types the input dataset.
+* `fdri:methodology` a reference to the `fdri:TimeSeriesPlan` which documents the method by which the dataset is produced.
 * `fdri:sourceBucket` specifies the top level container (an S3 bucket) in which the data that is processed to produce time series datasets is stored.
 * `fdri:dataset` specifies the specific partition of the top level container in which the data is stored.
 * `fdri:columName` specifies the column within the partition where the values that produce the time series dataset(s) is stored.
 * `fdri:dependsOn` and `fdri:directDependsOn` express processing dependencies between TimeSeriesDatasets. `fdri:directDependsOn` should be used only for direct dependencies and `fdri:dependsOn` may be used to capture the transitive closure of `fdri:directDependsOn`. The precise nature of the dependency between datasets should be captured by the `fdri:TimeSeriesPlan` associated with the dataset.
 
+The `fdri:TimeSeriesPlan` has the following properties:
+
+* `fdri:uses` references the primary input dataset(s) for the processing plan.
+* `dct:hasPart` references the steps of the processing plan.
+* `fdri:rawConfiguration` is a JSON array of the identifiers of the data processing configurations of each step in step order, serialised as a string.
+
+Each `fdri:TimeSeriesPlanStep` consists of the following properties:
+
+* `fdri:index` provides an integer step number (steps being processed in order from the lowest numbered step to the highest numbered step).
+* `fdri:configuration` provides a reference to the `fdri:DataProcessingConfiguration` that defines the step process.
+* `fdri:rawConfiguration` property which provides a JSON representation of the data processing configuration.
+
 > **NOTE**
 > The datasets for different sites are saved in separate folders within the same path structure within the bucket. This is expected to be the case for other projects processed through the DRI pipeline, and so site specific paths are not currently specified in the time series definition metadata.
-
 
 ### Time-Series Dataset Versioning
 
 For each time-series, there is a dataset resource representing the time-series (the "versioned dataset") and a separate resource for each version of the time-series (the "dataset version"). A new version is created whenever a new processing pipeline is applied to the raw data and each version of the time series will have a different DOI.
-
 
 ```mermaid
 flowchart
