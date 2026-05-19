@@ -17,7 +17,8 @@ DRAFT 0.6
 * BREAKING: Change `hasAnnotation` to a nested property
 * BREAKING: Change `hasValue` and `hasValueSeries` on `Annotation` to nested properties
 * BREAKING: Change `hasOperatingRange`, `hasSurvivalRange` and `hasSystemCapability` to nested properties
-* BREAKING: Change `interval` on `FacilityGroupMembership`, `Fault` to a nested property
+* BREAKING: Change `interval` on `FacilityGroupMembership`, `Fault` to a nested Property
+* BREAKING: Changes made to the way that a Time-Series Plan is represented. A plan now consists of a series of steps, each with its own index number and configuration.
 
 DRAFT 0.5
 ---------
