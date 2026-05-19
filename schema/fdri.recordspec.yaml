@@ -4902,8 +4902,8 @@ records:
         repeatable: true
         constraints:
           - record: ObservationDataset
-      hasStep:
-        propertyUri: fdri:hasStep
+      hasPart:
+        propertyUri: dct:hasPart
         kind: object
         repeatable: true
         constraints:
@@ -4913,14 +4913,14 @@ records:
     classUri: fdri:TimeSeriesPlanStep
     shortCode: TimeSeriesPlanStep
     properties:
-      stepNumber:
+      index:
         label:
-          - value: step number
+          - value: index
             lang: en
         description:
-          - value: The sequential number of this step within the plan.
+          - value: The sequential index of this step within the plan.
             lang: en
-        propertyUri: fdri:stepNumber
+        propertyUri: fdri:index
         kind: literal
         constraints:
           - datatype: xsd:integer

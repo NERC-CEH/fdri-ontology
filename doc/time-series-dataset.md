@@ -54,7 +54,7 @@ class Plan["fdri:TimeSeriesPlan"] {
     rawConfiguration: xsd:string
 }
 class Step["fdri:TimeSeriesPlanStep"] {
-    stepNumber: xsd:integer
+    index: xsd:integer
     rawConfiguration: xsd:string
 }
 class DataProcessingConfiguration["fdri:DataProcessingConfiguration"]
@@ -67,7 +67,7 @@ TimeSeriesDataset --> Variable: sosa_observedProperty
 TimeSeriesDataset --> Measure: fdri_measure
 TimeSeriesDataset --> Plan: fdri_methodology
 Plan --> ObservationDataset: fdri_uses
-Plan --> Step: fdri_hasStep
+Plan --> Step: dct_hasPart
 Step --> DataProcessingConfig: fdri_configuration
 TimeSeriesDataset --> TimeSeriesDataset: fdri_dependsOn, fdri_directDependsOn
 ```
@@ -85,23 +85,21 @@ The following additional properties are defined for an `fdri:TimeSeriesDataset`.
 The `fdri:TimeSeriesPlan` has the following properties:
 
 * `fdri:uses` references the primary input dataset(s) for the processing plan.
-* `fdri:hasSteps` references the steps of the processing plan
+* `dct:hasPart` references the steps of the processing plan.
 * `fdri:rawConfiguration` is a JSON array of the identifiers of the data processing configurations of each step in step order, serialised as a string.
 
 Each `fdri:TimeSeriesPlanStep` consists of the following properties:
 
-* `fdri:stepNumber` provides an integer step number (steps being processed in order from the lowest numbered step to the highest numbered step)
-* `fdri:configuration` provides a reference to the `fdri:DataProcessingConfiguration` that defines the step process
+* `fdri:index` provides an integer step number (steps being processed in order from the lowest numbered step to the highest numbered step).
+* `fdri:configuration` provides a reference to the `fdri:DataProcessingConfiguration` that defines the step process.
 * `fdri:rawConfiguration` property which provides a JSON representation of the data processing configuration.
 
 > **NOTE**
 > The datasets for different sites are saved in separate folders within the same path structure within the bucket. This is expected to be the case for other projects processed through the DRI pipeline, and so site specific paths are not currently specified in the time series definition metadata.
 
-
 ### Time-Series Dataset Versioning
 
 For each time-series, there is a dataset resource representing the time-series (the "versioned dataset") and a separate resource for each version of the time-series (the "dataset version"). A new version is created whenever a new processing pipeline is applied to the raw data and each version of the time series will have a different DOI.
-
 
 ```mermaid
 flowchart
