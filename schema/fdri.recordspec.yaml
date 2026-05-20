@@ -1121,6 +1121,7 @@ records:
         propertyUri: fdri:hasStructuredValue
         kind: object
         nested: true
+        repeatable: true
         constraints:
           - record: ConfigurationArgumentList
 
