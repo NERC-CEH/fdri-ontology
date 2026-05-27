@@ -1195,6 +1195,14 @@ records:
         kind: object
         constraints:
           - record: ConfigurationItem
+      rawConfiguration:
+        description:
+          - value: The raw configuration information in JSON format.
+            language: en
+        propertyUri: fdri:rawConfiguration
+        kind: literal
+        constraints:
+          - datatype: xsd:string
 
   ConfigurationParameter:
     label:
@@ -4909,6 +4917,18 @@ records:
         repeatable: true
         constraints:
           - record: TimeSeriesPlanStep
+      rawConfiguration:
+        label:
+          - value: raw configuration
+            lang: en
+        description:
+          - value: |
+              A JSON representation of the list of steps in this plan.
+            lang: en
+        propertyUri: fdri:rawConfiguration
+        kind: literal
+        constraints:
+          - datatype: xsd:string
 
   TimeSeriesPlanStep:
     classUri: fdri:TimeSeriesPlanStep
