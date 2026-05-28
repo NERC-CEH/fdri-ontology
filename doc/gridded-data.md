@@ -9,9 +9,10 @@ an `fdri:GriddedDataset` includes metadata about the structure of the multi-dime
 The additional metadata for gridded datasets is intended to provide users with information about the structure of the dataset. A gridded dataset consists of one or more multi-dimensional arrays. Both netCDF and ZARR also support structures where arrays may be nested.
 
 An `fdri:GriddedDataset` contains:
-  * zero or more `fdri:GriddedContainer`s
-  * zero or more `fdri:Dimension`s,
-  * zero or more `fdri:Array`s, and
+
+* zero or more `fdri:GriddedContainer`s
+* zero or more `fdri:Dimension`s,
+* zero or more `fdri:Array`s, and
 
 An `fdri:GriddedContainer` is a nested structure which may itself contain `fdri:Dimensions`, `fdri:Arrays` and other `fdri:GriddedContainer`s.
 
@@ -21,10 +22,10 @@ An `fdri:Array` represents one multi-dimensional array in the dataset. The prope
 
 The value of `fdri:referenceList` is an `fdri:GriddedArrayItem` which has two properties:
 
-  * `fdri:index` is the zero-based integer index of the item in the array
-  * `schema:valueReference` is a reference to the `fdri:Array` or `fdri:Dimension` that appears at that index in the enclosing `fdri:Array`
+* `fdri:index` is the zero-based integer index of the item in the array
+* `schema:valueReference` is a reference to the `fdri:Array` or `fdri:Dimension` that appears at that index in the enclosing `fdri:Array`
 
-An `fdri:Array`, `fdri:Dimension` or `fdri:GriddedContainer` may reference the `fdri:Variable`(s) it provides values for using the `sosa:observedProperty` property, or the `fdri:Measure`(s) it provides values for using the `fdri:measure`. 
+An `fdri:Array`, `fdri:Dimension` or `fdri:GriddedContainer` may reference the `fdri:Variable`(s) it provides values for using the `sosa:observedProperty` property, or the `fdri:Measure`(s) it provides values for using the `fdri:measure`.
 All of these types also allow annotations to be referenced using `fdri:hasAnnotation`. Annotations are the recommended way to capture additional metadata that may be encoded in the dataset such as unit of measure, coordinates, methods used etc.
 
 ```mermaid
@@ -66,3 +67,4 @@ GriddedDatasetResource --> Annotation: fdri_hasAnnotation
 GriddedDatasetResource --> Variable: sosa_observedProperty
 GriddedDatasetResource --> Measure: fdri_measure
 ```
+
