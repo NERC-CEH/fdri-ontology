@@ -2,6 +2,16 @@
 
 Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub repository at https://github.com/NERC-CEH/fdri-ontology/issues
 
+DRAFT 0.7
+---------
+
+* BREAKING: Change `hasValue` and `hasValueSeries` on `Annotation` to nested properties
+* BREAKING: Change `hasOperatingRange`, `hasSurvivalRange` and `hasSystemCapability` to nested properties
+* BREAKING: Change `interval` on `FacilityGroupMembership`, `Fault` to a nested Property
+* BREAKING: Changes made to the way that a Time-Series Plan is represented. A plan now consists of a series of steps, each with its own index number and configuration.
+* NON-BREAKING: Change `hasStructuredValue` on `ConfigurationArgument` to a repeatable property to support arguments whose value is a set of structured values.
+* NON-BREAKING: Added optional `rawConfiguration` properties to `TimeSeriesPlan` and `ConfigurationItem` to allow the JSON source for those items to be stored as a string in the metadata store. 
+
 DRAFT 0.6
 ---------
 
@@ -15,12 +25,6 @@ DRAFT 0.6
 * NON-BREAKING: The definition of the properties `fdri:dependsOn` and `fdri:directDependsOn` has been relaxed. These properties can now be used on any `fdri:ObservationDataset` and reference any `fdri:ObservationDataset`.
 * NON-BREAKING: The definition of the property `fdri:uses` on fdri:TimeSeriesPlan has been modified. The range of the property is now `fdri:ObservationDataset`
 * BREAKING: Change `hasAnnotation` to a nested property
-* BREAKING: Change `hasValue` and `hasValueSeries` on `Annotation` to nested properties
-* BREAKING: Change `hasOperatingRange`, `hasSurvivalRange` and `hasSystemCapability` to nested properties
-* BREAKING: Change `interval` on `FacilityGroupMembership`, `Fault` to a nested Property
-* BREAKING: Changes made to the way that a Time-Series Plan is represented. A plan now consists of a series of steps, each with its own index number and configuration.
-* NON-BREAKING: Change `hasStructuredValue` on `ConfigurationArgument` to a repeatable property to support arguments whose value is a set of structured valeus.
-* NON-BREAKING: Added optional `rawConfiguration` properties to `TimeSeriesPlan` and `ConfigurationItem` to allow the JSON source for those items to be stored as a string in the metadata store. 
 
 DRAFT 0.5
 ---------
