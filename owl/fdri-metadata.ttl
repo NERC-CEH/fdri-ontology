@@ -1156,6 +1156,10 @@ The `fdri:property` property references the `fdri:Variable` that defines the con
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :interval ;
                                      owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :rawConfiguration ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
                    rdfs:comment """Represents the configuration of a single data processing method to be applied to a subset of observations as part of a data processing pipeline run.
 
@@ -2064,7 +2068,7 @@ A persistent or unresolved fault may be represented by using an interval with no
                                                      :PropertyValueSeries ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hadValue ;
-                                                       owl:allValuesFrom :DataProcessingConfiguration
+                                                       owl:allValuesFrom :ConfigurationItem
                                                      ] ,
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hasCurrentValue ;
