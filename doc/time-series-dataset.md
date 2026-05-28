@@ -57,7 +57,7 @@ class Step["fdri:TimeSeriesPlanStep"] {
     index: xsd:integer
     rawConfiguration: xsd:string
 }
-class DataProcessingConfiguration["fdri:DataProcessingConfiguration"]
+class DataProcessingConfig["fdri:DataProcessingConfiguration"]
 class ProcessingLevel["fdri:ProcessingLevel"]
 class Variable["skos:Concept"]
 class Measure["fdri:Measure"]
@@ -91,8 +91,7 @@ The `fdri:TimeSeriesPlan` has the following properties:
 Each `fdri:TimeSeriesPlanStep` consists of the following properties:
 
 * `fdri:index` provides an integer step number (steps being processed in order from the lowest numbered step to the highest numbered step).
-* `fdri:configuration` provides a reference to the `fdri:DataProcessingConfiguration` that defines the step process.
-* `fdri:rawConfiguration` property which provides a JSON representation of the data processing configuration.
+* `fdri:configuration` provides a reference to the `fdri:DataProcessingConfiguration` that defines the step process. See [Data Processing Configurations](data-processing-configurations.md) for more details on that structure.
 
 > **NOTE**
 > The datasets for different sites are saved in separate folders within the same path structure within the bucket. This is expected to be the case for other projects processed through the DRI pipeline, and so site specific paths are not currently specified in the time series definition metadata.

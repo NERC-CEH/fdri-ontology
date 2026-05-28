@@ -44,7 +44,9 @@ classDiagram
   class COP["iop:Variable"]
   class EMFType["fdri:EnvironmentalMonitoringFacilityType"]
   class EMF["fdri:EnvironmentalMonitoringFacility"]
-  class ConfigurationItem["fdri:ConfigurationItem"]
+  class ConfigurationItem["fdri:ConfigurationItem"] {
+    rawConfiguration: xsd:string
+  }
   class DataProcessingConfigurationType["fdri:DataProcessingConfigurationType"]
   class Dataset["dcat:Dataset"]
 
@@ -85,7 +87,9 @@ classDiagram
     schema:valueReference: rdfs:Resource
     fdri:valueType: rdf:Resource
   }
-  class ConfigurationItem["fdri:ConfigurationItem"]
+  class ConfigurationItem["fdri:ConfigurationItem"] {
+    rawConfiguration: xsd:string
+  }
   class Param["fdri:ConfigurationParameter"]
   class Period["dcterms:PeriodOfTime"]
   class Method["fdri:DataProcessingMethod"]
@@ -108,19 +112,23 @@ classDiagram
 ```
 
 An `fdri:ConfigurationItem` resource has:
+
 * a required `fdri:method` property which specifies the configuration method
 * a required `fdri:interval` property which specifies the processing data range during which the configuration item applies
 * an optional `fdri:observationInterval` property which specifies the date range of the observations to which the configuration item applies
 * zero or more `fdri:argument` properties that specify the arguments passed to the configuration method.
 * an optional `dct:replaces` property which relates the `fdri:ConfigurationItem` to the preceding `fdri:ConfigurationItem` which it replaces
+* an optional `fdri:rawConfiguration` string property which provides a JSON representation of the configuration item for use in the internal data processing pipeline.
 
 An `fdri:ConfigurationArgument` resource has:
+
 * a required `fdri:parameter` property which specifies the configuration parameter that the argument provides a value for.
 * and one of:
   * a required `fdri:hasValue` property which specifies the value of the argument
   * a required `fdri:hasStructuredValue` property which specifies the value of the argument as a set of nested arguments. This can be used to represent structured values (a la JSON objects or Python dicts) that are passed to data processing methods.
 
 An `fdri:PropertyValue` resource has:
+
 * `schema:minValue` and `schema:maxValue` to denote a value range.
 * `schema:value` to denote an single literal value.
 * `schema:valueReference` to provide a value that is another concept (e.g. a value from a taxonomy)
@@ -129,11 +137,11 @@ An `fdri:PropertyValue` resource has:
 Both `fdri:DataProcessingMethod` and `fdri:ConfigurationParameter` are subclasses of `skos:Concept`.
 
 `fdri:DataProcessingMethod` also has:
+
 * an optional, repeatable property `fdri:parameter` which relates the method to the parameters that may be passed to the method. It is expected that each parameter specified in the `fdri:ConfigurationArgument` should be the same as one of the parameters specified on the data processing method used by the parent configuration.
 
 > **QUESTION**
 > Is configuration history managed at the individual configuration property level or at the whole configuration level?
-
 
 ### External Data Processing Configuration
 
