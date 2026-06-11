@@ -1,6 +1,6 @@
 # Notes on DOO ontology alignment
 
-The following notes are based on a review of version 0.2.1 of DOO at https://nerc-ceh.github.io/digital-objects-ontology/
+The following notes are based on a review of version 0.3.0 of DOO at https://nerc-ceh.github.io/digital-objects-ontology/
 
 In the following document *DRI ontology* refers to the OWL ontology defined in this repository (currently named the FDRI ontology). *DRI schema* refers to the recordspec schema which defines a set of more prescriptive record types from the classes and properties of the DRI ontology. In general the DRI schema is used for validation whereas the DRI ontology is intended for semantic exchange.
 
@@ -16,9 +16,9 @@ At this stage it does not look like any action is needed. In future we may want 
 
 Both the DRI Onotolgy and the DOO ontology define a `Environmental Monitoring Programme` class. Both ontologies define a `utilises` property with a domain of `Environmental Monitoring Programme` and a range of `Environmental Monitoring Facility or Environmental Monitoring Network`.
 
-The DOO ontology defines a property `hasChildProgramme` with a domain and range of `Environmental Monitoring Programme`.
+The DOO ontology adds `dct:hasPart` with a domain and range of `Environmental Monitoring Programme`.
 
-The DRI ontology defines a property `initiated` which can be used to relate an `Environmental Monitoring Programme` to an `Environmental Monitoring Activity` carried out as part of that programme.
+The DRI ontology defines a property `initiated` which can be used to relate an `Environmental Monitoring Programme` to an `Environmental Monitoring Activity` carried out as part of that programme. The DOO ontology defines a semantically equivalent property `doo:triggers`.
 
 ### Actions
 
@@ -26,13 +26,15 @@ Make `fdri:EnvironmentalMonitoringProgramme` a subclass of `doo:EnvironmentalMon
 
 Replace `fdri:utilises` with `doo:utilises` in the DRI ontology and update the property URI in the DRI schema.
 
-Retain `fdri:initiated` as an extension to the DOO schema at this stage.
+Replace `fdri:initiated` with `doo:triggers` in the DRI ontology and replace the `initiated` property with a new `triggers` property in the DRI schema.
+
+Add a `hasPart` property to the DRI schema as an optional, repeatable property.
 
 ### Expected Impact
 
-There should be no impact on downstream users of the Metadata API as the record and property names would remain the same.
+There will be an minor impact on downstream users due to the replacement of the `initiated` property in the schema with a `triggers` property. At present there are relatively few Environmental Monitoring Activities in the metadata store so impact will be limited.
 
-Ingest templates and the Metadata API schema will need to be updated to use `doo:utilises` in place of `fdri:utilises`.
+Ingest templates and the Metadata API schema will need to be updated to use `doo:utilises` in place of `fdri:utilises`, and `doo:triggers` in place of `fdri:initiated`.
 
 ## Environmental Monitoring Activity
 
@@ -52,9 +54,9 @@ There should be no impact from this change.
 
 Both ontologies define an `Environmental Monitoring Facility` type with a semantically equivalent definition.
 
-The DOO ontology defines a `doo:hasChildFacility` property with domain and range `doo:EnvironmentalMonitoringFacility`. In the DRI ontology this relationship is expressed through the `dct:hasPart` property.
+Both the DOO ontology and the DRI ontology define a `dct:hasPart` property to relate a parent facility to its child facilities.
 
-The DOO ontology defines a `doo:hasFacilityType` property with a domain of `doo:EnvironmentalMonitoringFacility` and a range of `skos:Concept`. In the DRI ontology a semantically equivalent relationship is expressed through the `dct:type` property.
+Both ontologies use `dct:hasType` to relate a facility to a concept that defines the facility type. In the DOO ontology the range of this property is `skos:Concept` in the DRI ontology the range is `fdri:EnvironmentalMonitoringFacilityType` which is a subclass of `skos:Concept`.
 
 The DOO ontology defines an equivalence between `doo:EnvironmentalMonitoringFacility` and `doo:EnvironmentalMonitoringFeature`. This latter is a subclass of `dcat:Resource`. In the DRI ontology, `fdri:EnvironmentalMonitoringFacility` is a subclass of `dcat:Resource` (which provides the `dct:type` and `dct:hasPart` properties as part of its constraints, as well as other useful properties such as `dct:identifier` used to capture facility identifiers).
 
@@ -62,15 +64,11 @@ The DOO ontology defines an equivalence between `doo:EnvironmentalMonitoringFaci
 
 * Make `fdri:EnvironmentalMonitoringFacility` a subclass of `doo:EnvironmentalMonitoringFacility`. There should not be any inconsistency with the differing approaches to subclassing `dcat:Resource` so it is not necessary to change the inheritance hierarch of the FDRI ontology in this regard.
 
-* Use `doo:hasChildFacility` in preference to `dct:hasPart` for facility parent/child relationships. Update the DRI schema to remove `hasPart` and replace with `hasChildFacility` to enforce this.
-
-* Use `doo:hasFacilityType` in preference to `dct:type` for facility typing. Update the DRI schema to enforce this. The DRI ontology and schema declares a `fdri:EnvironmentalMonitoringFacilityType` class as a subclass of `skos:Concept` to use for typing. The DRI ontology will not restrict the range of `doo:hasFacilityType`, but the DRI schema will enforce this restriction.
-
 ### Expected Impact
 
-Users of the metadata API will need to update code that expects either the `hasPart` or `type` properties to instead use `hasChildFacility` or `hasFacilityType` respectively.
+There should be no impact on the users of the metadata API.
 
-The Metadata API and ingest templates will need to be updated to use `doo:hasChildFacility` in place of `dct:hasPart` and `doo:hasFacilityType` in place of `dct:type`. Care will need to be taken in this update as the `dct:hasPart` and `dct:type` properties are alos in use on other classes and those usages should not be changed.
+There should be no impact on ingest templates or on the Metdata API endpoint and view definitions.
 
 ## Environmental Monitoring Network
 
@@ -78,13 +76,14 @@ Both ontologies define an `Environmmental Monitoring Network` type with a semant
 
 The DOO ontology uses `doo:contains` to represent the relation between a network and the facilities that make up the network. The DRI ontology uses `fdri:contains` for the same purpose.
 
-The DOO ontology defines `doo:hasChildNetwork` to relate networks in a parent/child hierarchy. There is no equivalent property in the DRI ontology.
+The DOO ontology uses `dct:hasPart` to relate networks in a parent/child hierarchy. There is no equivalent property in the DRI ontology.
 
 ### Actions
 
 * Make `fdri:EnvironmentalMonitoringNetwork` a subclass of `doo:EnvironmentalMonitoringNetwork`.
 * Use `doo:contains` to relate an `fdri:EnvironmentalMonitoringNetwork` to the `fdri:EnvironmentalMonitoringFacility` that it provides. Update the type of the `contains` property of the `EnvironmentalMonitoringNetwork` record in the DRI schema.
 * Update the `fdri:contains` property to only apply to `fdri:GriddedContainer` and `fdri:GriddedDataset`, as this is a sematically distinct usage.
+* Add a `hasPart` property to the schema for `EnvironmentalMonitoringNetwork` in the DRI schema as an optional repeatable property with a range of `EnvironmentalMonitoringNetwork`.
 
 ### Expected Impact
 
