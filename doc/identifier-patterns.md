@@ -51,7 +51,7 @@ The following table lists the concept schemes that the metadata model makes use 
 | Properties | fdri:PropertyScheme | iop:Property | /ref/property |
 | Related Party Roles | fdri:RelatedPartyRoleScheme | fdri:RelatedPartyRole | /ref/related-party-role |
 | Soil Types | fdri:SoilTypeScheme | fdri:SoilType | /ref/soil-type |
-| Value Statistics | fdri:ValueStatisticScheme | fdri:ValueStatistic | /ref/statistic |
+| Value Time Achors | fdri:ValueTimeAnchor | fdri:ValueTimeAnchor | /ref/time-anchor |
 | System Statuses | fdri:SystemStatusScheme | fdri:SystemStatus | /ref/system-status |
 | Units of Measure | fdri:UnitScheme | fdri:Unit | /ref/unit |
 | Usage Roles | fdri:FacilityUsageRoleScheme | fdri:FacilityUsageRole | /ref/usage-role |

@@ -507,11 +507,10 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
              rdfs:range :FlagValueScheme .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/valueStatistic
-:valueStatistic rdf:type owl:ObjectProperty ;
-                rdfs:range :ValueStatistic ;
-                rdfs:comment "Relates an aggregated data resource to the type of aggregation applied."@en ;
-                rdfs:label "value statistic"@en .
+###  http://fdri.ceh.ac.uk/vocab/metadata/valueTimeAnchor
+:valueTimeAnchor rdf:type owl:ObjectProperty ;
+                 rdfs:comment "Relates the enclosing Measure to a concept describing how the timestamp of observations of the Measure relates to the period of time over which the observation was made."@en ;
+                 rdfs:label "value time anchor"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/valueType
@@ -989,10 +988,6 @@ geo:long rdf:type owl:DatatypeProperty ;
                              [ rdf:type owl:Restriction ;
                                owl:onProperty skos:inScheme ;
                                owl:allValuesFrom :AggregationScheme
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :valueStatistic ;
-                               owl:cardinality "1"^^xsd:nonNegativeInteger
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty :periodicity ;
@@ -2617,10 +2612,6 @@ This class extends `fdri:ObservationDataset` with metadata properties that assis
                                         owl:onProperty :methodology ;
                                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                         owl:onClass :TimeSeriesPlan
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :valueStatistic ;
-                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                       ] ;
                       rdfs:comment """A representation of a time series of some observed or derived measurement of a variable.
 
@@ -2686,22 +2677,22 @@ A Time-Series Definition captures the information that is common across multiple
             rdfs:label "Unit of Measure Scheme"@en .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatistic
-:ValueStatistic rdf:type owl:Class ;
-                rdfs:subClassOf skos:Concept ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty skos:inScheme ;
-                                  owl:allValuesFrom :ValueStatisticScheme
-                                ] ;
-                rdfs:comment "A concept that defines a statistical method for the derivation of a single aggregated value from a series of source values."@en ;
-                rdfs:label "Value Statistic"@en .
+###  http://fdri.ceh.ac.uk/vocab/metadata/ValueTimeAnchor
+:ValueTimeAnchor rdf:type owl:Class ;
+                 rdfs:subClassOf skos:Concept ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty skos:inScheme ;
+                                   owl:allValuesFrom :ValueTimeAnchorScheme
+                                 ] ;
+                 rdfs:comment "Represents the way in which a value of an observation is related temporally to the timestamp of the operation."@en ;
+                 rdfs:label "Value Time Anchor"@en .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/ValueStatisticScheme
-:ValueStatisticScheme rdf:type owl:Class ;
-                      rdfs:subClassOf skos:ConceptScheme ;
-                      rdfs:comment "A concept scheme of `fdri:ValueStatistic` concepts that define the types of aggregation applied to values in the FDRI data processing pipelines."@en ;
-                      rdfs:label "Value Statistic Scheme"@en .
+###  http://fdri.ceh.ac.uk/vocab/metadata/ValueTimeAnchorScheme
+:ValueTimeAnchorScheme rdf:type owl:Class ;
+                       rdfs:subClassOf skos:ConceptScheme ;
+                       rdfs:comment "A controlled list of terms expressing the temporal relationship between the value of an observation and the timestamp of that observation."@en ;
+                       rdfs:label "Value Time Anchor Scheme"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/Variable

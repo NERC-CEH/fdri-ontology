@@ -97,7 +97,7 @@ The following table lists the subclasses of `skos:Concept` which are defined in 
 | `fdri:SoilType` | The category of soil type at an `EnvironmentalMonitoringSite` |
 | `fdri:SystemStatus` | The operational status of an `EnvironmentalMonitoringSystem` |
 | `fdri:Unit` | A unit of measure. |
-| `fdir:ValueStatistic` | The category of aggregation applied to a set of values in order to produce an aggregate dataset e.g. mean, min, max etc. |
+| `fdir:ValueTimeAnchor` | The relationship between the timestamp of an observation and the period of time over which the measurement was made. e.g. instantaneous, preceding period, following period, mid-point. |
 | `fdri:Variable` | A faceted type describing the properties of some `EnvironmentalDomain` which can be observed by an `EnvironmentalMonitoringSystem`. |
 
 > **NOTE**

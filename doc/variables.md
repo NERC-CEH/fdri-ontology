@@ -123,12 +123,14 @@ class Aggregation["fdri:Aggregation"] {
     fdri:resolution: xsd:duration
 }
 class Unit["fdri:Unit"]
+class ValueTimeAnchor["fdri:ValueTimeAnchor"]
 class Concept["skos:Concept"]
 Measure --> "1..1" Variable: fdri_variable
 Measure --> "1..1" Unit: fdri_hasUnit
 Measure --> "0..1" Aggregation: fdri_aggregation
-Aggregation --> "1..1" Concept: fdri_valueStatistic
+Aggregation --> "1..1" ValueTimeAnchor: fdri_valueTimeAnchor
 Concept <|-- Unit
+Concept <|-- ValueTimeAnchor
 ```
 
 ### Value Type
@@ -136,6 +138,7 @@ Concept <|-- Unit
 The `fdri:valueType` property relates a Measure to the data-type used for representing the measure values. The range of this property is open, but values for simple properties should be taken from the XML Schema data-types (e.g. `xsd:decimal`).
 
 ### Variable
+
 The `fdri:hasVariable` property relates a Measure to the Variable for which values are provided.
 
 ### Unit
@@ -149,7 +152,7 @@ The `fdri:hasUnit` property relates a Measure to a concept that describes the un
 
 Where a unit is specified, the unit name property SHOULD also be specified providing a default display string for rendering a value with its units.
 
-It is strongly recommended to use a shared vocabulary for expressing units. 
+It is strongly recommended to use a shared vocabulary for expressing units.
 
 ### Aggregation
 

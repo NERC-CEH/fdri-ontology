@@ -702,18 +702,17 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:duration
-      valueStatistic:
+      valueTimeAnchor:
         label:
-          - value: value statistic
+          - value: value time anchor
             lang: en
         description:
           - value: |
-              The way in which multiple values are processed to derive a single reported value of the property for some 
-              time period. Examples include mean value over period, total value over period or a single instantaneous value.
+              The relationship bewteen the timestamp of an aggregated value and the time period over which the aggregation is applied.
         propertyUri: fdri:valueStatistic
         kind: object
         constraints:
-          - record: ValueStatistic
+          - record: ValueTimeAnchor
       inScheme:
         label:
           - value: is in scheme
@@ -4997,16 +4996,16 @@ records:
     shortCode: UnitScheme
     extends: ConceptScheme
 
-  ValueStatistic:
+  ValueTimeAnchor:
     label:
-      - value: Value Statistic
+      - value: Value Time Anchor
         lang: en
     description:
-      - value: A concept that defines a statistical method for the derivation of a single aggregated value from a series of source values.
+      - value: A concept that defines the relationship between the timestamp of an observed value and the time period over which the observation is made.
         lang: en
     extends: Concept
-    classUri: fdri:ValueStatistic
-    shortCode: ValueStatistic
+    classUri: fdri:ValueTimeAnchor
+    shortCode: ValueTimeAnchor
     properties:
       inScheme:
         label:
@@ -5018,20 +5017,19 @@ records:
         propertyUri: skos:inScheme
         kind: object
         constraints:
-          - record: ValueStatisticScheme
+          - record: ValueTimeAnchorScheme
 
-  ValueStatisticScheme:
+  ValueTimeAnchorScheme:
     label:
-      - value: Value Statistic Concept Scheme
+      - value: Value Time Anchor Concept Scheme
         lang: en
     description:
       - value: |
-          A concept scheme that defines a controlled vocabulary of statistical methods for the derivation
-          of single aggregated values from a series of source values.
+          A concept scheme that defines a controlled vocabulary of relationships between the timestamp of an observed value and the time period over which the observation is made.
         lang: en
     extends: ConceptScheme
-    classUri: fdri:ValueStatisticScheme
-    shortCode: ValueStatisticScheme
+    classUri: fdri:ValueTimeAnchorScheme
+    shortCode: ValueTimeAnchorScheme
 
   Variable:
     label:
