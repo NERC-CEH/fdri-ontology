@@ -3471,7 +3471,7 @@ records:
           - value: |
               The relationship between the timestamp of an aggregated value and the time period over which the aggregation is applied.
             lang: en
-        propertyUri: fdri:valueStatistic
+        propertyUri: fdri:valueTimeAnchor
         kind: object
         constraints:
           - record: ValueTimeAnchor
