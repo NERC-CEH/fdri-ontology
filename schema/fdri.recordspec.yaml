@@ -3452,8 +3452,6 @@ records:
             lang: en
         propertyUri: fdri:periodicity
         kind: literal
-        required: true
-        repeatable: false
         constraints:
           - datatype: xsd:duration
       resolution:
@@ -3465,8 +3463,6 @@ records:
             lang: en
         propertyUri: fdri:resolution
         kind: literal
-        required: true
-        repeatable: false
         constraints:
           - datatype: xsd:duration
       valueTimeAnchor:
@@ -3492,8 +3488,6 @@ records:
       variable:
         propertyUri: fdri:variable
         kind: object
-        required: true
-        repeatable: false
         constraints:
           - record: Variable
   
