@@ -12,7 +12,8 @@ DRAFT 0.7 (Work In Progress)
 * NON-BREAKING: Change `hasStructuredValue` on `ConfigurationArgument` to a repeatable property to support arguments whose value is a set of structured values.
 * NON-BREAKING: Added optional `rawConfiguration` properties to `TimeSeriesPlan` and `ConfigurationItem` to allow the JSON source for those items to be stored as a string in the metadata store. 
 * BREAKING: Removed `fdri:ValueStatistic` class and the `fdri:ValueStatistic` property on `fdri:Aggregation`.
-* NEW: Added `fdri:ValueTimeAnchor` and the `fdri:valueTimeAnchor` property on `fdri:Aggregation` to express the relationship between the timestamp of an observation and the period of time over which the observation was made.
+* NEW: Added `fdri:ValueTimeAnchor` and the `fdri:valueTimeAnchor` property on `fdri:Measure` to express the relationship between the timestamp of an observation and the period of time over which the observation was made.
+* BREAKING: Changed the definition of `fdri:Aggregation` to be simply a `skos:Concept` that represents  and aggregation method. The `fdri:periodicity`, `fdri:resolution` and `fdri:timeValueAnchor` properties are moved to `fdri:Measure`.
 
 DRAFT 0.6
 ---------

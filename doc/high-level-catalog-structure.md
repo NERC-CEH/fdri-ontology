@@ -77,9 +77,9 @@ The following table lists the subclasses of `skos:Concept` which are defined in 
 
 | Concept Type | Concept Usage |
 |--------------|---------------|
-| `fdri:ActivityType` | The class of a `prov:Activity` or `fdri:EnvironmentalMonitoringActivity`. e.g. "flowstick survey"
-| `fdri:Aggregation` | A statistical aggregation applied to a set of values to produce a single value result. e.g. "minimum"
-| `fdri:ConfigurationParameter` | A parameter that may be passed to an `fdri:DataProcessingMethod` as part of a data processing configuration. See [Data Processing Configurations](data-processing-configurations.md).
+| `fdri:ActivityType` | The class of a `prov:Activity` or `fdri:EnvironmentalMonitoringActivity`. e.g. "flowstick survey" |
+| `fdri:Aggregation` | A statistical aggregation applied to a set of values to produce a single value result. e.g. "minimum" |
+| `fdri:ConfigurationParameter` | A parameter that may be passed to an `fdri:DataProcessingMethod` as part of a data processing configuration. See [Data Processing Configurations](data-processing-configurations.md). |
 | `fdri:ConfigurationProperty` | A property of an environmental monitoring system which can be configured with different values (e.g. installed firmware version) |
 | `fdri:DataProcessingConfigurationType` | A type of data processing configuration. e.g. "QC Configuration" |
 | `fdri:DataProcessingMethod` | A data processing method or procedure that may be invoked as part of a data processing configuration. |
