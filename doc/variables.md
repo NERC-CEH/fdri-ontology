@@ -116,21 +116,21 @@ config:
 classDiagram
 class Measure["fdri:Measure"] {
   fdri:valueType: rdf:Resource [0..1]
+  fdri:periodicity: xsd:duration
+  fdri:resolution: xsd:duration
 }
 class Variable["fdri:Variable"]
-class Aggregation["fdri:Aggregation"] {
-    fdri:periodicity: xsd:duration
-    fdri:resolution: xsd:duration
-}
+class Aggregation["fdri:Aggregation"]
 class Unit["fdri:Unit"]
 class ValueTimeAnchor["fdri:ValueTimeAnchor"]
 class Concept["skos:Concept"]
 Measure --> "1..1" Variable: fdri_variable
 Measure --> "1..1" Unit: fdri_hasUnit
-Measure --> "0..1" Aggregation: fdri_aggregation
-Aggregation --> "1..1" ValueTimeAnchor: fdri_valueTimeAnchor
-Concept <|-- Unit
-Concept <|-- ValueTimeAnchor
+Measure --> "1..1" Aggregation: fdri_aggregation
+Measure --> "1..1" ValueTimeAnchor: fdri_valueTimeAnchor
+Unit --|> Concept
+ValueTimeAnchor --|> Concept
+Aggregation --|> Concept
 ```
 
 ### Value Type
@@ -156,7 +156,7 @@ It is strongly recommended to use a shared vocabulary for expressing units.
 
 ### Aggregation
 
-Where a measure is the result of the aggregation of multiple values over some time period, the `fdri:aggregation` property can be used to relate the Measure to an Aggregation which represents both how the input values are aggregated (using the `fdri:valueStatistic` property) to produce the recorded measurement, and the time period over which that aggregation is applied. Examples of value statistic concepts include:
+Where a measure is the result of the aggregation of multiple values over some time period, the `fdri:aggregation` property can be used to relate the Measure to an Aggregation which represents the statistical method used to generated the aggregated measures. Examples of aggregation concepts include:
 
 * minimum
 * maximum
@@ -171,7 +171,7 @@ e.g. if `fdri:periodicity` is `PT5M` and `fdri:resolution` is `PT30S` then value
 
 A Variable can have broader/narrower relations to other Variables which define more generic or more specialised variants of the Variable.
 
-For example a generic "Air Temperature" variable might only have its Property and ObjectOfInterest facets defined, and have a specialisation of "Sonic Air Temperature" with a Context facet indicating the method by which the observation is made, which may itself have a specialisation "Sonic Air Temperature at 2m above sea level" with an additional Context facet indicating the height at which the reading is taken. 
+For example a generic "Air Temperature" variable might only have its Property and ObjectOfInterest facets defined, and have a specialisation of "Sonic Air Temperature" with a Context facet indicating the method by which the observation is made, which may itself have a specialisation "Sonic Air Temperature at 2m above sea level" with an additional Context facet indicating the height at which the reading is taken.
 
 > [!NOTE]
 > It should be noted that even without the structure of a hierarchy, the faceted nature of Variables makes it relatively easy to discover specialisations and generalisations simply by comparing the facet values (e.g. all Temperature variables, all Air Temperature variables, all Sonic Air Temperature variables etc.).

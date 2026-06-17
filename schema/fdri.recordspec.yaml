@@ -672,47 +672,12 @@ records:
         lang: en
     description:
       - value: |
-          An Aggregation is a Concept which combines an aggregation method (fdri:valueStatistic) with a period of time over which
-          the aggregation is applied (fdri:periodicity). The optional `fdri:resolution` property can be used to express the 
-          frequency with which the aggregated values are measured.
+          An aggregation is a function applied to a collection of observed values to produce a single summary value.
+        lang: en
     classUri: fdri:Aggregation
     shortCode: aggregation
     extends: Concept
     properties:
-      periodicity:
-        label:
-          - value: periodicity
-            lang: en
-        description:
-          - value: |
-              The time period over which a set of observed values are aggregated to derive a single aggregate value.
-            lang: en
-        propertyUri: fdri:periodicity
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
-      resolution:
-        label:
-          - value: resolution
-            lang: en
-        description:
-          - value: The period between the observations of the aggregated values.
-            lang: en
-        propertyUri: fdri:resolution
-        kind: literal
-        constraints:
-          - datatype: xsd:duration
-      valueTimeAnchor:
-        label:
-          - value: value time anchor
-            lang: en
-        description:
-          - value: |
-              The relationship bewteen the timestamp of an aggregated value and the time period over which the aggregation is applied.
-        propertyUri: fdri:valueStatistic
-        kind: object
-        constraints:
-          - record: ValueTimeAnchor
       inScheme:
         label:
           - value: is in scheme
@@ -730,7 +695,7 @@ records:
       - value: Aggregation Scheme
         lang: en
     description:
-      - value: A concept scheme that defines a controlled vocabulary of aggregation methods, defined as a value statistic applied over a given period to values measured to a given frequency.
+      - value: A concept scheme that defines a controlled vocabulary of aggregation methods.
         lang: en
     extends: ConceptScheme
     classUri: fdri:AggregationScheme
@@ -3475,6 +3440,41 @@ records:
         kind: object
         constraints:
           - record: Unit
+      periodicity:
+        label:
+          - value: periodicity
+            lang: en
+        description:
+          - value: |
+              The time period over which a set of observed values are aggregated to derive a single aggregate value.
+            lang: en
+        propertyUri: fdri:periodicity
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      resolution:
+        label:
+          - value: resolution
+            lang: en
+        description:
+          - value: The period between the observations of the aggregated values.
+            lang: en
+        propertyUri: fdri:resolution
+        kind: literal
+        constraints:
+          - datatype: xsd:duration
+      valueTimeAnchor:
+        label:
+          - value: value time anchor
+            lang: en
+        description:
+          - value: |
+              The relationship between the timestamp of an aggregated value and the time period over which the aggregation is applied.
+            lang: en
+        propertyUri: fdri:valueStatistic
+        kind: object
+        constraints:
+          - record: ValueTimeAnchor
       valueType:
         label:
           - value: value type

@@ -108,7 +108,7 @@ SurveyUsage -- prov:hadRole --> WeatherReportConcept
 
 ## Analysis of UAV Dataset Metadata Recommendations
 
-### The UAV platform and its sensor type 
+### The UAV platform and its sensor type
 
 | Metadata Field | Supported? | Comments
 |----------------|------------|-----------|
@@ -124,7 +124,7 @@ Sensor firmware and version | Y | These are already captured as configuration in
 
 **Sensor Location, Mount, and Orientation**
 
-All three of these properties could be captured simply as part of the comments field already present on the Deployment type. This may be sufficient for reqiurements if it is only needed to allow an interested user to understand detailed information about how the data was captured.
+All three of these properties could be captured simply as part of the comments field already present on the Deployment type. This may be sufficient for requirements if it is only needed to allow an interested user to understand detailed information about how the data was captured.
 
 If these fields are required for reporting, aggregation or filtering then a more structured approach would be required, and there are two potential options.
 
