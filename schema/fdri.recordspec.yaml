@@ -3438,8 +3438,6 @@ records:
       hasUnit:
         propertyUri: fdri:hasUnit
         kind: object
-        required: true
-        repeatable: false
         constraints:
           - record: Unit
       periodicity:
