@@ -2367,12 +2367,12 @@ records:
     properties:
       initiated:
         label:
-          - value: initiated
+          - value: triggers
             lang: en
         description:
-          - value: An Environmental Monitoring Programme may have initiated some Environmental Monitoring Activities.
+          - value: An Environmental Monitoring Programme may trigger some Environmental Monitoring Activities.
             lang: en
-        propertyUri: fdri:initiated
+        propertyUri: doo:triggers
         kind: object
         repeatable: true
         constraints:
@@ -2385,7 +2385,7 @@ records:
           - value: |
               The monitoring network and/or facilities that are used by this programme in the achievement of its
               environmental monitoring aims.
-        propertyUri: fdri:utilises
+        propertyUri: doo:utilises
         kind: object
         repeatable: true
         constraints:
