@@ -2391,7 +2391,20 @@ records:
         constraints:
           - record: EnvironmentalMonitoringNetwork
           - record: EnvironmentalMonitoringFacility
-      
+      hasPart:
+        label:
+          - value: has part
+            lang: en
+        description:
+          - value: |
+              The Environmental Monitoring Programmes which are sub-activities of this programme.
+            lang: en
+        propertyUri: doo:hasPart
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringProgramme
+
   EnvironmentalMonitoringSensor:
     label:
       - value: Environmental Monitoring Sensor
