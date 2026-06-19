@@ -2308,11 +2308,24 @@ records:
           - value: |
               A reference to the facilties which together form the monitoring network.
             lang: en
-        propertyUri: fdri:contains
+        propertyUri: doo:contains
         kind: object
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
+      hasPart:
+        label:
+          - value: has part
+            lang: en
+        description:
+          - value: |
+              The Environmental Monitoring Networks which are sub-networks of this network.
+            lang: en
+        propertyUri: dct:hasPart
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringNetwork
       utilisedBy:
         label:
           - value: utilised by
@@ -2399,7 +2412,7 @@ records:
           - value: |
               The Environmental Monitoring Programmes which are sub-activities of this programme.
             lang: en
-        propertyUri: doo:hasPart
+        propertyUri: dct:hasPart
         kind: object
         repeatable: true
         constraints:

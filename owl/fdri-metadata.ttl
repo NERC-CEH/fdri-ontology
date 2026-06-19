@@ -1386,6 +1386,7 @@ An EnvironmentalMonitoringActivity may follow a documented Procedure, and may in
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringFacility
 :EnvironmentalMonitoringFacility rdf:type owl:Class ;
                                  rdfs:subClassOf dcat:Resource ,
+                                                 <https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringFacility> ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty :environmentalDomain ;
                                                    owl:allValuesFrom skos:Concept
@@ -1508,10 +1509,7 @@ The derived classes `fdri:EnvironmentalMonitoringSite`, `fdri:EnvironmentalMonit
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringNetwork
 :EnvironmentalMonitoringNetwork rdf:type owl:Class ;
-                                rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                  owl:onProperty :contains ;
-                                                  owl:allValuesFrom :EnvironmentalMonitoringFacility
-                                                ] ;
+                                rdfs:subClassOf <https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringNetwork> ;
                                 rdfs:comment "A collection of infrastructure elements (`fdri:EnvironmentalMonitoringFacility`) which are used together for some environmental monitoring purpose."@en ;
                                 rdfs:label "Environmental Monitoring Network"@en .
 
