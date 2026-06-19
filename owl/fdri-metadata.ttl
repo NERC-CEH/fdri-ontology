@@ -1348,6 +1348,7 @@ A deployment may be associated with a platform on which the sensors or systems w
 :EnvironmentalMonitoringActivity rdf:type owl:Class ;
                                  rdfs:subClassOf dcat:Resource ,
                                                  prov:Activity ,
+                                                 <https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringActivity> ,
                                                  [ rdf:type owl:Restriction ;
                                                    owl:onProperty prov:qualifiedAssociation ;
                                                    owl:allValuesFrom :RelatedPartyAssociation
