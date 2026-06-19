@@ -53,9 +53,9 @@ class RelatedPartyRole["fdri:RelatedPartyRole"]
 class EMFacility["fdri:EnvironmentalMonitoringFacility"]
 
 Activity <|-- EMActivity
-EMActivity --> EMActivity: fdri_initiated
+EMActivity --> EMActivity: doo_triggers
 EMActivity --> ActivityType: dct_type
-EMProgramme --> EMActivity: fdri_initiated
+EMProgramme --> EMActivity: doo_triggers
 ObservationDataset --> EMActivity: fdri_originatingActivity
 EMActivity --> Variable: sosa_observes
 EMActivity --> Measure: fdri_measures
