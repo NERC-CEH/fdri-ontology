@@ -147,6 +147,10 @@ The property `fdri:originatingProgramme` can be used to reference the `Environme
   class TimeSeriesDataset["fdri:TimeSeriesDataset"]
   class DatasetSeries["dcat:DatasetSeries"]
   class ProcessingLevel["fdri:ProcessingLevel"]
+  class Identifier["adms:Identifier"] {
+    skos_notation: xsd:string
+    dct_conformsTo: xsd:string
+  }
   class Dataset {
     dct_accrualPeriodicity: dcterms:Frequency
     dct_temporal: dct:PeriodOfTime
@@ -187,9 +191,11 @@ The property `fdri:originatingProgramme` can be used to reference the `Environme
   ObservationDataset --> Facility: fdri_originatingFacility
   ObservationDataset --> Site: fdri_originatingSite
   ObservationDataset --> Program: fdri_originatingProgramme
-  ObservationDataset --> ProcessingLevel: processingLevel
+  ObservationDataset --> ProcessingLevel: fdri_processingLevel
+  CatalogResource --> Identifier: adms_identifier
   CatalogResource --> Agent: dct_creator
   CatalogResource --> Agent: dct_publisher
+  Identifer --> Agent: adms_schemaAgency
   DatasetSeries --|> Dataset
   Dataset --> DatasetSeries: dcat_inSeries
   CatalogResource --> Concept: dct_type
