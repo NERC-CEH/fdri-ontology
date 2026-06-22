@@ -117,6 +117,12 @@ The property `fdri:originatingFacility` can be used to reference the `Environmen
 
 The property `fdri:originatingProgramme` can be used to reference the `EnvironmentalMonitoringProgramme` from which observations contained in the dataset have come. This provides a more direct way to group datasets from the same programme than going via the `fdri:ProgrammeCatalog`
 
+Identifiers for catalog resources can be specified either as a simple string identifier using the `dct:identifier` property, or as a complex property using the `adms:identifier` property. The latter property is used to reference an `adms:Identifier` resource with the following properties:
+
+* `skos:notation` - the identifier string
+* `dct:conformsTo` - the identifier of the schema that the identifier belongs to
+* `adms:schemaAgency` - the Agent (typically an Organisation), that is responsible for the maintenance of the identifier schema.
+
 > **NOTE**
 > The use of dataset-level quality metric observations can be reserved for aggregate metrics such as data availability metrics. Row-level metrics could (and arguably should) be managed in the underlying data store.
 
