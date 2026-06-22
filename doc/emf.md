@@ -191,6 +191,24 @@ EMFacility <|-- EMSite
 > [!NOTE]
 > By mapping both `fdri:EnvironmentalMonitoringSite` and `fdri:EnvironmentalMonitoringPlatform` to `sosa:Platform`, a deployment of a sensor can be registered at the site level without having to model the detail of the physical infrastructure at the site, but that the model still has the flexibility to represent more detailed information if it is available and if deemed desirable to do so.
 
+For static infrastructure, the type defines properties which can be used to specify the location of the `fdri:EnvironmentalMonitoringPlatform` relative to a representative point for the `fdri:EnvironmentalMonitoringSite` that hosts the platform.
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class EMFacility["fdri:EnvironmentalMonitoringFacility"]
+class EMPlatform["fdri:EnvironmentalMonitoringPlatform"] {
+  fdri:eastOffset: xsd:decimal
+  fdri:northOffset: xsd:decimal
+  fdri:verticalOffset: xsd:decimal
+  fdri:azimuth: xsd:decimal
+}
+EMFacility <|-- EMPlatform
+```
 
 #### EnvironmentalMonitoringSystem
 

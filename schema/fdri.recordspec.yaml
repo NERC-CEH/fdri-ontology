@@ -2367,6 +2367,47 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringSite
+      eastOffset:
+        label:
+          - value: east offset
+            lang: en
+        description:
+          - value: The eastward offset of the platform from the representative point location of the site that contains the platform (in metres).
+            lang: en
+        propertyUri: fdri:eastOffset
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      northOffset:
+        label:
+          - value: north offset
+            lang: en
+        description:
+          - value: The northward offset of the platform from the representative point location of the site that contains the platform (in metres).
+            lang: en
+        propertyUri: fdri:northOffset
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      verticalOffset:
+        label:
+          - value: vertical offset
+            lang: en
+        description:
+          - value: The vertical offset of the platform from the representative point location of the site that contains the platform (in metres).
+            lang: en
+        propertyUri: fdri:verticalOffset
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
+      azimuth:
+        label:
+          - value: azimuth
+            lang: en
+        propertyUri: fdri:azimuth
+        kind: literal
+        constraints:
+          - datatype: xsd:decimal
 
   EnvironmentalMonitoringProgramme:
     label:

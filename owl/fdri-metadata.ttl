@@ -1518,7 +1518,23 @@ The derived classes `fdri:EnvironmentalMonitoringSite`, `fdri:EnvironmentalMonit
 ###  http://fdri.ceh.ac.uk/vocab/metadata/EnvironmentalMonitoringPlatform
 :EnvironmentalMonitoringPlatform rdf:type owl:Class ;
                                  rdfs:subClassOf :EnvironmentalMonitoringFacility ,
-                                                 sosa:Platform ;
+                                                 sosa:Platform ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :azimuth ;
+                                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :eastOffset ;
+                                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :northOffset ;
+                                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :verticalOffset ;
+                                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                 ] ;
                                  rdfs:comment """A piece of infrastructure at a site that is used in the monitoring of the environment at that site.
 
 An Environmental Monitoring Platform may be a physical piece of infrastructure such as a post in the ground, a raised platform or a hole in the ground. It may also be used to represent a \"slot\" in the site infrastructure to which sensors may be serially deployed over time in order to monitor the same phenomenon.
