@@ -14,7 +14,13 @@ DRAFT 0.7 (Work In Progress)
 * BREAKING: Removed `fdri:ValueStatistic` class and the `fdri:ValueStatistic` property on `fdri:Aggregation`.
 * NEW: Added `fdri:ValueTimeAnchor` and the `fdri:valueTimeAnchor` property on `fdri:Measure` to express the relationship between the timestamp of an observation and the period of time over which the observation was made.
 * BREAKING: Changed the definition of `fdri:Aggregation` to be simply a `skos:Concept` that represents  and aggregation method. The `fdri:periodicity`, `fdri:resolution` and `fdri:timeValueAnchor` properties are moved to `fdri:Measure`.
-
+* BREAKING: Aligned the FDRI ontology with the DOO ontology. This includes the following changes:
+  * NON-BREAKING: Introduced subclass relationships between FDRI ontology types `EnvironmentalMonitoringNetwork`, `EnvironmentalMonitoringProgramme`, `EnvironmentalMonitoringFacility` and `EnvironmentalMonitoringActivity` and their equivalents in the DOO ontology.
+  * BREAKING: Renamed `initiated` property of `EnvironmentalMonitoringProgramme` and `EnvironmentalMonitoringActivity` to `triggers` and changed the property URI from fdri:initiated to doo:triggers 
+  * NON-BREAKING: Added a `hasPart` property to `EnvironmentalMonitoringProgramme` and `EnvironmentalMonitoringNetwork`.
+  * BREAKING: Changed the property URI of the `utilises` property of `EnvironmentalMonitoringProgramme` from `fdri:utilises` to `doo:utilises`.
+  * BREAKING: Changed the property URI of the `contains` property of `EnvironmentalMonitoringNetwork` from `fdri:contains` to `doo:contains`.
+ 
 DRAFT 0.6
 ---------
 
@@ -60,7 +66,7 @@ DRAFT 0.5
 * NON-BREAKING: Changed the range of `fdri:property` on `fdri:Annotation` from `fdri:Variable` to the super-class `skos:Concept`, to allow any kind of Concept to be used to define an annotation property.
 * FIX: Fix typo in the URI of the `deployedHeight` property on the `StaticDeployment` record in the Recordspec model.
 * NON-BREAKING: Relax the definition of `fdri:Variable` so that the IAdopt properties `iop:hasProperty` and `iop:hasObjectOfInterest` are optional.
-* NEW: Added `foaf:homepage` property to `fdri:EnvironmentalMonitoringProgramme` and `fdri:EnvironmenalMonitoringNetwork`
+* NEW: Added `foaf:homepage` property to `fdri:EnvironmentalMonitoringProgramme` and `fdri:EnvironmentalMonitoringNetwork`
 * NEW: Added `fdri:sourceTimeColumnName` to `fdri:TimeSeriesDataset` to capture the name of the column that holds the timestamp for each observation. 
 * BREAKING: Replaced `fdri:reference` with `fdri:referenceList` on `fdri:Array`. This allows for the items in a gridded data array to be assigned an index that indicates the item's index in the storage array of the underlying gridded dataset. 
 * BREAKING: Change the range of geo:lat, geo:long, spatialrelations:easting and spatialrelations:northing from string to decimal to enable numeric comparison in SPARQL queries.
