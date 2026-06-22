@@ -20,7 +20,7 @@ DRAFT 0.7 (Work In Progress)
   * NON-BREAKING: Added a `hasPart` property to `EnvironmentalMonitoringProgramme` and `EnvironmentalMonitoringNetwork`.
   * BREAKING: Changed the property URI of the `utilises` property of `EnvironmentalMonitoringProgramme` from `fdri:utilises` to `doo:utilises`.
   * BREAKING: Changed the property URI of the `contains` property of `EnvironmentalMonitoringNetwork` from `fdri:contains` to `doo:contains`.
- * NON-BREAKING: Added a new property `structuredIdentifier` with property URI `adms:identifier` to allow the capture of identifiers as a structured value that includes the identifier string, an optional scheme identifier and an optional reference to the Agent responsible for the scheme. This DOES NOT replace the existing `identifier`(`dct:identifier`).
+ * NON-BREAKING: Added a new property `structuredIdentifier` with property URI `adms:identifier` to the `CataloguedResource` mix-in to allow the capture of identifiers as a structured value that includes the identifier string, an optional scheme identifier and an optional reference to the Agent responsible for the scheme. This DOES NOT replace the existing `identifier`(`dct:identifier`).
 
 DRAFT 0.6
 ---------
