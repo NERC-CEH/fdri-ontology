@@ -82,7 +82,7 @@ The DOO ontology uses `dct:hasPart` to relate networks in a parent/child hierarc
 
 * Make `fdri:EnvironmentalMonitoringNetwork` a subclass of `doo:EnvironmentalMonitoringNetwork`.
 * Use `doo:contains` to relate an `fdri:EnvironmentalMonitoringNetwork` to the `fdri:EnvironmentalMonitoringFacility` that it provides. Update the type of the `contains` property of the `EnvironmentalMonitoringNetwork` record in the DRI schema.
-* Update the `fdri:contains` property to only apply to `fdri:GriddedContainer` and `fdri:GriddedDataset`, as this is a sematically distinct usage.
+* Update the `fdri:contains` property to only apply to `fdri:GriddedContainer` and `fdri:GriddedDataset`, as this is a semantically distinct usage.
 * Add a `hasPart` property to the schema for `EnvironmentalMonitoringNetwork` in the DRI schema as an optional repeatable property with a range of `EnvironmentalMonitoringNetwork`.
 
 ### Expected Impact

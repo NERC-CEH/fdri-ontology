@@ -4,6 +4,8 @@ prefixes:
     uri: http://www.w3.org/ns/dcat#
   - prefix: dct
     uri: http://purl.org/dc/terms/
+  - prefix: doo
+    uri: https://digital.ceh.ac.uk/ontology/doo/
   - prefix: foaf
     uri: http://xmlns.com/foaf/0.1/
   - prefix: fdri
@@ -2032,13 +2034,13 @@ records:
         kind: object
         constraints:
           - record: GeospatialFeatureOfInterest
-      initiated:
+      triggers:
         label:
-          - value: initiated
+          - value: triggers
             lang: en
         description:
-          - value: The sub-activity or activities that were initiated by this activity.
-        propertyUri: fdri:initiated
+          - value: The sub-activity or activities that were triggered by this activity.
+        propertyUri: doo:triggers
         kind: object
         repeatable: true
         constraints:
@@ -2308,11 +2310,24 @@ records:
           - value: |
               A reference to the facilties which together form the monitoring network.
             lang: en
-        propertyUri: fdri:contains
+        propertyUri: doo:contains
         kind: object
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringFacility
+      hasPart:
+        label:
+          - value: has part
+            lang: en
+        description:
+          - value: |
+              The Environmental Monitoring Networks which are sub-networks of this network.
+            lang: en
+        propertyUri: dct:hasPart
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringNetwork
       utilisedBy:
         label:
           - value: utilised by
@@ -2365,14 +2380,14 @@ records:
       - WithHomepage
     extends: Thing
     properties:
-      initiated:
+      triggers:
         label:
-          - value: initiated
+          - value: triggers
             lang: en
         description:
-          - value: An Environmental Monitoring Programme may have initiated some Environmental Monitoring Activities.
+          - value: An Environmental Monitoring Programme may trigger some Environmental Monitoring Activities.
             lang: en
-        propertyUri: fdri:initiated
+        propertyUri: doo:triggers
         kind: object
         repeatable: true
         constraints:
@@ -2385,13 +2400,26 @@ records:
           - value: |
               The monitoring network and/or facilities that are used by this programme in the achievement of its
               environmental monitoring aims.
-        propertyUri: fdri:utilises
+        propertyUri: doo:utilises
         kind: object
         repeatable: true
         constraints:
           - record: EnvironmentalMonitoringNetwork
           - record: EnvironmentalMonitoringFacility
-      
+      hasPart:
+        label:
+          - value: has part
+            lang: en
+        description:
+          - value: |
+              The Environmental Monitoring Programmes which are sub-activities of this programme.
+            lang: en
+        propertyUri: dct:hasPart
+        kind: object
+        repeatable: true
+        constraints:
+          - record: EnvironmentalMonitoringProgramme
+
   EnvironmentalMonitoringSensor:
     label:
       - value: Environmental Monitoring Sensor

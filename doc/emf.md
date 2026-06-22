@@ -72,11 +72,11 @@ class Activity["prov:Activity"]
 class Measure["fdri:Measure"]
 
 Resource <|-- Facility
-Programme --> Network: fdri_utilises
+Programme --> Network: doo_utilises
 Network --> Programme: fdri_utilisedBy
-Programme --> Facility: fdri_utilises
+Programme --> Facility: doo_utilises
 Facility --> Programme: fdri_utilisedBy
-Network --> Facility: fdri_contains
+Network --> Facility: doo_contains
 Facility --> RelatedParty: prov_qualifiedAttribution
 RelatedParty --> AgentRole: dcat_hadRole
 RelatedParty --> Agent: prov_Agent
@@ -89,6 +89,8 @@ Facility --> Activity: fdri_wasModifiedBy
 Facility --> Activity: prov_wasGeneratedBy
 Facility --> Activity: prov_wasInvalidatedBy
 Facility --> Facility: dct_hasPart
+Network --> Network: dct_hasPart
+Programme --> Programme: dct_hasPart
 ```
 
 ### Site, Platform, System and Sensor

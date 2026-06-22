@@ -6,19 +6,19 @@ The class `fdri:EnvironmentalMonitoringActivity` represents some activity which 
 
 An `fdri:EnvironmentalMonitoringActivity` has the following properties:
 
-  * `dct:type` relates the activity to an `fdri:ActivityType` concept which qualifies the kind of activity (e.g. UAV survey)
-  * `sosa:observes` relates the activity to one or more `fdri:Variable`s that are measured during the activity
-  * `fdri:measures` relates the activity to the specific `fdri:Measure`s that are used when observing the variables
-  * `fdri:facilityUsage` relates the activity to a `fdri:FacilityUsage` which combines:
-    * an `fdri:EnvironmentalMonitoringFacility` (thus including sites, platforms and individual sensors) used in the activity (via `prov:entity`)
-    * an `fdri:FacilityUsageRole` that indicates the relationship between the activity and the facility (e.g. craft) (via `prov:hadRole`). 
-  * `prov:qualifiedAssociation` relates the activity to an `fdri:RelatedPartyAssociation` which combines:
-    * An optional `fdri:Procedure` followed in the execution of the activity (via `prov:hadPlan`).
-    * Any number of `prov:Agent`s involved in the activity (via `prov:agent`)
-    * An optional `fdri:RelatedPartyRole` representing the role played by the agents in activity when they executed that procedure (via `prov:hadRole`).
-  * `prov:startedAtTime` and `prov:endedAtTime` properties may be used to capture the start and end timestamps for the activity.
+* `dct:type` relates the activity to an `fdri:ActivityType` concept which qualifies the kind of activity (e.g. UAV survey)
+* `sosa:observes` relates the activity to one or more `fdri:Variable`s that are measured during the activity
+* `fdri:measures` relates the activity to the specific `fdri:Measure`s that are used when observing the variables
+* `fdri:facilityUsage` relates the activity to a `fdri:FacilityUsage` which combines:
+  * an `fdri:EnvironmentalMonitoringFacility` (thus including sites, platforms and individual sensors) used in the activity (via `prov:entity`)
+  * an `fdri:FacilityUsageRole` that indicates the relationship between the activity and the facility (e.g. craft) (via `prov:hadRole`). 
+* `prov:qualifiedAssociation` relates the activity to an `fdri:RelatedPartyAssociation` which combines:
+  * An optional `fdri:Procedure` followed in the execution of the activity (via `prov:hadPlan`).
+  * Any number of `prov:Agent`s involved in the activity (via `prov:agent`)
+  * An optional `fdri:RelatedPartyRole` representing the role played by the agents in activity when they executed that procedure (via `prov:hadRole`).
+* `prov:startedAtTime` and `prov:endedAtTime` properties may be used to capture the start and end timestamps for the activity.
 
-An `fdri:EnvironmentalMonitoringActivity` may be initiated (`fdri:initiated`) by either an `fdri:EnvironmentalMonitoringProgramme` or by another `fdri:EnvironmentalMonitoringActivity`.
+An `fdri:EnvironmentalMonitoringActivity` may be started by either an `fdri:EnvironmentalMonitoringProgramme` or by another `fdri:EnvironmentalMonitoringActivity`. The property `doo:triggers` is used to relate the initiating programme or activity to the initiated activity.
 
 As `fdri:EnvironmentalMonitoringActivity` is a sub-class of `prov:Activity` it can also be related to entities that it generates or modifies (`prov:wasGeneratedBy`, `fdri:wasModifiedBy`). 
 It is recommended that `prov:wasGeneratedBy` should be used only for those resources which are a direct result of the activity (e.g. a GPS track log for a UAV flight or a raw sensor log file).
@@ -53,9 +53,9 @@ class RelatedPartyRole["fdri:RelatedPartyRole"]
 class EMFacility["fdri:EnvironmentalMonitoringFacility"]
 
 Activity <|-- EMActivity
-EMActivity --> EMActivity: fdri_initiated
+EMActivity --> EMActivity: doo_triggers
 EMActivity --> ActivityType: dct_type
-EMProgramme --> EMActivity: fdri_initiated
+EMProgramme --> EMActivity: doo_triggers
 ObservationDataset --> EMActivity: fdri_originatingActivity
 EMActivity --> Variable: sosa_observes
 EMActivity --> Measure: fdri_measures
@@ -77,7 +77,7 @@ As an example of the use of `fdri:EnvironmentalMonitoringActivity`, take the cas
 
 #### Survey and Sorties as nested activities
 
-Both the survey, and each sortie in the survey can be modelled as an `fdri:EnvironmentalMonitoringActivity`. With the sortie activities being intiated by the survey activity, and the survey activity being initiated by the `fdri:EnvironmentalMonitoringProgramme` that the survey is part of.
+Both the survey, and each sortie in the survey can be modelled as an `fdri:EnvironmentalMonitoringActivity`. With the sortie activities being triggered by the survey activity, and the survey activity being triggered by the `fdri:EnvironmentalMonitoringProgramme` that the survey is part of.
 
 ```mermaid
 flowchart
@@ -95,9 +95,9 @@ Flight2["Flight 2
 &lt;&lt;fdri:EnvironmentalMonitoringActivity>>
 startedAtTime: 2025-06-21T10:15:00Z
 endedAtTime: 2025-06-21T10:45:00Z"]
-Programme -- fdri:initiated --> Survey
-Survey -- fdri:initiated --> Flight1
-Survey -- fdri:initiated --> Flight2
+Programme -- doo:triggers --> Survey
+Survey -- doo:triggers --> Flight1
+Survey -- doo:triggers --> Flight2
 ```
 
 #### Site of the survey
