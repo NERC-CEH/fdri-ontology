@@ -4,6 +4,8 @@ prefixes:
     uri: http://www.w3.org/ns/dcat#
   - prefix: dct
     uri: http://purl.org/dc/terms/
+  - prefix: doo
+    uri: https://digital.ceh.ac.uk/ontology/doo/
   - prefix: foaf
     uri: http://xmlns.com/foaf/0.1/
   - prefix: fdri
@@ -2032,13 +2034,13 @@ records:
         kind: object
         constraints:
           - record: GeospatialFeatureOfInterest
-      initiated:
+      triggers:
         label:
-          - value: initiated
+          - value: triggers
             lang: en
         description:
-          - value: The sub-activity or activities that were initiated by this activity.
-        propertyUri: fdri:initiated
+          - value: The sub-activity or activities that were triggered by this activity.
+        propertyUri: doo:triggers
         kind: object
         repeatable: true
         constraints:
