@@ -1,5 +1,7 @@
 base: http://fdri.ceh.ac.uk/records/metadata/
 prefixes:
+  - prefix: adms
+    uri: http://www.w3.org/ns/adms#
   - prefix: dcat
     uri: http://www.w3.org/ns/dcat#
   - prefix: dct
@@ -66,6 +68,19 @@ mixins:
         repeatable: true
         constraints:
           - datatype: xsd:string
+      structuredIdentifier:
+        label:
+          - value: structured identifier
+            lang: en
+        description:
+          - value: |
+              An identifier of the resource being described or cataloged which is compliant with the W3C Asset Description Metadata Schema (ADMS) specification.
+            lang: en
+        propertyUri: adms:identifier
+        kind: object
+        repeatable: true
+        constraints:
+          - record: Identifier
 
   WithObservableProperties:
     label:
@@ -1491,6 +1506,7 @@ records:
       - WithLabelAndComment
       - WithPublicationMetadata
       - WithAnnotations
+      - CataloguedResource
     extends: Thing
     properties:
       accessRights:
@@ -1538,18 +1554,6 @@ records:
         repeatable: true
         constraints:
           - record: Distribution
-      identifier:
-        label:
-          - value: identifier
-            lang: en
-        description:
-          - value: A unique identifier of the dataset.
-            lang: en
-        propertyUri: dct:identifier
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: xsd:string
       inSeries:
         label:
           - value: in series
@@ -3369,6 +3373,54 @@ records:
           - record: Array
           - record: Dimension
           - record: GriddedContainer
+
+  Identifier:
+    label:
+      - value: Identifier
+        lang: en
+    description:
+      - value: |
+          An identifier in a particular context, consisting of the content string that is the identifier;
+          an optional identifier for the identifier scheme;
+          and an optional identifier for the agency that manages the identifier scheme.
+        lang: en
+    classUri: adms:Identifier
+    shortCode: Identifier
+    properties:
+      notation:
+        label:
+          - value: notation
+            lang: en
+        description:
+          - value: The content string that is the identifier.
+            lang: en
+        propertyUri: skos:notation
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:string
+      conformsTo:
+        label:
+          - value: conforms to
+            lang: en
+        description:
+          - value: An identifier for the identifier scheme that the identifier conforms to.
+            lang: en
+        propertyUri: dct:conformsTo
+        kind: literal
+        constraints:
+          - datatype: xsd:string
+      schemaAgency:
+        label:
+          - value: schema agency
+            lang: en
+        description:
+          - value: The agency that manages the identifier scheme.
+            lang: en
+        propertyUri: adms:schemaAgency
+        kind: object
+        constraints:
+          - record: Agent
 
   IndexedItem:
     label:

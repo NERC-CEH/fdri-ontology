@@ -117,6 +117,12 @@ The property `fdri:originatingFacility` can be used to reference the `Environmen
 
 The property `fdri:originatingProgramme` can be used to reference the `EnvironmentalMonitoringProgramme` from which observations contained in the dataset have come. This provides a more direct way to group datasets from the same programme than going via the `fdri:ProgrammeCatalog`
 
+Identifiers for catalog resources can be specified either as a simple string identifier using the `dct:identifier` property, or as a complex property using the `adms:identifier` property. The latter property is used to reference an `adms:Identifier` resource with the following properties:
+
+* `skos:notation` - the identifier string
+* `dct:conformsTo` - the identifier of the schema that the identifier belongs to
+* `adms:schemaAgency` - the Agent (typically an Organisation), that is responsible for the maintenance of the identifier schema.
+
 > **NOTE**
 > The use of dataset-level quality metric observations can be reserved for aggregate metrics such as data availability metrics. Row-level metrics could (and arguably should) be managed in the underlying data store.
 
@@ -147,6 +153,10 @@ The property `fdri:originatingProgramme` can be used to reference the `Environme
   class TimeSeriesDataset["fdri:TimeSeriesDataset"]
   class DatasetSeries["dcat:DatasetSeries"]
   class ProcessingLevel["fdri:ProcessingLevel"]
+  class Identifier["adms:Identifier"] {
+    skos_notation: xsd:string
+    dct_conformsTo: xsd:string
+  }
   class Dataset {
     dct_accrualPeriodicity: dcterms:Frequency
     dct_temporal: dct:PeriodOfTime
@@ -187,9 +197,11 @@ The property `fdri:originatingProgramme` can be used to reference the `Environme
   ObservationDataset --> Facility: fdri_originatingFacility
   ObservationDataset --> Site: fdri_originatingSite
   ObservationDataset --> Program: fdri_originatingProgramme
-  ObservationDataset --> ProcessingLevel: processingLevel
+  ObservationDataset --> ProcessingLevel: fdri_processingLevel
+  CatalogResource --> Identifier: adms_identifier
   CatalogResource --> Agent: dct_creator
   CatalogResource --> Agent: dct_publisher
+  Identifer --> Agent: adms_schemaAgency
   DatasetSeries --|> Dataset
   Dataset --> DatasetSeries: dcat_inSeries
   CatalogResource --> Concept: dct_type
