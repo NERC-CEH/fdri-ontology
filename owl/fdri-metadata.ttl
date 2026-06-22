@@ -21,6 +21,7 @@
                                         owl:imports spatialrelations: ,
                                                     <http://www.opengis.net/ont/geosparql/1.1> ,
                                                     <http://www.w3.org/2006/time#2016> ,
+                                                    <http://www.w3.org/ns/adms> ,
                                                     <http://www.w3.org/ns/dcat3> ,
                                                     ssn:ext ,
                                                     <http://www.w3.org/ns/ssn/systems/> ,
@@ -2773,6 +2774,11 @@ geo:SpatialThing rdf:type owl:Class ;
 dcat:Resource rdfs:subClassOf [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasAnnotation ;
                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/adms#identifier> ;
+                                owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                owl:onClass <http://www.w3.org/ns/adms#Identifier>
                               ] .
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://www.w3.org/ns/adms" uri="adms.ttl"/>
     <uri id="Imports Wizard Entry" name="https://digital.ceh.ac.uk/ontology/doo/0.3.0/" uri="file:/home/kal/Projects/ceh/digital-objects-ontology/ontology/digital-objects-ontology.ttl"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/iadopt/ont/1.0.3" uri="iadopt-1.0.3.ttl"/>
     <uri id="User Entered Import Resolution" name="http://xmlns.com/foaf/0.1/" uri="foaf.rdf"/>
