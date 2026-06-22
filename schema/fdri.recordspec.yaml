@@ -1506,6 +1506,7 @@ records:
       - WithLabelAndComment
       - WithPublicationMetadata
       - WithAnnotations
+      - CataloguedResource
     extends: Thing
     properties:
       accessRights:
@@ -1553,18 +1554,6 @@ records:
         repeatable: true
         constraints:
           - record: Distribution
-      identifier:
-        label:
-          - value: identifier
-            lang: en
-        description:
-          - value: A unique identifier of the dataset.
-            lang: en
-        propertyUri: dct:identifier
-        kind: literal
-        repeatable: true
-        constraints:
-          - datatype: xsd:string
       inSeries:
         label:
           - value: in series
