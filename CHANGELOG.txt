@@ -22,6 +22,7 @@ DRAFT 0.7 (Work In Progress)
   * BREAKING: Changed the property URI of the `contains` property of `EnvironmentalMonitoringNetwork` from `fdri:contains` to `doo:contains`.
 * NON-BREAKING: Added a new property `structuredIdentifier` with property URI `adms:identifier` to the `CataloguedResource` mix-in to allow the capture of identifiers as a structured value that includes the identifier string, an optional scheme identifier and an optional reference to the Agent responsible for the scheme. This DOES NOT replace the existing `identifier`(`dct:identifier`).
 * NON-BREAKING: Updated the model for `fdri:EnvironmentalMonitoringPlatform` to allow properties to specify the relative position of the platform with respect to a representative point location of the site that hosts the platform.
+* NON-BREAKING: Added support for specifying the mapping between the measures that a dataset provides and the columns or property names for those measures in a distribution of the dataset.
 
 DRAFT 0.6
 ---------
