@@ -3417,7 +3417,7 @@ records:
         description:
           - value: The agency that manages the identifier scheme.
             lang: en
-        propertyUri: dct:schemaAgency
+        propertyUri: adms:schemaAgency
         kind: object
         constraints:
           - record: Agent
