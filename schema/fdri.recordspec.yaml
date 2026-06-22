@@ -2380,7 +2380,7 @@ records:
       - WithHomepage
     extends: Thing
     properties:
-      initiated:
+      triggers:
         label:
           - value: triggers
             lang: en
