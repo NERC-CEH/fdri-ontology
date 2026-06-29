@@ -1541,6 +1541,8 @@ records:
         propertyUri: dct:conformsTo
         kind: object
         repeatable: true
+        constraints:
+          - record: Standard
       distribution:
         label:
           - value: distribution
@@ -1924,6 +1926,19 @@ records:
         required: true
         constraints:
           - record: Concept
+      conformsToMeasureSchema:
+        label:
+          - value: conforms to measure schema
+            lang: en
+        description:
+          - value: A reference to the fdri:MeasureSchema which defines the structure and semantics of the columns or properties of the distribution.
+            lang: en
+        propertyUri: fdri:hasMeasureSchema
+        kind: object
+        repeatable: false
+        constraints:
+          - record: MeasureSchema
+      
 
   Entity:
     label:
@@ -3610,6 +3625,67 @@ records:
         constraints:
           - record: Variable
   
+  MeasureColumn:
+    label:
+      - value: Measure Column
+        lang: en
+    description:
+      - value: Relates a column or property name in a dataset to the measure that it provides values for.
+        lang: en
+    classUri: fdri:MeasureColumn
+    shortCode: MeasureColumn
+    properties:
+      columnName:
+        label:
+          - value: column name
+            lang: en
+        description:
+          - value: The name of the column in the dataset that contains the measure values.
+            lang: en
+        propertyUri: fdri:columnName
+        kind: literal
+        required: true
+        constraints:
+          - datatype: xsd:string
+      measure:
+        label:
+          - value: measure
+            lang: en
+        description:
+          - value: A reference to the `fdri:Measure` that describes the measure values in the column.
+            lang: en
+        propertyUri: fdri:measure
+        kind: object
+        required: true
+        constraints:
+          - record: Measure
+
+  MeasureSchema:
+    label:
+      - value: Measure Schema
+        lang: en
+    description:
+      - value: A collection of name to measure mappings (fdri:MeasureColumn) that defines how the columns or properties of the annotated dataset relate to the measures that they provide values for.
+        lang: en
+    extends: Standard
+    classUri: fdri:MeasureSchema
+    shortCode: MeasureSchema
+    properties:
+      hasMember:
+        label:
+          - value: has member
+            lang: en
+        description:
+          - value: Relates the containing `MeasureSchema` to a `fdri:MeasureColumn` that describes the measure values provided by a column in the annotated dataset.
+            lang: en
+        propertyUri: fdri:hasMember
+        kind: object
+        embedded: true
+        required: true
+        repeatable: true
+        constraints:
+          - record: MeasureColumn
+
   MeasureScheme:
     label:
       - value: Measure Scheme
@@ -4568,6 +4644,17 @@ records:
     extends: ConceptScheme
     classUri: fdri:SoilTypeScheme
     shortCode: SoilTypeScheme
+
+  Standard:
+    label:
+      - value: Standard
+        lang: en
+    description:
+      - value: A reference point against which other things can be evaluated or compared.
+        lang: en
+    classUri: dct:Standard
+    shortCode: Standard
+    extends: Thing
 
   StaticDeployment:
     label:

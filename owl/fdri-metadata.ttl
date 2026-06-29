@@ -160,6 +160,13 @@ geo:location rdf:type owl:AnnotationProperty ;
                              rdfs:label "configiuration property scheme"@en .
 
 
+###  http://fdri.ceh.ac.uk/vocab/metadata/conformsToMeasureSchema
+:conformsToMeasureSchema rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf dct:conformsTo ;
+                         rdfs:comment "Relates a resource to the MeasureSchema which defines how the columns/properties contained within that resource are mapped to Measures."@en ;
+                         rdfs:label "conforms to measure schema"@en .
+
+
 ###  http://fdri.ceh.ac.uk/vocab/metadata/contains
 :contains rdf:type owl:ObjectProperty .
 
@@ -253,6 +260,7 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/hasMember
 :hasMember rdf:type owl:ObjectProperty ;
+           rdfs:range :MeasureSchema ;
            rdfs:comment "Represents a simple group-membership relationship in which the subject of the statement is the group and the object of the statement the group member"@en ;
            rdfs:label "has member"@en .
 
@@ -323,7 +331,6 @@ When `fdri:hasValue` is present on an item, this property SHOULD NOT be present 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/measure
 :measure rdf:type owl:ObjectProperty ;
-         rdfs:domain :ObservationDataset ;
          rdfs:range :Measure ;
          rdfs:comment "Relates an ObservationDataset to a Measure that the dataset provides values for."@en ;
          rdfs:label "measure"@en .
@@ -528,6 +535,11 @@ When this property is used to convey a datatype for `minValue`, `maxValue` and/o
                rdfs:domain :ObservationDataset ;
                rdfs:comment "Relates a resource to the activity that modified the resource in some way."@en ;
                rdfs:label "was modified by"@en .
+
+
+###  http://purl.org/dc/terms/conformsTo
+dct:conformsTo rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf dct:relation .
 
 
 ###  http://purl.org/dc/terms/replaces
@@ -2118,6 +2130,30 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                          ] ;
          rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." ;
          rdfs:label "Measure"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/MeasureColumn
+:MeasureColumn rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :measure ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :columnName ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ;
+               rdfs:comment "Relates an fdri:Measure to the name of a column or property that stores observations of that measure."@en ;
+               rdfs:label "Measure Column"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/MeasureSchema
+:MeasureSchema rdf:type owl:Class ;
+               rdfs:subClassOf dct:Standard ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasMember ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :MeasureColumn
+                               ] .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/MeasureScheme

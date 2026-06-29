@@ -15,6 +15,7 @@
 * [Time-Series Dataset Model](time-series-dataset.md)
 * [Flag Columns](flag-columns.md)
 * [Gridded Dataset Model](gridded-data.md)
+* [Dataset Distributions](dataset-distributions.md)
 * [Annotations on Catalogued Resources](annotations.md)
 * [Provenance and Activity Model](provenance-and-activity.md)
 * [Variables and Measures](variables.md)
