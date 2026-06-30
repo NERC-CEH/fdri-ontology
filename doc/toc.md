@@ -2,9 +2,9 @@
 
 ## Document Control
 
-**Date:** 2026-02-09
+**Date:** 2026-06-30
 **Author:** Kal Ahmed (kal.ahmed@epimorphics.com)
-**Version:** 0.5 (In progress)
+**Version:** 0.7.0
 **Status:** DRAFT
 
 ## Table of Contents
