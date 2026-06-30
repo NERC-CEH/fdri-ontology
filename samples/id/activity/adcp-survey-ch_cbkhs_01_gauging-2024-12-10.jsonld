@@ -15,7 +15,7 @@
     "observes": [
         {"@id": "http://fdri.ceh.ac.uk/ref/common/cop/total-q"}
     ],
-    "initiated": [
+    "triggers": [
         {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-01"},
         {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-02"},
         {"@id": "http://fdri.ceh.ac.uk/id/activity/adcp-survey-ch_cbkhs_01_gauging-2024-12-10-transect-03"},

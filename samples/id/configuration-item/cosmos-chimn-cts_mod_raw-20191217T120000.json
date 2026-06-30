@@ -11,19 +11,19 @@
             "parameter": {
                 "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-priority"
             },
-            "hasValue":{"value": {"@value": "1", "@type": "http://www.w3.org/2001/XMLSchema#integer"}}
+            "hasValue":{"value": [{"@value": "1", "@type": "http://www.w3.org/2001/XMLSchema#integer"}]}
         },
         {
             "parameter": {
                 "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-timeseries"
             },
-            "hasValue":{"valueReference": {"@id": "http://fdri.ceh.ac.uk/id/dataset/cosmos-chimn-cts_mod2_raw"}}
+            "hasValue":{"valueReference": [{"@id": "http://fdri.ceh.ac.uk/id/dataset/cosmos-chimn-cts_mod2_raw"}]}
         },
         {
             "parameter": {
                 "@id": "http://fdri.ceh.ac.uk/ref/common/parameter/alt_data-configuration"
             },
-            "hasValue":{"valueReference": {"@id": "http://fdri.ceh.ac.uk/id/configuration-item/cosmos-chimn-cts_mod_raw-20191217T120000-altd-data-1-config"}}
+            "hasValue":{"valueReference": [{"@id": "http://fdri.ceh.ac.uk/id/configuration-item/cosmos-chimn-cts_mod_raw-20191217T120000-altd-data-1-config"}]}
         }
     ],
     "observationInterval": {
@@ -31,5 +31,4 @@
         "startDate": {"@value": "2019-12-17T12:00:00", "@type": "http://www.w3.org/2001/XMLSchema#dateTime"},
         "endDate": {"@value": "2020-01-20T13:00:00", "@type": "http://www.w3.org/2001/XMLSchema#dateTime"}
     }
-
 }

@@ -37,9 +37,9 @@
       "hadValue": [
         {
           "@id": "http://fdri.ceh.ac.uk/id/envrionmental-monitoring-sensor/123456#installed-firmware-20160101",
-          "valueReference": {
-            "@id": "http://fdri.ceh.ac.uk/id/firmware-version/hmp155a/2.634.2"
-          },
+          "valueReference": [
+            { "@id": "http://fdri.ceh.ac.uk/id/firmware-version/hmp155a/2.634.2" }
+          ],
           "interval": {
             "startDate": {
               "@value": "2016-01-01",
@@ -54,9 +54,9 @@
       ],
       "hasCurrentValue": {
         "@id": "http://fdri.ceh.ac.uk/id/envrionmental-monitoring-sensor/123456#installed-firmware-20170101",
-        "valueReference": {
-          "@id": "http://fdri.ceh.ac.uk/id/firmware-version/hmp155a/2.634.3"
-        },
+        "valueReference": [
+          { "@id": "http://fdri.ceh.ac.uk/id/firmware-version/hmp155a/2.634.3" }
+        ],
         "interval": {
           "startDate": {
             "@value": "2017-01-01",
@@ -73,10 +73,9 @@
         "@id": "http://fdri.ceh.ac.uk/id/sensor-configuration-type/installed-software"
       },
       "hasCurrentValue": {
-        "value": {
-          "@value": "Hukseflux PretendPro v1.2.1",
-          "@type": "http://www.w3.org/2001/XMLSchema#string"
-        },
+        "value": [
+            { "@value": "Hukseflux PretendPro v1.2.1", "@type": "http://www.w3.org/2001/XMLSchema#string" }
+        ],
         "interval": {
           "startDate": {
             "@value": "2016-01-01",
@@ -90,9 +89,9 @@
         "@id": "http://fdri.ceh.ac.uk/id/sensor-configuration-type/sensor-configuration"
       },
       "hasCurrentValue": {
-        "valueReference": {
-          "@id": "http://fdri.ceh.ac.uk/id/sensor-configuration/x"
-        },
+        "valueReference": [
+          { "@id": "http://fdri.ceh.ac.uk/id/sensor-configuration/x" }
+        ],
         "interval": {
           "startDate": {
             "@value": "2016-01-01",
@@ -106,10 +105,10 @@
         "@id": "http://fdri.ceh.ac.uk/id/sensor-configuration-type/sampling-regime"
       },
       "hasCurrentValue": {
-        "value": {
+        "value": [{
           "@value": "Sampled every second over representative canopy",
           "@type": "http://www.w3.org/2001/XMLSchema#string"
-        },
+        }],
         "interval": {
           "startDate": {
             "@value": "2016-01-01",
@@ -123,10 +122,9 @@
         "@id": "http://fdri.ceh.ac.uk/id/sensor-configuration-type/sampling-periodicity"
       },
       "hasCurrentValue": {
-        "value": {
-          "@value": "PT1S",
-          "@type": "xsd:duration"
-        },
+        "value": [
+            { "@value": "PT1S", "@type": "xsd:duration" }
+        ],
         "interval": {
           "startDate": {
             "@value": "2016-01-01",

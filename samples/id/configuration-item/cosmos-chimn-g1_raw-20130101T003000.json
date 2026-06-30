@@ -7,11 +7,11 @@
     "argument": [
         {
             "parameter": {"@id": "http://fdri.ceh.ac.uk/ref/common/parameter/window"},
-            "hasValue": {"value": {"@value": "1", "@type": "http://www.w3.org/2001/XMLSchema#integer"}}
+            "hasValue": {"value": [{"@value": "1", "@type": "http://www.w3.org/2001/XMLSchema#integer"}]}
         },
         {
-            "parameter": {"@id": "http://fdri.ceh.ac.uk/ref/common/max_gap_size"},
-            "hasValue": {"value": {"@value": "6", "@type": "http://www.w3.org/2001/XMLSchema#integer"}}
+            "parameter": {"@id": "http://fdri.ceh.ac.uk/ref/common/parameter/max_gap_size"},
+            "hasValue": {"value": [{"@value": "6", "@type": "http://www.w3.org/2001/XMLSchema#integer"}]}
         }
     ]
 }
