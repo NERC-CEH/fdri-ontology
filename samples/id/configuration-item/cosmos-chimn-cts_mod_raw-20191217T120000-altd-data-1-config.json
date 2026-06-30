@@ -5,6 +5,6 @@
     "method": {"@id": "http://fdri.ceh.ac.uk/ref/common/method/correction-scalar"},
     "argument": [{
         "parameter": { "@id": "http://fdri.ceh.ac.uk/ref/common/configuration-parameter/correction-factor"},
-        "hasValue":{"value": {"@value": "1.00776", "@type": "http://www.w3.org/2001/XMLSchema#decimal"}}
+        "hasValue":{"value": [{"@value": "1.00776", "@type": "http://www.w3.org/2001/XMLSchema#decimal"}]}
     }]
 }

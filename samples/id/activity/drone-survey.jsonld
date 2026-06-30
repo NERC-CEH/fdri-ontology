@@ -6,7 +6,7 @@
         "@id": "http://fdri.ceh.ac.uk/ref/common/activity-type/drone-survey"
     },
     "label": [{"@value": "Example Drone Survey Activity", "@language": "en"}],
-    "initiated": [
+    "triggers": [
         {"@id": "http://fdri.ceh.ac.uk/samples/id/activity/drone-flight-1"},
         {"@id": "http://fdri.ceh.ac.uk/samples/id/activity/drone-flight-2"}
     ],

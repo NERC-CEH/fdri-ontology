@@ -5,7 +5,7 @@
     "@type": "http://fdri.ceh.ac.uk/vocab/metadata/InternalDataProcessingConfiguration",
     "type": {"@id": "http://fdri.ceh.ac.uk/ref/common/data-processing-configuration-type/infill-configuration"},
     "appliesToFacility": [{"@id": "http://fdri.ceh.ac.uk/id/site/cosmos-chimn"}],
-    "appliesToTimeSeries": [{"@id": "http://fdri.ceh.ac.uk/id/dataset/cosmos-chimn-g1_raw"}],
-    "hasCurrentConfiguration": [{"@id": "http://fdri.ceh.ac.uk/id/configuration-item/cosmos-chimn-g1_raw-20130101T003000"}],
+    "appliesToDataset": [{"@id": "http://fdri.ceh.ac.uk/id/dataset/cosmos-chimn-g1_raw"}],
+    "hasCurrentValue": [{"@id": "http://fdri.ceh.ac.uk/id/configuration-item/cosmos-chimn-g1_raw-20130101T003000"}],
     "hasAnnotation": [{"@id": "http://fdri.ceh.ac.uk/id/annotation/cosmos-infill-chimn-g1_raw-priority"}]
 }

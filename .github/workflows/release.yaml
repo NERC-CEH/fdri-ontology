@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Configure AWS Credentials for Epimorphics
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.BUILD_CEH_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.BUILD_CEH_AWS_SECRET_ACCESS_KEY }}
@@ -46,7 +46,7 @@ jobs:
           make release
       
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: true
