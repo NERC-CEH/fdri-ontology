@@ -2,7 +2,7 @@
 
 Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub repository at https://github.com/NERC-CEH/fdri-ontology/issues
 
-DRAFT 0.7 (Work In Progress)
+DRAFT 0.7
 ---------
 
 * BREAKING: Change `hasValue` and `hasValueSeries` on `Annotation` to nested properties
