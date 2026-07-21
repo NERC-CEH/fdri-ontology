@@ -4935,6 +4935,17 @@ records:
         lang: en
     classUri: owl:Thing
     shortCode: Thing
+    properties:
+      seeAlso:
+        label:
+          - value: see also
+            lang: en
+        description:
+          - value: A resource that provides additional information about the subject resource.
+            lang: en
+        propertyUri: rdfs:seeAlso
+        kind: literal
+        repeatable: true
 
   TimeBoundPropertyValue:
     label:
