@@ -68,6 +68,18 @@ mixins:
         repeatable: true
         constraints:
           - datatype: xsd:string
+      isPrivate:
+        label:
+          - value: is private
+            lang: en
+        description:
+          - value: |
+              A boolean value indicating whether the resource being described or cataloged is private and should not be made publicly available.
+            lang: en
+        propertyUri: fdri:isPrivate
+        kind: literal
+        constraints:
+          - datatype: xsd:boolean
       structuredIdentifier:
         label:
           - value: structured identifier
@@ -2319,6 +2331,7 @@ records:
       - WithAnnotations
       - WithLabelAndComment
       - WithHomepage
+      - CataloguedResource
     extends: Thing
     properties:
       contains:

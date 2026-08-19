@@ -2,6 +2,8 @@
 
 Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub repository at https://github.com/NERC-CEH/fdri-ontology/issues
 
+* Temporarily added fdri:isPrivate to the recordspec schema to support filtering datasets in the public UI. This property will be reworked/removed in the 0.8 release.
+
 DRAFT 0.7
 ---------
 
