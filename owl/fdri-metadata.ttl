@@ -2127,6 +2127,14 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :resolution ;
                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty schema:maxValue ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty schema:minValue ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ;
          rdfs:comment "Represents the measurement of a variable (fdri:variable) as recorded in a dataset using some consistent measurement unit (fdri:hasUnit) and an optional aggregation (fdri:aggregation)." ;
          rdfs:label "Measure"@en .
