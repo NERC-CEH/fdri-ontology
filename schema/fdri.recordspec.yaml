@@ -3589,6 +3589,24 @@ records:
         kind: object
         constraints:
           - record: Unit
+      minValue:
+        label:
+          - value: minimum
+            lang: en
+        description:
+          - value: The lower bound of the range of values expected for this measure.
+            lang: en
+        propertyUri: schema:minValue
+        kind: literal
+      maxValue:
+        label:
+          - value: maximum
+            lang: en
+        description:
+          - value: The upper bound of the range of values expected for this measure.
+            lang: en
+        propertyUri: schema:maxValue
+        kind: literal
       periodicity:
         label:
           - value: periodicity
