@@ -2,15 +2,14 @@
 
 ## Document Control
 
-**Date:** 2026-06-30
+**Date:** 2026-10-12
 **Author:** Kal Ahmed (kal.ahmed@epimorphics.com)
-**Version:** 0.7.0
+**Version:** 0.8.0-DRAFT
 **Status:** DRAFT
 
 ## Table of Contents
 
 * [Introduction](introduction.md)
-* [Programme Catalog](programme-catalog.md)
 * [High-level Catalog Structure](high-level-catalog-structure.md)
 * [Time-Series Dataset Model](time-series-dataset.md)
 * [Flag Columns](flag-columns.md)

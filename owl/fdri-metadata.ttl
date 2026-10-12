@@ -581,6 +581,14 @@ sosa:hasFeatureOfInterest schema:domainIncludes :EnvironmentalMonitoringFacility
 sosa:observedProperty schema:domainIncludes :ObservationDataset .
 
 
+###  https://digital.ceh.ac.uk/ontology/doo/triggers
+<https://digital.ceh.ac.uk/ontology/doo/triggers> rdf:type owl:ObjectProperty .
+
+
+###  https://digital.ceh.ac.uk/ontology/doo/utilises
+<https://digital.ceh.ac.uk/ontology/doo/utilises> rdf:type owl:ObjectProperty .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -2345,15 +2353,6 @@ The periodicity (`fdri:procedurePeriodicity`) property SHOULD be used to capture
                        rdfs:label "Processing Level Scheme"@en .
 
 
-###  http://fdri.ceh.ac.uk/vocab/metadata/ProgrammeCatalog
-:ProgrammeCatalog rdf:type owl:Class ;
-                  rdfs:subClassOf dcat:Catalog ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :programme ;
-                                    owl:cardinality "1"^^xsd:nonNegativeInteger
-                                  ] .
-
-
 ###  http://fdri.ceh.ac.uk/vocab/metadata/PropertyScheme
 :PropertyScheme rdf:type owl:Class ;
                 rdfs:subClassOf skos:ConceptScheme ;
@@ -2855,6 +2854,22 @@ prov:Activity rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 ###  http://xmlns.com/foaf/0.1/Organization
 <http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class .
+
+
+###  https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringActivity
+<https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringActivity> rdf:type owl:Class .
+
+
+###  https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringFacility
+<https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringFacility> rdf:type owl:Class .
+
+
+###  https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringNetwork
+<https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringNetwork> rdf:type owl:Class .
+
+
+###  https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringProgramme
+<https://digital.ceh.ac.uk/ontology/doo/EnvironmentalMonitoringProgramme> rdf:type owl:Class .
 
 
 ###  https://w3id.org/iadopt/ont/Constraint
