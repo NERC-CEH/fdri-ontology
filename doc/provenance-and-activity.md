@@ -132,7 +132,17 @@ The property `dct:type` relates an `fdri:InfrastructureActivity` to an `fdri:Inf
 
 Amongst the properties inherited from `prov:Activity` is `prov:qualifiedAssociation` which relates the activity to an `prov:Agent` that was involved in the activity, a `skos:Concept` that defines the role played by the agent in the activity, and a `prov:Plan` which defines the procedure followed by the agent in executing the activity.
 
-The `fdri:InfrastructureActivity` class is then extended to provide more specific sub-classes for particular kinds of activity.
+The `fdri:InfrastructureActivity` class is then extended to provide more specific sub-classes for particular kinds of activity. The subclasses proposed are:
+
+* [DeploymentActivity](#deploymentactivity) for the deployment of systems
+* [WithdrawalActivity](#withdrawalactivity) for the withdrawal of deployed systems
+* [MaintenanceActivity](#maintenanceactivity) for activities related to the maintenance of facilities, optinally with reference to a fault.
+* [CommissioningActivity](#commissioningactivity) for the commissioning of a facility
+* [DecommissioningActivity](#decommissioningactivity) for the decommissioning of a facility
+
+> **QUESTION**
+> Are there other high-level infrastructure activities to add here?
+> See also notes below about whether CommissioningActivity and DecommissioningActivity should be subclasses or just soft types.
 
 #### DeploymentActivity
 ```mermaid
