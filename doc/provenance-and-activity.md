@@ -95,3 +95,173 @@ If additional software agent metadata should be captured, this model could be ex
 ### Model for Software Agent Configuration
 
 The configuration used by an agent for an activity is captured by the `prov:hadPlan` property on the `prov:Association` resource. The modelling for software agent configurations is discussed in more detail in [Data Processing Configurations](data-processing-configurations.md).
+
+### Model for Infrastructure Activities
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class Activity ["prov:Activity"]
+class InfrastructureActivity["fdri:InfrastructureActivity"]
+class InfrastructureActivityType["fdri:InfrastructureActivityType"]
+class Concept["skos:Concept"]
+class Concept2["skos:Concept"]
+class EMFacility["fdri:EnvironmentalMonitoringFacility"]
+class Agent["prov:Agent"]
+class Plan["prov:Plan"]
+
+Activity <|-- InfrastructureActivity
+InfrastructureActivity --> InfrastructureActivityType: dct_type
+InfrastructureActivity --> EMFacility : fdri_usedFacility
+Activity --> Association: prov_qualifiedAssociation
+Association --> Concept2: prov_hadRole
+Association --> Agent: prov_agent
+Association --> Plan: prov_hadPlan
+InfrastructureActivityType --|> Concept
+```
+
+An `fdri:InfrastructureActivity` represents an activity that affects an `fdri:EnvironmentalMonitoringFacility`.
+
+The property `fdri:usedFacility` is a sub-property of `prov:used` and relates the activity to the facility or facilities used in or otherwise changed by the activity.
+
+The property `dct:type` relates an `fdri:InfrastructureActivity` to an `fdri:InfrastructureActivityType` which is a `skos:Concept` that defines the kind of activity being carried out.
+
+Amongst the properties inherited from `prov:Activity` is `prov:qualifiedAssociation` which relates the activity to an `prov:Agent` that was involved in the activity, a `skos:Concept` that defines the role played by the agent in the activity, and a `prov:Plan` which defines the procedure followed by the agent in executing the activity.
+
+The `fdri:InfrastructureActivity` class is then extended to provide more specific sub-classes for particular kinds of activity.
+
+#### DeploymentActivity
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class Dep["fdri:DeploymentActivity"]
+class InfraActivity["fdri:InfrastructureActivity"]
+class EMFacility["fdri:EnvironmentalMonitoringFacility"]
+class Deployment["fdri:Deployment"]
+InfraActivity <|-- Dep
+Dep --> EMFacility: fdri_deployedFacility
+Dep --> EMFacility: fdri_deployedOnFacility
+Dep <-- Deployment: prov_wasGeneratedBy
+```
+
+The class `fdri:DeploymentActivity` represents activities that result in the deployment of one or Environmental Monitoring Facilities into the field. These activities can be used as the trigger the start of an `fdri:Deployment` (represented by a `prov:wasGeneratedBy` property relating an `fdri:Deployment` to an `fdri:DeploymentActivity`).
+
+The properties `fdri:deployedFacility` and `fdri:deployedOnFacility` are both sub-properties of `fdri:usedFacility`, and relate the activity to the facility or facilities being deployed and optionally to the facility to which they are being deployed.
+
+##### Example of DeploymentActivity
+
+The following diagram shows how this model can be used to capture the deployment of a sensor to a platform by an engineer. The responsibility of the engineer is captured as is the procedure used.
+
+```mermaid
+flowchart
+dep["Deployment of sensor x to platform y
+&lt;&lt;Deployment>>"] --wasGeneratedBy-->  depAct["Action of deploying sensor x to platform y
+&lt;&lt;DeploymentActivity>>"]
+depAct --deployedFacility--> x["Sensor x
+&lt;&lt;EnvironmentalMonitoringSensor>>"]
+depAct --deployedOnFacility--> y["Platform y
+&lt;&lt;EnvironmentalMonitoringPlatform>>"]
+depAct --qualifiedAssociation--> qa["&lt;&lt;prov:Association>>"]
+qa --agent--> agent["Agent A
+&lt;&lt;Agent>>"]
+qa --hadRole--> role["Field Engineer
+&lt;&lt;ResponsiblePartyRole>>"]
+qa --hadPlan--> plan["Sensor Deployment Procedure
+&lt;&lt;prov:Plan>>"]
+```
+
+#### WithdrawalActivity
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class InfraActivity["fdri:InfrastructureActivity"]
+class With["fdri:WithdrawalActivity"]
+InfraActivity <|-- With
+With --> EMFacility: fdri_withdrawnFacility
+With --> EMFacility: fdri_withdrawnFromFacility
+With <-- Deployment: fdri_wasInvalidatedBy
+```
+
+The class `fdri:WithdrawalActivity` represents activities that result in the withdrawal of one or more previously deployed facilities. These activities can be used as the trigger for the ending of an `fdri:Deployment`, as represented by the `prov:wasInvalidatedBy` property relating the `fdri:Deployment` to the `fdri:WithdrawalActivitiy`.
+
+The properties `fdri:withdrawnFacility` and `fdri:withdrawnFromFacility` are both sub-properties of `fdri:usedFacility`, and relate the activity to the facility or facilities that were withdrawn and optionally to the facility that they were removed from.
+
+The structure of this model is deliberately analogous to that used for the DeploymentActivity type.
+
+> **QUESTION**
+> Should there also be a "ReplacementActivity" activity to cover the replacement of a sensor or is it OK/preferable to model this as separate withdrawal and deployment activities?
+
+#### MaintenanceActivity
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class InfrastructureActivity["fdri:InfrastructureActivity"]
+InfrastructureActivity <|-- MaintenanceActivity
+MaintenanceActivity --> EMFacility: fdri_maintainedFacility
+MaintenanceActivity --> Fault: fdri_addressedFault
+```
+
+The class `fdri:MaintenanceActivity` represents activities that involve the maintenance or upkeep of one or more facililties. The `dct:type` property of `fdri:Infrastructure` can be used to qualify the kind of maintenance activity being carried out.
+
+The property `fdri:maintainedFacility` is a sub-property of `fdri:usedFacility` and relates the activity to the facility or facilities that were affected by the maintenance.
+
+The property `fdri:addressedFault` can be used to relate the activity to the fault(s) that the activitiy was intended to correct. Note, we may use a different relationship to represent whether the fault was corrected by this activity. The intent of this relationship is simply to associate the activity as being part of the fault history.
+
+##### Example of MaintenanceActivity
+
+The following diagram shows how this model can be used to capture the recalibration of a sensor in the field in order to address a reported fault. The agent carrying out the work and the procedure that they used is also captured through wht qualified association.
+
+```mermaid
+flowchart
+f["Fault f
+&lt;&lt;Fault>>"]
+x["Sensor x
+&lt;&lt;EnvironmentalMonitoringSensor>>"]
+a["Recalibration of sensor x on 2026-10-13
+&lt;&lt;MaintenanceActivity>>"]
+t["Sensor Calibration"]
+qa["&lt;&lt;Association>>"]
+ag["Agent A
+&lt;&lt;Agent>>"]
+r["Field Engineer
+&lt;&lt;ResponsiblePartyRole>>"]
+p["Field Calibration of Sensor Model X
+&lt;&lt;Plan>>"]
+
+a --type--> t
+a --maintainedFacility--> x
+a --addressedFault --> f
+a --qualifiedAssociation --> qa
+qa --agent--> ag
+qa --hadRole --> r
+qa --hadPlan --> p
+```
+
+#### CommissioningActivity
+
+The class `fdri:CommissioningActivity` represents activities that commision a facility in the field. This kind of activity generally relates to an `fdri:EnvironmentalMonitoringPlatform` or `fdri:EnvironmentalMonitoringSite` and results in the facility's operational period starting.
+
+> **QUESTION** Should this be a separate subclass, or do we just use soft-typing as it does not involve multiple facilities with different roles.
+
+#### DecommissioningActivity
+
+The class `fdri:DecommissioningActivity` represents activities that decommision a facility in the field. This kind of activity generally relates to an `fdri:EnvironmentalMonitoringPlatform` or `fdri:EnvironmentalMonitoringSite` and results in the facility's operational period ending.
+
+> **QUESTION**: As with CommissioningActivity, this could be soft-typed.
