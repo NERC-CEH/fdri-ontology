@@ -6,6 +6,7 @@ Unreleased
 ----------
 * Added schema:minValue and schema:maxValue as properties of fdri:Measure to support specifying an expected value range for observations of that measure. (#122)
 * Temporarily added fdri:isPrivate to the recordspec schema to support filtering datasets in the public UI. This property will be reworked/removed in the 0.8 release.
+* Removed class fdri:ProgrammeCatalog. The ontology no longer supports a per-programme catalog. Instead use a single dcat:Catalog to contain all catalogued resources (#119).
 
 DRAFT 0.7
 ---------

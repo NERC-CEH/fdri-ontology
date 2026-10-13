@@ -82,7 +82,7 @@ The value chosen for the `{id}` portion of the IRI is context-dependant. Ideally
 | /id/activity/{id} | prov:Activity |
 | /id/agent/{id} | fdri:Agent, fdri:Organization, fdri:Person , fdri:SoftwareAgent |
 | /id/argument/{id} | fdri:ConfigurationArgument |
-| /id/catalog/{id} | fdri:ProgrammeCatalog |
+| /id/catalog/{id} | dcat:Catalog |
 | /id/condition/{id} | fdri:Condition |
 | /id/configuration-item/{id} | fdri:ConfigurationItem |
 | /id/dataset/{id} | dcat:Dataset, fdri:GriddedDataset, fdri:ObservationDataset, fdri:ObservationDatasetSeries, fdri:TimeSeriesDataset |
@@ -119,7 +119,7 @@ Existing identifier patterns that differ from the proposed identifier pattern ar
 | | fdri:Person | N/A |
 | | fdri:SoftwareAgent | N/A |
 | /id/argument/{id} | fdri:ConfigurationArgument | /id/argument/{id}, **/id/configuration-item/{parent id}#{argument name}** |
-| /id/catalog/{id} | fdri:ProgrammeCatalog | N/A |
+| /id/catalog/{id} | dcat:Catalog | N/A |
 | /id/condition/{id} | fdri:Condition | N/A |
 | /id/configuration-item/{id} | fdri:ConfigurationItem | /id/configuration-item/{id} |
 | /id/dataset/{id} | dcat:Dataset | N/A |
