@@ -137,14 +137,13 @@ The `fdri:InfrastructureActivity` class is then extended to provide more specifi
 * [DeploymentActivity](#deploymentactivity) for the deployment of systems
 * [WithdrawalActivity](#withdrawalactivity) for the withdrawal of deployed systems
 * [MaintenanceActivity](#maintenanceactivity) for activities related to the maintenance of facilities, optinally with reference to a fault.
-* [CommissioningActivity](#commissioningactivity) for the commissioning of a facility
-* [DecommissioningActivity](#decommissioningactivity) for the decommissioning of a facility
 
 > **QUESTION**
 > Are there other high-level infrastructure activities to add here?
-> See also notes below about whether CommissioningActivity and DecommissioningActivity should be subclasses or just soft types.
+> See also notes below about additional InfrastructureActivity soft types.
 
 #### DeploymentActivity
+
 ```mermaid
 ---
   config:
@@ -189,6 +188,7 @@ qa --hadPlan--> plan["Sensor Deployment Procedure
 ```
 
 #### WithdrawalActivity
+
 ```mermaid
 ---
   config:
@@ -210,8 +210,8 @@ The properties `fdri:withdrawnFacility` and `fdri:withdrawnFromFacility` are bot
 
 The structure of this model is deliberately analogous to that used for the DeploymentActivity type.
 
-> **QUESTION**
-> Should there also be a "ReplacementActivity" activity to cover the replacement of a sensor or is it OK/preferable to model this as separate withdrawal and deployment activities?
+> **NOTE**
+> We have chosen not to add a separate "ReplacementActivity" to cover the replacement of a sensor as this can be more consistently modelled as separate withdrawal and deployment activities.
 
 #### MaintenanceActivity
 
@@ -264,14 +264,11 @@ qa --hadRole --> r
 qa --hadPlan --> p
 ```
 
-#### CommissioningActivity
+### Additional Infrastructure Activity Types
 
-The class `fdri:CommissioningActivity` represents activities that commision a facility in the field. This kind of activity generally relates to an `fdri:EnvironmentalMonitoringPlatform` or `fdri:EnvironmentalMonitoringSite` and results in the facility's operational period starting.
+The initial vocabulary should provide a "soft" type for ecah of the distinct subclasses described above, plus the following additional types:
 
-> **QUESTION** Should this be a separate subclass, or do we just use soft-typing as it does not involve multiple facilities with different roles.
-
-#### DecommissioningActivity
-
-The class `fdri:DecommissioningActivity` represents activities that decommision a facility in the field. This kind of activity generally relates to an `fdri:EnvironmentalMonitoringPlatform` or `fdri:EnvironmentalMonitoringSite` and results in the facility's operational period ending.
-
-> **QUESTION**: As with CommissioningActivity, this could be soft-typed.
+* Calibration Activity (for soft-typing a MaintenanceActivity)
+* Cleaning Activity (for soft-typing a MaintenanceActivity)
+* Commissioning Activity (for soft-typing an InfrastructureActivity)
+* Decommissioning Activity (for soft-typing an InfrastructureActivity)
