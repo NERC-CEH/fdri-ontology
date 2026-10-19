@@ -116,7 +116,7 @@ config:
 classDiagram
 class Measure["fdri:Measure"] {
   fdri:valueType: rdf:Resource [0..1]
-  fdri:periodicity: xsd:duration
+  fdri:periodicity: xsd:duration or irregular
   fdri:resolution: xsd:duration
 }
 class Variable["fdri:Variable"]
@@ -163,9 +163,22 @@ Where a measure is the result of the aggregation of multiple values over some ti
 * mean
 * standard deviation
 
-The `fdri:periodicity` property specifies the time period between aggregate values being reported.
-The `fdri:resolution` property specifies the time period between the measurements that are aggregated over the period.
-e.g. if `fdri:periodicity` is `PT5M` and `fdri:resolution` is `PT30S` then values are read every 30 seconds, and aggregated to produce a single aggregate value every 5 minutes.
+### Periodicity and Resolution
+
+Every Measure has exactly one `fdri:periodicity` and exactly one `fdri:resolution`.
+
+The `fdri:periodicity` property gives the expected spacing between consecutive values, as an ISO 8601 duration. There
+is at most one value in each period. For example, a periodicity of `PT15M` means at most one value every 15 minutes.
+
+Some series have no expected spacing, such as manual river gaugings, ADCP surveys and spot samples taken at ad-hoc
+times. For these, `fdri:periodicity` is the literal string `"irregular"`.
+
+The `fdri:resolution` property gives the precision of the value timestamps, and the span of time that each value covers,
+as an ISO 8601 duration. It is always a duration, including when the periodicity is `"irregular"`. For example:
+
+* `PT1M` for gaugings timed to the nearest minute.
+* `P1D` where only the date of a value is known.
+* `PT15M` for 15-minute values, where the periodicity is also `PT15M`.
 
 ### Specialisation and Variable Hierarchies
 

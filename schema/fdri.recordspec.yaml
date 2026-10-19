@@ -286,7 +286,7 @@ mixins:
         kind: object
         constraints:
           - record: Activity
-  
+
   WithPublicationMetadata:
     label:
       - value: With Publication Metadata
@@ -1078,7 +1078,7 @@ records:
         kind: object
         constraints:
           - record: Variable
-  
+
   ConfigurationArgument:
     label:
       - value: Data Processing Configuration Argument
@@ -1213,7 +1213,7 @@ records:
         kind: object
         constraints:
           - record: ConfigurationParameterScheme
-  
+
   ConfigurationParameterScheme:
     label:
       - value: Configuration Parameter Concept Scheme
@@ -1223,8 +1223,8 @@ records:
         lang: en
     extends: ConceptScheme
     classUri: fdri:ConfigurationParameterScheme
-    shortCode: ConfigurationParameterScheme        
-    
+    shortCode: ConfigurationParameterScheme
+
   ConfigurationProperty:
     label:
       - value: Configuration Property
@@ -1249,7 +1249,7 @@ records:
         kind: object
         constraints:
           - record: ConfigurationPropertyScheme
-  
+
   ConfigurationPropertyScheme:
     label:
       - value: Configuration Property Concept Scheme
@@ -1348,7 +1348,7 @@ records:
         kind: object
         constraints:
           - record: ConstraintScheme
-  
+
   ConstraintScheme:
     label:
       - value: Constraint Scheme
@@ -1446,7 +1446,7 @@ records:
         kind: object
         constraints:
           - record: DataProcessingConfigurationTypeScheme
-  
+
   DataProcessingConfigurationTypeScheme:
     label:
       - value: Data Processing Configuration Type Scheme
@@ -1457,7 +1457,7 @@ records:
     extends: ConceptScheme
     classUri: fdri:DataProcessingConfigurationTypeScheme
     shortCode: DataProcessingConfigurationTypeScheme
-      
+
   DataProcessingMethod:
     label:
       - value: Data Processing Method
@@ -1691,7 +1691,7 @@ records:
         constraints:
           - record: Concept
       type:
-        label: 
+        label:
           - value: type
             lang: en
         description:
@@ -1950,7 +1950,7 @@ records:
         repeatable: false
         constraints:
           - record: MeasureSchema
-      
+
 
   Entity:
     label:
@@ -1976,7 +1976,7 @@ records:
         kind: object
         constraints:
           - record: EntityScheme
-  
+
   EntityScheme:
     label:
       - value: Entity Scheme
@@ -2010,7 +2010,7 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalDomainScheme
-  
+
   EnvironmentalDomainScheme:
     label:
       - value: Environmental Domain Concept Scheme
@@ -2094,7 +2094,7 @@ records:
             lang: en
         description:
           - value: Relates the activity to the agent(s), the role(s) played by those agents, and the procedure that they follow, in the performance of the activity.
-            lang: en 
+            lang: en
         propertyUri: prov:qualifiedAssociation
         kind: object
         repeatable: true
@@ -2224,7 +2224,7 @@ records:
             lang: en
         description:
           - value: Relates the facility to the agent(s) and the role(s) played by those agents in the life-cycle of the facility.
-            lang: en 
+            lang: en
         propertyUri: prov:qualifiedAttribution
         kind: object
         repeatable: true
@@ -2299,14 +2299,14 @@ records:
           - value: |
               Relates the facility type to the agent(s) and the role(s) played by those agents in the life-cycle of the facility type.
               Related parties might include the manufacturer or distributor of a facilities of the enclosing facility type.
-            lang: en 
+            lang: en
         propertyUri: prov:qualifiedAttribution
         kind: object
         repeatable: true
         nested: true
         constraints:
           - record: RelatedPartyAttribution
-  
+
   EnvironmentalMonitoringFacilityTypeScheme:
     label:
       - value: Environmental Monitoring Facility Type Concept Scheme
@@ -2317,7 +2317,7 @@ records:
     extends: ConceptScheme
     classUri: fdri:EnvironmentalMonitoringFacilityTypeScheme
     shortCode: EnvironmentalMonitoringFacilityTypeScheme
-      
+
   EnvironmentalMonitoringNetwork:
     label:
       - value: Environmental Monitoring Network
@@ -2503,7 +2503,7 @@ records:
     extends: EnvironmentalMonitoringSystem
     classUri: fdri:EnvironmentalMonitoringSensor
     shortCode: EnvironmentalMonitoringSensor
-  
+
   EnvironmentalMonitoringSite:
     label:
       - value: Environmental Monitoring Site
@@ -2539,7 +2539,7 @@ records:
         repeatable: true
         constraints:
           - datatype: rdf:langString
-  
+
   EnvironmentalMonitoringSystem:
     label:
       - value: Environmental Monitoring System
@@ -2736,7 +2736,7 @@ records:
         kind: object
         constraints:
           - record: EnvironmentalMonitoringSystemType
-  
+
   EnvironmentalMonitoringSystemType:
     label:
       - value: Environmental Monitoring System Type
@@ -2850,7 +2850,7 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:duration
-  
+
   ExternalDataProcessingConfiguration:
     label:
       - value: External Data Processing Configuration
@@ -3333,7 +3333,7 @@ records:
         kind: literal
         constraints:
           - datatype: geos:wktLiteral
-  
+
   GeospatialFeatureOfInterest:
     label:
       - value: Geospatial Feature Of Interest
@@ -3543,7 +3543,7 @@ records:
             lang: en
         description:
           - value: References the configuration property/value pairs that were historically used by this configuration.
-            lang: en 
+            lang: en
         propertyUri: fdri:hadValue
         kind: object
         repeatable: true
@@ -3561,7 +3561,7 @@ records:
         repeatable: true
         constraints:
           - record: ConfigurationItem
-  
+
   Measure:
     label:
       - value: Measure
@@ -3613,21 +3613,30 @@ records:
             lang: en
         description:
           - value: |
-              The time period over which a set of observed values are aggregated to derive a single aggregate value.
+              The expected spacing between consecutive values, given as an ISO 8601 duration. 
+              There is at most one value in each period. The literal \"irregular\" means there 
+              is no expected spacing between values.
             lang: en
         propertyUri: fdri:periodicity
         kind: literal
+        required: true
         constraints:
           - datatype: xsd:duration
+          - datatype: xsd:string
+            in:
+              - irregular
       resolution:
         label:
           - value: resolution
             lang: en
         description:
-          - value: The period between the observations of the aggregated values.
+          - value: |
+              The precision of the value timestamps, and the span of time that each value covers, 
+              given as an ISO 8601 duration.
             lang: en
         propertyUri: fdri:resolution
         kind: literal
+        required: true
         constraints:
           - datatype: xsd:duration
       valueTimeAnchor:
@@ -3655,7 +3664,7 @@ records:
         kind: object
         constraints:
           - record: Variable
-  
+
   MeasureColumn:
     label:
       - value: Measure Column
@@ -3744,7 +3753,7 @@ records:
           - value: Actual bytes of the media object, for example the image file or video file.
             lang: en
         propertyUri: schema:contentUrl
-        kind: object     
+        kind: object
       encodingFormat:
         label:
           - value: encoding format
@@ -4098,7 +4107,7 @@ records:
         repeatable: true
         constraints:
           - record: MediaObject
-  
+
   ProcedureType:
     label:
       - value: Procedure Type
@@ -4121,7 +4130,7 @@ records:
         kind: object
         constraints:
           - record: ProcedureTypeScheme
-  
+
   ProcedureTypeScheme:
     label:
       - value: Procedure Type Concept Scheme
@@ -4134,7 +4143,7 @@ records:
     extends: ConceptScheme
     classUri: fdri:ProcedureTypeScheme
     shortCode: ProcedureTypeScheme
-      
+
   ProcessingLevel:
     label:
       - value: Processing Level
@@ -4192,7 +4201,7 @@ records:
         kind: object
         constraints:
           - record: PropertyScheme
-  
+
   PropertyScheme:
     label:
       - value: Property Scheme
@@ -4203,7 +4212,7 @@ records:
     extends: ConceptScheme
     classUri: fdri:PropertyScheme
     shortCode: PropertyScheme
-  
+
   PropertyValue:
     label:
       - value: Property Value
@@ -4514,7 +4523,7 @@ records:
         kind: object
         constraints:
           - record: RelatedPartyRoleScheme
-  
+
   RelatedPartyRoleScheme:
     label:
       - value: Related Party Role Concept Scheme
@@ -4592,7 +4601,7 @@ records:
         kind: object
         constraints:
           - record: SoilTypeScheme
-  
+
   SoilTypeScheme:
     label:
       - value: Soil Type Concept Scheme
@@ -4873,7 +4882,7 @@ records:
         kind: object
         constraints:
           - record: SystemStatusScheme
-  
+
   SystemStatusScheme:
     label:
       - value: System Status Concept Scheme
@@ -4942,7 +4951,7 @@ records:
         kind: object
         constraints:
           - record: TimeBoundPropertyValue
-    
+
   TimeSeriesDataset:
     label:
       - value: Time-series Dataset
@@ -5162,7 +5171,7 @@ records:
         kind: object
         constraints:
           - record: UnitScheme
-  
+
   UnitScheme:
     label:
       - value: Unit of Measure Concept Scheme

@@ -1,0 +1,11 @@
+{
+    "$schema": "../../schema/Measure.schema.json",
+    "@context": "../../context/Measure.context.jsonld",
+    "@id": "http://fdri.ceh.ac.uk/id/measure/water-flow-inst-gauging",
+    "variable": {"@id": "http://fdri.ceh.ac.uk/id/variable/water-flow"},
+    "hasUnit": {"@id": "http://qudt.org/vocab/unit/M3-PER-SEC"},
+    "valueType": {"@id": "http://www.w3.org/2001/XMLSchema#decimal"},
+    "periodicity": {"@value": "irregular"},
+    "resolution": {"@value": "PT1M", "@type": "http://www.w3.org/2001/XMLSchema#duration"},
+    "prefLabel": [{"@value": "manual flow gauging, timed to the nearest minute (cubic metres per second)", "@language": "en"}]
+}
