@@ -6,6 +6,9 @@ Unreleased
 ----------
 * Added schema:minValue and schema:maxValue as properties of fdri:Measure to support specifying an expected value range for observations of that measure. (#122)
 * Temporarily added fdri:isPrivate to the recordspec schema to support filtering datasets in the public UI. This property will be reworked/removed in the 0.8 release.
+* NON-BREAKING: `fdri:periodicity` now accepts either an ISO 8601 duration or the literal "irregular" (the new `fdri:IrregularPeriodicity` datatype), for time series with no expected spacing between values. See https://github.com/NERC-CEH/fdri_discussions/discussions/26
+* BREAKING: `periodicity` and `resolution` are now required on `Measure` in the recordspec schema, to match the existing cardinality of 1 in the OWL ontology. Measures without them will fail SHACL validation.
+* Rewrote the definitions of `fdri:periodicity` (the expected spacing between values) and `fdri:resolution` (the precision of the value timestamps and the span of time each value covers), and reworded `fdri:TimeSeriesDataset` to allow values at irregular times.
 * Removed class fdri:ProgrammeCatalog. The ontology no longer supports a per-programme catalog. Instead use a single dcat:Catalog to contain all catalogued resources (#119).
 
 DRAFT 0.7
@@ -16,13 +19,13 @@ DRAFT 0.7
 * BREAKING: Change `interval` on `FacilityGroupMembership`, `Fault` to a nested Property
 * BREAKING: Changes made to the way that a Time-Series Plan is represented. A plan now consists of a series of steps, each with its own index number and configuration.
 * NON-BREAKING: Change `hasStructuredValue` on `ConfigurationArgument` to a repeatable property to support arguments whose value is a set of structured values.
-* NON-BREAKING: Added optional `rawConfiguration` properties to `TimeSeriesPlan` and `ConfigurationItem` to allow the JSON source for those items to be stored as a string in the metadata store. 
+* NON-BREAKING: Added optional `rawConfiguration` properties to `TimeSeriesPlan` and `ConfigurationItem` to allow the JSON source for those items to be stored as a string in the metadata store.
 * BREAKING: Removed `fdri:ValueStatistic` class and the `fdri:ValueStatistic` property on `fdri:Aggregation`.
 * NEW: Added `fdri:ValueTimeAnchor` and the `fdri:valueTimeAnchor` property on `fdri:Measure` to express the relationship between the timestamp of an observation and the period of time over which the observation was made.
 * BREAKING: Changed the definition of `fdri:Aggregation` to be simply a `skos:Concept` that represents  and aggregation method. The `fdri:periodicity`, `fdri:resolution` and `fdri:timeValueAnchor` properties are moved to `fdri:Measure`.
 * BREAKING: Aligned the FDRI ontology with the DOO ontology. This includes the following changes:
   * NON-BREAKING: Introduced subclass relationships between FDRI ontology types `EnvironmentalMonitoringNetwork`, `EnvironmentalMonitoringProgramme`, `EnvironmentalMonitoringFacility` and `EnvironmentalMonitoringActivity` and their equivalents in the DOO ontology.
-  * BREAKING: Renamed `initiated` property of `EnvironmentalMonitoringProgramme` and `EnvironmentalMonitoringActivity` to `triggers` and changed the property URI from fdri:initiated to doo:triggers 
+  * BREAKING: Renamed `initiated` property of `EnvironmentalMonitoringProgramme` and `EnvironmentalMonitoringActivity` to `triggers` and changed the property URI from fdri:initiated to doo:triggers
   * NON-BREAKING: Added a `hasPart` property to `EnvironmentalMonitoringProgramme` and `EnvironmentalMonitoringNetwork`.
   * BREAKING: Changed the property URI of the `utilises` property of `EnvironmentalMonitoringProgramme` from `fdri:utilises` to `doo:utilises`.
   * BREAKING: Changed the property URI of the `contains` property of `EnvironmentalMonitoringNetwork` from `fdri:contains` to `doo:contains`.
@@ -38,7 +41,7 @@ DRAFT 0.6
   * Deprecated fdri:RelativeLocation and its child properties
   * Added properties `fdri:eastOffset`, `fdri:northOffset` and `fdri:verticalOffset` as optional properties of `fdri:StaticDeployment` to record positional offset.
   * Added property `fdri:azimuth` to record the angle of a deployed system relative to the target of the deployment.
-* NEW: Additional properties for `fdri:StaticDeployment`: `fdri:distanceFromInlet`, `fdri:datum`, `fdri:distanceFromDatum`  
+* NEW: Additional properties for `fdri:StaticDeployment`: `fdri:distanceFromInlet`, `fdri:datum`, `fdri:distanceFromDatum`
 * MEW: Added support for defining the flag columns of a TimeSeriesDataset. See doc/flag-columns.md for details.
 * NON-BREAKING: The definition of the properties `fdri:dependsOn` and `fdri:directDependsOn` has been relaxed. These properties can now be used on any `fdri:ObservationDataset` and reference any `fdri:ObservationDataset`.
 * NON-BREAKING: The definition of the property `fdri:uses` on fdri:TimeSeriesPlan has been modified. The range of the property is now `fdri:ObservationDataset`
@@ -51,7 +54,7 @@ DRAFT 0.5
   * Add new `fdri:EnvironmentalMonitoringActivity` class to OWL and matching `EnvironmentalMonitoringActivity` record to schema.
   * Add `qualifiedUsage` to `Activity` in the schema to reflect the existing prov:qualifiedUsage property in the OWL ontology.
   * Add `QualifiedUsage` record to the schema to reflect the existing prov:Usage type in the OWL ontology.
-  * Add `fdri:initiated` property to `fdri:EnvironmentalMonitoringProgramme` to relate an EnvironmentalMonitoringProgramme to the EnvironmentalMonitoringActivities that are carried out under that programme. 
+  * Add `fdri:initiated` property to `fdri:EnvironmentalMonitoringProgramme` to relate an EnvironmentalMonitoringProgramme to the EnvironmentalMonitoringActivities that are carried out under that programme.
   * Add `fdri:FacilityUsage` class as a subclass of `prov:Usage` to represent the use of some EnvironmentalMonitoringFacility in some EnvironmentalMonitoringActivity, qualified by the role (fdri:FacilityUsageRole) that the facility played in the activity.
   * Add `fdri:originatingActivity` to relate an `fdri:ObservationDataset` to the `fdri:EnvironmentalMonitoringActivity` that originated the data contained in the dataset.
   * Add `fdri:RelatedPartyAssociation` to represent the association between an `fdri:Agent` and the role that the played in some `prov:Activity`
@@ -76,8 +79,8 @@ DRAFT 0.5
 * FIX: Fix typo in the URI of the `deployedHeight` property on the `StaticDeployment` record in the Recordspec model.
 * NON-BREAKING: Relax the definition of `fdri:Variable` so that the IAdopt properties `iop:hasProperty` and `iop:hasObjectOfInterest` are optional.
 * NEW: Added `foaf:homepage` property to `fdri:EnvironmentalMonitoringProgramme` and `fdri:EnvironmentalMonitoringNetwork`
-* NEW: Added `fdri:sourceTimeColumnName` to `fdri:TimeSeriesDataset` to capture the name of the column that holds the timestamp for each observation. 
-* BREAKING: Replaced `fdri:reference` with `fdri:referenceList` on `fdri:Array`. This allows for the items in a gridded data array to be assigned an index that indicates the item's index in the storage array of the underlying gridded dataset. 
+* NEW: Added `fdri:sourceTimeColumnName` to `fdri:TimeSeriesDataset` to capture the name of the column that holds the timestamp for each observation.
+* BREAKING: Replaced `fdri:reference` with `fdri:referenceList` on `fdri:Array`. This allows for the items in a gridded data array to be assigned an index that indicates the item's index in the storage array of the underlying gridded dataset.
 * BREAKING: Change the range of geo:lat, geo:long, spatialrelations:easting and spatialrelations:northing from string to decimal to enable numeric comparison in SPARQL queries.
 * NON-BREAKIMG: Relax definition of `TimeSeriesDataset` to make the `type` property optional in the schema.
 * NON-BREAKING: Add optional `fdri:hasStructuredValue` property to `fdri:ConfigurationArgument` to cover the case where the value of an argument is a complex value consisting of a set of key-value pairs. Each key-value pair is represented as a separate fdri:ConfigurationArgument, allowing for further nesting of structured values if needed.

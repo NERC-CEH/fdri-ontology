@@ -51,6 +51,17 @@ geo:location rdf:type owl:AnnotationProperty ;
 
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/IrregularPeriodicity
+:IrregularPeriodicity rdf:type rdfs:Datatype ;
+                      owl:oneOf ( "irregular" ) ;
+                      rdfs:comment "The literal \"irregular\", used as the `fdri:periodicity` of a series with no expected spacing between values."@en ;
+                      rdfs:label "irregular periodicity"@en .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -686,7 +697,7 @@ sosa:observedProperty schema:domainIncludes :ObservationDataset .
 :deploymentNote rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
                 rdfs:domain :Deployment ;
-                rdfs:comment """A note provinding some additional contextual information about the deployment of a system. 
+                rdfs:comment """A note provinding some additional contextual information about the deployment of a system.
 
 More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance` are provided to capture specific types of note and should be used where appropriate in preference to this property."""@en ;
                 rdfs:label "deployment note"@en .
@@ -797,8 +808,12 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
 ###  http://fdri.ceh.ac.uk/vocab/metadata/periodicity
 :periodicity rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
-             rdfs:range xsd:duration ;
-             rdfs:comment "The duration over which an time-based aggregation applies."@en ;
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:unionOf ( xsd:duration
+                                        :IrregularPeriodicity
+                                      )
+                        ] ;
+             rdfs:comment "The expected spacing between consecutive values, given as an ISO 8601 duration. There is at most one value in each period. The literal \"irregular\" means there is no expected spacing between values."@en ;
              rdfs:label "periodicity"@en .
 
 
@@ -840,7 +855,7 @@ More specific sub-properties `fdri:dependencyNote` and `fdri:deploymentVariance`
 :resolution rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf owl:topDataProperty ;
             rdfs:range xsd:duration ;
-            rdfs:comment "The duration between the individual measurements that are aggregated to produce an aggregate value."@en ;
+            rdfs:comment "The precision of the value timestamps, and the span of time that each value covers, given as an ISO 8601 duration."@en ;
             rdfs:label "resolution"@en .
 
 
@@ -1637,7 +1652,7 @@ An Environmental Monitoring Programme may trigger (`doo:triggers`) any number of
                                              ] ;
                              rdfs:comment """A geo-spatial location which contains infrastructure elements to which environmental monitoring systms are deployed.
 
-An Environmental Monitoring Site may host any number of systems (`fdri:EnvironmentalMonitoringSystem`) and it may be the target of any number of deployments (`fdri:deployedOnPlatform` on `fdri:Deployment`) of systems. This latter formulation should be used when the system(s) deployed to a site may change over time. 
+An Environmental Monitoring Site may host any number of systems (`fdri:EnvironmentalMonitoringSystem`) and it may be the target of any number of deployments (`fdri:deployedOnPlatform` on `fdri:Deployment`) of systems. This latter formulation should be used when the system(s) deployed to a site may change over time.
 
 If information is available regarding the platforms (`fdri:EnvironmentalMonitoringPlatform`) at a site, then hosting and deployment relationships should target the platform(s) rather than the site where possible."""@en ;
                              rdfs:label "Environmental Monitoring Site"@en .
@@ -1903,7 +1918,7 @@ Membership may be expressed directly using the `fdri:hasMember` property, or ind
                        ] ;
        rdfs:comment """A record of a fault that affects the capture of one or more variables (`fdri:affectedVariable`) by one or more monitoring facilities (`fdri:affectedFacility`) for a given period of time (`fdri:interval).
 
-A fault may or may not require that data collected for the affected variables by the affected facilities be removed from the published datasets (`fdri:removeData`). 
+A fault may or may not require that data collected for the affected variables by the affected facilities be removed from the published datasets (`fdri:removeData`).
 
 A persistent or unresolved fault may be represented by using an interval with no defined end time."""@en ;
        rdfs:label "Fault"@en .
@@ -2654,7 +2669,7 @@ In addition the use of `schema:minValue`, `schema:maxValue`, `schema:value` and 
                                      owl:onProperty :sourceTimeColumnName ;
                                      owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                    ] ;
-                   rdfs:comment """A Observation Dataset consisting of a collection of values of one or more Measures of some Feature of Interest at regular intervals over a period of time.
+                   rdfs:comment """A Observation Dataset consisting of a collection of values of one or more Measures of some Feature of Interest over a period of time.
 
 This class extends `fdri:ObservationDataset` with metadata properties that assist in the processing of the data through the FDRI data pipeline. `fdri:sourceBucket`, `fdri:sourceDataset` and `fdri:sourceColumnName` are used to access the dataset values. The `dct:type` property references the `fdri:TimeSeriesDefinition` instance which provides processing configuration information for the dataset."""@en ;
                    rdfs:label "Time-Series Dataset"@en .
@@ -2808,7 +2823,7 @@ schema:PropertyValue rdf:type owl:Class ;
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
 geo:Point rdf:type owl:Class ;
           rdfs:subClassOf geo:SpatialThing ;
-          rdfs:comment """ 
+          rdfs:comment """
 Uniquely identified by lat/long/alt. i.e.
 
 spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
@@ -2909,8 +2924,8 @@ iop:Variable rdf:type owl:Class .
 #################################################################
 
 geo: <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
-     <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
- altitude information in the WGS84 geodetic reference datum. 
+     <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and
+ altitude information in the WGS84 geodetic reference datum.
  Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
      <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
      rdfs:comment """
@@ -3001,7 +3016,7 @@ basic geo vocab
 
 
 geo:alt rdfs:comment "Height above sea-level measured in metres."@en ,
-                     """The WGS84 altitude of a SpatialThing (decimal meters 
+                     """The WGS84 altitude of a SpatialThing (decimal meters
 above the local reference ellipsoid).""" ;
         rdfs:label "altitude"@en ,
                    "altitude" .
@@ -3011,7 +3026,7 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
              rdfs:label "lat/long" .
 
 
-geo:location rdfs:comment """The relation between something and the point, 
+geo:location rdfs:comment """The relation between something and the point,
  or other geometrical thing in space, where it is.  For example, the realtionship between
  a radio tower and a Point with a given lat and long.
  Or a relationship between a park and its outline as a closed arc of points, or a road and
