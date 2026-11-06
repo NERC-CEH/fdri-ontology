@@ -5036,15 +5036,16 @@ records:
         kind: literal
         constraints:
           - datatype: xsd:string
-      sourceDataset:
+      sourceCollection:
         label:
-          - value: source dataset
+          - value: source collection
             language: en
         description:
           - value: |
-              Provides the identifier of the partition within the source bucket which contains the source data to be
-              processed to create or update the enclosing TimeSeriesDataset.
-        propertyUri: fdri:sourceDataset
+              Provides the identifier of the collection partition within the source bucket which contains the source
+              data to be processed to create or update the enclosing TimeSeriesDataset.
+            language: en
+        propertyUri: fdri:sourceCollection
         kind: literal
         constraints:
           - datatype: xsd:string
