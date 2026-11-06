@@ -47,7 +47,7 @@ classDiagram
 direction LR
 class TimeSeriesDataset["fdri:TimeSeriesDataset"] {
   fdri:sourceBucket: xsd:string
-  fdri:sourceDataset: xsd:string
+  fdri:sourceCollection: xsd:string
   fdri:sourceColumnName: xsd:string
 }
 class Plan["fdri:TimeSeriesPlan"] {

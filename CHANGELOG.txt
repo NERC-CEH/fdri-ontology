@@ -4,6 +4,7 @@ Ticket numbers referenced in the CHANGELOG refer to issues in the GitHub reposit
 
 Unreleased
 ----------
+* BREAKING: Replaced `fdri:sourceDataset` with `fdri:sourceCollection` on `fdri:TimeSeriesDataset`, to reference the `collection=` partition in the source bucket.
 * Added schema:minValue and schema:maxValue as properties of fdri:Measure to support specifying an expected value range for observations of that measure. (#122)
 * Temporarily added fdri:isPrivate to the recordspec schema to support filtering datasets in the public UI. This property will be reworked/removed in the 0.8 release.
 * NON-BREAKING: `fdri:periodicity` now accepts either an ISO 8601 duration or the literal "irregular" (the new `fdri:IrregularPeriodicity` datatype), for time series with no expected spacing between values. See https://github.com/NERC-CEH/fdri_discussions/discussions/26
