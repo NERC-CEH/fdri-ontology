@@ -1360,6 +1360,49 @@ records:
     classUri: fdri:ConstraintScheme
     shortCode: ConstraintScheme
 
+  DataProcessingActivity:
+    label:
+      - value: Data Processing Activity
+        lang: en
+    description:
+      - value: |
+          The configuration information which is used by a data processing activity to control the way in which
+          the processing activity behaves.
+          A Data Processing Configuration is defined as a sub-type of prov:Plan allowing it to be associated with
+          an Actitvity via the prov:qualifiedAssociation property.
+        lang: en
+    classUri: fdri:DataProcessingActivity
+    shortCode: DataProcessingActivity
+    extends: Activity
+    mixins:
+      - WithLabelAndComment
+    properties:
+      qualifiedUsage:
+        label:
+          - value: qualified usage
+            lang: en
+        description:
+          - value: References the input entity this activity applies to.
+        propertyUri: prov:qualifiedUsage
+        kind: object
+        nested: true
+        required: true
+        repeatable: true
+        constraints:
+          - record: ObservationDatasetUsage
+      qualifiedAssociation:
+        label:
+          - value: qualified association
+            lang: en
+        description:
+          - value: References the association between this activity and a plan or configuration.
+        propertyUri: prov:qualifiedAssociation
+        kind: object
+        nested: true
+        required: true
+        repeatable: true
+        constraints:
+          - record: DataProcessingConfigurationAssociation
 
   DataProcessingConfiguration:
     label:
@@ -1423,6 +1466,31 @@ records:
         required: true
         constraints:
           - record: DataProcessingConfigurationType
+
+  DataProcessingConfigurationAssociation:
+    label:
+      - value: Data Processing Configuration Association
+        lang: en
+    description:
+      - value: Represents the association between a data processing activity and a data processing configuration.
+        lang: en
+    extends: QualifiedAssociation
+    classUri: fdri:DataProcessingConfigurationAssociation
+    shortCode: DataProcessingConfigurationAssociation
+    properties:
+      hadPlan:
+        label:
+          - value: had plan
+            lang: en
+        description:
+          - value: References the plan associated with this data processing configuration.
+            lang: en
+        propertyUri: prov:hadPlan
+        kind: object
+        required: true
+        repeatable: false
+        constraints:
+          - record: DataProcessingConfiguration
 
   DataProcessingConfigurationType:
     label:
@@ -3922,6 +3990,30 @@ records:
         propertyUri: dct:hasPart
         kind: object
         repeatable: true
+        constraints:
+          - record: ObservationDataset
+
+  ObservationDatasetUsage:
+    label:
+      - value: Observation Dataset Usage
+        lang: en
+    description:
+      - value: Represents the usage of an Observation Dataset by some activity.
+        lang: en
+    extends: QualifiedUsage
+    classUri: fdri:ObservationDatasetUsage
+    shortCode: ObservationDatasetUsage
+    properties:
+      entity:
+        label:
+          - value: entity
+            lang: en
+        description:
+          - value: The Observation Dataset entity used in the activity.
+            lang: en
+        propertyUri: prov:entity
+        kind: object
+        required: true
         constraints:
           - record: ObservationDataset
 
