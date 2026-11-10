@@ -116,8 +116,8 @@ config:
 classDiagram
 class Measure["fdri:Measure"] {
   fdri:valueType: rdf:Resource [0..1]
-  fdri:periodicity: xsd:duration or irregular
-  fdri:resolution: xsd:duration
+  fdri:periodicity: xsd:duration or "irregular" [0..1]
+  fdri:resolution: xsd:duration [0..1]
 }
 class Variable["fdri:Variable"]
 class Aggregation["fdri:Aggregation"]
@@ -165,13 +165,15 @@ Where a measure is the result of the aggregation of multiple values over some ti
 
 ### Periodicity and Resolution
 
-Every Measure has exactly one `fdri:periodicity` and exactly one `fdri:resolution`.
+Every Measure may have one `fdri:periodicity` and one `fdri:resolution`.
 
 The `fdri:periodicity` property gives the expected spacing between consecutive values, as an ISO 8601 duration. There
 is at most one value in each period. For example, a periodicity of `PT15M` means at most one value every 15 minutes.
 
 Some series have no expected spacing, such as manual river gaugings, ADCP surveys and spot samples taken at ad-hoc
 times. For these, `fdri:periodicity` is the literal string `"irregular"`.
+
+Some datasets do not contain repeated measures over time, such as certain gridded datasets. For these, `fdri:periodicity` may be omitted.
 
 The `fdri:resolution` property gives the precision of the value timestamps, and the span of time that each value covers,
 as an ISO 8601 duration. It is always a duration, including when the periodicity is `"irregular"`. For example:
