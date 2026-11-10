@@ -2145,11 +2145,11 @@ A current configuration MAY consist of multiple `fdri:ConfigurationItem` instanc
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :periodicity ;
-                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :resolution ;
-                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty schema:maxValue ;
