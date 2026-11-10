@@ -1360,6 +1360,35 @@ records:
     classUri: fdri:ConstraintScheme
     shortCode: ConstraintScheme
 
+  DataProcessingActivity:
+    label:
+      - value: Data Processing Activity
+        lang: en
+    description:
+      - value: |
+          The configuration information which is used by a data processing activity to control the way in which
+          the processing activity behaves.
+          A Data Processing Configuration is defined as a sub-type of prov:Plan allowing it to be associated with
+          an Actitvity via the prov:qualifiedAssociation property.
+        lang: en
+    classUri: fdri:DataProcessingActivity
+    shortCode: DataProcessingActivity
+    extends: Activity
+    mixins:
+      - WithLabelAndComment
+    properties:
+      qualifiedUsage:
+        label:
+          - value: qualified usage
+            lang: en
+        description:
+          - value: References the input entity this activity applies to.
+        propertyUri: prov:qualifiedUsage
+        kind: object
+        required: true
+        repeatable: true
+        constraints:
+          - record: Usage
 
   DataProcessingConfiguration:
     label:

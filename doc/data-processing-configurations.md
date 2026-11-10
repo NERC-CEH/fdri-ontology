@@ -1,8 +1,51 @@
-## Data Processing Configurations
+## Data Processing Activities and Configurations
+
+### Data Processing Activities
+
+`fdri:DataProcessingActivity` is sub-classed from `prov:Activity` allowing it to reference an [`fdri:DataProcessingConfiguration`](https://nerc-ceh.github.io/fdri-ontology/#DataProcessingConfiguration) (sub-classed from `prov:Plan`) and an [`fdri:Agent`](https://nerc-ceh.github.io/fdri-ontology/#Agent) (sub-classed from `prov:Agent`) through a [qualified association](https://nerc-ceh.github.io/fdri-ontology/#provenance-and-activity.md), and allowing it to reference an [`fdri:ObservationDataset`](https://nerc-ceh.github.io/fdri-ontology/#ObservationDataset) (sub-classed from `prov:Entity`) through a [qualified usage](https://nerc-ceh.github.io/fdri-ontology/#provenance-and-activity.md).
+
+An `fdri:DataProcessingActivity` is when an [`fdri:Agent`](https://nerc-ceh.github.io/fdri-ontology/#Agent) applies an [`fdri:DataProcessingConfiguration`](https://nerc-ceh.github.io/fdri-ontology/#DataProcessingConfiguration) to one or more input [`fdri:ObservationDataset`](https://nerc-ceh.github.io/fdri-ontology/#ObservationDataset) to generate or modify one or more output [`fdri:ObservationDataset`](https://nerc-ceh.github.io/fdri-ontology/#ObservationDataset).
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+  class Plan["prov:Plan"]
+  class DPConfig["fdri:DataProcessingConfiguration"]
+  class Activity["prov:Activity"] {
+    startedAtTime: xsd:dateTime
+    endedAtTime: xsd:dateTime
+  }
+  class Association["prov:Association"]
+  class Agent["prov:Agent"]
+  class fAgent["fdri:Agent"]
+  class DPActivity["fdri:DataProcessingActivity"]
+  class Entity["prov:Entity"]
+  class Usage["prov:Usage"]
+  class Resource["dcat:Resource"]
+  class Dataset["dcat:Dataset"]
+  class ObsDataset["fdri:ObservationDataset"]
+  Plan <|-- DPConfig
+  Activity --> Association: prov_qualifiedAssociation
+  Association --> Plan: prov_hadPlan
+  Association --> Agent: prov_agent
+  fAgent --|> Agent
+  DPActivity --|> Activity
+  Entity --> Activity: prov_wasGeneratedBy
+  Entity --> Activity: fdri_wasModifiedBy
+  Activity --> Usage: prov_qualifiedUsage
+  Usage --> Entity: prov_entity
+  Resource --|> Entity
+  Dataset --|> Resource
+  ObsDataset --|> Dataset
+```
+
+### Data Processing Configurations
 
 To model data processing configurations, there are two broad options to consider depending on how such configuration information is mastered. If the configuration information is mastered and managed in the metadata store, then a structure is needed to represent individual configuration properties and their values. If the configuration is mastered and managed in an external system such as a source control repository, then it would be more sensible to only record a link to (a version of) that configuration rather than to try and reflect its content in the metadata store.
-
-### Data Processing Activities and Data Processing Configurations
 
 ```mermaid
 classDiagram

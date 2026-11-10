@@ -544,6 +544,7 @@ When this property is used to convey a datatype for `minValue`, `maxValue` and/o
 :wasModifiedBy rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf prov:wasInfluencedBy ;
                rdfs:domain :ObservationDataset ;
+               rdfs:range :DataProcessingActivity ;
                rdfs:comment "Relates a resource to the activity that modified the resource in some way."@en ;
                rdfs:label "was modified by"@en .
 
@@ -1235,6 +1236,33 @@ Instances of this class are used to define the properties by which the behaviour
                   rdfs:subClassOf skos:ConceptScheme ;
                   rdfs:comment "A concept scheme that manages a collection of iop:Constraint definitions."@en ;
                   rdfs:label "Constraint Scheme"@en .
+
+
+###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingActivity
+:DataProcessingActivity rdf:type owl:Class ;
+                             rdfs:subClassOf prov:Activity ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty prov:qualifiedAssociation ;
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:intersectionOf ( prov:Association
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty prov:hadPlan ;
+                                                                           owl:someValuesFrom :DataProcessingConfiguration
+                                                                         ] 
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty prov:agent ;
+                                                                           owl:someValuesFrom :Agent
+                                                                         ]
+                                                                       )         
+                                                  ]
+                             ] ,
+                             [
+                               rdf:type owl:Restriction ;
+                               owl:onProperty prov:qualifiedUsage ;
+                               owl:someValuesFrom prov:Usage
+                             ] ;
+                             rdfs:comment "An activity in which an agent applies a data processing configuration to one or more input datasets to generate or modify one or more output datasets."@en ;
+                             rdfs:label "Data Processing Activity"@en .
 
 
 ###  http://fdri.ceh.ac.uk/vocab/metadata/DataProcessingConfiguration
