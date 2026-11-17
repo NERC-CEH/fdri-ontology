@@ -8,7 +8,6 @@ Unreleased
 * Added schema:minValue and schema:maxValue as properties of fdri:Measure to support specifying an expected value range for observations of that measure. (#122)
 * Temporarily added fdri:isPrivate to the recordspec schema to support filtering datasets in the public UI. This property will be reworked/removed in the 0.8 release.
 * NON-BREAKING: `fdri:periodicity` now accepts either an ISO 8601 duration or the literal "irregular" (the new `fdri:IrregularPeriodicity` datatype), for time series with no expected spacing between values. See https://github.com/NERC-CEH/fdri_discussions/discussions/26
-* BREAKING: `periodicity` and `resolution` are now required on `Measure` in the recordspec schema, to match the existing cardinality of 1 in the OWL ontology. Measures without them will fail SHACL validation.
 * Rewrote the definitions of `fdri:periodicity` (the expected spacing between values) and `fdri:resolution` (the precision of the value timestamps and the span of time each value covers), and reworded `fdri:TimeSeriesDataset` to allow values at irregular times.
 * Removed class fdri:ProgrammeCatalog. The ontology no longer supports a per-programme catalog. Instead use a single dcat:Catalog to contain all catalogued resources (#119).
 
