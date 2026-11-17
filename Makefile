@@ -1,5 +1,4 @@
-IMAGE=293385631482.dkr.ecr.eu-west-1.amazonaws.com/epimorphics/record-spec-tools/unstable:1.0-SNAPSHOT
-RUN=docker run --rm -v .:/data ${IMAGE}
+RECORD-SPEC=uv run record-spec
 
 SCHEMA_BASE = samples/schema
 CONTEXT_BASE = samples/context
@@ -61,19 +60,19 @@ reports: $(REPORTS)
 full_validation: $(VAL)/full_report.ttl
 
 validate: $(SCHEMA_FILE)
-	$(RUN) record-spec-cmd validate $^
+	$(RECORD-SPEC) validate $^
 
 $(SCHEMA_BASE)/%.schema.json: $(SCHEMA_FILE) | $(SCHEMA_BASE)
-	$(RUN) record-spec-cmd json-schema --allow-jsonld-context --allow-json-schema-ref --with-optional-type --no-additional-properties -r $(*F) -o $@ $^
+	$(RECORD-SPEC) json-schema --allow-jsonld-context --allow-json-schema-ref --with-optional-type --no-additional-properties -r $(*F) -o $@ $^
 
 $(CONTEXT_BASE)/%.context.jsonld: $(SCHEMA_FILE) | $(CONTEXT_BASE)
-	$(RUN) record-spec-cmd json-ld -r $(*F) -o $@ $^
+	$(RECORD-SPEC) json-ld -r $(*F) -o $@ $^
 
 $(SHACL_BASE)/fdri_shacl.ttl: $(SCHEMA_FILE) | $(SHACL_BASE)
-	$(RUN) record-spec-cmd shacl -o $@ $^
+	$(RECORD-SPEC) shacl -o $@ $^
 
 $(SHACL_BASE)/fdri_shacl_with_refs.ttl: $(SCHEMA_FILE) | $(SHACL_BASE)
-	$(RUN) record-spec-cmd shacl --with-reference-type-validation -o $@ $^
+	$(RECORD-SPEC) shacl --with-reference-type-validation -o $@ $^
 
 clean:
 	rm -f $(SCHEMA_BASE)/*.schema.json
@@ -84,7 +83,7 @@ build:
 	mkdir -p build
 
 doc/html/index.html: doc/*.md owl/fdri-metadata.ttl
-	python make_doc.py
+	uv run make_doc.py
 
 $(SCHEMA_BASE):
 	mkdir -p $(SCHEMA_BASE)
@@ -112,7 +111,7 @@ build/release/fdri.recordspec.yaml: schema/fdri.recordspec.yaml
 	cp $^ build/release
 
 build/fdri.modelspec.yaml: schema/fdri.recordspec.yaml | build
-	$(RUN) model-spec-cmd -m $^ -f recordspec -t spec -o $@
+	$(RECORD-SPEC) model-spec $^ -f yaml -o $@
 
 build/release/fdri.modelspec.yaml: build/fdri.modelspec.yaml
 	mkdir -p build/release
@@ -124,4 +123,4 @@ build/release/fdri-metadata.ttl: owl/fdri-metadata.ttl
 
 build/fdri-metadata.rdfs.ttl: schema/fdri.recordspec.yaml
 	mkdir -p build
-	$(RUN) record-spec-cmd rdfs -f yaml -o $@ $^
+	$(RECORD-SPEC) rdfs -f yaml -o $@ $^
