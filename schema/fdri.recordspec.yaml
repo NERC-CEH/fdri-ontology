@@ -1365,11 +1365,7 @@ records:
       - value: Data Processing Activity
         lang: en
     description:
-      - value: |
-          The configuration information which is used by a data processing activity to control the way in which
-          the processing activity behaves.
-          A Data Processing Configuration is defined as a sub-type of prov:Plan allowing it to be associated with
-          an Actitvity via the prov:qualifiedAssociation property.
+      - value: An activity in which an agent applies a data processing configuration to one or more input datasets to generate or modify one or more output datasets.
         lang: en
     classUri: fdri:DataProcessingActivity
     shortCode: DataProcessingActivity
